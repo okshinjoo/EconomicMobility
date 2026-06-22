@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Core palette — warm, editorial, credible. One confident green, warm accents. */
+  --color-ink: #11211c;          /* near-black pine — dark sections, headings, body text */
+  --color-ink-700: #1e3a31;      /* raised surfaces on dark */
+  --color-ink-600: #2c5147;      /* hairline borders on dark */
+  --color-forest: #0c4a39;       /* THE brand green — header, dark sections, calculators */
+  --color-forest-700: #15624b;   /* raised surfaces on green (cards, inputs) */
+  --color-emerald: #1f9069;      /* brighter green — incidental accents only */
+  --color-amber: #e7a33c;        /* warm gold — primary CTAs, highlights */
+  --color-amber-deep: #c9842a;   /* gold, pressed/edge */
+  --color-terracotta: #d26a4c;   /* energetic warm accent, used sparingly */
+  --color-paper: #f7f2e8;        /* warm cream — page background */
+  --color-paper-deep: #efe6d4;   /* alternating section background */
+  --color-sand: #e4d8c1;         /* warm borders / dividers */
+  --color-stone: #44514a;        /* secondary text on light — kept dark for contrast */
+  --color-cream: #fbf8f1;        /* near-white — text on dark, cards */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-logo);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-ink);
+}
+
+/* Visible keyboard focus (amber reads on both light and dark surfaces). */
+:focus-visible {
+  outline: 2.5px solid var(--color-amber);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Display headings use the Fraunces serif by default for editorial warmth. */
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+/* Faint paper grain to kill the flat, vector-perfect look. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Keep real content above the grain layer. */
+body > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Long-form article body uses a reading serif; headings keep Fraunces. */
+.article-body {
+  font-family: var(--font-reading), Georgia, "Times New Roman", serif;
+}
+.article-lead {
+  font-family: var(--font-reading), Georgia, serif;
+}
+
+/* Editorial drop cap on the first paragraph of an article. */
+.article-dropcap::first-letter {
+  float: left;
+  margin: 0.3rem 0.6rem 0 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: 3.8rem;
+  line-height: 0.78;
+  color: var(--article-accent, var(--color-forest));
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
 }
