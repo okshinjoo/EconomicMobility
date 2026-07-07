@@ -60,10 +60,9 @@ export default function StateResources() {
             Find help in your state
           </h2>
           <p className="mt-2 text-sm leading-6 text-stone">
-            The national programs below point you to the right doors — but you
+            The national programs below point you to the right doors, but you
             apply through your <span className="font-semibold">state</span>.
-            Pick yours for the official links that actually take your
-            application.
+            Pick yours to get the official links that take your application.
           </p>
         </div>
         <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
@@ -123,9 +122,9 @@ export default function StateResources() {
             })}
           </div>
           <p className="mt-4 text-xs leading-6 text-stone">
-            These are official {stateName} government sites. If a link has moved,
-            search the program name plus &quot;{stateName}&quot; — and never pay
-            anyone to file an application that&apos;s free.
+            These are official {stateName} government sites. If a link has
+            moved, search the program name plus &quot;{stateName}&quot;. And
+            never pay anyone to file an application that&apos;s free.
           </p>
         </div>
       )}

@@ -1,7 +1,7 @@
 // Plain-language read on a budget: an overall verdict plus flags for any
 // category that's notably higher than a typical share of take-home pay.
 // Benchmarks are rough rules of thumb (as a share of monthly take-home),
-// meant for friendly guidance — not precise financial advice.
+// meant for friendly guidance, not precise financial advice.
 
 export interface ExpenseInput {
   label: string;
@@ -98,13 +98,13 @@ export function getBudgetInsights(
     // Spending more than you bring in.
     status = {
       tone: "bad",
-      headline: "Whoa there — that doesn't add up.",
-      detail: `Your expenses are about ${pct(
+      headline: "This budget comes up short.",
+      detail: `Your expenses add up to about ${pct(
         total / netMonthly
-      )} of your take-home, so you're spending more than you bring in. Time to trim somewhere.`,
+      )} of your take-home, so the month ends in the red. Look for one or two categories you could trim.`,
     };
   } else if (savedShare < 0.12) {
-    // Covering everything, but saving little — expenses run high.
+    // Covering everything, but saving little; expenses run high.
     status = {
       tone: "tight",
       headline: "Your expenses run a little high.",
@@ -119,16 +119,16 @@ export function getBudgetInsights(
       headline: "You're on track.",
       detail: `About ${pct(
         savedShare
-      )} of your take-home is left over — right around the 20% most budgets aim to save.`,
+      )} of your take-home is left over, right around the 20% most budgets aim to save.`,
     };
   } else {
     // Expenses are low relative to income.
     status = {
       tone: "good",
       headline: "Lots of room to spare.",
-      detail: `Your expenses are low — you're keeping about ${pct(
+      detail: `You're keeping about ${pct(
         savedShare
-      )} of your take-home to save and invest. Nice work (just double-check you've added every expense).`,
+      )} of your take-home free to save and invest. That's a strong position. Worth double-checking that every expense made it in, though.`,
     };
   }
 
@@ -149,7 +149,7 @@ export function getBudgetInsights(
     const share = sum / netMonthly;
     if (share > b.flagAt) {
       flags.push(
-        `${b.label} is about ${pct(share)} of your take-home — higher than the ~${pct(
+        `${b.label} takes about ${pct(share)} of your take-home, above the ~${pct(
           b.target
         )} most budgets aim for.`
       );

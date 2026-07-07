@@ -99,8 +99,8 @@ export default function DtiCalculator() {
             ))}
           </div>
           <p className="mt-3 text-xs text-stone">
-            Include only debt payments — not utilities, groceries, or
-            subscriptions.
+            Include only debt payments. Utilities, groceries, and
+            subscriptions don&apos;t count.
           </p>
         </Card>
       </div>

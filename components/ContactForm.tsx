@@ -79,8 +79,8 @@ export default function ContactForm() {
         <Send className="h-4 w-4" />
       </button>
       <p className="text-xs text-stone">
-        This opens your email app with the message ready to send — or write us
-        directly at{" "}
+        This opens your email app with the message ready to send. You can also
+        write us directly at{" "}
         <a
           href={`mailto:${CONTACT_EMAIL}`}
           className="font-semibold text-forest hover:text-amber-deep"

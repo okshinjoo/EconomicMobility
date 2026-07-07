@@ -355,7 +355,7 @@ Formula: **[who they are] + [honest acknowledgment of where they are] + [forward
 
 Reference examples (use as tone models, not a literal lookup table — write one per situation x rough age/confidence band):
 
-- *High school student, just starting:* "You're a high school student just getting started with finances — and the fact that you're here already puts you ahead of the curve."
+- *High school student, just starting:* "You're a high school student just getting started with finances, and showing up this early puts you ahead of the curve."
 - *Young professional:* "You're a young professional building the foundation of your financial life. You've got the basics down — now it's time to put them to work."
 - *Working adult with questions:* "You're navigating finances as a working adult with some real questions. You're not starting from zero, and we're going to help you fill in the gaps."
 - *Older / big decisions ahead (28-40+, advanced confidence):* "You're at a stage where the decisions you make — about homeownership, investing, and planning — have serious long-term impact. Let's make sure you have the right information."
@@ -367,9 +367,9 @@ Per real topic selected (for *pure* `not-sure`, show the single combined general
 
 - **Scored well (2/2 correct):** "Your answers on [topic] show you've got a solid foundation. We'll point you to some deeper resources to keep building on that."
 - **Scored partially (1/2 correct):** "You know some of the basics on [topic], but there are some gaps worth filling. We'd suggest starting with our intro guide before jumping to the advanced material."
-- **Scored low (0/2 correct):** "[Topic] might be newer territory for you than you thought — and that's completely okay. We'd recommend starting from the beginning on this one. It's more straightforward than it seems."
-- **Confidence mismatch — said confident, scored low** (tier was `advanced` but score is 0): "You mentioned feeling confident about [topic], but some of these questions tripped you up — which actually happens to a lot of people. The good news is the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base."
-- **Confidence mismatch — said beginner, scored well** (tier was `beginner` but score is 2): "You said you were just getting started, but your answers on [topic] suggest you know more than you think. We've included some intermediate resources — don't sell yourself short."
+- **Scored low (0/2 correct):** "[Topic] might be newer territory for you than you thought, and that's okay. We'd recommend starting from the beginning on this one. It's more straightforward than it seems."
+- **Confidence mismatch — said confident, scored low** (tier was `advanced` but score is 0): "You mentioned feeling confident about [topic], but some of these questions tripped you up. That happens to a lot of people, and the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base."
+- **Confidence mismatch — said beginner, scored well** (tier was `beginner` but score is 2): "You said you were just getting started, but your answers on [topic] suggest you know more than you think. Don't sell yourself short: we've included some intermediate resources."
 
 > The confidence-mismatch messages are the most important part — they're what makes the quiz feel honest rather than just flattering. Don't cut these.
 
@@ -402,15 +402,15 @@ Output format:
 
 Reference examples:
 
-- *Beginner, selected Credit:* "What Is a Credit Score — and Why Does It Matter? A plain-English breakdown of how credit scores work, what affects them, and how to start building yours from zero." → links to `/learn/credit`
+- *Beginner, selected Credit:* "What Is a Credit Score, and Why Does It Matter? A plain-English breakdown of how credit scores work, what affects them, and how to start building yours from zero." → links to `/learn/credit`
 - *Between jobs, selected Government Aid:* "Benefits & Programs You May Qualify For — A breakdown of federal and state programs, from food assistance to unemployment, and how to apply." → `/learn/government-aid`
-- *Advanced/confident, selected Investing:* "Beyond the Basics: Building a Real Investment Strategy — Index funds, asset allocation, and how to think about risk. For people ready to go deeper than just 'open a Roth IRA.'" → `/learn/investing`
+- *Advanced/confident, selected Investing:* "Beyond the Basics: Building a Real Investment Strategy — Index funds, asset allocation, and how to think about risk. For anyone ready to go deeper than 'open a Roth IRA.'" → `/learn/investing`
 - *Q4 included `tools`:* "Tools & Calculators — Budget planners, debt payoff calculators, and more, built to help you understand your numbers and make smarter decisions." → `/tools`
-- *Q4 included `test-knowledge`:* "Keep Going — More Quizzes by Topic. Ready to go deeper? Take a focused quiz on any topic to sharpen what you know." → `/learn` (topic quiz hub, once it exists)
+- *Q4 included `test-knowledge`:* "Keep Going: More Quizzes by Topic. Ready to go deeper? Take a focused quiz on any topic to sharpen what you know." → `/learn` (topic quiz hub, once it exists)
 
 ### Closing line
 
-> "Bookmark this page or take a screenshot — your results don't expire, but your financial journey is just getting started. We'll be here whenever you need us."
+> "Bookmark this page or take a screenshot: your results don't expire, and you can retake the quiz whenever your situation changes."
 
 ---
 

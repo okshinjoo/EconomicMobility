@@ -24,7 +24,7 @@ export interface CommunityPost {
   team?: boolean;
   date: string;
   title: string;
-  /** Paragraphs. Inline [label](/path) links are NOT parsed here — plain text. */
+  /** Paragraphs. Inline [label](/path) links are NOT parsed here; plain text only. */
   body: string[];
   topicId?: TopicId;
   link?: { label: string; href: string };
@@ -37,10 +37,10 @@ export const communityPosts: CommunityPost[] = [
     author: "Empower Team",
     team: true,
     date: "2026-07-07",
-    title: "Welcome — here's what this space is for",
+    title: "Welcome: here's what this space is for",
     body: [
       "Money is easier when nobody's figuring it out alone. This feed is where Empower readers swap wins, questions, and honest experiences: the first paycheck, the credit score that finally moved, the FAFSA that made no sense until it did.",
-      "Ground rules, kept short: be kind, no shaming anyone's situation or starting point, no selling anything, and no sharing anyone's personal details (including your own account numbers — please). This is a place to learn out loud.",
+      "Ground rules, kept short: be kind, no shaming anyone's situation or starting point, no selling anything, and no sharing anyone's personal details (yes, that includes your own account numbers). This is a place to learn out loud.",
       "Comments are reviewed before they appear for everyone, usually within a day or two. You never need an account or a real name.",
     ],
     comments: [],
@@ -72,7 +72,7 @@ export const communityPosts: CommunityPost[] = [
     title: "The money question you never felt you could ask",
     body: [
       "Most of us carry one around for years: something everyone else seems to already understand, so asking feels embarrassing. What's yours? Odds are a dozen other people reading this have the same one.",
-      "Ask it in the comments, or completely anonymously through the Ask box — the best ones get full plain-English answers on the site.",
+      "Ask it in the comments, or completely anonymously through the Ask box. The best ones get full plain-English answers on the site.",
     ],
     link: { label: "Ask anonymously instead", href: "/ask#ask" },
     comments: [],
@@ -85,7 +85,7 @@ export const communityPosts: CommunityPost[] = [
     title: "From the Ask box: \"I have no credit history at all. What's the fastest honest way to start?\"",
     topicId: "credit",
     body: [
-      "A reader sent this in, and it's one of the most common questions we get. The short version of our answer: start with a secured card or a credit-builder loan, then let two boring habits do the work — pay in full on time, keep the balance low. There's no legitimate fast-track, and anyone charging a fee to \"boost\" your score is selling you something you can do free.",
+      "A reader sent this in, and it's one of the most common questions we get. The short version of our answer: start with a secured card or a credit-builder loan, then let two boring habits do the work. Pay in full on time, keep the balance low. There's no legitimate fast-track, and anyone charging a fee to \"boost\" your score is selling you something you can do free.",
       "The full answer, and more like it, live on the Ask page. Have a follow-up? That's what the comments are for.",
     ],
     link: { label: "Read the full answer", href: "/ask#ask-no-credit-history" },

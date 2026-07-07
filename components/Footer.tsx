@@ -46,8 +46,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-6 text-cream/60">
-              Free, jargon-free financial education built to break the cycle of
-              economic disadvantage — for everyone.
+              Plain-English financial education, free for everyone, built to
+              break the cycle of economic disadvantage.
             </p>
           </div>
 

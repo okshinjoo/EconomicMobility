@@ -7,7 +7,7 @@ import StateResources from "@/components/StateResources";
 export const metadata: Metadata = {
   title: "Resources | Empower — Economic Mobility Project",
   description:
-    "Trusted, free outside resources — scholarships and financial aid, government benefits and programs, money help, and free tax filing.",
+    "Trusted, free outside resources: scholarships and financial aid, government benefits and programs, money help, and free tax filing.",
 };
 
 const groups = [
@@ -65,7 +65,7 @@ const groups = [
       {
         name: "Consumer Financial Protection Bureau",
         url: "https://www.consumerfinance.gov",
-        desc: "Plain-English guides on credit, loans, and your rights — and a place to file complaints.",
+        desc: "Plain-English guides on credit, loans, and your rights, plus a place to file complaints.",
       },
       {
         name: "AnnualCreditReport.com",
@@ -119,9 +119,9 @@ export default function ResourcesPage() {
               <span className="italic text-amber">already out there.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
-              A hand-picked list of trusted, free programs and tools — for
-              college aid, government benefits, money help, and taxes. The hard
-              part is knowing they exist.
+              A hand-picked list of trusted, free programs and tools for
+              college aid, government benefits, money help, and taxes. Usually
+              the hard part is knowing they exist.
             </p>
           </div>
         </section>
@@ -191,10 +191,10 @@ export default function ResourcesPage() {
         <section className="bg-amber text-ink">
           <div className="mx-auto max-w-5xl px-6 py-12">
             <p className="max-w-3xl text-base leading-7 text-ink/80">
-              These are independent organizations we don&apos;t run or control —
-              we list them because they&apos;re free, reputable, and genuinely
-              useful. Always double-check eligibility on the official site, and
-              be wary of anyone charging you for help that&apos;s free.
+              We don&apos;t run or control these organizations. They&apos;re
+              listed here because they&apos;re free, reputable, and useful.
+              Double-check eligibility on the official site, and be wary of
+              anyone charging you for help that&apos;s free.
             </p>
           </div>
         </section>

@@ -22,14 +22,14 @@ export const toolCategories: ToolCategory[] = [
   {
     id: "budgeting",
     label: "Budgeting & Income",
-    blurb: "Know what you really make, and where it goes.",
+    blurb: "Figure out what you take home and where it goes.",
     base: "/tools/budget",
     items: [
       {
         slug: "budget",
         title: "Budget Planner",
         short:
-          "Turn pay into take-home, then map it against your spending — with a plain-language read on your budget.",
+          "Turn your pay into take-home, map it against your spending, and get a plain-language read on your budget.",
         status: "live",
         main: true,
       },
@@ -48,7 +48,7 @@ export const toolCategories: ToolCategory[] = [
       {
         slug: "emergency-fund",
         title: "Emergency Fund",
-        short: "How big it should be — and how long to build it.",
+        short: "How big yours should be, and how long it'll take to build.",
         status: "live",
       },
       {
@@ -68,7 +68,7 @@ export const toolCategories: ToolCategory[] = [
       {
         slug: "payoff",
         title: "Debt Payoff",
-        short: "Build a plan to clear multiple debts — avalanche or snowball.",
+        short: "Build a plan to clear multiple debts, avalanche or snowball.",
         status: "live",
         main: true,
       },
@@ -87,7 +87,7 @@ export const toolCategories: ToolCategory[] = [
       {
         slug: "credit-card",
         title: "Credit Card Payoff",
-        short: "How long to clear a card — and the trap of paying minimums.",
+        short: "How long it takes to clear a card, and why minimums are a trap.",
         status: "live",
       },
       {
@@ -107,7 +107,7 @@ export const toolCategories: ToolCategory[] = [
       {
         slug: "goal",
         title: "Savings Goal",
-        short: "See what it takes to reach a savings goal — by a date or an amount.",
+        short: "What it takes to reach a savings goal, by a date or an amount.",
         status: "live",
         main: true,
       },
@@ -127,7 +127,7 @@ export const toolCategories: ToolCategory[] = [
         slug: "roth-ira",
         title: "Roth IRA",
         short:
-          "Project tax-free retirement growth — and how much a Roth beats a taxable account.",
+          "Project tax-free retirement growth and see how far a Roth outruns a taxable account.",
         status: "live",
       },
       {
@@ -147,7 +147,7 @@ export const toolCategories: ToolCategory[] = [
       {
         slug: "cost",
         title: "College Cost",
-        short: "Your real gap after aid — and the loans it might take.",
+        short: "The gap left after aid, and the loans it might take to fill it.",
         status: "live",
         main: true,
       },

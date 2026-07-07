@@ -9,7 +9,7 @@ import { getTopic } from "@/lib/topics";
 export const metadata: Metadata = {
   title: "Ask Empower — Real Money Questions, Answered",
   description:
-    "Ask any money question anonymously — no account, no judgment. We answer the most useful ones here, in plain English.",
+    "Ask any money question anonymously, with no account and no judgment. We answer the most useful ones here, in plain English.",
 };
 
 export default function AskPage() {
@@ -36,8 +36,8 @@ export default function AskPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
               No question is too basic, and you never have to give your name.
-              Ask anything about money — we answer the most common and useful
-              ones right here, in plain English.
+              Ask anything about money. The most common and useful questions
+              get answered right here, in plain English.
             </p>
           </div>
         </section>
@@ -130,8 +130,8 @@ export default function AskPage() {
               Want the full picture?
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-ink/75">
-              The Learn library covers credit, budgeting, taxes, college,
-              investing, scams, and more — over 100 guides in plain English.
+              The Learn library has over 100 plain-English guides on credit,
+              budgeting, taxes, college, investing, scams, and more.
             </p>
             <Link
               href="/learn"

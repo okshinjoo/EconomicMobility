@@ -102,7 +102,7 @@ export default function RothIraCalculator() {
           <div className="mt-2 flex items-center justify-between gap-3">
             <p className={`text-xs ${overLimit ? "text-terracotta" : "text-stone"}`}>
               {overLimit
-                ? `Over the 2026 limit of ${usd(limit)}${currentAgeN >= 50 ? " (50+)" : ""} — contributions above this aren't allowed.`
+                ? `Over the 2026 limit of ${usd(limit)}${currentAgeN >= 50 ? " (50+)" : ""}. Contributions above this aren't allowed.`
                 : `2026 limit: ${usd(limit)}/yr${currentAgeN >= 50 ? " (includes 50+ catch-up)" : ", or $8,600 at age 50+"}.`}
             </p>
             {annualN !== limit && (
@@ -157,7 +157,7 @@ export default function RothIraCalculator() {
           </div>
           <p className="mt-3 text-xs text-stone">
             The tax rate is only used to compare a Roth against a regular taxable
-            account — a Roth itself is never taxed on qualified withdrawals.
+            account; a Roth itself is never taxed on qualified withdrawals.
             Historically stocks have returned ~7%/yr after inflation, but returns
             aren&apos;t guaranteed.
           </p>

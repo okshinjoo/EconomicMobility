@@ -9,7 +9,7 @@ import { getTopic } from "@/lib/topics";
 export const metadata: Metadata = {
   title: "Glossary | Empower — Economic Mobility Project",
   description:
-    "Plain-English definitions of common money terms — credit, taxes, investing, financial aid, and more. No jargon.",
+    "Plain-English definitions of common money terms: credit, taxes, investing, financial aid, and more. No jargon.",
 };
 
 export default function GlossaryPage() {
@@ -53,8 +53,8 @@ export default function GlossaryPage() {
             <span className="italic text-forest">in plain English.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/75">
-            Every term we use across the site, defined simply. No jargon, no
-            assumptions — just clear answers.
+            Every term we use across the site, defined simply, without assuming
+            what you already know.
           </p>
 
           <p className="mt-8 text-sm font-bold text-ink/70">

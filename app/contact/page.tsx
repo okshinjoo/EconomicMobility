@@ -16,11 +16,11 @@ const involvement = [
   },
   {
     title: "Partner or volunteer",
-    text: "Educators, mentors, and organizations — let's build the support network together.",
+    text: "If you're an educator, mentor, or organization, let's build the support network together.",
   },
   {
     title: "Tell us what's missing",
-    text: "A topic, a tool, a word that needs defining? We want to hear it.",
+    text: "If we're missing a topic, a tool, or a word that needs defining, we want to hear about it.",
   },
 ];
 
@@ -40,8 +40,8 @@ export default function ContactPage() {
               We&apos;d love to hear from you.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
-              A question, an idea, a story, a way to help — this is a community,
-              and your voice is part of it.
+              Send a question, an idea, a story, or an offer to help. This
+              project runs on hearing from the people it&apos;s for.
             </p>
           </div>
         </section>

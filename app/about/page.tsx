@@ -24,7 +24,7 @@ const pillars = [
     status: "Live now",
     statusTone: "live",
     description:
-      "Free, plain-English guides on credit, budgeting, taxes, college, investing, and more — written for people the system never bothered to explain it to. This website is where it starts.",
+      "Free, plain-English guides on credit, budgeting, taxes, college, investing, and more, written for the people the system never bothered to explain it to. This website is where it starts.",
   },
   {
     n: "02",
@@ -40,14 +40,14 @@ const pillars = [
     status: "In progress",
     statusTone: "soon",
     description:
-      "Personal-finance tips only go so far. We research and surface the structural barriers to economic mobility — so the conversation isn't only about individual choices.",
+      "Personal-finance tips only go so far. We research and surface the structural barriers to economic mobility, so the conversation isn't only about individual choices.",
   },
 ];
 
 const values = [
   {
     title: "Free, forever",
-    description: "No paywalls, no sign-up walls, no upsells. Always.",
+    description: "No paywalls, and nothing hidden behind a sign-up. That won't change.",
   },
   {
     title: "Plain language",
@@ -60,7 +60,7 @@ const values = [
   {
     title: "Honest about barriers",
     description:
-      "We name the structural stuff — not just personal-finance hacks.",
+      "We name the structural obstacles, not only the personal-finance fixes.",
   },
 ];
 
@@ -85,9 +85,9 @@ export default function AboutPage() {
             <span className="italic text-amber">family secret.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-cream/75">
-            The Economic Mobility Project exists to put the knowledge that builds
-            wealth — the kind usually passed down quietly at kitchen tables —
-            within reach of everyone, especially the students who were never
+            The Economic Mobility Project puts the knowledge that builds
+            wealth, the kind usually passed down quietly at kitchen tables,
+            within reach of everyone. Especially the students who were never
             handed the map.
           </p>
         </div>
@@ -108,9 +108,9 @@ export default function AboutPage() {
             </div>
             <div className="absolute -right-4 bottom-8 max-w-[16rem] rotate-2 rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] sm:-right-8">
               <p className="font-display text-lg italic leading-snug">
-                &ldquo;Empower stands for the Economic Mobility Project — and for
-                empowering people to take control of their financial
-                freedom.&rdquo;
+                &ldquo;Empower stands for the Economic Mobility Project, and
+                for what we want every reader to do: take control of their
+                financial freedom.&rdquo;
               </p>
             </div>
           </div>
@@ -126,21 +126,21 @@ export default function AboutPage() {
               <p>
                 I&apos;m a first-generation, low-income, immigrant student.
                 Growing up, money was something we worried about constantly but
-                rarely understood — not because anyone failed us, but because the
-                information was never ours to begin with. It lived behind
-                paywalls, in jargon, in households that had done this before.
+                rarely understood. Nobody had failed us. The information was
+                never ours to begin with. It lived behind paywalls, in jargon,
+                in households that had done all of this before.
               </p>
               <p>
-                Every time I figured something out — how credit actually works,
-                what FAFSA is really asking, why a budget isn&apos;t a punishment
-                — I realized how much further ahead I&apos;d be if someone had
-                just told me sooner. So I decided to build that
-                &ldquo;someone&rdquo; for the next student in my shoes.
+                Every time I figured something out (how credit works, what
+                FAFSA is asking for, why a budget isn&apos;t a punishment) I
+                thought the same thing: someone could have told me this years
+                ago. So I decided to become that &ldquo;someone&rdquo; for the
+                next student in my shoes.
               </p>
               <p>
-                That&apos;s what the Economic Mobility Project is: a way to break
-                the cycle of economic disadvantage for students like me — and
-                anyone else the system was never designed to inform.
+                That&apos;s what the Economic Mobility Project is: a way to
+                break the cycle of economic disadvantage for students like me,
+                and for anyone else the system was never built to inform.
               </p>
             </div>
             <div className="mt-8 border-l-2 border-amber pl-4">
@@ -166,8 +166,8 @@ export default function AboutPage() {
               Three ways we break the cycle
             </h2>
             <p className="mt-4 text-lg leading-8 text-ink/75">
-              Education is where it starts — but lasting economic mobility takes
-              more than a website. Here&apos;s the whole plan.
+              Education is where it starts, but lasting economic mobility takes
+              more than a website. This is the full plan.
             </p>
           </div>
 
@@ -241,14 +241,14 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
-              This is just the beginning
+              Where this is going
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
               One student at a time, the map gets shared.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
-              Every guide read, every question answered, every person who feels a
-              little more in control — that&apos;s the cycle starting to break.
+              Every guide read and every question answered puts a small crack
+              in the cycle. Enough cracks, and it breaks.
             </p>
           </div>
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:rotate-1">
@@ -271,8 +271,8 @@ export default function AboutPage() {
               Start <span className="italic">where you are.</span>
             </h2>
             <p className="mt-4 text-lg leading-8 text-cream/85">
-              Take the 2-minute quiz for a path built around your life, or reach
-              out — this is a community, and you&apos;re part of it now.
+              Take the 2-minute quiz for a path built around your life, or send
+              us a note. We read everything that comes in.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">

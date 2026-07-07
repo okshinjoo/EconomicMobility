@@ -190,11 +190,11 @@ export function ClearBar({ onClear }: { onClear: () => void }) {
   return (
     <div className="mt-4 flex flex-col gap-3 px-1">
       <p className="text-xs leading-5 text-stone">
-        Estimates only, for planning — not financial advice.
+        Estimates only, for planning. Not financial advice.
       </p>
       <div className="flex items-center justify-between gap-3 border-t border-sand pt-3">
         <span className="text-xs text-stone">
-          Saved on this device only — no account needed.
+          Saved on this device only; no account needed.
         </span>
         <button
           type="button"

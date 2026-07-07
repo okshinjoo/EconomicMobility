@@ -156,7 +156,7 @@ export default function GrowthCalculator({ config }: { config: GrowthConfig }) {
           </div>
           <p className="mt-3 text-xs text-stone">
             Historically the stock market has returned about 7% a year after
-            inflation — but returns aren&apos;t guaranteed. Use a lower number to
+            inflation, but returns aren&apos;t guaranteed. Use a lower number to
             be cautious.
           </p>
         </Card>

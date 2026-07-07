@@ -270,7 +270,7 @@ export default function QuizFlow() {
 
   const progressLabel =
     step === "kc"
-      ? `Knowledge Check — Question ${kcIndex + 1} of ${kcQuestions.length}`
+      ? `Knowledge Check: Question ${kcIndex + 1} of ${kcQuestions.length}`
       : QUESTION_STEPS.includes(step as (typeof QUESTION_STEPS)[number])
         ? `Question ${QUESTION_STEPS.indexOf(step as (typeof QUESTION_STEPS)[number]) + 1} of 5`
         : "";
@@ -287,7 +287,7 @@ export default function QuizFlow() {
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cream">
               <TopicMark id={topic.id} className="h-4.5 w-4.5" />
             </span>
-            {topic.title} — Quick Check
+            {topic.title} · Quick Check
           </span>
           <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-3xl">
             {q.question}
@@ -389,7 +389,7 @@ export default function QuizFlow() {
             {step === "kc" && (
               <div className="mt-6 border-t border-sand pt-5 text-center">
                 <p className="text-sm text-stone">
-                  Not into being quizzed? That&apos;s okay — it&apos;s optional.
+                  Not into being quizzed? This part is optional.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm font-semibold">
                   <button
@@ -458,7 +458,7 @@ const welcomeOutcomes = [
   },
   {
     title: "A clear first step",
-    desc: "Exactly what to read or use first — no overwhelm.",
+    desc: "Exactly what to read or use first, without the overwhelm.",
   },
   {
     title: "Tailored resources",

@@ -98,9 +98,9 @@ export default function QuizResults({
 
         {skippedKc ? (
           <p className="mt-4 text-base leading-7 text-stone">
-            You skipped the knowledge check — no problem at all. We&apos;ve built
-            your recommendations below from your goals and how confident you said
-            you feel. If you ever want a quick gut-check, you can retake the quiz
+            You skipped the knowledge check, which is completely fine. Your
+            recommendations below are built from your goals and how confident you
+            said you feel. If you ever want a quick gut-check, retake the quiz
             and answer those questions anytime.
           </p>
         ) : pureNotSure && general ? (

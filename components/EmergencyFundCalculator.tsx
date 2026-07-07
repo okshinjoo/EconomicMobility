@@ -95,7 +95,7 @@ export default function EmergencyFundCalculator() {
             ))}
           </div>
           <p className="mt-3 text-xs text-stone">
-            Count only the essentials — rent, food, utilities, transport,
+            Count only the essentials: rent, food, utilities, transport,
             minimum debt payments. Most people aim for 3 to 6 months.
           </p>
         </Card>
@@ -176,12 +176,12 @@ export default function EmergencyFundCalculator() {
                 <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
                 <p className="text-xs leading-5 text-cream/80">
                   {done
-                    ? "You're fully funded — that's a real cushion against life's surprises."
+                    ? "You're fully funded. That's a real cushion against life's surprises."
                     : monthly > 0
                       ? `Saving ${usd(monthly)} a month gets you there in about ${formatDuration(
                           monthsToBuild
                         )}. Even a partial fund beats none.`
-                      : "Start with a small goal — even $500 covers a lot of common emergencies. Add a monthly amount to see your timeline."}
+                      : "Start with a small goal; even $500 covers a lot of common emergencies. Add a monthly amount to see your timeline."}
                 </p>
               </div>
             </div>

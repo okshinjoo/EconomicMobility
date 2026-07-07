@@ -8,7 +8,7 @@ import { loadJSON, saveJSON } from "@/lib/storage";
 
 // Same moderated-inbox channel as the Ask box (components/AskQuestion.tsx):
 // paste the Web3Forms access key for help@economicmobilityproject.org here to
-// go live. Until then the forms run in preview mode — visitors still see
+// go live. Until then the forms run in preview mode: visitors still see
 // their own pending posts/comments (saved locally), nothing is sent anywhere.
 const WEB3FORMS_ACCESS_KEY = "";
 
@@ -39,7 +39,7 @@ async function submitToInbox(payload: Record<string, string>): Promise<boolean> 
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
-        from_name: "Empower — Community",
+        from_name: "Empower Community",
         ...payload,
       }),
     });
@@ -137,7 +137,7 @@ function Composer() {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Name (optional — first name is plenty)"
+          placeholder="Name (optional; first name is plenty)"
           className="w-full max-w-[16rem] rounded-lg border border-sand bg-paper px-4 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
         />
         <button
@@ -236,7 +236,7 @@ function CommentForm({ postId }: { postId: string }) {
           </span>
           {status === "error" && (
             <span className="text-xs font-medium text-terracotta">
-              Failed to send — try again.
+              Failed to send. Please try again.
             </span>
           )}
         </div>
@@ -323,7 +323,7 @@ function PostCard({
         </button>
       </div>
 
-      {/* Comments — always visible while empty or when you have one pending */}
+      {/* Comments: always visible while empty or when you have one pending */}
       {(open || commentTotal === 0 || pendingComments.length > 0) && (
         <div className="mt-2">
           {post.comments.map((c) => (

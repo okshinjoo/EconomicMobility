@@ -1,5 +1,5 @@
 // Group challenges: self-paced action checklists anyone can join (no account
-// — progress lives in localStorage, like courses). The "group" part is each
+// needed; progress lives in localStorage, like courses). The "group" part is each
 // challenge's official community thread, where people share how it's going
 // through the same moderated comment flow as the rest of the feed.
 //
@@ -31,7 +31,7 @@ export const challenges: Challenge[] = [
   {
     id: "money-reset-week",
     title: "The Money Reset Week",
-    tagline: "Seven days to know exactly where you stand.",
+    tagline: "Seven days to find out where you stand.",
     description:
       "Not a savings sprint and not a guilt trip. One small action a day for a week, and by Sunday you know where your money goes, what it costs you to live, and the one change most worth making.",
     pace: "One week, one step a day",
@@ -59,7 +59,7 @@ export const challenges: Challenge[] = [
       },
       {
         id: "subscription",
-        title: "Cancel or downgrade one thing you don't really use",
+        title: "Cancel or downgrade one thing you barely use",
         detail:
           "One forgotten subscription or an overpriced plan. Even $12 a month is $144 a year back in your pocket.",
       },
@@ -91,7 +91,7 @@ export const challenges: Challenge[] = [
     title: "The No-Spend Weekend",
     tagline: "48 hours, zero optional spending, one honest reset.",
     description:
-      "Groceries you already bought, bills already scheduled, and nothing else from Friday night to Monday morning. It's not about the money you save this weekend; it's about noticing every moment you reach for your card without thinking.",
+      "Groceries you already bought, bills already scheduled, and nothing else from Friday night to Monday morning. You won't save much in one weekend, and that's fine. The point is noticing every moment you reach for your card without thinking.",
     pace: "One weekend",
     color: "#d26a4c",
     communityPostId: "thread-no-spend-weekend",
@@ -128,7 +128,7 @@ export const challenges: Challenge[] = [
     title: "The Credit Check-Up",
     tagline: "Five steps to know your credit is clean and working for you.",
     description:
-      "Most people have never actually read their own credit report. This challenge fixes that: pull all three, read them like a pro, catch anything wrong, and leave with your utilization number and a protection plan.",
+      "Most people have never read their own credit report. This challenge fixes that: pull all three, read them like a pro, catch anything wrong, and leave with your utilization number and a protection plan.",
     pace: "One sitting, or five short days",
     color: "#0f5c46",
     communityPostId: "thread-credit-checkup",

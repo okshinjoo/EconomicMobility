@@ -30,7 +30,7 @@ export interface Course {
   description: string;
   /** Brand-palette accent for the course page, cards, and badge. */
   color: string;
-  /** Article slugs in reading order (any topic — that's the point). */
+  /** Article slugs in reading order (any topic; that's the point). */
   articleSlugs: string[];
   /** Written to be passed after reading; every question names its source. */
   finalQuiz: CourseQuizQuestion[];
@@ -42,7 +42,7 @@ export const courses: Course[] = [
   {
     id: "first-paycheck",
     title: "Your First Paycheck",
-    goal: "Start your first job knowing exactly where the money goes.",
+    goal: "Start your first job knowing where the money goes.",
     description:
       "You got the job. This module walks the money side end to end: why the check is smaller than the offer, how to read the stub, setting up your W-4 so there are no April surprises, and where the money should live.",
     color: "#1f9069",
@@ -75,7 +75,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "Gross pay is what you earned before anything comes out. Net pay is what you actually take home, and that is the number your plan runs on.",
+          "Gross pay is what you earned before anything comes out. Net pay is what you take home, and that is the number your plan runs on.",
         sourceSlug: "how-to-read-a-pay-stub",
       },
       {
@@ -133,7 +133,7 @@ export const courses: Course[] = [
     title: "Credit From Zero",
     goal: "Build a real credit score from no history at all.",
     description:
-      "No credit history isn't a black mark, it's a blank page. This module covers what the score actually measures, how to see your own report free, the safe starter tools, and the two habits that do all the work.",
+      "No credit history means lenders have nothing to go on yet. This module covers what the score measures, how to see your own report free, the safe starter tools, and the two habits that do all the work.",
     color: "#0f5c46",
     articleSlugs: [
       "what-is-a-credit-score",
@@ -311,7 +311,7 @@ export const courses: Course[] = [
     title: "Your First Apartment",
     goal: "Rent your first place without getting burned.",
     description:
-      "What it really costs to live on your own, how applications and leases work, the rights landlords hope you don't know, and how to get your deposit back when you leave.",
+      "The true cost of living on your own, how applications and leases work, the rights landlords hope you don't know, and how to get your deposit back when you leave.",
     color: "#b7593f",
     articleSlugs: [
       "cost-of-living",
@@ -330,7 +330,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "Irregular costs are what wreck budgets, exactly because they are easy to forget. Adding up yearly costs and dividing by 12 gives you your real monthly number.",
+          "Irregular costs are what wreck budgets, because they are so easy to forget. Adding up yearly costs and dividing by 12 gives you your real monthly number.",
         sourceSlug: "cost-of-living",
       },
       {
@@ -378,7 +378,7 @@ export const courses: Course[] = [
         ],
         answer: 2,
         explain:
-          "There is a legal line between damage you caused and normal wear and tear. Ordinary aging from simply living there is not something you can be charged for.",
+          "There is a legal line between damage you caused and normal wear and tear. Ordinary aging from living there is not something you can be charged for.",
         sourceSlug: "security-deposit-back",
       },
       {
@@ -533,7 +533,7 @@ export const courses: Course[] = [
         ],
         answer: 0,
         explain:
-          "Unlike a credit card, there is usually no dispute or chargeback on payment apps. Treat them like cash and use them only with people you actually know.",
+          "Unlike a credit card, there is usually no dispute or chargeback on payment apps. Treat them like cash and use them only with people you know.",
         sourceSlug: "payment-app-safety",
       },
       {

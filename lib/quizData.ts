@@ -649,12 +649,12 @@ export function scoreGeneralCheck(answers: KCAnswers): {
 export function getGeneralCheckFeedback(correct: number, total: number): string {
   const pct = total > 0 ? correct / total : 0;
   if (pct >= 0.75) {
-    return `You got ${correct} of ${total} — you clearly know more than "I'm not sure" lets on. We'll skip the very basics and point you toward what to sharpen next.`;
+    return `You got ${correct} of ${total}. For someone who answered "I'm not sure," you know a fair amount. We'll skip the very basics and point you toward what to sharpen next.`;
   }
   if (pct >= 0.4) {
-    return `You got ${correct} of ${total}. Some solid instincts, a few gaps — completely normal. The path below starts with the fundamentals so nothing feels shaky.`;
+    return `You got ${correct} of ${total}: some solid instincts, a few gaps. That's normal. The path below starts with the fundamentals so nothing feels shaky.`;
   }
-  return `You got ${correct} of ${total}, and that's a perfectly fine place to begin — everyone starts somewhere. We've put the clearest, most beginner-friendly guides first.`;
+  return `You got ${correct} of ${total}, which is a fine place to begin. We've put the clearest, most beginner-friendly guides first so you can build from there.`;
 }
 
 // ---------------------------------------------------------------------------
@@ -669,20 +669,20 @@ export function getFinancialProfile(
   switch (situationId) {
     case "student":
       return ageId === "under-18"
-        ? "You're a high school student just getting started with finances — and the fact that you're here already puts you ahead of the curve. We'll keep things clear, practical, and useful for right now."
-        : "You're a student building the foundation of your financial life. You've got real decisions ahead — about loans, credit, and budgeting — and we'll help you make them with confidence.";
+        ? "You're a high school student just getting started with finances, and showing up this early puts you ahead of the curve. We'll keep things practical and useful for right now."
+        : "You're a student building the foundation of your financial life, with real decisions ahead of you: loans, credit, budgeting. We'll help you make them with confidence.";
     case "working":
       return tier === "beginner"
         ? "You're navigating finances as a working adult with some real questions. You're not starting from zero, and we're going to help you fill in the gaps."
-        : "You're at a stage where the decisions you make — about credit, investing, and planning ahead — have real long-term impact. Let's make sure you have the right information to make them well.";
+        : "You're at a stage where decisions about credit, investing, and planning ahead carry real long-term weight. Let's make sure you have the right information to make them well.";
     case "between-jobs":
-      return "You're between jobs right now, which makes this a genuinely good time to get a clearer picture of your finances and the support that's available to you.";
+      return "You're between jobs right now, which is a good time to get a clearer picture of your finances and the support that's available to you.";
     case "retired":
-      return "You're thinking about your finances at a stage where stability and planning ahead matter most — we'll focus on the resources that fit where you are now.";
+      return "You're thinking about your finances at a stage where stability and planning ahead matter most. We'll focus on the resources that fit where you are now.";
     case "parent":
       return "You're managing a household and juggling a lot. We'll focus on the tools and resources that give you the most value for your time.";
     default:
-      return "You're here to get a clearer picture of your finances — and that's a great place to start. Here's what we'd recommend based on your answers.";
+      return "You're here to get a clearer picture of your finances, which is a good place to start. Here's what we'd recommend based on your answers.";
   }
 }
 
@@ -701,18 +701,18 @@ export function getKnowledgeCheckFeedback(
 ): string {
   if (score >= 2) {
     if (tier === "beginner") {
-      return `You said you were just getting started, but your answers on ${topicLabel} suggest you know more than you think. We've included some intermediate resources — don't sell yourself short.`;
+      return `You said you were just getting started, but your answers on ${topicLabel} suggest you know more than you think. Don't sell yourself short: we've included some intermediate resources.`;
     }
     return `Your answers on ${topicLabel} show you've got a solid foundation. We'll point you to some deeper resources to keep building on that.`;
   }
   if (score === 1) {
-    return `You know some of the basics on ${topicLabel}, but there are some gaps worth filling. We'd suggest starting with our intro guide before jumping into the advanced material.`;
+    return `You know some of the basics on ${topicLabel}, but there are gaps worth filling. We'd suggest starting with our intro guide before jumping into the advanced material.`;
   }
   // score === 0
   if (tier === "advanced") {
-    return `You mentioned feeling confident about ${topicLabel}, but some of these questions tripped you up — which actually happens to a lot of people. The good news is the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base.`;
+    return `You mentioned feeling confident about ${topicLabel}, but some of these questions tripped you up. That happens to a lot of people, and the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base.`;
   }
-  return `${topicLabel} might be newer territory for you than you thought — and that's completely okay. We'd recommend starting from the beginning on this one. It's more straightforward than it seems.`;
+  return `${topicLabel} might be newer territory for you than you thought, and that's okay. We'd recommend starting from the beginning on this one. It's more straightforward than it seems.`;
 }
 
 // ---------------------------------------------------------------------------
@@ -723,21 +723,21 @@ const topicWhyBlurbs: Record<TopicId, string> = {
   budgeting:
     "Getting your day-to-day finances under control is the foundation everything else builds on.",
   credit:
-    "Once your day-to-day money is steady, building credit opens up a lot of doors — better rates, easier approvals, more options.",
+    "Once your day-to-day money is steady, building credit opens a lot of doors: better rates and easier approvals on almost everything.",
   college:
     "Financial aid decisions are time-sensitive, so this is worth tackling early.",
   investing:
-    "You've got the groundwork in place — now's a good time to start putting your money to work.",
+    "With the groundwork in place, this is a good time to start putting your money to work.",
   "home-ownership":
     "This is one of the biggest financial decisions you'll make, so it pays to understand it well before you need it.",
   "government-aid":
     "Knowing what you qualify for can free up real money in the short term while you sort out the rest.",
   taxes:
-    "Understanding this now means fewer surprises — and possibly more money back — when filing season comes around.",
+    "Understanding this now means fewer surprises when filing season comes around, and possibly more money back.",
   "money-safety":
     "One scam can wipe out months of progress, so learning to spot them protects everything else you're building.",
   insurance:
-    "The right coverage keeps a single emergency — a hospital visit, a car wreck — from undoing everything else you've built.",
+    "The right coverage keeps one emergency, like a hospital visit or a car wreck, from undoing everything else you've built.",
 };
 
 const stepLabels = ["Start here", "Then", "When you're ready"];
@@ -810,15 +810,15 @@ export interface ResourceCard {
 export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
   credit: {
     beginner: {
-      title: "What Is a Credit Score — and Why Does It Matter?",
+      title: "What Is a Credit Score, and Why Does It Matter?",
       description:
         "A plain-English breakdown of how credit scores work, what affects them, and how to start building yours from zero.",
       href: "/learn/credit",
     },
     advanced: {
-      title: "Credit Utilization — The Strategy Behind the Number",
+      title: "Credit Utilization: The Strategy Behind the Number",
       description:
-        "Go beyond \"stay below 30%\" — learn how timing, per-card balances, and your overall profile actually move your score.",
+        "You've heard \"stay below 30%.\" Here's how timing, per-card balances, and your overall profile move your score.",
       href: "/learn/credit",
     },
   },
@@ -826,7 +826,7 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "Building Your First Budget",
       description:
-        "A simple framework for figuring out where your money goes — and making a plan that actually fits your life.",
+        "A simple framework for figuring out where your money goes and making a plan that fits your life.",
       href: "/learn/budgeting",
     },
     advanced: {
@@ -840,13 +840,13 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "Filing Your Taxes for the First Time",
       description:
-        "What a W-2 actually is, what \"filing\" means, and a step-by-step walkthrough for your first return.",
+        "What a W-2 is, what \"filing\" means, and a step-by-step walkthrough for your first return.",
       href: "/learn/taxes",
     },
     advanced: {
       title: "Deductions, Credits, and Self-Employment Basics",
       description:
-        "The difference between a deduction and a credit — and what changes once you're earning 1099 income.",
+        "The difference between a deduction and a credit, plus what changes once you're earning 1099 income.",
       href: "/learn/taxes",
     },
   },
@@ -854,27 +854,27 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "FAFSA and Financial Aid, Explained",
       description:
-        "What FAFSA actually does, the difference between grants and loans, and how to start the process.",
+        "What FAFSA does for you, the difference between grants and loans, and how to start the process.",
       href: "/learn/college",
     },
     advanced: {
       title: "Understanding Your Financial Aid Award",
       description:
-        "How to read your award letter, calculate unmet need, and figure out what you're really on the hook for.",
+        "How to read your award letter, calculate unmet need, and see what you're on the hook for.",
       href: "/learn/college",
     },
   },
   investing: {
     beginner: {
-      title: "Investing 101: What a Stock Actually Is",
+      title: "Investing 101: What a Stock Is",
       description:
-        "The basics of investing, why it beats just saving, and how to open your first account.",
+        "The basics of investing, why it beats saving alone, and how to open your first account.",
       href: "/learn/investing",
     },
     advanced: {
       title: "Beyond the Basics: Building a Real Investment Strategy",
       description:
-        "Index funds, asset allocation, and how to think about risk. For people ready to go deeper than just \"open a Roth IRA.\"",
+        "Index funds, asset allocation, and how to think about risk. For anyone ready to go deeper than \"open a Roth IRA.\"",
       href: "/learn/investing",
     },
   },
@@ -882,11 +882,11 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "Renting vs. Buying: What to Know First",
       description:
-        "Mortgages and down payments explained simply — for anyone who's never bought a home before.",
+        "Mortgages and down payments explained in plain terms, for anyone who's never bought a home before.",
       href: "/learn/home-ownership",
     },
     advanced: {
-      title: "15-Year vs. 30-Year — and Other Big Decisions",
+      title: "15-Year vs. 30-Year, and Other Big Decisions",
       description:
         "The real trade-offs in mortgage terms, and what it means for a home to be \"underwater.\"",
       href: "/learn/home-ownership",
@@ -896,13 +896,13 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "Benefits & Programs You May Qualify For",
       description:
-        "A breakdown of federal and state programs — from food assistance to unemployment — and how to apply for them.",
+        "A breakdown of federal and state programs, from food assistance to unemployment, and how to apply for them.",
       href: "/learn/government-aid",
     },
     advanced: {
       title: "Debt Relief Options, Explained Honestly",
       description:
-        "The real differences between bankruptcy types and income-driven repayment — and when each makes sense.",
+        "The real differences between bankruptcy types and income-driven repayment, and when each one makes sense.",
       href: "/learn/government-aid",
     },
   },
@@ -910,7 +910,7 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "How to Spot a Scam Before It Costs You",
       description:
-        "The handful of red flags behind almost every scam — and the simple habits that keep your money and identity safe.",
+        "The handful of red flags behind almost every scam, plus the simple habits that keep your money and identity safe.",
       href: "/learn/money-safety",
     },
     advanced: {
@@ -924,13 +924,13 @@ export const topicResourceCards: Record<TopicId, Record<Tier, ResourceCard>> = {
     beginner: {
       title: "How Insurance Actually Works",
       description:
-        "Premium, deductible, copay — the confusing words decoded, plus which kinds of insurance you actually need.",
+        "Premium, deductible, copay: what the confusing words mean, plus which kinds of insurance you need.",
       href: "/learn/insurance",
     },
     advanced: {
       title: "Health Insurance, Explained",
       description:
-        "Deductibles, networks, HMO vs. PPO, and where low-cost coverage comes from — so a hospital visit doesn't become a catastrophe.",
+        "Deductibles, networks, HMO vs. PPO, and where low-cost coverage comes from, so a hospital visit doesn't turn into a catastrophe.",
       href: "/learn/insurance",
     },
   },
@@ -941,11 +941,11 @@ export const extraResourceCards: Record<string, ResourceCard> = {
   tools: {
     title: "Tools & Calculators",
     description:
-      "Budget planners, debt payoff calculators, and more — built to help you understand your numbers and make smarter decisions.",
+      "Budget planners, debt payoff calculators, and more, built to help you understand your numbers and make smarter decisions.",
     href: "/tools",
   },
   "test-knowledge": {
-    title: "Keep Going — More Quizzes by Topic",
+    title: "Keep Going: More Quizzes by Topic",
     description:
       "Ready to go deeper? Take a focused quiz on any topic to sharpen what you know.",
     href: "/learn",
@@ -953,7 +953,7 @@ export const extraResourceCards: Record<string, ResourceCard> = {
   "aid-scholarships": {
     title: "Scholarship Finder",
     description:
-      "A curated list of scholarships and financial aid programs, plus how to apply — especially useful if college is on your radar.",
+      "A curated list of scholarships and financial aid programs, plus how to apply. Especially useful if college is on your radar.",
     href: "/resources",
   },
   browse: {
@@ -967,7 +967,7 @@ export const extraResourceCards: Record<string, ResourceCard> = {
 // Shown in place of Knowledge Check Feedback when the user picked "not sure"
 // on Q3 — they skip the knowledge check entirely.
 export const NOT_SURE_MESSAGE =
-  "You weren't sure where to focus — and that's exactly why this quiz exists. Based on where you are right now, here's where we'd suggest starting:";
+  "You weren't sure where to focus, and that's what this quiz is for. Based on where you are right now, here's where we'd suggest starting:";
 
 export const CLOSING_LINE =
-  "Bookmark this page or take a screenshot — your results don't expire, but your financial journey is just getting started. We'll be here whenever you need us.";
+  "Bookmark this page or take a screenshot: your results don't expire, and you can retake the quiz whenever your situation changes.";

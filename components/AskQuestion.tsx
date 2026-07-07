@@ -72,8 +72,8 @@ export default function AskQuestion() {
           Thanks for asking.
         </h3>
         <p className="mt-2 max-w-md text-sm leading-6 text-stone">
-          We read every question. The most common and most useful ones get
-          answered right here — keep an eye on this page.
+          We read every question. The most common and useful ones get answered
+          right here on this page, so check back.
         </p>
         <button
           onClick={reset}
@@ -105,7 +105,7 @@ export default function AskQuestion() {
           onChange={(e) => setQuestion(e.target.value)}
           required
           rows={4}
-          placeholder="No question is too basic. Ask anything about money — budgeting, credit, taxes, school, scams, benefits…"
+          placeholder="No question is too basic. Ask anything about money: budgeting, credit, taxes, school, scams, benefits…"
           className="w-full resize-y rounded-lg border-2 border-ink/20 bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-forest focus:outline-none"
         />
       </div>
@@ -154,8 +154,8 @@ export default function AskQuestion() {
       <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex items-start gap-2 text-xs leading-5 text-stone">
           <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
-          Anonymous by default — no name or account needed. Leave email blank to
-          stay fully anonymous.
+          Anonymous by default, with no name or account needed. Leave the email
+          blank to stay that way.
         </p>
         <button
           type="submit"

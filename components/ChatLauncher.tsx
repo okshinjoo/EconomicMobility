@@ -12,7 +12,7 @@ import { guideAnswer, type GuideAnswer } from "@/lib/guide";
 // key and answers from these articles. Expected contract:
 //   POST { query: string }  ->  { reply: string, sourceHrefs?: string[] }
 // While empty, the chat uses the free retrieval guide (lib/guide.ts). If the AI
-// call fails, it also falls back to the guide — so the widget never breaks.
+// call fails, it also falls back to the guide, so the widget never breaks.
 const AI_ENDPOINT = "";
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -49,7 +49,7 @@ const SUGGESTIONS = [
 
 const GREETING: Msg = {
   role: "guide",
-  text: "Hi — I'm your money guide. Ask me anything, or tell me what you're trying to do, and I'll point you to the right article, calculator, or resource.",
+  text: "Hi, I'm your money guide. Ask me anything, or tell me what you're trying to do, and I'll point you to the right article, calculator, or resource.",
 };
 
 export default function ChatLauncher({ items }: { items: SearchItem[] }) {
@@ -69,7 +69,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [msgs, open, thinking]);
 
-  // Close on Escape / outside click (non-modal — the page stays usable).
+  // Close on Escape / outside click (non-modal; the page stays usable).
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);

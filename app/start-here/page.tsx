@@ -9,14 +9,14 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Start Here | Empower — Economic Mobility Project",
   description:
-    "New to Empower? Here's how to use the site — take the quiz, browse the guides, try the calculators, and look up any word.",
+    "New to Empower? Here's how to use the site: take the quiz, browse the guides, try the calculators, and look up any word.",
 };
 
 const steps = [
   {
     n: "01",
     title: "Take the 2-minute quiz",
-    text: "Answer a few questions and get a personalized starting point — no sign-up, no email.",
+    text: "Answer a few questions and get a personalized starting point. No sign-up, no email.",
     href: "/quiz",
     cta: "Start the quiz",
     accent: "#e7a33c", // amber
@@ -32,7 +32,7 @@ const steps = [
   {
     n: "03",
     title: "Run your numbers",
-    text: "Free calculators for budgeting, debt, saving, and college — they update as you type.",
+    text: "Free calculators for budgeting, debt, saving, and college. They update as you type.",
     href: "/tools",
     cta: "Open the tools",
     accent: "#1f8a5b", // emerald-leaning green
@@ -50,19 +50,19 @@ const steps = [
 const faqs = [
   {
     q: "Is it really free?",
-    a: "Yes — completely, and always. No paywalls, no sign-up walls, no upsells. Free financial education is the whole point.",
+    a: "Yes, completely and always. There's no paywall and nothing to buy. Free financial education is the whole point.",
   },
   {
     q: "Do I need to make an account?",
-    a: "No. Everything works without signing up, and nothing you enter into a quiz or calculator is sent to us — it stays on your device.",
+    a: "No. Everything works without signing up, and nothing you enter into a quiz or calculator is sent to us. It stays on your device.",
   },
   {
     q: "Who is this for?",
-    a: "Anyone taking control of their money — built especially for first-generation, low-income, and immigrant students who were never handed the financial playbook.",
+    a: "Anyone taking control of their money. It's built especially for first-generation, low-income, and immigrant students who were never handed the financial playbook.",
   },
   {
     q: "I don't know where to start.",
-    a: "That's exactly what the quiz is for. It takes two minutes and points you to the topics that matter most for where you are right now.",
+    a: "That's what the quiz is for. It takes two minutes and points you to the topics that matter most for where you are right now.",
   },
 ];
 
@@ -87,8 +87,8 @@ export default function StartHerePage() {
               New here? <span className="italic text-amber">Welcome.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
-              There&apos;s no wrong way to use Empower — but if you&apos;re not
-              sure where to begin, here&apos;s the quick tour.
+              There&apos;s no wrong way to use Empower. If you&apos;re not sure
+              where to begin, though, here&apos;s the quick tour.
             </p>
           </div>
         </section>

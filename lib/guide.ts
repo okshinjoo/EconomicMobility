@@ -2,7 +2,7 @@
 //
 // RIGHT NOW this is retrieval-only: it ranks the site's search index against a
 // question and replies with the most relevant guides/tools/resources. It never
-// invents answers — safe for financial/legal topics with a vulnerable audience.
+// invents answers, so it's safe for financial/legal topics with a vulnerable audience.
 //
 // FLIP ON AI LATER: components/ChatLauncher.tsx has an `AI_ENDPOINT` seam. When
 // you stand up a serverless function (holding your Anthropic key) that answers
@@ -67,7 +67,7 @@ const CANT_PAY = /(can'?t (pay|afford)|behind on|emergency|no money|broke|homele
 function opener(lower: string): string {
   if (/\b(where|go|find|start)\b/.test(lower)) return "Here's where I'd point you:";
   if (lower.includes("?") || /^(how|what|why|when|which|is|are|do|can|should)\b/.test(lower))
-    return "Here's what should help:";
+    return "These should help:";
   return "These look most relevant:";
 }
 
@@ -78,26 +78,26 @@ export function guideAnswer(query: string, index: SearchItem[]): GuideAnswer {
   if (!lower) {
     return {
       reply:
-        "Ask me anything about money — budgeting, credit, taxes, benefits, scams — or tell me what you're trying to do, and I'll point you to the right guide.",
+        "Ask me anything about money (budgeting, credit, taxes, benefits, scams) or tell me what you're trying to do, and I'll point you to the right guide.",
       items: index.filter((i) => i.kind === "Topic").slice(0, 4),
     };
   }
   if (/^(hi|hey|hello|yo|hiya|sup|good (morning|afternoon|evening))\b/.test(lower)) {
     return {
       reply:
-        "Hey! I'm your money guide. Ask me a question, or tell me what you're working on — I'll find the right article, calculator, or resource.",
+        "Hey! I'm your money guide. Ask me a question or tell me what you're working on, and I'll find the right article, calculator, or resource.",
       items: index.filter((i) => i.kind === "Topic").slice(0, 4),
     };
   }
   if (/\b(thanks|thank you|thx|ty|appreciate)\b/.test(lower)) {
-    return { reply: "Anytime — come back whenever you need a hand.", items: [] };
+    return { reply: "Anytime. Come back whenever you need a hand.", items: [] };
   }
 
   const results = rankItems(query, index, 5);
   if (results.length === 0) {
     return {
       reply:
-        "I couldn't find a guide for that exact wording — try a few different words. You can also browse every topic, or check Resources for free, trusted help with a specific situation.",
+        "I couldn't find a guide for that exact wording, so try a few different words. You can also browse every topic, or check Resources for free, trusted help with a specific situation.",
       items: index.filter(
         (i) =>
           i.title === "Browse All Topics" ||
@@ -110,7 +110,7 @@ export function guideAnswer(query: string, index: SearchItem[]): GuideAnswer {
   let reply = opener(lower);
   if (SENSITIVE.test(lower) || CANT_PAY.test(lower)) {
     reply +=
-      " And for your specific situation, it's worth talking to a free, qualified professional — the Resources page lists trustworthy ones.";
+      " And for your specific situation, it's worth talking to a free, qualified professional; the Resources page lists trustworthy ones.";
   }
   return { reply, items: results };
 }

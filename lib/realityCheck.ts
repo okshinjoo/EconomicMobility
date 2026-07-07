@@ -1,6 +1,6 @@
 // The Reality Check: pick the life you want, see the salary it takes.
 // Inspired by Jump$tart's classic "Reality Check" exercise. Costs are honest
-// national ballparks (labeled as such in the UI — your city varies); the
+// national ballparks (labeled as such in the UI; your city varies); the
 // salary math runs through the real 2026 tax engine (lib/taxData.ts), so the
 // answer is a GROSS salary, not the hand-wavy "add 22%" most versions use.
 

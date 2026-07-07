@@ -104,8 +104,8 @@ export default function CollegeCalculator() {
             </div>
           </div>
           <p className="mt-3 text-xs text-stone">
-            Cost of attendance is the full yearly price — tuition, fees, housing,
-            food, and books — before any aid.
+            Cost of attendance is the full yearly price before any aid: tuition,
+            fees, housing, food, and books.
           </p>
         </Card>
 
@@ -157,7 +157,7 @@ export default function CollegeCalculator() {
               {!hasCost
                 ? "Enter a cost to start"
                 : fullyCovered
-                  ? "No loans needed — nicely done."
+                  ? "No loans needed. Nicely done."
                   : `to fill a ${usd(result.gapPerYear)}/yr gap over ${num(
                       years
                     )} years`}
@@ -234,16 +234,16 @@ export default function CollegeCalculator() {
                     <p className="mt-1 text-xs leading-5 text-cream/75">
                       That&apos;s a rough monthly payment to repay{" "}
                       {usd(result.totalLoans)} in loans over{" "}
-                      {COLLEGE_REPAY_YEARS} years — about{" "}
+                      {COLLEGE_REPAY_YEARS} years, about{" "}
                       {usd(result.totalRepaid)} in total.
                     </p>
                   </div>
                   <div className="mt-3 flex items-start gap-3 rounded-xl border border-forest/40 bg-forest/10 p-3.5">
                     <GraduationCap className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
                     <p className="text-xs leading-5 text-cream/80">
-                      Every extra scholarship dollar shrinks this gap one-for-one
-                      — and unlike loans, you never pay it back. It&apos;s worth
-                      the applications.
+                      Every extra scholarship dollar shrinks this gap
+                      one-for-one, and unlike loans, you never pay it back.
+                      It&apos;s worth the applications.
                     </p>
                   </div>
                 </>
@@ -253,8 +253,8 @@ export default function CollegeCalculator() {
                 <div className="mt-5 flex items-start gap-3 rounded-xl border border-forest/40 bg-forest/10 p-3.5">
                   <GraduationCap className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
                   <p className="text-xs leading-5 text-cream/80">
-                    Your aid, savings, and work cover the full cost — you may not
-                    need loans at all.
+                    Your aid, savings, and work cover the full cost, so you may
+                    not need loans at all.
                   </p>
                 </div>
               )}

@@ -25,7 +25,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "credit-report",
     term: "credit report",
     definition:
-      "A detailed record of your borrowing history — accounts, balances, and payment history — that your credit score is built from.",
+      "The detailed record of your accounts, balances, and payment history that your credit score is built from.",
     related: "credit",
   },
   {
@@ -41,14 +41,14 @@ export const glossary: GlossaryTerm[] = [
     term: "APR",
     aliases: ["annual percentage rate"],
     definition:
-      "Annual Percentage Rate — the yearly cost of borrowing money, shown as a percentage. The higher the APR, the more interest you pay.",
+      "Annual Percentage Rate: the yearly cost of borrowing money, shown as a percentage. The higher the APR, the more interest you pay.",
     related: "credit",
   },
   {
     slug: "interest",
     term: "interest",
     definition:
-      "The cost of borrowing money, or the money you earn for saving it — usually a percentage of the amount.",
+      "The cost of borrowing money, or the money you earn for saving it, usually set as a percentage of the amount.",
   },
   {
     slug: "secured-credit-card",
@@ -77,7 +77,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "revolving-credit",
     term: "revolving credit",
     definition:
-      "Credit you can use, repay, and use again — like a credit card — up to a set limit.",
+      "Credit you can use, repay, and use again up to a set limit. A credit card is the most common kind.",
     related: "credit",
   },
   {
@@ -101,7 +101,7 @@ export const glossary: GlossaryTerm[] = [
     term: "net income",
     aliases: ["take-home pay", "after-tax income", "take home pay"],
     definition:
-      "The money you actually keep from your paycheck after taxes and other deductions — also called take-home pay.",
+      "The money you keep from your paycheck after taxes and other deductions. Also called take-home pay.",
     related: "budgeting",
   },
   {
@@ -139,7 +139,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "emergency-fund",
     term: "emergency fund",
     definition:
-      "Money set aside for surprise costs — a car repair, a medical bill, a lost job — so you don't have to borrow for them.",
+      "Money set aside for surprise costs like a car repair, a medical bill, or a lost job, so you don't have to borrow to cover them.",
     related: "budgeting",
   },
   {
@@ -178,7 +178,7 @@ export const glossary: GlossaryTerm[] = [
     term: "1099",
     aliases: ["1099 form"],
     definition:
-      "A tax form reporting income that didn't come from a regular employer — like freelance, gig, or contract work.",
+      "A tax form reporting income that didn't come from a regular employer, such as freelance, gig, or contract work.",
     related: "taxes",
   },
   {
@@ -247,7 +247,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "fafsa",
     term: "FAFSA",
     definition:
-      "The Free Application for Federal Student Aid — the form that decides what grants, loans, and aid you qualify for. It's free to file.",
+      "The Free Application for Federal Student Aid, the form that decides what grants, loans, and aid you qualify for. It costs nothing to file.",
     related: "college",
   },
   {
@@ -255,7 +255,7 @@ export const glossary: GlossaryTerm[] = [
     term: "grant",
     aliases: ["grants"],
     definition:
-      "Money for school — often based on financial need — that you do not have to pay back.",
+      "Money for school that you do not have to pay back, usually awarded based on financial need.",
     related: "college",
   },
   {
@@ -285,7 +285,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "cost-of-attendance",
     term: "cost of attendance",
     definition:
-      "A school's total yearly price — tuition, fees, housing, food, books, and more — before any aid is applied.",
+      "A school's total yearly price before any aid: tuition, fees, housing, food, books, and more.",
     related: "college",
   },
   {
@@ -355,7 +355,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "asset-allocation",
     term: "asset allocation",
     definition:
-      "How you divide your investments among types — like stocks and bonds — to match your goals and comfort with risk.",
+      "How you divide your investments among types like stocks and bonds to match your goals and comfort with risk.",
     related: "investing",
   },
 
@@ -393,14 +393,14 @@ export const glossary: GlossaryTerm[] = [
     term: "PMI",
     aliases: ["private mortgage insurance"],
     definition:
-      "Private Mortgage Insurance — an extra monthly cost lenders add when your down payment is under 20%.",
+      "Private Mortgage Insurance, an extra monthly cost lenders add when your down payment is under 20%.",
     related: "home-ownership",
   },
   {
     slug: "fixed-rate-mortgage",
     term: "fixed-rate mortgage",
     definition:
-      "A mortgage whose interest rate — and monthly payment — stays the same for the whole loan.",
+      "A mortgage whose interest rate and monthly payment stay the same for the whole loan.",
     related: "home-ownership",
   },
   {
@@ -424,7 +424,7 @@ export const glossary: GlossaryTerm[] = [
     term: "SNAP",
     aliases: ["food stamps"],
     definition:
-      "The Supplemental Nutrition Assistance Program — government help paying for groceries, once known as food stamps.",
+      "The Supplemental Nutrition Assistance Program, which helps pay for groceries. It used to be called food stamps.",
     related: "government-aid",
   },
   {
@@ -484,7 +484,7 @@ export const glossary: GlossaryTerm[] = [
     slug: "wire-transfer",
     term: "wire transfer",
     definition:
-      "A way to send money directly from one bank account to another. Once it's sent, it's usually gone for good, which is exactly why scammers love asking for it.",
+      "A way to send money directly from one bank account to another. Once it's sent, it's usually gone for good, which is why scammers ask for it.",
     related: "money-safety",
   },
   {
@@ -535,7 +535,7 @@ export const glossary: GlossaryTerm[] = [
     term: "overdraft",
     aliases: ["overdraft fee"],
     definition:
-      "When you spend more than your account holds and the bank covers the gap, usually charging a fee. You can opt out so a too-big purchase simply declines instead.",
+      "When you spend more than your account holds and the bank covers the gap, usually charging a fee. You can opt out so a too-big purchase declines instead.",
     related: "budgeting",
   },
 ];

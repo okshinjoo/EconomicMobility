@@ -114,7 +114,7 @@ export default function RealityCheckTool() {
                 {usd(Math.round(result.hourly))}
               </p>
               <p className="mt-1 text-xs text-cream/60">
-                full-time — {minWageMultiple.toFixed(1)}× the $7.25 federal minimum
+                full-time, {minWageMultiple.toFixed(1)}× the $7.25 federal minimum
               </p>
             </div>
             <div className="rounded-xl bg-forest-700 p-4">
@@ -154,7 +154,7 @@ export default function RealityCheckTool() {
           </p>
           <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
             <li>
-              See what {usd(result.grossSalary)} actually looks like per
+              See what {usd(result.grossSalary)} looks like per
               paycheck in the{" "}
               <Link href="/tools/budget/paycheck" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
                 Paycheck Calculator
@@ -172,8 +172,8 @@ export default function RealityCheckTool() {
               Read{" "}
               <Link href="/learn/budgeting/cost-of-living" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
                 What It Really Costs to Live
-              </Link>{" "}
-              — the numbers here are national ballparks; your city writes its
+              </Link>
+              . The numbers here are national ballparks; your city writes its
               own.
             </li>
           </ul>
@@ -212,7 +212,7 @@ export default function RealityCheckTool() {
           onChange={(e) => setStateCode(e.target.value)}
           className="mt-5 w-full max-w-sm rounded-lg border border-sand bg-cream px-4 py-3 text-base text-ink focus:border-amber focus:outline-none"
         >
-          <option value="">Skip — just federal taxes</option>
+          <option value="">Skip (federal taxes only)</option>
           {US_STATES.map((s) => (
             <option key={s.code} value={s.code}>
               {s.name}

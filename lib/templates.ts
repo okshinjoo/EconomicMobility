@@ -21,7 +21,7 @@ export const templates: Template[] = [
     title: "Monthly Budget",
     file: "/templates/empower-budget-template.xlsx",
     blurb:
-      "Map your income against your spending and see what's left — the totals add themselves up as you type.",
+      "Map your income against your spending and see what's left. The totals add themselves up as you type.",
     includes: [
       "Income and 11 expense categories, ready to edit",
       "Auto-totaling planned vs. actual columns",
@@ -34,7 +34,7 @@ export const templates: Template[] = [
     title: "Debt Payoff Tracker",
     file: "/templates/empower-debt-payoff-tracker.xlsx",
     blurb:
-      "List every debt in one place, watch the totals, and pick your payoff order — snowball or avalanche.",
+      "List every debt in one place, watch the totals, and pick a payoff order: snowball or avalanche.",
     includes: [
       "Balance, APR, and minimum payment for each debt",
       "Auto-totaling balance and monthly payment",

@@ -282,8 +282,8 @@ export default function DebtCalculator() {
             </div>
             <p className="mt-2 text-xs text-stone">
               {strategy === "avalanche"
-                ? "Avalanche: targets your highest-interest debt first — saves the most money."
-                : "Snowball: clears your smallest balance first — quick wins to keep you motivated."}
+                ? "Avalanche: targets your highest-interest debt first. Saves the most money."
+                : "Snowball: clears your smallest balance first, for quick wins that keep you going."}
             </p>
           </div>
         </Card>

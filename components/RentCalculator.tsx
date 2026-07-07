@@ -115,7 +115,7 @@ export default function RentCalculator() {
                     ? `With your other debts, keeping rent near ${usd(
                         debtAdjusted
                       )} keeps your total monthly debt under the ~36% lenders look for.`
-                    : "Staying at or below 30% leaves room for everything else — food, transport, savings, and the unexpected."}
+                    : "Staying at or below 30% leaves room for everything else: food, transport, savings, and the unexpected."}
                 </p>
               </div>
             </div>

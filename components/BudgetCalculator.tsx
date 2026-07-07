@@ -383,7 +383,7 @@ export default function BudgetCalculator() {
           </div>
         </Card>
 
-        {/* Location & filing — only relevant when estimating taxes */}
+        {/* Location & filing: only relevant when estimating taxes */}
         {taxBasis === "gross" && (
         <Card>
           <SectionHeading
@@ -699,7 +699,7 @@ export default function BudgetCalculator() {
           </p>
           <div className="flex items-center justify-between gap-3 border-t border-sand pt-3">
             <span className="text-xs text-stone">
-              Saved on this device only — no account needed.
+              Saved on this device only; no account needed.
             </span>
             <button
               type="button"
@@ -871,7 +871,7 @@ function Row({
   const valueColor = accent
     ? "text-amber"
     : tone === "good"
-      ? "text-emerald" // brighter green — readable on the dark take-home card
+      ? "text-emerald" // brighter green, readable on the dark take-home card
       : tone === "bad"
         ? "text-terracotta"
         : "text-cream";
@@ -948,7 +948,7 @@ function GuideRow({
 }) {
   const bg =
     tone === "forest"
-      ? "var(--color-emerald)" // brighter green bar — visible on the dark card
+      ? "var(--color-emerald)" // brighter green bar, visible on the dark card
       : tone === "amber"
         ? "var(--color-amber)"
         : "var(--color-terracotta)";
