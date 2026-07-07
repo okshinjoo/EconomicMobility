@@ -20,6 +20,148 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "the-lipstick-effect",
+    title: "The Lipstick Effect: Small Comforts in a Locked-Out Economy",
+    dek: "When the house feels impossible, the $9 treat feels like the only vote you get.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 5,
+    body: [
+      {
+        type: "p",
+        text: "In 2001, with the economy sinking, Estée Lauder's chairman Leonard Lauder noticed something odd: lipstick sales were climbing. People who had stopped buying coats and handbags were still buying a $10 tube of confidence. He called it the lipstick index, and economists have argued about the data ever since. But the feeling underneath it never needed proving. When the big things go wrong, small nice things start doing a job they were never designed for.",
+      },
+      {
+        type: "p",
+        text: "Twenty-five years later the lipstick is an iced coffee, a phone case, a $12 candle, a skin serum someone on your feed swears by. The product changed. The purchase didn't. It's still the cheapest available unit of feeling okay.",
+      },
+      { type: "h2", text: "Why small purchases feel so good right now" },
+      {
+        type: "p",
+        text: "Psychologists have a few names for the pieces of this. Retail therapy is real in the narrow sense: buying something produces a short, measurable lift in mood and, more importantly, a feeling of control. You chose it. You could afford it. It arrived. In a week where rent went up and the news was bad and your manager was worse, that tiny completed transaction might be the only loop that closed.",
+      },
+      {
+        type: "p",
+        text: "Now add the context. For a lot of people under 35, the traditional milestones have drifted out of reach on any realistic timeline. A starter home costs six figures more than it did a few years ago. Retirement math assumes decades of contributions that gig work makes lumpy. When the finish line moves that far away, the rational-feeling response is to stop running toward it and enjoy the water station. Why agonize over a $9 treat when skipping it for ten years still wouldn't make a down payment? That logic is seductive precisely because it's partly true.",
+      },
+      { type: "h2", text: "Advertising figured this out before we did" },
+      {
+        type: "p",
+        text: "Marketing used to sell products. Now it sells permission. \"You deserve this.\" \"Little luxuries.\" \"Treat yourself\" went from a sitcom joke to an entire retail category. The genius of it is that the pitch agrees with your feelings: things ARE hard, you DO work a lot, and this candle IS only $12. Every claim is true. The sleight of hand is what's missing: no single purchase is the problem, and no single purchase was ever going to be the comfort, either.",
+      },
+      {
+        type: "p",
+        text: "The delivery system got an upgrade too. The ad finds you at 11pm, already sad, already holding the device the checkout lives in. The card is saved. The friction is gone. Comfort is two taps away and the receipt goes somewhere you'll never look.",
+      },
+      { type: "h2", text: "The honest math, without the lecture" },
+      {
+        type: "p",
+        text: "Here's what this blog won't do: tell you the lattes are why you don't own a house. They aren't. That lecture is both mathematically weak and emotionally useless, and the people who give it usually got their down payment from somewhere they don't mention.",
+      },
+      {
+        type: "p",
+        text: "But drift is real. Small comfort spending is designed to be invisible, and invisible spending compounds: a few hundred dollars a month of it is real money, the kind that funds an [emergency cushion](/learn/budgeting/building-a-savings-habit) or a [jar with your actual goal on it](/tools/budget/jars). The problem was never the lipstick. It's that nobody decided anything.",
+      },
+      { type: "h2", text: "Keep the comfort, take back the choice" },
+      {
+        type: "list",
+        items: [
+          "**Put joy in the budget on purpose.** A named amount for small pleasures, spent guilt-free, beats an unnamed leak you feel bad about. [Needs vs. wants](/learn/budgeting/needs-vs-wants) is the guilt-free version of this conversation.",
+          "**Make the invisible visible once.** [Track a month of spending](/learn/budgeting/tracking-your-spending), just to see what comfort currently costs. No judging, just data.",
+          "**Give the future a jar too.** The reason the treat wins every time is that it's the only goal in the room. A [savings jar](/tools/budget/jars) with a name on it argues back.",
+          "**Notice the 11pm ads.** You can't unsee the pattern once you look for it: the pitch always arrives when you're tired, sad, or scrolling. That's not a coincidence; that's the targeting working.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Buy the lipstick when you choose to. Just don't let a marketing department convince you it's the only future you can afford. It isn't, and [the first $500](/learn/budgeting/building-a-savings-habit) is closer than the ads want you to believe.",
+      },
+    ],
+  },
+  {
+    slug: "the-sale-rack-is-lying",
+    title: "The Sale Rack Is Lying to You (Politely)",
+    dek: "How 'saving 40%' became the most expensive habit in America.",
+    date: "2026-07-07",
+    tag: "Watch out",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Nobody spends money quite like someone who thinks they're saving it. The sale rack, the strikethrough price, the countdown timer on the checkout page: these aren't information. They're a mood, manufactured to move your hand.",
+      },
+      { type: "h2", text: "The anchor does the work" },
+      {
+        type: "p",
+        text: "The crossed-out $80 next to the $48 price is called an anchor, and it works even when you know about it. Your brain evaluates the $48 relative to the $80, not relative to whether you wanted the thing at all. Some 'original' prices barely existed; plenty of items are manufactured for the outlet or born for the sale, with the anchor printed on the tag from day one.",
+      },
+      { type: "h2", text: "Urgency is a costume" },
+      {
+        type: "p",
+        text: "Only 3 left. Sale ends tonight. Someone in Dallas just bought this. Scarcity triggers a real instinct that served your ancestors well around actual scarce food, and serves a shoe website even better. The tell: real scarcity doesn't need a countdown clock, and the same clock is usually running again tomorrow.",
+      },
+      { type: "h2", text: "You don't save money by spending it" },
+      {
+        type: "p",
+        text: "The receipt says you saved $32. Your account says you spent $48. Only one of those numbers is real. The question that survives every discount is the same boring one: would you have bought this at this price with no sale sticker anywhere in sight? If yes, congratulations, genuinely. If no, the discount was the product.",
+      },
+      {
+        type: "list",
+        items: [
+          "**The 24-hour rule.** If it's still worth it tomorrow, it was worth it. Real sales survive a day; manufactured urgency doesn't.",
+          "**Shop from a list, browse from curiosity, and know which one you're doing.** Both are fine. Confusing them is where the money goes.",
+          "**Unsubscribe as self-defense.** The 40%-off email exists to create wants on a schedule. Your inbox doesn't have to be a billboard.",
+          "**Count it where it lives.** A [month of honest tracking](/learn/budgeting/tracking-your-spending) shows what 'saving' has been costing you.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this means never buy things on sale. It means the sale is a price, not a reason. The reason has to be yours.",
+      },
+    ],
+  },
+  {
+    slug: "why-tapping-doesnt-hurt",
+    title: "Why Tapping Your Phone Doesn't Feel Like Spending",
+    dek: "Cash had a built-in ouch. We engineered it away, and the receipts show it.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Handing over cash hurts a little. Researchers call it the pain of paying: watching physical money leave your hand registers, faintly, in the same brain regions as actual discomfort. That tiny ouch was never a bug. It was your built-in spending brake.",
+      },
+      {
+        type: "p",
+        text: "Then we spent thirty years engineering the ouch away. Cards hurt less than cash. Saved cards hurt less than swiped ones. One-click hurts less than checkout. Tap-to-pay barely registers as an event, and the watch is faster than the phone. Every step was sold as convenience, and every step was also, quietly, anesthesia.",
+      },
+      { type: "h2", text: "Frictionless is a business model" },
+      {
+        type: "p",
+        text: "Companies A/B-test checkout flows the way pit crews shave seconds, because the math is simple: every removed step recovers abandoned purchases, and abandoned purchases are usually the ones you'd have talked yourself out of. The purchases friction used to filter were disproportionately the regrettable ones. That's exactly why the friction had to go.",
+      },
+      {
+        type: "p",
+        text: "Subscriptions run the same play across time: pay once invisibly, forever. And the pay-later buttons at checkout split even the number into pieces too small to flinch at. (We wrote about [why every app suddenly wants to lend you money](/blog/why-every-app-wants-to-lend-you-money); this is the same war on your flinch, different front.)",
+      },
+      { type: "h2", text: "Reinstalling the ouch, gently" },
+      {
+        type: "list",
+        items: [
+          "**Make the money visible again.** Check your balance before you tap, not after. Ten seconds restores most of what the tap removed.",
+          "**Use a weekly cash experiment.** One week of paying cash for everyday stuff is the cheapest psychology course available. Most people report it feels weirdly expensive. That's the accurate feeling.",
+          "**Turn on purchase notifications.** The buzz after each charge is an artificial ouch, and it works. Your bank buries this setting; [our banking guide](/learn/budgeting/avoiding-bank-fees) covers the account hygiene around it.",
+          "**Review one statement a month, out loud if you have to.** [Tracking](/learn/budgeting/tracking-your-spending) is just the ouch, relocated to where it can't be engineered away.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Convenience is genuinely good. Pay however you like. Just know that an entire industry works on making spending feel like nothing, and the feeling of nothing is not the same as it costing nothing.",
+      },
+    ],
+  },
+  {
     slug: "how-to-spot-a-fake-financial-guru",
     title: "How to Spot a Fake Financial Guru",
     dek: "The rented Lamborghini is a clue. Here are the others.",
