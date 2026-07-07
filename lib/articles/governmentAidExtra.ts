@@ -78,7 +78,7 @@ export const governmentAidExtraArticles: Article[] = [
         text: "Applying for SNAP is just you using a tool that's there for everyone. It costs nothing but time, and the worst outcome is a no that leaves you exactly where you started. Check the limits where you live, gather your pay stubs, and start the application.",
       },
     ],
-    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "immigrants-and-benefits"],
+    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "immigrants-and-benefits", "wic-school-meals"],
     quiz: [
       {
         question: "How do you actually use SNAP benefits at the store?",
@@ -585,7 +585,7 @@ export const governmentAidExtraArticles: Article[] = [
         text: "Asking for help with rent or utilities isn't a failure. These programs were built precisely so a rough stretch doesn't cost you your home or your power. Make the calls early, lean on 211 to do the searching, and if a benefits application is part of the answer, [How to Actually Apply](/learn/government-aid/how-to-apply-for-benefits) walks through the paperwork.",
       },
     ],
-    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "snap-explained"],
+    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "snap-explained", "free-legal-help"],
   },
 
   {
@@ -773,6 +773,167 @@ export const governmentAidExtraArticles: Article[] = [
         text: "One important note: this is general education to help you understand how debt collection works, not legal advice for your specific situation. If you're being sued or genuinely worried, contact a *legal aid* office. Many offer free help to people who qualify, and someone who can see the details can advise you on your actual case.",
       },
     ],
-    related: ["debt-collector-rights", "negotiating-debt", "what-is-debt-relief"],
+    related: ["debt-collector-rights", "negotiating-debt", "what-is-debt-relief", "free-legal-help"],
+  },
+
+  {
+    slug: "wic-school-meals",
+    order: 35,
+    topicId: "government-aid",
+    title: "WIC, School Meals, and Feeding Your Family",
+    dek: "WIC, school meals, and summer grocery money are three separate programs with the same goal: your kids eating well. Here's who qualifies and how to sign up.",
+    level: "Beginner",
+    readMinutes: 6,
+    takeaways: [
+      "WIC covers pregnancy through age 5 with monthly food benefits and real support.",
+      "Under the guidelines effective July 2026, a family of three qualifies for WIC up to $50,542 a year.",
+      "School meal applications are confidential and take minutes; many schools now feed everyone free.",
+      "SUN Bucks adds $120 per child for summer groceries, usually automatically.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Groceries are where a tight budget hurts most, and kids make the math harder: formula, school lunches, the summer weeks when the school cafeteria disappears. There's a set of programs built for exactly this stretch of life, and the same thing is true of all of them that's true of [SNAP](/learn/government-aid/snap-explained): they're ordinary, widely used, and funded by taxes you've contributed to. Using them is feeding your family, not failing it.",
+      },
+      {
+        type: "h2",
+        text: "WIC: pregnancy through age 5",
+      },
+      {
+        type: "p",
+        text: "WIC (Women, Infants, and Children) serves pregnant women, new mothers, babies, and children up to their fifth birthday. Each month it provides specific healthy foods (milk, eggs, fruits and vegetables, whole grains, baby formula) loaded onto an eWIC card you use at the register. It also comes with things a grocery benefit doesn't: nutrition guidance, breastfeeding support, and referrals to other help. Dads, grandparents, and guardians can apply on behalf of children in their care.",
+      },
+      {
+        type: "p",
+        text: "Eligibility is category plus income. The income line is 185% of the federal poverty level, measured on gross income. Under the guidelines effective July 2026, that's $50,542 a year (about $4,212 a month) for a family of three, and $61,050 a year for a family of four. Two quirks work in your favor: a pregnant woman counts as two people when sizing the household, and if your family already gets SNAP, Medicaid, or TANF, you meet the income test automatically.",
+      },
+      {
+        type: "tip",
+        text: "WIC and SNAP aren't either/or. Plenty of families use both at once: WIC covers its specific food list, and SNAP covers the rest of the cart.",
+      },
+      {
+        type: "h2",
+        text: "Free and reduced-price school meals",
+      },
+      {
+        type: "p",
+        text: "Every public school offers free or reduced-price breakfast and lunch to kids whose family income qualifies: free at or below 130% of the poverty line, reduced-price up to 185% (the same line WIC uses). You apply with a short form from the school office or district website, any time of year, and the application is confidential. Kids in families getting SNAP are usually enrolled automatically.",
+      },
+      {
+        type: "p",
+        text: "A growing number of schools skip the paperwork entirely and serve free meals to every student, through a federal option for lower-income districts and, in some states, statewide free-meals laws. If that's your district, there's nothing to apply for. If you're not sure, ask the front office; it's a routine question they answer constantly.",
+      },
+      {
+        type: "h2",
+        text: "SUN Bucks: groceries for the summer",
+      },
+      {
+        type: "p",
+        text: "The gap these programs used to leave was summer. Summer EBT, branded SUN Bucks, closes part of it: $120 per eligible school-age child (for summer 2026), loaded onto an EBT card for groceries while school's out. Most kids who get free or reduced-price school meals, or whose families get SNAP or Medicaid, are enrolled automatically, and the money arrives as a lump sum or in monthly chunks depending on the state. The benefits expire a few months after they're issued, so use them once they land.",
+      },
+      {
+        type: "h2",
+        text: "How to get started",
+      },
+      {
+        type: "steps",
+        items: [
+          "For WIC: search your state name plus 'WIC,' or call your local health department to book an appointment. Bring ID, proof of address, and proof of income (or your SNAP or Medicaid card, which settles the income question).",
+          "For school meals: ask the school office for the meal application, or find it on the district website. Ten minutes, once a year.",
+          "For SUN Bucks: usually nothing; watch the mail in late spring. If your child qualifies but nothing arrives, your state's SUN Bucks page has an application.",
+          "Not sure what else you'd qualify for? [How to Actually Apply](/learn/government-aid/how-to-apply-for-benefits) covers the screening tools and paperwork habits that make all of this smoother.",
+        ],
+      },
+      {
+        type: "p",
+        text: "One more thing for immigrant parents, because fear keeps too many eligible kids unenrolled: WIC and school meals are not part of any public charge decision, and applying for your children doesn't count against you. [Immigrants and Public Benefits](/learn/government-aid/immigrants-and-benefits) separates the facts from the rumors. Feeding your kids well on a tight budget is exactly what these programs are for.",
+      },
+    ],
+    related: ["snap-explained", "benefits-you-qualify-for", "immigrants-and-benefits"],
+  },
+
+  {
+    slug: "free-legal-help",
+    order: 135,
+    topicId: "government-aid",
+    title: "Free Legal Help Exists",
+    dek: "Eviction notices, debt lawsuits, benefit denials: the moments you most need a lawyer are the moments you can least afford one. Here's where the free help is.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Legal aid offices handle civil cases free for people under income limits.",
+      "Law school clinics and court self-help centers are open to nearly everyone.",
+      "LSC.gov and LawHelp.org can find your local options in minutes.",
+      "Responding by the deadline matters more than having the perfect lawyer.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "There's a particular sinking feeling to legal trouble when money's tight: papers taped to your door, a summons in the mail, a denial letter that reads like it was written to confuse you. The other side has lawyers. You assume you can't have one, so you do the worst possible thing, which is nothing. That assumption misses an entire network of free legal help that exists in this country, built precisely for this, and most of the people it was built for never call.",
+      },
+      {
+        type: "h2",
+        text: "When free legal help earns its keep",
+      },
+      {
+        type: "p",
+        text: "You don't need a lawyer for everything. But some situations are lopsided enough, with a landlord's or collector's attorney on one side and real stakes on yours, that even a single consultation changes the outcome:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Eviction.** Tenants with lawyers keep their homes at far higher rates than tenants without, and a growing number of cities now guarantee free counsel in eviction cases. Know [your rights as a tenant](/learn/home-ownership/renting-101-tenant-rights), and get help the day a notice appears.",
+          "**Debt collection lawsuits.** Most people sued over a debt never respond and lose automatically. A legal aid lawyer can spot defenses you'd never see: a debt too old to sue on, a collector who can't prove the debt is yours. [What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) explains why the summons is the one piece of mail you never ignore.",
+          "**Benefit denials.** Denied SNAP, Medicaid, unemployment, or disability, and sure the decision is wrong? Appeals are exactly the kind of case legal aid handles every day.",
+          "**Wage problems and unsafe housing.** Unpaid wages, a security deposit held hostage, a landlord ignoring dangerous conditions: all standard legal aid territory.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Legal aid societies",
+      },
+      {
+        type: "p",
+        text: "Legal aid offices are nonprofit law firms whose job is representing people who can't pay, free of charge, in civil matters. (For criminal charges, the public defender's office fills this role.) Most limit eligibility by income, commonly to households around 125% of the federal poverty line, though limits vary by office and case type, so apply even if you're not sure you fit. Housing, benefits, consumer debt, and family safety cases usually get priority.",
+      },
+      {
+        type: "p",
+        text: "Finding yours is easy. The Legal Services Corporation, the federally funded nonprofit behind legal aid nationwide, has a 'Find Legal Aid' lookup at LSC.gov, and LawHelp.org lists free legal resources state by state.",
+      },
+      {
+        type: "h2",
+        text: "Law school clinics",
+      },
+      {
+        type: "p",
+        text: "Law schools run clinics where students handle real cases under the supervision of licensed attorneys, free. Clinics tend to specialize (housing, immigration, tax, small claims), the work is careful because it's graded, and income limits are often looser than legal aid's. If there's a law school within reach, search its name plus 'legal clinic.'",
+      },
+      {
+        type: "h2",
+        text: "Court self-help centers",
+      },
+      {
+        type: "p",
+        text: "Many courthouses now have self-help centers staffed to walk you through forms, filing steps, and deadlines at no cost. They can't take your side or argue strategy, but a huge share of self-represented people lose on paperwork and missed deadlines rather than on the merits, and that's precisely what these centers prevent. While you're there, ask about fee waivers; courts routinely waive filing fees for people with low incomes.",
+      },
+      {
+        type: "h2",
+        text: "If something's already in motion",
+      },
+      {
+        type: "steps",
+        items: [
+          "Write down every deadline on the papers you received. The deadline is the whole ballgame.",
+          "Contact legal aid the same day if you can, through LSC.gov or LawHelp.org, and say clearly what the deadline is.",
+          "If they can't take your case, ask for a referral: a law school clinic, a bar association's free or low-cost referral line, a court self-help center.",
+          "If the deadline arrives and you still have no lawyer, respond anyway. A simple written answer, filed on time, keeps you in the game, and a self-help center can show you how.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this requires knowing the law. It requires making two or three phone calls before a deadline instead of after. The help is free; the only expensive part is waiting.",
+      },
+    ],
+    related: ["what-happens-if-you-dont-pay-debts", "debt-collector-rights", "renting-101-tenant-rights"],
   },
 ];

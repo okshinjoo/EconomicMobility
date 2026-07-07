@@ -236,7 +236,7 @@ export const budgetingExtraArticles: Article[] = [
         text: "This article is general guidance, not advice about your exact situation. The next step is simple: pick one nearby credit union or a well-known bank, call, and ask what you'd need to open a free checking account. When you're ready, [Opening Your First Bank Account](/learn/budgeting/opening-first-bank-account) walks through the actual how-to.",
       },
     ],
-    related: ["opening-first-bank-account", "avoiding-bank-fees", "building-a-savings-habit"],
+    related: ["checking-vs-savings", "opening-first-bank-account", "building-a-savings-habit"],
   },
 
   {
@@ -766,9 +766,9 @@ export const budgetingExtraArticles: Article[] = [
       },
     ],
     related: [
+      "leasing-vs-buying-car",
       "auto-insurance-basics",
       "what-happens-if-you-dont-pay-debts",
-      "reading-a-job-offer",
     ],
   },
 ];

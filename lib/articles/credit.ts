@@ -194,7 +194,7 @@ export const creditArticles: Article[] = [
         text: "In about six months of steady use, you'll usually have a real score for the first time. From there it grows as long as you keep the same habits going.",
       },
     ],
-    related: ["what-is-a-credit-score", "choosing-first-credit-card", "credit-utilization"],
+    related: ["what-is-a-credit-score", "choosing-first-credit-card", "credit-utilization", "rent-reporting"],
   },
 
   {
@@ -438,7 +438,7 @@ export const creditArticles: Article[] = [
         text: "If your score has already taken a hit, none of this is permanent. [Repairing Credit After a Setback](/learn/credit/repairing-credit) walks through the road back.",
       },
     ],
-    related: ["credit-utilization", "hard-vs-soft-inquiries", "repairing-credit"],
+    related: ["credit-utilization", "hard-vs-soft-inquiries", "credit-mix-and-age"],
   },
 
   {
@@ -518,7 +518,7 @@ export const creditArticles: Article[] = [
         text: "Be patient with yourself. Scores recover in months and years, not days, but they do recover. The setback that feels permanent today will, with steady habits, become a footnote.",
       },
     ],
-    related: ["what-hurts-your-score", "reading-your-credit-report", "build-credit-from-zero"],
+    related: ["what-hurts-your-score", "reading-your-credit-report", "collections-explained"],
   },
   {
     slug: "build-credit-no-ssn",
@@ -584,6 +584,6 @@ export const creditArticles: Article[] = [
         text: "It takes a few months to see a score and longer to build a strong one, but it compounds. Down the road, that history means easier apartment approvals, smaller deposits, and far better rates when you need them.",
       },
     ],
-    related: ["build-credit-from-zero", "what-is-a-credit-score", "credit-utilization"],
+    related: ["build-credit-from-zero", "what-is-a-credit-score", "rent-reporting"],
   },
 ];

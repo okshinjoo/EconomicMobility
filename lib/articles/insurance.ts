@@ -337,7 +337,86 @@ export const insuranceArticles: Article[] = [
         text: "Those few extra minutes are the difference between a plan that quietly drains you and one that actually fits your life. The cheapest premium and the cheapest plan are rarely the same thing.",
       },
     ],
-    related: ["health-insurance-explained", "how-insurance-works", "medicaid-explained"],
+    related: ["health-insurance-explained", "dental-vision-insurance", "medicaid-explained"],
+  },
+
+  {
+    slug: "dental-vision-insurance",
+    order: 15,
+    topicId: "insurance",
+    title: "Dental and Vision Coverage, Explained",
+    dek: "These plans work backwards from health insurance: generous with small bills, capped on big ones. That flips the math on whether to buy.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "Dental and vision are usually separate plans with their own premiums and rules.",
+      "They cap what the *plan* pays each year, the opposite of health insurance's design.",
+      "Dental plans typically pay 100% for preventive care, 80% for basic work, 50% for major work.",
+      "If all you need is cleanings or one pair of glasses, paying cash can beat paying premiums.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Here's a surprise that catches a lot of people at their first open enrollment: for adults, teeth and eyes usually aren't covered by health insurance. Dental and vision come as separate plans with their own premiums, either as add-ons through a job or bought on your own. They borrow health insurance's vocabulary, but they work by a different logic, and understanding the difference is what tells you whether they're worth buying.",
+      },
+      {
+        type: "h2",
+        text: "The design runs backwards",
+      },
+      {
+        type: "p",
+        text: "Health insurance is built to cap *your* worst year: the out-of-pocket maximum limits what you can pay, and the plan absorbs a catastrophe ([Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers how). A dental plan flips that. It comes with an **annual maximum**, often somewhere between $1,000 and $2,000, and that's the most the *plan* will pay in a year. You cover everything beyond it. So dental insurance is generous with routine care and weakest exactly when the bills get big. It's less a safety net than a discount program with a ceiling.",
+      },
+      {
+        type: "key",
+        text: "On a health plan, the annual cap protects you. On a dental plan, the annual cap protects the insurer. Once you see that, the rest of the fine print makes sense.",
+      },
+      {
+        type: "h2",
+        text: "The 100/80/50 structure",
+      },
+      {
+        type: "p",
+        text: "Most dental plans sort care into three tiers and pay a set share of each:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Preventive, usually covered 100%:** cleanings, routine exams, and X-rays, typically twice a year, often with no deductible.",
+          "**Basic work, usually covered around 80%:** fillings and simple extractions. You pay the rest.",
+          "**Major work, usually covered around 50%:** crowns, bridges, root canals, dentures. Your half of a crown is real money, and the annual maximum is looming the whole time.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Two more quirks to check before you buy: many plans make new members wait months (sometimes a year) before covering major work, so you can't sign up the week you need a crown. And the percentages assume in-network dentists, same as health coverage.",
+      },
+      {
+        type: "h2",
+        text: "Vision plans are smaller still",
+      },
+      {
+        type: "p",
+        text: "A typical vision plan charges a modest premium and gives you a yearly eye exam for a small copay, plus an allowance toward frames, lenses, or contacts. That's roughly the whole product. It's closer to a prepaid discount card than to insurance, which isn't a knock; if you wear glasses or contacts every year, a cheap employer vision plan often pays for itself. If you don't, it's a subscription to something you're not using.",
+      },
+      {
+        type: "h2",
+        text: "When paying cash wins",
+      },
+      {
+        type: "p",
+        text: "Because these plans cap their own payouts, the math is simple enough to do on a napkin. Add up a year of premiums. Compare it to what you'd pay in cash for the care you realistically use: two cleanings, an eye exam, a pair of glasses. If you have healthy teeth, no plan through work, and an individual policy would cost more than the cleanings it covers, cash wins. The calculation flips when an employer subsidizes the premium (often making it very cheap), when you know major work is coming, or when kids are involved; children's dental and vision are frequently folded into health plans. Either way, keep the preventive visits. Skipped cleanings have a way of coming back as fillings and crowns, which is the expensive tier of the chart above.",
+      },
+      {
+        type: "h2",
+        text: "Cheaper care without a plan",
+      },
+      {
+        type: "p",
+        text: "No coverage doesn't have to mean no care. Dental schools treat patients at a steep discount, with students working under licensed supervising dentists. Community health centers offer dental care on a sliding scale based on income. Many optometry schools run the same model for eye exams, and some school and community programs provide free vision screenings and glasses for kids. Ask any provider for their cash price too; like [medical bills](/learn/insurance/negotiating-medical-bills), the first number is often not the only number.",
+      },
+    ],
+    related: ["health-insurance-explained", "choosing-a-health-plan", "negotiating-medical-bills"],
   },
 
   {
@@ -417,7 +496,80 @@ export const insuranceArticles: Article[] = [
         text: "Once you understand these pieces, an auto policy stops being a mystery. Required liability protects others, collision and comprehensive protect your car, and your premium reflects your risk and your choices. From there, you're shopping on purpose instead of guessing.",
       },
     ],
-    related: ["how-insurance-works", "buying-a-used-car", "do-you-need-life-insurance"],
+    related: ["after-a-car-accident", "how-insurance-works", "buying-a-used-car"],
+  },
+
+  {
+    slug: "after-a-car-accident",
+    order: 25,
+    topicId: "insurance",
+    title: "After a Car Accident: The Money Playbook",
+    dek: "The minutes after a crash are chaos and the weeks after are paperwork. Here's the whole sequence, from photos at the scene to what happens to your rates.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "At the scene: get safe, document everything, exchange info, and don't debate fault.",
+      "When your own policy fixes your car, your deductible comes out first.",
+      "A rental car is only covered if you bought rental coverage before the crash.",
+      "Small damage is sometimes better handled with cash or small-claims court than a claim.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Nobody thinks clearly right after a crash. Your hands are shaking, the other driver is talking at you, and traffic is inching past. That's exactly why it helps to learn the sequence now, while you're calm: what you do in the first ten minutes shapes everything the insurance companies decide later.",
+      },
+      {
+        type: "h2",
+        text: "At the scene",
+      },
+      {
+        type: "steps",
+        items: [
+          "Check for injuries and get out of traffic. If anyone might be hurt, or the cars are blocking the road, call 911. A police report also becomes powerful evidence later.",
+          "Photograph everything before the cars move, if it's safe: both vehicles from multiple angles, license plates, the whole scene, skid marks, traffic signs, and any visible injuries.",
+          "Exchange information: names, phone numbers, insurance company and policy number, plate number, and the car's make and model. Photograph their insurance card and license instead of copying by hand.",
+          "If anyone saw it happen, ask for their name and number. A neutral witness can settle a he-said-she-said.",
+          "Say nothing about fault. Skip 'I'm sorry' and 'I didn't see you.' Stick to facts and checking that everyone's okay.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Fault is decided later, by insurers and sometimes police, from the evidence. It is not decided by what you blurt out while shaking on the shoulder. Politeness is fine; apologies get quoted back to you.",
+      },
+      {
+        type: "h2",
+        text: "Filing the claim",
+      },
+      {
+        type: "p",
+        text: "Tell your own insurer about the accident promptly, even if the other driver was clearly at fault; the other driver may tell their company a different story, and yours can't defend you if it doesn't know. From there, an adjuster reviews the evidence, fault gets assigned (sometimes split between drivers), and the damage gets estimated at a shop. If the other driver caused the crash, their liability coverage should pay for your car and your medical bills. If their insurer drags its feet, you can often use your own collision coverage to get repaired now and let your insurer chase theirs for reimbursement, which typically gets your deductible refunded if they collect.",
+      },
+      {
+        type: "h2",
+        text: "The deductible and the rental car",
+      },
+      {
+        type: "p",
+        text: "Two realities surprise people mid-claim. First, whenever your own collision coverage pays for your repair, your deductible comes out of your pocket before the insurer pays anything ([Auto Insurance Basics](/learn/insurance/auto-insurance-basics) covers the coverage types and how deductibles work). Second, your policy only pays for a rental while your car is in the shop if you bought rental reimbursement coverage beforehand; it's a cheap add-on that a lot of people discover they don't have at the worst moment. When the other driver is at fault, their insurer generally owes for a reasonable rental instead.",
+      },
+      {
+        type: "h2",
+        text: "Will your rates go up?",
+      },
+      {
+        type: "p",
+        text: "An at-fault accident usually raises your premium at renewal, and the surcharge can follow you for a few years. A claim where you weren't at fault, or a comprehensive claim like hail damage, tends to matter less, though rules vary by company and state. This is why claim size matters: if the damage is $700 and your deductible is $500, you'd collect $200 now and possibly pay far more than that in higher premiums later. For small, single-car dings, get a repair quote first and consider paying cash. For anything involving injuries or another driver, report it; those situations can grow, and you want your insurer on the record from day one.",
+      },
+      {
+        type: "h2",
+        text: "The small-claims option",
+      },
+      {
+        type: "p",
+        text: "Sometimes the at-fault driver has no insurance, or you decide to skip the claims process for a modest amount. Small-claims court exists for exactly this: filing costs little, you don't need a lawyer, and dollar limits (which vary by state, commonly several thousand dollars) cover most fender-benders. Your scene photos, the police report, repair estimates, and witness contacts are your whole case, which is one more reason the ten minutes of documentation matter. Send the other driver a written demand with your repair estimate first; plenty of these resolve without anyone seeing a courtroom.",
+      },
+    ],
+    related: ["auto-insurance-basics", "how-insurance-works", "buying-a-used-car"],
   },
 
   {
@@ -508,7 +660,81 @@ export const insuranceArticles: Article[] = [
         text: "Figure out whether anyone depends on your income first. If nobody does, you can relax about the sales pressure. If someone does, learn the difference between term and whole life before you sign anything, so you walk into the conversation already knowing what you need.",
       },
     ],
-    related: ["how-insurance-works", "auto-insurance-basics"],
+    related: ["how-insurance-works", "disability-insurance", "auto-insurance-basics"],
+  },
+
+  {
+    slug: "disability-insurance",
+    order: 35,
+    topicId: "insurance",
+    title: "Disability Insurance: The Coverage Nobody Mentions",
+    dek: "Everything in your financial life runs on your paycheck. This is the insurance that protects the paycheck itself, and you may already have some.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "Disability insurance replaces part of your income when illness or injury keeps you from working.",
+      "Short-term coverage handles weeks to months; long-term coverage handles the years after.",
+      "Many jobs include coverage already. Check your benefits portal before buying anything.",
+      "Social Security disability is slow, strict, and modest. Don't make it the plan.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Ask people what their most valuable asset is and they'll say their car, or maybe their savings. For most working people it's neither. It's the decades of paychecks still ahead of them, the income stream that pays for everything else. Life insurance gets all the attention, but during your working years, a serious illness or injury that stops you from earning is the more common threat, and it's the one almost nobody insures on purpose. Disability insurance does one job: if a medical problem keeps you from working, it replaces part of your paycheck while you recover.",
+      },
+      {
+        type: "h2",
+        text: "Short-term vs. long-term",
+      },
+      {
+        type: "p",
+        text: "Coverage comes in two lengths, built for two different problems:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Short-term disability** typically replaces somewhere around half to two-thirds of your pay for a few weeks up to several months, after a brief waiting period. It covers things like surgery recovery, a bad injury, or a rough illness, and it's commonly what pays you during parental leave after childbirth.",
+          "**Long-term disability** picks up where short-term ends, often after about three months, and can keep paying a share of your income for years if you still can't work. This is the one that protects you from the true disaster: not six weeks off, but a condition that takes you out of work indefinitely.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If you can only have one, long-term is the one that matters. A few missed weeks is an emergency-fund problem. A few missed years is the kind of uninsurable-alone catastrophe [insurance exists for](/learn/insurance/how-insurance-works).",
+      },
+      {
+        type: "h2",
+        text: "You may already have some",
+      },
+      {
+        type: "p",
+        text: "Before buying anything, spend ten minutes in your employer's benefits portal (or ask HR). Many companies include short-term or long-term disability automatically at no cost, or offer it at group rates far cheaper than you could get alone. Look for what percentage of pay it replaces, how long payments last, and how long you must wait before they start. A handful of states also run their own short-term disability or paid family and medical leave programs that cover workers automatically; your state's labor department site will say. Plenty of people are carrying coverage they've never once looked at.",
+      },
+      {
+        type: "h2",
+        text: "Why Social Security disability isn't the plan",
+      },
+      {
+        type: "p",
+        text: "There is a public backstop: Social Security Disability Insurance (SSDI), which you fund through the payroll taxes on every paycheck. It's real, and for people with long-lasting, severe conditions it matters. But it makes a poor primary plan. The definition of disability is strict (generally, being unable to do substantially any work for at least a year), initial applications take months to process and are frequently denied, appeals can stretch far longer, and the monthly benefit is modest compared to most salaries. SSDI is the floor under the worst cases. It is not a substitute for coverage that starts paying within weeks and reflects your actual income.",
+      },
+      {
+        type: "h2",
+        text: "What it costs on your own",
+      },
+      {
+        type: "p",
+        text: "If work doesn't offer coverage (common with gig work, restaurant jobs, and small employers), you can buy an individual long-term policy. For a young, healthy person the price is usually manageable, commonly quoted as a rough 1% to 3% of the salary being protected, and locking in a policy while you're healthy is what keeps it cheap. Price scales with how much income you replace, how long the benefit lasts, and how long you can wait before payments begin; choosing a longer waiting period is the classic way to trim the premium, if your emergency fund can bridge the gap.",
+      },
+      {
+        type: "tip",
+        text: "One term worth knowing when you compare policies: **own-occupation** coverage pays if you can't do *your* job, while any-occupation coverage pays only if you can't do much of *any* job. Own-occupation costs more and protects you better.",
+      },
+      {
+        type: "p",
+        text: "Start with the benefits portal this week. If solid long-term coverage is already there, you're done, and you learned it for free. If it isn't, price a policy while you're young and healthy. Either way, the paycheck that funds [your health coverage](/learn/insurance/health-insurance-explained), your rent, and every plan you have deserves the same protection you'd give a car.",
+      },
+    ],
+    related: ["do-you-need-life-insurance", "how-insurance-works", "health-insurance-explained"],
   },
 
   {

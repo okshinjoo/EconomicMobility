@@ -75,7 +75,7 @@ export const investingExtraArticles: Article[] = [
         text: "Don't let the vocabulary scare you off. Strip away the jargon and you're choosing one simple, diversified basket, then leaving it alone for a long, long time.",
       },
     ],
-    related: ["index-funds-explained", "risk-and-diversification", "start-investing-with-50"],
+    related: ["index-funds-explained", "expense-ratios-and-fees", "risk-and-diversification", "start-investing-with-50"],
   },
 
   {
@@ -240,7 +240,7 @@ export const investingExtraArticles: Article[] = [
         text: "You don't have to be smart about *when* to invest. You have to be consistent about *that* you invest. Boring, automatic, and steady beats clever and anxious almost every time.",
       },
     ],
-    related: ["long-term-strategy", "magic-of-compound-interest", "start-investing-with-50"],
+    related: ["long-term-strategy", "magic-of-compound-interest", "market-crashes", "start-investing-with-50"],
   },
 
   {
@@ -311,7 +311,7 @@ export const investingExtraArticles: Article[] = [
         text: "Successful investing is less about being brilliant and more about avoiding the obvious traps: don't panic, don't chase hype, don't overpay in fees, and don't wait forever to begin.",
       },
     ],
-    related: ["long-term-strategy", "risk-and-diversification", "crypto-explained"],
+    related: ["long-term-strategy", "expense-ratios-and-fees", "risk-and-diversification", "crypto-explained"],
   },
 
   {
@@ -551,5 +551,78 @@ export const investingExtraArticles: Article[] = [
       },
     ],
     related: ["magic-of-compound-interest", "saving-vs-investing", "start-investing-with-50"],
+  },
+
+  {
+    slug: "how-to-pick-a-brokerage",
+    order: 15,
+    topicId: "investing",
+    title: "How to Pick a Brokerage",
+    dek: "Trades are free everywhere now, so the real differences are elsewhere. What to compare, and why boring names win.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Nearly every major brokerage now charges $0 commissions and $0 minimums, so price isn't the comparison anymore.",
+      "Compare fractional shares, account types, and fund lineups instead.",
+      "Some apps are designed to make you trade more, which is good for them and bad for you.",
+      "The big, boring names are genuinely fine. Picking one is not a high-stakes decision.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Plenty of people stall for months on one question: *which brokerage should I use?* It feels like a high-stakes choice, the kind you could get badly wrong. Some relief up front: this decision used to matter a lot, and it mostly doesn't anymore. The major brokerages have converged so much that the realistic worst case is opening an account somewhere perfectly good instead of somewhere marginally better.",
+      },
+      {
+        type: "h2",
+        text: "The old comparison is dead",
+      },
+      {
+        type: "p",
+        text: "Brokerages used to compete on commissions, the fee charged per trade. That war ended: at essentially every major brokerage, buying and selling stocks and ETFs now costs $0, and account minimums are gone too. So any comparison chart built around trading costs is a relic. The differences that remain are smaller and quieter.",
+      },
+      {
+        type: "h2",
+        text: "What actually differs now",
+      },
+      {
+        type: "list",
+        items: [
+          "**Fractional shares.** The ability to buy $10 of a fund whose shares cost $500. Most big brokerages offer this, but check, because it's what lets a small, steady contribution get fully invested every time.",
+          "**Account types.** You'll want a place that offers a Roth IRA alongside a regular brokerage account, so you don't have to move later. All the big names do.",
+          "**Their own cheap funds.** Several major brokerages run excellent index funds with rock-bottom expense ratios that are cheapest (or exclusive) on their own platform.",
+          "**Cash handling and small print.** What interest your uninvested cash earns, and whether there are fees for things like paper statements or transferring your account out.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Watch how the app treats you",
+      },
+      {
+        type: "p",
+        text: "One difference that doesn't show up in any comparison table: some trading apps are built like games. Push alerts about hot stocks, lists of the day's biggest movers, celebration animations when you trade. That design isn't an accident. Even with $0 commissions, brokerages earn money when you trade, partly through *payment for order flow*, where market-making firms pay the broker to route your orders their way. More taps means more revenue for them, and [more trading is reliably worse for you](/learn/investing/investing-mistakes). A good sign is an app that makes automatic investing easy and day-trading unexciting.",
+      },
+      {
+        type: "h2",
+        text: "The boring names are fine",
+      },
+      {
+        type: "p",
+        text: "Fidelity, Schwab, and Vanguard are the standard answers for a reason: decades of history, $0 commissions and minimums, fractional investing, full account lineups, and their own ultra-cheap index funds. Accounts at legitimate brokerages also carry SIPC protection, which covers you if the brokerage itself fails (though not against your investments losing value; nothing covers that). You do not need a hot new app to invest well, and you should be suspicious of any platform whose main selling point is excitement.",
+      },
+      {
+        type: "steps",
+        items: [
+          "Pick one established brokerage. Flip a coin between the big names if you have to; it matters that little.",
+          "Open the account type that fits your goal, walked through in [Opening Your First Account](/learn/investing/opening-first-account).",
+          "Set up an automatic monthly transfer from your bank, even a small one.",
+          "Buy a broad, low-cost index fund with it, and let the app's notifications stay ignored.",
+        ],
+      },
+      {
+        type: "key",
+        text: "The brokerage is the store, not the groceries. Once you're buying low-cost diversified funds on a schedule, which store you're standing in barely changes the outcome. Pick a solid one and move on to the decisions that count.",
+      },
+    ],
+    related: ["opening-first-account", "start-investing-with-50", "robo-advisors"],
   },
 ];

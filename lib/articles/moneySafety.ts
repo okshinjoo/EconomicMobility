@@ -176,7 +176,7 @@ export const moneySafetyArticles: Article[] = [
         text: "You don't have to figure out whether each message is fake. You have to refuse to act *inside* it. Go to the source yourself, every time, and phishing stops working on you. If you already clicked a link or shared a code, [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) covers the cleanup, starting with your passwords.",
       },
     ],
-    related: ["how-to-spot-a-scam", "identity-theft", "if-youve-been-scammed"],
+    related: ["how-to-spot-a-scam", "family-emergency-scams", "if-youve-been-scammed"],
   },
 
   {
@@ -256,6 +256,91 @@ export const moneySafetyArticles: Article[] = [
   },
 
   {
+    slug: "family-emergency-scams",
+    order: 35,
+    topicId: "money-safety",
+    title: "The 'It's Me, I'm in Trouble' Call",
+    dek: "A panicked voice, a plea for money, and a request to keep it secret. The family-emergency scam is old, and it has new tools.",
+    level: "Beginner",
+    readMinutes: 4,
+    takeaways: [
+      "The scam: someone poses as a relative in urgent trouble and needs money fast.",
+      "Voice-cloning tools mean a familiar voice on the phone is no longer proof of anything.",
+      "Hang up and call the person back at the number you already have for them.",
+      "A family safe word settles 'is this really you?' in two seconds.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The phone rings late. It's your grandson, or your niece, or your little brother, and something is wrong: a car crash, a night in jail, a stolen wallet in another country. The connection is bad, they're crying, and they need money right now. One more thing: please don't tell anyone. They're too embarrassed.",
+      },
+      {
+        type: "p",
+        text: "This is one of the oldest scams on the phone, and it keeps working because it aims at love instead of greed. When someone you care about is in trouble, you don't cross-examine them. You help. Scammers know that, and they build the whole performance around it.",
+      },
+      {
+        type: "h2",
+        text: "How it usually plays out",
+      },
+      {
+        type: "list",
+        items: [
+          "The caller claims to be a relative in immediate trouble: an arrest, an accident, a hospital, a mugging while traveling.",
+          "Often a second voice takes over, playing a 'lawyer,' 'police officer,' or 'doctor' who calmly explains exactly how to send the money.",
+          "The payment method is always hard to reverse: gift cards, a wire transfer, crypto, a payment app, sometimes even a courier sent to your door for cash.",
+          "And there is always a reason to keep it quiet. Don't call Mom. Don't tell Grandpa. Let's handle this between us.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Why the voice can sound so real",
+      },
+      {
+        type: "p",
+        text: "The classic version leaned on panic and a fuzzy connection: 'Grandma? It's me,' and your own brain filled in the name. The newer version doesn't need your help. Voice-cloning software can imitate a specific person's voice from a short recording, and short recordings of most of us are easy to find: social media videos, voicemail greetings, clips from a livestream. You don't need to understand the technology to draw the right conclusion. A familiar voice on the phone is no longer proof of who's calling.",
+      },
+      {
+        type: "h2",
+        text: "Urgency plus secrecy is the tell",
+      },
+      {
+        type: "p",
+        text: "Strip away the story and every version of this scam runs on the same two ingredients: you must act *now*, and you must tell *no one*. Real emergencies almost never require secrecy. Real hospitals bill you; they don't demand gift cards tonight. Real lawyers and police don't take payment through a cash courier. Those are the same red flags behind nearly every fraud, and [How to Spot a Scam](/learn/money-safety/how-to-spot-a-scam) covers the full set.",
+      },
+      {
+        type: "key",
+        text: "The instruction 'don't tell anyone' is the one to break first. Isolation is the scam's engine. The moment you loop in another family member, it usually falls apart.",
+      },
+      {
+        type: "h2",
+        text: "The verify move",
+      },
+      {
+        type: "steps",
+        items: [
+          "Slow it down. Say you need a few minutes and will call right back. A real relative in real trouble will understand.",
+          "Hang up and call the person at the number you already have for them, not the number that just called you.",
+          "No answer? Call another family member who'd know where they are, even though the caller said not to. Especially because the caller said not to.",
+          "Still unsure? Ask a question only the real person could answer, or use your family's safe word.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Set up a safe word this week",
+      },
+      {
+        type: "p",
+        text: "Pick a word or short phrase your family would never say by accident (an inside joke, an old pet's name, a dish from home) and agree that anyone calling about an emergency and money has to say it. Share it in person or in a private conversation, not in a public post. It costs nothing, takes five minutes at dinner, and it beats the most convincing cloned voice ever made.",
+      },
+      {
+        type: "p",
+        text: "If money already went out, don't sit with the shame; these calls are engineered to beat smart, loving people. Contact your bank or the gift card company right away, then work through [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) step by step.",
+      },
+    ],
+    related: ["how-to-spot-a-scam", "payment-app-safety", "if-youve-been-scammed"],
+  },
+
+  {
     slug: "fake-check-scams",
     order: 40,
     topicId: "money-safety",
@@ -321,7 +406,7 @@ export const moneySafetyArticles: Article[] = [
         text: "The whole trick depends on you moving money before the truth catches up. Take that away, by never refunding or forwarding funds from a check that landed in your lap, and there's nothing left for the scammer to steal. If you've already sent money, call your bank immediately, then follow the steps in [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed).",
       },
     ],
-    related: ["how-to-spot-a-scam", "payment-app-safety", "if-youve-been-scammed"],
+    related: ["job-scams", "how-to-spot-a-scam", "if-youve-been-scammed"],
     quiz: [
       {
         question: "Your bank shows a deposited check's money as 'available.' What does that actually mean?",
@@ -357,6 +442,75 @@ export const moneySafetyArticles: Article[] = [
           "When the check bounces, the bank pulls the deposit back and you're responsible for whatever you moved in the meantime. That's why the one rule is to never send money back from a check someone sent you.",
       },
     ],
+  },
+
+  {
+    slug: "job-scams",
+    order: 45,
+    topicId: "money-safety",
+    title: "Fake Job Offers and Employment Scams",
+    dek: "When you need work, a fast offer feels like luck finally turning. Here's how to tell a real job from a scam wearing one.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "A real employer never needs you to pay money, or move money, to start a job.",
+      "An instant offer with no real interview is a warning sign, not good luck.",
+      "'Deposit this check and buy your equipment' is a fake-check scam in a work outfit.",
+      "A few minutes verifying the company through its official channels beats every fake.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Job scams are cruel in a specific way: they target people at the exact moment they need money and good news. And they don't only live in shady corners of the internet. Scammers post fake listings on real job boards, copy the names and logos of real companies, and sometimes impersonate real recruiters. The listing can look completely legitimate. The tells show up in how the 'job' behaves.",
+      },
+      {
+        type: "h2",
+        text: "The offer that comes too easily",
+      },
+      {
+        type: "p",
+        text: "The bait is usually a remote job with vague duties and surprisingly good pay: data entry, package handling, 'personal assistant,' payments processing. The 'interview' happens entirely by text or on a chat app, lasts a few minutes, and ends with an offer on the spot. That speed is the point. Real hiring is slow because the company is checking you out. A scammer skips all that, because the job was never real; you are the product, and they want you committed before you think too hard.",
+      },
+      {
+        type: "h2",
+        text: "The equipment con",
+      },
+      {
+        type: "p",
+        text: "Once you're 'hired,' the money requests begin. Sometimes you're asked to pay upfront for training, software, a starter kit, or a background check. Sometimes it's more elaborate: the company sends you a check to buy a laptop and equipment from their 'approved vendor,' who is the scammer. The check is counterfeit, the vendor payment you sent is real, and when the check bounces the bank takes the money back from you. [Fake Checks and Overpayment Scams](/learn/money-safety/fake-check-scams) explains exactly how that mechanism works and why the bank showing the funds proves nothing.",
+      },
+      {
+        type: "key",
+        text: "Employers pay you. You never have to send money, buy gift cards, or forward funds to anyone to start a job. Any 'job' where money flows from you outward, in any form, is a scam.",
+      },
+      {
+        type: "h2",
+        text: "Reshipping jobs: the one that can get you in real trouble",
+      },
+      {
+        type: "p",
+        text: "One version deserves a gentle, serious warning. A 'logistics coordinator' or 'package inspection' job asks you to receive packages at home, check the contents, and reship them to another address. The merchandise was bought with stolen credit cards, and the job exists to hide the trail behind your name and address. People who take these jobs are victims too, but they can still end up with police at the door, packages seized, and their information sitting in the middle of a fraud investigation. Some are never paid at all. If a job is mostly receiving and resending packages or money, walk away, no matter how kind the 'manager' seems.",
+      },
+      {
+        type: "h2",
+        text: "How to verify a company before you say yes",
+      },
+      {
+        type: "steps",
+        items: [
+          "Find the company's official website yourself (don't use links from the message) and check whether the job is posted on its own careers page.",
+          "Look at the email addresses. Real recruiters write from the company's domain, not from Gmail or a lookalike domain with an extra letter.",
+          "Search the company name plus the word 'scam,' and search the recruiter's name. Impersonated companies often post warnings.",
+          "Ask for a phone or video interview with a real person. A legitimate employer will have one; a scammer will make excuses.",
+          "If an offer came out of nowhere for a job you never applied to, treat it as a scam until proven otherwise.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this means good remote jobs don't exist. They do, and real ones survive scrutiny: the posting matches the company's site, the people are reachable, and nobody ever asks you for money. If you've already paid or deposited a check, call your bank now, then follow [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed). The pressure and secrecy you felt along the way were the [standard red flags](/learn/money-safety/how-to-spot-a-scam) all along.",
+      },
+    ],
+    related: ["fake-check-scams", "how-to-spot-a-scam", "if-youve-been-scammed"],
   },
 
   {
@@ -427,7 +581,93 @@ export const moneySafetyArticles: Article[] = [
         text: "If you've already sent money, go straight to [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed), and please skip the self-blame. You were targeted by professionals. What matters now is acting quickly, not feeling embarrassed.",
       },
     ],
-    related: ["how-to-spot-a-scam", "fake-check-scams", "if-youve-been-scammed"],
+    related: ["investment-fraud", "how-to-spot-a-scam", "if-youve-been-scammed"],
+  },
+
+  {
+    slug: "investment-fraud",
+    order: 55,
+    topicId: "money-safety",
+    title: "Investment Fraud: The Classic Cons",
+    dek: "Ponzi schemes, hyped stocks, and slick fake platforms all sell the same impossible product: a sure win. Two free lookups expose most of them.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "A Ponzi scheme pays 'returns' out of new investors' deposits, until the new money stops.",
+      "Affinity fraud spreads through trusted communities, which is why smart people get caught.",
+      "Check anyone selling investments on FINRA BrokerCheck and the SEC's IAPD. Both are free.",
+      "Guaranteed high returns don't exist. That promise is the fraud identifying itself.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Investment fraud has a costume department. One decade it wears a stock certificate, the next a crypto app, but underneath it's a small set of cons that have run for a century. Learn the handful of classics and you'll recognize the next reinvention on sight, whatever it's wearing.",
+      },
+      {
+        type: "h2",
+        text: "The Ponzi scheme",
+      },
+      {
+        type: "p",
+        text: "A Ponzi scheme doesn't invest your money in anything. The operator takes deposits from new investors and uses them to pay 'returns' to earlier investors, keeping a cut along the way. From the inside it looks wonderful: your statements show steady gains, month after month, and people who ask for a withdrawal actually get paid, which makes the whole thing feel verified. It runs until recruiting slows or too many people want out at once, and then it collapses, because there was never anything underneath. The 'profits' were just other people's deposits changing hands. The tell is smoothness: real markets bounce around, so an investment that only ever goes up, in tidy identical increments, is a story someone is writing, not a market.",
+      },
+      {
+        type: "h2",
+        text: "Affinity fraud: when it comes through your community",
+      },
+      {
+        type: "p",
+        text: "Many of the worst investment frauds don't arrive through strangers. They spread through a church, a mosque, an immigrant community, a campus group, a hometown network, carried by people who genuinely believe in the opportunity because someone they trust brought it to them. Scammers seek out tight-knit communities on purpose: earn one respected person's trust and everyone else's follows. The early participants even get paid, Ponzi-style, so they vouch for it honestly.",
+      },
+      {
+        type: "p",
+        text: "If this has touched your family or your community, be gentle with yourself and the people involved. Trusting your community is not a character flaw; it's the thing these criminals deliberately abuse. It also creates a second harm: victims often stay quiet to avoid embarrassing the group or the person who invited them. Reporting it protects the next family, and the person who recruited you was usually a victim too.",
+      },
+      {
+        type: "h2",
+        text: "Pump-and-dump and the social media stock tip",
+      },
+      {
+        type: "p",
+        text: "This one is built for the group-chat era. Promoters quietly buy a cheap, thinly traded stock or token, then flood social media with hype: screenshots of gains, whispers of big news, urgency to get in before it moons. The buying pushes the price up, the promoters sell everything near the top, and the price collapses on the people who arrived last. If a stranger, an influencer, or even a friend forwarding a tip is excited for *you* to buy something *they already own*, notice whose exit you're funding. The polished online personalities that push these plays have their own tells, which we've written up in [how to spot a fake financial guru](/blog/how-to-spot-a-fake-financial-guru).",
+      },
+      {
+        type: "h2",
+        text: "Fake trading platforms",
+      },
+      {
+        type: "p",
+        text: "Some frauds skip the market entirely and build a stage set: a professional-looking app or website where your 'balance' grows impressively. None of it is real; the numbers are typed in by the scammer. The trap springs when you try to withdraw and suddenly owe 'taxes' or 'fees' to unlock your own money. Those payments vanish too. This is the machinery behind the long-game romance version covered in [Romance and 'Investment' Scams](/learn/money-safety/romance-scams), and the rule is the same everywhere: a number on a screen is not money until it's back in your own bank account.",
+      },
+      {
+        type: "h2",
+        text: "The two free checks that expose most of it",
+      },
+      {
+        type: "p",
+        text: "In the U.S., people who sell investments or give investment advice for a living are generally required to be registered, and their records are public. Before you hand anyone money, run the two official lookups. Both are free and take minutes:",
+      },
+      {
+        type: "list",
+        items: [
+          "**FINRA BrokerCheck** (brokercheck.finra.org): look up any broker or brokerage firm to see licenses, employment history, and customer complaints.",
+          "**The SEC's Investment Adviser Public Disclosure database** (adviserinfo.sec.gov): the same kind of record for investment advisers and their firms.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If the person pitching you isn't in either system, or bristles when you say you want to check, that's your answer. Registration doesn't guarantee honesty, but *unregistered plus persuasive* is the classic fraud profile.",
+      },
+      {
+        type: "key",
+        text: "There is no such thing as a guaranteed high return. Real investing always involves risk, and anyone who promises big gains with none is describing a fraud. The [universal red flags](/learn/money-safety/how-to-spot-a-scam) (pressure, secrecy, too good to be true) apply to investments exactly as they do everywhere else.",
+      },
+      {
+        type: "p",
+        text: "If you've already put money in, stop adding more, keep every message and statement, and report it to the SEC and FTC. [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) walks through the order of operations, and none of it requires feeling ashamed first.",
+      },
+    ],
+    related: ["romance-scams", "how-to-spot-a-scam", "if-youve-been-scammed"],
   },
 
   {

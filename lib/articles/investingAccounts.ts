@@ -76,7 +76,7 @@ export const investingAccountsArticles: Article[] = [
         text: "For 2026, you can put up to **$7,500** total into IRAs (**$8,600** if you're 50+). Roth IRAs also have income limits: your ability to contribute directly starts phasing out once your income passes about **$153,000** (single) or **$242,000** (married filing jointly). Both figures rise a little most years. A qualified tax professional can tell you which version fits your situation. This is general education, not individualized advice. But once you understand pay-now versus pay-later, the choice stops feeling intimidating.",
       },
     ],
-    related: ["what-is-an-ira", "401k-vs-ira", "retirement-accounts-explained"],
+    related: ["what-is-an-ira", "401k-vs-ira", "retirement-accounts-explained", "investment-taxes-101"],
   },
 
   {

@@ -68,7 +68,7 @@ export const governmentAidArticles: Article[] = [
         text: "You do not have to wait until you are in crisis to look. Checking what you qualify for is free, private, and smart. Once you know your options, the next step is applying, which is more doable than it looks.",
       },
     ],
-    related: ["how-to-apply-for-benefits", "immigrants-and-benefits"],
+    related: ["how-to-apply-for-benefits", "immigrants-and-benefits", "wic-school-meals"],
   },
   {
     slug: "how-to-apply-for-benefits",
@@ -489,7 +489,7 @@ export const governmentAidArticles: Article[] = [
         text: "Owing money is stressful, but it doesn't make you powerless or a criminal. Get everything in writing and keep notes on every call. When you're ready to resolve the debt on your terms, [Negotiating and Restructuring Debt](/learn/government-aid/negotiating-debt) walks through the conversation, and [What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) explains the real timeline if you can't pay at all.",
       },
     ],
-    related: ["what-happens-if-you-dont-pay-debts", "negotiating-debt"],
+    related: ["what-happens-if-you-dont-pay-debts", "negotiating-debt", "collections-explained"],
     quiz: [
       {
         question: "A collector threatens to have you arrested over an unpaid credit card. What's true?",

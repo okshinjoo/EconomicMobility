@@ -526,7 +526,7 @@ export const budgetingArticles: Article[] = [
         text: "The right first account is boring in the best way. It holds your money, charges you nothing, and quietly makes everything else easier: budgeting, saving, getting paid.",
       },
     ],
-    related: ["avoiding-bank-fees", "unbanked-underbanked", "building-your-first-budget"],
+    related: ["checking-vs-savings", "avoiding-bank-fees", "unbanked-underbanked"],
   },
 
   {

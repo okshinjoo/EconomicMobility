@@ -210,7 +210,7 @@ export const taxesExtraArticles: Article[] = [
         text: "So the next time someone warns you off a raise, a bonus, or a few extra shifts because of 'the brackets,' you can let that fear go. More income is more income. Take the raise.",
       },
     ],
-    related: ["deductions-vs-credits", "understanding-tax-forms", "tax-refund-explained"],
+    related: ["deductions-vs-credits", "understanding-tax-forms", "tax-refund-explained", "investment-taxes-101"],
     quiz: [
       {
         question: "A raise pushes part of your income into a higher bracket. Which dollars get taxed at the higher rate?",
@@ -497,5 +497,83 @@ export const taxesExtraArticles: Article[] = [
       },
     ],
     related: ["deductions-vs-credits", "earned-income-tax-credit", "free-ways-to-file"],
+  },
+
+  {
+    slug: "investment-taxes-101",
+    order: 105,
+    topicId: "taxes",
+    title: "Taxes on Your Investments, Explained",
+    dek: "Selling at a profit, collecting dividends: the IRS wants a word. The rules are friendlier than you'd guess, especially if you're patient.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "You're taxed when you sell for a profit or receive dividends, not while investments simply grow.",
+      "Holding for more than a year moves you from ordinary rates to much lower long-term rates.",
+      "Your brokerage sends a 1099-B and 1099-DIV with the numbers your tax return needs.",
+      "Retirement accounts sidestep this entire system, which is a big part of their appeal.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "New investors sometimes avoid a regular brokerage account out of a vague fear that it creates some monstrous tax situation. It doesn't. The rules fit on one page, the paperwork mostly fills itself in, and a patient buy-and-hold investor barely interacts with any of it. This is that one page.",
+      },
+      {
+        type: "h2",
+        text: "You're taxed on gains you take, not growth you watch",
+      },
+      {
+        type: "p",
+        text: "If your fund grows from $1,000 to $5,000 and you don't sell, you owe nothing on that growth, this year or any year you keep holding. Tax enters the picture when you *sell* for more than you paid. The profit is called a capital gain: buy at $1,000, sell at $5,000, and your gain is $4,000. (Sell for less than you paid and you have a capital loss, which gets its own useful role in a moment.)",
+      },
+      {
+        type: "h2",
+        text: "The one-year line: short-term vs. long-term",
+      },
+      {
+        type: "p",
+        text: "How long you held the investment before selling changes everything. Hold it for one year or less and the gain is *short-term*, taxed at the same ordinary rates as your paycheck, using [the regular brackets](/learn/taxes/tax-brackets-explained). Hold it for more than a year and it becomes *long-term*, with its own gentler rates. For 2026, a single filer pays **0%** on long-term gains up to $49,450 of taxable income, **15%** up to $545,500, and **20%** above that.",
+      },
+      {
+        type: "key",
+        text: "Read that 0% again. A student or early-career investor with modest income can sell a long-held investment at a profit and owe no federal tax on the gain at all. Patience isn't just an investing strategy; it's a tax strategy.",
+      },
+      {
+        type: "h2",
+        text: "Dividends get sorted the same way",
+      },
+      {
+        type: "p",
+        text: "[Dividends](/learn/investing/dividends-explained) are taxed in the year they're paid, even if you reinvest them automatically. Most dividends from established U.S. companies are *qualified*, meaning they get the same low long-term capital gains rates. *Ordinary* (non-qualified) dividends, along with interest from savings accounts and bonds, are taxed at your regular income rates. You don't have to sort any of this yourself; the paperwork does it.",
+      },
+      {
+        type: "h2",
+        text: "The paperwork is two forms",
+      },
+      {
+        type: "list",
+        items: [
+          "**1099-B** lists everything you sold during the year, what you originally paid, and the resulting gains and losses.",
+          "**1099-DIV** totals your dividends and marks which portion is qualified.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Your brokerage posts both early in the year, and tax software (including the [free options](/learn/taxes/free-ways-to-file)) imports them or lets you copy a few boxes. If you sold nothing and earned no dividends, there may be no forms and nothing to report.",
+      },
+      {
+        type: "h2",
+        text: "Retirement accounts skip this whole system",
+      },
+      {
+        type: "p",
+        text: "Everything above applies to a regular, taxable brokerage account. Inside a [401(k)](/learn/investing/what-is-a-401k) or IRA, there are no capital gains taxes and no dividend taxes, ever, no matter how much you buy, sell, or collect along the way. Traditional accounts tax the money once, as income when you withdraw it in retirement; with a [Roth](/learn/investing/roth-vs-traditional-ira), qualified withdrawals are tax-free entirely. This is the concrete reason the standard advice puts retirement accounts first: the same fund, held in the right container, can grow for 40 years without a single tax form.",
+      },
+      {
+        type: "p",
+        text: "Two closing notes for taxable accounts. First, losses aren't wasted: capital losses offset your gains, and up to $3,000 of leftover loss can reduce your ordinary income each year. Second, the *wash-sale rule*: if you sell an investment at a loss and buy the same (or nearly identical) one back within 30 days, the IRS disallows the loss. Neither will matter much if you're doing the boring thing, buying steadily and rarely selling, which conveniently is also the best tax plan there is.",
+      },
+    ],
+    related: ["dividends-explained", "tax-brackets-explained", "roth-vs-traditional-ira"],
   },
 ];

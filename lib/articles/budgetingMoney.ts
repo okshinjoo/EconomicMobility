@@ -265,7 +265,7 @@ export const budgetingMoneyArticles: Article[] = [
         text: "A tight month is survivable. Pay for safety first, talk to the people you owe before things slip, and don't let the fear of opening an envelope cost you more than the bill inside it ever would.",
       },
     ],
-    related: ["managing-financial-stress", "payday-loans-and-predatory-lending", "building-your-first-budget"],
+    related: ["managing-financial-stress", "negotiating-your-bills", "payday-loans-and-predatory-lending"],
   },
 
   {
@@ -338,6 +338,175 @@ export const budgetingMoneyArticles: Article[] = [
         text: "Your bank should be a place that holds your money, not a place that nibbles at it. Choose a no-fee account, switch off overdraft, keep an eye on your balance, and the fees that drain so many tight accounts simply stop happening to yours.",
       },
     ],
-    related: ["opening-first-bank-account", "unbanked-underbanked", "what-is-apy"],
+    related: ["opening-first-bank-account", "unbanked-underbanked", "negotiating-your-bills"],
+  },
+
+  {
+    slug: "checking-vs-savings",
+    order: 55,
+    topicId: "budgeting",
+    title: "Checking vs. Savings: Where Each Dollar Lives",
+    dek: "Two accounts, two different jobs. Getting the split right is most of what 'being organized with money' means.",
+    level: "Beginner",
+    readMinutes: 4,
+    takeaways: [
+      "Checking is for money in motion; savings is for money at rest.",
+      "Checking pays essentially nothing, so only your spending money should sit there.",
+      "Savings should earn real interest, and a high-yield account is where it does.",
+      "An automatic transfer on payday keeps the system running without willpower.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Banks offer two basic kinds of accounts, and the difference sounds like trivia until you realize each one is built for a completely different job. Checking is for money in *motion*: your paycheck lands there, your rent and bills leave from there, your debit card pulls from there. Savings is for money at *rest*: the emergency cushion and the goals you're building toward. Most money mess at the beginning comes from making one account do both jobs.",
+      },
+      {
+        type: "h2",
+        text: "The two-account starter system",
+      },
+      {
+        type: "p",
+        text: "You don't need a complicated setup. One checking account and one savings account cover almost everything for years. What matters is being clear about what lives where:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Checking holds this month's money.** The rent, the bills, groceries, transport, and the spending money you've budgeted. If it's leaving your hands within a few weeks, it belongs here.",
+          "**Savings holds future money.** Your emergency fund, next semester's books, the security deposit for your next place, the flight home. If you're not spending it this month, it shouldn't sit where your debit card can reach it.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The line between them is the whole trick. When every dollar sits in checking, your balance always looks bigger than what you can spend, and savings quietly erodes one small purchase at a time.",
+      },
+      {
+        type: "h2",
+        text: "Why checking pays nothing, and savings should pay you",
+      },
+      {
+        type: "p",
+        text: "Checking accounts pay little or no interest, and that's by design: the bank assumes the money is passing through, not staying. Don't fight it; just don't store money there. Savings is where interest happens, or at least where it should. A traditional big-bank savings account often pays around 0.01%, which is effectively nothing, while a high-yield savings account pays around 4% in 2026. On real balances that gap is real money, and moving is easy: [high-yield savings accounts](/learn/investing/high-yield-savings-account) work like any other savings account, just online and better-paying. If the interest math is new to you, [What Is APY?](/learn/budgeting/what-is-apy) explains how the earning actually works.",
+      },
+      {
+        type: "p",
+        text: "One thing people don't always realize: your checking and savings don't have to live at the same bank. A common setup is free checking at a bank with convenient ATMs, plus a high-yield savings account online. Transfers between them take a day or two, which brings up a surprising point.",
+      },
+      {
+        type: "h2",
+        text: "A little friction is a feature",
+      },
+      {
+        type: "p",
+        text: "Savings is supposed to be slightly harder to reach than checking. No debit card attached, maybe a day's wait to move money over. That tiny delay is enough to stop most impulse raids on your own goals, while still leaving the money fully available for a true emergency. Some banks also limit how many withdrawals you can make from savings each month, so check your account's rules; for money you planned to leave alone anyway, the limit rarely matters.",
+      },
+      {
+        type: "h2",
+        text: "Set up the automatic sweep",
+      },
+      {
+        type: "steps",
+        items: [
+          "Pick an amount you can sustain, even if it's $20 per paycheck.",
+          "Set up a recurring automatic transfer from checking to savings, dated the day after your paycheck lands.",
+          "Keep a small cushion in checking (even $100 helps) so the transfer never accidentally overdraws you.",
+          "Raise the transfer amount when your income goes up, before the extra money finds other plans.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Budget on your checking balance, not your total. If checking only ever holds this month's money, the number you see when you check your balance is the number you can actually spend, with no mental math required.",
+      },
+      {
+        type: "p",
+        text: "That's the whole starter system: spending flows through checking, saving accumulates in savings, and a payday transfer connects them. Later, you might split savings into separate buckets for separate goals ([sinking funds](/learn/budgeting/sinking-funds) are the natural next step), but the two-account version is enough to run a calm financial life for a long time.",
+      },
+    ],
+    related: ["opening-first-bank-account", "what-is-apy", "high-yield-savings-account"],
+  },
+
+  {
+    slug: "negotiating-your-bills",
+    order: 55,
+    topicId: "budgeting",
+    title: "Yes, You Can Negotiate Your Bills",
+    dek: "Internet, phone, fees, even medical bills: many 'fixed' prices are opening offers. Here's how to make the call.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Internet and phone companies have retention discounts reserved for people who ask.",
+      "Come to the call with a competitor's real price in hand.",
+      "Many one-time bank and card fees get reversed with one polite request.",
+      "If they won't budge, switching is the negotiation.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The prices on your monthly bills look official and final. Plenty of them aren't. Internet, phone, streaming bundles, some fees, even medical bills all have more give in them than the invoice suggests, and companies quietly count on most customers never testing that. Negotiating a bill isn't a special skill or a confrontation. It's usually one phone call, a specific request, and a little patience on hold.",
+      },
+      {
+        type: "h2",
+        text: "Why asking works",
+      },
+      {
+        type: "p",
+        text: "It costs a company far more to win a new customer than to keep an existing one, and internet and phone providers know their churn math cold. That's why they run steep new-customer promotions and why most of them staff a *retention department* whose whole job is talking people out of canceling, with discounts the regular support line can't offer. When your bill creeps up, it's not because your service got better. It's because your promotional rate expired and the company is betting you won't notice or won't call.",
+      },
+      {
+        type: "h2",
+        text: "The internet-and-phone playbook",
+      },
+      {
+        type: "steps",
+        items: [
+          "Check what you're paying now and whether a promo rate recently expired. Your bill or account page will show it.",
+          "Look up what competitors in your area charge new customers for similar service, and write the best one down. This number is your leverage.",
+          "Look up your own provider's current new-customer offer too. You're about to ask for something close to it.",
+          "Call and say you're thinking about canceling because of the price. You'll usually be routed to retention.",
+          "Make the specific ask: \"My bill went from $55 to $80. [Competitor] is offering $50 for the same speeds. I'd rather stay. What can you do on price?\"",
+          "Let them answer. If the first offer is weak, ask if that's the best available, and be willing to politely hold your ground.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Stay friendly the whole way through. The person on the line didn't set the price, and agents have real discretion about how hard they dig for discounts on your behalf. Rudeness closes doors; a calm, specific request opens them.",
+      },
+      {
+        type: "tip",
+        text: "Whatever deal you get is usually another 12-month promotion, so put its end date on your calendar. An annual 20-minute call is the maintenance fee for never paying the creep-up price.",
+      },
+      {
+        type: "h2",
+        text: "Medical bills negotiate too",
+      },
+      {
+        type: "p",
+        text: "Medical bills are one of the most negotiable bills there are, between billing errors, financial assistance programs, and plain payment-plan requests. That's a big enough subject to have its own guide: [How to Negotiate a Medical Bill](/learn/insurance/negotiating-medical-bills) walks through requesting an itemized bill, spotting errors, and asking for assistance before you pay a dollar.",
+      },
+      {
+        type: "h2",
+        text: "Fee reversals: the easiest call you'll make",
+      },
+      {
+        type: "p",
+        text: "A first late fee on a credit card, a one-off overdraft charge, an annual fee on a card you've held for years: these get waived all the time for customers in decent standing who simply ask. The script is short: \"I've been a customer for three years and this is my first late payment. Could you reverse the fee?\" The worst case is a no, and the call takes five minutes. Reversing fees is the cure; setting up your accounts so they stop happening is the prevention, and [Bank Fees and Overdrafts](/learn/budgeting/avoiding-bank-fees) covers that side.",
+      },
+      {
+        type: "h2",
+        text: "When to walk",
+      },
+      {
+        type: "p",
+        text: "Sometimes retention won't budge, and that's your answer: take the competitor offer you researched in step two. New-customer pricing is the biggest discount in the industry, and switching internet or phone providers costs an afternoon, not a fortune. A provider that only offers its best price to strangers has told you how it values you.",
+      },
+      {
+        type: "p",
+        text: "One boundary worth naming: this article is about lowering prices you can afford to pay. If the real problem is that the money isn't there this month, that's a different conversation, about hardship plans and payment priorities, and [What to Pay First](/learn/budgeting/prioritizing-bills-when-money-is-tight) is the guide for it.",
+      },
+      {
+        type: "key",
+        text: "Run the math on one call: knocking $25 off your internet bill is $300 a year, tax-free, for 20 minutes of your time. Very few side hustles pay that hourly rate.",
+      },
+    ],
+    related: ["avoiding-bank-fees", "negotiating-medical-bills", "saving-on-a-tight-budget"],
   },
 ];

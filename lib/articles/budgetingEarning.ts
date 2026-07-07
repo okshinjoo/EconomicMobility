@@ -355,4 +355,76 @@ export const budgetingEarningArticles: Article[] = [
     ],
     related: ["budgeting-irregular-income", "your-first-paycheck", "managing-financial-stress"],
   },
+
+  {
+    slug: "leasing-vs-buying-car",
+    order: 140,
+    topicId: "budgeting",
+    title: "Leasing vs. Buying a Car",
+    dek: "The lease payment looks friendlier. Here's the math behind it, and who actually comes out ahead.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "A lease is a long-term rental: lower payments, and you own nothing at the end.",
+      "Mileage caps and wear charges can quietly erase the payment advantage.",
+      "Leasing means a car payment forever; buying means the payments eventually stop.",
+      "On a tight budget, a solid used car is almost always the better answer.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The ads make it look obvious: lease a brand-new car for $299 a month, or finance the same car for something like $550. If you compare only the monthly payments, leasing wins every time. That's exactly why the comparison is framed that way. To decide for real, you have to look at what each payment is actually buying you.",
+      },
+      {
+        type: "h2",
+        text: "What a lease actually is",
+      },
+      {
+        type: "p",
+        text: "A lease is a long-term rental with a dressed-up vocabulary. You pay for the chunk of value the car loses while you drive it (the depreciation), plus a finance charge the industry calls a *money factor*, plus fees. After two or three years you hand the keys back and own nothing. The payment is lower than a loan payment because you're only paying for a slice of the car, and that's fair enough, as long as you're clear that at the end of a loan you own a car and at the end of a lease you own a memory.",
+      },
+      {
+        type: "h2",
+        text: "The fine print that changes the math",
+      },
+      {
+        type: "list",
+        items: [
+          "**Mileage caps.** Most leases allow 10,000 to 12,000 miles a year. Go over and you pay per mile at turn-in, commonly somewhere around 25 cents. Drive 5,000 miles too many over the lease and that's roughly $1,250 due at once. Your contract states your exact cap and rate; read it before you sign, not after.",
+          "**Wear-and-tear charges.** Normal use is included, but the lease company decides what 'normal' means. Scuffed wheels, a stained seat, a door ding, a chipped windshield: each can show up as a charge when you return the car.",
+          "**Fees at both ends.** An acquisition fee to start (often $600 to $1,000) and a disposition fee to leave (often $300 to $400), plus taxes and registration. These rarely make it into the ad.",
+          "**The always-a-payment cycle.** When the lease ends, you have no car and no trade-in, so the natural move is to lease again. Do that for a decade and you've made 120 car payments with nothing to show for them.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Compare total cost, not monthly cost",
+      },
+      {
+        type: "p",
+        text: "Run both paths over the same six years. Two back-to-back three-year leases at $299 is about $21,500 before fees and any mileage charges, and at the end you own nothing and are still paying. Buying a $22,000 car with a five-year loan costs more per month while the loan runs, but year six is payment-free and you're holding a car you can drive for years or trade in. The longer you keep a car after the loan ends, the more decisively buying wins. The [auto loan calculator](/tools/debt/auto-loan) will show you what any price, rate, and term really cost per month, which makes this comparison concrete instead of vibes-based.",
+      },
+      {
+        type: "h2",
+        text: "When leasing genuinely fits",
+      },
+      {
+        type: "p",
+        text: "Leasing isn't a scam; it's a specific product for a specific customer. It can make sense if all of these are true: you want a new car every few years and you're honest that you're paying for that preference, your annual mileage is low and predictable, and the payment fits your budget with real room to spare. You also get a car that's under warranty the entire time, which means repair surprises mostly aren't your problem. If that describes you and you've done the total-cost math, a lease is a legitimate choice.",
+      },
+      {
+        type: "h2",
+        text: "On a tight budget, the answer is used",
+      },
+      {
+        type: "p",
+        text: "If money is tight, the lease-versus-new-purchase debate is mostly a distraction, because the strongest option isn't in it. A reliable used car, bought carefully, costs less to buy, less to insure, and loses value far more slowly than anything new. [Buying a Used Car Without Getting Ripped Off](/learn/budgeting/buying-a-used-car) covers the whole process, including budgeting for the full cost of ownership rather than the sticker.",
+      },
+      {
+        type: "key",
+        text: "Whatever you drive off in, never negotiate on the monthly payment alone. Dealers can hit any payment you name by stretching the term or burying costs. Negotiate the total price of the car (or the full cost of the lease), and let the payment fall out of that.",
+      },
+    ],
+    related: ["buying-a-used-car", "auto-insurance-basics", "sinking-funds"],
+  },
 ];

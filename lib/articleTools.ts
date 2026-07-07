@@ -61,6 +61,10 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Paycheck Calculator",
     href: "/tools/budget/paycheck",
   },
+  "investment-taxes-101": {
+    label: "Roth IRA Calculator",
+    href: "/tools/savings/roth-ira",
+  },
 
   // Investing
   "what-is-a-stock": {
@@ -138,6 +142,14 @@ export const articleTools: Record<string, { label: string; href: string }> = {
   "average-rate-of-return": {
     label: "Compound Interest Calculator",
     href: "/tools/savings/compound",
+  },
+  "expense-ratios-and-fees": {
+    label: "Investment Growth Calculator",
+    href: "/tools/savings/investment",
+  },
+  "market-crashes": {
+    label: "Investment Growth Calculator",
+    href: "/tools/savings/investment",
   },
 
   // College

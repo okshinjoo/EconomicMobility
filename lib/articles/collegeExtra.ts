@@ -666,6 +666,84 @@ export const collegeExtraArticles: Article[] = [
         text: "Falling behind isn't the disaster; staying silent is. The moment payments feel impossible, reach out to your servicer or go to StudentAid.gov. Help exists, but only if you ask before it's a crisis.",
       },
     ],
-    related: ["income-driven-repayment", "student-loan-forgiveness", "student-loans-before-you-sign"],
+    related: ["income-driven-repayment", "student-loan-forgiveness", "graduation-money-checklist"],
+  },
+
+  {
+    slug: "graduation-money-checklist",
+    order: 70,
+    topicId: "college",
+    title: "Graduating? Your Money Checklist",
+    dek: "Between the ceremony and your first paycheck, a handful of small money tasks set up the next several years.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Your student-loan grace period is about six months, and it starts at graduation.",
+      "Your W-4 and your 401(k) match are first-week job tasks, not someday tasks.",
+      "Moving out costs more up front than the rent number suggests.",
+      "You can stay on a parent's health plan until you turn 26, but plan the handoff.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Graduation compresses a strange amount of financial life into a few months: student loans wake up, a first real paycheck arrives, maybe a move to a new city, and a stack of benefits paperwork nobody explained in class. None of it is hard on its own. The trouble is that it all lands at once, while you're busy with everything else. This is the short list of what to handle, roughly in the order the deadlines arrive.",
+      },
+      {
+        type: "h2",
+        text: "The grace-period clock is already running",
+      },
+      {
+        type: "p",
+        text: "Federal student loans give you a grace period of about six months after you graduate (or drop below half-time) before the first payment is due. Graduate in May and the bill lands around November. That window is not a vacation from the loans; it's your setup time. Use it to log into StudentAid.gov, find your servicer, and pick a repayment plan you can actually afford. [Repaying Your Student Loans](/learn/college/repaying-student-loans) walks through every step, and doing it in month one beats scrambling in month six.",
+      },
+      {
+        type: "h2",
+        text: "First job: two pieces of paperwork that matter",
+      },
+      {
+        type: "p",
+        text: "In the flood of first-week onboarding forms, two deserve real attention. The first is your W-4, which controls how much tax comes out of each paycheck. Fill it out carelessly and you'll either hand the government an interest-free loan all year or get a surprise bill in April; [How to Fill Out a W-4](/learn/taxes/how-to-fill-out-w4) shows you how to get it right in a few minutes.",
+      },
+      {
+        type: "p",
+        text: "The second is your retirement plan enrollment. If your employer offers a 401(k) match, contribute at least enough to get all of it, starting with your first paycheck. The match is part of your pay, and skipping it is working for less than you were offered. Waiting until you 'feel settled' is the most common mistake new grads make with it, because the first years of contributions are the ones with the most decades to grow. [What Is a 401(k)?](/learn/investing/what-is-a-401k) covers how the whole thing works.",
+      },
+      {
+        type: "h2",
+        text: "Budget the move like a skeptic",
+      },
+      {
+        type: "p",
+        text: "If the new job means a new city, price the move honestly before you commit to an apartment. The first month typically stacks a security deposit, first month's rent (sometimes last month's too), any application and broker fees, the truck or movers, and the unglamorous haul of things a first apartment needs, from a mattress to a shower curtain. Depending on the city, that pile can easily run a few thousand dollars before your first paycheck arrives. If the math is tight, negotiating a later start date, a signing bonus, or relocation help is a normal ask, and so is a cheaper first apartment than the one you can technically afford.",
+      },
+      {
+        type: "h2",
+        text: "Health insurance and the age-26 rule",
+      },
+      {
+        type: "p",
+        text: "Under federal law you can stay on a parent's health plan until you turn 26, even after you graduate, move out, or start a job. That's often the simplest bridge. When your employer offers its own coverage, compare the two: the employer plan is frequently cheaper once you count what your parent pays to keep you on theirs. And mark your 26th birthday, because aging off a parent's plan is a qualifying event that opens a limited special-enrollment window. Miss it and you can be stuck uninsured until the next open enrollment. If premiums, deductibles, and networks are still fuzzy concepts, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) is the primer.",
+      },
+      {
+        type: "h2",
+        text: "The checklist",
+      },
+      {
+        type: "steps",
+        items: [
+          "Log into StudentAid.gov, find your servicer and your first payment date, and pick a repayment plan.",
+          "Fill out your W-4 deliberately, not on autopilot.",
+          "Enroll in the 401(k) at least up to the full match, from paycheck one.",
+          "Price the move (deposit, first month, fees, furniture) before signing a lease.",
+          "Decide your health-insurance path, and calendar your 26th birthday if you're on a parent's plan.",
+          "Set up a small automatic transfer to savings so an emergency fund starts growing with your first paycheck.",
+        ],
+      },
+      {
+        type: "p",
+        text: "An afternoon spent on this list in the month after graduation quietly pays for itself for years: no missed first loan payment, no April tax surprise, no decade of forfeited 401(k) match. Then get back to celebrating; you earned that part.",
+      },
+    ],
+    related: ["repaying-student-loans", "how-to-fill-out-w4", "what-is-a-401k"],
   },
 ];

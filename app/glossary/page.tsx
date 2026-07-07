@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
+import TermOfTheDay from "@/components/TermOfTheDay";
 import { glossary } from "@/lib/glossary";
 import { getTopic } from "@/lib/topics";
 
@@ -77,6 +78,13 @@ export default function GlossaryPage() {
 
       {/* Term marquee — real glossary entries, each links to its definition */}
       <Ticker items={tickerItems} />
+
+      {/* Term of the day — rotates daily, same for everyone */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-5xl px-6 pt-10">
+          <TermOfTheDay />
+        </div>
+      </section>
 
       {/* Terms — editorial A–Z with giant letters */}
       <section className="bg-paper">

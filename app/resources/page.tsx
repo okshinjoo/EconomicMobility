@@ -77,6 +77,11 @@ const groups = [
         url: "https://www.nfcc.org",
         desc: "Connect with nonprofit, free or low-cost help for managing debt.",
       },
+      {
+        name: "FINRA BrokerCheck",
+        url: "https://brokercheck.finra.org",
+        desc: "Look up any broker or investment adviser free before you hand over money.",
+      },
     ],
   },
   {

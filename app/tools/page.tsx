@@ -171,6 +171,33 @@ export default function ToolsHub() {
         </div>
       </section>
 
+      {/* Letter generator promo */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 pb-14">
+          <div className="card-ink-lg flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-cream p-7 sm:p-9 lg:-rotate-[0.3deg]">
+            <div className="max-w-xl">
+              <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+                New
+              </span>
+              <h2 className="mt-4 font-display text-2xl font-bold text-ink sm:text-3xl">
+                The letters that fix things
+              </h2>
+              <p className="mt-2 text-base leading-7 text-stone">
+                Generate a credit-report dispute or a debt-validation request
+                in your browser. Fill in the blanks, send by certified mail.
+                Nothing you type leaves your device.
+              </p>
+            </div>
+            <Link
+              href="/tools/letters"
+              className="btn-ink inline-flex items-center rounded-md bg-forest px-7 py-3.5 text-base font-bold text-cream"
+            >
+              Write a letter
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Downloadable templates */}
       <section className="bg-forest text-cream">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">

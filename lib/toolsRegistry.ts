@@ -57,6 +57,12 @@ export const toolCategories: ToolCategory[] = [
         short: "Pick the life you want; see the salary it takes.",
         status: "live",
       },
+      {
+        slug: "net-worth",
+        title: "Net Worth",
+        short: "What you own minus what you owe, in one honest number.",
+        status: "live",
+      },
     ],
   },
   {

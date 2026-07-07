@@ -152,7 +152,87 @@ export const homeOwnershipExtraArticles: Article[] = [
         text: "You worked hard for that deposit. A little documentation now is what makes sure it's still yours when you leave.",
       },
     ],
-    related: ["renting-101-tenant-rights", "renting-your-first-apartment", "renters-insurance"],
+    related: ["renting-101-tenant-rights", "renting-your-first-apartment", "roommates-and-money"],
+  },
+
+  {
+    slug: "roommates-and-money",
+    order: 35,
+    topicId: "home-ownership",
+    title: "Roommates and Money: Agreements That Save Friendships",
+    dek: "Most roommate blowups are money blowups. A few decisions made before move-in prevent nearly all of them.",
+    level: "Beginner",
+    readMinutes: 5,
+    takeaways: [
+      "Everyone on the lease is usually on the hook for the *whole* rent, not just their share.",
+      "Split rent by what each person gets, not automatically down the middle.",
+      "Whoever's name is on a utility account is the one whose credit is at risk.",
+      "Write the money rules down before move-in, including what happens if someone leaves early.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Living with roommates is how most people afford their first place, and it works fine right up until the money gets fuzzy. Someone's late on their share, the electric bill sits unpaid in one person's name, someone moves out mid-lease and everyone else eats the cost. Almost every one of those fights traces back to a decision nobody made at move-in. Make them up front, on purpose, and the apartment stays a home instead of a slow-motion argument.",
+      },
+      {
+        type: "h2",
+        text: "Who's on the lease matters more than anything",
+      },
+      {
+        type: "p",
+        text: "Most leases make co-tenants *jointly and severally liable*, which is legal language for: each person on the lease owes the entire rent, not just their slice. If your roommate stops paying, the landlord doesn't care about your internal split; they can come after you for all of it, and a missed month can land on every tenant's record. The flip side matters too. A roommate who's *not* on the lease has no tenant rights, can be asked to leave by the actual tenants, and technically may not even be allowed to live there. Before anyone signs anything, read [Renting 101: Your Rights as a Tenant](/learn/home-ownership/renting-101-tenant-rights) so everyone knows what the lease actually commits them to.",
+      },
+      {
+        type: "h2",
+        text: "Split rent by what people get",
+      },
+      {
+        type: "p",
+        text: "An even split is only fair when the rooms are even. If one bedroom is twice the size or has its own bathroom, splitting the rent equally means somebody is subsidizing somebody else, and that resentment compounds monthly. Do it once, with numbers: on a $2,100 three-bedroom, the big room with the private bath might pay $800 while the two smaller rooms pay $650 each. There's no single correct formula (some houses go by square footage, some just agree on premiums room by room). What matters is that everyone calls it fair out loud before move-in, because renegotiating in month seven is much harder.",
+      },
+      {
+        type: "h2",
+        text: "Utilities: whose name, whose credit",
+      },
+      {
+        type: "p",
+        text: "Utility accounts need a name on them, and that name is the one that matters to the company. If the internet bill in your name goes unpaid because a roommate never sent their share, the late payment is yours alone. Two habits keep this fair. First, spread the accounts around: one person holds electric, another internet, so no single person carries all the risk. Second, treat reimbursement like a bill, not a favor: shares are due by a set day each month, sent by payment app, no chasing required.",
+      },
+      {
+        type: "h2",
+        text: "Write the shared-costs doc",
+      },
+      {
+        type: "p",
+        text: "It sounds overly formal for friends. It's the opposite: writing things down is what *keeps* you friends, because nobody has to remember, argue, or guess. One page covers it:",
+      },
+      {
+        type: "list",
+        items: [
+          "**The rent split**, per person, and the date each share is due.",
+          "**Who holds each utility account** and how shares get paid back, by when.",
+          "**Shared stuff**: how groceries, supplies, and jointly bought furniture get handled, including who keeps what if you split up.",
+          "**The leave-early terms**: how much notice someone gives, and what they owe until a replacement is found.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Everyone signs it and keeps a copy. It isn't a lease and a court probably won't enforce it, but that was never the point. The point is that the argument you'd have in month seven already got settled in writing on day one.",
+      },
+      {
+        type: "h2",
+        text: "When someone leaves early",
+      },
+      {
+        type: "p",
+        text: "This is the scenario that wrecks the most friendships, so decide it in advance. The lease doesn't shrink because one name walks out; the remaining roommates still owe full rent. The usual fixes: the leaver keeps paying their share until a replacement is found, helps find that replacement (landlords typically must approve a new tenant), or subleases if the lease allows it. Agree on which applies before anyone needs it. The security deposit needs a plan too, since landlords often return it as one check at the very end of the lease. The clean approach is to have the incoming roommate buy out the departing one's deposit share, and [How to Get Your Security Deposit Back](/learn/home-ownership/security-deposit-back) covers making sure that money comes back at all.",
+      },
+      {
+        type: "key",
+        text: "The landlord sees one household, not four friends with separate arrangements. Everything inside the household (splits, shares, buyouts) is only as solid as what you've agreed to in writing with each other.",
+      },
+    ],
+    related: ["renting-your-first-apartment", "renting-101-tenant-rights", "security-deposit-back"],
   },
 
   {
@@ -682,7 +762,7 @@ export const homeOwnershipExtraArticles: Article[] = [
         text: "Renting your first place is mostly about knowing what's normal so the unusual stuff jumps out. Show your income, read every line, and see it with your own eyes before any money moves.",
       },
     ],
-    related: ["renting-101-tenant-rights", "security-deposit-back", "renters-insurance"],
+    related: ["renting-101-tenant-rights", "security-deposit-back", "roommates-and-money"],
     quiz: [
       {
         question: "What's the common income guideline landlords use when reviewing an application?",

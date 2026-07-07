@@ -130,4 +130,30 @@ export const communityPosts: CommunityPost[] = [
     link: { label: "Join the challenge", href: "/challenges/credit-checkup" },
     comments: [],
   },
+  {
+    id: "thread-starter-fund",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-07",
+    title: "Challenge thread: The $500 Starter Fund Sprint",
+    body: [
+      "The official thread for everyone building their first $500 cushion. Share your starting point (no dollar amounts needed if you'd rather not), what you sold, and the automatic transfer you settled on.",
+      "Stuck picking an account, or torn between saving and paying a card down first? Ask here.",
+    ],
+    link: { label: "Join the challenge", href: "/challenges/starter-fund-sprint" },
+    comments: [],
+  },
+  {
+    id: "thread-subscription-audit",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-07",
+    title: "Challenge thread: The Subscription Audit",
+    body: [
+      "The afternoon audit thread. Best things to share: your before-and-after monthly total, the weirdest forgotten charge you found, and any retention-call scripts that worked.",
+      "House rule reminder: name the service if you like, but keep it factual and kind.",
+    ],
+    link: { label: "Join the challenge", href: "/challenges/subscription-audit" },
+    comments: [],
+  },
 ];

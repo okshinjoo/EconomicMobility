@@ -574,6 +574,96 @@ export const courses: Course[] = [
       },
     ],
   },
+  {
+    id: "invest-smarter",
+    title: "Invest Smarter",
+    goal: "Keep more of what your money earns.",
+    description:
+      "You've made your first investment; this is the second gear. The quiet fees that eat decades of growth, what dividends and taxes actually take, the funds that run themselves, and how to hold steady when the market drops.",
+    color: "#1f9069",
+    articleSlugs: [
+      "expense-ratios-and-fees",
+      "dividends-explained",
+      "target-date-funds",
+      "robo-advisors",
+      "investment-taxes-101",
+      "market-crashes",
+    ],
+    finalQuiz: [
+      {
+        question: "You never see a fund's expense ratio on any bill or statement. How does it get paid?",
+        options: [
+          "It's skimmed out of the fund's value a little at a time, so your returns are already reduced",
+          "It's charged to your card once a year by the brokerage",
+          "It only applies when you sell your shares",
+        ],
+        answer: 0,
+        explain:
+          "The fee comes out of the fund itself, invisibly, every year you hold it. That's why a 1% fund can quietly cost tens of thousands over decades while a 0.03% fund costs almost nothing.",
+        sourceSlug: "expense-ratios-and-fees",
+      },
+      {
+        question: "A stock's dividend yield is triple anything comparable companies pay. What should you conclude?",
+        options: [
+          "The company is unusually generous, so it's a rare bargain",
+          "Something is off: the price has likely fallen hard or the payout is at risk of being cut",
+          "Dividends that high are tax-free, so investors bid the yield up",
+        ],
+        answer: 1,
+        explain:
+          "Yield is the dividend divided by the price, so a collapsing price makes the yield look gorgeous right before the dividend gets cut. Total return matters, not the headline yield.",
+        sourceSlug: "dividends-explained",
+      },
+      {
+        question: "What does a target-date fund do on its own as your retirement year gets closer?",
+        options: [
+          "Locks your money in place until the year on the label",
+          "Moves everything into cash on the target date",
+          "Gradually shifts its mix from mostly stocks toward more bonds",
+        ],
+        answer: 2,
+        explain:
+          "That slow automatic shift is the glide path: growth-heavy while you're young, steadier as you approach the date. It replaces decades of rebalancing you'd otherwise do by hand.",
+        sourceSlug: "target-date-funds",
+      },
+      {
+        question: "What is a robo-advisor's roughly 0.25% yearly fee mostly paying for?",
+        options: [
+          "A professional picking stocks likely to beat the market",
+          "Automatic allocation, rebalancing, and the discipline of staying hands-off",
+          "Unlimited meetings with a human financial planner",
+        ],
+        answer: 1,
+        explain:
+          "A robo builds a portfolio of cheap index funds and maintains it automatically; it doesn't try to beat the market. The fee mainly buys consistency you might not keep up on your own.",
+        sourceSlug: "robo-advisors",
+      },
+      {
+        question: "You sell a winning fund in a regular brokerage account after holding it 11 months. How is the profit taxed for 2026?",
+        options: [
+          "At the long-term capital gains rates, since any full calendar year counts",
+          "It isn't taxed until you spend the money",
+          "At your ordinary income rates, because you held it a year or less",
+        ],
+        answer: 2,
+        explain:
+          "The one-year line is what separates short-term from long-term gains. Hold past a year and a single filer's 2026 long-term rate is 0% up to $49,450 of taxable income.",
+        sourceSlug: "investment-taxes-101",
+      },
+      {
+        question: "The market falls 25% and your account is deep in the red. At what point does that loss become permanent?",
+        options: [
+          "The moment the drop passes 20% and becomes a bear market",
+          "Only if you sell your shares while prices are down",
+          "After the downturn lasts longer than a year",
+        ],
+        answer: 1,
+        explain:
+          "Until you sell, you own the same shares at a temporarily worse quote. Selling converts the paper loss into a real one, often right before a recovery that arrives with no warning.",
+        sourceSlug: "market-crashes",
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {

@@ -93,7 +93,7 @@ export const investingRetirementArticles: Article[] = [
         text: "A 401(k) turns saving into a habit you don't have to think about: money leaves your paycheck automatically, gets invested, and grows for decades, with a tax break for letting it.",
       },
     ],
-    related: ["401k-vs-ira", "what-is-an-ira", "retirement-accounts-explained"],
+    related: ["401k-vs-ira", "what-is-an-ira", "retirement-accounts-explained", "target-date-funds"],
     quiz: [
       {
         question: "How does money get into a 401(k)?",

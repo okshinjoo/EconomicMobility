@@ -395,7 +395,7 @@ export const creditExtraArticles: Article[] = [
         text: "Cleaning an error off your report is one of the most satisfying money chores there is. It's free, it's your right, and it can lift your score without you changing a single spending habit.",
       },
     ],
-    related: ["reading-your-credit-report", "check-credit-free", "credit-freeze"],
+    related: ["reading-your-credit-report", "credit-freeze", "medical-debt-and-credit"],
   },
 
   {
@@ -685,5 +685,315 @@ export const creditExtraArticles: Article[] = [
       },
     ],
     related: ["how-credit-cards-work", "what-hurts-your-score"],
+  },
+
+  {
+    slug: "rent-reporting",
+    order: 55,
+    topicId: "credit",
+    title: "Turn Your Rent Into Credit History",
+    dek: "You've been paying a major bill on time for years and getting no credit for it. Here's how rent reporting works, and when it's worth a fee.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Rent doesn't appear on your credit report unless someone reports it.",
+      "Some landlords report free; do-it-yourself services often charge monthly.",
+      "VantageScore and newer FICO models count rent; the older FICO 8 most lenders use ignores it.",
+      "It helps most when your credit file is thin or brand new.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Rent is probably the biggest bill you pay, the one you'd never dream of missing, and the credit bureaus have no idea you pay it. Mortgage payments show up on credit reports automatically because lenders report them. Landlords aren't lenders, and the vast majority never report anything. So a decade of flawless rent payments usually builds exactly zero credit history.",
+      },
+      {
+        type: "p",
+        text: "Rent reporting changes that: it gets your payments added to your credit file so they start counting for you. It can genuinely help, especially if your file is thin, but the services that do it range from free to quietly expensive, and not every credit score even looks at rent. Here's how to size it up.",
+      },
+      {
+        type: "h2",
+        text: "How rent gets onto your report",
+      },
+      {
+        type: "p",
+        text: "There are three main routes:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Your landlord or property manager reports it.** Larger management companies increasingly offer this through a reporting service, sometimes free, sometimes as a small opt-in. Ask your leasing office; if it's free, this is the easiest win available.",
+          "**You sign up with a rent-reporting service yourself.** These companies verify your payments, usually by linking the bank account you pay from or your payment portal, and send the history to the credit bureaus on your behalf.",
+          "**Your bank or credit app includes it as a perk.** A few checking accounts and credit-monitoring apps now bundle rent reporting at no extra charge. Check what you already have before paying anyone new.",
+        ],
+      },
+      {
+        type: "p",
+        text: "One caution before you link anything: some services report the bad months along with the good ones. If your rent is sometimes late, a reporting service can turn a private problem into one lenders can see. Know your own track record before you volunteer it.",
+      },
+      {
+        type: "h2",
+        text: "Watch the fees",
+      },
+      {
+        type: "p",
+        text: "The do-it-yourself services are where costs sneak in. Typical pricing runs around $5 to $10 a month, and many charge a one-time fee, often $50 or more, to 'backreport' your past year or two of payments. That can add up to $100 or more a year for a service whose entire job is passing along information about a bill you already pay.",
+      },
+      {
+        type: "key",
+        text: "Before paying for rent reporting, ask three questions. Which of the three bureaus does it report to? (Some report to only one, which sharply limits the benefit.) What does it cost per year, including sign-up and backreporting fees? And does it report late payments too, or only on-time ones?",
+      },
+      {
+        type: "h2",
+        text: "Which scores actually count rent",
+      },
+      {
+        type: "p",
+        text: "This is the part the ads skip. VantageScore (versions 3.0 and 4.0, the models behind many free score apps and a lot of landlord checks) includes rent payments whenever they're in your file. FICO is split: the newer versions, FICO 9 and 10, count reported rent, but FICO 8, still the version a large share of lenders pull, ignores rental accounts entirely.",
+      },
+      {
+        type: "p",
+        text: "So the same year of reported rent can lift the score one company sees and do nothing for another. That's not a reason to skip it; it's a reason to keep expectations realistic. Reported rent can also help outside the score itself: some lenders, especially in mortgage underwriting, look at verified rent history directly when weighing a thin-file applicant.",
+      },
+      {
+        type: "h2",
+        text: "What it realistically does",
+      },
+      {
+        type: "p",
+        text: "Rent reporting shines when your file is thin: few accounts, a short history, or [building from nothing](/learn/credit/build-credit-from-zero). Adding a year or two of on-time payments to a nearly empty file gives the scoring models something real to work with, and the gains for thin files can be meaningful. If you already have several accounts and years of history, one more positive line moves the needle much less. And it can't outweigh genuine negatives; a collection or a string of late card payments will still dominate.",
+      },
+      {
+        type: "p",
+        text: "A sensible order of operations: ask your landlord first, since free reporting through the property is the best deal going. Check whether a bank account or app you already use includes it. Only then consider paying, and if you do, pull your reports a few months later ([free, from the official site](/learn/credit/check-credit-free)) to confirm the payments are actually showing up.",
+      },
+    ],
+    related: ["build-credit-from-zero", "build-credit-no-ssn", "check-credit-free"],
+  },
+
+  {
+    slug: "collections-explained",
+    order: 80,
+    topicId: "credit",
+    title: "Collections, From First Notice to Gone",
+    dek: "What happens when a debt goes to collections, what paying actually fixes, and when the mark finally falls off your report.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "A charged-off debt isn't forgiven; it's usually sold to a collector for pennies on the dollar.",
+      "You can make a collector prove the debt is real before you pay a cent.",
+      "A collection stays on your report about seven years, paid or not, and fades in impact.",
+      "'Pay for delete' is real but never guaranteed. Get any promise in writing.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The letter comes from a company you've never heard of, about a debt you half remember, for an amount that looks wrong. Collections is the corner of the credit world with the worst reputation and the most confusion, so here's the whole arc: how a bill ends up there, what your rights are, and how it eventually goes away.",
+      },
+      {
+        type: "h2",
+        text: "From missed payment to collection agency",
+      },
+      {
+        type: "p",
+        text: "No debt starts in collections. First the original creditor (the card company, the clinic, the utility) spends months trying to collect it themselves, with statements, late fees, and calls. If that fails, typically after around six months of nonpayment, the creditor 'charges off' the account: an accounting move where they write the debt off as a loss on their books.",
+      },
+      {
+        type: "p",
+        text: "A charge-off does not mean the debt is forgiven. It usually means the opposite. The creditor either hires a collection agency to chase it or sells the debt outright, often for a few cents on the dollar, to a company whose entire business is collecting it. Your credit report can now show two entries (the original charged-off account and the new collection account), which looks like two debts but is one.",
+      },
+      {
+        type: "h2",
+        text: "Your first move: make them prove it",
+      },
+      {
+        type: "p",
+        text: "Debts get sold and resold, and the paperwork gets sloppy along the way. Wrong amounts, wrong people, and debts too old to sue over are all common. So before you pay a collector anything, use your validation rights: after first contact, the collector must send you written details of the debt, and if you dispute it in writing within 30 days, they generally have to verify it before collecting further. [Your Rights When a Debt Collector Calls](/learn/government-aid/debt-collector-rights) covers the full set of rules, including the limits on how and when they can contact you.",
+      },
+      {
+        type: "h2",
+        text: "Should you pay, and does it help?",
+      },
+      {
+        type: "p",
+        text: "Paying a collection does a few real things: it stops the balance from growing, ends the calls, and takes a lawsuit off the table. What it does for your score depends on the scoring model. Newer models (VantageScore 3.0 and 4.0, and FICO 9) ignore paid collections entirely, so paying can genuinely lift those scores. The older FICO 8 scores the account the same paid or unpaid, though a paid collection still reads better to any human, like a landlord, reviewing your report.",
+      },
+      {
+        type: "p",
+        text: "You'll also hear about 'pay for delete': offering payment in exchange for the collector removing the account from your report altogether. It's worth asking for, and some collectors will do it, but none are obligated to, and the bureaus discourage the practice. If a collector agrees, get it in writing before you send a dollar, and don't build your plan around it.",
+      },
+      {
+        type: "tip",
+        text: "Be careful with small 'good faith' payments on old debts. In some states, a payment or even a written promise to pay can restart the clock on how long a collector can sue you. Before paying anything on a debt that's years old, learn where it stands; [What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) explains the time limits.",
+      },
+      {
+        type: "h2",
+        text: "When it finally disappears",
+      },
+      {
+        type: "p",
+        text: "A collection account can stay on your credit report for about seven years, counted from the date you first fell behind with the original creditor, not from when the collector bought the debt. Paying doesn't restart that clock, and neither does the debt being sold to a new agency. The mark also loses force as it ages: a five-year-old collection followed by years of clean payments hurts far less than a fresh one.",
+      },
+      {
+        type: "p",
+        text: "Two last things. If you're ever served with a lawsuit over a collection, respond; ignoring a summons is how people lose automatically. And once the dust settles, the road back is well mapped: [Repairing Credit After a Setback](/learn/credit/repairing-credit) covers rebuilding, mark by mark.",
+      },
+    ],
+    related: ["debt-collector-rights", "repairing-credit", "medical-debt-and-credit"],
+  },
+
+  {
+    slug: "medical-debt-and-credit",
+    order: 90,
+    topicId: "credit",
+    title: "Medical Bills and Your Credit Report",
+    dek: "The rules here changed three times in four years. Here's what's actually true in 2026, and what to do before a bill gets anywhere near your credit.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Medical bills only reach your credit if they go to collections, and even then special rules apply.",
+      "Paid medical collections come off your report, and bills under $500 never appear at all.",
+      "You get a full year before an unpaid medical collection can show up. Use it.",
+      "A 2025 federal rule removing all medical debt was struck down in court, so bureau policies and state laws are what protect you now.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "A hospital stay comes with enough worry before the bill shows up. Then the envelope arrives, with a number that may or may not reflect what insurance will eventually pay, and underneath it hums a fear: is this going to wreck my credit? The honest answer, as of 2026, is that medical bills have far less power over your credit than most people believe, and far less than they had a few years ago. But the rules changed several times recently, so a lot of what you'll hear is out of date.",
+      },
+      {
+        type: "h2",
+        text: "A medical bill is not a credit account",
+      },
+      {
+        type: "p",
+        text: "Your doctor and hospital don't report to the credit bureaus. Paying a medical bill late doesn't show up the way a late credit card payment does. A medical bill can only touch your credit report if it goes unpaid long enough that the provider hands it to a collection agency, and even then, protections apply that no other kind of debt gets.",
+      },
+      {
+        type: "h2",
+        text: "The three protections in effect right now",
+      },
+      {
+        type: "p",
+        text: "In 2022 and 2023, the three big credit bureaus (Equifax, Experian, and TransUnion) voluntarily changed how they handle medical collections, and those policies still stand in 2026:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Paid medical collections come off your report entirely.** Once you or your insurer pays, the mark is removed, not just updated. No other type of collection gets this treatment.",
+          "**Medical collections under $500 never appear at all**, no matter how long they go unpaid.",
+          "**An unpaid medical collection can't appear for a full year** after the debt goes to collections. That waiting period exists precisely because medical billing is slow and error-prone.",
+        ],
+      },
+      {
+        type: "key",
+        text: "That year is your window. It's time to make insurance pay what it should, fix billing errors, apply for financial assistance, or set up a payment plan, all before anything touches your credit.",
+      },
+      {
+        type: "h2",
+        text: "The federal rule that almost changed everything",
+      },
+      {
+        type: "p",
+        text: "In January 2025, the Consumer Financial Protection Bureau finalized a rule that would have removed medical debt from credit reports entirely and barred lenders from using it. Industry groups sued, and in July 2025 a federal court struck the rule down before it ever took effect. So there is no federal ban: the bureau policies above are the national baseline.",
+      },
+      {
+        type: "p",
+        text: "A number of states have gone further and passed their own laws restricting or banning medical debt on credit reports. Protections genuinely vary by state, so if a medical collection is looming, check what your state's law says before assuming the worst.",
+      },
+      {
+        type: "h2",
+        text: "How scores treat what does show up",
+      },
+      {
+        type: "p",
+        text: "Even when a medical collection lands on your report, the scoring models disagree about it. VantageScore's current models (3.0 and 4.0) ignore medical collections completely. Newer FICO versions (9 and 10) count them but weigh them less than other collections. The older FICO 8, still widely used by lenders, treats a medical collection like any other. Same bill, three different answers, depending on which score a lender pulls.",
+      },
+      {
+        type: "h2",
+        text: "What to do, in order",
+      },
+      {
+        type: "steps",
+        items: [
+          "Don't pay a bill you don't understand. Ask for an itemized bill and check it against what your insurance processed; wrong codes and duplicate charges are common.",
+          "If insurance should have covered it, appeal. Insurers reverse denials more often than people expect.",
+          "Ask the provider about financial assistance and payment plans. [How to Fight a Medical Bill](/learn/insurance/negotiating-medical-bills) walks through the script; nonprofit hospitals are required to have assistance programs.",
+          "If a medical collection on your report is wrong, already paid, under $500, or newer than a year, [dispute it](/learn/credit/disputing-credit-errors). These appear in error all the time.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If a bill has already gone to collections, the [collections playbook](/learn/credit/collections-explained) applies, with one upgrade: because paid medical collections vanish from your report, paying or settling a medical collection cleans your file in a way paying an ordinary collection doesn't. That's worth knowing before you decide what to pay first.",
+      },
+    ],
+    related: ["negotiating-medical-bills", "collections-explained", "disputing-credit-errors"],
+  },
+
+  {
+    slug: "credit-mix-and-age",
+    order: 20,
+    topicId: "credit",
+    title: "The Credit Factors You Can't Rush",
+    dek: "Length of history and credit mix reward patience, not activity. Here's what they measure, and the quiet ways people sabotage them.",
+    level: "Advanced",
+    readMinutes: 5,
+    takeaways: [
+      "Credit age and mix together make up roughly a quarter of your score.",
+      "Your file gets older on its own; new accounts are what set it back.",
+      "Keep old cards open, and let closed loans keep aging on your report.",
+      "Never take on a loan you don't need just to improve your 'mix.'",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Most credit advice is about doing something: pay this down, dispute that, set up autopay. Two scoring factors work the other way. Length of credit history and credit mix mostly reward the person who set things up sensibly and then left them alone. You can't rush either one, which is exactly why it's worth knowing how not to slow them down.",
+      },
+      {
+        type: "h2",
+        text: "What these factors measure",
+      },
+      {
+        type: "p",
+        text: "**Length of history** looks at how long you've had credit: the age of your oldest account, the average age of all of them, and how recently you opened the newest. **Credit mix** looks at variety: revolving credit (credit cards) versus installment credit (car loans, student loans, personal loans). In the FICO formula, length is about 15% of your score and mix about 10%. ([What Is a Credit Score?](/learn/credit/what-is-a-credit-score) has the full breakdown.)",
+      },
+      {
+        type: "p",
+        text: "A quarter of the score sounds like a lot until you see what the other three quarters are: whether you pay on time, and how much of your limits you use. Lenders care most about behavior; age and variety are supporting evidence. That has a practical meaning. A perfect mix will never rescue a file with late payments, and a 'bad' mix will never sink a file with years of on-time history.",
+      },
+      {
+        type: "h2",
+        text: "The patience tactics",
+      },
+      {
+        type: "list",
+        items: [
+          "**Keep your oldest card alive.** Closing it eventually shortens your history and can spike your utilization; [What Hurts Your Score](/learn/credit/what-hurts-your-score) covers the trap. An old no-fee card is worth keeping open with one small recurring charge on it, so the issuer doesn't close it for inactivity.",
+          "**Borrow someone else's history.** Being added as an authorized user on a family member's long-held, well-managed card can bring that account's age onto your report. [How to Build Credit From Zero](/learn/credit/build-credit-from-zero) explains how to do it safely.",
+          "**Space out new accounts.** Every account you open lowers your average age, and three new cards in a year can knock a young file's average down sharply. If you don't need it, don't open it.",
+          "**Let closed accounts keep working.** Accounts closed in good standing generally stay on your report for up to ten years, aging and helping the whole time. A paid-off car loan isn't gone; it's quietly vouching for you.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What not to do",
+      },
+      {
+        type: "p",
+        text: "The classic mistake is hearing 'credit mix' and going shopping for debt: a small personal loan you don't need, financing you'd otherwise skip, all to 'diversify.' The math is terrible. Mix is about 10% of your score; the interest on an unnecessary loan is real money out the door every month, in exchange for a handful of points, maybe.",
+      },
+      {
+        type: "key",
+        text: "If a move requires paying interest for the sole purpose of helping your score, it's a bad move. (The one honest near-exception, a credit-builder loan for someone starting with nothing, is a build-from-zero tool, not a mix strategy.)",
+      },
+      {
+        type: "p",
+        text: "Mix takes care of itself over a normal life. Most people pick up an installment loan eventually (a car, school) without trying, and the factor is forgiving in the meantime: plenty of people with nothing but credit cards and spotless habits have excellent scores.",
+      },
+      {
+        type: "p",
+        text: "These are the slowest factors, and that's also their strength: they're the hardest to lose. Every month your accounts sit open, paid, and boring, your file gets a little older and a little stronger. On this part of the score, the calendar does the heavy lifting. Your only job is not to interrupt it.",
+      },
+    ],
+    related: ["what-is-a-credit-score", "what-hurts-your-score", "build-credit-from-zero"],
   },
 ];

@@ -170,6 +170,101 @@ export const challenges: Challenge[] = [
       },
     ],
   },
+  {
+    id: "starter-fund-sprint",
+    title: "The $500 Starter Fund Sprint",
+    tagline: "Build your first real cushion, one move at a time.",
+    description:
+      "Five hundred dollars is the difference between a bad week and a debt spiral. This challenge builds your starter emergency fund with six concrete moves, at whatever pace your budget allows.",
+    pace: "A few weeks, your speed",
+    color: "#1f9069",
+    communityPostId: "thread-starter-fund",
+    steps: [
+      {
+        id: "open",
+        title: "Open a separate savings account for it",
+        detail:
+          "A different account from your spending money, ideally one that pays real interest. Out of sight does most of the work.",
+        link: { label: "What is a high-yield savings account?", href: "/learn/investing/high-yield-savings-account" },
+      },
+      {
+        id: "seed",
+        title: "Seed it with $25 today",
+        detail:
+          "Starting matters more than the amount. Twenty-five dollars makes the account real instead of theoretical.",
+      },
+      {
+        id: "automate",
+        title: "Set an automatic transfer for payday",
+        detail:
+          "Pick a number that won't hurt: $10, $20, $50 per paycheck. The transfer runs whether you remember it or not.",
+        link: { label: "Building a savings habit that sticks", href: "/learn/budgeting/building-a-savings-habit" },
+      },
+      {
+        id: "sell",
+        title: "Sell one thing you don't use",
+        detail:
+          "Old phone, game console, the jacket with tags still on. One listing, straight into the fund.",
+      },
+      {
+        id: "windfall",
+        title: "Adopt the windfall rule",
+        detail:
+          "Tax refund, birthday cash, a surprise rebate: half goes to the fund before you decide anything else about it.",
+      },
+      {
+        id: "finish",
+        title: "Hit $500 and set the next target",
+        detail:
+          "Check the balance, take the win, and decide what's next: one month of expenses is the classic follow-up goal.",
+        link: { label: "Emergency Fund calculator", href: "/tools/budget/emergency-fund" },
+      },
+    ],
+  },
+  {
+    id: "subscription-audit",
+    title: "The Subscription Audit",
+    tagline: "Find the quiet leaks and plug them in an afternoon.",
+    description:
+      "Streaming, apps, memberships, and free trials that never got cancelled add up to real money on autopilot. This one takes a single sitting and usually pays for itself the same day.",
+    pace: "One afternoon",
+    color: "#3f6478",
+    communityPostId: "thread-subscription-audit",
+    steps: [
+      {
+        id: "list",
+        title: "List every recurring charge",
+        detail:
+          "Scroll three months of statements and write down everything that repeats: subscriptions, memberships, app charges, delivery passes.",
+        link: { label: "How to track your spending", href: "/learn/budgeting/tracking-your-spending" },
+      },
+      {
+        id: "total",
+        title: "Add it up, monthly and yearly",
+        detail:
+          "The monthly number looks harmless. Multiply by twelve and look again.",
+      },
+      {
+        id: "cut",
+        title: "Cancel everything you wouldn't re-buy today",
+        detail:
+          "The test isn't whether you use it. It's whether you'd sign up again right now at that price.",
+      },
+      {
+        id: "negotiate",
+        title: "Call about the keepers",
+        detail:
+          "Internet, phone, insurance: one retention call each. Ask what they can do; silence after the question is your friend.",
+        link: { label: "Yes, you can negotiate your bills", href: "/learn/budgeting/negotiating-your-bills" },
+      },
+      {
+        id: "redirect",
+        title: "Redirect the savings automatically",
+        detail:
+          "Whatever you freed up, point it at savings with an automatic transfer of the same amount. Otherwise it just dissolves back into spending.",
+      },
+    ],
+  },
 ];
 
 export function getChallenge(id: string): Challenge | undefined {

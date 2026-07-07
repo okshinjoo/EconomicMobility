@@ -65,7 +65,7 @@ export const investingArticles: Article[] = [
         text: "That's all a stock is: a small claim on a real business and its future. You don't need to predict which company will win. When you invest, you're becoming a part-owner of the companies people use every day.",
       },
     ],
-    related: ["saving-vs-investing", "index-funds-explained"],
+    related: ["saving-vs-investing", "index-funds-explained", "dividends-explained"],
   },
 
   {
@@ -200,7 +200,7 @@ export const investingArticles: Article[] = [
         text: "Starting small isn't just okay; it's smart. Open the account, get one dollar invested, and you've already done the part most people put off for years. You can always add more once it feels familiar.",
       },
     ],
-    related: ["saving-vs-investing", "index-funds-explained", "start-investing-with-50"],
+    related: ["saving-vs-investing", "how-to-pick-a-brokerage", "index-funds-explained", "start-investing-with-50"],
   },
 
   {
@@ -409,7 +409,7 @@ export const investingArticles: Article[] = [
         text: "Once your plan is running, the hardest work is doing nothing. Check in once or twice a year to make sure your allocation still fits, nudge it back if it's drifted, and otherwise let it ride. Investing rewards patience over activity. Set it up well, keep adding, and let time and compounding carry the load.",
       },
     ],
-    related: ["index-funds-explained", "risk-and-diversification", "dollar-cost-averaging"],
+    related: ["index-funds-explained", "risk-and-diversification", "dollar-cost-averaging", "market-crashes"],
   },
   {
     slug: "start-investing-with-50",
@@ -464,6 +464,6 @@ export const investingArticles: Article[] = [
         text: "Skip the noise: the hot stock tips, the crypto your cousin swears by, the day-trading apps that feel like a casino. A boring index fund and a few decades is how ordinary people build wealth. Curious what $50 a month could become? Run it through the Compound Interest calculator and watch.",
       },
     ],
-    related: ["opening-first-account", "what-is-a-stock", "index-funds-explained"],
+    related: ["opening-first-account", "what-is-a-stock", "index-funds-explained", "robo-advisors"],
   },
 ];

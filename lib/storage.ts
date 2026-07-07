@@ -27,6 +27,7 @@ export const STORAGE_KEYS = {
   resourcesState: "empower:resources-state:v1",
   readArticles: "empower:read-articles:v1",
   realityCheck: "empower:reality-check:v1",
+  netWorth: "empower:net-worth:v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {
