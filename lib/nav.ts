@@ -23,16 +23,6 @@ export interface NavEntry {
 
 export const nav: NavEntry[] = [
   {
-    label: "Start Here",
-    href: "/start-here",
-    columns: 1,
-    items: [
-      { label: "Take the Quiz", href: "/quiz", desc: "Find your starting point in 2 minutes." },
-      { label: "How to Use This Site", href: "/start-here", desc: "A quick tour for newcomers." },
-      { label: "Glossary", href: "/glossary", desc: "Every money word, in plain English." },
-    ],
-  },
-  {
     label: "Learn",
     href: "/learn",
     columns: 2,
@@ -47,6 +37,7 @@ export const nav: NavEntry[] = [
       { label: "Glossary", href: "/glossary" },
     ],
   },
+  { label: "Courses", href: "/courses" },
   {
     label: "Tools",
     href: "/tools",
@@ -72,7 +63,6 @@ export const nav: NavEntry[] = [
       { label: "Free tax filing", href: "/resources#free-tax-filing" },
     ],
   },
-  { label: "Courses", href: "/courses" },
   {
     label: "Community",
     href: "/community",
@@ -80,16 +70,17 @@ export const nav: NavEntry[] = [
     items: [
       { label: "The Feed", href: "/community", desc: "Wins, questions, and honest conversations." },
       { label: "Challenges", href: "/challenges", desc: "Join a group challenge, earn the badge." },
-      { label: "Ask a Question", href: "/blog#ask", desc: "Fully anonymous, answered on the site." },
+      { label: "Ask & Answers", href: "/blog", desc: "Anonymous questions, answered in plain English." },
     ],
   },
-  { label: "Blog", href: "/blog" },
   {
     label: "About",
     href: "/about",
     columns: 1,
     items: [
       { label: "Our Mission", href: "/about", desc: "Why this project exists." },
+      { label: "Start Here", href: "/start-here", desc: "A quick tour for newcomers." },
+      { label: "Glossary", href: "/glossary", desc: "Every money word, in plain English." },
       { label: "Contact Us", href: "/contact", desc: "Questions, ideas, or get involved." },
     ],
   },

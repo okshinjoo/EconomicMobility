@@ -20,7 +20,8 @@ export default function Header() {
             <span className="font-display text-xl font-semibold tracking-tight">
               <span className="text-amber">EMP</span>ower
             </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/50">
+            {/* Subtitle needs one line; below xl it would stack and swell the header. */}
+            <span className="hidden whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/50 xl:block">
               Economic Mobility Project
             </span>
           </span>
@@ -46,7 +47,7 @@ export default function Header() {
           <SearchDialog items={getSearchItems()} />
           <Link
             href="/quiz"
-            className="hidden rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"
+            className="hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"
           >
             Take the Quiz
           </Link>
