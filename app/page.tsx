@@ -11,7 +11,12 @@ import {
 import { toolCategories } from "@/lib/toolsRegistry";
 import { communityQuestions } from "@/lib/communityQuestions";
 import QuestionStrip, { type StripQuestion } from "@/components/QuestionStrip";
-import WelcomeBack, { type TopicPath } from "@/components/WelcomeBack";
+import WelcomeBack, {
+  type TopicPath,
+  type BadgeSource,
+} from "@/components/WelcomeBack";
+import { courses } from "@/lib/courses";
+import { challenges } from "@/lib/challenges";
 
 // Real questions, real guides — the honest front door to the library.
 // The first four render for everyone; once a reader finishes one of these
@@ -220,6 +225,22 @@ export default function Home() {
     .flatMap((cat) => cat.items)
     .filter((item) => item.status === "live").length;
 
+  // Course + challenge badge metadata for the badge case in the strip.
+  const badgeSources: BadgeSource[] = [
+    ...courses.map((c) => ({
+      id: c.id,
+      title: c.title,
+      color: c.color,
+      kind: "course" as const,
+    })),
+    ...challenges.map((c) => ({
+      id: c.id,
+      title: c.title,
+      color: c.color,
+      kind: "challenge" as const,
+    })),
+  ];
+
   // Compact per-topic reading paths for the client-side "welcome back" strip.
   const topicPaths: TopicPath[] = topics.map((t) => ({
     id: t.id,
@@ -310,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* Personalized "pick up where you left off" (renders only with history) */}
-      <WelcomeBack paths={topicPaths} />
+      <WelcomeBack paths={topicPaths} badgeSources={badgeSources} />
 
       {/* Come with a real question — read articles rotate out of the list */}
       <section className="bg-forest text-cream">

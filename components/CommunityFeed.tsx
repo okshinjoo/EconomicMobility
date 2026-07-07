@@ -260,7 +260,10 @@ function PostCard({
   const [open, setOpen] = useState(post.comments.length > 0);
 
   return (
-    <article className="rounded-2xl border border-sand bg-cream p-5 sm:p-7">
+    <article
+      id={`post-${post.id}`}
+      className="scroll-mt-24 rounded-2xl border border-sand bg-cream p-5 sm:p-7"
+    >
       <div className="flex items-center gap-3">
         <Avatar name={post.author} team={post.team} />
         <div>

@@ -73,7 +73,16 @@ export const nav: NavEntry[] = [
     ],
   },
   { label: "Courses", href: "/courses" },
-  { label: "Community", href: "/community" },
+  {
+    label: "Community",
+    href: "/community",
+    columns: 1,
+    items: [
+      { label: "The Feed", href: "/community", desc: "Wins, questions, and honest conversations." },
+      { label: "Challenges", href: "/challenges", desc: "Join a group challenge, earn the badge." },
+      { label: "Ask a Question", href: "/blog#ask", desc: "Fully anonymous, answered on the site." },
+    ],
+  },
   { label: "Blog", href: "/blog" },
   {
     label: "About",

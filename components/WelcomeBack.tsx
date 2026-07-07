@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
+import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
+import { getChallengeBadges } from "@/components/ChallengeChecklist";
 
 export interface TopicPath {
   id: string;
@@ -12,6 +14,18 @@ export interface TopicPath {
   color: string;
   /** Slugs + titles in roadmap (reading) order. */
   articles: { slug: string; title: string }[];
+}
+
+/** Course + challenge metadata so earned badges can render with names/colors. */
+export interface BadgeSource {
+  id: string;
+  title: string;
+  color: string;
+  kind: "course" | "challenge";
+}
+
+interface EarnedBadge extends BadgeSource {
+  earnedAt: number;
 }
 
 interface Recommendation {
@@ -30,8 +44,32 @@ interface Recommendation {
  * Picks the next unread article in the topic the reader was last in; falls
  * back to their quiz topics; stays hidden with no history at all.
  */
-export default function WelcomeBack({ paths }: { paths: TopicPath[] }) {
+export default function WelcomeBack({
+  paths,
+  badgeSources = [],
+}: {
+  paths: TopicPath[];
+  badgeSources?: BadgeSource[];
+}) {
   const [rec, setRec] = useState<Recommendation | null>(null);
+  const [earned, setEarned] = useState<EarnedBadge[]>([]);
+
+  useEffect(() => {
+    const courseBadges = getBadges();
+    const challengeBadges = getChallengeBadges();
+    setEarned(
+      badgeSources
+        .map((src) => {
+          const b =
+            src.kind === "course"
+              ? courseBadges[src.id]
+              : challengeBadges[src.id];
+          return b ? { ...src, earnedAt: b.earnedAt } : null;
+        })
+        .filter((b): b is EarnedBadge => Boolean(b))
+        .sort((a, b) => b.earnedAt - a.earnedAt)
+    );
+  }, [badgeSources]);
 
   useEffect(() => {
     const read = getReadMap();
@@ -100,32 +138,62 @@ export default function WelcomeBack({ paths }: { paths: TopicPath[] }) {
     // First-time visitor (or finished everything): stay hidden.
   }, [paths]);
 
-  if (!rec) return null;
+  if (!rec && earned.length === 0) return null;
 
   return (
     <section className="border-t border-sand bg-paper-deep">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-5">
-        <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span
-            className="text-xs font-semibold uppercase tracking-[0.16em]"
-            style={{ color: rec.color }}
-          >
-            {rec.kicker}
-          </span>
-          <p className="text-base text-ink">
-            Next in {rec.topicShort}:{" "}
-            <Link
-              href={rec.href}
-              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+        {rec ? (
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span
+              className="text-xs font-semibold uppercase tracking-[0.16em]"
+              style={{ color: rec.color }}
             >
-              {rec.title}
+              {rec.kicker}
+            </span>
+            <p className="text-base text-ink">
+              Next in {rec.topicShort}:{" "}
+              <Link
+                href={rec.href}
+                className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+              >
+                {rec.title}
+              </Link>
+            </p>
+          </div>
+        ) : (
+          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-forest">
+            Welcome back
+          </span>
+        )}
+
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {/* Badge case: earned course + challenge badges, newest first */}
+          {earned.length > 0 && (
+            <Link
+              href={earned[0].kind === "course" ? "/courses" : "/challenges"}
+              className="group flex items-center gap-2"
+              aria-label={`Your badges: ${earned.map((b) => b.title).join(", ")}`}
+            >
+              <span className="flex -space-x-1.5">
+                {earned.slice(0, 5).map((b) => (
+                  <span key={`${b.kind}-${b.id}`} title={b.title}>
+                    <BadgeMedal color={b.color} className="h-8 w-8 drop-shadow-sm" />
+                  </span>
+                ))}
+              </span>
+              <span className="text-sm font-semibold text-stone transition-colors group-hover:text-ink">
+                {earned.length} badge{earned.length === 1 ? "" : "s"}
+              </span>
             </Link>
-          </p>
+          )}
+          {rec && (
+            <p className="text-sm font-medium text-stone">
+              {rec.readCount} of {rec.topicTotal} {rec.topicShort.toLowerCase()}{" "}
+              guides read
+            </p>
+          )}
         </div>
-        <p className="text-sm font-medium text-stone">
-          {rec.readCount} of {rec.topicTotal} {rec.topicShort.toLowerCase()}{" "}
-          guides read
-        </p>
       </div>
     </section>
   );

@@ -91,4 +91,43 @@ export const communityPosts: CommunityPost[] = [
     link: { label: "Read the full answer", href: "/blog#ask-no-credit-history" },
     comments: [],
   },
+  {
+    id: "thread-money-reset-week",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-07",
+    title: "Challenge thread: The Money Reset Week",
+    body: [
+      "The official thread for everyone doing the Money Reset Week: seven days, one small action a day, ending with a budget built from your real numbers.",
+      "Share where you are: what day you're on, the spending surprise you starred, the subscription you finally cancelled. Stuck on a step? Ask here. Finished? Tell us the one change you're keeping.",
+    ],
+    link: { label: "Join the challenge", href: "/challenges/money-reset-week" },
+    comments: [],
+  },
+  {
+    id: "thread-no-spend-weekend",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-07",
+    title: "Challenge thread: The No-Spend Weekend",
+    body: [
+      "48 hours, zero optional spending. This is the thread for planning it, surviving it, and reporting back.",
+      "The most useful thing you can share: your almost-spent list. The moments you reached for the card without thinking teach everyone (including you) where the leaks are.",
+    ],
+    link: { label: "Join the challenge", href: "/challenges/no-spend-weekend" },
+    comments: [],
+  },
+  {
+    id: "thread-credit-checkup",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-07",
+    title: "Challenge thread: The Credit Check-Up",
+    body: [
+      "For everyone working through the Credit Check-Up: pulling all three reports, reading them properly, and locking things down.",
+      "Good things to share here: how long it actually took, anything confusing on a report (no account numbers please!), and whether you went freeze or fraud alert. Found and disputed an error? That's a win worth posting.",
+    ],
+    link: { label: "Join the challenge", href: "/challenges/credit-checkup" },
+    comments: [],
+  },
 ];
