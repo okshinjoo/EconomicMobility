@@ -66,7 +66,7 @@ export default function CommunityPage() {
                 plain-English answers on the site.
               </p>
               <Link
-                href="/blog#ask"
+                href="/ask#ask"
                 className="mt-4 inline-flex items-center rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-cream"
               >
                 Ask a question

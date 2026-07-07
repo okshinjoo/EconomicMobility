@@ -17,7 +17,7 @@ const columns = [
       { href: "/tools", label: "Tools & Calculators" },
       { href: "/tools/templates", label: "Free Templates" },
       { href: "/resources", label: "Resources" },
-      { href: "/blog", label: "Ask a Question" },
+      { href: "/ask", label: "Ask a Question" },
       { href: "/quiz", label: "Take the Quiz" },
     ],
   },

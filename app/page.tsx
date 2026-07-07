@@ -627,7 +627,7 @@ export default function Home() {
               </h2>
             </div>
             <Link
-              href="/blog"
+              href="/ask"
               className="text-base font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
             >
               See all the answers
@@ -672,7 +672,7 @@ export default function Home() {
                         ))}
                         <p>
                           <Link
-                            href={`/blog#ask-${featured.id}`}
+                            href={`/ask#ask-${featured.id}`}
                             className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
                           >
                             Keep reading on the Ask page
@@ -689,7 +689,7 @@ export default function Home() {
                       return (
                         <Link
                           key={qa.id}
-                          href={`/blog#ask-${qa.id}`}
+                          href={`/ask#ask-${qa.id}`}
                           className="group flex flex-col rounded-2xl border border-sand bg-cream p-6 transition-all duration-200 hover:border-ink/20 hover:shadow-lg"
                         >
                           {topic && (
@@ -724,7 +724,7 @@ export default function Home() {
                         </p>
                       </div>
                       <Link
-                        href="/blog#ask"
+                        href="/ask#ask"
                         className="inline-flex w-fit items-center rounded-md bg-amber px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
                       >
                         Ask a question

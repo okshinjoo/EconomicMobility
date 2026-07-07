@@ -70,7 +70,8 @@ export const nav: NavEntry[] = [
     items: [
       { label: "The Feed", href: "/community", desc: "Wins, questions, and honest conversations." },
       { label: "Challenges", href: "/challenges", desc: "Join a group challenge, earn the badge." },
-      { label: "Ask & Answers", href: "/blog", desc: "Anonymous questions, answered in plain English." },
+      { label: "Blog", href: "/blog", desc: "Fun, honest reads on day-to-day money." },
+      { label: "Ask & Answers", href: "/ask", desc: "Anonymous questions, answered in plain English." },
     ],
   },
   {

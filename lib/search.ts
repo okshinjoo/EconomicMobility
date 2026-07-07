@@ -9,6 +9,7 @@ import { allArticles } from "./articles";
 import { topics, getTopic } from "./topics";
 import { toolCategories, hrefFor } from "./toolsRegistry";
 import { glossary } from "./glossary";
+import { blogPosts } from "./blog";
 
 export type SearchKind = "Article" | "Calculator" | "Topic" | "Term" | "Page";
 
@@ -28,12 +29,25 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Take the Quiz", subtitle: "Find your starting point in about 2 minutes.", href: "/quiz", group: "Pages" },
   { kind: "Page", title: "Free Templates", subtitle: "Downloadable budget, debt, and savings spreadsheets.", href: "/tools/templates", group: "Pages", keywords: "spreadsheet excel download worksheet tracker" },
   { kind: "Page", title: "Resources", subtitle: "Trusted outside help, plus a finder for your state.", href: "/resources", group: "Pages", keywords: "benefits state help 211" },
-  { kind: "Page", title: "Ask a Question", subtitle: "Ask anything about money, anonymously.", href: "/blog", group: "Pages", keywords: "blog faq community questions" },
+  { kind: "Page", title: "Ask a Question", subtitle: "Ask anything about money, anonymously.", href: "/ask", group: "Pages", keywords: "ask faq community questions" },
   { kind: "Page", title: "Glossary", subtitle: "Every money word, in plain English.", href: "/glossary", group: "Pages", keywords: "definitions terms" },
   { kind: "Page", title: "Start Here", subtitle: "A quick tour of the site for newcomers.", href: "/start-here", group: "Pages" },
   { kind: "Page", title: "All Calculators", subtitle: "Every free calculator in one place.", href: "/tools", group: "Pages", keywords: "tools" },
   { kind: "Page", title: "Browse All Topics", subtitle: "The full library of guides.", href: "/learn", group: "Pages" },
+  { kind: "Page", title: "Courses", subtitle: "Focused learning modules with flashcards and finals.", href: "/courses", group: "Pages", keywords: "modules badges flashcards" },
+  { kind: "Page", title: "Community", subtitle: "Wins, questions, and honest conversations.", href: "/community", group: "Pages", keywords: "feed posts comments" },
+  { kind: "Page", title: "Challenges", subtitle: "Join a group challenge, earn the badge.", href: "/challenges", group: "Pages", keywords: "no-spend reset credit checkup" },
+  { kind: "Page", title: "Blog", subtitle: "Fun, honest reads on day-to-day money.", href: "/blog", group: "Pages", keywords: "posts articles editorial" },
 ];
+
+const blogItems: SearchItem[] = blogPosts.map((p) => ({
+  kind: "Page" as const,
+  title: p.title,
+  subtitle: p.dek,
+  href: `/blog/${p.slug}`,
+  group: "Blog",
+  keywords: p.tag,
+}));
 
 /** Assemble the full searchable index. */
 export function getSearchItems(): SearchItem[] {
@@ -79,5 +93,5 @@ export function getSearchItems(): SearchItem[] {
     keywords: (g.aliases ?? []).join(" "),
   }));
 
-  return [...topicItems, ...toolItems, ...articleItems, ...termItems, ...PAGES];
+  return [...topicItems, ...toolItems, ...articleItems, ...blogItems, ...termItems, ...PAGES];
 }

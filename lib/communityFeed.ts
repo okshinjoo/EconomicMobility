@@ -74,7 +74,7 @@ export const communityPosts: CommunityPost[] = [
       "Most of us carry one around for years: something everyone else seems to already understand, so asking feels embarrassing. What's yours? Odds are a dozen other people reading this have the same one.",
       "Ask it in the comments, or completely anonymously through the Ask box — the best ones get full plain-English answers on the site.",
     ],
-    link: { label: "Ask anonymously instead", href: "/blog#ask" },
+    link: { label: "Ask anonymously instead", href: "/ask#ask" },
     comments: [],
   },
   {
@@ -88,7 +88,7 @@ export const communityPosts: CommunityPost[] = [
       "A reader sent this in, and it's one of the most common questions we get. The short version of our answer: start with a secured card or a credit-builder loan, then let two boring habits do the work — pay in full on time, keep the balance low. There's no legitimate fast-track, and anyone charging a fee to \"boost\" your score is selling you something you can do free.",
       "The full answer, and more like it, live on the Ask page. Have a follow-up? That's what the comments are for.",
     ],
-    link: { label: "Read the full answer", href: "/blog#ask-no-credit-history" },
+    link: { label: "Read the full answer", href: "/ask#ask-no-credit-history" },
     comments: [],
   },
   {
