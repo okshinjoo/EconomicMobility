@@ -38,6 +38,7 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Community", subtitle: "Wins, questions, and honest conversations.", href: "/community", group: "Pages", keywords: "feed posts comments" },
   { kind: "Page", title: "Challenges", subtitle: "Join a group challenge, earn the badge.", href: "/challenges", group: "Pages", keywords: "no-spend reset credit checkup" },
   { kind: "Page", title: "Blog", subtitle: "Fun, honest reads on day-to-day money.", href: "/blog", group: "Pages", keywords: "posts articles editorial" },
+  { kind: "Page", title: "Life Moments", subtitle: "First job, moving out, graduating: start from your moment.", href: "/life", group: "Pages", keywords: "first job apartment college graduate scammed tight" },
   { kind: "Page", title: "Letter Generator", subtitle: "Credit dispute and debt validation letters, free.", href: "/tools/letters", group: "Pages", keywords: "dispute letter debt validation collector template" },
 ];
 

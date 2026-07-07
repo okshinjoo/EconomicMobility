@@ -34,6 +34,7 @@ export const nav: NavEntry[] = [
     })),
     footer: [
       { label: "Browse all topics", href: "/learn" },
+      { label: "Life moments", href: "/life" },
       { label: "Glossary", href: "/glossary" },
     ],
   },
@@ -81,6 +82,7 @@ export const nav: NavEntry[] = [
     items: [
       { label: "Our Mission", href: "/about", desc: "Why this project exists." },
       { label: "Start Here", href: "/start-here", desc: "A quick tour for newcomers." },
+      { label: "Life Moments", href: "/life", desc: "Start from what's happening in your life." },
       { label: "Glossary", href: "/glossary", desc: "Every money word, in plain English." },
       { label: "Contact Us", href: "/contact", desc: "Questions, ideas, or get involved." },
     ],

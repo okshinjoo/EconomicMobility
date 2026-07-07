@@ -216,6 +216,50 @@ export default function QuizResults({
         </div>
       </section>
 
+      {/* Course recommendation from selected topics */}
+      {(() => {
+        const courseByTopic: Partial<Record<string, { title: string; href: string; kind: string }>> = {
+          credit: { title: "Credit From Zero", href: "/courses/credit-from-zero", kind: "course" },
+          budgeting: { title: "Your First Paycheck", href: "/courses/first-paycheck", kind: "course" },
+          taxes: { title: "Your First Paycheck", href: "/courses/first-paycheck", kind: "course" },
+          college: { title: "Paying for College", href: "/courses/paying-for-college", kind: "course" },
+          investing: { title: "Start Investing", href: "/courses/start-investing", kind: "course" },
+          "home-ownership": { title: "Your First Apartment", href: "/courses/first-apartment", kind: "course" },
+          "money-safety": { title: "Scam-Proof", href: "/courses/scam-proof", kind: "course" },
+          "government-aid": { title: "The Money Reset Week", href: "/challenges/money-reset-week", kind: "challenge" },
+          insurance: { title: "Your First Paycheck", href: "/courses/first-paycheck", kind: "course" },
+        };
+        const rec = selectedTopicIds.map((t) => courseByTopic[t]).find(Boolean);
+        if (!rec) return null;
+        return (
+          <section className="mt-10">
+            <div className="card-ink flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-forest p-6 text-cream sm:p-8 lg:-rotate-[0.3deg]">
+              <div className="max-w-md">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+                  Want the guided version?
+                </span>
+                <h3 className="mt-2 font-display text-2xl font-semibold">
+                  {rec.kind === "course"
+                    ? `The ${rec.title} module fits your picks.`
+                    : `The ${rec.title} challenge fits your picks.`}
+                </h3>
+                <p className="mt-1.5 text-sm leading-6 text-cream/75">
+                  {rec.kind === "course"
+                    ? "A short ordered reading path, flashcards, a final quiz, and a badge at the end."
+                    : "Real action steps, a shared community thread, and a badge when you finish."}
+                </p>
+              </div>
+              <Link
+                href={rec.href}
+                className="inline-flex items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink transition-colors hover:bg-cream"
+              >
+                {rec.kind === "course" ? "Start the module" : "Join the challenge"}
+              </Link>
+            </div>
+          </section>
+        );
+      })()}
+
       {/* Closing line */}
       <p className="mt-10 text-center text-sm leading-6 text-stone/70">
         {CLOSING_LINE}

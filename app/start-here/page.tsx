@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
 
@@ -183,6 +184,13 @@ export default function StartHerePage() {
           </div>
         </section>
       </main>
+
+      {/* Progress backup — the no-account answer to "what if I switch devices?" */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-3xl px-6 pb-16">
+          <DataBackup />
+        </div>
+      </section>
 
       <Footer />
     </div>
