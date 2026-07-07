@@ -16,6 +16,8 @@ import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
 import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
+import MarkAsRead from "@/components/MarkAsRead";
+import ArticleQuiz from "@/components/ArticleQuiz";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import { learnContent, LEARN_UPDATED } from "@/lib/learnContent";
 import { allArticles, getArticle, getArticleBySlug } from "@/lib/articles";
@@ -68,6 +70,7 @@ export default async function ArticlePage({
     <div className="min-h-screen bg-paper text-ink">
       {/* Amber, not the topic accent — green topics would vanish on the green header. */}
       <ReadingProgress />
+      <MarkAsRead slug={found.slug} />
       <Header />
 
       <article className="bg-paper">
@@ -194,6 +197,13 @@ export default async function ArticlePage({
               {/* Body */}
               <div className="pt-2">
                 <ArticleBody blocks={found.body} accent={accent} />
+                {found.quiz && found.quiz.length > 0 && (
+                  <ArticleQuiz
+                    slug={found.slug}
+                    questions={found.quiz}
+                    accent={accent}
+                  />
+                )}
                 <p className="mt-10 border-t border-sand pt-5 text-sm text-stone">
                   Hover or tap a{" "}
                   <span className="font-medium text-forest underline decoration-forest/40 decoration-dotted underline-offset-2">

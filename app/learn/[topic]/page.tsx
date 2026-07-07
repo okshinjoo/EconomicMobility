@@ -16,6 +16,7 @@ import Footer from "@/components/Footer";
 import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
+import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
 
 function isTopicId(value: string): value is TopicId {
   return topics.some((t) => t.id === value);
@@ -184,6 +185,10 @@ export default async function TopicPage({
               <p className="mt-1.5 text-sm text-stone">
                 {allInOrder.length} guides, building from the basics up — read in
                 any order.
+                <TopicProgress
+                  slugs={allInOrder.map((a) => a.slug)}
+                  accent={accent}
+                />
               </p>
 
               <div className="mt-9 space-y-12">
@@ -222,9 +227,12 @@ export default async function TopicPage({
                               >
                                 {String(numberOf.get(art.slug)).padStart(2, "0")}
                               </span>
-                              <span className="inline-flex items-center gap-1 rounded-full bg-paper-deep px-2.5 py-0.5 text-[11px] font-medium text-stone">
-                                <Clock className="h-3 w-3" />
-                                {art.readMinutes} min
+                              <span className="flex items-center gap-1.5">
+                                <ReadBadge slug={art.slug} accent={accent} />
+                                <span className="inline-flex items-center gap-1 rounded-full bg-paper-deep px-2.5 py-0.5 text-[11px] font-medium text-stone">
+                                  <Clock className="h-3 w-3" />
+                                  {art.readMinutes} min
+                                </span>
                               </span>
                             </div>
                             <h3 className="mt-3 font-semibold leading-snug text-ink">
