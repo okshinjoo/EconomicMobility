@@ -69,7 +69,7 @@ export const moneySafetyArticles: Article[] = [
         text: "You don't need to be suspicious of the whole world. You need one calm habit: when money and urgency show up together, slow down and check it yourself. To see how these flags look in the wild, start with [Phishing, Smishing, and Fake Texts](/learn/money-safety/phishing-scams). And if a scam has already gotten past you, [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) walks through the response, step by step.",
       },
     ],
-    related: ["phishing-scams", "payment-app-safety", "if-youve-been-scammed"],
+    related: ["phishing-scams", "security-tune-up", "if-youve-been-scammed"],
     quiz: [
       {
         question: "Why do scammers make everything feel so urgent?",
@@ -252,7 +252,7 @@ export const moneySafetyArticles: Article[] = [
         text: "Payment apps are genuinely useful; the point is to respect what they are. They move money like cash, so guard them like cash. And if a payment has already gone out to a scammer, act fast: [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) has the checklist, starting with a call to your bank.",
       },
     ],
-    related: ["how-to-spot-a-scam", "phishing-scams", "if-youve-been-scammed"],
+    related: ["how-to-spot-a-scam", "security-tune-up", "if-youve-been-scammed"],
   },
 
   {
@@ -974,5 +974,63 @@ export const moneySafetyArticles: Article[] = [
       },
     ],
     related: ["identity-theft", "how-to-spot-a-scam", "credit-freeze"],
+  },
+
+  {
+    slug: "security-tune-up",
+    order: 15,
+    topicId: "money-safety",
+    title: "The One-Afternoon Money Security Tune-Up",
+    dek: "Six moves, one afternoon, and most of the common attacks on your money stop working. No subscription required.",
+    level: "Beginner",
+    readMinutes: 3,
+    takeaways: [
+      "Most money security is set-it-once: freezes, two-factor, and app settings keep working quietly for years.",
+      "Freezing your credit at all three bureaus is free and blocks most identity theft cold.",
+      "A family safe word beats any technology against fake emergency calls.",
+      "Reading the response plan before you need it is what saves money when something slips through.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Money security sounds like a lifestyle change, but most of it is a handful of settings you flip once. Set aside one afternoon, work down this list in order, and the most common attacks on your accounts stop working. Each step links to the guide with the details, so you can do the whole thing today.",
+      },
+      {
+        type: "p",
+        text: "Nothing on the list costs money, and none of it requires an identity-protection subscription. The steps run in priority order, so even if you only finish the first three, you've closed the biggest doors. One caveat before you start: if something already feels wrong right now, say charges you don't recognize or mail about accounts you never opened, skip straight to [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) and come back to the tune-up after the fire is out.",
+      },
+      {
+        type: "h2",
+        text: "The checklist",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Freeze your credit at all three bureaus.** It's free, reversible, and blocks anyone from opening credit in your name. [Credit Freezes and Fraud Alerts](/learn/credit/credit-freeze) has the how, and the thaw for when you need it.",
+          "**Turn on two-factor authentication for every money app**, plus the email account they all reset passwords through. While you're in a security-settings mood, [Guarding Your SSN and Important Documents](/learn/money-safety/protecting-your-documents) covers what to shred, where to store the rest, and what never to text.",
+          "**Lock down your payment apps.** [Using Venmo, Cash App, and Zelle Safely](/learn/money-safety/payment-app-safety) walks through the privacy settings and the one habit that prevents most losses: treating every send like handing over cash.",
+          "**Learn the red flags once.** [How to Spot a Scam Before It Costs You](/learn/money-safety/how-to-spot-a-scam) teaches the pressure-secrecy-strange-payment pattern that nearly every scam reuses, so you don't have to memorize a thousand variations.",
+          "**Set a family safe word.** Two minutes at dinner, and a faked 'it's me, I'm in trouble, send money' call loses its power. [The 'It's Me, I'm in Trouble' Call](/learn/money-safety/family-emergency-scams) explains why this works even against cloned voices.",
+          "**Read the response plan before you need it.** [What to Do If You've Been Scammed](/learn/money-safety/if-youve-been-scammed) is far more useful read calmly in advance than searched for mid-panic.",
+        ],
+      },
+      {
+        type: "p",
+        text: "That's the whole tune-up. It won't make you scam-proof; nothing does. What it changes is the math: an attacker now needs your active cooperation instead of just a leaked password or a stolen number, and the red-flag habit from step four makes that cooperation hard to get. While you have the laptop open, run your phone and computer software updates too, since plenty of attacks lean on holes the updates already patched.",
+      },
+      {
+        type: "h2",
+        text: "If you want to go deeper",
+      },
+      {
+        type: "p",
+        text: "The afternoon list handles prevention. For a fuller sweep, [Protecting Yourself From Identity Theft](/learn/money-safety/identity-theft) covers the warning signs to watch for over time, and [The Credit Check-Up challenge](/challenges/credit-checkup) turns pulling and reviewing your actual credit reports into a guided checklist.",
+      },
+      {
+        type: "p",
+        text: "Then put a repeat on the calendar for a year from now. The settings mostly keep working on their own; the annual pass is for the new apps you've added and the reports you haven't looked at since.",
+      },
+    ],
+    related: ["how-to-spot-a-scam", "payment-app-safety", "if-youve-been-scammed"],
   },
 ];

@@ -65,7 +65,7 @@ export const taxesExtraArticles: Article[] = [
         text: "Your refund isn't magic and it isn't a windfall. It's a number you have some control over. Once you see it that way, you get to decide when you want your own money: now, or later.",
       },
     ],
-    related: ["how-to-fill-out-w4", "free-ways-to-file", "earned-income-tax-credit"],
+    related: ["how-to-fill-out-w4", "free-ways-to-file", "earned-income-tax-credit", "tax-season-roadmap"],
   },
 
   {
@@ -421,7 +421,7 @@ export const taxesExtraArticles: Article[] = [
         text: "A tax bill you can't pay feels like a wall. It's really a problem with a known set of steps: file, pay what you can, set up a plan. And if the tax bill is one of several you're juggling, [deciding what to pay first](/learn/budgeting/prioritizing-bills-when-money-is-tight) can help you triage the rest.",
       },
     ],
-    related: ["gig-1099-taxes", "free-ways-to-file", "filing-taxes-first-time"],
+    related: ["gig-1099-taxes", "free-ways-to-file", "filing-taxes-first-time", "tax-season-roadmap"],
   },
 
   {
@@ -650,5 +650,74 @@ export const taxesExtraArticles: Article[] = [
       },
     ],
     related: ["investment-taxes-101", "tax-brackets-explained", "robo-advisors"],
+  },
+
+  {
+    slug: "tax-season-roadmap",
+    order: 25,
+    topicId: "taxes",
+    title: "Tax Season, Start to Finish",
+    dek: "January forms, February prep, the mid-April deadline, and the one fix that makes next spring easier: the whole season as a checklist of guides.",
+    level: "Beginner",
+    readMinutes: 4,
+    takeaways: [
+      "January is for collecting forms and confirming you need to file; February is for picking free filing and sweeping the credits.",
+      "Most people qualify to file for free. Don't pay $100 for a simple return.",
+      "If you owe and can't pay, filing on time still matters most; the not-filing penalty is the expensive one.",
+      "The season's last stop is next year: adjust your W-4 while the numbers are fresh.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "From a distance, tax season looks like one big deadline in April. Up close it's a handful of small tasks spread across three months, each with its own full guide. This page is the calendar: what to do in January, what to do in February, which guide fits your situation when you sit down to file, and the two loose ends to tie off after you submit.",
+      },
+      {
+        type: "h2",
+        text: "January: collect and confirm",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Watch for forms.** W-2s and most 1099s have to reach you by the end of January, on paper or buried in an email or app. [What All Those Forms Mean](/learn/taxes/understanding-tax-forms) identifies each one as it shows up, so you know what to keep and what you're still missing.",
+          "**Confirm you need to file at all.** [Do You Even Need to File?](/learn/taxes/do-you-need-to-file) covers the income thresholds, and why filing is often worth it even when it's optional (short answer: refunds don't find you on their own).",
+        ],
+      },
+      {
+        type: "h2",
+        text: "February: set up the filing",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Pick a free way to file.** Most filers qualify to pay nothing; [Free Ways to File](/learn/taxes/free-ways-to-file) compares the options before a paid product's upsell screens find you.",
+          "**Sweep the credits before you start.** [The Tax Credit Low-Income Workers Leave Behind](/learn/taxes/earned-income-tax-credit) covers the EITC, which millions of eligible workers skip, and [Education Tax Credits, Explained](/learn/taxes/education-tax-credits) covers the two credits students and their parents routinely miss.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Filing: pick your lane",
+      },
+      {
+        type: "p",
+        text: "The deadline is mid-April, and the right walkthrough depends on your situation. First return ever? [Filing Your Taxes for the First Time](/learn/taxes/filing-taxes-first-time) goes start to finish. Money from delivery apps, freelancing, or anything that paid you on a 1099? [Taxes for Gig and 1099 Work](/learn/taxes/gig-1099-taxes) covers the extra forms and the self-employment math. No Social Security number? [Filing Taxes With an ITIN](/learn/taxes/filing-with-itin) explains how to file anyway, and why many people choose to.",
+      },
+      {
+        type: "h2",
+        text: "After you file: two loose ends",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Know what the refund actually is.** [Your Tax Refund, Explained](/learn/taxes/tax-refund-explained) covers why a big refund is your own money coming back late, and what to weigh before you celebrate it.",
+          "**If you owe and can't pay, don't disappear.** [What to Do If You Can't Pay Your Tax Bill](/learn/taxes/cant-pay-taxes) covers payment plans and why filing on time matters far more than paying on time.",
+          "**Fix next year now.** [How to Fill Out a W-4 So Your Paycheck Is Right](/learn/taxes/how-to-fill-out-w4) adjusts your withholding while this year's numbers are still fresh, which is what turns a surprise bill (or an oversized refund) into a boring, predictable April.",
+        ],
+      },
+      {
+        type: "p",
+        text: "That's the whole season: two small January tasks, two in February, one sitting to file, and a short cleanup after. None of the individual steps is hard. The trouble only starts when they all get postponed into the second week of April.",
+      },
+    ],
+    related: ["filing-taxes-first-time", "free-ways-to-file", "tax-refund-explained"],
   },
 ];

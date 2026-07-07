@@ -214,7 +214,7 @@ export const investingRetirementArticles: Article[] = [
         text: "An IRA is the retirement account you own outright: you open it, you choose the investments, and it follows you no matter where you work or for whom.",
       },
     ],
-    related: ["roth-vs-traditional-ira", "401k-vs-ira", "what-is-a-401k"],
+    related: ["roth-vs-traditional-ira", "401k-vs-ira", "what-is-a-401k", "retirement-path"],
   },
 
   {
@@ -281,6 +281,59 @@ export const investingRetirementArticles: Article[] = [
         text: "One honest note to close on: the rules around these accounts are detailed and they change year to year. This is general education, not individualized advice. For guidance built around *your* situation, talk to a qualified tax or financial professional.",
       },
     ],
-    related: ["what-is-a-401k", "what-is-an-ira", "what-is-an-hsa"],
+    related: ["what-is-a-401k", "what-is-an-ira", "what-is-an-hsa", "retirement-path"],
+  },
+
+  {
+    slug: "retirement-path",
+    order: 25,
+    topicId: "investing",
+    title: "The Retirement Path, at Any Age",
+    dek: "The retirement guides in walking order: why time beats money, which account fits your job, the Roth question, and the once-a-year checkup.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "The path runs: why now, the account map, workplace 401(k) and its match, IRA if there's no plan, then the Roth question.",
+      "An employer match outranks every other stop; it's the closest thing to free money in personal finance.",
+      "Target-date funds and robo-advisors let the plan run itself; rebalancing is the one yearly chore.",
+      "The sequence is identical at 19 and at 45. Only the pace changes.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Retirement advice tends to arrive as a pile: 401(k)s, IRAs, Roth-versus-traditional, HSAs, target-date funds, each explained well somewhere and none of them telling you which door to walk through first. This page is the order. Whether you're 19 with a campus job or 45 with nothing saved yet, the stops are the same; only the urgency changes. Each one links the full guide, so this walk takes four minutes and the whole path maybe two evenings.",
+      },
+      {
+        type: "h2",
+        text: "The path",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Understand why now beats rich.** [Retirement, When It's 40 Years Away](/learn/investing/retirement-basics) makes the case that the year you start matters more than the amount you start with, which reframes every stop after this one.",
+          "**Get the map of accounts.** [Retirement & Tax-Advantaged Accounts, Explained](/learn/investing/retirement-accounts-explained) is the overview of the whole alphabet, so the names below stop blurring together.",
+          "**Check work first.** If your job offers a plan, [What Is a 401(k)?](/learn/investing/what-is-a-401k) explains the account and the employer match, the closest thing to free money you'll ever be offered.",
+          "**No workplace plan? Open your own.** [What Is an IRA?](/learn/investing/what-is-an-ira) covers the account anyone with earned income can open in about fifteen minutes.",
+          "**Make the tax choice.** [Roth vs. Traditional IRA](/learn/investing/roth-vs-traditional-ira) settles pay-tax-now versus pay-tax-later, a decision most people only need to make once.",
+          "**Have both available?** [401(k) vs. IRA](/learn/investing/401k-vs-ira) sorts which account gets your money first and when it's worth splitting between them.",
+          "**Meet the sleeper.** [What Is an HSA?](/learn/investing/what-is-an-hsa) covers the health account that quietly doubles as a retirement account with three tax breaks, if your insurance qualifies you for one.",
+          "**Pick something that runs itself.** [Target-Date Funds: One Fund, Whole Plan](/learn/investing/target-date-funds) and [Robo-Advisors: What You Get for 0.25%](/learn/investing/robo-advisors) are the two set-and-forget ways to be invested without making it a hobby.",
+          "**Book the yearly fifteen minutes.** [Rebalancing: The Once-a-Year Habit](/learn/investing/rebalancing-your-portfolio) is the only recurring maintenance the whole plan asks of you.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Starting late, starting small",
+      },
+      {
+        type: "p",
+        text: "If you're reading this at 40 instead of 20, the path doesn't change; you just walk it faster and put more on it. Step 1 is still first, because the instinct to skip straight to \"which fund?\" is exactly what keeps people frozen. And once you're 50, catch-up rules raise the contribution limits, which the account guides above spell out. Starting small is fine too. An account holding $30 a month is infinitely further along than a plan to open one someday.",
+      },
+      {
+        type: "p",
+        text: "One boundary worth naming: this path covers the retirement lane only. Whether retirement money should come before or after your emergency fund and your credit card balance is a different question, and [What to Do With Money, in What Order](/learn/budgeting/money-order-of-operations) is the guide that answers it. Short version: grab any employer match immediately, then let that sequence arbitrate the rest.",
+      },
+    ],
+    related: ["retirement-accounts-explained", "what-is-a-401k", "roth-vs-traditional-ira"],
   },
 ];

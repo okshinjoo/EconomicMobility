@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
+import { ROADMAP_SET } from "@/lib/roadmaps";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
 import TopicMark from "@/components/TopicMark";
 
@@ -165,6 +166,34 @@ export default async function TopicPage({
           {/* The full path — card grid by level */}
           <section className="bg-paper">
             <div className="mx-auto max-w-5xl px-6 py-14">
+              {(() => {
+                const topicRoadmapArticle = allInOrder.find(
+                  (a) => ROADMAP_SET.has(a.slug) && a.slug !== featured?.slug
+                );
+                if (!topicRoadmapArticle) return null;
+                return (
+                  <Link
+                    href={`/learn/${topic}/${topicRoadmapArticle.slug}`}
+                    className="card-ink mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl px-6 py-4 transition-transform duration-200 hover:-translate-y-0.5 lg:-rotate-[0.3deg]"
+                    style={{ background: `${accent}14` }}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span
+                        className="-rotate-2 rounded-md border-2 border-ink px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-cream shadow-[2px_2px_0_#11211c]"
+                        style={{ background: accent }}
+                      >
+                        Roadmap
+                      </span>
+                      <span className="font-display text-lg font-semibold text-ink">
+                        {topicRoadmapArticle.title}
+                      </span>
+                    </span>
+                    <span className="text-sm font-semibold" style={{ color: accent }}>
+                      The whole path, one page
+                    </span>
+                  </Link>
+                );
+              })()}
               <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
                 The full path
               </h2>
@@ -214,6 +243,14 @@ export default async function TopicPage({
                                 {String(numberOf.get(art.slug)).padStart(2, "0")}
                               </span>
                               <span className="flex items-center gap-1.5">
+                                {ROADMAP_SET.has(art.slug) && (
+                                  <span
+                                    className="rounded-md border-2 border-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream"
+                                    style={{ background: accent }}
+                                  >
+                                    Roadmap
+                                  </span>
+                                )}
                                 <ReadBadge slug={art.slug} accent={accent} />
                                 <span className="text-[11px] font-semibold text-stone">
                                   {art.readMinutes} min

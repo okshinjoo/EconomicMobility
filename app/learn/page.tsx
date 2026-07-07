@@ -10,6 +10,7 @@ import { TopicBar } from "@/components/ReadBadge";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap, getArticleBySlug } from "@/lib/articles";
+import { ROADMAP_SLUGS } from "@/lib/roadmaps";
 
 export const metadata: Metadata = {
   title: "Learn | Empower — Economic Mobility Project",
@@ -94,15 +95,7 @@ export default function LearnHub() {
 
       {/* Roadmap articles: the "what order do I do this in" pathfinders */}
       {(() => {
-        const roadmapSlugs = [
-          "money-order-of-operations",
-          "new-to-america-money",
-          "turning-18-money",
-          "first-year-of-credit",
-          "debt-payoff-roadmap",
-          "college-money-roadmap",
-        ];
-        const roadmaps = roadmapSlugs
+        const roadmaps = ROADMAP_SLUGS
           .map((slug) => getArticleBySlug(slug))
           .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
         if (roadmaps.length === 0) return null;

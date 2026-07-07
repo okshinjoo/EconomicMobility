@@ -74,7 +74,7 @@ export const homeOwnershipArticles: Article[] = [
         text: "Plenty of financially healthy people rent for years on purpose. Plenty of others buy and love it. Neither group is doing money 'wrong.' If renting fits your life right now, [Renting Your First Apartment](/learn/home-ownership/renting-your-first-apartment) is the next read. If you're leaning toward buying, start with [What a Mortgage Really Is](/learn/home-ownership/what-is-a-mortgage) and work forward from there.",
       },
     ],
-    related: ["renting-your-first-apartment", "what-is-a-mortgage", "hidden-costs-of-owning"],
+    related: ["renting-your-first-apartment", "what-is-a-mortgage", "first-home-runway"],
   },
 
   {

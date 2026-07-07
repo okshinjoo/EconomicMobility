@@ -298,7 +298,7 @@ export const homeOwnershipExtraArticles: Article[] = [
         text: "And before you assume the down payment is your whole battle, look into first-time buyer programs. Many states offer help with exactly this part, and it can shrink the number you're staring at.",
       },
     ],
-    related: ["down-payment-basics", "first-time-buyer-programs", "pmi-explained"],
+    related: ["down-payment-basics", "first-time-buyer-programs", "first-home-runway"],
   },
 
   {
@@ -798,5 +798,90 @@ export const homeOwnershipExtraArticles: Article[] = [
           "This is the most common rental scam: the apartment isn't theirs, and sometimes it doesn't exist. A real landlord expects you to look before you pay.",
       },
     ],
+  },
+
+  {
+    slug: "first-home-runway",
+    order: 75,
+    topicId: "home-ownership",
+    title: "Buying Your First Home: The Two-Year Runway",
+    dek: "Two years is enough time to fix your credit, stack a down payment, and shop without panic. Here's what happens when, with a guide for every stop.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "Two years out, the job is deciding whether to buy at all and getting your credit moving.",
+      "The middle year belongs to the money: your down-payment number, the saving plan, and buyer programs.",
+      "Pre-approval and the big structural choices happen in the last six months, before you fall in love with a house.",
+      "Budget for closing costs and the true monthly cost of owning, not just the mortgage payment.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Buying a home rewards preparation more than almost any other purchase. Lenders price your loan off the credit score and savings you show up with, and both take months to move. Start two years out and nearly every number improves: your score, your rate, your down payment, your calm. This is the runway, stop by stop. Each stop links to the guide that covers it, so this page stays short and the details stay where they belong.",
+      },
+      {
+        type: "h2",
+        text: "24 months out: decide, then start the credit clock",
+      },
+      {
+        type: "p",
+        text: "First, be honest about whether buying wins at all, because in plenty of cities and life stages it doesn't. [Renting vs. Buying: An Honest Comparison](/learn/home-ownership/renting-vs-buying) does the real math, including the costs that don't show up in a rent-vs-mortgage comparison.",
+      },
+      {
+        type: "p",
+        text: "If buying wins, credit goes first because it moves slowest. [What Credit Score You Actually Need to Buy](/learn/home-ownership/credit-score-to-buy) shows the score tiers lenders price from and what each tier costs you in interest. Starting from a thin file or none at all? [Your First Year of Credit, Month by Month](/learn/credit/first-year-of-credit) is the build sequence, and it fits neatly inside this timeline.",
+      },
+      {
+        type: "h2",
+        text: "18 to 12 months out: the money",
+      },
+      {
+        type: "p",
+        text: "A year of saving needs a target before it needs discipline. [How Much Down Payment You Actually Need](/learn/home-ownership/down-payment-basics) clears up the 20% myth and helps you pick your real number, and [Saving for a Down Payment, Realistically](/learn/home-ownership/saving-for-down-payment) covers where to park the money and how to automate it. Before you lock in that target, check [First-Time Homebuyer Programs](/learn/home-ownership/first-time-buyer-programs): assistance programs and low-down-payment loans can shrink the number by thousands.",
+      },
+      {
+        type: "p",
+        text: "This is also when the [mortgage calculator](/tools/debt/mortgage) becomes your reality check. Run a price you're eyeing and look at the monthly payment it produces, then keep re-running it as your numbers firm up. A payment you've watched evolve for a year is much harder to talk yourself past in an open house.",
+      },
+      {
+        type: "h2",
+        text: "6 to 3 months out: get official",
+      },
+      {
+        type: "p",
+        text: "[Getting Pre-Approved for a Mortgage](/learn/home-ownership/getting-pre-approved) explains the paperwork and why the letter comes before house hunting, not after.",
+      },
+      {
+        type: "p",
+        text: "Two structural choices deserve a decision now, while you can still think in numbers instead of kitchens. [15-Year vs. 30-Year Mortgages](/learn/home-ownership/15-vs-30-year-mortgage) is the monthly-payment-versus-total-cost tradeoff, and [PMI, explained](/learn/home-ownership/pmi-explained) covers the monthly charge that comes with putting less than 20% down, plus how to drop it later.",
+      },
+      {
+        type: "h2",
+        text: "The finish",
+      },
+      {
+        type: "p",
+        text: "Two guides keep the last stretch from ambushing you. [Closing Costs: The Fees Nobody Warns You About](/learn/home-ownership/closing-costs) itemizes what's due at the signing table beyond the down payment, and [The Hidden Costs of Owning](/learn/home-ownership/hidden-costs-of-owning) previews the taxes, insurance, and repairs that start the day you get keys. Both belong in your savings target, not in the surprise column.",
+      },
+      {
+        type: "h2",
+        text: "The runway at a glance",
+      },
+      {
+        type: "steps",
+        items: [
+          "Months 24 to 18: settle rent-vs-buy, check your credit, and start any building or repair work.",
+          "Months 18 to 12: set your down-payment number, automate the saving, and apply for the buyer programs you qualify for.",
+          "Months 12 to 6: keep saving, and re-run the mortgage calculator whenever your target price changes.",
+          "Months 6 to 3: get pre-approved, then settle your term length and your down-payment-vs-PMI tradeoff.",
+          "Final stretch: confirm your cash covers the down payment plus closing costs, with a cushion left for the first year of ownership.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Twenty-four months is the comfortable version, not a requirement. The same order compressed into twelve months still works; you just make the credit and savings moves faster and accept whatever your score is on application day.",
+      },
+    ],
+    related: ["renting-vs-buying", "saving-for-down-payment", "getting-pre-approved"],
   },
 ];

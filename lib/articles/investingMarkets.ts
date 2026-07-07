@@ -392,7 +392,7 @@ export const investingMarketsArticles: Article[] = [
         text: "If you're still building your foundation (an emergency fund, steady index-fund investing, retirement contributions), options aren't a missing piece you need. They're an advanced tool, and there's zero shame in deciding they're not for you. The people who build real wealth rarely needed them.",
       },
     ],
-    related: ["margin-and-short-selling", "investing-mistakes", "risk-and-diversification"],
+    related: ["margin-and-short-selling", "investing-mistakes", "risk-and-diversification", "markets-tour"],
   },
 
   {
@@ -850,7 +850,7 @@ export const investingMarketsArticles: Article[] = [
         text: "That's what a quote can do: describe the company's size, price tag, payout, and recent path in ten seconds. What it can't do is tell you whether the business is worth owning. A quote is the label on the box, not the contents.",
       },
     ],
-    related: ["what-is-a-stock", "dividends-explained", "what-is-an-ipo"],
+    related: ["what-is-a-stock", "dividends-explained", "what-is-an-ipo", "markets-tour"],
   },
 
   {
@@ -1011,5 +1011,59 @@ export const investingMarketsArticles: Article[] = [
       },
     ],
     related: ["dividends-explained", "compare-investment-vehicles", "renting-vs-buying"],
+  },
+
+  {
+    slug: "markets-tour",
+    order: 5,
+    topicId: "investing",
+    title: "The Markets Tour: From Stock Quote to Options",
+    dek: "Ten advanced guides in reading order, from decoding a quote page to options, margin, and crashes. None of it is required. All of it kills the mystique.",
+    level: "Advanced",
+    readMinutes: 4,
+    takeaways: [
+      "Nothing on this tour is required to invest well; a plain index fund beats most people who master all of it.",
+      "Read in order: the quote page and dividends supply the vocabulary that IPOs, options, and margin assume.",
+      "Understanding the machinery is fraud protection. Pitches lose their power when nothing sounds mysterious.",
+      "Knowing how options work and buying index funds anyway is what most professionals do with their own money.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Start with the honest disclaimer: nothing on this page is required to invest well. A plain [index fund](/learn/investing/index-funds-explained), bought on a schedule and left alone, quietly outperforms most people who can define every term below. So why take the tour? Because the machinery of the market is exactly where hustlers hide. Every \"guaranteed options income\" and \"pre-IPO opportunity\" pitch depends on you not knowing how these parts work, and the mystique dies the moment you do. Ten guides, in the order they build on each other.",
+      },
+      {
+        type: "h2",
+        text: "The tour, stop by stop",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Learn to read a quote page.** [How to Read a Stock Quote](/learn/investing/how-to-read-a-stock-quote) decodes the six numbers that do most of the work on any quote, which gives every later stop a shared vocabulary.",
+          "**Follow the cash.** [Dividends, Explained](/learn/investing/dividends-explained) covers the payments some companies send shareholders, including why the tallest yield on the screen is usually a warning rather than a gift.",
+          "**Watch a company go public.** [What Is an IPO?](/learn/investing/what-is-an-ipo) walks through how a private business becomes a stock anyone can buy.",
+          "**Then look closer at day one.** [Opening Price vs. Offering Price](/learn/investing/opening-vs-offering-price) explains the gap between the price insiders pay and the price you would, which is most of the reason \"getting in on the IPO\" rarely means what people hope.",
+          "**Learn what an average return hides.** [How to Calculate an Average Rate of Return](/learn/investing/average-rate-of-return) shows what \"the market averages 10%\" really means, and why almost no individual year looks average.",
+          "**See the whole shelf at once.** [Comparing Common Investment Vehicles](/learn/investing/compare-investment-vehicles) lines up stocks, bonds, funds, and the rest by risk, return, and effort, so each product has a place instead of a sales pitch.",
+          "**Add the real-estate aisle.** [REITs: Real Estate Without the House](/learn/investing/what-is-a-reit) covers owning buildings by the share instead of by the mortgage.",
+          "**Now the sharp tools: options.** [What Are Options?](/learn/investing/options-explained) explains the contracts behind most get-rich-fast screenshots, and why the same leverage that mints those screenshots produces far more quiet zeros.",
+          "**And the sharper ones: borrowed money.** [Margin and Short Selling: The Sharp Tools](/learn/investing/margin-and-short-selling) covers the two techniques where losses can exceed what you put in.",
+          "**Finish with the machinery under stress.** [Crashes, Corrections, and Bear Markets](/learn/investing/market-crashes) shows what a panic looks like from the inside, and why the people who sell into it are the ones who lock in the loss.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "How to walk it",
+      },
+      {
+        type: "p",
+        text: "In order, ideally. The early stops are pure vocabulary, and the later ones lean on it: options make little sense before you can read a quote, and the IPO pricing gap lands harder once you know what a dividend yield is. But every guide also stands alone, so if a coworker just mentioned covered calls or a cousin is excited about a REIT, jump straight to that stop and come back.",
+      },
+      {
+        type: "p",
+        text: "You'll know the tour worked when a pitch like \"we sell options for guaranteed monthly income\" stops sounding impressive. Before, it works because it's opaque. After it, you can pick the sentence apart: guaranteed by whom, paid from what, and what happens in a bad month? Fraudsters need an audience that finds the market mysterious, which is why [investment fraud](/learn/money-safety/investment-fraud) leans so hard on jargon. And if you finish all ten stops and still choose a boring index fund, that isn't a failure of nerve. It's the same conclusion most professionals reach with their own money.",
+      },
+    ],
+    related: ["how-to-read-a-stock-quote", "options-explained", "index-funds-explained"],
   },
 ];

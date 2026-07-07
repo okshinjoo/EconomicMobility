@@ -85,7 +85,7 @@ export const insuranceArticles: Article[] = [
         text: "You don't have to buy everything. Cover the disasters you couldn't pay for yourself, and skip paying to insure the small stuff you could. The rest of this topic walks through the big categories one at a time, starting with [health insurance](/learn/insurance/health-insurance-explained).",
       },
     ],
-    related: ["health-insurance-explained", "auto-insurance-basics", "do-you-need-life-insurance"],
+    related: ["health-insurance-explained", "insurance-checkup", "do-you-need-life-insurance"],
     quiz: [
       {
         question: "What's the basic idea underneath all insurance?",
@@ -734,7 +734,7 @@ export const insuranceArticles: Article[] = [
         text: "Start with the benefits portal this week. If solid long-term coverage is already there, you're done, and you learned it for free. If it isn't, price a policy while you're young and healthy. Either way, the paycheck that funds [your health coverage](/learn/insurance/health-insurance-explained), your rent, and every plan you have deserves the same protection you'd give a car.",
       },
     ],
-    related: ["do-you-need-life-insurance", "how-insurance-works", "health-insurance-explained"],
+    related: ["do-you-need-life-insurance", "insurance-checkup", "health-insurance-explained"],
   },
 
   {
@@ -850,5 +850,100 @@ export const insuranceArticles: Article[] = [
       "medicaid-explained",
       "what-happens-if-you-dont-pay-debts",
     ],
+  },
+
+  {
+    slug: "insurance-checkup",
+    order: 5,
+    topicId: "insurance",
+    title: "The Insurance Checkup: What You Actually Need Right Now",
+    dek: "Coverage needs follow your life, not an ad's script. Find your situation on this list, read the guide for it, and skip the rest.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "Your insurance needs map to your life: your body, your lease, your car, and whoever counts on your paycheck.",
+      "Disability insurance fits most workers; life insurance only makes sense if someone depends on your income.",
+      "Renters insurance is the cheapest serious coverage most people skip.",
+      "Extended warranties and flight insurance mostly move money from you to a marketing department.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Insurance ads sell fear in every direction, so it's easy to end up paying for coverage you don't need while a real gap sits open. The fix is a quick checkup. This isn't a sequence to read top to bottom: go down the list, stop at each situation that describes you, and read the guide for that stop. (If premiums and deductibles are still fuzzy, [How Insurance Actually Works](/learn/insurance/how-insurance-works) is the ten-minute foundation for everything below.)",
+      },
+      {
+        type: "h2",
+        text: "You have a body",
+      },
+      {
+        type: "p",
+        text: "Health coverage is the non-negotiable one, because hospital bills come in amounts no paycheck absorbs. [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers how the system works and the ways to get covered even on a small income. If you're choosing between plans at work or on the marketplace, [How to Choose a Health Plan](/learn/insurance/choosing-a-health-plan) turns the premium-versus-deductible tradeoff into an actual decision.",
+      },
+      {
+        type: "h2",
+        text: "You rent your place",
+      },
+      {
+        type: "p",
+        text: "Your landlord's policy covers the building, not one thing you own inside it. [Renters Insurance: Cheap Protection Most People Skip](/learn/home-ownership/renters-insurance) explains the few-dollars-a-month policy that replaces your stuff after a fire, theft, or burst pipe.",
+      },
+      {
+        type: "h2",
+        text: "You drive",
+      },
+      {
+        type: "p",
+        text: "[Auto Insurance Basics](/learn/insurance/auto-insurance-basics) sorts out liability, collision, and comprehensive, and which ones your state and your car actually call for. Keep [After a Car Accident: The Money Playbook](/learn/insurance/after-a-car-accident) in your back pocket for the day you need to know what to photograph, say, and file.",
+      },
+      {
+        type: "h2",
+        text: "Someone counts on your paycheck (or nobody does)",
+      },
+      {
+        type: "p",
+        text: "For most workers, the biggest unprotected asset is the paycheck itself, which is why [Disability Insurance: The Coverage Nobody Mentions](/learn/insurance/disability-insurance) applies to far more people than life insurance does. Life insurance is the reverse case: [Do You Even Need Life Insurance?](/learn/insurance/do-you-need-life-insurance) gives the honest answer, which is only if someone would be financially stranded without you. No dependents usually means no policy, whatever the salesperson says.",
+      },
+      {
+        type: "h2",
+        text: "Teeth and eyes",
+      },
+      {
+        type: "p",
+        text: "[Dental and Vision Coverage, Explained](/learn/insurance/dental-vision-insurance) covers why these ride separately from health insurance and when paying cash beats paying premiums.",
+      },
+      {
+        type: "h2",
+        text: "A medical bill came back wrong or huge",
+      },
+      {
+        type: "p",
+        text: "Not insurance, but the same fight. [How to Fight a Medical Bill](/learn/insurance/negotiating-medical-bills) walks through billing errors, negotiation, and hospital financial-assistance policies before a bill ends up on a credit card.",
+      },
+      {
+        type: "h2",
+        text: "The insurance you can skip",
+      },
+      {
+        type: "p",
+        text: "Extended warranties on electronics, insurance for a routine flight, coverage on anything you could afford to replace out of pocket: these mostly exist because they're profitable to sell, not because you need them. The test never changes. Insure the disasters you couldn't cover yourself, and self-insure the rest.",
+      },
+      {
+        type: "h2",
+        text: "The checkup, in order",
+      },
+      {
+        type: "steps",
+        items: [
+          "Confirm you have health coverage. It's the one gap that can genuinely wreck you.",
+          "Match the middle of the list to your actual life: lease, car, paycheck, dependents.",
+          "Cancel or decline the skippable stuff, and put what you were paying toward an emergency fund the size of your biggest deductible.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Then redo the checkup when life shifts: a new lease, a first car, a baby, a job with different benefits. Each of those moves one line of this list from skippable to necessary, and the guides above will still be here when it does.",
+      },
+    ],
+    related: ["how-insurance-works", "choosing-a-health-plan", "disability-insurance"],
   },
 ];
