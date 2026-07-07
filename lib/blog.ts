@@ -562,6 +562,348 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "the-boots-theory",
+    title: "It's Expensive to Be Broke",
+    dek: "Terry Pratchett explained it with a pair of boots. Your bank explains it with a $35 fee.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "In Terry Pratchett's novel Men at Arms, a cynical street cop named Sam Vimes works out why the rich stay rich, and he does it with boots. Good boots cost fifty dollars and last for years and years. Cheap boots cost ten, leak by the second winter, and have to be replaced again and again. So the man who can afford good boots spends less on boots over a decade than the man who can't, and the man who can't still ends up with wet feet. Vimes calls it the \"Boots\" theory of socioeconomic unfairness, and it may be the sharpest economics lecture ever smuggled into a fantasy novel.",
+      },
+      {
+        type: "p",
+        text: "Swap the boots for almost anything and the theory holds. Being broke comes with a surcharge, and it gets billed everywhere at once.",
+      },
+      { type: "h2", text: "The poverty premium, itemized" },
+      {
+        type: "p",
+        text: "The overdraft fee is the purest specimen: a charge of $35 or so for the offense of having the least money, collected at the exact moment you have the least money. The person with a cushion never pays it. The person without one can pay it three times in a week, because the account was already scraping bottom when the charges landed.",
+      },
+      {
+        type: "p",
+        text: "The small pack is the boots theory at the grocery store. The big bottle is cheaper per load, per ounce, per everything, but it costs more today, and today is the only budget you have. Buying small is the rational move with $40 in the account, and it also means paying more, permanently, for the same detergent.",
+      },
+      {
+        type: "p",
+        text: "Then come the fees for not having a bank at all. Check-cashing storefronts take a slice of every paycheck just to turn it into money you can spend, a toll that people [without bank accounts](/learn/budgeting/unbanked-underbanked) pay over and over for the privilege of being paid. Utilities and landlords demand deposits from exactly the people who can't spare them, having decided, often by credit score, that they're the risky ones. And when the gap between paychecks won't close on its own, the [payday loan](/learn/government-aid/payday-loans-and-predatory-lending) is waiting: the most expensive money in America, priced precisely for people who are out of other options.",
+      },
+      {
+        type: "p",
+        text: "The appliances run the original script beat for beat. The used car that costs less up front and more every month it survives. The tires bought one at a time. The cheap fridge that dies in year three and takes a week of groceries with it. None of these are bad decisions. They're the only available decisions, and each one costs more over ten years than what somebody with cash up front would have paid.",
+      },
+      { type: "h2", text: "The thing you're being charged for is slack" },
+      {
+        type: "p",
+        text: "Line up every item on that list and the pattern is the same. The system charges for having no margin. The fees were never really about boots or detergent or checks; they're the price of having zero dollars between you and a surprise, and it's the one price that people who can afford everything never pay.",
+      },
+      {
+        type: "p",
+        text: "Which is why the first few hundred dollars of savings behave nothing like an investment and everything like a fee-cancellation machine. Five hundred dollars of slack earns no interest worth mentioning. What it does instead is quietly delete overdraft fees, absorb the deposit, buy the big bottle, walk past the payday storefront, and turn a dead fridge from a crisis into an errand. No stock has ever returned what the first $500 returns to somebody who had zero, and the [starter fund sprint](/challenges/starter-fund-sprint) exists to get you exactly there. Not wealth. Slack.",
+      },
+      {
+        type: "p",
+        text: "Vimes never got a raise in that chapter, but he had the diagnosis right. The boots were never the problem; the being-unable-to-afford-the-good-boots was. Every dollar of slack you build is a fee somebody doesn't get to charge you anymore.",
+      },
+    ],
+  },
+  {
+    slug: "the-tablet-will-ask-you-a-question",
+    title: "The Tablet Will Ask You a Question",
+    dek: "Tipping screens turned checkout into a small social experiment. You're allowed to walk in with answers.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "You order an iced coffee. The barista taps the register twice, and then it happens: the tablet swivels on its little stand to face you, the line stacks up behind you, the barista assumes an expression of professional neutrality, and three glowing buttons offer 20%, 25%, and 30% on a transaction that involved no table, no refills, and roughly eleven seconds of interaction. Below them, smaller, a custom option. Below that, smallest of all, a no-tip button styled to feel like a confession.",
+      },
+      {
+        type: "p",
+        text: "The flipped iPad is one of the great quiet social experiments of the decade, run millions of times a day. It works, and it's worth understanding exactly how.",
+      },
+      { type: "h2", text: "The buttons are doing the negotiating" },
+      {
+        type: "p",
+        text: "Those presets are anchors, the same mechanism as the [crossed-out price on the sale rack](/blog/the-sale-rack-is-lying). Before the screen turned, you might have been thinking a dollar in the jar. The screen does not offer a dollar in the jar. It offers 20, 25, 30, and once you're choosing among them, the question has changed from \"do I tip for this?\" to \"which of these three tippers am I?\" Picking the smallest preset now registers as a small failure, which is a remarkable trick, because the smallest preset is often double what the jar used to get.",
+      },
+      {
+        type: "p",
+        text: "And the design leans on the one asset a checkout counter has that a website doesn't: a human being, watching, with a line behind you. The guilt is not a side effect of the tip screen. The guilt is the feature. These flows get tested and tuned like everything else you tap, and the version that makes you feel observed is the version that ships. It's the same industry that spent decades [making the payment itself feel like nothing](/blog/why-tapping-doesnt-hurt), now making the tip feel like everything.",
+      },
+      { type: "h2", text: "Why it's spreading to places tips never lived" },
+      {
+        type: "p",
+        text: "The prompt has marched from coffee counters to bakeries to merch tables to self-checkout kiosks, which is a genuinely avant-garde development: a tip requested for service performed by you, payable to a machine. The economics explain the spread. A tip prompt costs the business nothing to display, and every dollar it extracts is compensation the payroll didn't have to cover. Expect the question anywhere a screen stands between you and a receipt.",
+      },
+      { type: "h2", text: "Where the money goes" },
+      {
+        type: "p",
+        text: "Honestly: it varies. US federal law says tips belong to workers, and an employer generally can't pocket them. But between the screen and a paycheck sits a lot of plumbing. Some counters pool tips across a shift, some split by hours worked, digital tips can land on payroll weeks later, and at an unstaffed kiosk the line between \"tip\" and \"revenue\" gets blurry in ways nobody prints on the screen. If it matters to you, ask the person at the counter whether the tips reach them. They'll tell you, and their face will tell you first.",
+      },
+      { type: "h2", text: "Kind rules for the screen age" },
+      {
+        type: "list",
+        items: [
+          "**Tip service humans well.** The server, the barber, the delivery driver, the barista who made you an actual thing. Tipped workers' base pay is built assuming the tip arrives; that part of the deal hasn't changed.",
+          "**Feel zero guilt at a kiosk.** A machine cannot be stiffed. You bagged the groceries. The service was yours.",
+          "**Decide your defaults before the screen does.** A counter-coffee number, a sit-down number, a delivery number, chosen at home, calmly, once. Then the tablet is just displaying options you already priced. A [month of tracking](/learn/budgeting/tracking-your-spending) will show you what your current under-pressure defaults have been costing.",
+          "**Custom is a real button.** Using it in front of a line is allowed. Nobody behind you is grading as hard as the screen wants you to think.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The tablet is going to keep asking; that's fine. The screen gets to pose the question. It doesn't get to write your answer while an audience watches, unless you show up without one.",
+      },
+    ],
+  },
+  {
+    slug: "everything-is-surge-priced",
+    title: "Everything Is Surge-Priced Now",
+    dek: "Dynamic pricing escaped the rideshare app. Your best defenses are older than the algorithm.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Surge pricing used to live in one place. It rained, the little map turned red, your ride home cost 2.1x, and you grumbled about it in the group chat. That was the deal: one app, one gimmick, clearly labeled.",
+      },
+      {
+        type: "p",
+        text: "The gimmick got out. Concert tickets now climb while you sit in the queue, repriced as \"official platinum\" the moment demand shows up. Delivery fees flex with the dinner rush. Airlines have repriced by the hour since before you were born; they were the prototype. And grocery chains are rolling out electronic shelf labels, which today mostly save an employee a night of sticker-swapping, and which also mean the price of chicken can now change between the parking lot and aisle five. The stores insist they won't use it that way. The point is that the question has become one of restraint rather than capability.",
+      },
+      { type: "h2", text: "Why companies love it" },
+      {
+        type: "p",
+        text: "A fixed price leaves money on the table, from the seller's point of view. Some customers would have paid more; the tag let them keep the difference. Dynamic pricing is an instrument for finding each buyer's personal maximum and charging exactly that. Economists call the family of techniques price discrimination, a neutral term for a simple ambition: nobody ever pays less than the most they would have agreed to.",
+      },
+      {
+        type: "p",
+        text: "What feeds the instrument is data: the time of day, the demand around you, your booking history, your loyalty account, how many times you've opened the app to look at the same flight. Companies mostly insist they price the market, never the person. Maybe so. From your side of the screen, the two are indistinguishable, and there's no receipt line that says what the price would have been for someone else.",
+      },
+      { type: "h2", text: "Defenses that don't require a spreadsheet" },
+      {
+        type: "list",
+        items: [
+          "**Set alerts and let a robot do the watching.** Price alerts on flights and tickets flip the surveillance around: instead of the algorithm studying your urgency, a tool studies the price and calls you when it dips.",
+          "**Treat patience as leverage.** Surge pricing is a tax on urgency, and most urgency is optional. The red map fades in twenty minutes. The queue re-opens. If you can wait, you become the one customer the algorithm has no grip on.",
+          "**Know your walk-away number before you look.** Decide what the ticket or the flight is worth to you, in advance, based on [what your life actually costs](/learn/budgeting/cost-of-living). The [sale rack](/blog/the-sale-rack-is-lying) uses a fake anchor to pull you up; a real number you chose in daylight anchors you back.",
+        ],
+      },
+      {
+        type: "p",
+        text: "There's no opting out of dynamic pricing; it's the water now. But the machine has one dependency it can't engineer away: it can only find your maximum if you never decided one. Walk in with a number, and the surge stops being a lever on you and goes back to being weather.",
+      },
+    ],
+  },
+  {
+    slug: "the-cancel-button-is-hidden",
+    title: "The Cancel Button Is Hidden on Purpose",
+    dek: "A field guide to dark patterns: the roach motel, the shame button, and the box that checked itself.",
+    date: "2026-07-07",
+    tag: "Watch out",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Signing up took one tap. The app remembered your card, the trial started instantly, confetti may have been involved. Now try to leave. Suddenly you're on the desktop site, logged in again, hunting through Account, then Membership, then Manage Plan, until you reach the final boss: a phone number, staffed weekdays only, in a time zone that is not yours.",
+      },
+      {
+        type: "p",
+        text: "That asymmetry has a name. Designers call these dark patterns: interface choices built to steer you somewhere you wouldn't have gone on purpose. Once you can name them, you see them everywhere.",
+      },
+      { type: "h2", text: "A short field guide" },
+      {
+        type: "list",
+        items: [
+          "**The roach motel.** Easy in, hard out. The effort gap is the strategy: every extra screen on the way out retains some percentage of people who give up and keep paying.",
+          "**Confirm-shaming.** The decline button written in first person to humiliate you: \"No thanks, I hate saving money.\" A company that needs you to insult yourself on the way out is telling you something about the offer.",
+          "**The pre-checked box.** The protection plan, the newsletter, the second subscription riding quietly along in your cart. Consent, pre-poured.",
+          "**The fake countdown.** The timer hits zero, you refresh, it's reborn. We covered its natural habitat in [the sale rack post](/blog/the-sale-rack-is-lying).",
+          "**The disappearing cancel path.** Renamed, buried, moved behind a chat agent, or barricaded with three consecutive \"pause instead?\" offers. Each screen peels off a few more people.",
+        ],
+      },
+      { type: "h2", text: "Where the rules stand" },
+      {
+        type: "p",
+        text: "Regulators have spent years pushing a plain principle: canceling should be as easy as signing up. Industry lawyers have spent the same years arguing otherwise, and the rules keep getting written, challenged, and rewritten. Whatever the state of that fight when you read this, don't build your plans on it. Treat the exit as your job to find, and be pleasantly surprised if the law ever hands you a map.",
+      },
+      { type: "h2", text: "Your side of the counter" },
+      {
+        type: "list",
+        items: [
+          "**Calendar the trial before you start it.** The moment you tap \"start free trial,\" set a reminder two days before billing. Future-you gets a decision instead of a charge.",
+          "**Screenshot the terms at signup.** Price, renewal date, the page that says how to cancel. Thirty seconds now; evidence later, when the terms have quietly moved.",
+          "**Sweep on a schedule.** A statement read plus a cancellation pass, a couple of times a year. The [subscription audit](/challenges/subscription-audit) walks the whole routine step by step.",
+          "**Escalate calmly when you're genuinely trapped.** Ask in writing first; the scripts in [negotiating your bills](/learn/budgeting/negotiating-your-bills) work on retention agents too. If you canceled and they keep charging, a dispute with your bank is what disputes are for.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of these patterns can beat a person with a calendar reminder and a screenshot. They only need you tired, and they're patient. Here's the tell worth remembering: a company confident you'd choose to stay would never need to hide the door.",
+      },
+    ],
+  },
+  {
+    slug: "money-dysmorphia",
+    title: "Money Dysmorphia: When the Balance and the Feeling Disagree",
+    dek: "Some people feel broke with a cushion. Some feel fine while sinking. The fix is the same in both directions.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Two people check their money on the same Tuesday. One has several months of expenses saved and feels a low hum of dread anyway, recounting the numbers like they might have changed overnight. The other has a card balance growing quietly in an app they haven't opened since spring, and feels basically fine. Both are running on feelings that have stopped talking to the numbers. The internet has taken to calling this money dysmorphia, a label borrowed loosely from body-image language, and whatever you think of the term, the mismatch it points at is real, and it runs in both directions.",
+      },
+      { type: "h2", text: "Feeling broke with a cushion" },
+      {
+        type: "p",
+        text: "If you grew up without, your settings were calibrated in years when the fear was accurate. Scarcity teaches a nervous system to treat every purchase as a threat and every balance as temporary, and those settings don't expire just because the balance changed. This is the machinery that [money stories you inherited](/learn/budgeting/money-stories-you-inherited) walks through: the alarm isn't stupidity, it's an old guard dog that never got the memo. But it has costs of its own. The dentist visit deferred for no reason, the constant background math, the strange guilt attached to a sandwich. Safety you can't feel doesn't do its full job.",
+      },
+      { type: "h2", text: "Feeling fine while sinking" },
+      {
+        type: "p",
+        text: "The other direction wears calm as a disguise. The statements stay unopened, the app stays logged out, and the balance is known only \"roughly,\" with error bars that widen every month. This isn't laziness. Looking hurts, so the brain protects you from looking, the same way you'd avoid pressing a bruise; [managing financial stress](/learn/budgeting/managing-financial-stress) covers how honest that avoidance loop is, and how expensive. Because interest doesn't pause while you're not watching. The not-looking has a carrying cost, and it compounds.",
+      },
+      { type: "h2", text: "Feelings need data, on a schedule" },
+      {
+        type: "p",
+        text: "The fix is identical for both people, which is the giveaway that the problem was never the balance. Feelings don't respond to lectures, including the ones you give yourself. They respond, slowly, to evidence, repeated on a schedule. So build the schedule: once a month, same day, ten minutes, you look at the real numbers. The [net worth tool](/tools/budget/net-worth) is built for exactly this, one honest figure, what you own minus what you owe, tracked over time.",
+      },
+      {
+        type: "p",
+        text: "For the anxious, the ritual becomes dated, accumulating proof to argue with the alarm: it was fine in March, fine in April, fine in May. For the avoidant, it means the number can no longer grow in the dark, and the dark was doing most of the damage; the real figure is usually smaller than the one imagination was drafting at 2am. Either way, a feeling that meets the same data twelve times a year eventually starts to update.",
+      },
+      {
+        type: "p",
+        text: "Your feelings about money were trained by the years you've lived, and they were doing their best with old information. Give them new information, monthly, in writing. Both versions of you deserve the one where the number and the feeling finally agree.",
+      },
+    ],
+  },
+  {
+    slug: "lifestyle-creep-never-feels-like-creep",
+    title: "Lifestyle Creep Never Feels Like Creep",
+    dek: "Every raise you've ever gotten went somewhere. Each destination felt reasonable at the time.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "The raise was real. You saw the offer letter, you did the happy math on the bus, you told your mom. And yet, some months later, the end of the month feels exactly the way it used to feel: same margin, same small suspense before rent. The extra money went somewhere, and an audit would find nothing scandalous. No yacht, no habit. Just a slightly better everything.",
+      },
+      { type: "h2", text: "Why you can't see it happening" },
+      {
+        type: "p",
+        text: "Each upgrade is defensible on its own. The apartment closer to work saves you an hour a day; that's not indulgence, that's sanity. The better groceries are health. The car that starts every time is reliability. Nobody's budget has a line item called creep, because creep is just twenty reasonable decisions holding hands.",
+      },
+      {
+        type: "p",
+        text: "Then the baseline resets. Psychologists call it hedonic adaptation: the nice thing feels luxurious for a few weeks, then becomes the floor, and the floor is invisible by definition. You don't wake up grateful for the dishwasher; you'd only notice its absence. Comfort upgrades convert themselves into necessities on a schedule, and the [small treats scale up right along with everything else](/blog/the-lipstick-effect): the $9 comfort becomes the $16 comfort without a single decision you could point to.",
+      },
+      {
+        type: "p",
+        text: "And your friends are creeping in formation. A cohort that earns more together upgrades together, so the dinner spots migrate upmarket, the trips get one notch nicer, and relative to your table, nothing changed at all. Creep is invisible precisely because everyone you calibrate against is creeping at the same rate.",
+      },
+      { type: "h2", text: "The defense has to happen before the money arrives" },
+      {
+        type: "p",
+        text: "Willpower applied afterward loses this fight on schedule, because afterward the new income already has a lifestyle attached. The move that works is deciding before you and the new number have met. The week the raise lands (and it's worth [asking for one properly](/learn/budgeting/how-to-ask-for-a-raise)), split it on paper: a fixed slice to the future, the rest to your life, guilt-free and pre-forgiven. You never miss money you never metabolized.",
+      },
+      {
+        type: "p",
+        text: "The fully automatic version is bumping your [401(k) contribution](/learn/investing/what-is-a-401k) the same week the raise takes effect. The slice comes out before the paycheck hits checking, the baseline never learns it existed, and hedonic adaptation, for once, works for you: you adapt to the new take-home in weeks either way, so you may as well adapt to the version that keeps some.",
+      },
+      {
+        type: "p",
+        text: "None of this is austerity. You earned the raise; enjoying most of it is the point of having earned it. The question is only who decides where it goes: you, once, at the moment of maximum leverage, or the slow committee of upgrades that has never once voted no.",
+      },
+      {
+        type: "p",
+        text: "Creep only becomes visible in the rearview mirror, usually as a strange question years from now: how do I earn double what I did and still feel the same on the 28th? The answer will be twenty reasonable decisions. Take the next raise and make the first decision yourself.",
+      },
+    ],
+  },
+  {
+    slug: "negotiating-feels-rude",
+    title: "Why Negotiating Feels Rude When You Grew Up Broke",
+    dek: "The offer comes in, and your whole body says: take it before they change their minds.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "The offer arrives and it's real: a number bigger than any you've been paid, from people who apparently want you. Somewhere you once read that you're supposed to counter. Your body has a different memo. Say yes now. Say thank you twice. Do not be greedy, do not be difficult, do not give them a single reason to remember they had other candidates.",
+      },
+      {
+        type: "p",
+        text: "If that voice sounds familiar, it's worth asking where it trained.",
+      },
+      { type: "h2", text: "Where the feeling comes from" },
+      {
+        type: "p",
+        text: "Scarcity teaches gratitude-for-anything. When opportunities were rare in your family, treating one as the opening move of a conversation would have felt like taunting luck. Wanting more out loud had a social cost too: in a house where money was tight, asking was a way of being a burden, so you learned to pre-empt the no before anyone had to say it. And nobody modeled the script. Kids of professionals absorb it over dinner, the way you absorb a language: offers are openings, ranges exist, recruiters expect the call. That knowledge is inheritance, cheaper to pass down than money and nearly as valuable. If nobody handed it to you, your silence at offer time isn't a character trait. It's a missing file, and files can be added.",
+      },
+      { type: "h2", text: "What negotiation actually is" },
+      {
+        type: "p",
+        text: "Not combat. An information exchange. The employer named a number based on what they know; you respond with information they don't have, about the market, your other options, the parts of the offer that matter to you. Companies budget salary as a range and rarely open at the top of it, which means the counter isn't an insult to the offer. It's the second half of a process they started. The recruiter does this every week; you'll do it a few times a decade. They will not faint.",
+      },
+      {
+        type: "p",
+        text: "And the first ask is a range, not a demand. \"I'm excited about this. Is there flexibility on the base?\" is a complete negotiation, survivable by every party involved. An offer pulled over one respectful question is vanishingly rare, and a company that would do it was going to be a miserable employer in eleven other ways. Read the whole package first ([here's how to read an offer](/learn/budgeting/reading-a-job-offer), since salary is only one line of it), and when you're ready for actual scripts, [the raise guide](/learn/budgeting/how-to-ask-for-a-raise) has them word for word. Gratitude and negotiation coexist fine. You can be genuinely thrilled and still ask.",
+      },
+      { type: "h2", text: "The part that isn't about you" },
+      {
+        type: "p",
+        text: "Name the dynamic kindly: the people most likely to negotiate are the ones who could most afford the no. With a cushion and a fallback, countering is a low-stakes chat. When you need the job by next month, it feels like gambling rent on politeness. So the comfortable start higher, then compound that head start with every percentage raise after, while the grateful start low and compound that instead. None of it is your fault, and knowing the deck is stacked is part of playing anyway. The reflex itself is one of the [money stories you inherited](/learn/budgeting/money-stories-you-inherited): gratitude-for-anything kept your family safe once, and it earned its keep. At a salary discussion, it's overserving you.",
+      },
+      {
+        type: "p",
+        text: "You don't have to become a shark; nobody's asking for a personality transplant. One calm question, asked once, at the moment the leverage is yours. The people who taught you to be grateful wanted you safe. Being paid in full is the safest thing there is.",
+      },
+    ],
+  },
+  {
+    slug: "your-credit-score-is-not-a-report-card",
+    title: "Your Credit Score Is Not a Report Card",
+    dek: "Three digits got promoted into a character grade. They measure something much narrower.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "People put credit scores in dating profiles now. \"780+, swipe left if you have debt.\" The number gets confessed in the tone people once reserved for sins, or announced like a GPA at a family dinner. Somewhere along the way, a statistic invented so lenders could price risk got promoted into a grade on your soul, and it's worth demoting it back.",
+      },
+      { type: "h2", text: "What the number actually is" },
+      {
+        type: "p",
+        text: "A credit score is a prediction: how likely is this borrower to repay as agreed. Its inputs are known, published, and boringly mechanical ([here's the full anatomy](/learn/credit/what-is-a-credit-score)): whether you've paid past bills on time, how much of your available credit you're using, how long you've had accounts, and a few smaller factors. Now notice everything that isn't in there. Your income isn't. Your savings aren't. The years you paid rent on the first of the month, in most cases, aren't. It has no field for the fact that you cover your grandmother's prescriptions or that you've never once missed a shift. It's a narrow instrument answering a narrow question for an audience of lenders, and it was never designed to know you.",
+      },
+      { type: "h2", text: "How a statistic got moralized" },
+      {
+        type: "p",
+        text: "The vocabulary did half the work. \"Creditworthiness\" sounds like worthiness. \"Good credit\" and \"bad credit\" sound like good person and bad person, and the shame arrives on schedule. The other half is that the score punishes circumstances as if they were choices. A medical emergency, a layoff, a divorce, a childhood with nobody positioned to co-sign or add you to a card: all of it prints the same three digits as recklessness would. A thin file scores like a suspicious one, which means the system dings you for having been broke, not for having been bad. Stack on the folklore, like the stubborn myth that checking your own score hurts it (it doesn't, and [the myths guide](/learn/credit/credit-myths) retires the rest), and people end up afraid to even look at a number that was never a verdict on them.",
+      },
+      { type: "h2", text: "A situation, not a sentence" },
+      {
+        type: "p",
+        text: "Here's what the moralizers miss: scores are mechanically repairable in a way reputations never were. Because the inputs are known, the [repair path](/learn/credit/repairing-credit) is procedural rather than redemptive. Catch up on what's behind, dispute what's wrong, let utilization drift down, let time pass. No essay, no apology, no character witnesses. The model doesn't hold grudges; it just weights recent history more than old history, so the score re-rates you the moment the data does. A 550 describes a stretch of your life. It has no opinion about you, because it cannot hold opinions. It's arithmetic.",
+      },
+      {
+        type: "p",
+        text: "Take the number seriously for what it gates: interest rates, apartments, sometimes a job. That's real, and it's worth the maintenance. Then decline the rest of the assignment. It grades a paper trail, not a person, and anyone who reads it as a soul, up to and including the 780-or-swipe-left crowd, is holding the instrument wrong. A low score is a situation. Situations end.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
