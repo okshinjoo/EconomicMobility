@@ -66,6 +66,33 @@ body {
   font-optical-sizing: auto;
 }
 
+/* ── Bold-mix design system (July 2026) ──────────────────────────────────
+   Three coexisting voices: C "editorial maximal" for brand moments (huge
+   serif on forest fields, ghost marks), A "color fields" for section rhythm
+   (full-bleed amber/forest/terracotta bands), B "ink & shadow" for touchable
+   objects. These utilities are the B voice: */
+.card-ink {
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+}
+.card-ink-lg {
+  border: 2px solid var(--color-ink);
+  box-shadow: 7px 7px 0 var(--color-ink);
+}
+.btn-ink {
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-ink:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--color-ink);
+}
+.btn-ink:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-ink);
+}
+
 /* Faint paper grain to kill the flat, vector-perfect look. */
 body::before {
   content: "";

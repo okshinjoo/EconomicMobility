@@ -119,7 +119,7 @@ function Composer() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-sand bg-cream p-5 sm:p-6"
+      className="card-ink rounded-2xl bg-cream p-5 sm:p-6"
     >
       <label htmlFor="composer" className="font-display text-lg font-semibold text-ink">
         Share a win, a question, or what you&apos;re figuring out
@@ -143,7 +143,7 @@ function Composer() {
         <button
           type="submit"
           disabled={status === "sending" || !text.trim()}
-          className="inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream disabled:cursor-not-allowed disabled:opacity-50"
+          className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === "sending" ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -262,7 +262,7 @@ function PostCard({
   return (
     <article
       id={`post-${post.id}`}
-      className="scroll-mt-24 rounded-2xl border border-sand bg-cream p-5 sm:p-7"
+      className="scroll-mt-24 rounded-2xl border-2 border-sand bg-cream p-5 sm:p-7"
     >
       <div className="flex items-center gap-3">
         <Avatar name={post.author} team={post.team} />
@@ -391,7 +391,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
       {pendingPosts.map((p) => (
         <article
           key={p.at}
-          className="rounded-2xl border border-dashed border-amber/60 bg-cream p-5 sm:p-7"
+          className="rounded-2xl border-2 border-dashed border-amber/60 bg-cream p-5 sm:p-7"
         >
           <div className="flex items-center gap-3">
             <Avatar name={p.author} />

@@ -99,7 +99,7 @@ export default function ChallengeChecklist({
           <button
             type="button"
             onClick={join}
-            className="mt-5 inline-flex items-center gap-2 rounded-md px-6 py-3 text-sm font-semibold text-cream transition-opacity hover:opacity-90"
+            className="btn-ink mt-5 inline-flex items-center gap-2 rounded-md px-6 py-3 text-sm font-semibold text-cream"
             style={{ background: accent }}
           >
             <Flag className="h-4 w-4" />
@@ -134,10 +134,10 @@ export default function ChallengeChecklist({
           return (
             <li
               key={step.id}
-              className={`rounded-2xl border bg-cream p-5 transition-colors ${
-                checked ? "border-transparent" : "border-sand"
+              className={`rounded-2xl bg-cream p-5 transition-all ${
+                checked ? "card-ink" : "border-2 border-sand"
               }`}
-              style={checked ? { borderColor: `${accent}66`, background: `${accent}0d` } : undefined}
+              style={checked ? { background: `${accent}0d` } : undefined}
             >
               <div className="flex items-start gap-4">
                 <button
@@ -185,7 +185,7 @@ export default function ChallengeChecklist({
 
       {/* Completion */}
       {complete && (
-        <div className="mt-8 flex flex-wrap items-center gap-5 rounded-2xl border border-sand bg-cream p-6 sm:p-8">
+        <div className="card-ink-lg mt-8 flex flex-wrap items-center gap-5 rounded-2xl bg-cream p-6 sm:p-8">
           <BadgeMedal color={accent} />
           <div className="min-w-0 flex-1">
             <p className="font-display text-xl font-semibold text-ink">

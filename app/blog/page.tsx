@@ -27,11 +27,11 @@ export default function BlogPage() {
       <Header />
 
       <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
-            The blog
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
+          <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+            New reads, no lectures
           </span>
-          <h1 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+          <h1 className="mt-7 max-w-3xl font-display text-5xl font-medium leading-[1.02] tracking-tight text-ink sm:text-7xl">
             The stuff between the guides.
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-stone">
@@ -58,26 +58,35 @@ export default function BlogPage() {
 
       <section className="bg-paper">
         <div className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
-          <div className="divide-y divide-sand border-y border-sand">
-            {posts.map((post) => (
+          {/* C: editorial object list — giant index numbers, ink rules */}
+          <div className="divide-y-2 divide-ink border-y-2 border-ink">
+            {posts.map((post, i) => (
               <article key={post.slug}>
-                <Link href={`/blog/${post.slug}`} className="group block py-8">
-                  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.16em]">
-                    <span className="text-terracotta">{post.tag}</span>
-                    <span className="font-medium normal-case tracking-normal text-stone">
-                      {formatDate(post.date)}
-                    </span>
-                  </p>
-                  <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl">
-                    {post.title}
-                  </h2>
-                  <p className="mt-2 text-base leading-7 text-stone">
-                    {post.dek}
-                  </p>
-                  <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
-                    <Clock className="h-3.5 w-3.5" />
-                    {post.readMinutes} min read
-                  </p>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex items-start gap-6 py-10 sm:gap-10"
+                >
+                  <span className="font-display text-6xl font-bold leading-none text-sand transition-colors group-hover:text-amber sm:text-8xl">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
+                      <span className="text-terracotta">{post.tag}</span>
+                      <span className="font-medium normal-case tracking-normal text-stone">
+                        {formatDate(post.date)}
+                      </span>
+                    </p>
+                    <h2 className="mt-3 font-display text-3xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-4xl">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 text-base leading-7 text-stone">
+                      {post.dek}
+                    </p>
+                    <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
+                      <Clock className="h-3.5 w-3.5" />
+                      {post.readMinutes} min read
+                    </p>
+                  </div>
                 </Link>
               </article>
             ))}

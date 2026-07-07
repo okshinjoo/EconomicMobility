@@ -19,21 +19,21 @@ export default function ToolsHub() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pb-10 pt-12">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+      {/* Hero — A: solid amber field */}
+      <section className="bg-amber text-ink">
+        <div className="mx-auto max-w-6xl px-6 pb-14 pt-14">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
             Free Tools
           </span>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-7xl">
             Run your real numbers.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
             Each calculator answers one question and updates as you type. No
             sign-up, nothing saved to our servers, no catch.
           </p>
 
-          {/* Category jump tiles — each in its own pastel with a live doodle */}
+          {/* Category jump tiles — B: ink & shadow objects on the amber field */}
           <div className="mt-9 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {toolCategories.map((cat, i) => {
               const style = toolStyles[cat.id] ?? toolStyles.budgeting;
@@ -42,8 +42,13 @@ export default function ToolsHub() {
                 <Reveal key={cat.id} delay={i * 70}>
                   <a
                     href={`#${cat.id}`}
-                    className="group block rounded-xl p-4 text-ink shadow-sm transition-shadow hover:shadow-md"
-                    style={{ backgroundColor: style.bg }}
+                    className="card-ink group block rounded-xl p-4 text-ink transition-transform duration-200 hover:-translate-y-1"
+                    style={{
+                      // The budgeting pastel is a pale amber — too close to the
+                      // field it sits on, so that tile goes cream instead.
+                      backgroundColor:
+                        cat.id === "budgeting" ? "#fbf8f1" : style.bg,
+                    }}
                   >
                     <ToolDoodle id={cat.id} color={style.accent} />
                     <span className="mt-3 block text-sm font-bold leading-tight">
@@ -148,7 +153,7 @@ export default function ToolsHub() {
                         {live ? (
                           <Link
                             href={hrefFor(cat, item)}
-                            className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-6 transition-all duration-200 hover:border-ink/15 hover:shadow-lg"
+                            className="card-ink group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"
                           >
                             {inner}
                           </Link>

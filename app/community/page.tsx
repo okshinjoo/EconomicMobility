@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TopicMark from "@/components/TopicMark";
 import CommunityFeed from "@/components/CommunityFeed";
 import { communityPosts } from "@/lib/communityFeed";
 
@@ -16,16 +17,22 @@ export default function CommunityPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
+      {/* Hero — C: editorial maximal on a forest field */}
+      <section className="relative overflow-hidden bg-forest text-cream">
+        <TopicMark
+          id="money-safety"
+          color="#fbf8f1"
+          className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.07]"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+          <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             The community
           </span>
-          <h1 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-            Learning out loud, together.
+          <h1 className="mt-6 max-w-4xl font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+            Learning out loud,{" "}
+            <span className="italic text-amber">together.</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/80">
             Wins, questions, and honest money conversations from people
             figuring it out — no account, no real name required. Everything is
             reviewed by a human before it appears for everyone, so it stays
@@ -40,7 +47,7 @@ export default function CommunityPage() {
           <CommunityFeed posts={communityPosts} />
 
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-            <div className="rounded-2xl border border-sand bg-cream p-6">
+            <div className="card-ink rounded-2xl bg-cream p-6">
               <h2 className="font-display text-lg font-semibold text-ink">
                 House rules
               </h2>
@@ -57,7 +64,7 @@ export default function CommunityPage() {
               </ul>
             </div>
 
-            <div className="rounded-2xl bg-forest p-6 text-cream">
+            <div className="rounded-2xl bg-forest p-6 text-cream shadow-[7px_7px_0_#e7a33c]">
               <h2 className="font-display text-lg font-semibold">
                 Have a question instead?
               </h2>
@@ -73,7 +80,7 @@ export default function CommunityPage() {
               </Link>
             </div>
 
-            <div className="rounded-2xl border border-sand bg-cream p-6">
+            <div className="card-ink rounded-2xl bg-cream p-6 lg:-rotate-[0.5deg]">
               <h2 className="font-display text-lg font-semibold text-ink">
                 New here?
               </h2>

@@ -30,16 +30,19 @@ export default function ChallengeGrid({ items }: { items: ChallengeCardData[] })
 
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((ch) => {
+      {items.map((ch, i) => {
         const p = progress[ch.id];
         const done = p ? Object.keys(p.done).length : 0;
         const badge = badges[ch.id];
+        // A minority of cards tilt ever so slightly (B voice).
+        const tilt =
+          i === 1 ? "lg:-rotate-[0.5deg]" : i === 3 ? "lg:rotate-[0.5deg]" : "";
         return (
           <Link
             key={ch.id}
             href={`/challenges/${ch.id}`}
-            className="group flex flex-col rounded-2xl border p-6 transition-all duration-200 hover:shadow-lg"
-            style={{ background: `${ch.color}0d`, borderColor: `${ch.color}30` }}
+            className={`card-ink group flex flex-col rounded-2xl bg-paper p-6 transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
+            style={{ background: `${ch.color}0d` }}
           >
             <div className="flex items-start justify-between gap-3">
               <span
@@ -64,7 +67,7 @@ export default function ChallengeGrid({ items }: { items: ChallengeCardData[] })
                 </p>
               ) : p ? (
                 <>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-sand">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-sand">
                     <div
                       className="h-full rounded-full"
                       style={{

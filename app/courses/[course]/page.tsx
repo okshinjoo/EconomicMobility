@@ -39,6 +39,10 @@ export default async function CoursePage({
   const articles = getCourseArticles(found);
   const cards = getCourseFlashcards(found);
   const accent = found.color;
+  // The hero kicker is amber — except on the gold course color, where amber
+  // would melt into the field; cream keeps it readable there.
+  const kickerClass =
+    accent.toLowerCase() === "#c9842a" ? "text-cream/85" : "text-amber";
   const articleRefs = articles.map((a) => ({
     slug: a.slug,
     title: a.title,
@@ -50,32 +54,34 @@ export default async function CoursePage({
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
-          <nav className="text-sm text-stone">
-            <Link href="/courses" className="hover:text-ink hover:underline">
+      {/* Hero — A: a solid field of the course's own color */}
+      <section className="text-cream" style={{ backgroundColor: accent }}>
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
+          <nav className="text-sm text-cream/70">
+            <Link
+              href="/courses"
+              className="hover:text-cream hover:underline"
+            >
               Courses
             </Link>{" "}
             <span aria-hidden>›</span>{" "}
-            <span className="font-medium text-ink">{found.title}</span>
+            <span className="font-medium text-cream">{found.title}</span>
           </nav>
           <span
-            className="mt-6 block text-xs font-semibold uppercase tracking-[0.18em]"
-            style={{ color: accent }}
+            className={`mt-8 block text-sm font-bold uppercase tracking-[0.25em] ${kickerClass}`}
           >
             Learning module
           </span>
-          <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+          <h1 className="mt-4 max-w-3xl font-display text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl">
             {found.title}
           </h1>
-          <p className="mt-2 max-w-2xl text-lg font-semibold text-ink/80">
+          <p className="mt-4 max-w-2xl text-lg font-semibold text-cream/90">
             {found.goal}
           </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-stone">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-cream/75">
             {found.description}
           </p>
-          <p className="mt-5 text-sm font-medium text-stone">
+          <p className="mt-6 text-sm font-medium text-cream/70">
             {articles.length} guides · about {totalMinutes} minutes of reading
             · {cards.length} flashcards · {found.finalQuiz.length}-question
             final
@@ -97,7 +103,7 @@ export default async function CoursePage({
               <li key={a.slug}>
                 <Link
                   href={`/learn/${a.topicId}/${a.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:border-ink/20 hover:shadow-md"
+                  className="card-ink group flex h-full flex-col rounded-2xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between">
                     <span
@@ -162,13 +168,15 @@ export default async function CoursePage({
           <p className="mt-1.5 mb-6 text-sm text-stone">
             Pass it and the {found.title} badge is yours.
           </p>
-          <CourseQuiz
-            courseId={found.id}
-            courseTitle={found.title}
-            questions={found.finalQuiz}
-            accent={accent}
-            articles={articleRefs}
-          />
+          <div className="card-ink-lg overflow-hidden rounded-2xl empty:hidden">
+            <CourseQuiz
+              courseId={found.id}
+              courseTitle={found.title}
+              questions={found.finalQuiz}
+              accent={accent}
+              articles={articleRefs}
+            />
+          </div>
         </div>
       </section>
 

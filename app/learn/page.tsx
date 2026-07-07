@@ -24,35 +24,42 @@ export default function LearnHub() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero: copy + colorful topic launcher */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-16">
+      {/* Hero — C: editorial maximal on a forest field, launcher tiles on top */}
+      <section className="relative overflow-hidden bg-forest text-cream">
+        <TopicMark
+          id="budgeting"
+          color="#fbf8f1"
+          className="pointer-events-none absolute -bottom-24 -left-20 h-[26rem] w-[26rem] opacity-[0.07]"
+        />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               The Library
             </span>
-            <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
-              Learn money, your way.
+            <h1 className="mt-5 font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+              Learn money,
+              <br />
+              <span className="italic text-amber">your way.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-stone">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-cream/75">
               Nine core topics, each built as a clear path from the absolute
               basics to the stuff that takes you further. Start anywhere — or
               let the quiz pick for you.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-stone">
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-cream/70">
               <span className="inline-flex items-center gap-1.5">
-                <BookOpen className="h-4 w-4 text-forest" />
+                <BookOpen className="h-4 w-4 text-amber" />
                 {totalGuides} free guides
               </span>
-              <span className="text-sand">·</span>
+              <span className="text-cream/30">·</span>
               <span>{topics.length} topics</span>
-              <span className="text-sand">·</span>
+              <span className="text-cream/30">·</span>
               <span>No sign-up, no paywall</span>
             </div>
             <div className="mt-8">
               <Link
                 href="/quiz"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
+                className="btn-ink inline-flex items-center justify-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
               >
                 Not sure where to start? Take the quiz
                 <ArrowRight className="h-4 w-4" />
@@ -60,14 +67,16 @@ export default function LearnHub() {
             </div>
           </div>
 
-          {/* Topic launcher: nine marks on their pastel tints */}
+          {/* Topic launcher: nine marks on cream/pastel tiles, floating on the field */}
           <div className="grid grid-cols-3 gap-3">
             {topics.map((t, i) => (
               <Reveal key={t.id} delay={i * 50}>
                 <Link
                   href={t.href}
-                  className="group flex flex-col items-center gap-2 rounded-2xl px-3 py-5 text-center transition-shadow hover:shadow-md"
-                  style={{ background: `${t.color}16` }}
+                  className="group flex flex-col items-center gap-2 rounded-2xl px-3 py-5 text-center transition-transform duration-200 hover:-translate-y-1"
+                  style={{
+                    background: `color-mix(in srgb, ${t.color} 13%, #fbf8f1)`,
+                  }}
                 >
                   <TopicMark
                     id={t.id}
@@ -96,7 +105,13 @@ export default function LearnHub() {
                 <Reveal key={topic.id} delay={(i % 3) * 70}>
                   <Link
                     href={topic.href}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-200 hover:border-ink/15 hover:shadow-xl"
+                    className={`card-ink group flex h-full flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
+                      i === 1
+                        ? "lg:rotate-[0.5deg]"
+                        : i === 6
+                          ? "lg:-rotate-[0.5deg]"
+                          : ""
+                    }`}
                   >
                     <div className="relative aspect-[5/3] overflow-hidden bg-sand">
                       <Image

@@ -350,12 +350,12 @@ export default function QuizFlow() {
             {/* Progress header */}
             <div className="border-b border-sand bg-paper-deep px-6 py-5 sm:px-10">
               <div className="flex items-center justify-between gap-4">
-                <p className="text-sm font-semibold text-ink">{progressLabel}</p>
-                <p className="text-xs font-semibold text-stone">
+                <p className="text-sm font-bold text-ink">{progressLabel}</p>
+                <p className="text-sm font-bold text-ink">
                   {Math.round(progress)}%
                 </p>
               </div>
-              <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
+              <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-sand">
                 <div
                   className="h-full rounded-full bg-amber transition-all duration-300"
                   style={{ width: `${progress}%` }}
@@ -478,7 +478,7 @@ function WelcomeScreen({
   return (
     <div>
       {savedResult && (
-        <div className="mb-10 flex flex-col items-start gap-4 rounded-3xl border border-sand bg-cream p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="card-ink mb-10 flex flex-col items-start gap-4 rounded-3xl bg-cream p-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-display text-lg font-semibold text-ink">
               Welcome back
@@ -538,7 +538,7 @@ function WelcomeScreen({
           <button
             type="button"
             onClick={onStart}
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-amber px-8 py-4 text-base font-semibold text-ink shadow-sm transition-colors hover:bg-amber-deep hover:text-cream"
+            className="btn-ink mt-8 inline-flex items-center gap-2 rounded-md bg-amber px-8 py-4 text-base font-bold text-ink"
           >
             Start the Quiz
             <ArrowRight className="h-4 w-4" />
@@ -558,7 +558,7 @@ function WelcomeScreen({
         </div>
 
         {/* Topics panel — reuses the topic illustration icons */}
-        <div className="rounded-3xl bg-forest p-7 text-cream shadow-lg sm:p-9">
+        <div className="rounded-3xl bg-forest p-7 text-cream shadow-[7px_7px_0_#e7a33c] sm:p-9">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
             What it covers
           </p>
@@ -592,7 +592,7 @@ function WelcomeScreen({
           {welcomeOutcomes.map((c, i) => (
             <div
               key={c.title}
-              className="rounded-2xl border border-sand bg-cream p-6"
+              className="card-ink rounded-2xl bg-cream p-6"
             >
               <span
                 className="flex h-9 w-9 items-center justify-center rounded-full font-display text-base font-semibold"
@@ -634,17 +634,17 @@ function OptionButton({
     <button
       type="button"
       onClick={onClick}
-      className={`group flex w-full items-center gap-4 rounded-2xl border px-4 py-4 text-left text-base font-medium transition-all duration-150 ${
+      className={`group flex w-full items-center gap-4 rounded-2xl px-4 py-4 text-left text-base font-medium transition-all duration-150 ${
         selected
-          ? "border-amber bg-amber/10 text-ink shadow-sm"
-          : "border-ink/10 bg-white text-ink hover:-translate-y-0.5 hover:border-amber/60 hover:shadow-md"
+          ? "card-ink bg-amber font-semibold text-ink"
+          : "border-2 border-sand bg-white text-ink hover:-translate-y-0.5 hover:border-ink/40 hover:shadow-md"
       }`}
     >
       {letter && (
         <span
           className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold transition-colors ${
             selected
-              ? "bg-amber text-ink"
+              ? "bg-ink text-cream"
               : "bg-ink/5 text-stone group-hover:bg-amber/20 group-hover:text-amber-deep"
           }`}
         >
@@ -657,7 +657,7 @@ function OptionButton({
           multi ? "rounded-md" : "rounded-full"
         } ${
           selected
-            ? "border-amber bg-amber text-ink"
+            ? "border-ink bg-ink text-amber"
             : "border-ink/20 bg-transparent"
         }`}
       >

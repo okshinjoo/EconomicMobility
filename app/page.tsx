@@ -398,97 +398,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools */}
-      <section className="bg-forest text-cream">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-          <div className="max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-              Put it to work
-            </span>
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-normal sm:text-[2.75rem]">
-              Run your own numbers
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-cream/70">
-              Understanding money is step one. These free calculators work
-              right in the page — no downloads, no sign-up — and save your
-              inputs on your own device.
-            </p>
+      {/* Tools — B: ink-and-shadow pastel cards */}
+      <section className="border-t-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-amber px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
+                Put it to work
+              </span>
+              <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+                Run your own numbers
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-stone">
+                Every calculator works right in the page and saves your inputs
+                on your own device. No downloads, no sign-up.
+              </p>
+            </div>
+            <Link
+              href="/tools"
+              className="btn-ink inline-flex items-center rounded-xl bg-amber px-7 py-3.5 text-base font-bold text-ink"
+            >
+              See all {calculatorTotal} tools
+            </Link>
           </div>
 
-          {/* Bento grid: the two big categories go wide, the others narrow. */}
-          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-6">
-            {toolCategories.map((cat) => {
+          <div className="mt-12 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
+            {toolCategories.map((cat, ci) => {
               const style = toolStyles[cat.id] ?? toolStyles.budgeting;
-              const wide = cat.id === "budgeting" || cat.id === "saving";
               return (
-                <Reveal key={cat.id} className={wide ? "lg:col-span-4" : "lg:col-span-2"}>
-                <div
-                  className={`flex h-full flex-col rounded-2xl text-ink shadow-sm transition-shadow hover:shadow-xl ${
-                    wide ? "p-6 lg:p-8" : "p-6"
-                  }`}
-                  style={{ backgroundColor: style.bg }}
-                >
-                  <ToolDoodle id={cat.id} color={style.accent} wide={wide} />
-                  <h3
-                    className={`mt-5 font-display font-semibold ${
-                      wide ? "text-xl lg:text-2xl" : "text-lg"
+                <Reveal key={cat.id} delay={ci * 70}>
+                  <div
+                    className={`card-ink flex h-full flex-col rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1 ${
+                      ci % 2 === 1 ? "lg:rotate-[0.6deg]" : "lg:-rotate-[0.4deg]"
                     }`}
+                    style={{ backgroundColor: style.bg }}
                   >
-                    <Link
-                      href={cat.base}
-                      className="hover:underline hover:decoration-2 hover:underline-offset-4"
-                      style={{ textDecorationColor: style.accent }}
-                    >
-                      {cat.label}
-                    </Link>
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/70">
-                    {cat.blurb}
-                  </p>
-                  <ul
-                    className={`mt-4 border-t pt-4 ${
-                      wide
-                        ? "grid gap-x-8 gap-y-2 sm:grid-cols-2"
-                        : "space-y-2"
-                    }`}
-                    style={{ borderColor: `${style.accent}55` }}
-                  >
-                    {cat.items
-                      .filter((item) => item.status === "live")
-                      .map((item) => (
-                        <li key={item.slug}>
+                    <ToolDoodle id={cat.id} color={style.accent} />
+                    <h3 className="mt-5 font-display text-xl font-bold text-ink">
+                      <Link href={cat.base} className="hover:underline hover:decoration-2 hover:underline-offset-4">
+                        {cat.label}
+                      </Link>
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-6 text-ink/70">
+                      {cat.blurb}
+                    </p>
+                    <ul className="mt-4 space-y-2 border-t-2 pt-4" style={{ borderColor: `${style.accent}55` }}>
+                      {cat.items
+                        .filter((item) => item.status === "live")
+                        .slice(0, 4)
+                        .map((item) => (
+                          <li key={item.slug}>
+                            <Link
+                              href={item.main ? cat.base : `${cat.base}/${item.slug}`}
+                              className="text-sm font-semibold text-ink/85 underline decoration-2 underline-offset-4 transition-colors hover:text-ink"
+                              style={{ textDecorationColor: `${style.accent}88` }}
+                            >
+                              {item.title}
+                            </Link>
+                          </li>
+                        ))}
+                      {cat.items.filter((i) => i.status === "live").length > 4 && (
+                        <li>
                           <Link
-                            href={
-                              item.main ? cat.base : `${cat.base}/${item.slug}`
-                            }
-                            className="text-sm font-medium text-ink/85 underline decoration-2 underline-offset-4 transition-colors hover:text-ink"
-                            style={{ textDecorationColor: `${style.accent}88` }}
+                            href={cat.base}
+                            className="text-sm font-bold"
+                            style={{ color: style.accent }}
                           >
-                            {item.title}
+                            +{cat.items.filter((i) => i.status === "live").length - 4} more
                           </Link>
                         </li>
-                      ))}
-                  </ul>
-                </div>
+                      )}
+                    </ul>
+                  </div>
                 </Reveal>
               );
             })}
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center gap-6">
-            <Link
-              href="/tools"
-              className="inline-flex items-center rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
-            >
-              See all tools
-            </Link>
+          <p className="mt-8 text-base text-stone">
+            Prefer a spreadsheet?{" "}
             <Link
               href="/tools/templates"
-              className="text-base font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
-              Download the spreadsheet templates
+              Download the free templates
             </Link>
-          </div>
+            .
+          </p>
         </div>
       </section>
 
