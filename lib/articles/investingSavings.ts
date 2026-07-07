@@ -8,7 +8,7 @@ export const investingSavingsArticles: Article[] = [
     title: "What Is a High-Yield Savings Account?",
     dek: "It's the same safe savings account you already understand, just one that actually pays you for keeping money in it.",
     level: "Beginner",
-    readMinutes: 6,
+    readMinutes: 5,
     takeaways: [
       "An HYSA is a normal, safe savings account that pays many times more interest.",
       "Compare accounts on three things: the APY, access, and fees.",
@@ -54,23 +54,11 @@ export const investingSavingsArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "How to compare accounts",
+        text: "What switching is worth",
       },
       {
         type: "p",
-        text: "Bank websites list a confusing wall of products (checking, savings, money market, CDs), but comparing places to keep your savings comes down to three things:",
-      },
-      {
-        type: "list",
-        items: [
-          "**The APY:** how much the account pays you per year. A regular big-bank savings account often pays around 0.01%; an HYSA often pays around **4%** in 2026. If the term is new to you, [What Is APY?](/learn/budgeting/what-is-apy) explains how it works.",
-          "**Access:** how quickly and freely you can get your money. Checking is instant, an HYSA takes a day or two, and a CD ties money up for months or years.",
-          "**Fees and minimums:** monthly maintenance fees, minimum balances, minimum deposits. The best accounts have none, so skip any that charge them.",
-        ],
-      },
-      {
-        type: "p",
-        text: "The payoff for switching is real. On a $5,000 balance, the difference between 0.01% and 4% is roughly $200 a year, for doing nothing but moving the money. Most people are well served by a free checking account for daily spending plus one good HYSA for everything they're setting aside.",
+        text: "A regular big-bank savings account often pays around 0.01%; an HYSA often pays around **4%** in 2026. On a $5,000 balance, that gap is roughly $200 a year, for doing nothing but moving the money. If you want to see how an HYSA stacks up against every other place to park cash (CDs, money market accounts, and the rest), [Where to Keep Your Cash](/learn/investing/compare-savings-accounts) compares them side by side. The short version: look at the APY, how fast you can reach the money, and whether there are fees or minimums. Most people are well served by a free checking account for daily spending plus one good HYSA for everything they're setting aside.",
       },
       {
         type: "h2",
@@ -93,7 +81,7 @@ export const investingSavingsArticles: Article[] = [
         text: "An HYSA is the perfect home for your emergency fund or any goal you're saving toward in the next few years. Safe, available, and paying you real interest while you wait. It's a parking spot for cash, not a wealth-building engine.",
       },
     ],
-    related: ["what-is-a-cd", "saving-vs-investing", "cd-laddering"],
+    related: ["compare-savings-accounts", "what-is-a-cd", "saving-vs-investing"],
   },
 
   {
@@ -175,7 +163,7 @@ export const investingSavingsArticles: Article[] = [
         text: "A CD trades access for a guaranteed rate. It shines for money with a known deadline. If there's any chance you'll need the cash sooner, a high-yield savings account is the safer call.",
       },
     ],
-    related: ["high-yield-savings-account", "cd-laddering", "saving-vs-investing"],
+    related: ["high-yield-savings-account", "cd-laddering", "compare-savings-accounts"],
   },
 
   {
@@ -253,5 +241,102 @@ export const investingSavingsArticles: Article[] = [
       },
     ],
     related: ["what-is-a-cd", "high-yield-savings-account", "saving-vs-investing"],
+  },
+
+  {
+    slug: "compare-savings-accounts",
+    order: 5,
+    topicId: "investing",
+    title: "Where to Keep Your Cash: Savings Options Compared",
+    dek: "Big-bank savings, HYSAs, CDs, money market accounts, cash-management accounts: one trade-off explains them all.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Every place to park cash trades access for rate. Name the trade-off and the choice gets easy.",
+      "All five options here are federally insured, so safety isn't the deciding factor.",
+      "A regular big-bank savings account is the one option with no real job.",
+      "Match the account to when you'll need the money, not to the flashiest rate.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "You've decided to keep some money safe in cash instead of investing it. Good. Now comes the quieter question: which shelf to keep it on. Banks offer a wall of lookalike products (savings, money market, CDs, and more), and the gap between the worst choice and the best one can be hundreds of dollars a year on the same balance, at the same level of risk.",
+      },
+      {
+        type: "h2",
+        text: "The trade-off underneath all of them",
+      },
+      {
+        type: "p",
+        text: "Every option below sits somewhere on one line: how easily you can reach the money versus how much it pays while it sits. Checking is instant and pays nothing; a five-year CD pays the most and locks you out the longest. Everything else falls in between. So comparing any two accounts really takes two questions: what's the [APY](/learn/budgeting/what-is-apy), and how fast can I get my money out?",
+      },
+      {
+        type: "p",
+        text: "One thing you don't have to weigh is safety. Every account here is covered by federal insurance (FDIC at banks, NCUA at credit unions) up to $250,000 per depositor, per institution, so your deposit survives even if the bank doesn't.",
+      },
+      {
+        type: "h2",
+        text: "The five places, one by one",
+      },
+      {
+        type: "h3",
+        text: "Regular big-bank savings",
+      },
+      {
+        type: "p",
+        text: "The savings account attached to your big-bank checking often pays around 0.01%. Its only advantage is living under the same roof as your checking account, which makes transfers instant. That's worth something for a small buffer; it's a poor home for real savings.",
+      },
+      {
+        type: "h3",
+        text: "High-yield savings account (HYSA)",
+      },
+      {
+        type: "p",
+        text: "The same product at an online bank, paying around 4% in 2026. Fully liquid (transfers take a day or two), no penalty, no term. For an emergency fund or any money you might need on short notice, this is the default answer. The full picture is in [What Is a High-Yield Savings Account?](/learn/investing/high-yield-savings-account).",
+      },
+      {
+        type: "h3",
+        text: "Certificates of deposit (CDs)",
+      },
+      {
+        type: "p",
+        text: "A CD locks in a fixed rate in exchange for a promise not to touch the money for a set term; break the promise and you usually pay a penalty. Best for money with a known deadline, like tuition due next fall. [What Is a CD?](/learn/investing/what-is-a-cd) covers the mechanics, and [CD Laddering](/learn/investing/cd-laddering) shows how to get long-CD rates without freezing all your cash at once.",
+      },
+      {
+        type: "h3",
+        text: "Money market accounts",
+      },
+      {
+        type: "p",
+        text: "A bank savings account with a little checking mixed in: many come with a debit card or a few checks a month, and rates land near HYSA territory. The catch is that they often require higher minimum balances to earn the good rate or dodge fees. (Don't confuse them with *money market funds*, which are an investment product, not an insured bank account.)",
+      },
+      {
+        type: "h3",
+        text: "Cash-management accounts",
+      },
+      {
+        type: "p",
+        text: "Offered by brokerages rather than banks, these hold the cash sitting next to your investments and sweep it into partner banks so it stays FDIC insured. Rates are usually competitive, and the convenience is real if you already invest there. They're a nice-to-have, not something to open on its own.",
+      },
+      {
+        type: "h2",
+        text: "The decision shortcut",
+      },
+      {
+        type: "list",
+        items: [
+          "**Money you'll spend this month:** checking. Access wins completely.",
+          "**Emergency fund, or money you might need anytime:** an HYSA. Full access, real rate.",
+          "**Money with a known date a year or more out:** a CD, or a CD ladder for larger amounts.",
+          "**Savings you occasionally need to spend directly:** a money market account, if you can clear its minimums.",
+          "**Cash already sitting at your brokerage:** a cash-management account or sweep, so it earns while it waits.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Most people need exactly two of these: a free checking account for spending and one good HYSA for everything else. The rest are refinements. Getting your savings out of a 0.01% account is the move that matters; optimizing beyond that is a bonus round.",
+      },
+    ],
+    related: ["high-yield-savings-account", "what-is-a-cd", "cd-laddering"],
   },
 ];

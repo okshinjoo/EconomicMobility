@@ -107,6 +107,10 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Compound Interest Calculator",
     href: "/tools/savings/compound",
   },
+  "compare-savings-accounts": {
+    label: "Compound Interest Calculator",
+    href: "/tools/savings/compound",
+  },
   "retirement-accounts-explained": {
     label: "Retirement Calculator",
     href: "/tools/savings/retirement",

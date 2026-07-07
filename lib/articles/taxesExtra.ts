@@ -574,6 +574,81 @@ export const taxesExtraArticles: Article[] = [
         text: "Two closing notes for taxable accounts. First, losses aren't wasted: capital losses offset your gains, and up to $3,000 of leftover loss can reduce your ordinary income each year. Second, the *wash-sale rule*: if you sell an investment at a loss and buy the same (or nearly identical) one back within 30 days, the IRS disallows the loss. Neither will matter much if you're doing the boring thing, buying steadily and rarely selling, which conveniently is also the best tax plan there is.",
       },
     ],
-    related: ["dividends-explained", "tax-brackets-explained", "roth-vs-traditional-ira"],
+    related: ["dividends-explained", "tax-brackets-explained", "roth-vs-traditional-ira", "tax-loss-harvesting"],
+  },
+
+  {
+    slug: "tax-loss-harvesting",
+    order: 150,
+    topicId: "taxes",
+    title: "Tax-Loss Harvesting, Explained",
+    dek: "Selling a loser on purpose can trim your tax bill. The mechanics are simple; the fine print is the wash-sale rule.",
+    level: "Advanced",
+    readMinutes: 4,
+    takeaways: [
+      "Selling an investment at a loss creates a capital loss that offsets your capital gains.",
+      "Up to $3,000 of leftover loss reduces ordinary income each year; the rest carries forward.",
+      "Buying the same investment back within 30 days voids the loss (the wash-sale rule).",
+      "It only works in taxable accounts, and for small accounts the dollars are small.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Tax-loss harvesting shows up in robo-advisor marketing and personal-finance articles sounding like something only rich people's accountants do. It's a tax move with two rules, and you can learn both in five minutes. One prerequisite: this piece assumes you know how capital gains work, which [Taxes on Your Investments](/learn/taxes/investment-taxes-101) covers.",
+      },
+      {
+        type: "h2",
+        text: "The basic move",
+      },
+      {
+        type: "p",
+        text: "Investments drop sometimes. Tax-loss harvesting means selling one while it's down, on purpose, to make the loss official in the eyes of the IRS, then putting the money into a similar (but not identical) investment so you stay in the market. Your portfolio barely changes. What changes is your tax return, because a realized loss has uses.",
+      },
+      {
+        type: "h2",
+        text: "What a loss is worth",
+      },
+      {
+        type: "p",
+        text: "Losses apply in a fixed order. First, they cancel out capital gains, dollar for dollar and without limit: $5,000 of harvested losses wipes out $5,000 of gains you took elsewhere during the year. If losses exceed gains, up to **$3,000** of the leftover reduces your ordinary income, the same income your paycheck is taxed on ($1,500 if married filing separately). That cap has sat at $3,000 since 1978. Anything beyond it carries forward to future years indefinitely, offsetting gains and income until it's used up.",
+      },
+      {
+        type: "p",
+        text: "Run the numbers before getting excited, though. Suppose your $4,000 portfolio drops 10%: harvesting the full $400 loss against ordinary income in the 12% bracket saves about $48. Worth taking if the opportunity is sitting in front of you; not worth building a strategy around. The dollars grow with the account, which is why this technique gets more attention the wealthier the audience.",
+      },
+      {
+        type: "h2",
+        text: "The wash-sale rule",
+      },
+      {
+        type: "p",
+        text: "The IRS anticipated the obvious cheat: sell, claim the loss, buy right back. The wash-sale rule disallows your loss if you buy the same or a *substantially identical* investment within 30 days before or after the sale. The window runs in both directions, 61 days in total counting the sale date, and it reaches into your IRA and your spouse's accounts too, so you can't dodge it by repurchasing somewhere else.",
+      },
+      {
+        type: "p",
+        text: "\"Substantially identical\" is the judgment call. Selling one company's stock and buying a different company's is clearly fine. Selling an S&P 500 index fund and buying another provider's fund tracking the same index is asking for trouble. The standard play is to swap into something similar but genuinely different, say a total-market fund in place of an S&P 500 fund, so you stay invested without voiding the loss.",
+      },
+      {
+        type: "h2",
+        text: "Only in taxable accounts",
+      },
+      {
+        type: "p",
+        text: "Inside a 401(k), IRA, or HSA there are no capital gains taxes, which means losses there have no tax value to harvest. Everything in this article applies solely to a regular taxable brokerage account. If all your investing happens in retirement accounts, tax-loss harvesting is a strategy you can cheerfully ignore.",
+      },
+      {
+        type: "h2",
+        text: "Why robo-advisors advertise it",
+      },
+      {
+        type: "p",
+        text: "Harvesting rewards vigilance. Dips can be brief, and a human who checks quarterly misses most of them; software watching daily doesn't. That's why [robo-advisors](/learn/investing/robo-advisors) offer automated harvesting and market it prominently. It's a genuine feature, but know what it is: mostly a deferral, not an erasure. Selling low and rebuying lowers your cost basis, which sets up a larger taxable gain later. The bet, usually a reasonable one, is that a tax break today is worth more than a bigger gain taxed at low long-term rates decades from now.",
+      },
+      {
+        type: "tip",
+        text: "Doing it yourself? December is the traditional month: your year's gains and losses are mostly known, and a loss must be realized by December 31 to count for that tax year. One unhurried session, checking the 30-day window before you click sell, covers it.",
+      },
+    ],
+    related: ["investment-taxes-101", "tax-brackets-explained", "robo-advisors"],
   },
 ];

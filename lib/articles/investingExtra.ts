@@ -370,7 +370,7 @@ export const investingExtraArticles: Article[] = [
         text: "Retirement being far away isn't the problem. It's the advantage: the distance is exactly what lets small, early contributions turn into something large.",
       },
     ],
-    related: ["retirement-accounts-explained", "magic-of-compound-interest", "what-is-a-401k"],
+    related: ["retirement-accounts-explained", "magic-of-compound-interest", "what-is-a-401k", "annuities-explained"],
   },
 
   {

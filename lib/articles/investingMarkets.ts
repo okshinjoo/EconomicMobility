@@ -6,69 +6,112 @@ export const investingMarketsArticles: Article[] = [
     order: 90,
     topicId: "investing",
     title: "Comparing Common Investment Vehicles",
-    dek: "Stocks, bonds, funds, CDs, real estate: a quick-reference map of the main ways to put money to work.",
+    dek: "Stocks, bonds, funds, cash, REITs, and crypto, measured against the same four yardsticks and matched to the jobs they do well.",
     level: "Intermediate",
     readMinutes: 5,
     takeaways: [
-      "Every investment trades off three things: potential return, risk, and how easily you can sell.",
-      "Higher potential return almost always means higher risk. There's no free lunch.",
-      "Funds let you own a little of everything, which spreads out risk.",
-      "For most beginners, a low-cost index fund is the boring, sensible default.",
+      "Judge every investment on four things: risk, return character, liquidity, and effort.",
+      "Higher expected return always rides with higher risk. Nothing on this list is a free lunch.",
+      "Your time horizon, not your opinion of the asset, should pick the vehicle.",
+      "For long-term money, a low-cost index fund is the sensible default.",
     ],
     body: [
       {
         type: "p",
-        text: "Once you decide to invest, the next question is *in what?* The menu can feel endless, but almost everything sorts into a handful of buckets. This page is the quick reference: what each bucket is, what it trades off, and where to read more.",
+        text: "Once you decide to invest, the next question is *in what?* The menu can feel endless, but almost everything sorts into a handful of buckets, and the buckets get much easier to compare once you measure them all against the same yardsticks. This guide does exactly that, then finishes with the part most comparisons skip: which job each vehicle is actually for.",
       },
       {
         type: "h2",
-        text: "The three things every investment trades off",
+        text: "The four yardsticks",
       },
       {
         type: "list",
         items: [
-          "**Return:** how much it might grow your money over time.",
-          "**Risk:** how much it can swing, or how much you could lose.",
-          "**Liquidity:** how quickly you can turn it back into cash without a penalty.",
+          "**Risk:** how far the value can swing, and how much you could lose.",
+          "**Return character:** not just how much it might earn, but *how*. Steady interest, slow compounding, or feast-and-famine.",
+          "**Liquidity:** how fast you can turn it back into cash without a penalty or a haircut.",
+          "**Effort:** how much research, upkeep, and nerve it demands from you.",
         ],
       },
       {
         type: "p",
-        text: "Here's the rule that ties them together: higher potential return almost always comes with higher risk. Anything promising big rewards with no risk is either misunderstood or a scam. That single idea will protect you more than any stock tip.",
+        text: "One rule ties the first two together: higher expected return always comes packaged with higher risk. Anything promising big rewards with no risk is either misunderstood or a scam. That single idea will protect you more than any stock tip ever will.",
       },
       {
         type: "h2",
-        text: "The main vehicles, at a glance",
+        text: "The vehicles, one by one",
+      },
+      {
+        type: "h3",
+        text: "Individual stocks",
+      },
+      {
+        type: "p",
+        text: "A stock is a slice of ownership in one company, so your result depends on how that one company does. The return character is lumpy: a great pick can multiply, a bad one can go to zero, and even good companies swing 30% in an ordinary year. Liquidity is excellent (you can sell in seconds on any market day), but the effort is the highest here. Owning single stocks responsibly means researching businesses and stomaching their bad quarters, which is why most people should hold stocks through funds instead.",
+      },
+      {
+        type: "h3",
+        text: "Bonds",
+      },
+      {
+        type: "p",
+        text: "A bond is a loan you make to a government or company, which pays you interest and then returns your money. The return character is the opposite of a stock's: steady, contractual, and capped. Risk is much lower (though bond *prices* do wobble when interest rates move), liquidity is good, and effort is minimal if you hold them through a fund. Bonds are the stabilizer in a portfolio, not the engine. [Bonds, Explained](/learn/investing/bonds-explained) goes deeper.",
+      },
+      {
+        type: "h3",
+        text: "Index funds and ETFs",
+      },
+      {
+        type: "p",
+        text: "A fund is a basket holding hundreds or thousands of stocks or bonds at once, so no single company can sink you. A broad stock index fund keeps the long-run growth of the stock market while sanding off the single-company disasters, and the effort rounds to zero: no research, no timing, just regular contributions. Liquidity is same-day. This combination (market-level returns, spread-out risk, no homework) is why funds are the workhorse for ordinary investors. [ETF vs. Mutual Fund vs. Index Fund](/learn/investing/etf-vs-mutual-fund) sorts out the wrappers.",
+      },
+      {
+        type: "h3",
+        text: "Cash: HYSAs and CDs",
+      },
+      {
+        type: "p",
+        text: "The safe corner. A [high-yield savings account](/learn/investing/high-yield-savings-account) pays real interest with instant-ish access; a [CD](/learn/investing/what-is-a-cd) pays a locked rate in exchange for a locked term. Risk to your principal is essentially zero (both are federally insured), which is exactly why the return is the lowest on this list: over decades, cash barely outruns inflation. Perfect for money you'll need soon, a quiet drag on money you won't.",
+      },
+      {
+        type: "h3",
+        text: "REITs",
+      },
+      {
+        type: "p",
+        text: "A REIT is a company that owns income-producing real estate and trades like a stock, so you get landlord-style income with none of the landlord work and full same-day liquidity. Risk sits near stock territory, and the return character tilts toward dividends rather than price growth. [REITs: Real Estate Without the House](/learn/investing/what-is-a-reit) covers the details, including the tax wrinkle that makes them fit best inside retirement accounts.",
+      },
+      {
+        type: "h3",
+        text: "Crypto",
+      },
+      {
+        type: "p",
+        text: "Maximum risk, feast-or-famine return character, decent liquidity on major coins, and high effort if you count the nerve required to hold through 70% drawdowns. There's no underlying business or interest payment, just what the next buyer will pay. If you want exposure anyway, [A Calm Word on Crypto](/learn/investing/crypto-explained) makes the case for keeping it a small, capped slice of money you can afford to lose.",
+      },
+      {
+        type: "h2",
+        text: "Match the vehicle to the job",
+      },
+      {
+        type: "p",
+        text: "The right question is never \"which of these is best?\" It's \"when will I need this money?\" Time horizon does most of the deciding for you:",
       },
       {
         type: "list",
         items: [
-          "**Stocks:** a tiny slice of ownership in one company. High potential return, high risk, easy to sell.",
-          "**Bonds:** a loan you make to a government or company that pays you interest. Lower return, lower risk, fairly steady. More in [Bonds, Explained](/learn/investing/bonds-explained).",
-          "**Funds (index funds, ETFs, mutual funds):** a basket holding many stocks or bonds at once, so one bad company barely matters. The beginner-friendly workhorse. More in [ETF vs. Mutual Fund vs. Index Fund](/learn/investing/etf-vs-mutual-fund).",
-          "**High-yield savings and CDs:** the safe, boring corner. Low return, very low risk, federally insured. Great for money you'll need soon, not for long-term growth. More in [What Is a High-Yield Savings Account?](/learn/investing/high-yield-savings-account) and [What Is a CD?](/learn/investing/what-is-a-cd)",
-          "**Real estate:** property you own to rent out or sell later, or REITs (funds that own real estate so you don't have to). Can pay income, but it's less liquid and takes more work or money to start.",
-          "**Crypto and options:** speculative and volatile, closer to a bet than a plan. Only with money you can fully afford to lose, and only after the basics are covered. More in [A Calm Word on Crypto](/learn/investing/crypto-explained).",
+          "**Within 2 years:** cash only. An HYSA or a CD, because a market dip right before you need the money would be a disaster you can't wait out.",
+          "**2 to 5 years:** mostly cash and bonds. Some growth is fine, but the recovery time after a bad stretch is short.",
+          "**5 years and beyond:** mostly stock index funds. You have time to ride out crashes, and this is where long-run growth lives.",
+          "**Decades (retirement money):** stock funds doing the heavy lifting, with bonds added gradually as the finish line approaches.",
         ],
       },
       {
         type: "key",
-        text: "Notice the pattern: toward stocks, crypto, and options, the potential reward *and* the risk both climb. Toward bonds, CDs, and savings, both shrink. Where you sit depends on your goal and how soon you'll need the money.",
-      },
-      {
-        type: "h2",
-        text: "How to actually use this",
-      },
-      {
-        type: "p",
-        text: "Match the vehicle to the timeline. Money you need within a year or two should sit somewhere safe, like a high-yield savings account or a CD, because you can't afford for it to drop right when you need it. Money you won't touch for decades, like retirement savings, can ride out the ups and downs of stocks, where the long-term growth lives.",
-      },
-      {
-        type: "tip",
-        text: "You don't have to choose between all of these. A single low-cost index fund already holds hundreds or thousands of companies. For a lot of people, that one boring choice, held for the long haul, *is* the strategy.",
+        text: "You don't have to collect all of these. A single low-cost index fund already holds hundreds of companies, and pairing it with a good savings account covers both ends of the timeline. For a lot of people, that boring two-piece setup *is* the strategy.",
       },
     ],
-    related: ["bonds-explained", "etf-vs-mutual-fund", "risk-and-diversification"],
+    related: ["bonds-explained", "etf-vs-mutual-fund", "what-is-a-reit", "annuities-explained"],
   },
 
   {
@@ -275,7 +318,7 @@ export const investingMarketsArticles: Article[] = [
         text: "None of this means IPOs are bad, just that the exciting number isn't the one you'd pay. Knowing the gap between offering and opening price turns a confusing headline into something you can see clearly: who actually got the deal, and who's buying the hype.",
       },
     ],
-    related: ["what-is-an-ipo", "what-is-a-stock", "investing-mistakes"],
+    related: ["what-is-an-ipo", "how-to-read-a-stock-quote", "investing-mistakes"],
   },
 
   {
@@ -349,7 +392,7 @@ export const investingMarketsArticles: Article[] = [
         text: "If you're still building your foundation (an emergency fund, steady index-fund investing, retirement contributions), options aren't a missing piece you need. They're an advanced tool, and there's zero shame in deciding they're not for you. The people who build real wealth rarely needed them.",
       },
     ],
-    related: ["what-is-a-stock", "investing-mistakes", "risk-and-diversification"],
+    related: ["margin-and-short-selling", "investing-mistakes", "risk-and-diversification"],
   },
 
   {
@@ -493,7 +536,7 @@ export const investingMarketsArticles: Article[] = [
         text: "The sane way to hold dividends is the unglamorous one: own a broad, diversified fund, switch on automatic reinvestment, and let the payments compound in the background. Collecting yield can feel like income, but for money you're growing over decades, the dividends you never see are the ones doing the most good.",
       },
     ],
-    related: ["what-is-a-stock", "investment-taxes-101", "magic-of-compound-interest"],
+    related: ["what-is-a-stock", "how-to-read-a-stock-quote", "investment-taxes-101"],
   },
 
   {
@@ -569,7 +612,7 @@ export const investingMarketsArticles: Article[] = [
         text: "A target-date fund is designed to be your *whole* portfolio. Owning three of them, or pairing one with five other funds, cancels the simplicity you're paying for. One fund, fed consistently, is the entire point.",
       },
     ],
-    related: ["what-is-a-401k", "expense-ratios-and-fees", "index-funds-explained"],
+    related: ["what-is-a-401k", "expense-ratios-and-fees", "index-funds-explained", "rebalancing-your-portfolio"],
   },
 
   {
@@ -709,6 +752,264 @@ export const investingMarketsArticles: Article[] = [
         text: "The investors who get hurt worst in crashes are usually the ones who never expected one. Now you do. When it comes (and it will), you'll have seen the pattern before: a scary drop, a chorus of doom, a recovery that started before the news turned good. Boring consistency, once again, wins by default.",
       },
     ],
-    related: ["investing-mistakes", "long-term-strategy", "dollar-cost-averaging"],
+    related: ["investing-mistakes", "margin-and-short-selling", "long-term-strategy"],
+  },
+
+  {
+    slug: "how-to-read-a-stock-quote",
+    order: 125,
+    topicId: "investing",
+    title: "How to Read a Stock Quote",
+    dek: "Price, market cap, P/E, yield, range, volume: what each number on a quote page tells you, walked through on a full example.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "A stock's price by itself tells you almost nothing; market cap is what measures a company's size.",
+      "The P/E ratio shows what you're paying for each dollar of the company's profit.",
+      "The 52-week range and volume give context, not buy signals.",
+      "A quote describes a stock. It doesn't tell you whether to buy it.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Look up any [stock](/learn/investing/what-is-a-stock) in a brokerage app and you get a wall of numbers, most of them unlabeled beyond a cryptic abbreviation. The good news is that only six of them do most of the work, and once you can read those, every quote page on the internet becomes legible. Here's each one, then a full read-through of a made-up company so you can see them working together.",
+      },
+      {
+        type: "h2",
+        text: "Price: the number that means the least",
+      },
+      {
+        type: "p",
+        text: "The big number at the top is just the cost of one share, and on its own it tells you almost nothing. A $900 stock is not \"more expensive\" than a $9 stock in any way that matters, because companies choose how many slices to cut themselves into. One company might be split into 50 million shares, another into 15 billion. Judging a company by its share price is like judging a pizza by the size of one slice without asking how many slices there are.",
+      },
+      {
+        type: "h2",
+        text: "Market cap: the company's actual size",
+      },
+      {
+        type: "p",
+        text: "Market capitalization is the share price multiplied by the number of shares that exist. That's the market's price tag for the entire company, and it's the number that lets you compare two businesses fairly. A $10 stock with 10 billion shares is a $100 billion giant; a $500 stock with 20 million shares is a $10 billion company a tenth its size. You'll hear companies sorted by this figure into large cap, mid cap, and small cap, and as a rule, smaller means bouncier.",
+      },
+      {
+        type: "h2",
+        text: "P/E ratio: what you pay for a dollar of profit",
+      },
+      {
+        type: "p",
+        text: "The price-to-earnings ratio divides the share price by the company's earnings per share over the past year. A P/E of 20 means you're paying $20 for every $1 of annual profit the company generates. A high P/E says investors expect earnings to grow fast (or that the stock is overpriced); a low one says expectations are modest (or the business is in trouble). Neither is automatically good or bad, and a P/E is most useful compared against similar companies rather than read in isolation. If the field is blank, the company isn't profitable yet, which is worth knowing all by itself.",
+      },
+      {
+        type: "h2",
+        text: "Dividend yield: the cash it pays you",
+      },
+      {
+        type: "p",
+        text: "Dividend yield is the year's dividends divided by the share price, so a $50 stock paying $1 a year yields 2%. Many growth companies pay nothing, which is a style choice, not a flaw. And a yield that towers over everything around it is usually a warning rather than a gift, for reasons [Dividends, Explained](/learn/investing/dividends-explained) covers.",
+      },
+      {
+        type: "h2",
+        text: "52-week range: where today sits",
+      },
+      {
+        type: "p",
+        text: "This is the stock's lowest and highest price over the past year, and it exists to give today's price context. A stock near its 52-week high has been climbing; one near its low has had a rough year. Resist the urge to treat either as a signal. \"Near its low\" is not the same as cheap, and \"near its high\" is not the same as finished.",
+      },
+      {
+        type: "h2",
+        text: "Volume: how much it's trading",
+      },
+      {
+        type: "p",
+        text: "Volume is the number of shares that changed hands today, usually shown next to an average. For big companies it mostly confirms you can buy and sell easily. The interesting case is a spike: volume running several times its average means something happened (earnings, news, a rumor), and it's worth finding out what before you act.",
+      },
+      {
+        type: "h2",
+        text: "A worked example",
+      },
+      {
+        type: "p",
+        text: "Here's the quote for a fictional company, Maple & Main Coffee Co., ticker MPLM:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Price:** $42.10",
+          "**Market cap:** $21.1 billion",
+          "**P/E ratio:** 20.0",
+          "**Dividend yield:** 2.0%",
+          "**52-week range:** $31.40 – $47.80",
+          "**Volume:** 3.1M (avg 2.9M)",
+        ],
+      },
+      {
+        type: "p",
+        text: "Now read it like a sentence. The $42 price means nothing alone, but the $21 billion market cap says this is a large, established company (about 500 million shares exist, since $42.10 × 500M ≈ $21.1B). A P/E of 20 means buyers are paying $20 per $1 of profit: moderate expectations, neither a moonshot nor a bargain bin. The 2% yield says it shares profits with owners, roughly $0.84 per share a year. Today's price sits in the upper half of its 52-week range, so it's had a decent year without being at a peak. And volume is running right at its average: no news, nothing unusual, just an ordinary Tuesday for a steady company.",
+      },
+      {
+        type: "key",
+        text: "That's what a quote can do: describe the company's size, price tag, payout, and recent path in ten seconds. What it can't do is tell you whether the business is worth owning. A quote is the label on the box, not the contents.",
+      },
+    ],
+    related: ["what-is-a-stock", "dividends-explained", "what-is-an-ipo"],
+  },
+
+  {
+    slug: "margin-and-short-selling",
+    order: 15,
+    topicId: "investing",
+    title: "Margin and Short Selling: The Sharp Tools",
+    dek: "Borrowed money and borrowed shares can multiply gains, multiply losses, and let your broker sell you out at the worst possible moment.",
+    level: "Advanced",
+    readMinutes: 6,
+    takeaways: [
+      "Margin means investing with borrowed money: every gain and loss is amplified, and interest runs the whole time.",
+      "A margin call can force you to sell at the bottom of a crash, with no vote.",
+      "Short selling caps your possible gain at 100% while leaving your possible loss unlimited.",
+      "These are professional tools. Skipping them costs a long-term investor nothing.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "At some point your brokerage will offer to upgrade you to a margin account, usually framed as unlocking your account's full potential. This article explains what you'd actually be unlocking: the two sharpest tools in retail investing, how each one works, and who genuinely needs them. Spoiler on that last part: almost certainly not you, and that's not an insult. It's the happy conclusion.",
+      },
+      {
+        type: "h2",
+        text: "Buying on margin",
+      },
+      {
+        type: "p",
+        text: "Margin is a loan from your broker, secured by your investments, used to buy more investments. Brokers typically let you borrow up to about half of a purchase. Say you have $5,000 and borrow $5,000 more to buy $10,000 of a stock. If it rises 20%, your position is worth $12,000; pay back the $5,000 loan and you have $7,000, a 40% gain on your own money (before interest). Leverage made a good year twice as good.",
+      },
+      {
+        type: "p",
+        text: "Now run it backward. The stock falls 20%, the position is worth $8,000, and the loan is still exactly $5,000, because losses never touch the debt. Your equity is $3,000: a 40% loss on the same 20% move. Leverage has no opinion about direction. It doubles whatever happens, and the interest meter runs either way.",
+      },
+      {
+        type: "h2",
+        text: "The margin call",
+      },
+      {
+        type: "p",
+        text: "Brokers require your own equity to stay above a maintenance level, often somewhere around 25% to 35% of the position. Fall below it and you get a margin call: deposit more cash immediately or the broker sells your holdings to pay itself back. Read that again, because it's the part people miss. The broker can sell your investments without your permission, at whatever the market price is that day. And since prices fall fastest in a panic, margin calls cluster in [crashes](/learn/investing/market-crashes), converting temporary paper losses into permanent real ones at the exact bottom. A cash investor can wait out a bad year; a margined investor may not be given the choice.",
+      },
+      {
+        type: "h2",
+        text: "Why brokers keep offering it",
+      },
+      {
+        type: "p",
+        text: "Margin loans are one of the most profitable things a brokerage does. The interest rate typically sits far above anything safe pays you, it accrues daily, and the loan is nearly risk-free for the broker because your own portfolio is the collateral and they can liquidate it the moment things get tight. None of that makes margin evil, but it should reframe the pop-up: an upgrade offer is a sales pitch for a loan, not advice about your portfolio.",
+      },
+      {
+        type: "h2",
+        text: "Short selling",
+      },
+      {
+        type: "p",
+        text: "Short selling is a bet that a stock will fall, and the mechanics are a clever bit of borrowing:",
+      },
+      {
+        type: "steps",
+        items: [
+          "Borrow shares from your broker (say 100 shares of a $50 stock).",
+          "Sell them immediately for $5,000.",
+          "Wait, hoping the price drops.",
+          "Buy 100 shares back later, ideally cheaper (at $35, that costs $3,500).",
+          "Return the borrowed shares and keep the difference: $1,500, minus borrowing fees.",
+        ],
+      },
+      {
+        type: "p",
+        text: "While you're short, you pay a fee to borrow the shares, and if the company pays a dividend, you owe it to the shares' real owner. The clock works against you the entire time.",
+      },
+      {
+        type: "h2",
+        text: "The asymmetry that makes shorting brutal",
+      },
+      {
+        type: "p",
+        text: "When you buy a stock, the worst case is losing 100% of what you put in, while the upside is uncapped. Shorting flips that upside down. The best case is the stock going to zero, a 100% gain. The worst case has no floor, because there's no ceiling on a stock price: short at $50 and watch it run to $200, and you've lost triple your maximum possible win. Rising prices can even force shorts to buy back shares, pushing the price higher still, a feedback loop called a short squeeze that has vaporized professional funds. Capped upside, unlimited downside, fees the whole way: that's the deal.",
+      },
+      {
+        type: "h2",
+        text: "Who genuinely uses these",
+      },
+      {
+        type: "p",
+        text: "Professionals, mostly, and usually not the way headlines suggest. Funds short stocks to *hedge* (offsetting risk elsewhere in a portfolio, not swinging for the fences), market makers use margin as day-to-day plumbing, and short sellers who research frauds occasionally do markets a real service. What these users share is risk limits, rules, and money they can afford to lose. For someone building wealth through steady fund investing, neither tool adds anything: the whole point of the long-term approach is that time and compounding do the work without borrowing. If a bad market can force you to sell, you've handed away the one advantage a patient investor has, and [the costliest investing mistakes](/learn/investing/investing-mistakes) all start exactly there.",
+      },
+      {
+        type: "key",
+        text: "Margin and short selling don't make you a more advanced investor; they make your outcomes more extreme. There is no stage of ordinary wealth-building where either one is a required course. Knowing how they work, and politely declining, is the advanced move.",
+      },
+    ],
+    related: ["options-explained", "investing-mistakes", "market-crashes"],
+  },
+
+  {
+    slug: "what-is-a-reit",
+    order: 45,
+    topicId: "investing",
+    title: "REITs: Real Estate Without the House",
+    dek: "How to collect rent checks without a mortgage, a tenant, or a clogged drain, and the tax wrinkle to know before you start.",
+    level: "Advanced",
+    readMinutes: 5,
+    takeaways: [
+      "A REIT is a company that owns income-producing real estate; you buy shares of it like a stock.",
+      "REITs must pay out at least 90% of their taxable income as dividends, so the yields run high.",
+      "A broad REIT index fund beats picking individual REITs for almost everyone.",
+      "REIT dividends are usually taxed as ordinary income, which makes retirement accounts their best home.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Real estate is the investment everyone's uncle swears by, and the objection is always the same: you need a down payment, a mortgage, and a willingness to answer a broken-water-heater call. A REIT removes all three. It's the way to own a slice of apartment buildings, warehouses, and cell towers for the price of a single share, collecting your cut of the rent while someone else fixes the plumbing.",
+      },
+      {
+        type: "h2",
+        text: "What a REIT actually is",
+      },
+      {
+        type: "p",
+        text: "REIT stands for *real estate investment trust*: a company whose business is owning (or financing) income-producing property. One REIT might hold hundreds of apartment complexes; others specialize in warehouses, hospitals, shopping centers, data centers, or the cell towers your phone talks to. The company collects rent from thousands of tenants and passes the profits to its shareholders. Most large REITs trade on stock exchanges, so buying in takes seconds in a brokerage account, and selling out does too. That last part deserves emphasis: it's real estate you can exit on a Tuesday afternoon, something no landlord can say.",
+      },
+      {
+        type: "h2",
+        text: "The 90% rule",
+      },
+      {
+        type: "p",
+        text: "REITs live under a special deal in the tax code. A company that qualifies pays no corporate income tax on the profits it distributes, and in exchange it *must* pay out at least 90% of its taxable income to shareholders as dividends, every year. That one rule shapes everything about how REITs behave. The payout requirement means yields run well above the typical stock's, which is the main attraction. It also means a REIT keeps little profit to reinvest, so you shouldn't expect the explosive price growth a tech company might deliver. A REIT is built to be an income machine, not a rocket.",
+      },
+      {
+        type: "h2",
+        text: "How to actually hold one",
+      },
+      {
+        type: "p",
+        text: "You can buy shares of a single REIT the way you'd buy any stock, but that concentrates you in one management team and usually one property type, and judging an office landlord's balance sheet is genuinely hard. The saner route for most people is a REIT *index fund*, which holds a broad basket of them across every sector for one low fee, the same diversification logic covered in [Index Funds, Explained](/learn/investing/index-funds-explained). Worth knowing before you add anything: if you already own a total-market index fund, you own REITs, since they're part of the market. A separate REIT fund is a deliberate extra tilt toward real estate, not a box you're required to check.",
+      },
+      {
+        type: "h2",
+        text: "The tax wrinkle",
+      },
+      {
+        type: "p",
+        text: "Those generous dividends come with a catch. Most stock dividends are *qualified* and get the gentler long-term capital gains rates, but the bulk of REIT dividends don't qualify: they're taxed as ordinary income, at the same rates as your paycheck. The mechanics live in [Taxes on Your Investments, Explained](/learn/taxes/investment-taxes-101). The practical takeaway is about placement: inside a 401(k) or IRA, the yearly dividend tax never happens, so REITs are one of the classic things to hold in a retirement account rather than a regular brokerage account.",
+      },
+      {
+        type: "h2",
+        text: "REIT vs. actually buying property",
+      },
+      {
+        type: "p",
+        text: "The comparison people really want is REIT versus rental house, and it's less lopsided than either camp admits. The REIT wins on entry price (one share versus a down payment), diversification (hundreds of buildings versus one), liquidity, and effort. The house wins on leverage (a mortgage lets a small down payment control a large asset), control, and the fact that you can live in it, which no fund can offer. If the choice you're weighing is a home for yourself, that's a different decision with its own math, laid out in [Renting vs. Buying](/learn/home-ownership/renting-vs-buying). If the goal is purely investment exposure to real estate, the REIT fund gets you there with a fraction of the money and none of the 2 a.m. phone calls.",
+      },
+      {
+        type: "key",
+        text: "A REIT turns real estate into something you can buy by the share: high, steady dividends by law, instant liquidity, zero landlording. Hold it as a broad fund, keep it in a retirement account if you can, and treat it as a slice of a portfolio rather than the whole plate.",
+      },
+    ],
+    related: ["dividends-explained", "compare-investment-vehicles", "renting-vs-buying"],
   },
 ];

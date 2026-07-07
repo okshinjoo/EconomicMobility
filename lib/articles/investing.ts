@@ -65,7 +65,7 @@ export const investingArticles: Article[] = [
         text: "That's all a stock is: a small claim on a real business and its future. You don't need to predict which company will win. When you invest, you're becoming a part-owner of the companies people use every day.",
       },
     ],
-    related: ["saving-vs-investing", "index-funds-explained", "dividends-explained"],
+    related: ["saving-vs-investing", "index-funds-explained", "dividends-explained", "rsus-and-espp"],
   },
 
   {
@@ -334,7 +334,7 @@ export const investingArticles: Article[] = [
         text: "There's no single right mix, only the one that fits your goals and lets you sleep at night. Pick an allocation you can stick with through a scary headline, and you've already beaten most of the danger.",
       },
     ],
-    related: ["index-funds-explained", "bonds-explained", "long-term-strategy"],
+    related: ["index-funds-explained", "bonds-explained", "long-term-strategy", "rebalancing-your-portfolio"],
   },
 
   {
