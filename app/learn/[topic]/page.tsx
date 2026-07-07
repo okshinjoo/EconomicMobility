@@ -223,8 +223,7 @@ export default async function TopicPage({
                               </span>
                               <span className="flex items-center gap-1.5">
                                 <ReadBadge slug={art.slug} accent={accent} />
-                                <span className="inline-flex items-center gap-1 rounded-full bg-paper-deep px-2.5 py-0.5 text-[11px] font-medium text-stone">
-                                  <Clock className="h-3 w-3" />
+                                <span className="text-[11px] font-semibold text-stone">
                                   {art.readMinutes} min
                                 </span>
                               </span>
@@ -236,11 +235,10 @@ export default async function TopicPage({
                               {art.dek}
                             </p>
                             <span
-                              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
-                              style={{ color: accent }}
+                              className="mt-4 text-sm font-semibold underline decoration-2 underline-offset-4"
+                              style={{ color: accent, textDecorationColor: `${accent}55` }}
                             >
                               Read
-                              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </span>
                           </Link>
                         ))}

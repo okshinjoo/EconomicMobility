@@ -93,6 +93,20 @@ body {
   box-shadow: 2px 2px 0 var(--color-ink);
 }
 
+/* Ticker marquee (components/Ticker.tsx): track holds two copies of the
+   content and slides one copy-width; global reduced-motion rule stops it. */
+@keyframes ticker-scroll {
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  width: max-content;
+  animation: ticker-scroll 55s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+
 /* Faint paper grain to kill the flat, vector-perfect look. */
 body::before {
   content: "";
@@ -127,12 +141,4 @@ body > * {
   font-size: 3.8rem;
   line-height: 0.78;
   color: var(--article-accent, var(--color-forest));
-}
-
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-.animate-float-slow {
-  animation: float-slow 7s ease-in-out infinite;
 }

@@ -532,8 +532,8 @@ function WelcomeScreen({
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-stone">
             Answer a few quick questions and we&apos;ll point you to the tools,
-            guides, and resources most relevant to you — no jargon, no pressure,
-            completely free.
+            guides, and resources most relevant to you. It's free, and there are
+            no wrong answers.
           </p>
           <button
             type="button"

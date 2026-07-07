@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Flashcards from "@/components/Flashcards";
@@ -114,8 +113,7 @@ export default async function CoursePage({
                     </span>
                     <span className="flex items-center gap-1.5">
                       <ReadBadge slug={a.slug} accent={accent} />
-                      <span className="inline-flex items-center gap-1 rounded-full bg-paper-deep px-2.5 py-0.5 text-[11px] font-medium text-stone">
-                        <Clock className="h-3 w-3" />
+                      <span className="text-[11px] font-semibold text-stone">
                         {a.readMinutes} min
                       </span>
                     </span>

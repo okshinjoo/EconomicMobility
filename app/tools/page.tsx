@@ -135,11 +135,10 @@ export default function ToolsHub() {
                         </p>
                         {live ? (
                           <span
-                            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
-                            style={{ color: accent }}
+                            className="mt-4 text-sm font-semibold underline decoration-2 underline-offset-4"
+                            style={{ color: accent, textDecorationColor: `${accent}55` }}
                           >
                             Open
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </span>
                         ) : (
                           <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-stone/60">

@@ -150,11 +150,10 @@ export default function LearnHub() {
                       )}
                       <TopicBar slugs={slugs} color={topic.color} />
                       <span
-                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
-                        style={{ color: topic.color }}
+                        className="mt-4 text-sm font-semibold underline decoration-2 underline-offset-4"
+                        style={{ color: topic.color, textDecorationColor: `${topic.color}55` }}
                       >
                         Explore the path
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
                   </Link>
