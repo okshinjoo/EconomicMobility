@@ -17,6 +17,7 @@ import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
+import TopicMark from "@/components/TopicMark";
 
 function isTopicId(value: string): value is TopicId {
   return topics.some((t) => t.id === value);
@@ -104,14 +105,7 @@ export default async function TopicPage({
                 className="object-cover"
               />
               <span className="absolute bottom-4 left-4 flex h-16 w-16 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                <Image
-                  src={`/images/illustrations/${meta.id}.png`}
-                  alt=""
-                  unoptimized
-                  width={56}
-                  height={56}
-                  className="h-11 w-11 object-contain"
-                />
+                <TopicMark id={meta.id} className="h-9 w-9" />
               </span>
             </div>
           </div>
@@ -379,14 +373,7 @@ export default async function TopicPage({
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <span className="absolute bottom-3 left-3 flex h-12 w-12 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                      <Image
-                        src={`/images/illustrations/${rel.id}.png`}
-                        alt=""
-                        unoptimized
-                        width={40}
-                        height={40}
-                        className="h-8 w-8 object-contain"
-                      />
+                      <TopicMark id={rel.id} className="h-7 w-7" />
                     </span>
                   </div>
                   <div className="p-5">

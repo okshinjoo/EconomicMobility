@@ -11,6 +11,7 @@ import {
 import { toolCategories } from "@/lib/toolsRegistry";
 import { communityQuestions } from "@/lib/communityQuestions";
 import QuestionStrip, { type StripQuestion } from "@/components/QuestionStrip";
+import TopicMark from "@/components/TopicMark";
 import WelcomeBack, {
   type TopicPath,
   type BadgeSource,
@@ -485,14 +486,7 @@ export default function Home() {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                    <Image
-                      src={`/images/illustrations/${topic.id}.png`}
-                      alt=""
-                      unoptimized
-                      width={48}
-                      height={48}
-                      className="h-10 w-10 object-contain"
-                    />
+                    <TopicMark id={topic.id} className="h-8 w-8" />
                   </span>
                 </div>
                 {/* Content */}

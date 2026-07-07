@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowRight, BookOpen } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TopicMark from "@/components/TopicMark";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
@@ -80,14 +81,7 @@ export default function LearnHub() {
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                      <Image
-                        src={`/images/illustrations/${topic.id}.png`}
-                        alt=""
-                        unoptimized
-                        width={48}
-                        height={48}
-                        className="h-10 w-10 object-contain"
-                      />
+                      <TopicMark id={topic.id} className="h-8 w-8" />
                     </span>
                   </div>
 

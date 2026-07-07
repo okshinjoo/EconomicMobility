@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
@@ -24,6 +23,7 @@ import {
   type Tier,
 } from "@/lib/quizData";
 import QuizResults from "@/components/QuizResults";
+import TopicMark from "@/components/TopicMark";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 
 type StepId = "welcome" | "q1" | "q2" | "q3" | "q4" | "q5" | "kc" | "results";
@@ -285,14 +285,7 @@ export default function QuizFlow() {
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-forest/10 py-1.5 pl-1.5 pr-4 text-xs font-semibold uppercase tracking-wide text-forest">
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cream">
-              <Image
-                src={`/images/illustrations/${topic.id}.png`}
-                alt=""
-                unoptimized
-                width={20}
-                height={20}
-                className="h-5 w-5 object-contain"
-              />
+              <TopicMark id={topic.id} className="h-4.5 w-4.5" />
             </span>
             {topic.title} — Quick Check
           </span>
@@ -503,7 +496,7 @@ function WelcomeScreen({
           <button
             type="button"
             onClick={onResume}
-            className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-ink-700"
+            className="inline-flex flex-shrink-0 items-center gap-2 rounded-md bg-ink px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-ink-700"
           >
             View your results
             <ArrowRight className="h-4 w-4" />
@@ -517,8 +510,25 @@ function WelcomeScreen({
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
             2-Minute Quiz
           </span>
-          <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl">
-            Find your starting point.
+          <h1 className="mt-5 font-display text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl">
+            Find your{" "}
+            <span className="relative whitespace-nowrap text-forest">
+              starting point.
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 18"
+                className="absolute -bottom-1.5 left-0 h-3 w-full text-amber"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M3,13 C60,4 120,4 160,9 C210,15 260,8 297,5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-stone">
             Answer a few quick questions and we&apos;ll point you to the tools,
@@ -528,7 +538,7 @@ function WelcomeScreen({
           <button
             type="button"
             onClick={onStart}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-4 text-base font-semibold text-ink shadow-sm transition-colors hover:bg-amber-deep hover:text-cream"
+            className="mt-8 inline-flex items-center gap-2 rounded-md bg-amber px-8 py-4 text-base font-semibold text-ink shadow-sm transition-colors hover:bg-amber-deep hover:text-cream"
           >
             Start the Quiz
             <ArrowRight className="h-4 w-4" />
@@ -562,14 +572,7 @@ function WelcomeScreen({
                 className="flex flex-col items-center gap-2 text-center"
               >
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cream shadow-sm">
-                  <Image
-                    src={`/images/illustrations/${t.id}.png`}
-                    alt=""
-                    unoptimized
-                    width={44}
-                    height={44}
-                    className="h-9 w-9 object-contain"
-                  />
+                  <TopicMark id={t.id} className="h-8 w-8" />
                 </span>
                 <span className="text-[11px] font-medium leading-tight text-cream/85">
                   {TOPIC_SHORT[t.id]}
@@ -591,7 +594,13 @@ function WelcomeScreen({
               key={c.title}
               className="rounded-2xl border border-sand bg-cream p-6"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber/15 font-display text-base font-semibold text-amber-deep">
+              <span
+                className="flex h-9 w-9 items-center justify-center rounded-full font-display text-base font-semibold"
+                style={{
+                  background: `${["#c9842a", "#0c4a39", "#d26a4c"][i % 3]}1c`,
+                  color: ["#c9842a", "#0c4a39", "#d26a4c"][i % 3],
+                }}
+              >
                 {i + 1}
               </span>
               <h3 className="mt-4 font-display text-base font-semibold text-ink">
