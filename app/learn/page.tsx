@@ -5,6 +5,8 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
+import Reveal from "@/components/Reveal";
+import { TopicBar } from "@/components/ReadBadge";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
@@ -22,96 +24,126 @@ export default function LearnHub() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-4xl px-6 pb-12 pt-16 text-center lg:pt-20">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">The Library</span>
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
-            Learn money, your way.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-stone">
-            Nine core topics, each built as a clear path from the absolute basics
-            to the stuff that takes you further. Start anywhere — or let the quiz
-            pick for you.
-          </p>
-
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-stone">
-            <span className="inline-flex items-center gap-1.5">
-              <BookOpen className="h-4 w-4 text-forest" />
-              {totalGuides} free guides
+      {/* Hero: copy + colorful topic launcher */}
+      <section className="bg-paper-deep">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-16">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+              The Library
             </span>
-            <span className="text-sand">·</span>
-            <span>{topics.length} topics</span>
-            <span className="text-sand">·</span>
-            <span>No sign-up, no paywall</span>
+            <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+              Learn money, your way.
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-stone">
+              Nine core topics, each built as a clear path from the absolute
+              basics to the stuff that takes you further. Start anywhere — or
+              let the quiz pick for you.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-stone">
+              <span className="inline-flex items-center gap-1.5">
+                <BookOpen className="h-4 w-4 text-forest" />
+                {totalGuides} free guides
+              </span>
+              <span className="text-sand">·</span>
+              <span>{topics.length} topics</span>
+              <span className="text-sand">·</span>
+              <span>No sign-up, no paywall</span>
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/quiz"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
+              >
+                Not sure where to start? Take the quiz
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-8">
-            <Link
-              href="/quiz"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
-            >
-              Not sure where to start? Take the quiz
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          {/* Topic launcher: nine marks on their pastel tints */}
+          <div className="grid grid-cols-3 gap-3">
+            {topics.map((t, i) => (
+              <Reveal key={t.id} delay={i * 50}>
+                <Link
+                  href={t.href}
+                  className="group flex flex-col items-center gap-2 rounded-2xl px-3 py-5 text-center transition-shadow hover:shadow-md"
+                  style={{ background: `${t.color}16` }}
+                >
+                  <TopicMark
+                    id={t.id}
+                    className="h-9 w-9 transition-transform duration-200 group-hover:scale-110"
+                  />
+                  <span className="text-xs font-bold leading-tight text-ink">
+                    {t.short}
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Topic grid */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="mx-auto max-w-7xl px-6 py-14">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {topics.map((topic) => {
+            {topics.map((topic, i) => {
               const content = learnContent[topic.id];
-              const first = getTopicRoadmap(topic.id)[0]?.articles[0];
+              const roadmap = getTopicRoadmap(topic.id);
+              const first = roadmap[0]?.articles[0];
+              const slugs = roadmap.flatMap((g) => g.articles.map((a) => a.slug));
               return (
-                <Link
-                  key={topic.id}
-                  href={topic.href}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-xl"
-                >
-                  <div className="relative aspect-[5/3] overflow-hidden bg-sand">
-                    <Image
-                      src={topic.image}
-                      alt=""
-                      fill
-                      unoptimized
-                      sizes="(max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                      <TopicMark id={topic.id} className="h-8 w-8" />
-                    </span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <h2 className="font-display text-lg font-semibold text-ink">
-                        {topic.title}
-                      </h2>
-                      <span className="flex-shrink-0 text-xs font-medium text-stone">
-                        {guideCount(topic.id)} guides
+                <Reveal key={topic.id} delay={(i % 3) * 70}>
+                  <Link
+                    href={topic.href}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-200 hover:border-ink/15 hover:shadow-xl"
+                  >
+                    <div className="relative aspect-[5/3] overflow-hidden bg-sand">
+                      <Image
+                        src={topic.image}
+                        alt=""
+                        fill
+                        unoptimized
+                        sizes="(max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
+                        <TopicMark id={topic.id} className="h-8 w-8" />
                       </span>
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-stone">
-                      {content.subhead}
-                    </p>
-                    {first && (
-                      <p className="mt-3 flex-1 text-xs leading-5 text-stone">
-                        <span className="font-semibold text-ink">Start with: </span>
-                        {first.title}
+
+                    {/* Topic-colored hairline ties photo to content */}
+                    <div className="h-1 w-full" style={{ background: topic.color }} />
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-baseline justify-between gap-3">
+                        <h2 className="font-display text-lg font-semibold text-ink">
+                          {topic.title}
+                        </h2>
+                        <span className="flex-shrink-0 text-xs font-medium text-stone">
+                          {guideCount(topic.id)} guides
+                        </span>
+                      </div>
+                      <p className="mt-2 text-sm leading-6 text-stone">
+                        {content.subhead}
                       </p>
-                    )}
-                    <span
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
-                      style={{ color: topic.color }}
-                    >
-                      Explore the path
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </Link>
+                      {first && (
+                        <p className="mt-3 flex-1 text-xs leading-5 text-stone">
+                          <span className="font-semibold text-ink">Start with: </span>
+                          {first.title}
+                        </p>
+                      )}
+                      <TopicBar slugs={slugs} color={topic.color} />
+                      <span
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
+                        style={{ color: topic.color }}
+                      >
+                        Explore the path
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
               );
             })}
           </div>

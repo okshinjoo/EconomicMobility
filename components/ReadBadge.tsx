@@ -22,6 +22,35 @@ export function ReadBadge({ slug, accent }: { slug: string; accent: string }) {
   );
 }
 
+/** Thin live progress bar for topic cards; renders nothing until started. */
+export function TopicBar({
+  slugs,
+  color,
+}: {
+  slugs: string[];
+  color: string;
+}) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const read = getReadMap();
+    setCount(slugs.filter((s) => read[s]).length);
+  }, [slugs]);
+  if (count === 0) return null;
+  return (
+    <div className="mt-3">
+      <div className="h-1 w-full overflow-hidden rounded-full bg-sand">
+        <div
+          className="h-full rounded-full"
+          style={{ width: `${(count / slugs.length) * 100}%`, background: color }}
+        />
+      </div>
+      <p className="mt-1 text-[11px] font-semibold" style={{ color }}>
+        {count} of {slugs.length} read
+      </p>
+    </div>
+  );
+}
+
 /** "You've read X of N" line for the topic-hub roadmap header. */
 export function TopicProgress({
   slugs,

@@ -38,7 +38,8 @@ export default function ChallengeGrid({ items }: { items: ChallengeCardData[] })
           <Link
             key={ch.id}
             href={`/challenges/${ch.id}`}
-            className="group flex flex-col rounded-2xl border border-sand bg-cream p-6 transition-all duration-200 hover:border-ink/20 hover:shadow-lg"
+            className="group flex flex-col rounded-2xl border p-6 transition-all duration-200 hover:shadow-lg"
+            style={{ background: `${ch.color}0d`, borderColor: `${ch.color}30` }}
           >
             <div className="flex items-start justify-between gap-3">
               <span

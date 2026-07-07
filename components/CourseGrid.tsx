@@ -36,7 +36,8 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
           <Link
             key={course.id}
             href={`/courses/${course.id}`}
-            className="group flex flex-col rounded-2xl border border-sand bg-cream p-6 transition-all duration-200 hover:border-ink/20 hover:shadow-lg"
+            className="group flex flex-col rounded-2xl border p-6 transition-all duration-200 hover:shadow-lg"
+            style={{ background: `${course.color}0d`, borderColor: `${course.color}30` }}
           >
             <div className="flex items-start justify-between gap-3">
               <span
