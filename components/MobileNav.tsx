@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { nav } from "@/lib/nav";
 
 export default function MobileNav() {
@@ -144,10 +144,9 @@ export default function MobileNav() {
               <Link
                 href="/quiz"
                 onClick={close}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber px-6 py-4 text-base font-semibold text-ink transition-colors hover:bg-cream"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber px-6 py-4 text-base font-semibold text-ink transition-colors hover:bg-cream"
               >
                 Take the Quiz
-                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>,

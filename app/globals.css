@@ -60,7 +60,7 @@ body {
   }
 }
 
-/* Display headings use the Fraunces serif by default for editorial warmth. */
+/* Display headings use the Lora serif by default for editorial warmth. */
 .font-display {
   font-family: var(--font-display), ui-serif, Georgia, serif;
   font-optical-sizing: auto;
@@ -83,7 +83,7 @@ body > * {
   z-index: 2;
 }
 
-/* Long-form article body uses a reading serif; headings keep Fraunces. */
+/* Long-form article body uses a reading serif; headings keep Lora. */
 .article-body {
   font-family: var(--font-reading), Georgia, "Times New Roman", serif;
 }

@@ -46,7 +46,7 @@ export default function Header() {
           <SearchDialog items={getSearchItems()} />
           <Link
             href="/quiz"
-            className="hidden rounded-full bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"
+            className="hidden rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"
           >
             Take the Quiz
           </Link>

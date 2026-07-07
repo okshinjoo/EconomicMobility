@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, Lora, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatLauncher from "@/components/ChatLauncher";
@@ -15,14 +15,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
+// Display serif for headlines + the wordmark (via --font-logo / font-display).
+// Lora: warm and editorial but calmer/more even than the Fraunces it replaced.
+const lora = Lora({
   variable: "--font-logo",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
-// Reading serif for long-form article body — editorial, calmer than Fraunces.
+// Reading serif for long-form article body.
 const newsreader = Newsreader({
   variable: "--font-reading",
   subsets: ["latin"],
@@ -42,10 +44,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${newsreader.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${newsreader.variable}`}
+    >
+      {/* Font variables live on <html>: the @theme block in globals.css
+          references them at :root, where body-level variables can't be seen. */}
+      <body className="antialiased">
         {children}
         <ChatLauncher items={getSearchItems()} />
         <Analytics />
