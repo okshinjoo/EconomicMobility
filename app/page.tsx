@@ -325,28 +325,33 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Featured quiz promo card — solid amber, no gradient wash */}
-            <div className="card-ink relative flex flex-col justify-between overflow-hidden rounded-2xl bg-amber p-8 text-ink sm:col-span-2 lg:col-span-1 lg:row-span-1 lg:-rotate-[0.4deg]">
-              <TopicMark
-                id="government-aid"
-                color="#11211c"
-                className="pointer-events-none absolute -bottom-10 -right-10 h-44 w-44 opacity-[0.09]"
-              />
+            {/* Featured quiz promo card */}
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-forest p-8 text-cream sm:col-span-2 lg:col-span-1 lg:row-span-1">
+              <div className="absolute inset-0 opacity-40">
+                <Image
+                  src="/images/studying.jpg"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/90 to-forest/50" />
+              </div>
               <div className="relative">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink/60">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
                   Not sure where to start?
                 </span>
-                <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">
+                <h3 className="mt-3 font-display text-2xl font-semibold">
                   Take the 2-minute quiz
                 </h3>
-                <p className="mt-2 text-sm font-medium leading-6 text-ink/75">
+                <p className="mt-2 text-sm leading-6 text-cream/75">
                   Answer a few questions and we&apos;ll point you to the
                   topics that matter most for you right now.
                 </p>
               </div>
               <Link
                 href="/quiz"
-                className="btn-ink relative mt-6 inline-flex w-fit items-center rounded-lg bg-ink px-6 py-3 text-sm font-bold text-cream"
+                className="relative mt-6 inline-flex w-fit items-center rounded-md bg-amber px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
               >
                 Get started
               </Link>
@@ -613,46 +618,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Community band — split panel, no gradient wash */}
+      {/* Community band — owner-tuned: original photo layout, amber
+          "Community", and the two live destination buttons */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="card-ink-lg rounded-[2rem] bg-forest p-9 text-cream sm:p-12">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-                More than a website
-              </span>
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight sm:text-4xl">
-                Education is step one.{" "}
-                <span className="italic text-amber">Community</span> is what
-                makes it last.
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-cream/80">
-                Swap wins and questions on the feed, join a challenge, and
-                learn out loud with people figuring it out too.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-4">
-                <Link
-                  href="/community"
-                  className="inline-flex items-center rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
-                >
-                  Visit the community
-                </Link>
-                <Link
-                  href="/challenges"
-                  className="inline-flex items-center rounded-md border-2 border-cream/40 px-7 py-3.5 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
-                >
-                  Join a challenge
-                </Link>
+          <div className="relative overflow-hidden rounded-[2.5rem]">
+            <Image
+              src="/images/community.jpg"
+              alt="A community of students together"
+              width={1600}
+              height={900}
+              className="h-[420px] w-full object-cover sm:h-[460px]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/85 to-forest/30" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="max-w-xl px-8 sm:px-14">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
+                  More than a website
+                </span>
+                <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-cream sm:text-4xl">
+                  Education is step one.{" "}
+                  <span className="italic text-amber">Community</span> is what
+                  makes it last.
+                </h2>
+                <p className="mt-4 text-lg leading-8 text-cream/80">
+                  We&apos;re building support networks and research alongside
+                  these guides — so progress isn&apos;t something you have to
+                  figure out alone.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-4">
+                  <Link
+                    href="/community"
+                    className="inline-flex items-center rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
+                  >
+                    Visit the community
+                  </Link>
+                  <Link
+                    href="/challenges"
+                    className="inline-flex items-center rounded-md border-2 border-cream/40 px-7 py-3.5 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
+                  >
+                    Join a challenge
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="card-ink-lg relative aspect-[5/4] overflow-hidden rounded-[2rem] lg:rotate-[0.8deg]">
-              <Image
-                src="/images/community.jpg"
-                alt="A community of students together"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
-              />
             </div>
           </div>
         </div>
