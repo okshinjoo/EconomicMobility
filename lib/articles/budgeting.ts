@@ -89,7 +89,7 @@ export const budgetingArticles: Article[] = [
         text: "Your first budget won't be perfect, and it doesn't need to be. You just need to know where your money's going, so you can finally point it somewhere you choose.",
       },
     ],
-    related: ["needs-vs-wants", "50-30-20-rule", "opening-first-bank-account"],
+    related: ["needs-vs-wants", "50-30-20-rule", "opening-first-bank-account", "money-order-of-operations"],
     quiz: [
       {
         question: "Which number should your budget be built on?",
@@ -125,6 +125,70 @@ export const budgetingArticles: Article[] = [
           "You're steering, not failing. A budget should fit your life, and small mid-month adjustments are exactly how it's supposed to work.",
       },
     ],
+  },
+
+  {
+    slug: "money-order-of-operations",
+    order: 15,
+    topicId: "budgeting",
+    title: "What to Do With Money, in What Order",
+    dek: "Cushion first or debt first? Employer match or IRA? The default sequence for every spare dollar, and when to bend it.",
+    level: "Beginner",
+    readMinutes: 4,
+    takeaways: [
+      "Default order: essentials, a ~$500 cushion, the 401(k) match, high-interest debt, a full emergency fund, retirement, then everything else.",
+      "An employer match outranks extra debt payments; it's an instant 50–100% return.",
+      "Paying off a 20%+ balance is a guaranteed return no investment can promise.",
+      "It's a default, not a law: low-interest debt and irregular income are common reasons to bend it.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Money advice tends to arrive in fragments. Save more. Invest early. Get rid of your debt. Each is true on its own, and together they're useless, because the real question is which one deserves your next spare $50. This guide is the order. Every step already has its own full guide; this page just tells you when you're ready for each one.",
+      },
+      {
+        type: "h2",
+        text: "The sequence",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Cover the essentials and know your numbers.** Rent, food, utilities, transportation, and the minimum payment on every debt. You can't route money you haven't mapped, so [build a first budget](/learn/budgeting/building-your-first-budget) before anything else.",
+          "**Save a starter cushion of about $500.** Enough to absorb a dead tire or an urgent-care bill without reaching for a credit card. [Building a Savings Habit That Sticks](/learn/budgeting/building-a-savings-habit) covers the mechanics, the [Emergency Fund calculator](/tools/budget/emergency-fund) sets your number, and the [Starter Fund Sprint challenge](/challenges/starter-fund-sprint) turns it into a checklist.",
+          "**Grab any 401(k) match at work.** If your employer matches contributions, that's a 50–100% instant return, and nothing else on this list pays that. [What Is a 401(k)?](/learn/investing/what-is-a-401k) explains how to turn it on. No match, or no 401(k)? Move to the next step.",
+          "**Attack high-interest debt.** Credit cards, payday loans, anything near or above 20%. [How to Pay Off a Credit Card](/learn/credit/paying-off-credit-cards) has the plan; if a payday or title loan is in the mix, [Payday Loans and Predatory Lending](/learn/government-aid/payday-loans-and-predatory-lending) covers getting out of the trap.",
+          "**Grow the cushion into a full emergency fund.** Three to six months of expenses, parked somewhere it earns, like a [high-yield savings account](/learn/investing/high-yield-savings-account).",
+          "**Fund retirement accounts beyond the match.** Usually an IRA comes next. [What Is an IRA?](/learn/investing/what-is-an-ira) covers the account itself; [Roth vs. Traditional IRA](/learn/investing/roth-vs-traditional-ira) settles the tax question.",
+          "**Invest for everything else.** More retirement, a house fund, plain wealth-building. [Index funds](/learn/investing/index-funds-explained) are the usual default, and the [Start Investing course](/courses/start-investing) walks the whole path in order.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Why the order runs this way",
+      },
+      {
+        type: "p",
+        text: "Two comparisons decide almost everything. An employer match beats extra debt payments because a dollar that instantly becomes a dollar fifty outruns any interest rate you're likely to be carrying. And killing a 25% credit card balance beats investing, because that payoff is a guaranteed 25% return while the market promises nothing. The small cushion sits in front of both so that one flat tire doesn't send you straight back to the card you just paid down.",
+      },
+      {
+        type: "h2",
+        text: "Where people reasonably deviate",
+      },
+      {
+        type: "list",
+        items: [
+          "**Low-interest debt doesn't jump the queue.** A 5% student loan or car loan can share space with steps 5 through 7; only the high-interest stuff demands to go first.",
+          "**Irregular income argues for a bigger cushion sooner.** If your hours swing month to month, stretching step 2 toward a month of expenses before attacking debt is sensible, not cheating.",
+          "**Momentum counts.** If one small nagging balance is what keeps you up at night, clearing it out of order is a fine trade.",
+          "**If you're behind on essentials, the list pauses at step 1.** [When You Can't Pay Every Bill](/learn/budgeting/prioritizing-bills-when-money-is-tight) comes before everything else here.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Treat the sequence as a default, not a law. You also don't have to finish a step before touching the next one; plenty of people split spare money between a cushion and a card balance. What the order settles is the argument: when two goals compete for the same dollar, the one higher on the list usually wins.",
+      },
+    ],
+    related: ["building-your-first-budget", "building-a-savings-habit", "50-30-20-rule"],
   },
 
   {
@@ -526,7 +590,7 @@ export const budgetingArticles: Article[] = [
         text: "The right first account is boring in the best way. It holds your money, charges you nothing, and quietly makes everything else easier: budgeting, saving, getting paid.",
       },
     ],
-    related: ["checking-vs-savings", "avoiding-bank-fees", "unbanked-underbanked"],
+    related: ["checking-vs-savings", "unbanked-underbanked", "turning-18-money"],
   },
 
   {

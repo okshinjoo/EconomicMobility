@@ -9,7 +9,7 @@ import Reveal from "@/components/Reveal";
 import { TopicBar } from "@/components/ReadBadge";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
-import { getTopicRoadmap } from "@/lib/articles";
+import { getTopicRoadmap, getArticleBySlug } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Learn | Empower — Economic Mobility Project",
@@ -91,6 +91,59 @@ export default function LearnHub() {
           </div>
         </div>
       </section>
+
+      {/* Roadmap articles: the "what order do I do this in" pathfinders */}
+      {(() => {
+        const roadmapSlugs = [
+          "money-order-of-operations",
+          "new-to-america-money",
+          "turning-18-money",
+          "first-year-of-credit",
+          "debt-payoff-roadmap",
+          "college-money-roadmap",
+        ];
+        const roadmaps = roadmapSlugs
+          .map((slug) => getArticleBySlug(slug))
+          .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
+        if (roadmaps.length === 0) return null;
+        return (
+          <section className="border-y-2 border-ink bg-amber">
+            <div className="mx-auto max-w-7xl px-6 py-10">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+                    Roadmaps
+                  </span>
+                  <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+                    Not sure what order to do things in?
+                  </h2>
+                </div>
+                <p className="max-w-sm text-sm font-medium leading-6 text-ink/70">
+                  These guides don&apos;t teach a topic. They hand you the map
+                  and point at the next step.
+                </p>
+              </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {roadmaps.map((a, i) => (
+                  <Reveal key={a.slug} delay={(i % 3) * 60}>
+                    <Link
+                      href={`/learn/${a.topicId}/${a.slug}`}
+                      className={`card-ink flex h-full items-center gap-3 rounded-xl bg-cream px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5 ${
+                        i % 3 === 1 ? "lg:rotate-[0.3deg]" : ""
+                      }`}
+                    >
+                      <TopicMark id={a.topicId} className="h-7 w-7 shrink-0" />
+                      <span className="text-sm font-bold leading-snug text-ink">
+                        {a.title}
+                      </span>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Topic grid */}
       <section className="bg-paper">

@@ -746,4 +746,87 @@ export const collegeExtraArticles: Article[] = [
     ],
     related: ["repaying-student-loans", "how-to-fill-out-w4", "what-is-a-401k"],
   },
+
+  {
+    slug: "college-money-roadmap",
+    order: 5,
+    topicId: "college",
+    title: "College Money, Start to Finish",
+    dek: "One map of the whole arc: the forms before you enroll, the moves that keep debt down each year, and the plan for paying it back.",
+    level: "Intermediate",
+    readMinutes: 3,
+    takeaways: [
+      "College money runs in four phases: before, every year, final year, and after.",
+      "Do the pre-enrollment steps in order: FAFSA, award letters, comparison, then loans.",
+      "The FAFSA renews every year you're enrolled; missing it can cost a year of aid.",
+      "After graduation, choose a repayment plan on purpose instead of taking the default.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "College money decisions cluster at four moments: before you commit to a school, every year you're enrolled, the last stretch before graduation, and the repayment years after. Each moment has its own guides on this site. This page puts them in order so you always know which phase you're in and which guide comes next. None of it assumes family money, a college fund, or a parent who has done this before; the map works the same whether you're the first in your family to go or the fifth.",
+      },
+      {
+        type: "h2",
+        text: "Before you commit to a school",
+      },
+      {
+        type: "p",
+        text: "Everything in this phase happens before you sign anything, and the order matters because each step feeds the next. If you're still fuzzy on which aid is free money and which is borrowed, [Grants vs. Loans vs. Scholarships](/learn/college/grants-loans-scholarships) is the two-minute primer.",
+      },
+      {
+        type: "steps",
+        items: [
+          "**File the FAFSA.** It's the single form behind grants, federal loans, and work-study, and filing early matters because some aid runs out. [FAFSA, Step by Step](/learn/college/fafsa-step-by-step) walks the whole form.",
+          "**Decode each award letter.** Schools mix grants and loans together in ways that make expensive offers look generous. [Reading a Financial Aid Award Letter](/learn/college/reading-aid-award-letter) shows how to find the real price.",
+          "**Put your offers side by side.** The [Compare Aid Offers tool](/tools/college/compare-offers) takes two award letters and shows the true net price of each.",
+          "**Pause before signing any loan.** Ten minutes here can shape ten years. [Student Loans, Before You Sign](/learn/college/student-loans-before-you-sign) is the checklist.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Every year you're enrolled",
+      },
+      {
+        type: "p",
+        text: "The FAFSA is not one-and-done. It renews every single year you're in school, and a missed renewal can cost a year of aid. [Common FAFSA Mistakes That Cost You Aid](/learn/college/fafsa-mistakes) covers renewal slip-ups along with the rest. While you're enrolled, three other things deserve an annual look:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Work-study**, if it's in your package, works differently from a normal job. [Work-Study, Explained](/learn/college/work-study-explained) covers how to claim and use it.",
+          "**Borrowing less while you're there** beats any repayment strategy later. [Getting Through College With as Little Debt as Possible](/learn/college/minimizing-college-debt) is the playbook.",
+          "**Scholarships aren't only for high-school seniors.** Plenty target current students, so [Finding Scholarships You'll Actually Win](/learn/college/finding-scholarships) is worth a pass every year.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Your final year",
+      },
+      {
+        type: "p",
+        text: "Graduation compresses a lot of money tasks into a few months: loans waking up, a first real paycheck, a stack of benefits paperwork. [Graduating? Your Money Checklist](/learn/college/graduation-money-checklist) is the one page to work through before and right after the ceremony.",
+      },
+      {
+        type: "h2",
+        text: "After graduation",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Set up repayment during your grace period**, not after it ends. [Repaying Your Student Loans](/learn/college/repaying-student-loans) covers finding your servicer and picking a plan.",
+          "**If the standard payment doesn't fit your income**, you don't have to white-knuckle it. [Income-Driven Student Loan Repayment](/learn/government-aid/income-driven-repayment) explains the plans that scale the bill to what you earn.",
+        ],
+      },
+      {
+        type: "key",
+        text: "One caution that applies to every phase: you never have to pay anyone to file the FAFSA, find scholarships, or \"fix\" your student loans. Anyone charging for those is selling you something the government and your school give away free.",
+      },
+      {
+        type: "p",
+        text: "You won't need every guide at once. Find the phase you're in, read the one or two guides it points to, and come back when the next phase starts.",
+      },
+    ],
+    related: ["fafsa-step-by-step", "reading-aid-award-letter", "graduation-money-checklist"],
+  },
 ];

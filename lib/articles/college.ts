@@ -84,7 +84,7 @@ export const collegeArticles: Article[] = [
         text: "Once your FAFSA is in, schools start building your aid offer. Two good next reads: [the common FAFSA mistakes that cost students aid](/learn/college/fafsa-mistakes), and [the kinds of aid you'll see](/learn/college/grants-loans-scholarships) when the offers arrive.",
       },
     ],
-    related: ["fafsa-mistakes", "grants-loans-scholarships", "reading-aid-award-letter"],
+    related: ["fafsa-mistakes", "college-money-roadmap", "reading-aid-award-letter"],
     quiz: [
       {
         question: "What does the FAFSA actually decide?",
@@ -337,7 +337,7 @@ export const collegeArticles: Article[] = [
         text: "Once you've found your real cost at each school, you may still see a gap between what you can pay and what aid covers. That gap has a name, and [understanding your unmet need](/learn/college/understanding-unmet-need) is worth doing before you decide.",
       },
     ],
-    related: ["understanding-unmet-need", "grants-loans-scholarships", "appealing-financial-aid"],
+    related: ["understanding-unmet-need", "college-money-roadmap", "appealing-financial-aid"],
   },
 
   {

@@ -73,7 +73,7 @@ export const budgetingEarningArticles: Article[] = [
         text: "You don't have to get any of this perfect with your first paycheck. Cover what matters, save a little, and stay aware of where the rest is going. Those are the habits that make every paycheck after this one easier.",
       },
     ],
-    related: ["how-to-read-a-pay-stub", "building-your-first-budget", "50-30-20-rule"],
+    related: ["how-to-read-a-pay-stub", "building-your-first-budget", "turning-18-money"],
     quiz: [
       {
         question: "Why is your first paycheck smaller than the pay rate you were promised?",

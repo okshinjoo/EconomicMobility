@@ -345,7 +345,7 @@ export const governmentAidExtraArticles: Article[] = [
         text: "Debt feels isolating, but you have more legitimate, low-cost options than the ads suggest. Start with free nonprofit counseling, understand which path you're actually on, and you'll make a calmer, smarter call than any high-pressure pitch wants you to.",
       },
     ],
-    related: ["what-is-debt-relief", "negotiating-debt", "avoiding-debt-scams"],
+    related: ["what-is-debt-relief", "negotiating-debt", "avoiding-debt-scams", "debt-payoff-roadmap"],
   },
 
   {
@@ -935,5 +935,104 @@ export const governmentAidExtraArticles: Article[] = [
       },
     ],
     related: ["what-happens-if-you-dont-pay-debts", "debt-collector-rights", "renting-101-tenant-rights"],
+  },
+
+  {
+    slug: "debt-payoff-roadmap",
+    order: 85,
+    topicId: "government-aid",
+    title: "Getting Out of Debt: Start Where You're Standing",
+    dek: "Seven starting points, one map. Skip the generic advice and jump straight to the guide that matches the debt you actually have.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "There's no universal first step out of debt; the right move depends on your situation, not a formula.",
+      "Behind on rent, utilities, or food? Essentials outrank every debt payment.",
+      "Collector calls and lawsuits are rights problems first, payment problems second.",
+      "Free help exists at every stage: nonprofit credit counseling and legal aid.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Most debt advice quietly assumes everyone starts from the same place: steady income, a couple of credit cards, room to maneuver. Real debt is messier. The right first move for someone dodging collector calls is different from the right first move for someone with a payday loan rolling over every two weeks. So instead of a sequence, this is a map. Find the line that sounds like your week and go straight to that guide.",
+      },
+      {
+        type: "h2",
+        text: "Find your situation",
+      },
+      {
+        type: "h3",
+        text: "You're behind on rent, utilities, or groceries",
+      },
+      {
+        type: "p",
+        text: "Essentials outrank every debt, full stop. [When You Can't Pay Every Bill](/learn/budgeting/prioritizing-bills-when-money-is-tight) covers what to pay first when you can't pay everything, and [Help With Utilities and Rent](/learn/government-aid/utility-rent-assistance) can take a bill off your plate entirely.",
+      },
+      {
+        type: "h3",
+        text: "A payday or cash-advance loan keeps rolling over",
+      },
+      {
+        type: "p",
+        text: "That loop is built to be hard to exit, and breaking it comes before any other payoff plan. [Payday Loans and Predatory Lending](/learn/government-aid/payday-loans-and-predatory-lending) covers the exit routes.",
+      },
+      {
+        type: "h3",
+        text: "Debt collectors are calling",
+      },
+      {
+        type: "p",
+        text: "Learn your rights before you pay or promise anything; collectors follow rules, and you have more leverage than the calls suggest. Start with [Your Rights When a Debt Collector Calls](/learn/government-aid/debt-collector-rights), then see [Collections, From First Notice to Gone](/learn/credit/collections-explained) for how the debt shows up on your credit file and eventually leaves it.",
+      },
+      {
+        type: "h3",
+        text: "It's credit cards",
+      },
+      {
+        type: "p",
+        text: "[How to Pay Off a Credit Card](/learn/credit/paying-off-credit-cards) lays out the payoff methods and how to pick one. Then run your real balances through the [Debt Payoff calculator](/tools/debt) to see your actual payoff date and what an extra $50 a month does to it.",
+      },
+      {
+        type: "h3",
+        text: "It's student loans",
+      },
+      {
+        type: "p",
+        text: "Federal loans have a safety valve most borrowers never use: payments sized to your income, sometimes as low as $0. [Income-Driven Student Loan Repayment](/learn/government-aid/income-driven-repayment) explains how to get on a plan.",
+      },
+      {
+        type: "h3",
+        text: "It's everything at once",
+      },
+      {
+        type: "p",
+        text: "When you can't tell which fire to fight, get oriented before you act. [What 'Debt Relief' Really Means](/learn/government-aid/what-is-debt-relief) maps the whole landscape, and [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) compares the big three, including nonprofit credit counseling, which is usually the best free starting point.",
+      },
+      {
+        type: "h3",
+        text: "You've been sued, or bankruptcy is on the table",
+      },
+      {
+        type: "p",
+        text: "[What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) explains the timeline from missed payment to judgment, and [Bankruptcy, Explained Without Judgment](/learn/government-aid/bankruptcy-explained) covers when a legal reset is the rational move. Don't face a court date alone when [free legal help](/learn/government-aid/free-legal-help) exists.",
+      },
+      {
+        type: "h2",
+        text: "Wherever you're standing",
+      },
+      {
+        type: "steps",
+        items: [
+          "Stop new borrowing where you can. A hole that's still being dug can't be filled.",
+          "Protect essentials first: housing, utilities, food, and transportation to work.",
+          "Pick the one guide above that matches your situation and act on that alone. Ignore ads promising to erase your debt for a fee; [Avoiding Debt-Relief and 'Fix Your Credit Fast' Scams](/learn/government-aid/avoiding-debt-scams) shows how to spot them.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Situations change, and the map still works when yours does. Settle the collector problem and you're back at the credit-card line; get the payday loan closed and the everything-at-once section gets shorter. Come back and pick your new starting point.",
+      },
+    ],
+    related: ["what-is-debt-relief", "debt-relief-options", "what-happens-if-you-dont-pay-debts"],
   },
 ];

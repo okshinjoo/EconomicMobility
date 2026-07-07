@@ -309,7 +309,7 @@ export const creditExtraArticles: Article[] = [
         text: "Pulling your credit for the first time can feel like opening a report card you didn't know existed. Whatever it says, you're now in the loop. Once the report is in front of you, [Reading Your Credit Report](/learn/credit/reading-your-credit-report) walks through each section and what to check.",
       },
     ],
-    related: ["reading-your-credit-report", "what-is-a-credit-score", "hard-vs-soft-inquiries"],
+    related: ["reading-your-credit-report", "what-is-a-credit-score", "hard-vs-soft-inquiries", "first-year-of-credit"],
   },
 
   {
@@ -995,5 +995,80 @@ export const creditExtraArticles: Article[] = [
       },
     ],
     related: ["what-is-a-credit-score", "what-hurts-your-score", "build-credit-from-zero"],
+  },
+
+  {
+    slug: "first-year-of-credit",
+    order: 5,
+    topicId: "credit",
+    title: "Your First Year of Credit, Month by Month",
+    dek: "No score, no history, no idea where to begin? Here's the whole first year, mapped to the guides that cover each move.",
+    level: "Intermediate",
+    readMinutes: 4,
+    takeaways: [
+      "Months 1–2: open one starter account that reports to the bureaus and put it on autopay.",
+      "Months 3–6: pay on time and keep utilization low; pull your free report to confirm the account is reporting.",
+      "Scores typically need about six months of history to exist at all, so don't chase a number early.",
+      "By month 12 you have a file worth guarding: a credit freeze is free and takes minutes.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Credit building has a frustrating shape: the work is front-loaded and the results lag by months. Scoring models generally need about six months of history before you have a score at all, so your first year is less about chasing a number and more about running quiet habits until the number shows up. Here's the year, month by month.",
+      },
+      {
+        type: "h2",
+        text: "Months 1–2: get one account reporting",
+      },
+      {
+        type: "p",
+        text: "Everything starts with a single account that reports to the credit bureaus. [How to Build Credit From Zero](/learn/credit/build-credit-from-zero) walks through the starter tools (secured cards, credit-builder loans, becoming an authorized user) and how to pick one. No Social Security number? You still have real options; [Building Credit With No Social Security Number](/learn/credit/build-credit-no-ssn) covers the ITIN route.",
+      },
+      {
+        type: "steps",
+        items: [
+          "Open one starter account and turn on autopay for the full balance the day it arrives.",
+          "Give it a single small recurring charge, like a phone bill or a streaming subscription.",
+          "Then leave it alone. One account is enough to start a file.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Months 3–6: run the two habits",
+      },
+      {
+        type: "p",
+        text: "With the account open, only two behaviors move the needle: pay on time, every time, and keep the balance small relative to the limit. [Credit Utilization, Demystified](/learn/credit/credit-utilization) explains the second in detail, and [What Hurts Your Score (and What Doesn't)](/learn/credit/what-hurts-your-score) puts both in proportion so you don't sweat things that barely matter.",
+      },
+      {
+        type: "p",
+        text: "Somewhere in this stretch, pull your credit report for the first time. It costs nothing ([How to Check Your Credit for Free](/learn/credit/check-credit-free) shows where), and the goal is simply to confirm your account is actually being reported and nothing on the file surprises you.",
+      },
+      {
+        type: "h2",
+        text: "Month 6 and after: read the file properly",
+      },
+      {
+        type: "p",
+        text: "Around the six-month mark, most people who've had an account reporting the whole time will see a score generate. Whatever it is, don't judge it yet; young files score conservatively, and time fixes that on its own. This is the moment to sit down with [Reading Your Credit Report](/learn/credit/reading-your-credit-report) and go through every section line by line, because from here on this document follows you.",
+      },
+      {
+        type: "h2",
+        text: "Months 9–12: what a year buys you, and guarding it",
+      },
+      {
+        type: "p",
+        text: "A year of clean history is a real asset. Secured-card issuers often review accounts around this point to graduate you to a regular card and return your deposit, landlords see an actual file when they screen you, and better card offers start to make sense ([Choosing Your First Credit Card](/learn/credit/choosing-first-credit-card) covers how to compare them, and [Hard vs. Soft Credit Inquiries](/learn/credit/hard-vs-soft-inquiries) explains what shopping around does and doesn't cost).",
+      },
+      {
+        type: "p",
+        text: "That same file is now worth stealing. [Credit Freezes and Fraud Alerts](/learn/credit/credit-freeze) shows how to lock it: a freeze is free, takes minutes, and blocks anyone from opening accounts in your name. You thaw it whenever you apply for something yourself.",
+      },
+      {
+        type: "p",
+        text: "On timelines, keep your expectations qualitative: roughly six months to have a score, a year to have one lenders take a little seriously, and years of the same two habits to have a great one. The habits never change as the number grows. Only the stakes do.",
+      },
+    ],
+    related: ["build-credit-from-zero", "credit-utilization", "check-credit-free"],
   },
 ];

@@ -194,7 +194,7 @@ export const creditArticles: Article[] = [
         text: "In about six months of steady use, you'll usually have a real score for the first time. From there it grows as long as you keep the same habits going.",
       },
     ],
-    related: ["what-is-a-credit-score", "choosing-first-credit-card", "credit-utilization", "rent-reporting"],
+    related: ["what-is-a-credit-score", "first-year-of-credit", "credit-utilization", "rent-reporting"],
   },
 
   {

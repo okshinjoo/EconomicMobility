@@ -236,7 +236,7 @@ export const budgetingExtraArticles: Article[] = [
         text: "This article is general guidance, not advice about your exact situation. The next step is simple: pick one nearby credit union or a well-known bank, call, and ask what you'd need to open a free checking account. When you're ready, [Opening Your First Bank Account](/learn/budgeting/opening-first-bank-account) walks through the actual how-to.",
       },
     ],
-    related: ["checking-vs-savings", "opening-first-bank-account", "building-a-savings-habit"],
+    related: ["checking-vs-savings", "opening-first-bank-account", "new-to-america-money"],
   },
 
   {
@@ -537,7 +537,7 @@ export const budgetingExtraArticles: Article[] = [
         text: "You don't need more income or more willpower to start. You need one automatic transfer and one tiny amount. Set the transfer for the day after your next payday, and the system carries it from there.",
       },
     ],
-    related: ["saving-on-a-tight-budget", "what-is-apy", "budgeting-methods"],
+    related: ["saving-on-a-tight-budget", "what-is-apy", "budgeting-methods", "money-order-of-operations"],
   },
 
   {
@@ -770,5 +770,56 @@ export const budgetingExtraArticles: Article[] = [
       "auto-insurance-basics",
       "what-happens-if-you-dont-pay-debts",
     ],
+  },
+
+  {
+    slug: "new-to-america-money",
+    order: 45,
+    topicId: "budgeting",
+    title: "New to the U.S.: Your First Year of American Money",
+    dek: "A map of the American money system for your first year here: banking, credit, taxes, and which guide to read at each step.",
+    level: "Beginner",
+    readMinutes: 3,
+    takeaways: [
+      "Getting into a real bank account is the first move; everything else builds on it.",
+      "An ITIN opens doors to banking, credit, and tax filing if you don't have an SSN.",
+      "Your credit history starts at zero here no matter what you built back home.",
+      "Some scams are aimed specifically at newcomers; learn them before they find you.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Moving to the United States means learning a new money system on top of everything else: unfamiliar banks, a credit score you've never had, a tax agency with its own alphabet of forms, and plenty of people offering confident wrong answers. You don't have to figure it all out at once. This page is a map of the first year, in the order that works, with a guide for each step when you're ready for the details. One note before the list: nothing here is advice about your immigration situation. It's an explanation of how the money system works, and every step below is something people in all kinds of situations do every day.",
+      },
+      {
+        type: "h2",
+        text: "The first-year route",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Get your money into a real bank.** Check cashers and prepaid cards take a cut of every paycheck, and cash can't be replaced if it's stolen. [Getting Into the Banking System Safely](/learn/budgeting/unbanked-underbanked) covers second-chance accounts and opening one with an ITIN, and [Opening Your First Bank Account](/learn/budgeting/opening-first-bank-account) walks through the actual visit.",
+          "**Get an ITIN if you don't have a Social Security number.** This free IRS-issued number lets you file taxes, and many banks and lenders accept it in place of an SSN. [Filing Taxes With an ITIN](/learn/taxes/filing-with-itin) explains what it is and how to apply.",
+          "**Start your credit history.** Whatever credit you had back home didn't cross the border with you; everyone starts at zero here, and the sooner you begin, the sooner apartments, car loans, and good rates open up. [Building Credit With No Social Security Number](/learn/credit/build-credit-no-ssn) covers the ITIN route, and [How to Build Credit From Zero](/learn/credit/build-credit-from-zero) covers the standard one.",
+          "**Learn the actual rules on public benefits.** Rumor and fear keep many families away from programs their children clearly qualify for. [Immigrants and Public Benefits](/learn/government-aid/immigrants-and-benefits) separates the facts from the folklore.",
+          "**Send money home without losing a chunk of it.** Transfer services differ far more than they look, mostly in costs you can't see. [Sending Money Abroad](/learn/budgeting/sending-money-abroad) shows how to compare them, and [Helping Family Without Sinking Yourself](/learn/budgeting/money-and-family) helps you decide how much sending is sustainable.",
+          "**Learn the scams aimed at you.** Some scammers specifically target newcomers, often posing as immigration officials or paid 'helpers.' [Scams That Target Immigrant Families](/learn/money-safety/immigrant-scams) names the common ones, and [How to Spot a Scam Before It Costs You](/learn/money-safety/how-to-spot-a-scam) teaches the red flags that apply everywhere.",
+          "**File your first tax return.** If you earn money here, tax season (January to mid-April) involves you, and filing is often how people get money *back*. [Filing Your Taxes for the First Time](/learn/taxes/filing-taxes-first-time) is the walkthrough, and [Free Ways to File](/learn/taxes/free-ways-to-file) means you never have to pay a storefront preparer.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "A pace that works",
+      },
+      {
+        type: "p",
+        text: "The first two steps are worth doing in your first month or two, because they make everything after them easier. Credit can start as soon as you're banked. The rest can wait until it's relevant: benefits when you need them, transfers when you send, taxes when the season arrives. The only hard deadline on the list is the tax one; returns for a year are generally due the following April 15.",
+      },
+      {
+        type: "p",
+        text: "If you do one thing this week, make it step one. Call or visit a nearby credit union or a well-known bank and ask what you'd need to open a free checking account. Everything else on this list gets easier once your money has a safe place to live.",
+      },
+    ],
+    related: ["unbanked-underbanked", "sending-money-abroad", "immigrants-and-benefits"],
   },
 ];

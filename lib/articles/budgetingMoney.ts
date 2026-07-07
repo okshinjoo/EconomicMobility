@@ -89,7 +89,7 @@ export const budgetingMoneyArticles: Article[] = [
         text: "Sending money home is an act of love, and it shouldn't quietly cost you more than it has to. A few minutes of comparing means more of every dollar lands where you meant it to go.",
       },
     ],
-    related: ["money-and-family", "avoiding-bank-fees", "opening-first-bank-account"],
+    related: ["money-and-family", "avoiding-bank-fees", "new-to-america-money"],
   },
 
   {
@@ -508,5 +508,71 @@ export const budgetingMoneyArticles: Article[] = [
       },
     ],
     related: ["avoiding-bank-fees", "negotiating-medical-bills", "saving-on-a-tight-budget"],
+  },
+
+  {
+    slug: "turning-18-money",
+    order: 15,
+    topicId: "budgeting",
+    title: "Turning 18: What Just Unlocked",
+    dek: "Your signature became legally binding overnight. Here's what that changes about money, and what's worth doing in your first months as an adult.",
+    level: "Beginner",
+    readMinutes: 3,
+    takeaways: [
+      "At 18, accounts, contracts, and debts in your name are legally yours.",
+      "You can now open your own bank account and start credit; starting the clock early pays off for decades.",
+      "Your SSN can open real credit now, which makes it worth actively guarding.",
+      "Joint accounts and cosigned loans with family are real debt, not a formality.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Nothing about money feels different the morning you turn 18, but the legal ground under you moved overnight. Your signature is now binding. You can open accounts, sign leases, and take on debt entirely on your own, and you can be held to every bit of it. That cuts both ways: the tools adults use to build a financial life just unlocked, and so did the ways to get hurt. Here's what changed, and what's worth doing about it in your first few months.",
+      },
+      {
+        type: "h2",
+        text: "What your signature can do now",
+      },
+      {
+        type: "p",
+        text: "Almost everything on this list comes down to one change: you can now enter contracts, and contracts are the rails money runs on. As of your birthday, you can:",
+      },
+      {
+        type: "list",
+        items: [
+          "Open and fully own a bank account, with no adult on it.",
+          "Get a credit card, loan, lease, or phone plan in your own name.",
+          "File your own tax return and sign your own FAFSA.",
+          "Be sued, sent to collections, or held to any contract you sign.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The first few months, in order",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Open an account that's fully yours.** If your only account is a teen account with a parent as co-owner, you can now hold one solo or convert the one you have. [Opening Your First Bank Account](/learn/budgeting/opening-first-bank-account) covers what to bring and what \"free\" should mean.",
+          "**Start your credit history.** Before 18 you couldn't be the primary holder on a credit account; now you can, and the age of your oldest account quietly helps your score for the rest of your life. [How to Build Credit From Zero](/learn/credit/build-credit-from-zero) shows the safe first moves, and [The Credit Factors You Can't Rush](/learn/credit/credit-mix-and-age) explains why a clock started at 18 beats one started at 25.",
+          "**Find out whether taxes involve you yet.** Even a part-time job can mean a refund waiting for you when filing isn't strictly required. [Do You Even Need to File?](/learn/taxes/do-you-need-to-file) is the five-minute answer, and [What to Do With Your First Paycheck](/learn/budgeting/your-first-paycheck) explains the deductions you'll see along the way.",
+          "**Guard your identity like it's worth something, because now it is.** Your Social Security number can open real credit in your name. [Guarding Your SSN and Important Documents](/learn/money-safety/protecting-your-documents) covers the habits, and a [credit freeze](/learn/credit/credit-freeze) is a free, proactive lock you can set today and lift whenever you apply for something.",
+          "**If college is anywhere on your horizon, the FAFSA is yours to file.** It goes in under your name with your signature. [FAFSA, Step by Step](/learn/college/fafsa-step-by-step) walks through it.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The new fine print with family",
+      },
+      {
+        type: "p",
+        text: "Before 18, being \"added\" to a family account was mostly symbolic. Now a joint account or a cosigned loan makes the debt legally yours, no matter whose idea it was or who promises to pay. That doesn't make helping family wrong; it makes it a real decision. [Helping Family Without Sinking Yourself](/learn/budgeting/money-and-family) covers how to say yes and no without wrecking the relationship.",
+      },
+      {
+        type: "p",
+        text: "None of this has to happen in week one. But the bank account and the first credit account are worth doing early, because both get more valuable with time. Pick one and handle it this month.",
+      },
+    ],
+    related: ["opening-first-bank-account", "build-credit-from-zero", "do-you-need-to-file"],
   },
 ];

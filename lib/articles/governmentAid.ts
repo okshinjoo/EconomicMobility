@@ -206,7 +206,7 @@ export const governmentAidArticles: Article[] = [
         text: "Debt relief is real, and it works for many people. Start with the guide that matches where you are. If you only read one, make it the comparison of the three formal paths.",
       },
     ],
-    related: ["debt-relief-options", "negotiating-debt"],
+    related: ["debt-relief-options", "negotiating-debt", "debt-payoff-roadmap"],
   },
   {
     slug: "income-driven-repayment",
