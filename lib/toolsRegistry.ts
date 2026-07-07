@@ -58,6 +58,12 @@ export const toolCategories: ToolCategory[] = [
         status: "live",
       },
       {
+        slug: "jars",
+        title: "Savings Jars",
+        short: "Name your goals, fill the jars, watch them top up.",
+        status: "live",
+      },
+      {
         slug: "net-worth",
         title: "Net Worth",
         short: "What you own minus what you owe, in one honest number.",
@@ -156,6 +162,12 @@ export const toolCategories: ToolCategory[] = [
         short: "The gap left after aid, and the loans it might take to fill it.",
         status: "live",
         main: true,
+      },
+      {
+        slug: "compare-offers",
+        title: "Compare Aid Offers",
+        short: "Two award letters, side by side, with the real net price of each.",
+        status: "live",
       },
       {
         slug: "student-loan",

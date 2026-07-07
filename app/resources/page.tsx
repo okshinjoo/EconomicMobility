@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
 
@@ -204,6 +205,13 @@ export default function ResourcesPage() {
           </div>
         </section>
       </main>
+
+      {/* Check-a-broker: the investor.gov habit, one click */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-3xl px-6 pb-16">
+          <CheckBroker />
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -199,4 +199,8 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Debt Payoff Calculator",
     href: "/tools/debt",
   },
+  "reading-aid-award-letter": {
+    label: "Compare Aid Offers",
+    href: "/tools/college/compare-offers",
+  },
 };
