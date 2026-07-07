@@ -2,15 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  ArrowRight,
-  ArrowLeft,
-  ChevronRight,
-  Clock,
-  BarChart3,
-  Wrench,
-  Sparkles,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { topics, getTopic, type TopicId } from "@/lib/topics";
@@ -63,9 +55,14 @@ export default async function TopicPage({
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero — clean editorial, with the topic illustration */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pb-10 pt-8">
+      {/* Hero — clean editorial with a ghost topic mark bleeding off the corner */}
+      <section className="relative overflow-hidden bg-paper">
+        <TopicMark
+          id={meta.id}
+          color={accent}
+          className="pointer-events-none absolute -bottom-24 -left-24 h-[24rem] w-[24rem] opacity-[0.06]"
+        />
+        <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-8">
           <nav className="flex items-center gap-1.5 text-sm font-medium text-stone">
             <Link href="/learn" className="transition-colors hover:text-ink">
               Learn
@@ -82,19 +79,15 @@ export default async function TopicPage({
               <p className="mt-5 max-w-xl text-lg leading-8 text-stone">
                 {content.subhead}
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-stone">
-                <span className="inline-flex items-center gap-1.5">
-                  <BarChart3 className="h-4 w-4" style={{ color: accent }} />
-                  {content.level}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" style={{ color: accent }} />
-                  {guideCount(topic)} guides
-                </span>
-                <span>{LEARN_UPDATED}</span>
+              <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-bold text-ink/70">
+                <span>{content.level}</span>
+                <span className="text-stone/40">·</span>
+                <span>{guideCount(topic)} guides</span>
+                <span className="text-stone/40">·</span>
+                <span className="font-medium text-stone">{LEARN_UPDATED}</span>
               </div>
             </div>
-            <div className="relative order-first aspect-[5/4] overflow-hidden rounded-3xl border border-sand bg-sand lg:order-last">
+            <div className="card-ink relative order-first aspect-[5/4] overflow-hidden rounded-2xl bg-sand lg:order-last lg:rotate-[0.5deg]">
               <Image
                 src={meta.image}
                 alt=""
@@ -104,7 +97,7 @@ export default async function TopicPage({
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"
               />
-              <span className="absolute bottom-4 left-4 flex h-16 w-16 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
+              <span className="absolute bottom-4 left-4 flex h-16 w-16 items-center justify-center rounded-xl border-2 border-ink bg-cream">
                 <TopicMark id={meta.id} className="h-9 w-9" />
               </span>
             </div>
@@ -128,42 +121,41 @@ export default async function TopicPage({
 
       {hasArticles ? (
         <>
-          {/* Featured "Start here" article */}
+          {/* Featured "Start here" article — B voice with a solid accent edge */}
           {featured && (
             <section className="bg-paper">
               <div className="mx-auto max-w-5xl px-6 pt-12">
                 <Link
                   href={`/learn/${topic}/${featured.slug}`}
-                  className="group grid gap-6 rounded-3xl border p-7 transition-all duration-200 hover:shadow-lg sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center"
-                  style={{ borderColor: `${accent}40`, background: `${accent}0d` }}
+                  className="card-ink-lg group relative block overflow-hidden rounded-2xl bg-cream p-7 pl-10 transition-transform duration-200 hover:-translate-y-1 sm:p-9 sm:pl-12"
                 >
-                  <div>
+                  <span
+                    aria-hidden
+                    className="absolute inset-y-0 left-0 w-3"
+                    style={{ background: accent }}
+                  />
+                  <span
+                    className="inline-block -rotate-2 rounded-md border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]"
+                    style={{ background: accent, color: "#fbf8f1" }}
+                  >
+                    Start here
+                  </span>
+                  <h2 className="mt-4 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-3 max-w-xl text-base leading-7 text-stone">
+                    {featured.dek}
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center gap-4">
                     <span
-                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide"
+                      className="btn-ink inline-flex items-center rounded-md px-6 py-3 text-sm font-bold"
                       style={{ background: accent, color: "#fbf8f1" }}
                     >
-                      <Sparkles className="h-3.5 w-3.5" />
-                      Start here
+                      Start reading
                     </span>
-                    <h2 className="mt-4 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
-                      {featured.title}
-                    </h2>
-                    <p className="mt-3 max-w-xl text-base leading-7 text-stone">
-                      {featured.dek}
-                    </p>
-                    <div className="mt-6 flex flex-wrap items-center gap-4">
-                      <span
-                        className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all group-hover:gap-3"
-                        style={{ background: accent, color: "#fbf8f1" }}
-                      >
-                        Start reading
-                        <ArrowRight className="h-4 w-4" />
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-medium text-stone">
-                        <Clock className="h-4 w-4" />
-                        {featured.readMinutes} min read
-                      </span>
-                    </div>
+                    <span className="text-sm font-bold text-stone">
+                      {featured.readMinutes} min read
+                    </span>
                   </div>
                 </Link>
               </div>
@@ -195,8 +187,8 @@ export default async function TopicPage({
                     <div key={group.level}>
                       <div className="flex items-center gap-3">
                         <span
-                          className="rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide"
-                          style={{ background: `${accent}1a`, color: accent }}
+                          className="rounded-md border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-[2px_2px_0_#11211c]"
+                          style={{ background: accent, color: "#fbf8f1" }}
                         >
                           {group.label}
                         </span>
@@ -261,8 +253,8 @@ export default async function TopicPage({
               {(content.path ?? []).map((group) => (
                 <div key={group.level}>
                   <span
-                    className="rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide"
-                    style={{ background: `${accent}1a`, color: accent }}
+                    className="rounded-md border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-[2px_2px_0_#11211c]"
+                    style={{ background: accent, color: "#fbf8f1" }}
                   >
                     {group.level}
                   </span>
@@ -272,7 +264,7 @@ export default async function TopicPage({
                         key={item.title}
                         className="rounded-2xl border border-sand bg-cream/60 p-5"
                       >
-                        <span className="rounded-full bg-amber/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-deep">
+                        <span className="rounded-md bg-amber/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-deep">
                           Coming soon
                         </span>
                         <h3 className="mt-3 font-semibold text-ink">{item.title}</h3>
@@ -295,23 +287,22 @@ export default async function TopicPage({
           <div className="mx-auto max-w-5xl px-6">
             <Link
               href={content.tool.href}
-              className="group flex items-center gap-4 rounded-2xl border border-sand bg-cream p-6 transition-all hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-md"
+              className="card-ink group flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-0.5"
             >
-              <span
-                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-                style={{ background: `${accent}1A`, color: accent }}
-              >
-                <Wrench className="h-6 w-6" strokeWidth={1.5} />
-              </span>
-              <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-wide text-stone">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-stone">
                   Put it into practice
                 </p>
-                <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
+                <h3 className="mt-1 font-display text-lg font-semibold text-ink">
                   {content.tool.label}
                 </h3>
               </div>
-              <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
+              <span
+                className="text-sm font-semibold underline decoration-2 underline-offset-4"
+                style={{ color: accent, textDecorationColor: `${accent}55` }}
+              >
+                Open the tool
+              </span>
             </Link>
           </div>
         </section>
@@ -320,10 +311,9 @@ export default async function TopicPage({
       {/* Test your knowledge */}
       <section className="bg-paper py-14">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-forest p-8 text-cream sm:flex-row sm:items-center sm:p-10">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border-2 border-ink bg-forest p-8 text-cream shadow-[7px_7px_0_#e7a33c] sm:flex-row sm:items-center sm:p-10">
             <div className="max-w-lg">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-                <Sparkles className="h-4 w-4" />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
                 Test your knowledge
               </span>
               <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">
@@ -337,29 +327,30 @@ export default async function TopicPage({
             </div>
             <Link
               href="/quiz"
-              className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
+              className="inline-flex flex-shrink-0 items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink transition-colors hover:bg-cream"
             >
               Take the quiz
-              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Related topics */}
+      {/* Related topics — B-voice cards, one tilted */}
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
             Keep going
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {content.related.map((relId) => {
+            {content.related.map((relId, i) => {
               const rel = getTopic(relId);
               return (
                 <Link
                   key={relId}
                   href={rel.href}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-200 hover:-translate-y-1 hover:border-ink/20 hover:shadow-lg"
+                  className={`card-ink group flex flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
+                    i === 1 ? "lg:rotate-[0.5deg]" : ""
+                  }`}
                 >
                   <div className="relative aspect-[5/3] overflow-hidden bg-sand">
                     <Image
@@ -379,11 +370,10 @@ export default async function TopicPage({
                       {rel.title}
                     </h3>
                     <span
-                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold"
-                      style={{ color: rel.color }}
+                      className="mt-2 inline-block text-sm font-semibold underline decoration-2 underline-offset-4"
+                      style={{ color: rel.color, textDecorationColor: `${rel.color}55` }}
                     >
                       Explore
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
                 </Link>
@@ -394,9 +384,8 @@ export default async function TopicPage({
           <div className="mt-10">
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 text-base font-semibold text-forest transition-colors hover:text-ink"
+              className="text-base font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
             >
-              <ArrowLeft className="h-4 w-4" />
               Back to all topics
             </Link>
           </div>

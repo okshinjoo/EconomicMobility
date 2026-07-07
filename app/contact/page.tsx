@@ -30,13 +30,16 @@ export default function ContactPage() {
       <Header />
 
       <main>
-        <section className="bg-paper">
-          <div className="mx-auto max-w-4xl px-6 pb-12 pt-10 text-center lg:pb-14 lg:pt-12">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">Get in touch</span>
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+        {/* Hero — A: amber field, left-aligned with a sticker chip */}
+        <section className="bg-amber text-ink">
+          <div className="mx-auto max-w-5xl px-6 pb-12 pt-12 lg:pb-14">
+            <span className="-rotate-2 inline-block rounded-lg border-2 border-ink bg-cream px-4 py-1.5 text-sm font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]">
+              Get in touch
+            </span>
+            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
               We&apos;d love to hear from you.
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-stone">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
               A question, an idea, a story, a way to help — this is a community,
               and your voice is part of it.
             </p>
@@ -44,8 +47,9 @@ export default function ContactPage() {
         </section>
 
         <section className="bg-paper">
-          <div className="mx-auto grid max-w-5xl gap-12 px-6 pb-24 lg:grid-cols-2 lg:gap-16">
-            <div className="rounded-3xl border border-sand bg-cream p-7 shadow-[0_1px_0_rgba(21,48,42,0.04),0_18px_40px_-28px_rgba(21,48,42,0.35)] sm:p-9">
+          <div className="mx-auto grid max-w-5xl gap-12 px-6 py-14 lg:grid-cols-2 lg:gap-16 lg:pb-24">
+            {/* Form — B: ink & shadow card */}
+            <div className="card-ink-lg rounded-2xl bg-cream p-7 sm:p-9">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
                 Send a message
               </span>
@@ -61,11 +65,13 @@ export default function ContactPage() {
               <h2 className="font-display text-2xl font-bold text-ink">
                 Ways to get involved
               </h2>
-              <div className="mt-6 space-y-4">
-                {involvement.map((item) => (
+              <div className="mt-6 space-y-5">
+                {involvement.map((item, i) => (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/15 hover:shadow-md"
+                    className={`card-ink rounded-2xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 ${
+                      i === 1 ? "lg:rotate-[0.5deg]" : ""
+                    }`}
                   >
                     <h3 className="font-display text-lg font-semibold text-ink">
                       {item.title}

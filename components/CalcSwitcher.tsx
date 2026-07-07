@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { categoryByBase, hrefFor } from "@/lib/toolsRegistry";
 
-/** Pill nav across the calculators in a category. `current` is the active slug. */
+/** Tab nav across the calculators in a category. `current` is the active slug. */
 export default function CalcSwitcher({
   base,
   current,
@@ -20,10 +20,10 @@ export default function CalcSwitcher({
           return (
             <span
               key={item.slug}
-              className="inline-flex cursor-default items-center gap-1.5 rounded-full border border-sand bg-cream/50 px-4 py-2 text-sm font-semibold text-stone/60"
+              className="inline-flex cursor-default items-center gap-1.5 rounded-md border-2 border-sand/70 bg-cream/50 px-4 py-2 text-sm font-semibold text-stone/60"
             >
               {item.title}
-              <span className="rounded-full bg-amber/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-deep">
+              <span className="rounded-sm bg-amber/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-deep">
                 Soon
               </span>
             </span>
@@ -34,10 +34,10 @@ export default function CalcSwitcher({
             key={item.slug}
             href={hrefFor(cat, item)}
             aria-current={active ? "page" : undefined}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded-md border-2 px-4 py-2 text-sm transition-colors ${
               active
-                ? "border-ink bg-ink text-cream"
-                : "border-sand bg-cream text-ink hover:border-ink/30"
+                ? "border-ink bg-amber font-bold text-ink shadow-[3px_3px_0_#11211c]"
+                : "border-sand bg-cream font-semibold text-ink hover:border-ink/40"
             }`}
           >
             {item.title}

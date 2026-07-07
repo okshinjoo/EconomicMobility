@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, ShieldCheck, Loader2 } from "lucide-react";
+import { Send, ShieldCheck, Loader2 } from "lucide-react";
 import { topics } from "@/lib/topics";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -64,20 +64,20 @@ export default function AskQuestion() {
 
   if (status === "done") {
     return (
-      <div className="rounded-3xl border border-forest/30 bg-forest/5 p-8 text-center">
-        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest/15 text-forest">
-          <CheckCircle2 className="h-7 w-7" strokeWidth={1.75} />
+      <div className="card-ink-lg rounded-2xl bg-cream p-6 sm:p-8">
+        <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+          Question sent
         </span>
-        <h3 className="mt-4 font-display text-2xl font-semibold text-ink">
+        <h3 className="mt-5 font-display text-3xl font-semibold text-ink">
           Thanks for asking.
         </h3>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-stone">
+        <p className="mt-2 max-w-md text-sm leading-6 text-stone">
           We read every question. The most common and most useful ones get
           answered right here — keep an eye on this page.
         </p>
         <button
           onClick={reset}
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-sand bg-cream px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-ink/30"
+          className="btn-ink mt-6 inline-flex items-center rounded-md bg-cream px-6 py-3 text-sm font-bold text-ink"
         >
           Ask another question
         </button>
@@ -90,12 +90,12 @@ export default function AskQuestion() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-sand bg-cream p-6 sm:p-8"
+      className="card-ink-lg rounded-2xl bg-cream p-6 sm:p-8"
     >
       <div>
         <label
           htmlFor="ask-question"
-          className="mb-1.5 block text-sm font-semibold text-ink"
+          className="mb-1.5 block text-sm font-bold text-ink"
         >
           Your question
         </label>
@@ -106,7 +106,7 @@ export default function AskQuestion() {
           required
           rows={4}
           placeholder="No question is too basic. Ask anything about money — budgeting, credit, taxes, school, scams, benefits…"
-          className="w-full resize-y rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-forest focus:outline-none"
+          className="w-full resize-y rounded-lg border-2 border-ink/20 bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-forest focus:outline-none"
         />
       </div>
 
@@ -114,7 +114,7 @@ export default function AskQuestion() {
         <div>
           <label
             htmlFor="ask-topic"
-            className="mb-1.5 block text-sm font-semibold text-ink"
+            className="mb-1.5 block text-sm font-bold text-ink"
           >
             Topic <span className="font-normal text-stone">(optional)</span>
           </label>
@@ -122,7 +122,7 @@ export default function AskQuestion() {
             id="ask-topic"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            className="w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink focus:border-forest focus:outline-none"
+            className="w-full rounded-lg border-2 border-ink/20 bg-paper px-4 py-3 text-ink focus:border-forest focus:outline-none"
           >
             <option value="">I'm not sure / other</option>
             {topics.map((t) => (
@@ -136,7 +136,7 @@ export default function AskQuestion() {
         <div>
           <label
             htmlFor="ask-email"
-            className="mb-1.5 block text-sm font-semibold text-ink"
+            className="mb-1.5 block text-sm font-bold text-ink"
           >
             Email <span className="font-normal text-stone">(optional)</span>
           </label>
@@ -146,7 +146,7 @@ export default function AskQuestion() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Only if you'd like a reply"
-            className="w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-forest focus:outline-none"
+            className="w-full rounded-lg border-2 border-ink/20 bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-forest focus:outline-none"
           />
         </div>
       </div>
@@ -160,7 +160,7 @@ export default function AskQuestion() {
         <button
           type="submit"
           disabled={sending || !question.trim()}
-          className="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-full bg-forest px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-200 hover:bg-forest-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="btn-ink inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-md bg-amber px-7 py-3.5 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           {sending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -172,7 +172,7 @@ export default function AskQuestion() {
       </div>
 
       {status === "error" && (
-        <p className="mt-4 rounded-xl border border-terracotta/40 bg-terracotta/10 px-4 py-3 text-sm text-ink">
+        <p className="mt-4 rounded-lg border-2 border-terracotta/50 bg-terracotta/10 px-4 py-3 text-sm text-ink">
           Something went wrong sending that. Please try again in a moment.
         </p>
       )}

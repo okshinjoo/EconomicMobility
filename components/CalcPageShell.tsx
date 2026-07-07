@@ -3,6 +3,15 @@ import { ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CalcSwitcher from "@/components/CalcSwitcher";
+import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
+
+// /tools/<base-slug> → toolStyles/ToolDoodle category key
+const doodleIdByBase: Record<string, string> = {
+  budget: "budgeting",
+  debt: "debt",
+  savings: "saving",
+  college: "college",
+};
 
 export default function CalcPageShell({
   base,
@@ -21,11 +30,21 @@ export default function CalcPageShell({
   dek: string;
   children: React.ReactNode;
 }) {
+  const doodleId = doodleIdByBase[base.split("/")[2] ?? ""] ?? "budgeting";
+  const doodleAccent = (toolStyles[doodleId] ?? toolStyles.budgeting).accent;
+
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pt-12">
+      <section className="relative overflow-hidden bg-paper">
+        {/* Ghost category doodle bleeding off the header's right edge */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 top-16 hidden w-[42rem] opacity-[0.07] md:block"
+        >
+          <ToolDoodle id={doodleId} color={doodleAccent} wide />
+        </div>
+        <div className="relative mx-auto max-w-6xl px-6 pt-12">
           <nav className="flex items-center gap-1.5 text-sm font-medium text-stone">
             <Link href="/tools" className="transition-colors hover:text-ink">
               Tools
@@ -38,7 +57,7 @@ export default function CalcPageShell({
             <span className="text-ink">{eyebrow}</span>
           </nav>
         </div>
-        <div className="mx-auto max-w-6xl px-6 pb-8 pt-8">
+        <div className="relative mx-auto max-w-6xl px-6 pb-8 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
             {eyebrow}
           </span>

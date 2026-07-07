@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
 
 export const metadata: Metadata = {
@@ -103,13 +103,22 @@ export default function ResourcesPage() {
       <Header />
 
       <main>
-        <section className="bg-paper">
-          <div className="mx-auto max-w-4xl px-6 py-16 text-center lg:py-20">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">Resources</span>
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
-              Help that&apos;s already out there.
+        {/* Hero — C: editorial maximal on a forest field */}
+        <section className="relative overflow-hidden bg-forest text-cream">
+          <TopicMark
+            id="government-aid"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.07]"
+          />
+          <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-14 lg:pt-20">
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
+              Resources
+            </span>
+            <h1 className="mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+              Help that&apos;s{" "}
+              <span className="italic text-amber">already out there.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-stone">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
               A hand-picked list of trusted, free programs and tools — for
               college aid, government benefits, money help, and taxes. The hard
               part is knowing they exist.
@@ -117,59 +126,71 @@ export default function ResourcesPage() {
           </div>
         </section>
 
+        {/* State finder — the hero object, pulled up over the field */}
         <section className="bg-paper">
-          <div className="mx-auto max-w-5xl px-6 pb-4">
+          <div className="relative mx-auto -mt-14 max-w-5xl px-6">
             <StateResources />
           </div>
         </section>
 
+        {/* National resources — editorial numbered link lists */}
         <section className="bg-paper">
-          <div className="mx-auto max-w-5xl px-6 pb-2">
-            <h2 className="font-display text-2xl font-bold text-ink">
+          <div className="mx-auto max-w-5xl px-6 pb-20 pt-16">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
               Trusted national resources
             </h2>
-            <p className="mt-1 text-sm leading-6 text-stone">
+            <p className="mt-2 text-base leading-7 text-stone">
               Free, reputable programs and tools that work anywhere in the U.S.
             </p>
-          </div>
-          <div className="mx-auto max-w-5xl space-y-12 px-6 pb-16 pt-6">
-            {groups.map((group) => (
-              <div key={group.title} id={group.id} className="scroll-mt-24">
-                <h2 className="font-display text-2xl font-bold text-ink">
-                  {group.title}
-                </h2>
-                <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  {group.links.map((link) => (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/20 hover:shadow-lg"
+
+            <div className="mt-10 space-y-12">
+              {groups.map((group, gi) => (
+                <div
+                  key={group.title}
+                  id={group.id}
+                  className="grid scroll-mt-24 gap-x-12 gap-y-4 border-t-2 border-ink/10 pt-8 lg:grid-cols-[240px_1fr]"
+                >
+                  <div>
+                    <span
+                      aria-hidden="true"
+                      className="block select-none font-display text-7xl font-bold leading-none text-sand"
                     >
-                      <span className="flex items-center justify-between gap-2">
-                        <h3 className="font-display text-lg font-semibold text-ink">
-                          {link.name}
-                        </h3>
-                        <ArrowUpRight
-                          className="h-4 w-4 flex-shrink-0 text-stone transition-colors group-hover:text-forest"
-                          aria-hidden="true"
-                        />
-                      </span>
-                      <p className="mt-2 text-sm leading-6 text-stone">
-                        {link.desc}
-                      </p>
-                    </a>
-                  ))}
+                      {String(gi + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-ink">
+                      {group.title}
+                    </h3>
+                  </div>
+
+                  <ul className="divide-y divide-sand">
+                    {group.links.map((link) => (
+                      <li key={link.url}>
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group block py-5 first:pt-0"
+                        >
+                          <span className="font-display text-lg font-semibold text-ink underline decoration-amber decoration-2 underline-offset-4 transition-colors group-hover:text-forest">
+                            {link.name}
+                          </span>
+                          <p className="mt-1.5 text-sm leading-6 text-stone">
+                            {link.desc}
+                          </p>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="bg-paper-deep">
-          <div className="mx-auto max-w-3xl px-6 py-12 text-center">
-            <p className="text-sm leading-7 text-stone">
+        {/* Closer — A: amber field */}
+        <section className="bg-amber text-ink">
+          <div className="mx-auto max-w-5xl px-6 py-12">
+            <p className="max-w-3xl text-base leading-7 text-ink/80">
               These are independent organizations we don&apos;t run or control —
               we list them because they&apos;re free, reputable, and genuinely
               useful. Always double-check eligibility on the official site, and
