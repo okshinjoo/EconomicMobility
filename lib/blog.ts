@@ -254,6 +254,314 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "so-you-want-a-side-hustle",
+    title: "So You Want a Side Hustle",
+    dek: "Skip the LLC, the logo, and the personal brand. The first weekend is smaller than the internet says.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "The internet has a starter pack waiting for you: form an LLC, buy the domain, design a logo, set up the business Instagram, film a few reels about your entrepreneurial journey. Notice what's missing from that list. A customer.",
+      },
+      {
+        type: "p",
+        text: "The first weekend of a real side hustle is smaller, cheaper, and less photogenic than any of that. You need three things: one skill somebody will pay for, one channel where those somebodies can find you, and a price you won't resent. Everything else is decoration, and most of it can wait a year.",
+      },
+      { type: "h2", text: "One skill, one channel, one price" },
+      {
+        type: "p",
+        text: "The skill is something you can do right now at a level worth paying for. Tutoring the class you aced. Editing photos. Assembling furniture. Running social media for the restaurant down the street. Not the thing you'd love to be paid for after six months of courses; that's a worthwhile project, but it's a different one.",
+      },
+      {
+        type: "p",
+        text: "The channel is wherever your first three customers already are: a group chat, a campus job board, the neighborhood app, a paper flyer at the laundromat. Pick one and post. A website persuades nobody who wasn't already persuaded, while a text that says \"she's good, use her\" does everything a personal brand was supposed to do, for free.",
+      },
+      {
+        type: "p",
+        text: "The price is the one you can say out loud and still feel fine about on the third job. Underpricing feels humble and safe, and it's the quiet killer of side hustles, because resentment compounds faster than revenue. If the number makes you slightly nervous, you're probably close.",
+      },
+      {
+        type: "p",
+        text: "And the LLC? You don't need it to start. The moment someone pays you, you're a sole proprietor by default, which is the legal system's way of saying: congratulations, you already have a business, paperwork pending.",
+      },
+      { type: "h2", text: "You're allowed to stay small" },
+      {
+        type: "p",
+        text: "Hustle culture has one setting: scale. Every side gig is supposed to become an agency, then a course, then a personal brand with a podcast. But a side hustle is a tool, not an identity. A few hundred extra dollars a month aimed at a specific goal (the emergency fund, the flight home, the security deposit) is a complete success story even if it never gets a logo. You're also allowed to stop when the goal is met. Tools go back in the drawer.",
+      },
+      { type: "h2", text: "The tax part nobody mentions" },
+      {
+        type: "p",
+        text: "When an employer pays you, taxes come out before the money lands. When a client pays you, nothing comes out. That doesn't mean you owe nothing; it means you're now your own withholding department. Self-employment income carries income tax plus both halves of Social Security and Medicare, and the bill arrives at tax time whether or not you saved for it.",
+      },
+      {
+        type: "p",
+        text: "The move is unglamorous: park a slice of every payment in a separate account before you spend a dollar of it, and leave it there. How big a slice, and how quarterly payments work, is covered in the [gig and 1099 taxes guide](/learn/taxes/gig-1099-taxes). The fuller honest math of side income, including when a hustle isn't worth your hourly rate, lives in [side hustles, honestly](/learn/budgeting/side-hustles-honestly).",
+      },
+      {
+        type: "p",
+        text: "So skip the logo this weekend. Text three people, do one job, get paid once, put a slice away for the IRS. That's a real business, day one. The Instagram can wait until there's a business worth photographing.",
+      },
+    ],
+  },
+  {
+    slug: "cash-stuffing-is-back",
+    title: "Cash Stuffing Is Back, and It Was Never Wrong",
+    dek: "TikTok rediscovered a budgeting method older than the checking account. It went viral for a reason.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Somewhere on TikTok right now, a pair of hands with immaculate nails is dealing crisp twenties into pastel laminated envelopes labeled GAS, GROCERIES, and FUN. The video has a few million views. The method is older than the creator's grandmother.",
+      },
+      {
+        type: "p",
+        text: "Cash stuffing is the envelope system: withdraw your spending money in cash at the start of the month, divide it into envelopes by category, and when an envelope is empty, that category is done spending. No app, no spreadsheet, no gray area. Depression-era households ran on it, and so did plenty of immigrant kitchens with an envelope taped inside a cabinet door.",
+      },
+      { type: "h2", text: "Why an old method went viral" },
+      {
+        type: "p",
+        text: "Because it fixes the exact thing modern payment tech broke. Tapping a phone doesn't feel like spending; we've written about [why the tap doesn't hurt](/blog/why-tapping-doesnt-hurt), and cash stuffing is the same insight run in reverse. Handing over physical bills stings a little, and watching an envelope get thinner is a budget you can feel in your fingers. The method makes money physical again, in an economy that spent thirty years making it abstract.",
+      },
+      {
+        type: "p",
+        text: "It also gets the hard part of budgeting right: the decision happens once, at the start of the month, when you're calm. The envelope enforces it later, when you're tired at a checkout. Every budgeting method that works does some version of this; cash does it with zero interface.",
+      },
+      { type: "h2", text: "Where it falls apart" },
+      {
+        type: "p",
+        text: "Rent doesn't want an envelope. Neither does the phone bill, the streaming stack, or anything on autopay; the biggest lines in your budget are digital whether you like it or not. Cash also earns nothing sitting in a binder, and unlike a bank balance, it isn't FDIC-insured against fire, theft, or a roommate's bad month. A binder holding a month of spending money is a real loss risk that a debit card simply isn't. And there's a practical ceiling: some landlords and most of the internet won't take bills at all.",
+      },
+      { type: "h2", text: "The hybrid most people land on" },
+      {
+        type: "p",
+        text: "Keep the fixed, boring bills digital and on autopay. Then take the categories where you actually overspend (food, fun, the mall) and give them hard limits: paper envelopes if the physical sting helps you, digital ones if it doesn't. Our [savings jars](/tools/budget/jars) tool is the envelope idea without the binder: named amounts, visible balances, an obvious moment when a jar runs dry.",
+      },
+      {
+        type: "p",
+        text: "Cash stuffing is one member of a bigger family, and the [budgeting methods guide](/learn/budgeting/budgeting-methods) lines envelopes up against 50/30/20 and zero-based budgeting so you can pick by personality rather than by trend.",
+      },
+      {
+        type: "p",
+        text: "The kids with the laminated envelopes aren't being naive. They noticed that the frictionless economy was engineered to be easy to spend in, and they added the friction back by hand. You don't need the pastel binder. You need the part where the money is visible and the limit is real, and however you get that is correct.",
+      },
+    ],
+  },
+  {
+    slug: "grandmas-money-rules-fact-checked",
+    title: "Grandma's Money Rules, Fact-Checked",
+    dek: "Five classic sayings, one loving audit. The wisdom holds up better than you'd think.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Every family has them: the money rules that arrive with dinner, delivered by a grandmother who survived things you've only read about. Save your money. Don't trust banks, or trust nothing but banks, depending on the grandmother. Buy land. Before dismissing any of it as outdated, it's worth remembering what these rules are: survival wisdom, compressed for transport across generations. They kept families fed through depressions, migrations, and currency collapses. They don't need replacing. Some of them need a version update.",
+      },
+      { type: "h2", text: "\"Save 10% of everything.\" Verdict: directionally great" },
+      {
+        type: "p",
+        text: "The number matters less than the reflex, and the reflex is the whole game: some slice of every dollar that arrives never gets spent. Ten percent is a fine default. What grandma couldn't have told you is where the slice should go first, because that depends on things her era didn't have, like employer 401(k) matches and 20%-interest credit cards. The modern sequencing lives in the [money order of operations](/learn/budgeting/money-order-of-operations); her instinct sits at the top of it, unchanged.",
+      },
+      { type: "h2", text: "\"Cash is king.\" Verdict: half-true now" },
+      {
+        type: "p",
+        text: "In her day, cash was privacy, discipline, and proof all at once. The discipline part still works: physical money hurts a little to spend, which is [exactly the point](/blog/why-tapping-doesnt-hurt). But cash earns no interest, isn't insured in a coffee can, and can't pay rent through a portal. Cash remains a useful tool for the categories where you overspend. As a kingdom, it has been downsized to a duchy.",
+      },
+      { type: "h2", text: "\"We don't talk about money.\" Verdict: this one has to go" },
+      {
+        type: "p",
+        text: "The rule made sense when it was written; talking about money once invited envy, gossip, and sometimes real danger. But silence has a compounding cost. Families that never discuss salaries, debt, or how anything got paid for end up re-learning every lesson from scratch, one generation at a time. Nobody finds out that the aunt negotiated her salary, that the down payment came with help, that the uncle's business nearly failed twice. The information that would change your decisions stays locked inside the people who love you most. There's a whole guide on [breaking that silence gently](/learn/budgeting/talking-about-money-with-family), because the first conversation is the hard one.",
+      },
+      { type: "h2", text: "\"Buy land. A house is always a good investment.\" Verdict: it depends" },
+      {
+        type: "p",
+        text: "For grandma's generation this was often true, and for families locked out of every other wealth-building tool it was sometimes the only one available, which is why she says it with such force. It's still sometimes right. But \"always\" can't survive the math of a specific case: prices, rates, how long you'll stay, and what renting costs instead all decide the answer. The honest comparison lives in [renting vs. buying](/learn/home-ownership/renting-vs-buying). Respect the rule by running the numbers, not by obeying it.",
+      },
+      { type: "h2", text: "\"A penny saved is a penny earned.\" Verdict: she undersold it" },
+      {
+        type: "p",
+        text: "A penny you earn gets taxed before you ever touch it. A penny you don't spend already made it through. Depending on [your tax bracket](/learn/taxes/tax-brackets-explained), a dollar saved can be worth noticeably more than a dollar of new income, because saving happens after taxes and earning happens before them. She was handing you a tax strategy disguised as a proverb.",
+      },
+      {
+        type: "p",
+        text: "Final tally: one keeper, one half-keeper, one retirement, one \"run the numbers,\" and one that was more right than she knew. Not bad for advice built without spreadsheets. The rules were never really the point, anyway. The point is that someone who had less than you found a way through, compressed what worked into a sentence, and handed it to you for free. The least you can do is keep the good parts updated.",
+      },
+    ],
+  },
+  {
+    slug: "the-group-dinner-problem",
+    title: "The Group Dinner Problem",
+    dek: "Splitting a bill is easy. Splitting it fairly, with people you love, on different budgets: that's the hard part.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "The bill arrives and the table performs its little ritual. Someone says split it evenly. Someone quietly recalculates what they ordered. Someone had two cocktails and the lobster and is enthusiastically in favor of even splitting. And someone, at every table, is doing math about their week.",
+      },
+      {
+        type: "p",
+        text: "Friendship has economics, and nobody hands you the syllabus. The group dinner is the entry-level course. The advanced curriculum is the bachelorette weekend, the group trip \"somewhere cheap\" that ends up costing $900, and wedding season, which functions as an annual surprise tax on being loved.",
+      },
+      { type: "h2", text: "The even split is a policy, not a kindness" },
+      {
+        type: "p",
+        text: "Splitting evenly feels smooth and generous, and across one dinner the difference is noise. Across a whole social calendar, the water-and-appetizer friend is quietly subsidizing the friend who orders like a senator, and both of them would be embarrassed to say so. The other direction has its own villain: the $4.50 Venmo request, itemized with the warmth of a utility company. Somewhere between \"everything is communal\" and \"I have invoiced you for your fries\" is where friendship actually lives, and every group has to find the spot for itself.",
+      },
+      {
+        type: "p",
+        text: "(However you settle up, it's worth knowing the mechanics of the apps doing the settling. [Payment-app safety](/learn/money-safety/payment-app-safety) covers why those balances aren't bank accounts, and what to check before money moves.)",
+      },
+      { type: "h2", text: "The subsidy nobody mentions" },
+      {
+        type: "p",
+        text: "Some friends' rent is quietly covered. Some are on the family phone plan, drive an old family car, and know an emergency would be caught. None of that is a character flaw; it's luck, and it's often invisible even to the person who has it. But it means that when they say a weekend is \"only\" $200, they're describing their reality accurately. Yours may cost the same on paper and twice as much in practice, because [what a life costs](/learn/budgeting/cost-of-living) depends enormously on who's helping to pay for it. Two friends at the same table, earning the same wage, can be living in different economies.",
+      },
+      { type: "h2", text: "Saying the number out loud" },
+      {
+        type: "list",
+        items: [
+          "**Name your budget while the plan is still soft.** \"I can do about $30 for this\" said in the group-chat phase is planning information. Said when the check arrives, it's an incident.",
+          "**Suggest the cheaper plan yourself.** The taco spot instead of the tasting menu, the picnic instead of the rooftop. Watch how fast everyone agrees. Half the table was waiting for permission.",
+          "**Itemize big bills without apology.** The apps take thirty seconds. Being precise about money is how you protect a friendship from resentment, not evidence that you lack chill.",
+          "**Treat weddings and trips as budget events.** They're knowable months ahead. A named amount you save toward turns an ambush into a plan, and turns \"I can't this time\" into an answer you can give early instead of late.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this is stinginess; it's maintenance. Money silence doesn't protect friendships, it slowly bills them. The friends worth keeping would rather have you at the cheap table all year than watch you disappear after the expensive one.",
+      },
+    ],
+  },
+  {
+    slug: "why-everyone-online-seems-rich",
+    title: "Why Everyone Online Seems Rich",
+    dek: "Your feed shows purchases, never balances. That changes the math of comparison.",
+    date: "2026-07-07",
+    tag: "Watch out",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Scroll for five minutes and take inventory: the apartment tour, the airport lounge, the unboxing, the \"little treat\" haul, the friend from high school on a boat. Everyone seems to be doing fine. Better than fine. Everyone except, somehow, you.",
+      },
+      {
+        type: "p",
+        text: "We've written about [fake financial gurus](/blog/how-to-spot-a-fake-financial-guru), the ones renting Lamborghinis to sell you a course. This is about something trickier: regular people, your actual peers, who aren't selling anything. They're not lying, exactly. The feed is doing the lying for them.",
+      },
+      { type: "h2", text: "The feed shows purchases, not balances" },
+      {
+        type: "p",
+        text: "A camera can capture a dinner, an outfit, a trip, a car. It cannot capture a checking account, a card balance, a student loan, or the specific dread of the 27th of the month. So the visible layer of everyone's life is their spending, and the invisible layer is what the spending did to them. A financed haul photographs identically to a paid-off one. The friend on the boat might be wealthy, might be one of nine people splitting a rental, might be twelve payments into a personal loan. The photo is the same photo.",
+      },
+      { type: "h2", text: "The geometry of the comparison" },
+      {
+        type: "p",
+        text: "The mismatch is structural. You experience your own finances in full: every balance, every debt, every anxious 1am math session. You experience everyone else's finances as a highlight reel of their best purchases. So the comparison is never fair; you're weighing your complete financial reality against a hundred people's single best moment each. Even a feed made entirely of people who are struggling will look rich, the same way a hundred people's vacation photos make it look like everyone is always on vacation.",
+      },
+      { type: "h2", text: "The platforms take a cut of the feeling" },
+      {
+        type: "p",
+        text: "Feeling behind is profitable. The moment the feed convinces you everyone else is ahead, you're a prime audience for the ad two posts later, which is happy to sell you the thing that closes the gap. Buy it and your haul joins someone else's feed, and the loop feeds itself. None of this requires anyone to lie. It only requires everyone to post their best day, and an algorithm to stack a thousand best days into your worst hour.",
+      },
+      { type: "h2", text: "The only balance sheet you can see" },
+      {
+        type: "p",
+        text: "There is exactly one financial reality you get full access to: your own. What you own minus what you owe is one honest number that no filter touches. Our [net worth tool](/tools/budget/net-worth) does the arithmetic in a few minutes, and it quietly relocates your attention from other people's purchases, which you can't verify, to your own position, which you can improve.",
+      },
+      {
+        type: "p",
+        text: "That number might be small or negative; early ones usually are, and notice that nobody posts theirs either. But it's real, it's yours, and watching it move beats watching strangers spend. The feed will keep performing wealth. You get to build the kind that doesn't need an audience.",
+      },
+    ],
+  },
+  {
+    slug: "spacex-ipo-what-actually-happened",
+    title: "SpaceX Went Public. Here's What Your Feed Left Out.",
+    dek: "The biggest IPO in history is a free masterclass in how IPOs treat regular buyers.",
+    date: "2026-07-07",
+    tag: "Noticed",
+    readMinutes: 5,
+    body: [
+      {
+        type: "p",
+        text: "On June 12, SpaceX started trading on the Nasdaq under SPCX, and for one afternoon every group chat in America became an investment committee. Largest IPO ever: $86 billion raised, a $1.77 trillion valuation at pricing. The rocket company was finally buyable, and the fear of missing the next Apple did what it always does.",
+      },
+      {
+        type: "p",
+        text: "This post isn't a buy or a don't-buy. It's the part your feed skipped: what mechanically happened that day, because it's the single best live lesson in [how IPOs actually work](/learn/investing/what-is-an-ipo) that anyone will get for years.",
+      },
+      { type: "h2", text: "Who got $135, and who got $161" },
+      {
+        type: "p",
+        text: "The offering price was $135 a share. That price went almost entirely to institutions: banks, funds, and clients of the underwriters. When trading opened to everyone else, the first public trades printed around $150, and the day closed at $161, a 19% pop. If you bought on IPO day, you didn't buy the IPO. You bought from someone who did, at their markup. That gap between the offering price and your price has a whole [guide of its own](/learn/investing/opening-vs-offering-price), and June 12 was the textbook running in real time.",
+      },
+      { type: "h2", text: "The float and the calendar" },
+      {
+        type: "p",
+        text: "Only about 5% of the company actually traded. Insiders agreed not to sell for 366 days, other early investors for 180. Which means the supply of SpaceX shares is scheduled to grow substantially, on dates anyone can look up, while first-day demand got one afternoon of maximum hype. Prices are set by supply and demand; one of those two is on a public calendar. Also worth knowing: buying SPCX gets you almost no say in anything, since one person retains 82% of the voting power through super-voting shares.",
+      },
+      { type: "h2", text: "The boring plot twist" },
+      {
+        type: "p",
+        text: "If SpaceX earns its way into the big stock indexes, the index funds most retirement accounts hold will buy it automatically, at whatever the fair-ish market price is then, and you'll own your slice without lifting a finger or paying the hype tax. That's not a thrilling sentence. It wasn't designed to be. [Index funds](/learn/investing/index-funds-explained) never are.",
+      },
+      {
+        type: "p",
+        text: "Rooting for the rockets costs nothing. If you also want to own a piece, know which price you're actually being offered, who's selling in six months, and whether a single exciting stock belongs in [the plan you already have](/learn/investing/risk-and-diversification). Excitement is free. Concentration isn't.",
+      },
+    ],
+  },
+  {
+    slug: "the-parlay-is-not-a-plan",
+    title: "The Parlay Is Not a Plan",
+    dek: "Sports betting apps turned gambling into a hobby with a login. The math didn't change.",
+    date: "2026-07-07",
+    tag: "Real talk",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Somewhere tonight a 23-year-old will turn $20 into $1,400 on a five-leg parlay, post the slip, and become the most famous person in his group chat for a week. The app will make sure everyone sees it. What the app won't post is the other four hundred slips that died on leg three.",
+      },
+      {
+        type: "p",
+        text: "No lecture coming. Betting is legal, it's everywhere sports are, and pretending people will simply stop is how financial advice gets ignored. But the apps work hard to blur one line, and it's worth redrawing: betting is entertainment with a price, and the parlay is the most expensively priced item on the menu.",
+      },
+      { type: "h2", text: "Why the parlay specifically" },
+      {
+        type: "p",
+        text: "Each leg of a parlay carries the sportsbook's edge, and multiplying legs multiplies the edge against you. That's why the payouts look so spectacular: they're priced like lottery tickets because they hit like lottery tickets. Sportsbooks promote parlays relentlessly and boost them with flashy odds for the same reason grocery stores put candy at the register. It's their highest-margin shelf.",
+      },
+      { type: "h2", text: "The app is not on your side" },
+      {
+        type: "p",
+        text: "Free bets that only pay out as more betting. Streaks, missions, and daily rewards borrowed straight from mobile games. Deposit matches when you've been quiet too long. If a stock brokerage marketed like this, regulators would be circling; the design goal is the same one from [the tap-to-pay story](/blog/why-tapping-doesnt-hurt): make the money leaving feel like nothing.",
+      },
+      { type: "h2", text: "Price it like a hobby, because it is one" },
+      {
+        type: "list",
+        items: [
+          "**Give it a budget line with a number.** Entertainment money, decided in daylight, spent without guilt. When it's gone, the season's fun budget is gone. [Needs vs. wants](/learn/budgeting/needs-vs-wants) is the honest frame.",
+          "**Never the rent, never the credit card.** Betting borrowed money is the one bright line. If deposits are landing on a card, that's the signal to stop and [talk to someone](/learn/budgeting/managing-financial-stress).",
+          "**Keep the investing money in a different building.** The brain that wants a parlay is not the brain that builds wealth. [Boring wins that race](/learn/investing/saving-vs-investing), every decade, on purpose.",
+          "**If it stops feeling optional, take it seriously.** The National Problem Gambling Helpline is 1-800-GAMBLER, free and confidential. Using it is a money move, not a confession.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Enjoy the games. Sweat a small slip with friends if that's your fun. Just keep the score honest: the app is a business, the parlay is its best product, and you are the margin.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
