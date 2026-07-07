@@ -457,6 +457,87 @@ export const glossary: GlossaryTerm[] = [
       "A legal process for people who can't repay their debts, giving them a fresh start by erasing or restructuring what they owe.",
     related: "government-aid",
   },
+  {
+    slug: "phishing",
+    term: "phishing",
+    aliases: ["smishing"],
+    definition:
+      "A fake message (email, text, or call) pretending to be a company or agency you trust, designed to trick you into giving up passwords, codes, or money. Real organizations don't ask for those over a link they sent you.",
+    related: "money-safety",
+  },
+  {
+    slug: "identity-theft",
+    term: "identity theft",
+    definition:
+      "When someone uses your personal information, like your Social Security number, to open accounts or claim benefits pretending to be you. Catching it early is why you check your credit report.",
+    related: "money-safety",
+  },
+  {
+    slug: "credit-freeze",
+    term: "credit freeze",
+    aliases: ["security freeze"],
+    definition:
+      "A free lock you place with each credit bureau so nobody can open new credit in your name until you unlock it. It doesn't affect your score or your existing cards.",
+    related: "money-safety",
+  },
+  {
+    slug: "wire-transfer",
+    term: "wire transfer",
+    definition:
+      "A way to send money directly from one bank account to another. Once it's sent, it's usually gone for good, which is exactly why scammers love asking for it.",
+    related: "money-safety",
+  },
+  {
+    slug: "two-factor-authentication",
+    term: "two-factor authentication",
+    aliases: ["2FA"],
+    definition:
+      "A second lock on an account: after your password, you confirm it's really you with a code or app. It stops most break-ins even when a password leaks.",
+    related: "money-safety",
+  },
+  {
+    slug: "security-deposit",
+    term: "security deposit",
+    definition:
+      "Money (often one month's rent) a landlord holds while you rent, to cover damage beyond normal wear and tear. If you leave the place in good shape, you're entitled to it back.",
+    related: "home-ownership",
+  },
+  {
+    slug: "lease",
+    term: "lease",
+    definition:
+      "The contract between you and a landlord: how much rent, for how long, and what each side is responsible for. Everything you agreed to (and everything you didn't) lives in this document.",
+    related: "home-ownership",
+  },
+  {
+    slug: "renters-insurance",
+    term: "renters insurance",
+    definition:
+      "A cheap policy (often $15–$30 a month) that covers your belongings and liability while renting. The landlord's insurance covers the building, not your stuff.",
+    related: "home-ownership",
+  },
+  {
+    slug: "premium",
+    term: "premium",
+    definition:
+      "The amount you pay for an insurance policy, usually monthly, whether or not you ever file a claim. It's the price of being covered.",
+    related: "insurance",
+  },
+  {
+    slug: "deductible",
+    term: "deductible",
+    definition:
+      "What you pay out of your own pocket before insurance starts paying. A lower deductible usually means a higher premium, and the reverse.",
+    related: "insurance",
+  },
+  {
+    slug: "overdraft",
+    term: "overdraft",
+    aliases: ["overdraft fee"],
+    definition:
+      "When you spend more than your account holds and the bank covers the gap, usually charging a fee. You can opt out so a too-big purchase simply declines instead.",
+    related: "budgeting",
+  },
 ];
 
 const bySlug = new Map(glossary.map((t) => [t.slug, t]));

@@ -72,6 +72,7 @@ export const nav: NavEntry[] = [
       { label: "Free tax filing", href: "/resources#free-tax-filing" },
     ],
   },
+  { label: "Courses", href: "/courses" },
   { label: "Community", href: "/community" },
   { label: "Blog", href: "/blog" },
   {

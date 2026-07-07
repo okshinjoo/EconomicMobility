@@ -1,0 +1,178 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Clock } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Flashcards from "@/components/Flashcards";
+import CourseQuiz from "@/components/CourseQuiz";
+import { ReadBadge } from "@/components/ReadBadge";
+import { courses, getCourse, getCourseArticles, getCourseFlashcards } from "@/lib/courses";
+
+export function generateStaticParams() {
+  return courses.map((c) => ({ course: c.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ course: string }>;
+}): Promise<Metadata> {
+  const { course } = await params;
+  const found = getCourse(course);
+  if (!found) return { title: "Not Found | Empower" };
+  return {
+    title: `${found.title} | Empower Courses`,
+    description: found.goal,
+  };
+}
+
+export default async function CoursePage({
+  params,
+}: {
+  params: Promise<{ course: string }>;
+}) {
+  const { course } = await params;
+  const found = getCourse(course);
+  if (!found) notFound();
+
+  const articles = getCourseArticles(found);
+  const cards = getCourseFlashcards(found);
+  const accent = found.color;
+  const articleRefs = articles.map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    href: `/learn/${a.topicId}/${a.slug}`,
+  }));
+  const totalMinutes = articles.reduce((sum, a) => sum + a.readMinutes, 0);
+
+  return (
+    <div className="min-h-screen bg-paper text-ink">
+      <Header />
+
+      {/* Hero */}
+      <section className="bg-paper-deep">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
+          <nav className="text-sm text-stone">
+            <Link href="/courses" className="hover:text-ink hover:underline">
+              Courses
+            </Link>{" "}
+            <span aria-hidden>›</span>{" "}
+            <span className="font-medium text-ink">{found.title}</span>
+          </nav>
+          <span
+            className="mt-6 block text-xs font-semibold uppercase tracking-[0.18em]"
+            style={{ color: accent }}
+          >
+            Learning module
+          </span>
+          <h1 className="mt-3 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+            {found.title}
+          </h1>
+          <p className="mt-2 max-w-2xl text-lg font-semibold text-ink/80">
+            {found.goal}
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-stone">
+            {found.description}
+          </p>
+          <p className="mt-5 text-sm font-medium text-stone">
+            {articles.length} guides · about {totalMinutes} minutes of reading
+            · {cards.length} flashcards · {found.finalQuiz.length}-question
+            final
+          </p>
+        </div>
+      </section>
+
+      {/* Reading path */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
+          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+            The reading path
+          </h2>
+          <p className="mt-1.5 text-sm text-stone">
+            In order — each guide builds on the one before it.
+          </p>
+          <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((a, i) => (
+              <li key={a.slug}>
+                <Link
+                  href={`/learn/${a.topicId}/${a.slug}`}
+                  className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:border-ink/20 hover:shadow-md"
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="font-display text-sm font-bold tabular-nums"
+                      style={{ color: accent }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <ReadBadge slug={a.slug} accent={accent} />
+                      <span className="inline-flex items-center gap-1 rounded-full bg-paper-deep px-2.5 py-0.5 text-[11px] font-medium text-stone">
+                        <Clock className="h-3 w-3" />
+                        {a.readMinutes} min
+                      </span>
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-semibold leading-snug text-ink">
+                    {a.title}
+                  </h3>
+                  <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                    {a.dek}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Flashcards */}
+      <section className="bg-paper-deep">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                Flashcards
+              </h2>
+              <p className="mt-3 text-base leading-7 text-stone">
+                Every definition you&apos;ll meet in this module&apos;s guides,
+                pulled straight from the{" "}
+                <Link
+                  href="/glossary"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  glossary
+                </Link>
+                . Flip through before the final — if a term feels fuzzy, the
+                guide it came from is one click back up the page.
+              </p>
+            </div>
+            <Flashcards cards={cards} accent={accent} />
+          </div>
+        </div>
+      </section>
+
+      {/* Final quiz */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-3xl px-6 py-12 lg:py-14">
+          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+            The final
+          </h2>
+          <p className="mt-1.5 mb-6 text-sm text-stone">
+            Pass it and the {found.title} badge is yours.
+          </p>
+          <CourseQuiz
+            courseId={found.id}
+            courseTitle={found.title}
+            questions={found.finalQuiz}
+            accent={accent}
+            articles={articleRefs}
+          />
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
