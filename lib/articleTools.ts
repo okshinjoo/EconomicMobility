@@ -131,10 +131,6 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Investment Growth Calculator",
     href: "/tools/savings/investment",
   },
-  "compare-savings-accounts": {
-    label: "Compound Interest Calculator",
-    href: "/tools/savings/compound",
-  },
   "compare-investment-vehicles": {
     label: "Investment Growth Calculator",
     href: "/tools/savings/investment",

@@ -6,12 +6,12 @@ export const collegeArticles: Article[] = [
     order: 10,
     topicId: "college",
     title: "FAFSA, Step by Step",
-    dek: "The FAFSA is the one form that unlocks most college aid — and it's completely free to file.",
+    dek: "The FAFSA is the one form that unlocks most college aid, and it's completely free to file.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
       "The FAFSA is the gateway to grants, work-study, and federal loans.",
-      "It's always free — never pay a site to file it for you.",
+      "It's always free. Never pay a site to file it for you.",
       "Gather a few documents first and the form goes faster.",
       "File early and file every year you're in school.",
     ],
@@ -22,11 +22,11 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you're the first in your family to do this, you are not behind and you are not alone. Plenty of students fill out the FAFSA with no one to ask. Let's walk through it together.",
+        text: "If you're the first in your family to do this, you are not behind and you are not alone. Plenty of students fill out the FAFSA with no one to ask, and the form is more tedious than it is hard.",
       },
       {
         type: "h2",
-        text: "It's free — really",
+        text: "It really is free",
       },
       {
         type: "p",
@@ -38,20 +38,20 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The form goes much faster if you collect a few things before you start. You don't need all of it memorized — you just need it nearby.",
+        text: "The form goes much faster if you collect a few things before you start. You don't need all of it memorized; you just need it nearby.",
       },
       {
         type: "list",
         items: [
           "Your Social Security number (or Alien Registration number, if you have one).",
-          "Your most recent tax return and income records — and a parent's, if you're a dependent student.",
+          "Your most recent tax return and income records, plus a parent's if you're a dependent student.",
           "Records of any savings, checking, and other money you have.",
           "A list of the schools you're considering, so the form can send your info to each one.",
         ],
       },
       {
         type: "tip",
-        text: "Create your account username and password ahead of time. If you're a dependent student, a parent will need their own account too — setting both up early saves a headache later.",
+        text: "Create your account username and password ahead of time. If you're a dependent student, a parent will need their own account too. Setting both up early saves a headache later.",
       },
       {
         type: "h2",
@@ -62,7 +62,7 @@ export const collegeArticles: Article[] = [
         items: [
           "Create your account and log in to the official federal student aid site.",
           "Enter your personal details and the schools you want to receive your information.",
-          "Add your income and asset information — many people can import tax data directly, which cuts down on typing and mistakes.",
+          "Add your income and asset information. Many people can import tax data directly, which cuts down on typing and mistakes.",
           "If you're a dependent student, invite your parent to add their part and sign.",
           "Review everything, sign, and submit. You'll get a confirmation that it went through.",
         ],
@@ -73,18 +73,53 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Some aid is first-come, first-served, so filing soon after the form opens can mean more money. The FAFSA usually opens around **October 1** for the next school year, and the federal deadline runs to **June 30** of that school year — but many states and schools set their own deadlines *months* earlier, so check yours and don't wait until the last week. One more thing: the FAFSA isn't a one-time task. You file a new one for each school year you want aid.",
+        text: "Some aid is first-come, first-served, so filing soon after the form opens can mean more money. The FAFSA usually opens around **October 1** for the next school year, and the federal deadline runs to **June 30** of that school year. But many states and schools set their own deadlines *months* earlier, so check yours and don't wait until the last week. One more thing: the FAFSA isn't a one-time task. You file a new one for each school year you want aid.",
       },
       {
         type: "key",
-        text: "The FAFSA can look intimidating, but it's mostly copying numbers off forms you already have. Filing it — even if you think your family earns too much — is how you find out what help is on the table.",
+        text: "The FAFSA can look intimidating, but it's mostly copying numbers off forms you already have. File it even if you think your family earns too much; that's how you find out what help is on the table.",
       },
       {
         type: "p",
-        text: "Once your FAFSA is in, schools start building your aid offer. Knowing the kinds of aid you might see next makes that letter a lot less confusing.",
+        text: "Once your FAFSA is in, schools start building your aid offer. Two good next reads: [the common FAFSA mistakes that cost students aid](/learn/college/fafsa-mistakes), and [the kinds of aid you'll see](/learn/college/grants-loans-scholarships) when the offers arrive.",
       },
     ],
-    related: ["grants-loans-scholarships", "reading-aid-award-letter"],
+    related: ["fafsa-mistakes", "grants-loans-scholarships", "reading-aid-award-letter"],
+    quiz: [
+      {
+        question: "What does the FAFSA actually decide?",
+        options: [
+          "Which colleges will accept you",
+          "What grants, work-study, and federal loans you can get",
+          "Whether you're required to take out student loans",
+        ],
+        answer: 1,
+        explain:
+          "The FAFSA is the one form schools use to build your aid offer. It doesn't affect admissions, and it never obligates you to borrow anything.",
+      },
+      {
+        question: "A website offers to submit your FAFSA for a $60 fee. What should you do?",
+        options: [
+          "Pay it; a filing service makes sure it's done right",
+          "Skip it; the FAFSA is always free at the official federal student aid site",
+          "Pay only if you're a dependent student",
+        ],
+        answer: 1,
+        explain:
+          "The first word in FAFSA stands for Free. Any website that asks for money to submit it is one to skip.",
+      },
+      {
+        question: "You filed the FAFSA before your first year of college. When do you file again?",
+        options: [
+          "Never; it's a one-time form",
+          "Only if your family's income changes",
+          "Every school year you want aid",
+        ],
+        answer: 2,
+        explain:
+          "The FAFSA isn't a one-time task; you file a new one for each school year. Filing early helps too, since some aid is first-come, first-served.",
+      },
+    ],
   },
 
   {
@@ -112,7 +147,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A grant is money for school — often based on financial need — that you do not have to pay back. It's as close to free money as it gets. The biggest federal one is the **Pell Grant**, worth up to **$7,395** for the 2025–26 school year for students with the most need. Grants usually come from the government or your school, and your FAFSA is what determines whether you qualify for the federal ones.",
+        text: "A grant is money for school, often based on financial need, that you do not have to pay back. It's as close to free money as it gets. The biggest federal one is the **Pell Grant**, worth up to **$7,395** for the 2026–27 school year for students with the most need. Grants usually come from the government or your school, and your FAFSA is what determines whether you qualify for the federal ones.",
       },
       {
         type: "h2",
@@ -120,11 +155,11 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A scholarship is also money you don't repay, but it's usually awarded for something specific — your grades, a talent, your background, or your field of study. Scholarships can come from your school, local groups, companies, and foundations. You can win more than one, and they stack on top of your other aid.",
+        text: "A scholarship is also money you don't repay, but it's usually awarded for something specific: your grades, a talent, your background, or your field of study. Scholarships can come from your school, local groups, companies, and foundations. You can win more than one, and they stack on top of your other aid. When you're ready to hunt for them, [Finding Scholarships You'll Actually Win](/learn/college/finding-scholarships) covers where to look.",
       },
       {
         type: "key",
-        text: "Grants and scholarships are gift money. You never pay them back. That makes them the best dollars in your whole aid package — chase these first.",
+        text: "Grants and scholarships are gift money. You never pay them back, which makes them the best dollars in your whole aid package. Chase these first.",
       },
       {
         type: "h2",
@@ -132,11 +167,11 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A student loan is money you borrow to pay for school and repay later, almost always with interest — the extra cost of borrowing. A $5,000 loan doesn't stay $5,000; over time you pay back that amount plus interest on top. Loans aren't bad, and many students need them. But borrowed money is the opposite of gift money, so it belongs last in line.",
+        text: "A student loan is money you borrow to pay for school and repay later, almost always with interest (the extra cost of borrowing). A $5,000 loan doesn't stay $5,000; over time you pay back that amount plus interest on top. Loans aren't bad, and many students need them. But borrowed money is the opposite of gift money, so it belongs last in line.",
       },
       {
         type: "tip",
-        text: "Federal student loans usually come with lower, fixed rates and more flexible repayment options than private ones. If you do borrow, look at federal loans first.",
+        text: "Federal student loans usually come with lower, fixed rates and more flexible repayment options than private ones. If you do borrow, [look at federal loans first](/learn/college/federal-vs-private-loans).",
       },
       {
         type: "h2",
@@ -148,10 +183,10 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "When your aid offer arrives, you'll see these types side by side. Telling them apart is the first step to reading that letter with confidence.",
+        text: "When your aid offer arrives, you'll see these types side by side. Telling them apart is the first step to [reading that letter with confidence](/learn/college/reading-aid-award-letter).",
       },
     ],
-    related: ["finding-scholarships", "reading-aid-award-letter"],
+    related: ["finding-scholarships", "federal-vs-private-loans", "reading-aid-award-letter"],
   },
 
   {
@@ -171,7 +206,7 @@ export const collegeArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Lots of students skip scholarships because they assume you need a 4.0 and a list of trophies to win one. Not true. A scholarship is money for school you don't repay, and there are scholarships for nearly every kind of person — your hometown, your heritage, your hobby, your major, even your part-time job. The trick is applying for the ones you can actually win.",
+        text: "Lots of students skip scholarships because they assume you need a 4.0 and a list of trophies to win one. Not true. A scholarship is money for school you don't repay, and there are scholarships for nearly every kind of person: your hometown, your heritage, your hobby, your major, even your part-time job. The trick is applying for the ones you can win.",
       },
       {
         type: "h2",
@@ -179,11 +214,11 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Everyone chases the giant national scholarships, which means thousands of people apply for each one. Smaller, local awards — from a community group, a local business, your church, or your school district — get far fewer applicants. A $500 local scholarship you actually win beats a $20,000 one you don't.",
+        text: "Everyone chases the giant national scholarships, which means thousands of people apply for each one. Smaller local awards from a community group, a local business, your church, or your school district get far fewer applicants. A $500 local scholarship you win beats a $20,000 one you don't.",
       },
       {
         type: "tip",
-        text: "Start with your school counselor and your school's financial aid office. They often keep a list of local scholarships that never get posted online — and far fewer students hear about them.",
+        text: "Start with your school counselor and your school's financial aid office. They often keep a list of local scholarships that never get posted online, and far fewer students hear about them.",
       },
       {
         type: "h2",
@@ -193,7 +228,7 @@ export const collegeArticles: Article[] = [
         type: "list",
         items: [
           "Your high school or college counseling and financial aid offices.",
-          "Free scholarship search sites — never ones that charge a fee.",
+          "Free scholarship search sites (never ones that charge a fee).",
           "Local groups: rotary clubs, unions, community foundations, places of worship.",
           "Your parents' employers, and your own employer if you work.",
           "Groups tied to your background, interests, or planned major.",
@@ -205,7 +240,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Most scholarships are lost to missed deadlines, not weak applications. Keep a simple list — a spreadsheet or even a notebook — with each scholarship, what it needs, and when it's due. Write one strong personal essay you can adjust for several applications instead of starting from scratch each time.",
+        text: "Most scholarships are lost to missed deadlines, not weak applications. Keep a simple list, in a spreadsheet or even a notebook, with each scholarship, what it needs, and when it's due. Write one strong personal essay you can adjust for several applications instead of starting from scratch each time.",
       },
       {
         type: "h2",
@@ -213,15 +248,15 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's a rule that will protect you: a real scholarship never asks you to pay to apply. If a site charges a fee, guarantees you'll win, or asks for your bank account to 'hold' your award, walk away. Real scholarship money flows to you, never from you.",
+        text: "One rule protects you from most of the bad actors: a real scholarship never asks you to pay to apply. If a site charges a fee, guarantees you'll win, or asks for your bank account to 'hold' your award, walk away. Real scholarship money flows to you, never from you. [How to Spot a Scam](/learn/money-safety/how-to-spot-a-scam) covers the warning signs in more detail.",
       },
       {
         type: "key",
-        text: "Applying for scholarships is one of the best-paying things you can do with your time. A few hours on a small local award can be worth more per hour than almost any job — and that money you keep.",
+        text: "Applying for scholarships is one of the best-paying things you can do with your time. A few hours on a small local award can be worth more per hour than almost any job, and the money is yours to keep.",
       },
       {
         type: "p",
-        text: "Every scholarship you win shrinks what you might have to borrow. Once the offers come in, the next job is reading your aid letter and seeing how it all fits together.",
+        text: "Every scholarship you win shrinks what you might have to borrow. Once the offers come in, the next job is [reading your aid letter](/learn/college/reading-aid-award-letter) and seeing how it all fits together.",
       },
     ],
     related: ["grants-loans-scholarships", "reading-aid-award-letter"],
@@ -244,7 +279,7 @@ export const collegeArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "You filed the FAFSA, you applied, and now a financial aid award letter shows up. It tells you what aid a school is offering. The problem is that many of these letters are confusing on purpose — they can make a school look more affordable than it is by mixing very different kinds of money together.",
+        text: "You filed the FAFSA, you applied, and now a financial aid award letter shows up. It tells you what aid a school is offering. The problem is that many of these letters are confusing on purpose. They can make a school look more affordable than it is by mixing very different kinds of money together.",
       },
       {
         type: "h2",
@@ -252,7 +287,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Every letter should be measured against the cost of attendance — the school's full yearly price, including tuition, fees, housing, food, books, and other expenses. This is the real number to beat. If the letter only shows tuition, find the full cost of attendance so you're comparing apples to apples.",
+        text: "Every letter should be measured against the cost of attendance: the school's full yearly price, including tuition, fees, housing, food, books, and other expenses. This is the real number to beat. If the letter only shows tuition, find the full cost of attendance so you're comparing apples to apples.",
       },
       {
         type: "h2",
@@ -271,7 +306,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A loan listed on the letter can look like the school is giving you money, but it isn't — it's money you'll owe later, with interest. Once you separate the piles, the letter starts telling you the truth.",
+        text: "A loan listed on the letter can look like the school is giving you money, but it isn't. It's money you'll owe later, with interest. Once you separate the piles, the letter starts telling you the truth. (If the categories themselves are new to you, [Grants vs. Loans vs. Scholarships](/learn/college/grants-loans-scholarships) is the quick primer.)",
       },
       {
         type: "tip",
@@ -283,7 +318,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Now do one piece of simple math. Take the cost of attendance and subtract only your gift aid — the grants and scholarships. What's left is roughly what you'll need to cover with savings, work, or borrowing. That number, not the school's sticker price, is what you should compare across schools.",
+        text: "Now do one piece of simple math. Take the cost of attendance and subtract only your gift aid, the grants and scholarships. What's left is roughly what you'll need to cover with savings, work, or borrowing. That number, not the school's sticker price, is what you should compare across schools.",
       },
       {
         type: "key",
@@ -291,18 +326,18 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "Ask questions — it's allowed",
+        text: "You're allowed to ask questions",
       },
       {
         type: "p",
-        text: "If a letter confuses you, call or email the school's financial aid office and ask them to walk you through it. And if your family's money situation has changed — a lost job, a big medical bill — you can ask them to review your offer again. People do this all the time, and asking costs nothing.",
+        text: "If a letter confuses you, call or email the school's financial aid office and ask them to walk you through it. And if your family's money situation has changed (a lost job, a big medical bill), you can [ask them to review your offer](/learn/college/appealing-financial-aid). People do this all the time, and asking costs nothing.",
       },
       {
         type: "p",
-        text: "Once you've found your real cost at each school, you may still see a gap between what you can pay and what aid covers. That gap has a name, and it's worth understanding before you decide.",
+        text: "Once you've found your real cost at each school, you may still see a gap between what you can pay and what aid covers. That gap has a name, and [understanding your unmet need](/learn/college/understanding-unmet-need) is worth doing before you decide.",
       },
     ],
-    related: ["understanding-unmet-need", "grants-loans-scholarships"],
+    related: ["understanding-unmet-need", "grants-loans-scholarships", "appealing-financial-aid"],
   },
 
   {
@@ -322,7 +357,7 @@ export const collegeArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Sometimes you add up all your grants, scholarships, and aid, hold it up against a school's price, and there's still a gap. That leftover gap has a name: unmet need. It's the part of the bill your aid doesn't reach — and the part you have to figure out how to cover.",
+        text: "Sometimes you add up all your grants, scholarships, and aid, hold it up against a school's price, and there's still a gap. That leftover gap has a name: unmet need. It's the part of the bill your aid doesn't reach, and the part you have to figure out how to cover. (If you haven't yet [sorted your award letter](/learn/college/reading-aid-award-letter) into gift aid and loans, do that first; the gap only means something once the letter is decoded.)",
       },
       {
         type: "h2",
@@ -330,7 +365,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Unmet need is easier than it sounds. Take the cost of attendance — the school's full yearly price — and subtract every bit of aid you're getting. Whatever's left is your unmet need.",
+        text: "Unmet need is easier than it sounds. Take the cost of attendance, the school's full yearly price, and subtract every bit of aid you're getting. Whatever's left is your unmet need.",
       },
       {
         type: "p",
@@ -342,7 +377,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The unmet need is what's left for you to cover with savings, a job, family help, or borrowing. A school with a higher sticker price can actually leave you with a smaller gap if it gives generous gift aid. So when you compare schools, compare their unmet need — not their advertised price.",
+        text: "The unmet need is what's left for you to cover with savings, a job, family help, or borrowing. A school with a higher sticker price can actually leave you with a smaller gap if it gives generous gift aid. So when you compare schools, compare their unmet need, not their advertised price.",
       },
       {
         type: "key",
@@ -359,15 +394,15 @@ export const collegeArticles: Article[] = [
       {
         type: "list",
         items: [
-          "Keep applying for scholarships — even small ones chip the gap down.",
-          "Ask the financial aid office to reconsider, especially if your finances changed.",
+          "Keep [applying for scholarships](/learn/college/finding-scholarships); even small ones chip the gap down.",
+          "Ask the financial aid office to [reconsider your offer](/learn/college/appealing-financial-aid), especially if your finances changed.",
           "Look at work-study or a part-time job to cover part of it as you go.",
           "Compare schools by their gap, and weigh a more affordable option.",
         ],
       },
       {
         type: "tip",
-        text: "If your family's income dropped after you filed the FAFSA, ask the school about a 'professional judgment' or appeal. A counselor there can sometimes adjust your aid based on what's true now, not last year.",
+        text: "If your family's income dropped after you filed the FAFSA, ask the school about a 'professional judgment' review. A counselor there can sometimes adjust your aid based on what's true now, not last year.",
       },
       {
         type: "h2",
@@ -375,14 +410,14 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you've shrunk the gap as much as you can and still need to borrow, that can be a reasonable choice — as long as you go in with your eyes open. Borrowing a little for a degree you'll finish is very different from borrowing a lot with no plan.",
+        text: "If you've shrunk the gap as much as you can and still need to borrow, that can be a reasonable choice, as long as you go in with your eyes open. Borrowing a little for a degree you'll finish is very different from borrowing a lot with no plan.",
       },
       {
         type: "p",
-        text: "Before you sign for any loan, it's worth understanding exactly what you're agreeing to. A few minutes now can save you years of regret.",
+        text: "Before you sign for anything, read [Student Loans, Before You Sign](/learn/college/student-loans-before-you-sign). A few minutes now can save you years of regret.",
       },
     ],
-    related: ["student-loans-before-you-sign", "reading-aid-award-letter"],
+    related: ["reading-aid-award-letter", "appealing-financial-aid", "student-loans-before-you-sign"],
   },
 
   {
@@ -392,45 +427,25 @@ export const collegeArticles: Article[] = [
     title: "Student Loans, Before You Sign",
     dek: "Borrowing for school is a real commitment. Know the key terms before you put your name on it.",
     level: "Advanced",
-    readMinutes: 7,
+    readMinutes: 4,
     takeaways: [
-      "Subsidized loans don't grow while you're in school; unsubsidized ones do.",
-      "Federal loans usually beat private loans on terms and protections.",
-      "Only borrow what you truly need — you can decline part of an offer.",
-      "Understand repayment before you sign, not after you graduate.",
+      "Choose federal and subsidized loans first; each has its own guide.",
+      "Only borrow what you truly need. You can decline part of an offer.",
+      "Get plain answers on the rate, the first payment, and the monthly cost.",
+      "A co-signer is legally on the hook too.",
     ],
     body: [
       {
         type: "p",
-        text: "A student loan can be a fair trade — borrowed money now for a degree that pays off later. But a loan is a real promise, and the terms vary a lot. Before you sign anything, it's worth slowing down to understand exactly what you're agreeing to. This is the kind of decision that's easy to rush and hard to undo.",
+        text: "A student loan can be a fair trade: borrowed money now for a degree that pays off later. But a loan is a real promise, and the terms vary a lot. Before you sign anything, it's worth slowing down to understand exactly what you're agreeing to. This is the kind of decision that's easy to rush and hard to undo.",
       },
       {
         type: "h2",
-        text: "Subsidized vs. unsubsidized",
+        text: "Know which loan you're holding",
       },
       {
         type: "p",
-        text: "If you take a federal loan, you may be offered two types, and the difference is real money. With a subsidized loan, the government covers the interest while you're in school, so the balance doesn't grow until after you leave. With an unsubsidized loan, interest starts piling up right away — even while you're still in class.",
-      },
-      {
-        type: "p",
-        text: "Say you borrow $5,000 your first year. With a subsidized loan, you still owe about $5,000 when you graduate. With an unsubsidized loan, interest has been quietly adding up the whole time, so you owe more than you borrowed before you've made a single payment.",
-      },
-      {
-        type: "key",
-        text: "When you have the choice, take subsidized loans before unsubsidized ones. Same borrowed amount, but the subsidized version costs you less because it isn't growing while you study.",
-      },
-      {
-        type: "h2",
-        text: "Federal before private",
-      },
-      {
-        type: "p",
-        text: "Loans also come from two worlds. Federal loans come from the government and tend to have fixed rates, options to pause payments during hard times, and income-driven repayment plans that tie your bill to what you earn. Private loans come from banks and lenders, and their terms are often less forgiving — sometimes with variable rates that can climb.",
-      },
-      {
-        type: "tip",
-        text: "A private loan may ask for a co-signer — often a parent — which means that person is on the hook to repay if you can't. Co-signing makes the debt legally theirs too, so go in knowing what it means for both of you.",
+        text: "Two distinctions decide most of what a loan will cost you, and each has its own guide. [Federal vs. private](/learn/college/federal-vs-private-loans) is about who you're borrowing from; federal loans carry protections private ones usually don't. [Subsidized vs. unsubsidized](/learn/college/subsidized-vs-unsubsidized) is about whether interest builds while you're still in school. The short version: federal before private, subsidized before unsubsidized. What follows is the checklist for the moment a specific loan is actually in front of you.",
       },
       {
         type: "h2",
@@ -442,7 +457,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "Read the terms before you sign",
+        text: "The questions to answer before you sign",
       },
       {
         type: "p",
@@ -452,10 +467,14 @@ export const collegeArticles: Article[] = [
         type: "list",
         items: [
           "What's the interest rate, and is it fixed or variable?",
-          "When do payments start — after graduation, or sooner?",
+          "When do payments start: after graduation, or sooner?",
           "What will the monthly payment be, and for how many years?",
           "What happens if I lose my job or need to pause payments?",
         ],
+      },
+      {
+        type: "tip",
+        text: "A private loan may ask for a co-signer, often a parent. That person is on the hook to repay if you can't, and the debt is legally theirs too. Go in knowing what it means for both of you.",
       },
       {
         type: "p",
@@ -463,21 +482,21 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Signing a student loan is a promise your future self has to keep. Borrow as little as you can, choose federal and subsidized first, and never sign a loan whose terms you can't explain back in your own words.",
+        text: "Signing a student loan is a promise your future self has to keep. Borrow as little as you can, and never sign a loan whose terms you can't explain back in your own words.",
       },
       {
         type: "p",
-        text: "Done thoughtfully, borrowing for school is a tool, not a trap. Take the free money first, borrow only what you need, and you'll start your career with options instead of regret.",
+        text: "Done thoughtfully, borrowing for school is a tool, not a trap. And when graduation gets close, [Repaying Your Student Loans](/learn/college/repaying-student-loans) covers what happens after you leave campus.",
       },
     ],
-    related: ["understanding-unmet-need", "grants-loans-scholarships"],
+    related: ["federal-vs-private-loans", "subsidized-vs-unsubsidized", "understanding-unmet-need"],
   },
   {
     slug: "undocumented-daca-aid",
-    order: 70,
+    order: 60,
     topicId: "college",
     title: "Paying for College as an Undocumented or DACA Student",
-    dek: "Federal aid may be off the table — but state aid, school aid, and scholarships often aren't.",
+    dek: "Federal aid may be off the table, but state aid, school aid, and scholarships often aren't.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
@@ -489,7 +508,7 @@ export const collegeArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "If you're undocumented or a DACA recipient, you may have heard that college is closed to you, or that you can't get any help paying for it. That's not the full story. Federal financial aid is generally off the table — but a lot of other money isn't, and students in your exact situation graduate every year.",
+        text: "If you're undocumented or a DACA recipient, you may have heard that college is closed to you, or that you can't get any help paying for it. That's not the full story. Federal financial aid is generally off the table, but a lot of other money isn't, and students in your exact situation graduate every year.",
       },
       {
         type: "h2",
@@ -497,7 +516,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the big one, because it varies enormously: many states offer in-state tuition (a huge discount) and their own financial aid to undocumented students, often through a separate application instead of the FAFSA. Some states offer a lot; some offer nothing. So the first move is to look up your state's specific policy — search your state's name plus 'aid for undocumented students,' or ask a college's financial aid office directly.",
+        text: "This is the big one, because it varies enormously. Many states offer in-state tuition (a huge discount) and their own financial aid to undocumented students, often through a separate application instead of the FAFSA. Some states offer a lot; some offer nothing. So the first move is to look up your state's specific policy: search your state's name plus 'aid for undocumented students,' or ask a college's financial aid office directly.",
       },
       {
         type: "h2",
@@ -506,22 +525,22 @@ export const collegeArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**The college itself.** Some schools — especially well-funded private ones — offer their own aid to undocumented students. Ask each school point-blank what they provide.",
-          "**Private scholarships.** Many don't require citizenship or an SSN. Search specifically for ones that say so; organizations like TheDream.US exist precisely for this.",
-          "**Work, if you have DACA.** A work permit lets DACA recipients earn legally, which can help cover costs and may affect how some states treat you.",
+          "**The college itself.** Some schools, especially well-funded private ones, offer their own aid to undocumented students. Ask each school point-blank what they provide.",
+          "**Private scholarships.** Many don't require citizenship or an SSN. Search specifically for ones that say so; organizations like TheDream.US exist precisely for this. [Finding Scholarships You'll Actually Win](/learn/college/finding-scholarships) covers how to run that search well.",
+          "**Work, if you have DACA.** A work permit lets DACA recipients earn legally, which can help cover costs and may affect how some states treat you. And if your family files taxes with an ITIN instead of an SSN, [Filing Taxes With an ITIN](/learn/taxes/filing-with-itin) explains how that works.",
         ],
       },
       {
         type: "tip",
-        text: "When you search scholarships, filter for 'no citizenship required' or 'open to undocumented students.' There are real, sizable ones — your status doesn't disqualify you from private money.",
+        text: "When you search scholarships, filter for 'no citizenship required' or 'open to undocumented students.' There are real, sizable ones. Your status doesn't disqualify you from private money.",
       },
       {
         type: "key",
-        text: "These rules change with politics and differ by state, so don't rely on a rumor or an old web page. Talk to a college access counselor or an immigrant-rights organization — many help students through this for free, and they know what's true right now.",
+        text: "These rules change with politics and differ by state, so don't rely on a rumor or an old web page. Talk to a college access counselor or an immigrant-rights organization; many help students through this for free, and they know what's true right now.",
       },
       {
         type: "p",
-        text: "It's more work than it should be, and that's not fair. But 'harder' isn't 'impossible' — and the people who've done it before you left a trail. Use it.",
+        text: "It's more work than it should be, and that's not fair. But harder isn't impossible. Start with your state's policy, then ask each school on your list, in plain words, what they offer students without federal aid.",
       },
     ],
     related: ["finding-scholarships", "fafsa-step-by-step", "grants-loans-scholarships"],

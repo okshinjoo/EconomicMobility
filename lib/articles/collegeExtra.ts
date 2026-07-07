@@ -3,22 +3,22 @@ import type { Article } from "./types";
 export const collegeExtraArticles: Article[] = [
   {
     slug: "federal-vs-private-loans",
-    order: 70,
+    order: 40,
     topicId: "college",
     title: "Federal vs. Private Student Loans",
     dek: "Two loans can have the same dollar amount and be wildly different deals. Here's how to tell them apart.",
-    level: "Beginner",
+    level: "Intermediate",
     readMinutes: 5,
     takeaways: [
-      "Federal loans come with protections private loans simply don't have.",
+      "Federal loans come with protections private loans don't.",
       "For almost everyone, federal loans should come first.",
       "A private loan can quietly cost far more over time.",
-      "Borrow federal up to what you need before you even look at private.",
+      "Use federal loans up to what you need before you look at private ones.",
     ],
     body: [
       {
         type: "p",
-        text: "A loan is a loan, right? You borrow money, you pay it back. So it can feel like it shouldn't matter much *who* you borrow from. But with student loans, it matters enormously — two loans for the exact same amount can turn into completely different futures. If no one in your family has borrowed for school before, this is the difference worth understanding first.",
+        text: "A loan is a loan, right? You borrow money, you pay it back. So it can feel like it shouldn't matter much *who* you borrow from. With student loans, it matters enormously: two loans for the exact same amount can turn into completely different futures. If no one in your family has borrowed for school before, this is the difference worth understanding first.",
       },
       {
         type: "h2",
@@ -26,15 +26,15 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Federal student loans come from the government, and they carry built-in protections that private loans usually don't. These aren't small perks — they're the things that keep a rough patch from becoming a disaster.",
+        text: "Federal student loans come from the government, and they carry built-in protections that private loans usually don't. These aren't small perks. They're the things that keep a rough patch from becoming a disaster.",
       },
       {
         type: "list",
         items: [
           "**Fixed interest rates** set by law, so your rate can't suddenly jump on you.",
-          "**Income-driven repayment** — your monthly payment can be tied to what you actually earn.",
-          "**Pauses when life hits** — options to postpone payments if you lose a job or hit hardship.",
-          "**Possible forgiveness** through certain public-service or repayment programs.",
+          "**[Income-driven repayment](/learn/government-aid/income-driven-repayment):** your monthly payment can be tied to what you earn.",
+          "**Pauses when life hits:** options to postpone payments if you lose a job or hit hardship.",
+          "**Possible [forgiveness](/learn/government-aid/student-loan-forgiveness)** through certain public-service or repayment programs.",
         ],
       },
       {
@@ -43,11 +43,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Private loans come from banks, credit unions, and online lenders. Some are fine. But the rate often depends on your credit (or a co-signer's), it can be variable — meaning it climbs over time — and you generally don't get the safety nets above. Miss payments and there's far less room to breathe.",
+        text: "Private loans come from banks, credit unions, and online lenders. Some are fine. But the rate often depends on your credit (or a co-signer's), it can be variable, meaning it climbs over time, and you generally don't get the safety nets above. Miss payments and there's far less room to breathe.",
       },
       {
         type: "tip",
-        text: "If a lender reaches out *first* with a slick offer, slow down. The genuinely better deal — federal aid — is the one you go looking for through the FAFSA, not the one that finds you in your inbox.",
+        text: "If a lender reaches out *first* with a slick offer, slow down. The better deal is the federal aid you go looking for through the FAFSA, not the loan that finds you in your inbox.",
       },
       {
         type: "h2",
@@ -55,23 +55,23 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Think of it as a staircase. Use up free money first — grants and scholarships, which you never repay. Then federal loans, up to what you actually need. Only if there's still a real gap do you consider a private loan, and even then, borrow as little as you can.",
+        text: "Use up free money first: grants and scholarships, which you never repay. Then federal loans, up to what you actually need. Only if there's still a real gap do you consider a private loan, and even then, borrow as little as you can.",
       },
       {
         type: "key",
-        text: "Federal almost always goes first. Same borrowed dollars, but federal loans bend when your life does — private loans usually don't.",
+        text: "Federal almost always goes first. Same borrowed dollars, but federal loans bend when your life does; private loans usually don't.",
       },
       {
         type: "p",
-        text: "For the 2025–26 school year, federal Direct Loans for undergraduates carry a **6.39%** fixed interest rate, and a dependent student can borrow **$5,500** their first year, **$6,500** their second, and **$7,500** each year after — up to **$31,000** total. Rates reset every July and limits change occasionally, so confirm the current numbers, and your school's financial aid office can walk you through exactly what you've been offered. That conversation is free, and it's their job.",
+        text: "For the 2026–27 school year, federal Direct Loans for undergraduates carry a **6.52%** fixed interest rate, and a dependent student can borrow **$5,500** their first year, **$6,500** their second, and **$7,500** each year after, up to **$31,000** total. (Rates reset every July for new loans; a loan keeps the rate it started with.) One more layer worth knowing before you accept an offer: federal loans themselves come in two types, [subsidized and unsubsidized](/learn/college/subsidized-vs-unsubsidized), and the difference is real money.",
       },
     ],
-    related: ["student-loans-before-you-sign", "subsidized-vs-unsubsidized", "grants-loans-scholarships"],
+    related: ["subsidized-vs-unsubsidized", "student-loans-before-you-sign", "grants-loans-scholarships"],
   },
 
   {
     slug: "subsidized-vs-unsubsidized",
-    order: 40,
+    order: 50,
     topicId: "college",
     title: "Subsidized vs. Unsubsidized Loans",
     dek: "One word in your aid letter decides whether the government pays your interest while you're in school. It's worth knowing which.",
@@ -86,15 +86,15 @@ export const collegeExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Your aid letter lists two kinds of federal loans, and the names are almost designed to make your eyes glaze over: *subsidized* and *unsubsidized*. But the difference between them is real money — sometimes hundreds or thousands of dollars by the time you graduate. Let's make it plain.",
+        text: "Your aid letter lists two kinds of federal loans, and the names are almost designed to make your eyes glaze over: *subsidized* and *unsubsidized*. But the difference between them is real money, sometimes hundreds or thousands of dollars by the time you graduate.",
       },
       {
         type: "h2",
-        text: "What 'subsidized' actually means",
+        text: "What 'subsidized' means",
       },
       {
         type: "p",
-        text: "With a subsidized loan, the government pays your interest while you're in school at least half-time, and during certain grace and pause periods. So a $5,000 subsidized loan is still right around $5,000 when you graduate — your debt isn't quietly growing while you're sitting in class.",
+        text: "With a subsidized loan, the government pays your interest while you're in school at least half-time, and during certain grace and pause periods. So a $5,000 subsidized loan is still right around $5,000 when you graduate. Your debt isn't quietly growing while you're sitting in class.",
       },
       {
         type: "h2",
@@ -102,11 +102,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "With an unsubsidized loan, interest starts adding up the day the money hits your account and keeps going the entire time — including all four (or more) years you're in school. If you don't pay that interest as it builds, it gets added to your balance, and then you start paying interest *on the interest*. That's how a loan grows while you're not looking.",
+        text: "With an unsubsidized loan, interest starts adding up the day the money hits your account and keeps going the entire time, including all four (or more) years you're in school. If you don't pay that interest as it builds, it gets added to your balance, and then you start paying interest *on the interest*. That's how a loan grows while you're not looking.",
       },
       {
         type: "tip",
-        text: "On an unsubsidized loan, even tiny payments while you're still in school help. Putting $25 a month toward the interest keeps it from piling onto your balance — and that's money you'd otherwise pay interest on for years.",
+        text: "On an unsubsidized loan, even tiny payments while you're still in school help. Putting $25 a month toward the interest keeps it from piling onto your balance, and that's money you'd otherwise pay interest on for years.",
       },
       {
         type: "h2",
@@ -114,7 +114,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Subsidized loans are need-based, so they go to students whose financial picture shows the need — exactly why filling out the FAFSA carefully matters. Unsubsidized loans are available more broadly. If you're offered both, take the subsidized one first; it's simply the better deal.",
+        text: "Subsidized loans are need-based, so they go to students whose financial picture shows the need. That's one more reason [filling out the FAFSA carefully](/learn/college/fafsa-step-by-step) matters. Unsubsidized loans are available more broadly. If you're offered both, take the subsidized one first; it's simply the better deal.",
       },
       {
         type: "key",
@@ -122,10 +122,45 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "There are caps. A dependent undergraduate can borrow **$5,500** the first year, **$6,500** the second, and **$7,500** each year after — but only part of each can be *subsidized* (**$3,500**, then **$4,500**, then **$5,500**), with the rest unsubsidized. These limits shift occasionally, so confirm the current caps. And if your aid letter is hard to read, your financial aid office will tell you which of your loans is which — don't guess on something this important.",
+        text: "There are caps. A dependent undergraduate can borrow **$5,500** the first year, **$6,500** the second, and **$7,500** each year after, but only part of each can be *subsidized* (**$3,500**, then **$4,500**, then **$5,500**), with the rest unsubsidized. If your aid letter is hard to read, your financial aid office will tell you which of your loans is which. And before you accept anything, [Student Loans, Before You Sign](/learn/college/student-loans-before-you-sign) has the checklist.",
       },
     ],
-    related: ["federal-vs-private-loans", "reading-aid-award-letter", "student-loans-before-you-sign"],
+    related: ["federal-vs-private-loans", "student-loans-before-you-sign", "reading-aid-award-letter"],
+    quiz: [
+      {
+        question: "What does \"subsidized\" mean on a federal student loan?",
+        options: [
+          "The loan has a lower interest rate than other loans",
+          "The government pays the interest while you're in school",
+          "You don't have to repay it if you graduate",
+        ],
+        answer: 1,
+        explain:
+          "With a subsidized loan, the government covers your interest while you're in school at least half-time, so a $5,000 loan is still about $5,000 when you graduate.",
+      },
+      {
+        question: "On an unsubsidized loan, when does interest start building?",
+        options: [
+          "After you graduate",
+          "After your grace period ends",
+          "The day the money hits your account",
+        ],
+        answer: 2,
+        explain:
+          "Interest runs the entire time you're in school, and if you don't pay it as it builds, it gets added to your balance and you start paying interest on the interest.",
+      },
+      {
+        question: "Your aid letter offers both a subsidized and an unsubsidized loan. Which should you take first?",
+        options: [
+          "The unsubsidized one, since it's available to more students",
+          "It doesn't matter; they cost the same in the end",
+          "The subsidized one; it's simply the better deal",
+        ],
+        answer: 2,
+        explain:
+          "Same loan amount, different cost. Because the government covers a subsidized loan's interest during school, it should always be the first one you accept.",
+      },
+    ],
   },
 
   {
@@ -133,19 +168,19 @@ export const collegeExtraArticles: Article[] = [
     order: 50,
     topicId: "college",
     title: "Work-Study, Explained",
-    dek: "It's a campus job built around your class schedule — and the money is part of your financial aid.",
+    dek: "It's a campus job built around your class schedule, and the money is part of your financial aid.",
     level: "Beginner",
     readMinutes: 4,
     takeaways: [
       "Work-study is a need-based, part-time job tied to your aid.",
       "The schedule is built to fit around your classes.",
-      "Your earnings are yours — usually a regular paycheck.",
+      "Your earnings are yours, usually as a regular paycheck.",
       "The award is a limit, not a guarantee; you earn it by working.",
     ],
     body: [
       {
         type: "p",
-        text: "You see 'Federal Work-Study' on your aid letter, maybe with a dollar amount next to it, and it's not obvious what you're supposed to do with that. Is it free money? A loan? Something you sign? Here's the short, honest version.",
+        text: "You see 'Federal Work-Study' on your aid letter, maybe with a dollar amount next to it, and it's not obvious what you're supposed to do with that. Is it free money? A loan? Something you sign? The short answer: it's a job offer.",
       },
       {
         type: "h2",
@@ -153,7 +188,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Work-study is a part-time job, usually right on campus, that's part of your financial aid package. It's need-based, which is another reason the FAFSA matters. The dollar figure on your letter isn't cash handed to you — it's the *most* you can earn through the program. You get there by actually working and collecting a paycheck, just like any job.",
+        text: "Work-study is a part-time job, usually right on campus, that's part of your financial aid package. It's need-based, which is another reason [the FAFSA](/learn/college/fafsa-step-by-step) matters. The dollar figure on your letter isn't cash handed to you. It's the *most* you can earn through the program, and you get there by actually working and collecting a paycheck, just like any job.",
       },
       {
         type: "h2",
@@ -163,26 +198,26 @@ export const collegeExtraArticles: Article[] = [
         type: "list",
         items: [
           "**Built around class.** Work-study jobs are made for students, so supervisors expect your schedule to come first.",
-          "**Often on campus.** Less commuting, less time lost — sometimes you're working steps from your next class.",
+          "**Often on campus.** Less commuting and less time lost; sometimes you're working steps from your next class.",
           "**Resume-friendly.** Many roles sit in offices, labs, or libraries, which can connect to what you're studying.",
           "**Aid-aware.** In many cases these earnings are treated more kindly when you fill out next year's FAFSA.",
         ],
       },
       {
         type: "tip",
-        text: "Work-study funds can run out, and good positions fill early. The moment you know it's part of your package, ask the financial aid or student employment office how to find and claim a spot — don't wait until the semester starts.",
+        text: "Work-study funds can run out, and good positions fill early. The moment you know it's part of your package, ask the financial aid or student employment office how to find and claim a spot. Don't wait until the semester starts.",
       },
       {
         type: "h2",
-        text: "How you actually get paid",
+        text: "How you get paid",
       },
       {
         type: "p",
-        text: "You usually get a regular paycheck for the hours you work, and the money is yours to use — for books, transit, food, whatever you need. Some programs let you direct earnings toward tuition, but often it lands in your hands to cover the everyday costs that quietly add up.",
+        text: "You usually get a regular paycheck for the hours you work, and the money is yours to use for books, transit, food, whatever you need. Some programs let you direct earnings toward tuition, but often it lands in your hands to cover the everyday costs that quietly add up.",
       },
       {
         type: "key",
-        text: "Work-study is a job, not a gift — but it's a job designed to fit a student's life. If it's offered to you, it's usually worth claiming.",
+        text: "Work-study is a job, not a gift, but it's a job designed to fit a student's life. If it's offered to you, it's usually worth claiming.",
       },
     ],
     related: ["grants-loans-scholarships", "reading-aid-award-letter", "fafsa-step-by-step"],
@@ -193,7 +228,7 @@ export const collegeExtraArticles: Article[] = [
     order: 60,
     topicId: "college",
     title: "The Community College Path",
-    dek: "Two years at a community college, then transfer up — a route that can cut the cost of a degree dramatically.",
+    dek: "Two years at a community college, then transfer up: a route that can cut the cost of a degree dramatically.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
@@ -205,7 +240,7 @@ export const collegeExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "There's a quiet myth that community college is the lesser option — a backup, not a real path. Forget that. For a lot of smart, ambitious people, starting at a community college and transferring up is one of the most financially intelligent moves you can make. It's not settling. It's strategy.",
+        text: "There's a quiet myth that community college is the lesser option, a backup rather than a real path. Forget that. For a lot of smart, ambitious people, starting at a community college and transferring up is one of the most financially intelligent moves available.",
       },
       {
         type: "h2",
@@ -213,11 +248,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Community college tuition is typically a small fraction of what a four-year school charges. The first two years of almost any degree are general courses — English, math, intro sciences — and you can take those for far less. Same foundational classes, dramatically smaller bill.",
+        text: "Community college tuition is typically a small fraction of what a four-year school charges. The first two years of almost any degree are general courses (English, math, intro sciences), and you can take those for far less. Same foundational classes, dramatically smaller bill.",
       },
       {
         type: "p",
-        text: "Picture a degree where the first two years cost a few thousand dollars instead of tens of thousands. That gap is money you don't have to borrow — and debt you never have to repay.",
+        text: "Picture a degree where the first two years cost a few thousand dollars instead of tens of thousands. That gap is money you don't have to borrow, and debt you never have to repay.",
       },
       {
         type: "h2",
@@ -225,7 +260,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "After your first two years, you transfer to a four-year college to finish your bachelor's degree. The credits you earned come with you, so you pick up where you left off. And here's the part that surprises people: your final diploma comes from the four-year school where you *graduate* — not the community college where you started.",
+        text: "After your first two years, you transfer to a four-year college to finish your bachelor's degree. The credits you earned come with you, so you pick up where you left off. The part that surprises people: your final diploma comes from the four-year school where you *graduate*, not the community college where you started.",
       },
       {
         type: "tip",
@@ -241,16 +276,16 @@ export const collegeExtraArticles: Article[] = [
           "Pick the four-year schools you might transfer to, even loosely, early on.",
           "Ask both schools' advisors which community college courses transfer cleanly.",
           "Take classes that fit those transfer agreements, not random electives.",
-          "Keep your grades up — transfer admission and scholarships often hinge on them.",
+          "Keep your grades up; transfer admission and scholarships often hinge on them.",
         ],
       },
       {
         type: "key",
-        text: "Starting at community college isn't a smaller dream. It can be the same degree for a fraction of the cost — as long as you plan the transfer from day one.",
+        text: "Starting at community college isn't a smaller dream. It can be the same degree for a fraction of the cost, as long as you plan the transfer from day one.",
       },
       {
         type: "p",
-        text: "A transfer advisor at either school can map this out with you for free. Lean on them. They've helped hundreds of students walk this exact path, even when no one at home has.",
+        text: "A transfer advisor at either school can map this out with you for free. Lean on them. And when you choose the four-year school, [in-state tuition](/learn/college/in-state-vs-out-of-state) usually keeps the second half of the degree affordable too.",
       },
     ],
     related: ["in-state-vs-out-of-state", "minimizing-college-debt", "grants-loans-scholarships"],
@@ -258,22 +293,22 @@ export const collegeExtraArticles: Article[] = [
 
   {
     slug: "in-state-vs-out-of-state",
-    order: 60,
+    order: 70,
     topicId: "college",
     title: "In-State vs. Out-of-State Tuition",
     dek: "The same public university can charge you two very different prices, depending on where the state says you live.",
-    level: "Intermediate",
+    level: "Beginner",
     readMinutes: 6,
     takeaways: [
       "Public colleges charge residents far less than non-residents.",
       "Residency rules are set by each state and vary a lot.",
       "The price difference can be tens of thousands of dollars.",
-      "Sometimes you can establish residency — but plan ahead.",
+      "Sometimes you can establish residency, but plan ahead.",
     ],
     body: [
       {
         type: "p",
-        text: "Two students sit in the same lecture hall, take the same class, earn the same degree — and one of them paid two or three times more in tuition. The only difference? Which state each one calls home. At public colleges, where you live can change the price tag more than almost anything else.",
+        text: "Two students sit in the same lecture hall, take the same class, earn the same degree, and one of them paid two or three times more in tuition. The only difference is which state each one calls home. At public colleges, where you live can change the price tag more than almost anything else.",
       },
       {
         type: "h2",
@@ -281,7 +316,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Public colleges are funded partly by the taxpayers of their state. So those states give their own residents a steep discount — that's in-state tuition. Students from elsewhere pay the full, unsubsidized rate, which is out-of-state tuition. We're often talking a difference of tens of thousands of dollars over a degree.",
+        text: "Public colleges are funded partly by the taxpayers of their state, so those states give their own residents a steep discount. That's in-state tuition. Students from elsewhere pay the full, unsubsidized rate, which is out-of-state tuition. The difference is often tens of thousands of dollars over a degree.",
       },
       {
         type: "h2",
@@ -289,11 +324,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's where it gets tricky: every state writes its own residency rules, and they vary a lot. Generally they look at things like how long you've lived there, where you pay taxes, your driver's license, and whether you're financially independent or claimed by a parent. Simply moving to a state to attend college usually does *not* make you a resident for tuition.",
+        text: "Every state writes its own residency rules, and they vary a lot. Generally they look at things like how long you've lived there, where you pay taxes, your driver's license, and whether you're financially independent or claimed by a parent. Simply moving to a state to attend college usually does *not* make you a resident for tuition purposes.",
       },
       {
         type: "tip",
-        text: "Because the rules differ so much by state — and have real exceptions for things like military families, certain regional agreements, and some states' policies for local high school graduates — never assume. Check the specific residency rules for the exact schools you're considering, in writing.",
+        text: "The rules have real exceptions, for military families, certain regional agreements, and some states' policies for local high school graduates. So never assume. Check the specific residency rules for the exact schools you're considering, in writing.",
       },
       {
         type: "h2",
@@ -302,19 +337,19 @@ export const collegeExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Your own state's schools** are the default low-cost option — start there.",
+          "**Your own state's schools** are the default low-cost option. Start there.",
           "**Regional tuition agreements** let students in neighboring states pay reduced rates at some schools.",
           "**Establishing residency** is possible in some states if you plan well ahead and meet every requirement.",
-          "**Out-of-state scholarships** sometimes close the gap for strong applicants — ask the school directly.",
+          "**Out-of-state scholarships** sometimes close the gap for strong applicants. Ask the school directly.",
         ],
       },
       {
         type: "key",
-        text: "At a public college, residency can be the single biggest factor in your bill. Before you fall for an out-of-state school, find out what it actually costs *you* — not the sticker price.",
+        text: "At a public college, residency can be the single biggest factor in your bill. Before you fall for an out-of-state school, find out what it actually costs *you*, not the sticker price.",
       },
       {
         type: "p",
-        text: "Residency rules are dense, and getting them wrong is expensive. The admissions or financial aid office can tell you exactly where you'd stand and whether any path to in-state rates exists. Ask before you commit.",
+        text: "Residency rules are dense, and getting them wrong is expensive. The admissions or financial aid office can tell you exactly where you'd stand and whether any path to in-state rates exists. And if the out-of-state math doesn't work, [the community college path](/learn/college/community-college-path) is another way to keep the total down.",
       },
     ],
     related: ["community-college-path", "minimizing-college-debt", "understanding-unmet-need"],
@@ -325,19 +360,19 @@ export const collegeExtraArticles: Article[] = [
     order: 30,
     topicId: "college",
     title: "How to Appeal Your Financial Aid",
-    dek: "If your aid offer doesn't match your real situation, you can ask for more — and a good letter often works.",
+    dek: "If your aid offer doesn't match your real situation, you can ask for more. A good letter often works.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
       "Your first aid offer is not always the final word.",
-      "An appeal is a polite, documented request — not a complaint.",
+      "An appeal is a polite, documented request, not a complaint.",
       "Changed circumstances and special expenses are strong reasons.",
       "The worst they say is no, and you're no worse off for asking.",
     ],
     body: [
       {
         type: "p",
-        text: "Your financial aid letter arrives, the gap between aid and cost is bigger than you can cover, and it feels final. Here's something nobody tells first-generation students: that offer is often a starting point, not a verdict. You can appeal — and a clear, honest letter can genuinely get you more money.",
+        text: "Your financial aid letter arrives, [the gap between aid and cost](/learn/college/understanding-unmet-need) is bigger than you can cover, and it feels final. It usually isn't. Especially for first-generation students with no one to coach them, the first offer reads like a verdict when it's often a starting point. You can appeal, and a clear, honest letter can genuinely get you more money.",
       },
       {
         type: "h2",
@@ -345,12 +380,12 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "An appeal isn't about arguing the school was wrong. It's about telling them something the FAFSA didn't capture — usually a real change or an expense the standard formula missed. Strong reasons include:",
+        text: "An appeal isn't about arguing the school was wrong. It's about telling them something the FAFSA didn't capture, usually a real change or an expense the standard formula missed. Strong reasons include:",
       },
       {
         type: "list",
         items: [
-          "**A drop in income** — a parent lost a job or had hours cut since you filed.",
+          "**A drop in income:** a parent lost a job or had hours cut since you filed.",
           "**A death or divorce** that changed your family's finances.",
           "**Big medical bills** or other unavoidable costs the formula didn't see.",
           "**A better offer** from a comparable school you can point to.",
@@ -362,12 +397,12 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Keep it respectful, specific, and short. You're not demanding — you're explaining. Name the school's exact term for it (often a 'special circumstances' or 'professional judgment' review) and address it to the financial aid office.",
+        text: "Keep it respectful, specific, and short. You're not demanding; you're explaining. Name the school's exact term for it (often a 'special circumstances' or 'professional judgment' review) and address it to the financial aid office.",
       },
       {
         type: "steps",
         items: [
-          "Open by thanking them and saying you hope to attend — make your interest clear.",
+          "Open by thanking them and saying you hope to attend, so your interest is clear.",
           "Explain plainly what changed or what the formula didn't account for.",
           "Attach proof: a layoff notice, medical bills, a competing aid letter.",
           "State directly that you're asking them to review your aid, then thank them again.",
@@ -379,11 +414,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Asking for more aid is normal, expected, and free. The worst outcome is the same answer you already have — so the only real mistake is not asking.",
+        text: "Asking for more aid is normal, expected, and free. The worst outcome is the same answer you already have, so the only real mistake is not asking.",
       },
       {
         type: "p",
-        text: "If writing the letter feels intimidating, a college access program or a counselor can help you draft it for free. You don't have to know the magic words. You just have to tell the truth, clearly, with proof.",
+        text: "If writing the letter feels intimidating, a college access program or a counselor can help you draft it for free. You don't have to know magic words. You have to tell the truth, clearly, with proof.",
       },
     ],
     related: ["reading-aid-award-letter", "understanding-unmet-need", "fafsa-mistakes"],
@@ -396,7 +431,7 @@ export const collegeExtraArticles: Article[] = [
     title: "Common FAFSA Mistakes That Cost You Aid",
     dek: "Small errors on the FAFSA can quietly shrink your aid or hold it up for weeks. Here's what to watch.",
     level: "Beginner",
-    readMinutes: 6,
+    readMinutes: 5,
     takeaways: [
       "Most FAFSA mistakes are simple and completely avoidable.",
       "Leaving it blank when unsure is worse than asking for help.",
@@ -406,7 +441,7 @@ export const collegeExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "The FAFSA is the form that unlocks most financial aid — grants, federal loans, work-study, even a lot of scholarships. Which means a small slip on it doesn't just cause a typo; it can cost you actual money. The good news: almost every common mistake is easy to dodge once someone points it out. So let's point them out.",
+        text: "The FAFSA is the form that unlocks most financial aid: grants, federal loans, work-study, even a lot of scholarships. Which means a small slip on it doesn't just cause a typo. It can cost you real money. Almost every common mistake is easy to dodge once someone points it out. (If you haven't filed yet, [FAFSA, Step by Step](/learn/college/fafsa-step-by-step) walks through the form itself; this article is about what trips people up.)",
       },
       {
         type: "h2",
@@ -415,10 +450,10 @@ export const collegeExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Filing late or not at all.** Some aid is first-come, first-served — when the money's gone, it's gone. The FAFSA usually opens around October 1; file as close to that as you can, and check your state and school deadlines (many are far earlier than the federal June 30 cutoff).",
+          "**Filing late or not at all.** Some aid is first-come, first-served; when the money's gone, it's gone. File as soon as you can after the form opens, and check your state and school deadlines, many of which land far earlier than the federal cutoff.",
           "**Leaving fields blank.** A blank can read as 'unanswered' and stall everything. If an amount is zero, write 0.",
           "**Mismatched info.** A name or Social Security number that doesn't match official records can freeze your whole application.",
-          "**Listing the wrong parent.** Whose information counts depends on specific rules, especially with divorce or separation — get this one right.",
+          "**Listing the wrong parent.** Whose information counts depends on specific rules, especially with divorce or separation. Get this one right.",
         ],
       },
       {
@@ -431,7 +466,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Don't guess on a question you don't understand — guessing wrong can cost you aid. Free help exists: your school counselor, the financial aid office, and college-access nonprofits walk students through the FAFSA every single year, no charge.",
+        text: "Don't guess on a question you don't understand; guessing wrong can cost you aid. Free help exists: your school counselor, the financial aid office, and college-access nonprofits walk students through the FAFSA every single year, no charge.",
       },
       {
         type: "h2",
@@ -441,7 +476,7 @@ export const collegeExtraArticles: Article[] = [
         type: "steps",
         items: [
           "Confirm names and Social Security numbers match official documents exactly.",
-          "Make sure no required field is blank — use 0 where the answer is zero.",
+          "Make sure no required field is blank; use 0 where the answer is zero.",
           "Double-check you reported the correct parent's information.",
           "List every school you're considering, even the maybes.",
           "Submit, then save your confirmation and watch for follow-up requests.",
@@ -449,7 +484,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "The FAFSA isn't a test you can fail — it's a form you want to get right. Slow down, ask for free help when you're stuck, and file early.",
+        text: "The FAFSA isn't a test you can fail. It's a form you want to get right: slow down, ask for free help when you're stuck, and file early.",
       },
     ],
     related: ["fafsa-step-by-step", "appealing-financial-aid", "undocumented-daca-aid"],
@@ -462,7 +497,7 @@ export const collegeExtraArticles: Article[] = [
     title: "Getting Through College With as Little Debt as Possible",
     dek: "A full strategy for finishing your degree owing the smallest amount you possibly can.",
     level: "Advanced",
-    readMinutes: 7,
+    readMinutes: 6,
     takeaways: [
       "Free money and smart school choices beat borrowing every time.",
       "Borrow only what you truly need, never the full offer.",
@@ -472,7 +507,7 @@ export const collegeExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "You can absolutely get a degree. The real question — the one that shapes your twenties — is how much debt you carry out the other side. Two people can earn the same diploma and graduate worlds apart: one owing very little, one buried. The difference is rarely luck. It's a stack of deliberate choices made over four years. Here's the playbook.",
+        text: "You can absolutely get a degree. The real question, the one that shapes your twenties, is how much debt you carry out the other side. Two people can earn the same diploma and graduate worlds apart: one owing very little, one buried. The difference is rarely luck. It's a stack of deliberate choices made over four years.",
       },
       {
         type: "h2",
@@ -480,15 +515,14 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Every free dollar is a dollar you don't borrow *and* don't pay interest on later — so this comes first, always. Grants and scholarships are the foundation.",
+        text: "Every free dollar is a dollar you don't borrow and don't pay interest on later, so this comes first, always. Each piece has its own guide; the strategy itself is short.",
       },
       {
         type: "list",
         items: [
-          "File the FAFSA early and carefully — it's the gate to grants and federal aid.",
-          "Apply for scholarships relentlessly, including small local ones with little competition.",
-          "Keep applying every year, not just as a senior in high school.",
-          "Take any work-study you're offered to cover living costs without borrowing.",
+          "File the FAFSA early and carefully, every year you're in school, not just the first.",
+          "Apply for scholarships relentlessly. [Small local awards](/learn/college/finding-scholarships) have the best odds, and they stack.",
+          "Take any [work-study](/learn/college/work-study-explained) you're offered, so living costs don't quietly turn into loans.",
         ],
       },
       {
@@ -497,11 +531,11 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Where you go drives what you owe. An in-state public school, or starting at a community college and transferring up, can cut the cost of a degree dramatically — for the same credits and, in the end, the same diploma. A 'cheaper' school that gives you generous aid can beat a 'prestigious' one that hands you loans.",
+        text: "Where you go drives what you owe. An in-state public school, or [starting at a community college](/learn/college/community-college-path) and transferring up, can cut the cost of a degree dramatically, for the same credits and, in the end, the same diploma. A 'cheaper' school that gives you generous aid can beat a 'prestigious' one that hands you loans.",
       },
       {
         type: "tip",
-        text: "Compare schools by their **net price** — what you'd actually pay after grants and scholarships — not the headline tuition. The expensive-looking school sometimes costs you less, and the cheap-looking one sometimes costs more. Run the real numbers.",
+        text: "Compare schools by their **net price**, meaning what you'd actually pay after grants and scholarships, not the headline tuition. The expensive-looking school sometimes costs you less, and the cheap-looking one sometimes costs more. Run the real numbers.",
       },
       {
         type: "h2",
@@ -509,7 +543,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "When you do borrow, two rules carry most of the weight. First, exhaust federal loans before touching private ones — they bend when your life does. Second, never borrow the full amount offered just because it's there. Take only what covers the real gap; that leftover refund check is money you'll repay with interest for years.",
+        text: "When you do borrow, two rules carry most of the weight. First, exhaust [federal loans before touching private ones](/learn/college/federal-vs-private-loans); they bend when your life does. Second, never borrow the full amount offered just because it's there. Take only what covers the real gap. That leftover refund check is money you'll repay with interest for years.",
       },
       {
         type: "h2",
@@ -517,27 +551,121 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Time is one of the biggest hidden costs of college. Every extra semester is more tuition, more living costs, more borrowing. And the daily choices add up too — they're not small.",
+        text: "Time is one of the biggest hidden costs of college. Every extra semester is more tuition, more living costs, more borrowing. The daily choices add up too.",
       },
       {
         type: "steps",
         items: [
           "Take a full course load and map your degree so you graduate on time, or early.",
-          "Knock out general requirements cheaply — community college, credit-by-exam, transferable courses.",
+          "Knock out general requirements cheaply: community college, credit-by-exam, transferable courses.",
           "Buy used or rented textbooks, or borrow them from the library.",
-          "Use the campus you're already paying for — health services, gym, events, free food.",
+          "Use the campus you're already paying for: health services, gym, events, free food.",
           "Live on a real budget so you don't borrow to cover everyday spending.",
         ],
       },
       {
         type: "key",
-        text: "Minimizing debt isn't one heroic decision — it's a hundred ordinary ones. Free money first, the right school next, borrow as little as you can, and finish on time.",
+        text: "Minimizing debt isn't one heroic decision. It's a hundred ordinary ones: free money first, the right school next, borrow as little as you can, and finish on time.",
       },
       {
         type: "p",
-        text: "You won't get every call perfect, and you don't have to. A financial aid counselor or a college-access program can help you weigh these choices — for free — so you walk across that stage owing as little as possible, and step into the rest of your life lighter.",
+        text: "You won't get every call perfect, and you don't have to. A financial aid counselor or a college-access program can help you weigh these choices, for free, so you walk across that stage owing as little as possible.",
       },
     ],
     related: ["community-college-path", "federal-vs-private-loans", "student-loans-before-you-sign"],
+  },
+
+  {
+    slug: "repaying-student-loans",
+    order: 30,
+    topicId: "college",
+    title: "Repaying Your Student Loans (the Part After Graduation)",
+    dek: "You borrowed for school, and the bill is coming. Here's what to do before it does.",
+    level: "Advanced",
+    readMinutes: 5,
+    takeaways: [
+      "Find your loan servicer and see every federal loan in one place at StudentAid.gov.",
+      "Your grace period ends sooner than you think, so learn your first payment date now.",
+      "If the standard payment doesn't fit your income, other plans exist.",
+      "Never ignore the loans. There are real options long before default.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Signing for student loans and *repaying* them feel like two completely different worlds. When you borrowed, school was the goal and the bill felt far away. Now you've graduated (or left), and that bill is suddenly real. Nobody hands you a clear instruction sheet for this part, so here it is, in plain language.",
+      },
+      {
+        type: "h2",
+        text: "First, find out who you actually owe",
+      },
+      {
+        type: "p",
+        text: "You don't pay the government directly, and this trips up almost everyone. Your federal loans are handled by a company called a *servicer*: they send the bills, take your payments, and answer your questions. You might have more than one loan, and you might not even remember signing for all of them.",
+      },
+      {
+        type: "p",
+        text: "So before anything else, go to **StudentAid.gov** and log in. That's the official government site, and it shows you every federal student loan you have in one place: the balances, the interest rates, and who your servicer is. This is your home base for the whole repayment journey. Bookmark it.",
+      },
+      {
+        type: "tip",
+        text: "StudentAid.gov is free and official; it ends in *.gov*. If a company calls or texts offering to 'help' with your loans for a fee, be careful. The real help is free, and it lives at StudentAid.gov.",
+      },
+      {
+        type: "h2",
+        text: "Know your grace period",
+      },
+      {
+        type: "p",
+        text: "Federal loans usually give you a *grace period*: a stretch of time, often a few months after you graduate, leave school, or drop below part-time, before your first payment is due. It's a real gift, but it's also where people get caught off guard. The months pass, life is busy, and then a bill shows up that you weren't ready for.",
+      },
+      {
+        type: "p",
+        text: "Don't let that happen. Check StudentAid.gov or ask your servicer for your exact first-payment date, and put it on your calendar now. Knowing the date turns a stressful surprise into something you've already planned for.",
+      },
+      {
+        type: "h2",
+        text: "Pick a plan you can afford",
+      },
+      {
+        type: "p",
+        text: "When repayment starts, you'll usually land on the *standard plan* by default: a fixed monthly payment that clears the loan over a set number of years. It's predictable, and if you can comfortably afford it, it gets you done faster.",
+      },
+      {
+        type: "p",
+        text: "If that payment is more than your paycheck can handle, you don't have to white-knuckle it. [Income-driven repayment](/learn/government-aid/income-driven-repayment) can tie your monthly bill to what you earn and your family size, and certain jobs can qualify you for [loan forgiveness programs](/learn/government-aid/student-loan-forgiveness) down the road. Both have their own guides; what matters here is knowing they exist before you decide you can't afford your loans.",
+      },
+      {
+        type: "h2",
+        text: "Set up autopay",
+      },
+      {
+        type: "p",
+        text: "Once you know your plan, set up automatic payments through your servicer. Two reasons this is almost always worth it:",
+      },
+      {
+        type: "list",
+        items: [
+          "**You'll never miss a payment by accident.** It comes out on schedule, so a busy month or a forgotten due date can't hurt your credit.",
+          "**You often get a small interest discount** just for enrolling in autopay.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The one rule: don't go silent",
+      },
+      {
+        type: "p",
+        text: "If money gets tight, the worst possible move is to stop opening the mail and hope it goes away. Unpaid federal loans eventually fall into *default*, and the consequences are serious: damaged credit, the full balance coming due, and in some cases money taken straight from your paycheck or tax refund.",
+      },
+      {
+        type: "p",
+        text: "There are options long before it ever gets there. If you're struggling, contact your servicer and ask about a lower payment through income-driven repayment, or about *deferment* and *forbearance*, which pause or reduce payments temporarily during a rough stretch.",
+      },
+      {
+        type: "key",
+        text: "Falling behind isn't the disaster; staying silent is. The moment payments feel impossible, reach out to your servicer or go to StudentAid.gov. Help exists, but only if you ask before it's a crisis.",
+      },
+    ],
+    related: ["income-driven-repayment", "student-loan-forgiveness", "student-loans-before-you-sign"],
   },
 ];

@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import Link from "next/link";
 import { Lightbulb } from "lucide-react";
 import {
   GLOSSARY_PATTERN,
@@ -9,17 +10,19 @@ import { makeHeadingIder } from "@/lib/articles/headings";
 import type { ArticleBlock } from "@/lib/articles/types";
 import GlossaryTerm from "@/components/GlossaryTerm";
 
-// Inline parse: **bold** first, then auto-link the FIRST occurrence of each
-// glossary term in the remaining text (tracked via the shared `used` set so a
-// term links once per article, not once per paragraph).
+// Inline parse: [text](/internal-path) links and **bold**/*italic* first,
+// then auto-link the FIRST occurrence of each glossary term in the remaining
+// text (tracked via the shared `used` set so a term links once per article,
+// not once per paragraph).
 function renderInline(
   text: string,
   used: Set<string>,
   keyPrefix: string
 ): ReactNode[] {
   const nodes: ReactNode[] = [];
-  // **bold** or *italic*; inner content can't contain an asterisk.
-  const tokenRe = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+  // [label](/path) (internal links only) | **bold** | *italic*;
+  // bold/italic inner content can't contain an asterisk.
+  const tokenRe = /\[([^\]]+)\]\((\/[^)\s]*)\)|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
   let last = 0;
   let m: RegExpExecArray | null;
   let i = 0;
@@ -30,9 +33,20 @@ function renderInline(
       );
     }
     if (m[1] !== undefined) {
-      nodes.push(<strong key={`${keyPrefix}-s${i}`}>{m[1]}</strong>);
+      nodes.push(
+        <Link
+          key={`${keyPrefix}-a${i}`}
+          href={m[2]}
+          className="font-medium text-forest underline decoration-2 underline-offset-[3px] transition-colors hover:text-ink"
+          style={{ textDecorationColor: "var(--article-accent, var(--color-amber))" }}
+        >
+          {m[1]}
+        </Link>
+      );
+    } else if (m[3] !== undefined) {
+      nodes.push(<strong key={`${keyPrefix}-s${i}`}>{m[3]}</strong>);
     } else {
-      nodes.push(<em key={`${keyPrefix}-e${i}`}>{m[2]}</em>);
+      nodes.push(<em key={`${keyPrefix}-e${i}`}>{m[4]}</em>);
     }
     last = m.index + m[0].length;
     i++;

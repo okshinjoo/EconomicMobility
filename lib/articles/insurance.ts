@@ -6,7 +6,7 @@ export const insuranceArticles: Article[] = [
     order: 10,
     topicId: "insurance",
     title: "How Insurance Actually Works",
-    dek: "It feels like paying for nothing — until the day it's the only thing standing between you and a disaster you couldn't afford.",
+    dek: "It feels like paying for nothing, until the day it's the only thing standing between you and a bill you couldn't survive.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
@@ -18,7 +18,7 @@ export const insuranceArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Insurance is one of those things almost nobody explains in plain language. You pay money every month for something you hope you never use, the paperwork is written to confuse you, and the whole thing can feel like a scam designed to take your cash. It isn't — but you'd be forgiven for thinking so. Let's strip it down to what's actually going on.",
+        text: "Insurance is one of those things almost nobody explains in plain language. You pay money every month for something you hope you never use, the paperwork seems written to confuse you, and the whole arrangement can feel like a scheme to take your cash. It isn't, but you'd be forgiven for thinking so. Underneath the jargon sits one simple idea.",
       },
       {
         type: "h2",
@@ -26,11 +26,11 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's the core trick, and it's genuinely simple. A huge group of people each pay in a little bit. Most of them will be fine that year. But a few will get hit with something awful — a car wreck, a hospital stay, a house fire — that would cost far more than any one person could cover alone. The money everyone paid in gets used to cover those unlucky few.",
+        text: "A huge group of people each pay in a little. Most of them will be fine that year. A few will get hit with something awful, like a car wreck or a long hospital stay, that would cost far more than any one person could cover alone. The money everyone paid in goes to cover those unlucky few. That's the entire machine: many people pooling small payments so no single disaster wipes anyone out.",
       },
       {
         type: "p",
-        text: "So you're not really buying a product. You're buying *protection against a risk you couldn't survive on your own*. The month nothing goes wrong, your money helped cover someone else. The month disaster lands on you, everyone else's money covers you. That's the whole deal.",
+        text: "So you're not buying a product in the usual sense. You're buying *protection against a risk you couldn't survive on your own*. The month nothing goes wrong, your money helped cover someone else. The month disaster lands on you, everyone else's money covers you.",
       },
       {
         type: "key",
@@ -47,9 +47,9 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Premium** — what you pay regularly (usually monthly) just to have the coverage. You pay it whether or not anything goes wrong. Think of it as the price of being protected.",
-          "**Deductible** — what you pay out of your own pocket *before* insurance starts paying. If your deductible is $1,000, you cover the first $1,000 of a covered loss, then insurance picks up from there.",
-          "**Claim** — when something covered happens and you ask the insurer to pay. Filing a claim is you saying, 'this is one of the bad things I was covered for — your turn.'",
+          "**Premium:** what you pay regularly (usually monthly) just to have the coverage. You pay it whether or not anything goes wrong.",
+          "**Deductible:** what you pay out of your own pocket *before* insurance starts paying. If your deductible is $1,000, you cover the first $1,000 of a covered loss, and insurance picks up from there.",
+          "**Claim:** the request you file when something covered happens and you want the insurer to pay. Filing a claim is you saying, 'this is one of the bad things I was covered for.'",
         ],
       },
       {
@@ -58,11 +58,11 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Premium and deductible move in opposite directions, and you usually get to pick where you land. A *higher premium with a lower deductible* means you pay more every month but less out of pocket when something happens. A *lower premium with a higher deductible* means you pay less every month but more out of pocket if you ever need it.",
+        text: "Premium and deductible move in opposite directions, and you usually get to pick where you land. A higher premium with a lower deductible means you pay more every month but less out of pocket when something happens. Flip it and you pay less every month, but more on the day you need to file a claim.",
       },
       {
         type: "tip",
-        text: "A simple way to choose: if you don't have much saved, a lower deductible can be worth a higher monthly premium — because a giant out-of-pocket bill is the exact thing you can't absorb. If you have a solid emergency fund, a higher deductible saves you money every month and you can cover the gap if it ever comes.",
+        text: "A simple way to choose: if you don't have much saved, a lower deductible can be worth the higher monthly premium, because a giant surprise bill is the exact thing you can't absorb. If you have a solid emergency fund, a higher deductible saves you money every month and you can cover the gap if it ever comes.",
       },
       {
         type: "h2",
@@ -75,17 +75,52 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Usually essential:** health insurance (a serious illness or injury is one of the biggest financial risks there is), and auto insurance if you drive — it's legally required in most places.",
-          "**Important once people depend on you:** life insurance, if someone relies on your income, and disability coverage if losing your paycheck would sink you.",
-          "**Nice-to-have or situational:** renters insurance (cheap and genuinely useful), plus the small add-ons companies love to sell — phone protection, extended warranties, travel insurance. Skip these unless they truly fit your situation.",
+          "**Usually essential:** health insurance (a serious illness or injury is one of the biggest financial risks there is), and auto insurance if you drive, which is legally required in most places.",
+          "**Important once people depend on you:** life insurance if someone relies on your income, and disability coverage if losing your paycheck would sink your household.",
+          "**Cheap and worth a look:** [renters insurance](/learn/home-ownership/renters-insurance) protects your belongings for a few dollars a month. The small add-ons companies love to sell, like phone protection and extended warranties, are usually skippable.",
         ],
       },
       {
         type: "p",
-        text: "You don't have to buy everything. The goal is to cover the disasters you couldn't pay for yourself, and not waste money insuring the small stuff you could.",
+        text: "You don't have to buy everything. Cover the disasters you couldn't pay for yourself, and skip paying to insure the small stuff you could. The rest of this topic walks through the big categories one at a time, starting with [health insurance](/learn/insurance/health-insurance-explained).",
       },
     ],
     related: ["health-insurance-explained", "auto-insurance-basics", "do-you-need-life-insurance"],
+    quiz: [
+      {
+        question: "What's the basic idea underneath all insurance?",
+        options: [
+          "You save up your own money for emergencies",
+          "A big group pools small payments to cover the few who get hit with disaster",
+          "The company invests your payments and returns them later",
+        ],
+        answer: 1,
+        explain:
+          "Many people each pay in a little, and that pool covers the unlucky few whose bills would be too big to survive alone. That's the entire machine.",
+      },
+      {
+        question: "Your deductible is $1,000. What does that mean when something covered goes wrong?",
+        options: [
+          "You pay the first $1,000 and insurance picks up from there",
+          "Insurance pays the first $1,000 and you cover the rest",
+          "You pay $1,000 every month for the coverage",
+        ],
+        answer: 0,
+        explain:
+          "The deductible is what you pay out of your own pocket before insurance starts paying. The monthly amount you pay just to have coverage is the premium.",
+      },
+      {
+        question: "You pick a plan with a lower monthly premium. What's the usual trade-off?",
+        options: [
+          "You get less coverage overall",
+          "You can't file claims in the first year",
+          "You'll have a higher deductible when something happens",
+        ],
+        answer: 2,
+        explain:
+          "Premium and deductible move in opposite directions. Paying less each month usually means paying more out of pocket on the day you need to file a claim.",
+      },
+    ],
   },
 
   {
@@ -93,9 +128,9 @@ export const insuranceArticles: Article[] = [
     order: 20,
     topicId: "insurance",
     title: "Health Insurance, Explained",
-    dek: "The most confusing insurance there is — broken into the few pieces you actually need to understand.",
+    dek: "The most confusing insurance there is, broken into the few pieces you actually need to understand.",
     level: "Beginner",
-    readMinutes: 7,
+    readMinutes: 6,
     takeaways: [
       "Premium, deductible, copay, coinsurance, and out-of-pocket max work together over a year.",
       "Staying in-network keeps your costs far lower.",
@@ -105,7 +140,7 @@ export const insuranceArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Health insurance might be the single most confusing thing in personal finance. It comes loaded with words nobody defines — deductible, copay, coinsurance, network — and the stakes feel high because they are. But it's really just a few moving parts. Once you see how they fit together over a year, the whole thing clicks.",
+        text: "Health insurance might be the single most confusing thing in personal finance. It comes loaded with words nobody defines: deductible, copay, coinsurance, network. And the stakes feel high because they are. But it's really just a few moving parts, and once you see how they fit together over a year, the whole thing clicks. (If you haven't read [how insurance works in general](/learn/insurance/how-insurance-works), start there; this builds on it.)",
       },
       {
         type: "h2",
@@ -118,28 +153,28 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Premium** — what you pay every month just to have the plan, whether or not you see a doctor. This is the baseline cost of being covered.",
-          "**Deductible** — the amount you pay out of pocket for care before the plan starts sharing the cost. Early in the year, you're often paying this down yourself.",
-          "**Copay** — a flat, fixed fee for a specific service, like a set amount for a doctor visit or a prescription. You know it in advance.",
-          "**Coinsurance** — after you've met your deductible, your share of a bill as a percentage. If your coinsurance is 20%, you pay 20% and the plan pays the rest.",
-          "**Out-of-pocket maximum** — the most you'll have to pay in a year for covered care. Once you hit it, the plan covers 100% of covered costs for the rest of the year. This is the safety net under everything.",
+          "**Premium:** what you pay every month just to have the plan, whether or not you see a doctor.",
+          "**Deductible:** the amount you pay out of pocket for care before the plan starts sharing the cost. Early in the year, you're often paying this down yourself.",
+          "**Copay:** a flat, fixed fee for a specific service, like a set amount for a doctor visit or a prescription. You know it in advance.",
+          "**Coinsurance:** your share of a bill as a percentage, once you've met your deductible. If your coinsurance is 20%, you pay 20% and the plan pays the rest.",
+          "**Out-of-pocket maximum:** the most you'll have to pay in a year for covered care. Once you hit it, the plan covers 100% of covered costs for the rest of the year. This is the safety net under everything.",
         ],
       },
       {
         type: "p",
-        text: "Put it together: you pay your premium every month no matter what. When you need care, you first work through your deductible, then split costs with the plan through copays and coinsurance — until you hit your out-of-pocket maximum, after which the plan covers the rest of the year. That ceiling is the whole point: it caps how bad a year can get.",
+        text: "Put it together: you pay your premium every month no matter what. When you need care, you first work through your deductible, then split costs with the plan through copays and coinsurance until you reach your out-of-pocket maximum. After that, the plan covers the rest of the year. That ceiling caps how bad a year can get.",
       },
       {
         type: "key",
-        text: "The out-of-pocket maximum is the most important number on a health plan. It's the worst-case price tag for a terrible health year — and it's exactly the kind of catastrophe insurance exists to cap.",
+        text: "The out-of-pocket maximum is the most important number on a health plan. It's the worst-case price tag for a terrible health year, and capping that worst case is exactly what insurance is for.",
       },
       {
         type: "h2",
-        text: "Network: where you get care matters",
+        text: "Networks: where you get care matters",
       },
       {
         type: "p",
-        text: "Insurers strike deals with certain doctors, hospitals, and pharmacies — that group is the plan's **network**. Staying *in-network* means you pay the lower, agreed-on prices. Going *out-of-network* can cost you dramatically more, and sometimes the plan won't cover it at all. Before you book anything non-urgent, it's worth checking that the provider is in your network.",
+        text: "Insurers strike deals with certain doctors, hospitals, and pharmacies. That group is the plan's **network**. Staying *in-network* means you pay the lower, agreed-on prices. Going *out-of-network* can cost dramatically more, and sometimes the plan won't cover it at all. Before you book anything non-urgent, check that the provider is in your network.",
       },
       {
         type: "p",
@@ -148,8 +183,8 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**HMO** — usually cheaper, but you generally have to stay in-network and often pick a primary doctor who refers you to specialists. Less flexibility, lower cost.",
-          "**PPO** — usually pricier, but you get more freedom to see specialists directly and use out-of-network providers (still at a higher cost). More flexibility, higher cost.",
+          "**HMO:** usually cheaper, but you generally have to stay in-network and often pick a primary doctor who refers you to specialists. Less flexibility, lower cost.",
+          "**PPO:** usually pricier, but you get more freedom to see specialists directly and to use out-of-network providers (still at a higher cost).",
         ],
       },
       {
@@ -158,20 +193,20 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You don't buy health insurance just anywhere — it tends to come from one of a few places:",
+        text: "You don't buy health insurance just anywhere. It tends to come from one of a few places:",
       },
       {
         type: "list",
         items: [
           "**A job.** Many employers offer a health plan and pay part of the premium for you. If you have this option, it's usually the easiest place to start.",
-          "**The government marketplace.** At **HealthCare.gov** (or your state's own marketplace), you can shop for a plan on your own. Many people qualify for help that lowers the cost — it's worth checking even if you assume you can't afford it.",
-          "**Medicaid.** If your income is low, you may qualify for Medicaid, which provides coverage at little or no cost. Eligibility and how to apply vary by state.",
+          "**The government marketplace.** At **HealthCare.gov** (or your state's own marketplace), you can shop for a plan on your own. Many people qualify for help that lowers the cost, so it's worth checking even if you assume you can't afford it.",
+          "**Medicaid.** If your income is low, you may qualify for [Medicaid](/learn/government-aid/medicaid-explained), which provides coverage at little or no cost. Eligibility and how to apply vary by state.",
           "**A parent's plan.** Young adults can often stay on a parent's health plan into their mid-20s, which can be the simplest and cheapest option while it lasts.",
         ],
       },
       {
         type: "tip",
-        text: "Don't assume coverage is out of reach. Lots of people who qualify for free or low-cost plans never find out because they never check. Start at HealthCare.gov or your state marketplace — it'll point you to what you're eligible for, including Medicaid.",
+        text: "Don't assume coverage is out of reach. Plenty of people who qualify for free or low-cost plans never find out because they never check. Start at HealthCare.gov or your state marketplace; it will point you to what you're eligible for, including Medicaid.",
       },
       {
         type: "h2",
@@ -179,14 +214,49 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "It's tempting to skip insurance when you're young and healthy — the premium feels like money for nothing. But a single accident or serious illness can produce a bill larger than most people earn in years, and being uninsured doesn't make that bill disappear. It just leaves you facing it alone. That's the exact financial catastrophe insurance is built to prevent.",
+        text: "It's tempting to skip insurance when you're young and healthy, because the premium feels like money for nothing. But a single accident or serious illness can produce a bill larger than most people earn in years, and being uninsured doesn't make that bill disappear. It leaves you facing it alone.",
       },
       {
         type: "p",
-        text: "The good news: because low-cost and free options exist for a lot of people, being uninsured is often a choice you don't actually have to make. It's worth ten minutes to find out what you qualify for.",
+        text: "Because low-cost and free options exist for a lot of people, being uninsured is often a choice you don't have to make. Spend ten minutes finding out what you qualify for, then use [How to Choose a Health Plan](/learn/insurance/choosing-a-health-plan) to compare your options.",
       },
     ],
-    related: ["choosing-a-health-plan", "medicaid-explained", "benefits-you-qualify-for"],
+    related: ["choosing-a-health-plan", "medicaid-explained", "negotiating-medical-bills"],
+    quiz: [
+      {
+        question: "What does the out-of-pocket maximum on a health plan do?",
+        options: [
+          "Caps what you pay in a year for covered care; after that, the plan pays 100%",
+          "Limits how many doctor visits you can have in a year",
+          "Sets the most the plan will ever pay toward your bills",
+        ],
+        answer: 0,
+        explain:
+          "It's the worst-case price tag for a terrible health year. Once you hit it, the plan covers 100% of covered costs for the rest of the year, which is exactly what insurance is for.",
+      },
+      {
+        question: "What's the difference between a copay and coinsurance?",
+        options: [
+          "They're two names for the same thing",
+          "A copay is a flat fee you know in advance; coinsurance is your percentage share of a bill",
+          "A copay applies to prescriptions only; coinsurance covers everything else",
+        ],
+        answer: 1,
+        explain:
+          "A copay is a fixed amount for a specific service, like a doctor visit. Coinsurance is a percentage split with the plan once you've met your deductible.",
+      },
+      {
+        question: "Why does it matter whether a doctor is in your plan's network?",
+        options: [
+          "Out-of-network doctors are less qualified",
+          "In-network care means lower, agreed-on prices; out-of-network can cost far more or not be covered",
+          "You need government permission to go out-of-network",
+        ],
+        answer: 1,
+        explain:
+          "Insurers strike deals with certain providers, and staying in-network gets you those lower prices. Check that a provider is in your network before booking anything non-urgent.",
+      },
+    ],
   },
 
   {
@@ -206,7 +276,7 @@ export const insuranceArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "When you're staring at a list of health plans, the instinct is to sort by the monthly premium and pick the cheapest one. It feels responsible. It's also the single most common way people end up paying *more*. Choosing a plan well takes about ten extra minutes of looking past that first number — here's how to do it.",
+        text: "When you're staring at a list of health plans, the instinct is to sort by monthly premium and pick the cheapest one. It feels responsible. It's also the single most common way people end up paying *more*. Choosing well takes about ten extra minutes of looking past that first number. (This article assumes you know the vocabulary. If premium, deductible, copay, and out-of-pocket maximum are still fuzzy, read [Health Insurance, Explained](/learn/insurance/health-insurance-explained) first.)",
       },
       {
         type: "h2",
@@ -214,11 +284,11 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The premium is only one piece of what a plan costs you. A plan with a low premium often comes with a high deductible and bigger out-of-pocket costs when you actually use it. The real question isn't 'what's the monthly price?' — it's 'what will this plan likely cost me over the whole year, all in?'",
+        text: "The premium is only one piece of what a plan costs you. A low premium usually comes with a high deductible and bigger out-of-pocket costs when you actually use the plan; that's [the trade-off built into all insurance](/learn/insurance/how-insurance-works). The real question isn't the monthly price. It's what the plan will likely cost you over the whole year, all in.",
       },
       {
         type: "p",
-        text: "Roughly, your total likely cost is: the premium across the year, plus the deductible and copays you'd realistically rack up based on how much care you expect to need. A plan that looks cheap monthly can lose badly to a slightly pricier plan once you add in what you'd pay at the doctor.",
+        text: "Roughly, your total likely cost is the premium across the year, plus the deductible and copays you'd realistically rack up given how much care you expect to need. A plan that looks cheap monthly can lose badly to a slightly pricier plan once you add in what you'd pay at the doctor.",
       },
       {
         type: "h2",
@@ -226,18 +296,14 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "There's no single best plan — only the best plan *for your situation*. The deciding factor is usually how much care you expect to use:",
+        text: "There's no single best plan, only the best plan for your situation. The deciding factor is usually how much care you expect to use:",
       },
       {
         type: "list",
         items: [
-          "**Rarely see a doctor, no ongoing conditions?** A lower-premium, higher-deductible plan often wins. You pay less every month, and you're unlikely to hit the deductible — just make sure you could cover it if something unexpected happened.",
+          "**Rarely see a doctor, no ongoing conditions?** A lower-premium, higher-deductible plan often wins. You pay less every month and you're unlikely to hit the deductible. Just make sure you could cover it if something unexpected happened.",
           "**Take regular prescriptions, see specialists, or manage an ongoing condition?** A higher-premium, lower-deductible plan often costs less overall, because the plan starts sharing your frequent costs sooner.",
         ],
-      },
-      {
-        type: "key",
-        text: "The trade-off in one line: a low premium almost always means a high deductible. You're choosing whether to pay more every month, or more on the day you actually need care.",
       },
       {
         type: "h2",
@@ -245,7 +311,7 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A plan is only a good deal if it covers the care *you* use. Before you commit, confirm that the doctors you want are in the plan's network, and that any prescriptions you take are on the plan's covered list. A cheap plan that doesn't cover your medication or sends you out-of-network for your doctor isn't cheap at all.",
+        text: "A plan is only a good deal if it covers the care *you* use. Before you commit, confirm that the doctors you want are in the plan's network and that any prescriptions you take are on the plan's covered list. A cheap plan that doesn't cover your medication, or that sends you out-of-network for your regular doctor, isn't cheap at all.",
       },
       {
         type: "h2",
@@ -255,20 +321,20 @@ export const insuranceArticles: Article[] = [
         type: "steps",
         items: [
           "Write down each plan's premium, deductible, copays, coinsurance, and out-of-pocket maximum side by side.",
-          "Estimate how much care you expect this year — be honest about prescriptions, regular visits, or known conditions.",
+          "Estimate how much care you expect this year. Be honest about prescriptions, regular visits, and known conditions.",
           "For each plan, add the year of premiums to the deductible and copays you'd realistically pay. That's your total likely cost.",
           "Confirm your doctors are in-network and your prescriptions are covered under each plan you're seriously considering.",
-          "If you're shopping on the marketplace, check whether you qualify for help lowering the cost before you decide — it can change which plan wins.",
-          "Pick the plan with the lowest *total* likely cost that still covers your care — not the lowest premium.",
+          "If you're shopping on the marketplace, check whether you qualify for help lowering the cost before you decide. It can change which plan wins.",
+          "Pick the plan with the lowest *total* likely cost that still covers your care, not the lowest premium.",
         ],
       },
       {
         type: "tip",
-        text: "Shopping on the marketplace? Many people qualify for subsidies that lower what they pay, and the marketplace applies them as you compare plans. Always check what you're eligible for at HealthCare.gov or your state marketplace before assuming a plan is out of reach.",
+        text: "Shopping on the marketplace? Many people qualify for subsidies that lower what they pay, and the marketplace applies them as you compare plans. Check what you're eligible for at HealthCare.gov or your state marketplace before assuming a plan is out of reach.",
       },
       {
         type: "p",
-        text: "Spending those few extra minutes is the difference between a plan that quietly drains you and one that actually fits your life. The cheapest premium and the cheapest plan are rarely the same thing.",
+        text: "Those few extra minutes are the difference between a plan that quietly drains you and one that actually fits your life. The cheapest premium and the cheapest plan are rarely the same thing.",
       },
     ],
     related: ["health-insurance-explained", "how-insurance-works", "medicaid-explained"],
@@ -279,9 +345,9 @@ export const insuranceArticles: Article[] = [
     order: 20,
     topicId: "insurance",
     title: "Auto Insurance Basics",
-    dek: "Required almost everywhere, confusing almost everywhere — here's what each coverage actually does.",
+    dek: "Required almost everywhere, confusing almost everywhere. Here's what each coverage actually does.",
     level: "Intermediate",
-    readMinutes: 6,
+    readMinutes: 5,
     takeaways: [
       "If you drive, auto insurance is legally required in most places.",
       "Liability covers damage you cause others; collision and comprehensive cover your own car.",
@@ -291,7 +357,7 @@ export const insuranceArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "If you drive, you need auto insurance — it's the law in most places, and getting caught without it brings its own pile of problems. But car insurance is sold with a wall of coverage names that all blur together. Liability, collision, comprehensive — what's the difference, and which do you actually need? Here's the plain version.",
+        text: "If you drive, you need auto insurance. It's the law in most places, and getting caught without it brings its own pile of problems. But car insurance is sold with a wall of coverage names that blur together: liability, collision, comprehensive. Here's what each one does and which ones you actually need.",
       },
       {
         type: "h2",
@@ -304,22 +370,18 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Liability** — covers the damage and injuries *you cause to other people* in an accident: their car, their medical bills, their property. This is the part that's legally required almost everywhere, because it makes sure the people you might hurt get covered.",
-          "**Collision** — covers damage to *your own car* from a crash, whether you hit another car or a guardrail. This one's about repairing or replacing your vehicle.",
-          "**Comprehensive** — covers damage to your own car from things that *aren't* a crash: theft, vandalism, fire, hail, a tree falling, hitting an animal. Basically the bad luck that isn't a collision.",
+          "**Liability:** covers the damage and injuries *you cause to other people* in an accident, including their car, their medical bills, and their property. This is the part that's legally required almost everywhere, because it makes sure the people you might hurt get covered.",
+          "**Collision:** covers damage to *your own car* from a crash, whether you hit another car or a guardrail.",
+          "**Comprehensive:** covers damage to your own car from things that *aren't* a crash: theft, vandalism, fire, hail, a falling tree, hitting an animal.",
         ],
       },
       {
         type: "key",
-        text: "Liability protects other people from you. Collision and comprehensive protect your car. Liability is the part you're legally required to carry; the other two are about whether you can afford to fix your own vehicle.",
-      },
-      {
-        type: "h2",
-        text: "The deductible works the same way here",
+        text: "Liability protects other people from you. Collision and comprehensive protect your car. Liability is the part you're legally required to carry; the other two are about whether you could afford to fix or replace your own vehicle.",
       },
       {
         type: "p",
-        text: "Collision and comprehensive come with a deductible — the amount you pay out of pocket before insurance covers the rest of a repair. Pick a higher deductible and your premium drops, but you'll owe more out of pocket if you ever file a claim. Pick a lower deductible and you'll pay a higher premium for the peace of mind. It's the same trade-off you see across all insurance.",
+        text: "Collision and comprehensive come with a deductible, and it works the same way it does everywhere in insurance: pick a higher deductible and your premium drops, pick a lower one and it rises. [How Insurance Actually Works](/learn/insurance/how-insurance-works) covers that trade-off if you want a refresher.",
       },
       {
         type: "h2",
@@ -332,10 +394,10 @@ export const insuranceArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Your driving record** — accidents and tickets push your premium up; a clean record keeps it down.",
-          "**Where you live** — rates vary a lot by area, based on things like traffic, theft, and how often claims happen there.",
-          "**The car itself** — what it costs to repair or replace, and how often that model gets stolen or wrecked.",
-          "**Your coverage choices** — how much liability you carry, whether you add collision and comprehensive, and the deductible you pick.",
+          "**Your driving record.** Accidents and tickets push your premium up; a clean record keeps it down.",
+          "**Where you live.** Rates vary a lot by area, based on things like traffic, theft, and how often claims happen there.",
+          "**The car itself.** What it costs to repair or replace, and how often that model gets stolen or wrecked. If you're [shopping for a used car](/learn/budgeting/buying-a-used-car), it's worth pricing insurance for a specific model before you commit to it.",
+          "**Your coverage choices.** How much liability you carry, whether you add collision and comprehensive, and the deductible you pick.",
         ],
       },
       {
@@ -344,7 +406,7 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "It's tempting to buy the bare-minimum policy and move on. But here's the trap: if you carry only the lowest required liability and you cause a serious accident, your coverage can run out fast — and you're personally responsible for whatever's left. Medical bills and a totaled car can blow past a thin liability limit easily, and the rest comes out of *your* pocket.",
+        text: "It's tempting to buy the bare-minimum policy and move on. The trap: if you carry only the lowest required liability and you cause a serious accident, your coverage can run out fast, and you're personally responsible for whatever's left. Medical bills and a totaled car can blow past a thin liability limit, and the rest comes out of *your* pocket.",
       },
       {
         type: "tip",
@@ -355,7 +417,7 @@ export const insuranceArticles: Article[] = [
         text: "Once you understand these pieces, an auto policy stops being a mystery. Required liability protects others, collision and comprehensive protect your car, and your premium reflects your risk and your choices. From there, you're shopping on purpose instead of guessing.",
       },
     ],
-    related: ["how-insurance-works", "building-your-first-budget", "do-you-need-life-insurance"],
+    related: ["how-insurance-works", "buying-a-used-car", "do-you-need-life-insurance"],
   },
 
   {
@@ -365,17 +427,17 @@ export const insuranceArticles: Article[] = [
     title: "Do You Even Need Life Insurance?",
     dek: "Cut through the sales pressure: the honest answer depends entirely on who relies on your income.",
     level: "Intermediate",
-    readMinutes: 6,
+    readMinutes: 5,
     takeaways: [
       "Life insurance exists to protect people who depend on your income.",
       "If no one relies on you financially, you may not need much yet.",
       "Term life is simple and affordable; whole life is far pricier.",
-      "Salespeople often push the expensive kind — know the difference first.",
+      "Salespeople often push the expensive kind, so know the difference first.",
     ],
     body: [
       {
         type: "p",
-        text: "Few products come with as much sales pressure as life insurance. Someone may have already told you that you *must* buy a policy right now, ideally an expensive one. So let's set the pitch aside and answer the real question honestly: do you actually need life insurance? This is general education, not a sales pitch or advice about your specific situation — but the basic logic is something anyone can learn.",
+        text: "Few products come with as much sales pressure as life insurance. Someone may have already told you that you *must* buy a policy right now, ideally an expensive one. So set the pitch aside and start with the real question: does anyone actually depend on your income? (What follows is general education, not advice about your specific situation.)",
       },
       {
         type: "h2",
@@ -383,11 +445,11 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Strip away the marketing and life insurance does one thing: if you die, it pays money to the people you name — so that the people who *depend on your income* aren't left financially stranded. That's the entire purpose. Not to make anyone rich, not as an investment scheme. It replaces the income people were counting on.",
+        text: "Strip away the marketing and life insurance does one thing: if you die, it pays money to the people you name, so that the people who depend on your income aren't left financially stranded. That's the entire purpose. It isn't a way to make anyone rich, and it isn't primarily an investment. It replaces the income people were counting on.",
       },
       {
         type: "key",
-        text: "The honest test is simple: would anyone be in financial trouble if your income suddenly disappeared? If yes, life insurance matters. If no, you may not need much — or any — just yet.",
+        text: "The honest test is simple: would anyone be in financial trouble if your income suddenly disappeared? If yes, life insurance matters. If no, you may not need much, or any, just yet.",
       },
       {
         type: "h2",
@@ -395,7 +457,7 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you're single, no kids, and nobody relies on your paycheck to get by, you likely don't need a big policy right now. There's no income for it to replace on anyone else's behalf. Buying a large, expensive policy in that situation mostly benefits the person selling it. It's fine to wait until your life actually calls for it.",
+        text: "If you're single with no kids and nobody relies on your paycheck to get by, you likely don't need a big policy right now. There's no income for it to replace on anyone else's behalf. Buying a large, expensive policy in that situation mostly benefits the person selling it. It's fine to wait until your life actually calls for it.",
       },
       {
         type: "h2",
@@ -410,8 +472,8 @@ export const insuranceArticles: Article[] = [
         items: [
           "You have kids who rely on your income.",
           "You have a partner who'd struggle to cover the bills without you.",
-          "You support family members — parents, siblings, relatives — who count on what you send.",
-          "You share a big debt, like a mortgage, that someone would be left carrying.",
+          "You support family members who count on what you send.",
+          "You share a big debt, like a mortgage, that someone would be left carrying alone.",
         ],
       },
       {
@@ -420,28 +482,147 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "Term vs. whole life — the difference they don't always explain",
+        text: "Term vs. whole life",
       },
       {
         type: "p",
-        text: "There are two broad kinds, and understanding them protects you from getting upsold:",
+        text: "There are two broad kinds, and knowing the difference protects you from getting upsold:",
       },
       {
         type: "list",
         items: [
-          "**Term life** — covers you for a set period (a 'term,' like 10, 20, or 30 years). It's straightforward and relatively affordable, because it's pure protection with nothing fancy attached. For most people who need coverage, this is what actually fits — it protects your family during the years they depend on you.",
-          "**Whole life (permanent) life** — covers you for your entire life and mixes in a savings or investment component. It costs much more for the same amount of protection, and it's the kind salespeople often push hardest, because it earns them more. It can make sense in specific, less common situations — but it's rarely the right starting point.",
+          "**Term life** covers you for a set period (a 'term,' like 10, 20, or 30 years). It's straightforward and relatively affordable, because it's pure protection with nothing else attached. For most people who need coverage, this is the fit: it protects your family during the years they depend on you.",
+          "**Whole life (permanent)** covers you for your entire life and mixes in a savings or investment component. It costs much more for the same amount of protection, and it's the kind salespeople often push hardest, because it earns them more. It can make sense in specific, less common situations, but it's rarely the right starting point.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If part of the whole-life pitch is that it 'builds savings,' remember that protecting your family and growing your money are separate jobs. Many people are better served by affordable term coverage, with the monthly difference going toward their own [saving and investing](/learn/investing/saving-vs-investing).",
+      },
+      {
+        type: "tip",
+        text: "Many jobs offer some life insurance as a benefit, often at low or no cost. Check what your employer already provides before you buy anything on your own. You may have more coverage than you think.",
+      },
+      {
+        type: "p",
+        text: "Figure out whether anyone depends on your income first. If nobody does, you can relax about the sales pressure. If someone does, learn the difference between term and whole life before you sign anything, so you walk into the conversation already knowing what you need.",
+      },
+    ],
+    related: ["how-insurance-works", "auto-insurance-basics"],
+  },
+
+  {
+    slug: "negotiating-medical-bills",
+    order: 40,
+    topicId: "insurance",
+    title: "How to Fight a Medical Bill",
+    dek: "That terrifying number is often not final. Here's how to shrink a medical bill before you pay it.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Don't pay in a panic or ignore the bill. Ask for an itemized bill first.",
+      "Billing errors are common, and so are programs that lower what you owe.",
+      "Nonprofit hospitals are generally required to offer financial assistance. Ask.",
+      "Avoid moving medical debt onto a credit card if you possibly can.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "A big medical bill in the mailbox is one of the scariest pieces of paper there is. The number can feel final and impossible. It usually isn't. Medical bills are among the most negotiable bills in American life, but only if you know to push back.",
+      },
+      {
+        type: "p",
+        text: "The two most tempting moves are the two worst ones: paying immediately in a panic, or ignoring the bill until it grows teeth. There's a calmer middle path, and it starts with a phone call.",
+      },
+      {
+        type: "h2",
+        text: "Step one: ask for an itemized bill",
+      },
+      {
+        type: "p",
+        text: "The bill you get in the mail is usually just a total, a lump sum with almost no detail. Call the billing office and ask for an *itemized bill*, which lists every single charge line by line. This is how you check the math, and the math is wrong more often than you'd think.",
+      },
+      {
+        type: "p",
+        text: "Medical billing is done by people and software, and both make mistakes. Once you have the itemized list, read it like a receipt you don't trust, looking for:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Duplicate charges:** the same test, room, or supply billed twice.",
+          "**Services you never got:** a procedure or medication that wasn't actually yours.",
+          "**Wrong quantities:** billed for a full day when you were there for an hour.",
+          "**Charges your insurance should have covered:** sometimes a claim was filed wrong, not that you owe the money. If terms like deductible and coinsurance are fuzzy, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers them.",
         ],
       },
       {
         type: "tip",
-        text: "Many jobs offer some life insurance as a benefit, often at low or no cost. It's worth knowing what your employer already provides before you buy anything on your own — you may have more coverage than you think.",
+        text: "You're allowed to ask what a charge means in plain English. 'Can you explain this line?' is a completely normal question, and billing offices hear it every day.",
+      },
+      {
+        type: "h2",
+        text: "Ask about financial assistance, even if you doubt you qualify",
       },
       {
         type: "p",
-        text: "Bottom line: figure out whether anyone depends on your income first. If they don't, you can relax about the sales pressure. If they do, learn the difference between term and whole life before you sign anything — and remember this is general education, not individualized advice. The point is to walk into the conversation already knowing what you actually need.",
+        text: "This is the part almost nobody knows about, and it's the most important. Nonprofit hospitals are generally required to offer a *financial assistance* program, sometimes called *charity care*, that can dramatically reduce or even wipe out a bill for people with limited income. Many people who would qualify never apply, simply because no one told them it exists.",
+      },
+      {
+        type: "p",
+        text: "You don't have to guess whether you qualify. Call the hospital's billing or financial-assistance office and ask directly: 'Do you have a financial assistance program, and how do I apply?' They'll tell you what paperwork they need. It's worth asking even if you have insurance, and even if your income isn't extremely low, because every hospital sets its own rules. If your income is low, it's also worth checking whether you qualify for [Medicaid](/learn/government-aid/medicaid-explained).",
+      },
+      {
+        type: "key",
+        text: "Charity care isn't a favor you're begging for. It's a program hospitals are generally required to have, and asking about it is the single highest-value thing you can do with a big medical bill.",
+      },
+      {
+        type: "h2",
+        text: "Ask for a discount or a no-interest payment plan",
+      },
+      {
+        type: "p",
+        text: "If you don't qualify for financial assistance, you still have room to move. Hospitals frequently accept less than the sticker price, especially if you can pay something promptly. Two things worth asking for:",
+      },
+      {
+        type: "list",
+        items: [
+          "**A discount.** Ask if there's a lower 'self-pay' or 'prompt-pay' price. The amount on the bill is often a starting point, not the floor.",
+          "**A no-interest payment plan.** Many hospitals will let you split the bill into smaller monthly amounts with *no interest*, which turns a scary total into a manageable line in your budget.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Be polite, be honest about what you can afford, and don't be afraid to name a number. 'I want to take care of this. Realistically I can pay this much a month. What can we work out?' is a reasonable way to open. You're not being difficult; this is exactly what the billing office is set up to handle.",
+      },
+      {
+        type: "h2",
+        text: "The credit card trap",
+      },
+      {
+        type: "p",
+        text: "When a bill feels urgent, putting it on a regular credit card, or signing up for a special 'medical credit card' pushed at the front desk, can feel like a quick fix. It usually turns a manageable debt into a worse one.",
+      },
+      {
+        type: "p",
+        text: "A medical bill is often negotiable, frequently interest-free once you set up a plan, and tends to be handled more gently than other debt. The moment you move it onto a credit card, you generally lose all of that, and you can be stuck paying high interest on top of the original amount. If you can possibly avoid it, don't trade a flexible bill for an expensive one.",
+      },
+      {
+        type: "h2",
+        text: "Know you have protections, too",
+      },
+      {
+        type: "p",
+        text: "You also have protections against many *surprise* bills: the kind that show up when you went to an in-network hospital but got treated by an out-of-network doctor you never chose, often in an emergency. If a bill looks like one of these, don't assume you simply owe it. Push back and ask whether it should have been covered.",
+      },
+      {
+        type: "p",
+        text: "None of this requires being an expert or being aggressive. It requires knowing the bill is a starting point, not a verdict, and making a few calls before you reach for your wallet.",
       },
     ],
-    related: ["how-insurance-works", "auto-insurance-basics", "building-your-first-budget"],
+    related: [
+      "health-insurance-explained",
+      "medicaid-explained",
+      "what-happens-if-you-dont-pay-debts",
+    ],
   },
 ];

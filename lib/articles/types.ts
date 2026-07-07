@@ -36,4 +36,18 @@ export interface Article {
   body: ArticleBlock[];
   /** Slugs of related articles (any topic). */
   related?: string[];
+  /**
+   * Optional end-of-article knowledge check (2–4 multiple-choice questions),
+   * rendered by components/ArticleQuiz.tsx. Questions must be answerable from
+   * this article alone; `answer` is the index into `options`.
+   */
+  quiz?: ArticleQuizQuestion[];
+}
+
+export interface ArticleQuizQuestion {
+  question: string;
+  options: string[];
+  answer: number;
+  /** One–two plain sentences shown after answering. */
+  explain: string;
 }

@@ -6,12 +6,12 @@ export const governmentAidExtraArticles: Article[] = [
     order: 30,
     topicId: "government-aid",
     title: "SNAP (Food Assistance), Explained",
-    dek: "Help buying groceries is a benefit you may have already paid into — here's how it works and how to use it without a shred of shame.",
+    dek: "Help buying groceries is a benefit you've likely already paid into. Here's how it works and how to apply.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
       "SNAP puts money on a card you use like debit at the grocery store.",
-      "Eligibility depends on your income and household size — many working people qualify.",
+      "Eligibility depends on your income and household size; many working people qualify.",
       "Applying is free, and you never pay anyone to do it for you.",
       "Using it is normal and smart, not something to hide.",
     ],
@@ -22,7 +22,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "SNAP stands for Supplemental Nutrition Assistance Program — most people still call it food stamps. The short version: it helps you afford groceries. Let's walk through what it actually is, who it's for, and how to get it.",
+        text: "SNAP stands for Supplemental Nutrition Assistance Program, though most people still call it food stamps. The short version: it helps you afford groceries. Here's what it covers, who qualifies, and how to apply.",
       },
       {
         type: "h2",
@@ -30,11 +30,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "SNAP loads money onto a card called an EBT card each month. You swipe it at the grocery store like a debit card, and it covers most food — produce, meat, bread, dairy, snacks, seeds to grow food. It doesn't cover things like alcohol, hot prepared meals, or non-food items, but for filling your fridge, it works almost everywhere groceries are sold.",
+        text: "SNAP loads money onto a card called an EBT card each month. You swipe it at the grocery store like a debit card, and it covers most food: produce, meat, bread, dairy, snacks, even seeds to grow food. It doesn't cover things like alcohol, hot prepared meals, or non-food items, but for filling your fridge, it works almost everywhere groceries are sold.",
       },
       {
         type: "key",
-        text: "SNAP isn't a handout you have to feel small about. It's a public program funded by taxes — including ones taken out of your own paychecks. Using it is you accepting help that was built for exactly your situation.",
+        text: "SNAP isn't a handout you have to feel small about. It's a public program funded by taxes, including ones taken out of your own paychecks. Using it is accepting help that was built for exactly your situation.",
       },
       {
         type: "h2",
@@ -42,11 +42,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This surprises a lot of people: you don't have to be unemployed or have zero income. Plenty of folks who work full time still qualify, especially with kids or high rent. As a rough federal baseline, most households need a gross income under **130% of the poverty line** — about **$2,800 a month** (roughly **$33,600 a year**) for a household of three, and higher for bigger families. Many states set the cutoff *higher* than that, so don't rule yourself out based on a number a friend mentioned — check the current limits where you live.",
+        text: "This surprises a lot of people: you don't have to be unemployed or have zero income. Plenty of folks who work full time still qualify, especially with kids or high rent. As a rough federal baseline, most households need a gross income under **130% of the poverty line**, which works out to about **$2,800 a month** (roughly **$33,600 a year**) for a household of three, and higher for bigger families. Many states set the cutoff *higher* than that, so don't rule yourself out based on a number a friend mentioned.",
       },
       {
         type: "tip",
-        text: "Not sure if you'd qualify? Use the free screening tool at Benefits.gov, or call 211. It takes a few minutes and tells you what you might be eligible for — no commitment, no cost, no salesperson.",
+        text: "Not sure if you'd qualify? Use the free screening tool at Benefits.gov, or call 211. It takes a few minutes, costs nothing, and commits you to nothing.",
       },
       {
         type: "h2",
@@ -60,25 +60,60 @@ export const governmentAidExtraArticles: Article[] = [
         type: "steps",
         items: [
           "Find your state's SNAP office online (search your state name plus 'SNAP apply') or start at Benefits.gov.",
-          "Fill out the application — online, by mail, or in person. Gather ID, proof of income like pay stubs, and your rent and utility costs.",
+          "Fill out the application, online, by mail, or in person. Gather ID, proof of income like pay stubs, and your rent and utility costs.",
           "Do a short interview, usually by phone, where a caseworker confirms your details.",
           "Wait for the decision. If approved, your EBT card arrives in the mail, and you'll reapply periodically to keep it.",
         ],
       },
       {
         type: "p",
-        text: "If English isn't your first language, you have the right to an interpreter for free — ask for one. And a note for immigrant families: rules about who's eligible can be confusing, and worry about immigration status keeps many people from applying for benefits their *citizen children* clearly qualify for. If that's your situation, get clear information before you assume the answer is no.",
+        text: "If English isn't your first language, you have the right to a free interpreter, so ask for one. And a note for immigrant families: worry about immigration status keeps many people from applying for benefits their *citizen children* clearly qualify for. Before you assume the answer is no, read [Immigrants and Public Benefits](/learn/government-aid/immigrants-and-benefits), which separates the facts from the fear.",
       },
       {
         type: "tip",
-        text: "Nobody legitimate ever charges you to apply for SNAP. If someone asks for a fee to 'sign you up' or 'speed up' your benefits, walk away — it's a scam.",
+        text: "Nobody legitimate ever charges you to apply for SNAP. If someone asks for a fee to 'sign you up' or 'speed up' your benefits, walk away. It's a scam.",
       },
       {
         type: "p",
-        text: "Applying for SNAP is just you using a tool that's there for everyone. Feed yourself and your family without guilt, get steady, and the program will be there to step back from whenever you're ready.",
+        text: "Applying for SNAP is just you using a tool that's there for everyone. It costs nothing but time, and the worst outcome is a no that leaves you exactly where you started. Check the limits where you live, gather your pay stubs, and start the application.",
       },
     ],
     related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "immigrants-and-benefits"],
+    quiz: [
+      {
+        question: "How do you actually use SNAP benefits at the store?",
+        options: [
+          "You trade paper vouchers for approved foods",
+          "Money loads onto an EBT card you swipe like a debit card",
+          "The store bills the government after you check out",
+        ],
+        answer: 1,
+        explain:
+          "SNAP loads money onto an EBT card each month, and you use it like a debit card for most groceries. It doesn't cover things like alcohol, hot prepared meals, or non-food items.",
+      },
+      {
+        question: "Do you have to be unemployed to qualify for SNAP?",
+        options: [
+          "Yes, SNAP is only for people with no income",
+          "No; plenty of people who work full time still qualify",
+          "Only if you have children at home",
+        ],
+        answer: 1,
+        explain:
+          "Eligibility depends on income and household size. The rough federal baseline is a gross income under 130% of the poverty line, and many states set their cutoff even higher.",
+      },
+      {
+        question: "Someone offers to sign you up for SNAP for a $40 fee. What is that?",
+        options: [
+          "A normal expedited application service",
+          "A processing fee some states charge",
+          "A scam; applying for SNAP is always free",
+        ],
+        answer: 2,
+        explain:
+          "Nobody legitimate ever charges you to apply for SNAP. You apply for free through your state's SNAP agency, and screening tools like Benefits.gov cost nothing too.",
+      },
+    ],
   },
 
   {
@@ -86,7 +121,7 @@ export const governmentAidExtraArticles: Article[] = [
     order: 40,
     topicId: "government-aid",
     title: "Medicaid and Low-Cost Health Coverage",
-    dek: "If you can't afford health insurance, there's a good chance you qualify for coverage that costs little or nothing — and skipping care to save money usually backfires.",
+    dek: "If you can't afford health insurance, there's a good chance you qualify for coverage that costs little or nothing.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
@@ -98,7 +133,7 @@ export const governmentAidExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Going without health insurance feels like a gamble you can win — until you can't. One bad fall, one infection that won't quit, one surprise diagnosis, and suddenly you're staring at a bill with a number that doesn't feel real. The good news: if money is tight, you may qualify for coverage that costs little or nothing, and far more people are eligible than realize it.",
+        text: "Going without health insurance feels like a gamble you can win, right up until you can't. One bad fall, one infection that won't quit, one surprise diagnosis, and suddenly you're staring at a bill with a number that doesn't feel real. If money is tight, though, you may qualify for coverage that costs little or nothing, and far more people are eligible than realize it.",
       },
       {
         type: "h2",
@@ -106,7 +141,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Medicaid is health coverage run jointly by the federal government and each state, built for people with lower incomes. When you qualify, it covers the big stuff — doctor visits, hospital stays, prescriptions, emergencies, often dental and vision — for free or a very small cost. There's no monthly premium for most people who qualify.",
+        text: "Medicaid is health coverage run jointly by the federal government and each state, built for people with lower incomes. When you qualify, it covers the big stuff: doctor visits, hospital stays, prescriptions, emergencies, often dental and vision. There's no monthly premium for most people who qualify.",
       },
       {
         type: "p",
@@ -114,7 +149,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Medicaid exists so that being low on money doesn't mean going without a doctor. It's coverage you're entitled to when you qualify — not charity, and not something to be embarrassed about pulling out at the pharmacy.",
+        text: "Medicaid exists so that being low on money doesn't mean going without a doctor. It's coverage you're entitled to when you qualify, not charity, and not something to be embarrassed about pulling out at the pharmacy.",
       },
       {
         type: "h2",
@@ -122,7 +157,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Earn a little too much for Medicaid? You're not out of options. Through the health insurance marketplace, the government often pays a big chunk of your monthly premium based on your income. Many people end up with a real plan for a very low monthly cost — sometimes close to nothing — once those subsidies kick in.",
+        text: "Earn a little too much for Medicaid? You're not out of options. Through the health insurance marketplace, the government often pays a big chunk of your monthly premium based on your income. Once those subsidies kick in, many people end up with a real plan for a very low monthly cost, sometimes close to nothing. (If words like premium and deductible are still fuzzy, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers how coverage works piece by piece.)",
       },
       {
         type: "tip",
@@ -143,10 +178,10 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "steps",
         items: [
-          "Start at HealthCare.gov or your state's marketplace — one application checks you for both Medicaid and subsidized plans.",
+          "Start at HealthCare.gov or your state's marketplace. One application checks you for both Medicaid and subsidized plans.",
           "Gather income proof, household details, and immigration documents if they apply to you.",
           "Submit and get matched. If you qualify for Medicaid, you can usually enroll any time of year.",
-          "Need help? A free, certified 'navigator' or assister can walk you through it — you never pay for this.",
+          "Need help? A free, certified 'navigator' or assister can walk you through it. You never pay for this.",
         ],
       },
       {
@@ -155,7 +190,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Health coverage isn't a luxury for 'later, when things settle down.' It's the thing that keeps one bad week from turning into years of debt. Find out what you qualify for — your future self will thank you.",
+        text: "Health coverage isn't a luxury for 'later, when things settle down.' It's what keeps one bad week from turning into years of debt. Set aside an hour, run your income through the marketplace, and find out what you qualify for.",
       },
     ],
     related: ["benefits-you-qualify-for", "immigrants-and-benefits", "how-to-apply-for-benefits"],
@@ -166,19 +201,19 @@ export const governmentAidExtraArticles: Article[] = [
     order: 50,
     topicId: "government-aid",
     title: "How to Apply for Unemployment",
-    dek: "Losing a job is stressful enough — here's how to claim the benefits you've been paying into, without the process tripping you up.",
+    dek: "Losing a job is stressful enough. Here's how to claim the benefits you've been paying into, without the process tripping you up.",
     level: "Beginner",
     readMinutes: 5,
     takeaways: [
       "Unemployment replaces part of your income while you look for work.",
-      "It's funded by employer taxes — you earned access to it by working.",
+      "It's funded by employer taxes; you earned access to it by working.",
       "Apply right away; benefits usually start from when you file, not when you lost the job.",
       "Most people just need their work history, ID, and a little patience.",
     ],
     body: [
       {
         type: "p",
-        text: "Getting laid off, or having your hours vanish, can knock the wind out of you — financially and otherwise. Before the panic sets in, here's something steadying: unemployment insurance exists for this exact moment, and if you've been working, you've almost certainly been paying into it. Claiming it isn't begging. It's collecting on something you earned.",
+        text: "Getting laid off, or having your hours vanish, can knock the wind out of you, financially and otherwise. Before the panic sets in, here's something steadying: unemployment insurance exists for this exact moment, and if you've been working, you've almost certainly been paying into it. Claiming it isn't begging. It's collecting on something you earned.",
       },
       {
         type: "h2",
@@ -186,11 +221,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Unemployment insurance gives you a portion of your old paycheck — usually a chunk, not the whole thing — for a limited stretch of weeks while you search for a new job. It's meant to keep a roof over your head and food on the table during the gap, so a job loss doesn't snowball into losing everything.",
+        text: "Unemployment insurance gives you a portion of your old paycheck (a chunk, not the whole thing) for a limited stretch of weeks while you search for a new job. It's meant to keep a roof over your head and food on the table during the gap, so a job loss doesn't snowball into losing everything.",
       },
       {
         type: "key",
-        text: "Unemployment is funded mainly by taxes your employers paid on your wages. You're not taking anyone's money — you're using a safety net that was built and paid for on your behalf, for situations exactly like this one.",
+        text: "Unemployment is funded mainly by taxes your employers paid on your wages. You're not taking anyone's money. You're using a safety net that was built and paid for on your behalf, for situations exactly like this one.",
       },
       {
         type: "h2",
@@ -198,7 +233,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The general idea: you lost your job through no fault of your own — a layoff, a closure, reduced hours — and you're able and available to work. Quitting without a good cause or being fired for serious misconduct can complicate things, but don't disqualify yourself in your head. The rules vary by state, and there are more exceptions than people assume.",
+        text: "The general idea: you lost your job through no fault of your own (a layoff, a closure, reduced hours) and you're able and available to work. Quitting without a good cause or being fired for serious misconduct can complicate things, but don't disqualify yourself in your head. The rules vary by state, and there are more exceptions than people assume.",
       },
       {
         type: "tip",
@@ -211,7 +246,7 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "steps",
         items: [
-          "Find your state's unemployment office online (search your state name plus 'unemployment') — you file with your state, not the federal government.",
+          "Find your state's unemployment office online (search your state name plus 'unemployment'). You file with your state, not the federal government.",
           "Gather your info: ID, Social Security number, dates and pay from recent jobs, and your former employer's details.",
           "File your claim online or by phone, then watch for any required next steps like confirming your identity.",
           "Keep certifying. Most states make you check in weekly or biweekly to confirm you're still looking for work and to keep payments coming.",
@@ -223,11 +258,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "If your claim gets denied and you believe it's wrong, you can appeal — and people win appeals all the time. A denial is not always the final word.",
+        text: "If your claim gets denied and you believe it's wrong, you can appeal, and people win appeals all the time. A denial is not always the final word.",
       },
       {
         type: "p",
-        text: "While the benefits come in, treat them as breathing room, not a finish line. Trim your budget to the essentials, look into other help like SNAP if you need it, and use the time to land somewhere better. You paid into this cushion — let it do its job.",
+        text: "While the benefits come in, treat them as breathing room, not a finish line. Trim your budget to the essentials, look into other help like [SNAP](/learn/government-aid/snap-explained) if you need it, and use the time to land somewhere better. You paid into this cushion. Let it do its job.",
       },
     ],
     related: ["benefits-you-qualify-for", "snap-explained", "how-to-apply-for-benefits"],
@@ -235,22 +270,22 @@ export const governmentAidExtraArticles: Article[] = [
 
   {
     slug: "debt-relief-options",
-    order: 20,
+    order: 90,
     topicId: "government-aid",
     title: "Debt Settlement vs. Consolidation vs. Counseling",
-    dek: "Three things that sound alike, do very different things, and aren't equally trustworthy — here's how to tell them apart.",
+    dek: "Three things that sound alike, do very different things, and aren't equally trustworthy. Here's how to tell them apart.",
     level: "Intermediate",
-    readMinutes: 7,
+    readMinutes: 6,
     takeaways: [
       "Counseling is advice and a plan; consolidation is one new loan; settlement is paying less than you owe.",
-      "Nonprofit credit counseling is the safest place to start — and often free.",
+      "Nonprofit credit counseling is the safest place to start, and often free.",
       "Settlement can wreck your credit and comes with real risks.",
       "The legitimate help rarely charges big upfront fees.",
     ],
     body: [
       {
         type: "p",
-        text: "When debt gets overwhelming, the internet fills up with companies promising to fix it. They throw around words like *settlement*, *consolidation*, and *counseling* almost interchangeably — but they're three very different things, with very different risks. Knowing which is which is how you avoid trading one problem for a worse one.",
+        text: "When debt gets overwhelming, the internet fills up with companies promising to fix it. They throw around words like *settlement*, *consolidation*, and *counseling* almost interchangeably, but these are three very different things, with very different risks. Knowing which is which is how you avoid trading one problem for a worse one.",
       },
       {
         type: "h2",
@@ -270,7 +305,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Consolidation means rolling several debts into a single new loan or balance, ideally at a lower interest rate. Instead of juggling five credit-card payments, you make one. Done right — a real lower rate, and you don't run the cards back up — it can save money and simplify your life. Done wrong, you just move the debt around, keep the high rate, and add fees.",
+        text: "Consolidation means rolling several debts into a single new loan or balance, ideally at a lower interest rate. Instead of juggling five credit-card payments, you make one. Done right, with a genuinely lower rate and the discipline not to run the cards back up, it can save money and simplify your life. Done wrong, you just move the debt around, keep the high rate, and add fees.",
       },
       {
         type: "p",
@@ -282,7 +317,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Settlement is the aggressive one. The idea is to negotiate with creditors to accept *less* than the full balance — say, paying $6,000 to clear $10,000. It can work, but the risks are serious, and for-profit settlement companies are where a lot of people get burned:",
+        text: "Settlement is the aggressive one. The idea is to negotiate with creditors to accept *less* than the full balance (say, paying $6,000 to clear $10,000). It can work, but the risks are serious, and for-profit settlement companies are where a lot of people get burned:",
       },
       {
         type: "list",
@@ -294,37 +329,28 @@ export const governmentAidExtraArticles: Article[] = [
         ],
       },
       {
-        type: "key",
-        text: "Start with nonprofit credit counseling before you ever pay a for-profit company. A free counselor can lay out your real options — including ones that don't trash your credit — without anything to sell you.",
+        type: "p",
+        text: "You can also negotiate a settlement yourself, directly with the creditor, before paying anyone to do it. [Negotiating and Restructuring Debt](/learn/government-aid/negotiating-debt) walks through that phone call step by step.",
       },
       {
-        type: "h2",
-        text: "How to tell the trustworthy from the trap",
+        type: "key",
+        text: "Start with nonprofit credit counseling before you ever pay a for-profit company. A free counselor can lay out your real options, including ones that don't trash your credit, without anything to sell you.",
       },
       {
         type: "p",
-        text: "Across all three, a few signals separate legitimate help from the predators circling people in debt:",
-      },
-      {
-        type: "list",
-        items: [
-          "**Big upfront fees** before anything is done are a major red flag.",
-          "**Guarantees** — 'we'll cut your debt in half,' 'we'll fix your credit fast' — are promises no honest company can make.",
-          "**Pressure** to sign today, or to stop talking to your creditors entirely, should make you pause.",
-          "**'Government program'** name-drops from a private company are often bait. Real government help you can find yourself, for free.",
-        ],
+        text: "One thing to carry across all three: legitimate help doesn't demand big fees up front, guarantee results, or pressure you to sign today. The warning signs are covered in detail in [Avoiding Debt-Relief and 'Fix Your Credit Fast' Scams](/learn/government-aid/avoiding-debt-scams).",
       },
       {
         type: "p",
         text: "Debt feels isolating, but you have more legitimate, low-cost options than the ads suggest. Start with free nonprofit counseling, understand which path you're actually on, and you'll make a calmer, smarter call than any high-pressure pitch wants you to.",
       },
     ],
-    related: ["what-is-debt-relief", "avoiding-debt-scams", "negotiating-debt"],
+    related: ["what-is-debt-relief", "negotiating-debt", "avoiding-debt-scams"],
   },
 
   {
     slug: "avoiding-debt-scams",
-    order: 50,
+    order: 140,
     topicId: "government-aid",
     title: "Avoiding Debt-Relief and 'Fix Your Credit Fast' Scams",
     dek: "Scammers hunt people who are stressed about money. Here's how to spot them before they take what little cushion you have.",
@@ -334,12 +360,12 @@ export const governmentAidExtraArticles: Article[] = [
       "Scammers target people in debt because they're hopeful and hurried.",
       "Upfront fees, guarantees, and pressure are the three biggest red flags.",
       "Nobody can legally remove accurate, negative info from your credit report.",
-      "Real help — nonprofit counseling, the CFPB — is free or low-cost.",
+      "Real help, like nonprofit counseling and the CFPB, is free or low-cost.",
     ],
     body: [
       {
         type: "p",
-        text: "Here's an ugly truth: when you're behind on bills, you become a target. Scammers know that worry makes people hopeful and quick to trust, so they flood the ads, the texts, and the robocalls with promises to make your debt disappear. The cruelest part is who they hit — people who can least afford to lose another dollar. Let's make sure that's not you.",
+        text: "When you're behind on bills, you become a target. Scammers know that worry makes people hopeful and quick to trust, so they flood the ads, the texts, and the robocalls with promises to make your debt disappear. The cruelest part is who they hit: people who can least afford to lose another dollar. This guide covers the scams aimed specifically at people in debt. For the general anatomy of scams (fake texts, impostor calls, phony prizes), see [How to Spot a Scam Before It Costs You](/learn/money-safety/how-to-spot-a-scam).",
       },
       {
         type: "h2",
@@ -352,14 +378,14 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Upfront fees.** They want money *before* doing anything real. Legitimate help generally gets paid as it delivers — not for a promise.",
+          "**Upfront fees.** They want money *before* doing anything real. Legitimate help generally gets paid as it delivers, not for a promise.",
           "**Guarantees.** 'We'll erase your debt.' 'We'll boost your score 100 points.' Nobody can promise those outcomes honestly.",
           "**Pressure.** 'This offer ends today.' 'Sign now.' Urgency is a tactic to stop you from thinking or checking them out.",
         ],
       },
       {
         type: "key",
-        text: "If a company asks for a big payment up front, *guarantees* a result, and *pressures* you to decide right now — that's not one yellow flag, it's three red ones. Hang up.",
+        text: "If a company asks for a big payment up front, *guarantees* a result, and *pressures* you to decide right now, that's not one yellow flag. It's three red ones. Hang up.",
       },
       {
         type: "h2",
@@ -367,7 +393,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A whole industry promises to magically repair your credit for a fee. Here's the thing they don't say out loud: no one can legally remove accurate negative information from your credit report. Late payments and other true marks fade with time and good habits — they can't be deleted on demand. Anything you can pay a 'credit repair' company to do, you can do yourself for free, including disputing genuine errors.",
+        text: "A whole industry promises to magically repair your credit for a fee. What they don't say out loud: no one can legally remove accurate negative information from your credit report. Late payments and other true marks fade with time and good habits; they can't be deleted on demand. Anything you can pay a 'credit repair' company to do, you can do yourself for free, including disputing genuine errors.",
       },
       {
         type: "tip",
@@ -380,9 +406,9 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "Telling you to **stop all contact with your creditors** and route everything through them — which can leave you blindsided by lawsuits.",
+          "Telling you to **stop all contact with your creditors** and route everything through them, which can leave you blindsided by lawsuits.",
           "Claiming to represent a **special government program** that they alone can get you into. Real government help you find yourself, for free.",
-          "Asking you to **pay by gift card, wire, or crypto** — untraceable payments are a giant tell.",
+          "Asking you to **pay by gift card, wire, or crypto**. An untraceable payment is a giant tell.",
           "Pushing you to **borrow against your home or retirement** to pay off other debt without explaining the danger.",
         ],
       },
@@ -397,7 +423,7 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "steps",
         items: [
-          "Talk to a **nonprofit credit counselor** — often free, never high-pressure.",
+          "Talk to a **nonprofit credit counselor** (often free, never high-pressure). [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) explains what they do.",
           "Read up at the **CFPB** and the **FTC**, which publish straightforward, no-cost guidance.",
           "Look up any company's name plus the word 'complaint' or 'scam' before paying a cent.",
           "If something feels off, it's okay to simply walk away. Real help will still be there tomorrow.",
@@ -405,7 +431,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Trust that instinct in your gut. The honest options for getting out of debt don't need to rush you, guarantee you the moon, or take your money before they've earned it. Anyone who does is the problem you're trying to escape — not the solution.",
+        text: "Trust that instinct in your gut. The honest options for getting out of debt don't need to rush you, guarantee you the moon, or take your money before they've earned it. Anyone who does is the problem you're trying to escape, not the solution.",
       },
     ],
     related: ["debt-relief-options", "what-is-debt-relief", "debt-collector-rights"],
@@ -413,21 +439,22 @@ export const governmentAidExtraArticles: Article[] = [
 
   {
     slug: "student-loan-forgiveness",
+    order: 160,
     topicId: "government-aid",
     title: "Student Loan Forgiveness Programs",
-    dek: "PSLF, forgiveness through income-driven plans, and the rest — in plain terms, with one big warning: always check the official source.",
+    dek: "PSLF, forgiveness through income-driven plans, and the rest, in plain terms, with one big warning: always check the official source.",
     level: "Advanced",
     readMinutes: 7,
     takeaways: [
       "Forgiveness wipes out remaining federal loan debt after you meet a program's rules.",
       "PSLF rewards public-service and nonprofit careers after years of payments.",
       "Income-driven plans can forgive what's left after a long repayment period.",
-      "Rules change constantly — always verify on the official federal student aid site.",
+      "Rules change constantly. Always verify on the official federal student aid site.",
     ],
     body: [
       {
         type: "p",
-        text: "Student loan forgiveness sounds almost too good to be true, and the confusion around it is real — the programs are genuine, but the rules are detailed and they *change a lot*. Before anything else, the single most important habit: verify everything on the official federal student aid site (StudentAid.gov), not on a random blog, a forwarded text, or a company that called you.",
+        text: "Student loan forgiveness sounds almost too good to be true, and the confusion around it is real: the programs are genuine, but the rules are detailed and they change often. Before anything else, the single most important habit is to verify everything on the official federal student aid site (StudentAid.gov), not on a random blog, a forwarded text, or a company that called you.",
       },
       {
         type: "p",
@@ -439,11 +466,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Forgiveness means the government cancels the remaining balance on your loans once you've met a program's requirements. Two big things to know up front: these programs are generally for *federal* student loans, not private ones, and the specifics — who qualifies, how many payments, which plans count — shift with policy. So treat everything below as a starting point to confirm, not as fixed rules.",
+        text: "Forgiveness means the government cancels the remaining balance on your loans once you've met a program's requirements. Two big things to know up front: these programs are generally for *federal* student loans, not private ones, and the specifics (who qualifies, how many payments, which plans count) shift with policy. So treat everything below as a starting point to confirm, not as fixed rules. If you're earlier in the process and just mapping out repayment, start with [Repaying Your Student Loans](/learn/college/repaying-student-loans).",
       },
       {
         type: "tip",
-        text: "Log into StudentAid.gov to see exactly which loans you have and who services them. A surprising number of people don't know whether their loans are federal or private — and it changes everything about your options.",
+        text: "Log into StudentAid.gov to see exactly which loans you have and who services them. A surprising number of people don't know whether their loans are federal or private, and it changes everything about your options.",
       },
       {
         type: "h2",
@@ -451,7 +478,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "PSLF is the headliner. The basic deal: if you work full time for a qualifying employer — government or many nonprofits — and make a set number of qualifying monthly payments (think years of them) on the right kind of plan, the remaining federal balance can be forgiven. It's powerful for teachers, nurses, public-interest lawyers, social workers, and a lot of other public-service careers.",
+        text: "PSLF is the headliner. The basic deal: if you work full time for a qualifying employer (government or many nonprofits) and make a set number of qualifying monthly payments on the right kind of plan (think years of them), the remaining federal balance can be forgiven. It's powerful for teachers, nurses, public-interest lawyers, social workers, and a lot of other public-service careers.",
       },
       {
         type: "p",
@@ -459,7 +486,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Certify your employment for PSLF *every year*, not just at the end. It's how you catch a problem while there's still time to fix it — instead of discovering at year ten that something didn't count.",
+        text: "Certify your employment for PSLF *every year*, not just at the end. It's how you catch a problem while there's still time to fix it, instead of discovering at year ten that something didn't count.",
       },
       {
         type: "h2",
@@ -467,7 +494,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Income-driven repayment (IDR) plans set your monthly payment based on what you earn, and after a long repayment period, they can forgive whatever balance remains. The years required are long, but for people whose debt is large relative to their income, it's a real path — and it doesn't require any particular employer the way PSLF does.",
+        text: "Income-driven repayment (IDR) plans set your monthly payment based on what you earn ([Income-Driven Student Loan Repayment](/learn/government-aid/income-driven-repayment) explains how they work). After a long repayment period, these plans can forgive whatever balance remains. The years required are long, but for people whose debt is large relative to their income, it's a real path, and it doesn't require any particular employer the way PSLF does.",
       },
       {
         type: "h2",
@@ -483,14 +510,14 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "You never have to pay a company to apply for federal loan forgiveness — applying is free through your loan servicer and StudentAid.gov. Anyone charging a fee to 'enroll' you in a forgiveness program is, at best, charging you for something you can do yourself.",
+        text: "You never have to pay a company to apply for federal loan forgiveness. Applying is free through your loan servicer and StudentAid.gov. Anyone charging a fee to 'enroll' you in a forgiveness program is, at best, charging you for something you can do yourself.",
       },
       {
         type: "p",
-        text: "This is genuinely complicated, and even careful people find it confusing — so don't take that as a sign you're not smart enough. Start at StudentAid.gov, find out what loans you actually have, and check the *current* rules there before acting. None of this is individualized legal or financial advice — it's the map you use to ask the right questions of the official source.",
+        text: "This is genuinely complicated, and even careful people find it confusing, so don't take that as a sign you're not smart enough. Start at StudentAid.gov, find out what loans you actually have, and check the *current* rules there before acting. None of this is individualized legal or financial advice; it's the map you use to ask the right questions of the official source.",
       },
     ],
-    related: ["income-driven-repayment", "avoiding-debt-scams", "debt-relief-options"],
+    related: ["income-driven-repayment", "avoiding-debt-scams"],
   },
 
   {
@@ -498,12 +525,12 @@ export const governmentAidExtraArticles: Article[] = [
     order: 60,
     topicId: "government-aid",
     title: "Help With Utilities and Rent",
-    dek: "Behind on the electric bill or scared of an eviction notice? There's real help for both — and one phone number that can find it for you.",
+    dek: "Behind on the electric bill or scared of an eviction notice? There's real help for both, and one phone number that can find it for you.",
     level: "Beginner",
     readMinutes: 5,
     takeaways: [
       "LIHEAP helps with heating and cooling bills based on your income.",
-      "Emergency rental and utility assistance exists in many places — ask early.",
+      "Emergency rental and utility assistance exists in many places. Ask early.",
       "Dialing 211 connects you to local help for nearly any need.",
       "Reaching out before you fall behind gives you the most options.",
     ],
@@ -518,7 +545,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "LIHEAP — the Low Income Home Energy Assistance Program — helps households cover the cost of heating and cooling. Depending on where you live, it can help pay an energy bill, handle a crisis like an imminent shut-off, or even cover some weatherizing to lower your bills going forward. Eligibility depends on your income and household size, and how it works varies by state.",
+        text: "LIHEAP, the Low Income Home Energy Assistance Program, helps households cover the cost of heating and cooling. Depending on where you live, it can help pay an energy bill, handle a crisis like an imminent shut-off, or even cover some weatherizing to lower your bills going forward. Eligibility depends on your income and household size, and how it works varies by state.",
       },
       {
         type: "tip",
@@ -542,7 +569,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you remember nothing else, remember this: you can call or text **211**, free and confidential, almost anywhere in the U.S. A real person helps you find local resources — rent help, utility help, food, and more — that fit your situation. It's the single fastest way to cut through the confusion of who-helps-with-what.",
+        text: "If you remember nothing else, remember this: you can call or text **211**, free and confidential, almost anywhere in the U.S. A real person helps you find local resources that fit your situation, from rent help to utility help to food. It's the single fastest way to cut through the confusion of who-helps-with-what.",
       },
       {
         type: "steps",
@@ -555,9 +582,197 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Asking for help with rent or utilities isn't a failure — these programs were built precisely so a rough stretch doesn't cost you your home or your power. Make the calls early, lean on 211 to do the searching, and give yourself the room to get back on your feet.",
+        text: "Asking for help with rent or utilities isn't a failure. These programs were built precisely so a rough stretch doesn't cost you your home or your power. Make the calls early, lean on 211 to do the searching, and if a benefits application is part of the answer, [How to Actually Apply](/learn/government-aid/how-to-apply-for-benefits) walks through the paperwork.",
       },
     ],
     related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "snap-explained"],
+  },
+
+  {
+    slug: "payday-loans-and-predatory-lending",
+    order: 120,
+    topicId: "government-aid",
+    title: "Payday Loans and Predatory Lending",
+    dek: "These businesses cluster where money is tightest, because they make the most money when you're desperate.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "A payday loan's fee usually works out to a staggering yearly rate, often around 400%.",
+      "The real trap is the 'rollover,' where you can't repay and the debt grows.",
+      "Car-title loans, rent-to-own, and high-cost installment loans run the same play.",
+      "Real alternatives exist: a credit union, a payment plan, 211, or your employer.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Notice how check-cashing places, payday lenders, and 'easy cash' storefronts seem to cluster in low-income and immigrant neighborhoods, not wealthy ones? That's not an accident. These businesses do their best business when people are stretched thin and out of options, when you need money *today* and the bank feels out of reach. This isn't about being bad with money. It's about an industry built to profit from a hard moment. Here's how it works, so it can't work on you.",
+      },
+      {
+        type: "h2",
+        text: "How a payday loan actually works",
+      },
+      {
+        type: "p",
+        text: "A payday loan is a small, short-term loan: you borrow a few hundred dollars and promise to pay it back on your next payday, usually in about two weeks. The fee sounds small at the counter, maybe $15 for every $100 you borrow. The problem is what that fee means once you stretch it out over a year.",
+      },
+      {
+        type: "p",
+        text: "That little fee translates into an *annual percentage rate* (APR) that's often around 400%. For comparison, even a high-interest credit card is usually under 30%. You're not borrowing at a slightly worse rate than a card. You're borrowing at a rate many times higher.",
+      },
+      {
+        type: "key",
+        text: "A payday loan isn't really designed to be paid off in two weeks. It's designed to be *rolled over*, and that's where the trap snaps shut.",
+      },
+      {
+        type: "p",
+        text: "Here's the trap. When payday comes, most people can't spare the whole loan plus the fee. (That's the exact situation that sent them in.) So the lender lets you 'roll it over': pay just the fee and push the loan to next payday. You pay again, and the original debt hasn't moved an inch. Many people roll a single loan over and over, paying far more in fees than they ever borrowed, sinking deeper every two weeks while the balance just sits there.",
+      },
+      {
+        type: "h2",
+        text: "The cousins that run the same play",
+      },
+      {
+        type: "p",
+        text: "Payday loans have relatives that use the same playbook: a tempting offer up front, a punishing cost underneath.",
+      },
+      {
+        type: "list",
+        items: [
+          "**Car-title loans.** You borrow against your car and hand over the title. Miss the payments and the lender can take your car, which may be the very thing you need to get to work. Losing it can cost you far more than the loan.",
+          "**Rent-to-own.** You make weekly or monthly payments on furniture or electronics. By the time you own it, you've often paid several times what the item actually costs in a store.",
+          "**High-cost installment loans.** Like a payday loan stretched over months instead of weeks. The longer term sounds gentler, but the sky-high rate means you can pay back double or more.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A softer-looking relative is the buy now, pay later button at checkout. It's nowhere near payday-loan territory, but it has its own fine print and its own ways of stacking up; [Buy Now, Pay Later: Read the Fine Print](/learn/credit/buy-now-pay-later) covers it.",
+      },
+      {
+        type: "h2",
+        text: "What to do instead",
+      },
+      {
+        type: "p",
+        text: "If you're staring down an urgent bill, you have more options than the storefront wants you to believe. Before you sign anything, try these:",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Ask a credit union about a small loan.** Many offer small-dollar or 'payday alternative' loans at a fraction of the cost. You usually have to be a member, but joining is often easy and cheap.",
+          "**Call the creditor or utility and ask for a payment plan.** Phone, electric, and medical providers will often split a bill or push back a due date if you simply ask. Asking costs nothing.",
+          "**Dial 211 for local emergency help.** It's a free, confidential line that connects you to local assistance for rent, utilities, and food. Sometimes the bill you're borrowing for can be covered outright.",
+          "**Ask your employer about a paycheck advance.** Some workplaces will advance pay you've already earned, with no interest at all.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Even some 'cash advance' or 'paycheck advance' apps that feel friendly can carry hidden costs: optional 'tips,' subscription fees, or instant-transfer charges that quietly add up to a high rate. Read what it actually costs before you rely on one.",
+      },
+      {
+        type: "p",
+        text: "Needing money fast doesn't make you irresponsible. It does make you exactly the customer these lenders are built for. Knowing how the trap works, and that real alternatives exist, is how you keep one bad week from turning into months of debt.",
+      },
+    ],
+    related: ["prioritizing-bills-when-money-is-tight", "avoiding-bank-fees", "what-is-debt-relief"],
+  },
+
+  {
+    slug: "what-happens-if-you-dont-pay-debts",
+    order: 130,
+    topicId: "government-aid",
+    title: "What Actually Happens If You Can't Pay Your Debts",
+    dek: "The fear of the unknown makes debt scarier than it is. Here's the calm, factual version of what really happens.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Unpaid debt follows a slow, predictable path, not a sudden disaster.",
+      "You have legal rights, and old debt eventually passes a time limit.",
+      "The worst move is ignoring a court summons. Never do that.",
+      "There are better paths long before things ever reach a courtroom.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "When you can't pay a bill, your imagination usually fills in the worst: people showing up at your door, everything taken overnight, total catastrophe. That fear can be paralyzing, and it's usually scarier than the reality. So here is what happens, calmly and in order. Knowing the steps is how you stop being afraid of them.",
+      },
+      {
+        type: "h2",
+        text: "The path a missed payment takes",
+      },
+      {
+        type: "p",
+        text: "Debt trouble is a slow progression, not a single event, and each stage takes time. Here's the usual order of things:",
+      },
+      {
+        type: "steps",
+        items: [
+          "**You miss a payment.** First come late fees, and after a stretch, a ding to your credit score.",
+          "**It goes to collections.** After a while, the original lender may hand or sell the debt to a collection company, who then comes after it.",
+          "**The creditor may sue.** For unpaid debt, a creditor or collector *can* take you to court. This is a possibility, not an instant or automatic step.",
+          "**If they win, there's a judgment.** That's a court ruling that you owe the money, and it can open the door to collecting it more forcefully.",
+        ],
+      },
+      {
+        type: "p",
+        text: "After a judgment, a creditor may be able to pursue *wage garnishment* (taking a portion of your paycheck) or a *bank levy* (pulling money from your account). That sounds frightening, so here's the reassuring part most people never hear.",
+      },
+      {
+        type: "h2",
+        text: "Two things that should make you breathe easier",
+      },
+      {
+        type: "h3",
+        text: "1. You have rights, and old debt loses its teeth",
+      },
+      {
+        type: "p",
+        text: "Debt collectors are not allowed to do whatever they want. The law sets real limits on how and when they can contact you and what they can say, and you can push back when they cross the line. [Your Rights When a Debt Collector Calls](/learn/government-aid/debt-collector-rights) spells out exactly what they can and can't do.",
+      },
+      {
+        type: "p",
+        text: "On top of that, debt doesn't stay suable forever. There's a *statute of limitations*, a time limit after which a creditor generally can't successfully sue you over an old debt. How long it lasts varies depending on where you live and the type of debt, so don't assume a number. The key idea is that very old debt loses much of its legal teeth.",
+      },
+      {
+        type: "tip",
+        text: "Some of your income and benefits are legally protected from garnishment. Certain government benefits, for example, often can't be taken. Don't assume everything you have is up for grabs; the law shields more than people expect.",
+      },
+      {
+        type: "h3",
+        text: "2. The single worst move: ignoring a court summons",
+      },
+      {
+        type: "p",
+        text: "If you ever receive legal papers, a court summons saying you're being sued, do *not* ignore them. This is the most important sentence in this whole article. When someone ignores a summons, the court can rule against them automatically, by *default*, simply because they never showed up to tell their side. People lose cases they might have fought, or even won, just by staying silent.",
+      },
+      {
+        type: "key",
+        text: "Never ignore legal papers. A court summons is not something to throw in a drawer. Responding, even just to say you got it, protects you from losing automatically. This is the line that matters most.",
+      },
+      {
+        type: "h2",
+        text: "The off-ramps come long before any courtroom",
+      },
+      {
+        type: "p",
+        text: "Almost none of this has to happen. The progression above is what's *possible* if a debt is ignored for a long time, but there are exits at every stage, and the earlier you take one, the better. If you're behind or about to be, here's where to turn:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Talk to your creditors.** They often prefer a payment plan over chasing you, and one phone call can pause the whole progression. [Negotiating and Restructuring Debt](/learn/government-aid/negotiating-debt) shows how to make that call.",
+          "**Get free help.** A nonprofit credit counselor can look at your full picture and build a real plan, at little or no cost.",
+          "**Learn the formal options.** [What 'Debt Relief' Really Means](/learn/government-aid/what-is-debt-relief) maps every path, from consolidation to bankruptcy.",
+        ],
+      },
+      {
+        type: "key",
+        text: "The progression toward court is slow and full of exits. Acting early (a call, a plan, free help) keeps you in control and almost always beats waiting until a summons shows up.",
+      },
+      {
+        type: "p",
+        text: "One important note: this is general education to help you understand how debt collection works, not legal advice for your specific situation. If you're being sued or genuinely worried, contact a *legal aid* office. Many offer free help to people who qualify, and someone who can see the details can advise you on your actual case.",
+      },
+    ],
+    related: ["debt-collector-rights", "negotiating-debt", "what-is-debt-relief"],
   },
 ];

@@ -21,7 +21,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The hard part is usually not qualifying. It is knowing what exists in the first place. Here is a plain tour of the main programs, so you can see which ones might fit your life right now.",
+        text: "The hard part is usually not qualifying. It is knowing what exists in the first place. Here is a quick tour of the main programs, with pointers to a deeper guide on each.",
       },
       {
         type: "h2",
@@ -29,7 +29,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "**Medicaid** is free or low-cost health insurance for people with lower incomes. It can cover doctor visits, hospital stays, prescriptions, and care for kids. If you can't afford private insurance and don't get it through a job, Medicaid is often the answer. Children in many families qualify even when the parents don't, through a related program for kids.",
+        text: "**Medicaid** is free or low-cost health insurance for people with lower incomes. It can cover doctor visits, hospital stays, prescriptions, and care for kids. If you can't afford private insurance and don't get it through a job, Medicaid is often the answer, and children in many families qualify even when the parents don't. [Medicaid and Low-Cost Health Coverage](/learn/government-aid/medicaid-explained) explains who qualifies and how to apply.",
       },
       {
         type: "h2",
@@ -37,7 +37,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "**SNAP**, sometimes still called food stamps, helps you buy groceries. The money lands on a card that works like a debit card at the store. It is meant to stretch a tight food budget so you are not choosing between dinner and the electric bill. There are also programs focused on pregnant people, babies, and young children that add food help and nutrition support.",
+        text: "**SNAP**, sometimes still called food stamps, helps you buy groceries. The money lands on a card that works like a debit card at the store. It is meant to stretch a tight food budget so you are not choosing between dinner and the electric bill. [SNAP (Food Assistance), Explained](/learn/government-aid/snap-explained) covers the details, and there are also programs focused on pregnant people, babies, and young children that add food help and nutrition support.",
       },
       {
         type: "h2",
@@ -45,7 +45,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "**Unemployment insurance** gives you temporary income if you lose a job through no fault of your own, like a layoff. You get a portion of your old paycheck for a limited time while you look for new work. It is insurance you paid into, not charity, so file as soon as the job ends. Waiting only delays the money.",
+        text: "**Unemployment insurance** gives you temporary income if you lose a job through no fault of your own, like a layoff. You get a portion of your old paycheck for a limited time while you look for new work. It is insurance you paid into, not charity, so file as soon as the job ends. Waiting only delays the money. [How to Apply for Unemployment](/learn/government-aid/applying-for-unemployment) walks through the process.",
       },
       {
         type: "h2",
@@ -53,7 +53,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "There are programs that help cover rent, heating and cooling bills, and phone or internet service. Some are run by your state, some by your county, and some by local nonprofits. They often have different names from place to place, so the trick is knowing they exist and asking.",
+        text: "There are programs that help cover rent, heating and cooling bills, and phone or internet service. Some are run by your state, some by your county, and some by local nonprofits. They often have different names from place to place, so the trick is knowing they exist and asking. [Help With Utilities and Rent](/learn/government-aid/utility-rent-assistance) covers what to look for and the one phone number that can find it all.",
       },
       {
         type: "tip",
@@ -65,10 +65,10 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You do not have to wait until you are in crisis to look. Checking what you qualify for is free, private, and smart. Once you know your options, the next step is actually applying, which is more doable than it looks.",
+        text: "You do not have to wait until you are in crisis to look. Checking what you qualify for is free, private, and smart. Once you know your options, the next step is applying, which is more doable than it looks.",
       },
     ],
-    related: ["how-to-apply-for-benefits", "what-is-debt-relief"],
+    related: ["how-to-apply-for-benefits", "immigrants-and-benefits"],
   },
   {
     slug: "how-to-apply-for-benefits",
@@ -86,7 +86,7 @@ export const governmentAidArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Applying for benefits has a reputation for being a nightmare of forms and phone trees. Some of that is fair. But a little preparation turns a frustrating process into a series of small, finishable steps. You do not need to do it all in one sitting.",
+        text: "Applying for benefits has a reputation for being a nightmare of forms and phone trees. Some of that is fair. But a little preparation turns a frustrating process into a series of small, finishable steps. You do not need to do it all in one sitting. (If you haven't yet figured out which programs fit your situation, start with [Benefits You May Qualify For](/learn/government-aid/benefits-you-qualify-for), then come back here.)",
       },
       {
         type: "h2",
@@ -149,77 +149,68 @@ export const governmentAidArticles: Article[] = [
         text: "Take it one form at a time. The effort of applying is small next to the relief of having coverage, groceries, or income while you get back on your feet.",
       },
     ],
-    related: ["benefits-you-qualify-for", "what-is-debt-relief"],
+    related: ["benefits-you-qualify-for", "snap-explained", "medicaid-explained"],
   },
   {
     slug: "what-is-debt-relief",
-    order: 70,
+    order: 80,
     topicId: "government-aid",
     title: "What 'Debt Relief' Really Means",
-    dek: "The phrase gets thrown around by ads and scammers alike. Here's what it actually covers and how to spot the real help.",
+    dek: "The phrase gets thrown around by ads and scammers alike. Here's what it covers, and which guide to read for each path.",
     level: "Beginner",
-    readMinutes: 5,
+    readMinutes: 3,
     takeaways: [
       "'Debt relief' is a broad umbrella, not one product. It covers anything that lowers, restructures, or erases what you owe.",
-      "Legitimate help exists, including nonprofit credit counseling, but so do scams that charge big fees and make things worse.",
-      "Real help is honest about your options, including the ones that don't make them money.",
+      "The main paths: credit counseling, consolidation, settlement, negotiating yourself, and, as a last resort, bankruptcy.",
+      "Before you pay any company a fee, talk to a nonprofit credit counselor. The first conversation is usually free.",
     ],
     body: [
       {
         type: "p",
-        text: "You have probably heard the phrase **debt relief** in late-night ads promising to wipe out what you owe for pennies. The term itself is not a trick, but it is vague, and that vagueness is where shady companies hide. Understanding what it really means protects you from the bad actors and points you toward the help that works.",
+        text: "If you've heard the phrase **debt relief** in a late-night ad or a robocall, you could be forgiven for thinking it's one specific product. It isn't. Debt relief is an umbrella term for anything that makes your debt easier to handle: lowering your interest rate, combining payments, settling for less than you owe, or in some cases having debt legally erased. Some of it is legitimate and useful. Some of it is a sales pitch. This article is a short map of the territory, with a pointer to the guide that covers each path in depth.",
       },
       {
         type: "h2",
-        text: "What the term actually covers",
-      },
-      {
-        type: "p",
-        text: "Debt relief just means anything that makes your debt easier to handle. That is a wide tent. It can mean lowering your interest rate, combining several debts into one payment, settling a balance for less than the full amount, or in some cases having debt legally erased. None of these is automatically good or bad. The right one depends on your situation.",
+        text: "The main paths, at a glance",
       },
       {
         type: "list",
         items: [
-          "Credit counseling: a nonprofit helps you build a plan and may set up a single monthly payment to your creditors.",
-          "Debt consolidation: you roll several debts into one new loan, ideally at a lower interest rate.",
-          "Debt settlement: someone negotiates to pay off a debt for less than you owe.",
-          "Bankruptcy: a legal process that can erase or reorganize debt when other options aren't enough.",
+          "**Counseling, consolidation, and settlement.** The three formal routes companies offer. They sound alike and work very differently. [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) compares them and explains which to try first.",
+          "**Negotiating it yourself.** You can often call a creditor and work out a lower rate, a payment plan, or a settlement with no company involved. [Negotiating and Restructuring Debt](/learn/government-aid/negotiating-debt) walks through the phone call.",
+          "**Bankruptcy.** The legal reset for debt you genuinely cannot repay. [Bankruptcy, Explained Without Judgment](/learn/government-aid/bankruptcy-explained) covers how it works and when it makes sense.",
         ],
       },
       {
         type: "h2",
-        text: "Where the scams live",
+        text: "If you're worried about what happens next",
       },
       {
         type: "p",
-        text: "Be careful with for-profit debt settlement companies. Some are legitimate, but the field is full of operations that charge large upfront fees, tell you to stop paying your bills, and then sit on your money while late fees and damage pile up. Promises like 'we can cut your debt in half, guaranteed' are a red flag. No one can guarantee what a creditor will agree to.",
-      },
-      {
-        type: "tip",
-        text: "Watch for these warning signs: large fees before they do any work, a push to stop talking to your creditors, pressure to sign today, or a 'guarantee' to erase your debt. Real help never charges you a fee before settling a debt and never tells you to ghost your lenders.",
+        text: "Maybe you're not shopping for a fix yet. You're behind, and you're scared of what's coming. Two guides cover that side: [What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) lays out the real timeline from a missed payment to, rarely, a courtroom, and [Your Rights When a Debt Collector Calls](/learn/government-aid/debt-collector-rights) covers the legal limits on collectors.",
       },
       {
         type: "h2",
-        text: "What real help looks like",
+        text: "One rule before you talk to anyone",
       },
       {
         type: "p",
-        text: "Legitimate help does exist, and a lot of it is low-cost or free. A reputable nonprofit credit counseling agency will review your whole budget, explain every option honestly, and not pressure you. The best sign of a trustworthy advisor is that they will tell you about choices that don't earn them a dime, including handling things yourself or talking to a lawyer.",
+        text: "The debt-relief industry has honest players and predators, and the predators advertise harder. Upfront fees, guaranteed results, and pressure to sign today are the big warning signs; [Avoiding Debt-Relief and 'Fix Your Credit Fast' Scams](/learn/government-aid/avoiding-debt-scams) covers them in detail.",
       },
       {
         type: "key",
-        text: "Before you sign anything or pay a fee, talk to a nonprofit credit counselor. The conversation is usually free, and it can save you from a company that would have charged you thousands to make your situation worse.",
+        text: "Real help is honest about your options, including the ones that don't make them money. Before you sign anything or pay a fee, talk to a nonprofit credit counselor. The conversation is usually free, and it can save you from a company that would charge thousands to make things worse.",
       },
       {
         type: "p",
-        text: "Debt relief is real and it works for many people. The skill is telling the honest help apart from the predators. When in doubt, slow down, ask who profits, and start with a nonprofit.",
+        text: "Debt relief is real, and it works for many people. Start with the guide that matches where you are. If you only read one, make it the comparison of the three formal paths.",
       },
     ],
-    related: ["negotiating-debt", "bankruptcy-explained"],
+    related: ["debt-relief-options", "negotiating-debt"],
   },
   {
     slug: "income-driven-repayment",
-    order: 80,
+    order: 150,
     topicId: "government-aid",
     title: "Income-Driven Student Loan Repayment",
     dek: "If your federal student loan payment feels impossible, tying it to your income can make it fit your real life.",
@@ -237,7 +228,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "How it actually works",
+        text: "How it works",
       },
       {
         type: "p",
@@ -253,7 +244,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "These plans are for **federal** student loans. Private student loans from a bank don't qualify, though some private lenders offer their own hardship options worth asking about. If you are not sure what kind of loans you have, log in to the federal student aid website to see them listed.",
+        text: "These plans are for **federal** student loans. Private student loans from a bank don't qualify, though some private lenders offer their own hardship options worth asking about. If you're not sure which kind you have, log in to the federal student aid website to see them listed, or read [Federal vs. Private Student Loans](/learn/college/federal-vs-private-loans) for the difference.",
       },
       {
         type: "key",
@@ -265,7 +256,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A lower payment is a real relief, but know the strings. Stretching payments over more years can mean paying more interest in total. After a long period of qualifying payments, any remaining balance may be forgiven, though the rules around that change over time. And you have to re-certify your income every year, or your payment can jump back up.",
+        text: "A lower payment is a real relief, but know the strings. Stretching payments over more years can mean paying more interest in total. After a long period of qualifying payments, any remaining balance may be forgiven, though the rules around that change over time; [Student Loan Forgiveness Programs](/learn/government-aid/student-loan-forgiveness) covers how forgiveness works. And you have to re-certify your income every year, or your payment can jump back up.",
       },
       {
         type: "tip",
@@ -286,14 +277,14 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If your payment doesn't fit your life, you don't have to white-knuckle it. Tying the payment to your income is a built-in, free option made for moments like this.",
+        text: "If your payment doesn't fit your life, you don't have to white-knuckle it. Tying the payment to your income is a built-in, free option made for moments like this. For the bigger picture of life after graduation, from grace periods to picking a plan, see [Repaying Your Student Loans](/learn/college/repaying-student-loans).",
       },
     ],
-    related: ["negotiating-debt", "what-is-debt-relief"],
+    related: ["student-loan-forgiveness", "negotiating-debt"],
   },
   {
     slug: "negotiating-debt",
-    order: 30,
+    order: 100,
     topicId: "government-aid",
     title: "Negotiating and Restructuring Debt",
     dek: "You have more room to negotiate than you think. Creditors often prefer a smaller, real payment over chasing nothing.",
@@ -311,7 +302,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "What you can actually ask for",
+        text: "What you can ask for",
       },
       {
         type: "p",
@@ -332,7 +323,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Before you dial, get clear on your numbers: what you owe, what you can realistically pay, and what outcome you want. Then call and be honest. Explain your situation plainly, say what you can afford, and ask what they can do. Stay calm and polite. The person on the phone is more likely to help someone working with them than someone yelling at them.",
+        text: "Before you dial, get clear on your numbers: what you owe, what you can realistically pay, and what outcome you want. Then call and be honest. Explain your situation plainly, say what you can afford, and ask what they can do. Stay calm and polite. The person on the phone is more likely to help someone working with them than someone yelling at them. (If the debt has already been sold to a collection company, read up on [your rights when a collector calls](/learn/government-aid/debt-collector-rights) before you dial, and ask for proof of the debt first.)",
       },
       {
         type: "steps",
@@ -354,21 +345,22 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Settling a debt for less than you owe can ding your credit, and forgiven debt is sometimes treated as income at tax time. That doesn't make settlement a bad choice, especially if the alternative is never paying at all. It just means you should walk in with eyes open. If the numbers are complicated, a nonprofit credit counselor can help you weigh them for free.",
+        text: "Settling a debt for less than you owe can ding your credit, and forgiven debt is sometimes treated as income at tax time. That doesn't make settlement a bad choice, especially if the alternative is never paying at all. It just means you should walk in with eyes open. If you're weighing whether to hire help instead of calling yourself, [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) compares the formal routes and their risks.",
       },
       {
         type: "tip",
-        text: "You can negotiate yourself, for free, before ever paying a company to do it. Try one phone call first. Plenty of people resolve a debt in a single honest conversation and keep the fees a settlement company would have charged.",
+        text: "Try one phone call before ever paying a company to negotiate for you. Plenty of people resolve a debt in a single honest conversation and keep the fees a settlement company would have charged.",
       },
       {
         type: "p",
         text: "Negotiating feels intimidating until you've done it once. Start with your hardest debt, make the call, and remember that the worst they can say is no, which leaves you no worse off than before you asked.",
       },
     ],
-    related: ["what-is-debt-relief", "bankruptcy-explained"],
+    related: ["debt-relief-options", "debt-collector-rights"],
   },
   {
     slug: "bankruptcy-explained",
+    order: 170,
     topicId: "government-aid",
     title: "Bankruptcy, Explained Without Judgment",
     dek: "Bankruptcy is a legal tool for a fresh start, not a moral failure. Here's how it works in plain terms.",
@@ -434,25 +426,25 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Bankruptcy is usually a step you take after other options, like negotiating or a repayment plan, aren't enough. But waiting too long out of shame can cost you, draining savings or a retirement account that bankruptcy might have protected. If your debt is bigger than any realistic plan to repay it, talk to a qualified bankruptcy attorney sooner rather than later.",
+        text: "Bankruptcy is usually the step you take after other options aren't enough, like [negotiating with your creditors](/learn/government-aid/negotiating-debt) or a repayment plan through a credit counselor. But waiting too long out of shame can cost you, draining savings or a retirement account that bankruptcy might have protected. If your debt is bigger than any realistic plan to repay it, talk to a qualified bankruptcy attorney sooner rather than later.",
       },
       {
         type: "p",
-        text: "However you got here, the law gives you a path forward, and taking it is a responsible, forward-looking choice. A fresh start is something you're allowed to want.",
+        text: "However you got here, the law gives you a path forward. A fresh start is something you're allowed to want.",
       },
     ],
     related: ["what-is-debt-relief", "negotiating-debt"],
   },
   {
     slug: "debt-collector-rights",
-    order: 40,
+    order: 110,
     topicId: "government-aid",
     title: "Your Rights When a Debt Collector Calls",
-    dek: "Collectors have to follow real rules — and knowing them changes everything.",
+    dek: "Collectors have to follow real rules. Knowing them changes the whole conversation.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
-      "Collectors can't harass, threaten, or lie to you — it's the law.",
+      "Collectors can't harass, threaten, or lie to you. It's the law.",
       "You can demand written proof of a debt before you pay anything.",
       "You can't be arrested for owing ordinary consumer debt.",
       "Keep records, and report violations to the CFPB.",
@@ -460,7 +452,7 @@ export const governmentAidArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "A debt collector's whole game is pressure — making you feel scared and alone so you'll just pay. Here's what flips the table: there's a federal law (and often stronger state ones) that puts real limits on what they can do. Most people never learn this. You're about to.",
+        text: "A debt collector's whole strategy is pressure: making you feel scared and alone so you'll pay without asking questions. What most people never learn is that a federal law, and often stronger state laws, puts hard limits on what collectors can do. Once you know those limits, the calls lose most of their power.",
       },
       {
         type: "h2",
@@ -472,7 +464,7 @@ export const governmentAidArticles: Article[] = [
           "Call you before 8 a.m. or after 9 p.m., or blow up your phone to harass you.",
           "Threaten you, swear at you, or lie about what you owe.",
           "Pretend to be the police, a lawyer, or a government agency.",
-          "Threaten to have you arrested — you can't be jailed for normal consumer debt.",
+          "Threaten to have you arrested. You can't be jailed for normal consumer debt.",
           "Tell your family, boss, or neighbors about your debt.",
         ],
       },
@@ -482,7 +474,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You can demand a debt validation letter — written proof that you actually owe this, and how much. Ask for it before you pay a cent; errors and outright scams are common. You can also tell a collector, in writing, to stop contacting you, and they have to (they can only reach out to confirm they're stopping, or to say they're taking you to court).",
+        text: "You can demand a debt validation letter: written proof that you actually owe this debt, and how much. Ask for it before you pay a cent, because errors and outright scams are common. You can also tell a collector, in writing, to stop contacting you, and they have to comply. (After that, they can only reach out to confirm they're stopping or to say they're taking you to court.)",
       },
       {
         type: "tip",
@@ -494,14 +486,49 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Owing money is stressful, but it doesn't make you powerless or a criminal. Get everything in writing, know what they can't do, and you go from cornered to in control.",
+        text: "Owing money is stressful, but it doesn't make you powerless or a criminal. Get everything in writing and keep notes on every call. When you're ready to resolve the debt on your terms, [Negotiating and Restructuring Debt](/learn/government-aid/negotiating-debt) walks through the conversation, and [What Actually Happens If You Can't Pay Your Debts](/learn/government-aid/what-happens-if-you-dont-pay-debts) explains the real timeline if you can't pay at all.",
       },
     ],
-    related: ["negotiating-debt", "what-is-debt-relief", "income-driven-repayment"],
+    related: ["what-happens-if-you-dont-pay-debts", "negotiating-debt"],
+    quiz: [
+      {
+        question: "A collector threatens to have you arrested over an unpaid credit card. What's true?",
+        options: [
+          "It's a real risk you should take seriously",
+          "That threat is illegal; you can't be arrested for ordinary consumer debt",
+          "It's legal as long as they warn you in writing first",
+        ],
+        answer: 1,
+        explain:
+          "You can't be jailed for normal consumer debt, and a collector who threatens arrest is breaking the law. Save the message and report them to the CFPB and your state attorney general.",
+      },
+      {
+        question: "Before paying a collector anything, what can you demand?",
+        options: [
+          "A debt validation letter: written proof you owe the debt, and how much",
+          "A discount of at least half the balance",
+          "A phone call from the original lender",
+        ],
+        answer: 0,
+        explain:
+          "You have the right to written proof before you pay a cent, and it's worth using because errors and outright scams are common.",
+      },
+      {
+        question: "Why be careful before making even a small payment on a very old debt?",
+        options: [
+          "Small payments make collectors call more often",
+          "Partial payments hurt your credit more than no payments",
+          "It can legally restart the clock on a debt that's past its time limit",
+        ],
+        answer: 2,
+        explain:
+          "In some cases, paying even a little on a debt past its time limit restarts it legally. If a debt is ancient, get advice before you pay anything.",
+      },
+    ],
   },
   {
     slug: "immigrants-and-benefits",
-    order: 10,
+    order: 70,
     topicId: "government-aid",
     title: "Immigrants and Public Benefits: Separating Fear From Facts",
     dek: "Many families skip help they're entitled to out of fear. Here's the calm, honest picture.",
@@ -511,12 +538,12 @@ export const governmentAidArticles: Article[] = [
       "Fear, not the rules, keeps many families from help they qualify for.",
       "'Public charge' doesn't apply to everyone, and doesn't count most benefits.",
       "Benefits your U.S.-citizen kids use generally don't count against you.",
-      "This is a 'check with a real expert' topic — and free experts exist.",
+      "This is a topic for a real expert, and free experts exist.",
     ],
     body: [
       {
         type: "p",
-        text: "A lot of immigrant families go without food assistance, health coverage, or school programs they legally qualify for — not because they're ineligible, but because they're afraid it could hurt their immigration case. Some of that fear is real caution, and some of it is confusion that costs families dearly. Let's separate the two, carefully.",
+        text: "A lot of immigrant families go without food assistance, health coverage, or school programs they legally qualify for. Often the reason isn't the rules. It's the fear that using help could hurt their immigration case. Some of that fear is reasonable caution, and some of it is confusion that costs families dearly. This article separates the two, carefully. (For a plain rundown of what exists, start with [Benefits You May Qualify For](/learn/government-aid/benefits-you-qualify-for).)",
       },
       {
         type: "h2",
@@ -524,7 +551,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Public charge is a test used in *some* immigration applications — like applying for a green card — that asks whether someone is likely to depend on the government. The key thing people miss: it does not apply to everyone. Many people aren't subject to it at all, including refugees and asylees, many green-card renewals, and citizenship applications.",
+        text: "Public charge is a test used in *some* immigration applications, like applying for a green card, that asks whether someone is likely to depend on the government. The key thing people miss: it does not apply to everyone. Many people aren't subject to it at all, including refugees and asylees, many green-card renewals, and citizenship applications.",
       },
       {
         type: "h2",
@@ -532,21 +559,21 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Even when public charge does apply, a lot of help is not counted against you. Things commonly excluded include emergency medical care, disaster relief, school meals, WIC, children's health programs, and — importantly — benefits used by your U.S.-citizen children. Using help your kids qualify for generally does not hurt your case.",
+        text: "Even when public charge does apply, a lot of help is not counted against you. Things commonly excluded include emergency medical care, disaster relief, school meals, WIC, children's health programs, and, importantly, benefits used by your U.S.-citizen children. Using help your kids qualify for generally does not hurt your case.",
       },
       {
         type: "tip",
-        text: "Find free, accredited immigration legal help — nonprofit legal aid organizations exist in most areas. Avoid 'notarios,' who are not lawyers and have steered many families wrong. A short consultation can replace a lot of fear with facts.",
+        text: "Find free, accredited immigration legal help. Nonprofit legal aid organizations exist in most areas. Avoid 'notarios,' who are not lawyers and have steered many families wrong. A short consultation can replace a lot of fear with facts.",
       },
       {
         type: "key",
-        text: "Please treat this article as a starting point, not legal advice. Public-charge rules are narrower than rumors suggest, but they've changed over the years and your specific situation is unique. Before deciding to skip a benefit, talk to a qualified immigration attorney or nonprofit — not a rumor, a neighbor, or a notario.",
+        text: "Please treat this article as a starting point, not legal advice. Public-charge rules are narrower than rumors suggest, but they've changed over the years and your specific situation is unique. Before deciding to skip a benefit, talk to a qualified immigration attorney or nonprofit, not a rumor, a neighbor, or a notario.",
       },
       {
         type: "p",
-        text: "The goal here isn't to tell you what to do — it's to make sure fear and misinformation don't quietly take food off your table or keep your kids from a doctor when the rules may be on your side. Get real facts for your situation, then decide.",
+        text: "This article can't tell you what to do. What it can do is make sure fear and misinformation don't quietly take food off your table or keep your kids from a doctor when the rules may be on your side. Get real facts for your situation, then decide.",
       },
     ],
-    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "debt-collector-rights"],
+    related: ["benefits-you-qualify-for", "how-to-apply-for-benefits", "snap-explained"],
   },
 ];

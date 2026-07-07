@@ -6,35 +6,35 @@ export const taxesExtraArticles: Article[] = [
     order: 50,
     topicId: "taxes",
     title: "Your Tax Refund, Explained",
-    dek: "That refund check feels like a gift — but it's really your own money coming back. Here's what that means.",
+    dek: "That refund check feels like a gift, but it's really your own money coming back. Here's what that means.",
     level: "Beginner",
     readMinutes: 5,
     takeaways: [
-      "A refund means you overpaid taxes all year — not free money.",
+      "A refund means you overpaid taxes during the year, not free money.",
       "A big refund is an interest-free loan you gave the government.",
       "You can adjust your paycheck to keep more of it now instead.",
-      "There's no wrong answer — just a choice you get to make on purpose.",
+      "Either way works. The point is to choose on purpose.",
     ],
     body: [
       {
         type: "p",
-        text: "Tax season rolls around, you file, and a few weeks later a chunk of money lands in your account. It feels like a bonus — a little reward for getting through the year. A lot of people count on it, plan around it, even celebrate it. So here's something that surprises almost everyone the first time they hear it: that refund was never extra money. It was always yours.",
+        text: "Tax season rolls around, you file, and a few weeks later a chunk of money lands in your account. A lot of people count on it, plan around it, even celebrate it. So here's something that surprises almost everyone the first time they hear it: that refund was never extra money. It was always yours.",
       },
       {
         type: "h2",
-        text: "Where a refund actually comes from",
+        text: "Where a refund comes from",
       },
       {
         type: "p",
-        text: "Every paycheck, your employer holds back a slice for taxes and sends it to the government on your behalf. That's called *withholding*. It's a guess — an estimate of what you'll owe by the end of the year. If that guess was too high, you paid in more than you actually owed. The refund is the government handing back the difference.",
+        text: "Every paycheck, your employer withholds an estimate of the tax you'll owe and sends it to the government on your behalf. If that estimate ran high, you paid in more than you owed, and the refund is the government handing back the difference. (The form that sets the estimate is the W-4; [How to Fill Out a W-4](/learn/taxes/how-to-fill-out-w4) explains how to control it.)",
       },
       {
         type: "p",
-        text: "So a $2,400 refund doesn't mean you won anything. It means about $200 a month came out of your checks that you didn't actually owe — and you got it back all at once, months later.",
+        text: "So a $2,400 refund doesn't mean you won anything. It means about $200 a month came out of your checks that you didn't actually owe, and you got it back all at once, months later.",
       },
       {
         type: "key",
-        text: "A refund isn't a gift. It's your overpayment coming home. A big refund means you loaned the government your money all year — for free.",
+        text: "A refund isn't a gift. It's your overpayment coming home, and a big refund means you loaned the government your money all year for free.",
       },
       {
         type: "h2",
@@ -42,15 +42,15 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Not exactly — and this is where it gets personal. Some people love a big refund because it's forced savings. If money is hard to hold onto, getting a lump sum once a year that you put toward debt, an emergency fund, or a deposit can genuinely change your year. That's real, and it counts.",
+        text: "Not exactly, and this is where it gets personal. Some people love a big refund because it works as forced savings. If money is hard to hold onto, getting a lump sum once a year that you put toward debt, an emergency fund, or a deposit can genuinely change your year.",
       },
       {
         type: "p",
-        text: "But that same money in your monthly paycheck — an extra $100 or $200 — might be the difference between scraping by and breathing easier right now. Only you know which one your life needs.",
+        text: "But that same money spread across your monthly paychecks, an extra $100 or $200, might be the difference between scraping by and breathing easier right now. Only you know which one your life needs.",
       },
       {
         type: "tip",
-        text: "If you'd rather keep more each paycheck, you adjust it with a form called the W-4 at work. Smaller refund, bigger checks. If you'd rather get the lump sum, leave it as is. Both are valid — just pick on purpose.",
+        text: "If you'd rather keep more of each paycheck, hand your employer a new W-4. Smaller refund, bigger checks. If you'd rather get the lump sum, leave it as is. Both are valid; just pick one on purpose.",
       },
       {
         type: "h2",
@@ -58,11 +58,11 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Whatever you choose, file your return — even if your income was low and you're not sure you have to. Refunds and credits like the Earned Income Tax Credit only reach you if you file, and you can usually do it for free through IRS Free File or a VITA site near you. Leaving a refund unclaimed is the one mistake worth avoiding.",
+        text: "Whatever you choose, file your return, even if your income was low and you're not sure you have to. Refunds and credits like the [Earned Income Tax Credit](/learn/taxes/earned-income-tax-credit) only reach you if you file, and [you can usually do it for free](/learn/taxes/free-ways-to-file). Leaving a refund unclaimed is the one mistake worth avoiding.",
       },
       {
         type: "p",
-        text: "Your refund isn't magic and it isn't a windfall. It's a number you have some control over. Once you see it that way, you get to decide when you want your own money — now, or later.",
+        text: "Your refund isn't magic and it isn't a windfall. It's a number you have some control over. Once you see it that way, you get to decide when you want your own money: now, or later.",
       },
     ],
     related: ["how-to-fill-out-w4", "free-ways-to-file", "earned-income-tax-credit"],
@@ -73,7 +73,7 @@ export const taxesExtraArticles: Article[] = [
     order: 40,
     topicId: "taxes",
     title: "How to Fill Out a W-4 So Your Paycheck Is Right",
-    dek: "The form that decides how much tax comes out of every check — and how to set it so there are no nasty surprises.",
+    dek: "The form that decides how much tax comes out of every check, and how to set it so there are no nasty surprises.",
     level: "Beginner",
     readMinutes: 5,
     takeaways: [
@@ -85,7 +85,7 @@ export const taxesExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "When you start a job, you get handed a pile of forms, and one of them is the W-4. Nobody explains it, so most people just guess, sign, and hope for the best. But this little form quietly decides how much tax disappears from every single paycheck — so it's worth five honest minutes.",
+        text: "When you start a job, you get handed a pile of forms, and one of them is the W-4. Nobody explains it, so most people guess, sign, and hope for the best. But this little form quietly decides how much tax disappears from every single paycheck, which makes it worth five careful minutes.",
       },
       {
         type: "h2",
@@ -93,7 +93,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The W-4 doesn't decide how much tax you *owe* — your income does that. What it controls is *withholding*: how much your employer pulls out of each check and sends to the government ahead of time. Think of it as setting the dial on the faucet.",
+        text: "The W-4 doesn't decide how much tax you *owe*; your income does that. What it controls is *withholding*: how much your employer pulls out of each check and sends to the government ahead of time. You can see the result on the withholding lines of [your pay stub](/learn/budgeting/how-to-read-a-pay-stub).",
       },
       {
         type: "list",
@@ -119,12 +119,12 @@ export const taxesExtraArticles: Article[] = [
         items: [
           "Step 1: Your name, address, Social Security number, and filing status (single, married, head of household).",
           "Steps 2–4: For multiple jobs, a working spouse, dependents, or other income. One simple job? You can often skip most of this.",
-          "Step 5: Sign and date it. That's it — hand it back to whoever does payroll.",
+          "Step 5: Sign and date it, then hand it back to whoever does payroll.",
         ],
       },
       {
         type: "tip",
-        text: "Working two jobs, or you and a partner both work? That's the most common reason people accidentally under-withhold and owe in April. The form's Step 2 (and the IRS withholding estimator online) exists exactly for this — don't skip it if it's you.",
+        text: "Working two jobs, or you and a partner both work? That's the most common reason people accidentally under-withhold and owe in April. The form's Step 2 (and the IRS withholding estimator online) exists exactly for this. Don't skip it if it's you.",
       },
       {
         type: "h2",
@@ -132,15 +132,15 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's what almost nobody tells you: the W-4 isn't permanent. Got a raise, picked up a second job, had a kid, got married, or just got surprised by your refund last year? Ask payroll for a fresh W-4 and turn in a new one. You can do this whenever your life changes.",
+        text: "The W-4 isn't permanent, though almost nobody tells you that. Got a raise, picked up a second job, had a kid, got married, or got surprised by [your refund](/learn/taxes/tax-refund-explained) last year? Ask payroll for a fresh W-4 and turn in a new one. You can do this whenever your life changes.",
       },
       {
         type: "key",
-        text: "The W-4 isn't a test you pass once. It's a dial you can turn any time your income or family changes — so your paycheck and your April line up.",
+        text: "The W-4 isn't a test you pass once. It's a dial you can turn any time your income or family changes, so your paycheck and your April line up.",
       },
       {
         type: "p",
-        text: "You don't need to be a tax expert to get this right. You just need to know the form exists, what it controls, and that you can always redo it. That's enough to keep your paycheck honest.",
+        text: "You don't need to be a tax expert to get this right. You need to know the form exists, what it controls, and that you can always redo it. That's enough to keep your paycheck honest.",
       },
     ],
     related: ["tax-refund-explained", "understanding-tax-forms", "filing-taxes-first-time"],
@@ -148,14 +148,14 @@ export const taxesExtraArticles: Article[] = [
 
   {
     slug: "tax-brackets-explained",
-    order: 30,
+    order: 70,
     topicId: "taxes",
     title: "Tax Brackets, Explained",
-    dek: "The myth that a raise can leave you with less money has scared people for generations. Let's kill it for good.",
+    dek: "The myth that a raise can leave you with less money has scared people for generations. It's wrong, and here's why.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
-      "Tax brackets are tiers — only the income inside each tier is taxed at that tier's rate.",
+      "Tax brackets are tiers. Only the income inside each tier is taxed at that tier's rate.",
       "A raise never drops your total take-home pay.",
       "Your 'tax bracket' is just the rate on your last dollar, not all of it.",
       "Your real overall tax rate is lower than your top bracket.",
@@ -163,7 +163,7 @@ export const taxesExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "You've probably heard someone say it, maybe a relative or a coworker: 'Be careful taking that raise — it'll bump you into a higher tax bracket and you'll actually take home less.' It sounds logical. It's also completely false, and believing it has cost people real opportunities. Let's clear it up once and for all.",
+        text: "You've probably heard someone say it, maybe a relative or a coworker: 'Be careful taking that raise. It'll bump you into a higher tax bracket and you'll actually take home less.' It sounds logical. It's also completely false, and believing it has cost people real opportunities.",
       },
       {
         type: "h2",
@@ -171,23 +171,23 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's the core idea everyone misses: a tax bracket only applies to the income *inside* that bracket — not to your whole paycheck. The tax system is built like a set of stairs. Your first chunk of income is taxed at the lowest rate. The next chunk up is taxed a little more. And so on, only on the dollars that reach each step.",
+        text: "The core idea everyone misses: a tax bracket only applies to the income *inside* that bracket, not to your whole paycheck. The tax system is built like a set of stairs. Your first chunk of income is taxed at the lowest rate. The next chunk up is taxed a little more. And so on, only on the dollars that reach each step.",
       },
       {
         type: "p",
-        text: "Think of it like filling buckets. The first bucket fills at a low rate. Only after it's full does any money spill into the next, higher-rate bucket. The money already in the lower buckets keeps its lower rate forever.",
+        text: "Picture filling a row of buckets. The first bucket fills at a low rate. Only after it's full does any money spill into the next, higher-rate bucket. The money already in the lower buckets keeps its lower rate forever.",
       },
       {
         type: "key",
-        text: "Your 'tax bracket' is just the rate on your *last* dollar earned — not on all of it. A raise is always more money in your pocket, never less.",
+        text: "Your 'tax bracket' is just the rate on your *last* dollar earned, not on all of it. A raise is always more money in your pocket, never less.",
       },
       {
         type: "h2",
-        text: "Let's walk through a raise",
+        text: "What actually happens when you get a raise",
       },
       {
         type: "p",
-        text: "Say a raise pushes part of your income up into the next bracket. Only the dollars *above* that line get taxed at the higher rate. Everything below the line is taxed exactly as before. So if $1,000 of your raise crosses into a higher tier, you only pay the extra rate on that $1,000 — and you still keep most of it. You come out ahead. Always.",
+        text: "Say a raise pushes part of your income up into the next bracket. Only the dollars *above* that line get taxed at the higher rate. Everything below the line is taxed exactly as before. So if $1,000 of your raise crosses into a higher tier, you only pay the extra rate on that $1,000, and you still keep most of it. You come out ahead. Always.",
       },
       {
         type: "p",
@@ -195,7 +195,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "For 2026, a single filer's brackets are: **10%** up to $12,400, **12%** up to $50,400, **22%** up to $105,700, **24%** up to $201,775, **32%** up to $256,225, **35%** up to $640,600, and **37%** above that. (The cutoffs roughly double for married couples filing jointly.) They nudge up a little each year for inflation, so confirm the current ones when you need them — but the *idea* of marginal brackets never changes.",
+        text: "For 2026, a single filer's brackets are: **10%** up to $12,400, **12%** up to $50,400, **22%** up to $105,700, **24%** up to $201,775, **32%** up to $256,225, **35%** up to $640,600, and **37%** above that. (The cutoffs roughly double for married couples filing jointly.) They nudge up a little each year for inflation, but the *idea* of marginal brackets never changes.",
       },
       {
         type: "h2",
@@ -203,26 +203,61 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Because only your top dollars hit your top bracket, the *average* rate you actually pay across all your income is lower than that top number. Someone whose highest bracket is, say, 22% is paying well under 22% of their total income in federal tax, once you blend in all those lower-taxed lower buckets.",
+        text: "Because only your top dollars hit your top bracket, the *average* rate you actually pay across all your income is lower than that top number. Someone whose highest bracket is, say, 22% is paying well under 22% of their total income in federal tax, once you blend in all those lower-taxed lower buckets. And that's before subtracting [deductions and credits](/learn/taxes/deductions-vs-credits), which shrink the bill further.",
       },
       {
         type: "p",
-        text: "So the next time someone warns you off a raise, a bonus, or a few extra shifts because of 'the brackets' — you can let that fear go. More income is more income. Take the raise.",
+        text: "So the next time someone warns you off a raise, a bonus, or a few extra shifts because of 'the brackets,' you can let that fear go. More income is more income. Take the raise.",
       },
     ],
     related: ["deductions-vs-credits", "understanding-tax-forms", "tax-refund-explained"],
+    quiz: [
+      {
+        question: "A raise pushes part of your income into a higher bracket. Which dollars get taxed at the higher rate?",
+        options: [
+          "All of your income for the year",
+          "Only the dollars above the bracket line",
+          "Your whole raise, but not your old salary",
+        ],
+        answer: 1,
+        explain:
+          "Brackets are tiers, so each rate only applies to the income inside that tier. Everything below the line is taxed exactly as before.",
+      },
+      {
+        question: "Can taking a raise ever leave you with less total take-home pay?",
+        options: [
+          "Yes, if it bumps you into a higher bracket",
+          "Yes, but only for large raises",
+          "No, a raise is always more money in your pocket",
+        ],
+        answer: 2,
+        explain:
+          "Only the dollars above the bracket line get the higher rate, and you keep most of them. There's no point where earning one more dollar leaves you with less.",
+      },
+      {
+        question: "Your top bracket is 22%. What does that mean for your overall tax rate?",
+        options: [
+          "You pay 22% of your total income in federal tax",
+          "Your average rate is actually lower than 22%",
+          "You pay 22% on everything once you cross into that bracket",
+        ],
+        answer: 1,
+        explain:
+          "Your bracket is just the rate on your last dollar. Because your earlier dollars filled the lower-rate tiers, your average rate across all your income is well under your top bracket.",
+      },
+    ],
   },
 
   {
     slug: "gig-1099-taxes",
-    order: 60,
+    order: 120,
     topicId: "taxes",
     title: "Taxes for Gig and 1099 Work",
-    dek: "Driving, delivering, freelancing, side-hustling? No one's holding back taxes for you — so here's how to stay ahead of it.",
+    dek: "Driving, delivering, freelancing on the side? No one's holding back taxes for you, so here's how to stay ahead of it.",
     level: "Intermediate",
-    readMinutes: 7,
+    readMinutes: 6,
     takeaways: [
-      "On gig and 1099 work, no taxes come out — that's on you.",
+      "On gig and 1099 work, no taxes come out. That's on you.",
       "Set aside a slice of every payment so April isn't a crisis.",
       "You may owe taxes four times a year, not just once.",
       "Tracking expenses can seriously lower what you owe.",
@@ -230,11 +265,11 @@ export const taxesExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Gig work is freedom: you pick up shifts when you want, drive when you want, take the clients you want. But it comes with a catch nobody mentions when you sign up. With a regular job, taxes get pulled from each paycheck automatically. With gig and 1099 work, that doesn't happen — every dollar lands in your account untouched, and the tax on it is quietly your job to handle.",
+        text: "Gig work is freedom: you pick up shifts when you want, drive when you want, take the clients you want. But it comes with a catch nobody mentions when you sign up. At a regular job, taxes get pulled from each paycheck automatically. With gig and 1099 work, that doesn't happen. Every dollar lands in your account untouched, and the tax on it is quietly your job to handle.",
       },
       {
         type: "p",
-        text: "That's not a reason to panic. It's just a reason to have a system. Here's one.",
+        text: "That's not a reason to panic. It's a reason to have a system. Here's one.",
       },
       {
         type: "h2",
@@ -242,19 +277,19 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The single biggest mistake is spending all of what you make, then getting blindsided by a tax bill you have no way to pay. The fix is simple: every time you get paid, move a slice into a separate savings account and pretend it was never yours. Because it wasn't — it belongs to the tax bill that's coming.",
+        text: "The single biggest mistake is spending all of what you make, then getting blindsided by a tax bill you have no way to pay. The fix is simple: every time you get paid, move a slice into a separate savings account and treat it as already spent. Because it is; it belongs to the tax bill that's coming.",
       },
       {
         type: "tip",
-        text: "A common rough rule is to park somewhere around 25–30% of your gig income for taxes — your real number depends on your total income and state. When in doubt, save a little extra. Having too much set aside is a great problem to have.",
+        text: "A common rough rule is to park somewhere around 25–30% of your gig income for taxes. Your real number depends on your total income and state, so when in doubt, save a little extra. Having too much set aside is a great problem to have.",
       },
       {
         type: "h2",
-        text: "Why self-employment tax catches people off guard",
+        text: "Why the bill is bigger than you expect",
       },
       {
         type: "p",
-        text: "Here's the part that stings. When you're an employee, you and your employer split the cost of Social Security and Medicare. When you work for yourself, you cover *both* halves — that's the self-employment tax, and it's on top of regular income tax. It's the reason your tax bill on gig income feels bigger than you expected.",
+        text: "When you're an employee, you and your employer split the cost of Social Security and Medicare. When you work for yourself, you cover both halves. That's self-employment tax, it comes on top of regular income tax, and it's the reason gig income gets taxed harder than a paycheck. If your side work is turning into a real business, [Taxes When You're Self-Employed](/learn/taxes/self-employment-taxes) goes deeper.",
       },
       {
         type: "h2",
@@ -262,7 +297,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Because nobody's withholding for you, the government doesn't want to wait until spring. If you expect to owe more than a small amount, you're generally supposed to make *estimated quarterly payments* — roughly four check-ins a year instead of one. Miss them and you can get hit with a small penalty.",
+        text: "Because nobody's withholding for you, the government doesn't want to wait until spring. If you expect to owe more than a small amount, you're generally supposed to make *estimated quarterly payments*: roughly four check-ins a year instead of one. Miss them and you can get hit with a small penalty.",
       },
       {
         type: "steps",
@@ -275,32 +310,32 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "Track expenses — they lower what you owe",
+        text: "Track expenses to lower what you owe",
       },
       {
         type: "p",
-        text: "Here's the upside of self-employment: you're taxed on your *profit*, not every dollar that came in. The legitimate costs of doing your work come off the top first. Depending on what you do, that can include:",
+        text: "The upside of being taxed like a business: you're taxed on your *profit*, not every dollar that came in. The legitimate costs of doing your work come off the top first. Depending on what you do, that can include:",
       },
       {
         type: "list",
         items: [
-          "**Mileage** — the miles you drive for work are often a real deduction (track them; it adds up fast).",
-          "**Supplies and equipment** — phone, tools, a laptop, materials you buy to do the job.",
-          "**Fees** — the cut an app or platform takes, payment processing fees, business licenses.",
-          "**A home office** — if you use a dedicated space at home for the work, part of your costs may count.",
+          "**Mileage:** the miles you drive for work are often a real deduction. Track them; it adds up fast.",
+          "**Supplies and equipment:** phone, tools, a laptop, materials you buy to do the job.",
+          "**Fees:** the cut an app or platform takes, payment processing fees, business licenses.",
+          "**A home office:** if you use a dedicated space at home for the work, part of your costs may count.",
         ],
       },
       {
         type: "p",
-        text: "Keep your records simple but real — a notes app, a folder of receipts, a basic spreadsheet. You don't need fancy software to keep what's rightfully yours.",
+        text: "Keep your records simple but real: a notes app, a folder of receipts, a basic spreadsheet. You don't need fancy software to keep what's rightfully yours.",
       },
       {
         type: "key",
-        text: "Gig income isn't all yours to spend. A piece belongs to taxes from day one — set it aside as you go, track your expenses, and tax time becomes paperwork instead of a panic.",
+        text: "Gig income isn't all yours to spend. A piece belongs to taxes from day one. Set it aside as you go, track your expenses, and tax time becomes paperwork instead of a panic.",
       },
       {
         type: "p",
-        text: "Plenty of free help exists, too. VITA sites can handle many self-employed returns at no cost, and IRS Free File may work depending on your situation. This is general information, not personal tax advice — but with a little system, gig taxes go from scary to routine.",
+        text: "Plenty of [free filing help](/learn/taxes/free-ways-to-file) exists, too. VITA sites can handle many self-employed returns at no cost, and IRS Free File may work depending on your situation. This is general information, not personal tax advice, but with a little system, gig taxes go from scary to routine.",
       },
     ],
     related: ["self-employment-taxes", "deductions-vs-credits", "cant-pay-taxes"],
@@ -308,30 +343,30 @@ export const taxesExtraArticles: Article[] = [
 
   {
     slug: "cant-pay-taxes",
-    order: 80,
+    order: 130,
     topicId: "taxes",
     title: "What to Do If You Can't Pay Your Tax Bill",
-    dek: "Owing the IRS money you don't have is terrifying — but ignoring it is the one move that makes it worse.",
+    dek: "Owing the IRS money you don't have is terrifying, but ignoring it is the one move that makes it worse.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
-      "File your return on time even if you can't pay — they're two different things.",
+      "File your return on time even if you can't pay. They're two different things.",
       "Not filing costs far more than not paying.",
       "The IRS has real payment plans, and you can apply online.",
-      "Doing something — anything — beats hiding from it.",
+      "Doing something, even something small, beats hiding from it.",
     ],
     body: [
       {
         type: "p",
-        text: "You finish your taxes, you see the number you owe, and your stomach drops — because there's no way you have that much right now. It's a genuinely scary moment, and a lot of people respond by freezing: not filing, not opening the mail, hoping it goes quiet. That instinct is human. It's also the single most expensive thing you can do. Let's walk through the calm version instead.",
+        text: "You finish your taxes, you see the number you owe, and your stomach drops, because there's no way you have that much right now. It's a genuinely scary moment, and a lot of people respond by freezing: not filing, not opening the mail, hoping it goes quiet. That instinct is human. It's also the single most expensive thing you can do. Here's the calm version instead.",
       },
       {
         type: "h2",
-        text: "File anyway — this is the most important part",
+        text: "File anyway, even with nothing attached",
       },
       {
         type: "p",
-        text: "Here's the thing almost nobody knows: filing your return and paying your bill are two separate things. You can — and should — file on time even if you can't send a dollar with it. Why does this matter so much?",
+        text: "Filing your return and paying your bill are two separate things. You can file on time even if you can't send a dollar with it, and you should, for two reasons.",
       },
       {
         type: "list",
@@ -358,7 +393,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The IRS would genuinely rather get paid slowly than not at all, so they offer installment plans — you break the balance into smaller monthly payments you can actually manage. For a lot of people, you can apply right on the IRS website in a few minutes.",
+        text: "The IRS would genuinely rather get paid slowly than not at all, so they offer installment plans: you break the balance into smaller monthly payments you can actually manage. For a lot of people, applying takes a few minutes on the IRS website.",
       },
       {
         type: "steps",
@@ -366,12 +401,12 @@ export const taxesExtraArticles: Article[] = [
           "File your return on time, no matter what.",
           "Pay as much as you can toward the balance right away.",
           "Apply for a payment plan on the IRS website (search 'IRS payment plan').",
-          "Make your monthly payments — interest still runs, but the crisis is over.",
+          "Make your monthly payments. Interest still runs, but the crisis is over.",
         ],
       },
       {
         type: "tip",
-        text: "If money is truly dire — not just tight — look up an 'Offer in Compromise' (settling for less than you owe) and 'currently not collectible' status. They're hard to qualify for, but they exist. A free VITA site or a Low Income Taxpayer Clinic can help you figure out if you'd qualify.",
+        text: "If money is truly dire, not just tight, look up an 'Offer in Compromise' (settling for less than you owe) and 'currently not collectible' status. They're hard to qualify for, but they exist. A free VITA site or a Low Income Taxpayer Clinic can help you figure out if you'd qualify.",
       },
       {
         type: "h2",
@@ -379,24 +414,24 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "When people are scared about taxes, companies appear promising to 'erase your IRS debt' for a big upfront fee. Be careful — many overpromise and underdeliver. The IRS's own payment plans are free or cheap to set up, and free, trustworthy help exists through VITA and Low Income Taxpayer Clinics.",
+        text: "When people are scared about taxes, companies appear promising to 'erase your IRS debt' for a big upfront fee. Be careful; many overpromise and underdeliver. The IRS's own payment plans are free or cheap to set up, and free, trustworthy help exists through VITA and Low Income Taxpayer Clinics.",
       },
       {
         type: "p",
-        text: "A tax bill you can't pay feels like a wall. It's really just a problem with a known set of steps. File, pay what you can, set up a plan, and keep breathing. People get through this every single year — and so will you.",
+        text: "A tax bill you can't pay feels like a wall. It's really a problem with a known set of steps: file, pay what you can, set up a plan. And if the tax bill is one of several you're juggling, [deciding what to pay first](/learn/budgeting/prioritizing-bills-when-money-is-tight) can help you triage the rest.",
       },
     ],
-    related: ["free-ways-to-file", "gig-1099-taxes", "filing-taxes-first-time"],
+    related: ["gig-1099-taxes", "free-ways-to-file", "filing-taxes-first-time"],
   },
 
   {
     slug: "education-tax-credits",
-    order: 50,
+    order: 100,
     topicId: "taxes",
     title: "Education Tax Credits, Explained",
     dek: "If you or your family paid for college or training, the government may owe you money back. Here's how to claim it.",
     level: "Intermediate",
-    readMinutes: 6,
+    readMinutes: 5,
     takeaways: [
       "Education credits cut your tax bill dollar-for-dollar for school costs.",
       "The American Opportunity Credit is for your first years of college.",
@@ -406,19 +441,11 @@ export const taxesExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Paying for school — your own classes, a kid's tuition, a certificate program to level up at work — is one of the biggest checks a family writes. What a lot of people don't realize is that the government often hands some of that money back at tax time, through education tax credits. If you paid for learning and didn't claim one, you may have left real money on the table.",
-      },
-      {
-        type: "h2",
-        text: "Why a credit is so powerful",
+        text: "Paying for school, whether it's your own classes, a kid's tuition, or a certificate program to level up at work, is one of the biggest checks a family writes. What a lot of people don't realize is that the government often hands some of that money back at tax time, through education tax credits. If you paid for learning and didn't claim one, you may have left real money on the table.",
       },
       {
         type: "p",
-        text: "Quick refresher, because it matters here: a *credit* is far stronger than a deduction. A deduction shaves a bit off the income you're taxed on. A credit comes straight off your tax bill, dollar for dollar. A $1,000 credit means $1,000 less tax — or, in some cases, $1,000 more in your refund.",
-      },
-      {
-        type: "p",
-        text: "Education credits are some of the most generous ones out there, and there are two big ones to know.",
+        text: "A quick note on why these matter so much: a credit comes straight off your tax bill, dollar for dollar, which makes it the strongest kind of tax break there is ([Deductions vs. Credits](/learn/taxes/deductions-vs-credits) covers why). Education credits are among the most generous, and there are two big ones to know.",
       },
       {
         type: "h2",
@@ -426,7 +453,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This one is for the early years of a degree — think a student in their first stretch of college, going at least half-time. It's worth up to **$2,500 per student each year**, and up to **$1,000** of that is *refundable*, meaning it can come back to you as a refund even if you owe little or no tax. For a lot of first-generation students and their families, that refundable part is the whole point.",
+        text: "This one is for the early years of a degree: think of a student in their first stretch of college, going at least half-time. It's worth up to **$2,500 per student each year**, and up to **$1,000** of that is *refundable*, meaning it can come back to you as a refund even if you owe little or no tax. For a lot of first-generation students and their families, that refundable part is the whole point.",
       },
       {
         type: "list",
@@ -442,11 +469,11 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This one is the flexible cousin. It's not limited to a degree or to your first years — it covers grad school, a single class, a job-skills course, or training to switch careers. It's worth up to **$2,000 per tax return each year**, with no cap on how many years you can claim it. It's a bit smaller and isn't refundable, but it fits the messy, real way people actually keep learning over a lifetime.",
+        text: "This one is the flexible cousin. It isn't limited to a degree or to your first years: it covers grad school, a single class, a job-skills course, or training to switch careers. It's worth up to **$2,000 per tax return each year**, with no cap on how many years you can claim it. It's a bit smaller and isn't refundable, but it fits the messy, real way people actually keep learning over a lifetime.",
       },
       {
         type: "tip",
-        text: "You generally can't claim both credits for the *same* student in the *same* year — you pick the one that helps more. Free filing software and VITA volunteers will usually figure out the better choice for you automatically.",
+        text: "You generally can't claim both credits for the *same* student in the *same* year; you pick the one that helps more. Free filing software and VITA volunteers will usually figure out the better choice for you automatically.",
       },
       {
         type: "h2",
@@ -454,17 +481,21 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The key piece of paper is the **1098-T**, a form your school sends (often you download it from the student portal) showing what was paid in tuition and fees. Keep receipts for required books and supplies too. Both credits start phasing out once your income passes about **$80,000** (single) or **$160,000** (married filing jointly), and disappear above **$90,000** / **$180,000** — so most students and families qualify in full. Free software or a VITA volunteer will confirm the exact figures for your situation.",
+        text: "The key piece of paper is the **1098-T**, a form your school sends (often you download it from the student portal) showing what was paid in tuition and fees. Keep receipts for required books and supplies too. Both credits start phasing out once your income passes about **$80,000** (single) or **$160,000** (married filing jointly), and disappear above **$90,000** / **$180,000**, so most students and families qualify in full. Free software or a VITA volunteer will confirm the exact figures for your situation.",
+      },
+      {
+        type: "p",
+        text: "Credits are one piece of the paying-for-school puzzle, and they come *after* financial aid does its work. If you haven't sorted out aid yet, start with [FAFSA, Step by Step](/learn/college/fafsa-step-by-step).",
       },
       {
         type: "key",
-        text: "If you paid for school, *look* before you file. Education credits can turn a chunk of tuition back into cash — but only if you claim them. Don't leave that money behind.",
+        text: "If you paid for school, *look* before you file. Education credits can turn a chunk of tuition back into cash, but only if you claim them. Don't leave that money behind.",
       },
       {
         type: "p",
         text: "This is general information, not personal tax advice, and the exact limits change every year. But the headline is simple and worth remembering: education isn't only an expense at tax time. Handled right, part of it can come back to you.",
       },
     ],
-    related: ["deductions-vs-credits", "free-ways-to-file", "earned-income-tax-credit"],
+    related: ["deductions-vs-credits", "earned-income-tax-credit", "free-ways-to-file"],
   },
 ];

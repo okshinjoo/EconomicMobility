@@ -22,10 +22,7 @@ import { investingMarketsArticles } from "./investingMarkets";
 import { budgetingMoneyArticles } from "./budgetingMoney";
 import { budgetingMindsetArticles } from "./budgetingMindset";
 import { budgetingEarningArticles } from "./budgetingEarning";
-import { crossTopicAddsArticles } from "./crossTopicAdds";
 import { insuranceArticles } from "./insurance";
-import { extras1Articles } from "./extras1";
-import { extras2Articles } from "./extras2";
 
 // One array per topic file. Grouped by `topicId` at runtime, so the order /
 // split across files doesn't matter — "extra" batches just merge in.
@@ -52,10 +49,7 @@ const topicArticleSets: Article[][] = [
   budgetingMoneyArticles,
   budgetingMindsetArticles,
   budgetingEarningArticles,
-  crossTopicAddsArticles,
   insuranceArticles,
-  extras1Articles,
-  extras2Articles,
 ];
 
 export const allArticles: Article[] = topicArticleSets.flat();

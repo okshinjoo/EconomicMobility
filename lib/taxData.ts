@@ -1,5 +1,5 @@
 // Approximate U.S. income-tax estimation for the budget calculator.
-// Federal brackets, standard deductions, and FICA use 2025 figures. State
+// Federal brackets, standard deductions, and FICA use 2026 figures. State
 // rates are simplified flat approximations of a typical filer's effective
 // rate — good enough for budgeting, NOT tax advice. The structure makes it
 // easy to swap in full per-state brackets later.
@@ -20,51 +20,51 @@ interface Bracket {
 
 const FED_BRACKETS: Record<FilingStatus, Bracket[]> = {
   single: [
-    { upTo: 11925, rate: 0.1 },
-    { upTo: 48475, rate: 0.12 },
-    { upTo: 103350, rate: 0.22 },
-    { upTo: 197300, rate: 0.24 },
-    { upTo: 250525, rate: 0.32 },
-    { upTo: 626350, rate: 0.35 },
+    { upTo: 12400, rate: 0.1 },
+    { upTo: 50400, rate: 0.12 },
+    { upTo: 105700, rate: 0.22 },
+    { upTo: 201775, rate: 0.24 },
+    { upTo: 256225, rate: 0.32 },
+    { upTo: 640600, rate: 0.35 },
     { upTo: Infinity, rate: 0.37 },
   ],
   mfj: [
-    { upTo: 23850, rate: 0.1 },
-    { upTo: 96950, rate: 0.12 },
-    { upTo: 206700, rate: 0.22 },
-    { upTo: 394600, rate: 0.24 },
-    { upTo: 501050, rate: 0.32 },
-    { upTo: 751600, rate: 0.35 },
+    { upTo: 24800, rate: 0.1 },
+    { upTo: 100800, rate: 0.12 },
+    { upTo: 211400, rate: 0.22 },
+    { upTo: 403550, rate: 0.24 },
+    { upTo: 512450, rate: 0.32 },
+    { upTo: 768700, rate: 0.35 },
     { upTo: Infinity, rate: 0.37 },
   ],
   mfs: [
-    { upTo: 11925, rate: 0.1 },
-    { upTo: 48475, rate: 0.12 },
-    { upTo: 103350, rate: 0.22 },
-    { upTo: 197300, rate: 0.24 },
-    { upTo: 250525, rate: 0.32 },
-    { upTo: 375800, rate: 0.35 },
+    { upTo: 12400, rate: 0.1 },
+    { upTo: 50400, rate: 0.12 },
+    { upTo: 105700, rate: 0.22 },
+    { upTo: 201775, rate: 0.24 },
+    { upTo: 256225, rate: 0.32 },
+    { upTo: 384350, rate: 0.35 },
     { upTo: Infinity, rate: 0.37 },
   ],
   hoh: [
-    { upTo: 17000, rate: 0.1 },
-    { upTo: 64850, rate: 0.12 },
-    { upTo: 103350, rate: 0.22 },
-    { upTo: 197300, rate: 0.24 },
-    { upTo: 250500, rate: 0.32 },
-    { upTo: 626350, rate: 0.35 },
+    { upTo: 17700, rate: 0.1 },
+    { upTo: 67450, rate: 0.12 },
+    { upTo: 105700, rate: 0.22 },
+    { upTo: 201775, rate: 0.24 },
+    { upTo: 256200, rate: 0.32 },
+    { upTo: 640600, rate: 0.35 },
     { upTo: Infinity, rate: 0.37 },
   ],
 };
 
 const STD_DEDUCTION: Record<FilingStatus, number> = {
-  single: 15000,
-  mfj: 30000,
-  mfs: 15000,
-  hoh: 22500,
+  single: 16100,
+  mfj: 32200,
+  mfs: 16100,
+  hoh: 24150,
 };
 
-const SS_WAGE_BASE = 176100; // 2025 Social Security wage base
+const SS_WAGE_BASE = 184500; // 2026 Social Security wage base
 const SS_RATE = 0.062;
 const MEDICARE_RATE = 0.0145;
 const ADDL_MEDICARE_RATE = 0.009;

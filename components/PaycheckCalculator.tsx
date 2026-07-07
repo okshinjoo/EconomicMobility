@@ -257,7 +257,7 @@ export default function PaycheckCalculator() {
               </div>
               <p className="mt-5 border-t border-ink-600 pt-3 text-xs text-cream/45">
                 Effective tax rate ≈ {(taxes.effectiveRate * 100).toFixed(1)}%.
-                Estimate based on 2025 federal figures; excludes 401(k), health,
+                Estimate based on 2026 federal figures; excludes 401(k), health,
                 and other pre-tax deductions.
               </p>
             </div>

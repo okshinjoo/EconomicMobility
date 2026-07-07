@@ -693,7 +693,7 @@ export default function BudgetCalculator() {
 
         <div className="mt-4 flex flex-col gap-3 px-1">
           <p className="text-xs leading-5 text-stone">
-            Estimates only, based on 2025 federal figures and simplified state
+            Estimates only, based on 2026 federal figures and simplified state
             rates. Pre-tax deductions (401(k), health insurance) aren&apos;t
             included. This isn&apos;t tax advice.
           </p>

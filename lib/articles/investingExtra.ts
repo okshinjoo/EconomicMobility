@@ -2,146 +2,8 @@ import type { Article } from "./types";
 
 export const investingExtraArticles: Article[] = [
   {
-    slug: "roth-ira-explained",
-    order: 120,
-    topicId: "investing",
-    title: "The Roth IRA, Explained",
-    dek: "A quiet little account that might be the closest thing to a superpower a young person has.",
-    level: "Beginner",
-    readMinutes: 5,
-    takeaways: [
-      "A Roth IRA holds investments — it's not an investment itself.",
-      "You put in money you've already paid tax on, and the growth comes out tax-free.",
-      "Starting young is the whole trick, because time does the heavy lifting.",
-      "You can open one yourself, with a small amount, today.",
-    ],
-    body: [
-      {
-        type: "p",
-        text: "Here's a sentence that sounds too good to be true: there's an account where your money can grow for decades, and when you finally take it out in retirement, you owe *zero* tax on all that growth. That account is a Roth IRA, and if you're young, it might be the single most powerful tool you've got.",
-      },
-      {
-        type: "p",
-        text: "If nobody in your family ever talked about retirement accounts, this can sound like something for other people — people with money managers and golf memberships. It's not. A Roth IRA is for regular people putting away regular amounts. Let's clear it up.",
-      },
-      {
-        type: "h2",
-        text: "First, what a Roth IRA actually is",
-      },
-      {
-        type: "p",
-        text: "A Roth IRA isn't an investment. It's a *container* — a special account you put investments inside. Think of it like a lunchbox: the lunchbox isn't your lunch, it just holds it and keeps it special. Inside the Roth, you might hold an index fund, for example. The account is the wrapper that gives your money its tax superpower.",
-      },
-      {
-        type: "h2",
-        text: "Why the 'tax-free' part is such a big deal",
-      },
-      {
-        type: "p",
-        text: "Here's the trade. With a Roth, you put in money you've *already* paid income tax on — so there's no tax break today. In exchange, every dollar of growth on top of that comes out completely tax-free later.",
-      },
-      {
-        type: "p",
-        text: "Say you put in $6,000 over a few years, and decades later it has grown to $40,000. That $34,000 of growth? You never pay tax on a cent of it. In a regular investment account, you'd owe tax on those gains. The Roth quietly hands them all to future you.",
-      },
-      {
-        type: "tip",
-        text: "A Roth tends to shine for younger people, because you're probably in a lower tax bracket now than you'll be later. You're choosing to pay the tax while it's cheap, then locking in tax-free growth for the long haul.",
-      },
-      {
-        type: "h2",
-        text: "How to actually open one",
-      },
-      {
-        type: "p",
-        text: "You don't need permission or a special job. You open a Roth IRA yourself through a brokerage — many let you start with very little — and then pick something simple, like a broad index fund, to hold inside it. There's a yearly limit on how much you can add — **$7,500** for 2026 (**$8,600** if you're 50 or older) — but most people starting out are nowhere near it anyway.",
-      },
-      {
-        type: "key",
-        text: "A Roth IRA isn't a rich-person thing. It's a young-person thing. The less money and the more time you have, the more this account is built for *you* — start small, start now.",
-      },
-      {
-        type: "p",
-        text: "You don't have to understand every rule to begin. Open the account, put in what you can, choose one simple fund, and let time do the part that feels like magic.",
-      },
-    ],
-    related: ["retirement-basics", "magic-of-compound-interest", "index-funds-explained"],
-  },
-
-  {
-    slug: "401k-and-match",
-    order: 100,
-    topicId: "investing",
-    title: "The 401(k) and the Free Money of a Match",
-    dek: "Your job might be offering to hand you free money. A lot of people accidentally say no.",
-    level: "Beginner",
-    readMinutes: 5,
-    takeaways: [
-      "A 401(k) is a retirement account you fund straight from your paycheck.",
-      "An employer match is literally free money for retirement.",
-      "Not contributing enough to get the full match leaves cash on the table.",
-      "It's mostly automatic once you set it up.",
-    ],
-    body: [
-      {
-        type: "p",
-        text: "Imagine your boss walked over and said, 'For every dollar you save, I'll add one of mine.' You'd take that deal instantly. That deal exists — it's called a 401(k) match — and an astonishing number of people leave it sitting on the table without realizing it.",
-      },
-      {
-        type: "h2",
-        text: "What a 401(k) even is",
-      },
-      {
-        type: "p",
-        text: "A 401(k) is a retirement account that some employers offer. The money comes out of your paycheck automatically, before you ever see it, and gets invested for the long haul. Because it's automatic, you barely feel it leave — which is exactly what makes it work.",
-      },
-      {
-        type: "p",
-        text: "If you're the first in your family navigating an American job with benefits, the paperwork can feel like a foreign language. Push through it once. This is one of the few forms that can quietly make you tens of thousands of dollars richer.",
-      },
-      {
-        type: "h2",
-        text: "The match is the whole point",
-      },
-      {
-        type: "p",
-        text: "Here's the part to tattoo on your brain. Many employers will *match* what you put in, up to a limit. A common setup looks like this:",
-      },
-      {
-        type: "list",
-        items: [
-          "You contribute, and your employer adds money on top of yours.",
-          "A typical match might be 'dollar for dollar up to 4% of your pay.'",
-          "So if you put in 4%, they put in 4% — your savings just doubled, instantly.",
-        ],
-      },
-      {
-        type: "p",
-        text: "If you earn $40,000 and contribute 4%, that's $1,600 a year from you — and another $1,600 from your employer, every single year, for free. Skipping it is like turning down a raise.",
-      },
-      {
-        type: "tip",
-        text: "Find out your company's match and contribute *at least* enough to get all of it. That's usually the highest-priority move in all of investing — there's no other place you get an instant 100% return just for showing up.",
-      },
-      {
-        type: "h2",
-        text: "What to do if there's no match (or no 401(k))",
-      },
-      {
-        type: "p",
-        text: "Plenty of jobs — especially part-time, gig, or smaller employers — don't offer a 401(k) at all. That's okay. You can open a retirement account on your own, like a Roth IRA, and get many of the same long-term benefits. The account matters less than the habit of putting money in.",
-      },
-      {
-        type: "key",
-        text: "If your employer offers a match, getting the full amount comes before almost everything else. It is the closest thing to free money you'll ever be handed — don't leave it behind.",
-      },
-    ],
-    related: ["roth-ira-explained", "retirement-basics", "magic-of-compound-interest"],
-  },
-
-  {
     slug: "etf-vs-mutual-fund",
-    order: 20,
+    order: 70,
     topicId: "investing",
     title: "ETF vs. Mutual Fund vs. Index Fund",
     dek: "Three terms that get thrown around like everyone already knows them. Here's the plain version.",
@@ -151,12 +13,12 @@ export const investingExtraArticles: Article[] = [
       "A fund is a basket holding many investments at once.",
       "'Index fund' describes a strategy; ETF and mutual fund describe a structure.",
       "ETFs trade like stocks; mutual funds price once a day.",
-      "For most beginners, a low-cost index fund — either form — is plenty.",
+      "For most beginners, a low-cost index fund in either form is plenty.",
     ],
     body: [
       {
         type: "p",
-        text: "ETF. Mutual fund. Index fund. People toss these around like the meaning is obvious, and if you nod along while quietly having no idea, you're in good company. The good news: once you see how they overlap, the whole thing untangles in about five minutes.",
+        text: "ETF. Mutual fund. Index fund. People toss these around like the meaning is obvious, and if you nod along while quietly having no idea, you're in good company. Once you see how they overlap, the whole thing untangles in a few minutes.",
       },
       {
         type: "h2",
@@ -164,26 +26,26 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A fund is just a *basket*. Instead of buying one company's stock and hoping it does well, you buy a share of a basket that already holds hundreds or thousands of companies. Your money is spread out, so one bad apple barely dents the whole bunch. That spreading-out is called diversification, and it's one of the smartest things a beginner can do.",
+        text: "A fund is a *basket*. Instead of buying one company's stock and hoping it does well, you buy a share of a basket that already holds hundreds or thousands of companies. Your money is spread out, so one bad apple barely dents the whole bunch. That spreading-out is called diversification, and it's one of the smartest things a beginner can do.",
       },
       {
         type: "h2",
-        text: "The key insight: these answer different questions",
+        text: "These answer different questions",
       },
       {
         type: "p",
-        text: "Here's what trips everyone up. These three words aren't three competing products. They're describing different *aspects* of a fund:",
+        text: "The confusion comes from treating these as three competing products. They aren't. They describe different *aspects* of a fund:",
       },
       {
         type: "list",
         items: [
-          "**Index fund** describes the *strategy* — it simply tries to match a whole market (like 'the 500 biggest U.S. companies') instead of paying someone to pick winners.",
-          "**ETF** and **mutual fund** describe the *structure* — the wrapper the fund comes in and how you buy it.",
+          "**Index fund** describes the *strategy*: the fund tries to match a whole market (like 'the 500 biggest U.S. companies') instead of paying someone to pick winners. [Index Funds, Explained](/learn/investing/index-funds-explained) covers why that works so well.",
+          "**ETF** and **mutual fund** describe the *structure*: the wrapper the fund comes in and how you buy it.",
         ],
       },
       {
         type: "p",
-        text: "So an index fund can come *as* an ETF or *as* a mutual fund. They're not opposites. A fund can be an index fund and an ETF at the same time — those describe two different things about it.",
+        text: "So an index fund can come *as* an ETF or *as* a mutual fund. They're not opposites. A fund can be an index fund and an ETF at the same time, because those describe two different things about it.",
       },
       {
         type: "h2",
@@ -202,15 +64,15 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Whichever wrapper you choose, hunt for the *expense ratio* — the yearly fee the fund charges. Lower is better. A difference between 0.03% and 1% sounds tiny but can quietly cost you thousands over a few decades.",
+        text: "Whichever wrapper you choose, hunt for the *expense ratio*, the yearly fee the fund charges. Lower is better. A difference between 0.03% and 1% sounds tiny but can quietly cost you thousands over a few decades.",
       },
       {
         type: "key",
-        text: "For most people just starting out, a low-cost *index* fund — whether it's shaped like an ETF or a mutual fund — is a genuinely excellent, boring, dependable choice. You don't need to overthink the wrapper.",
+        text: "For most people just starting out, a low-cost *index* fund (whether it's shaped like an ETF or a mutual fund) is an excellent, boring, dependable choice. You don't need to overthink the wrapper.",
       },
       {
         type: "p",
-        text: "Don't let the vocabulary scare you off. Strip away the jargon and you're really choosing one simple, diversified basket — then leaving it alone for a long, long time.",
+        text: "Don't let the vocabulary scare you off. Strip away the jargon and you're choosing one simple, diversified basket, then leaving it alone for a long, long time.",
       },
     ],
     related: ["index-funds-explained", "risk-and-diversification", "start-investing-with-50"],
@@ -233,7 +95,7 @@ export const investingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "There's a piece of math so powerful that people have called it the eighth wonder of the world. It's not flashy and it's not complicated. It's just this: money can make money, and then *that* money makes money too. It's called compound interest, and it quietly rewards anyone who starts early — even with almost nothing.",
+        text: "There's a piece of math so powerful that people have called it the eighth wonder of the world. It's not flashy and it's not complicated. It's just this: money can make money, and then *that* money makes money too. It's called compound interest, and it quietly rewards anyone who starts early, even with almost nothing.",
       },
       {
         type: "h2",
@@ -241,7 +103,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Say you invest $100 and it grows 10% in a year. Now you have $110. The next year, you don't just earn on your original $100 — you earn on the full $110. Then $121. Then $133. Your *earnings* start earning. A snowball rolling downhill gets bigger faster the longer it rolls, and that's exactly what your money does over time.",
+        text: "Say you invest $100 and it grows 10% in a year. Now you have $110. The next year, you don't just earn on your original $100: you earn on the full $110. Then $121. Then $133. Your *earnings* start earning. A snowball rolling downhill gets bigger faster the longer it rolls, and that's exactly what your money does over time.",
       },
       {
         type: "h2",
@@ -254,13 +116,13 @@ export const investingExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Maya** invests $200 a month from age 25 to 35, then stops completely — ten years, then nothing.",
-          "**Leo** waits, then invests $200 a month from age 35 all the way to 65 — thirty years straight.",
+          "**Maya** invests $200 a month from age 25 to 35, then stops completely: ten years of contributions, then nothing.",
+          "**Leo** waits, then invests $200 a month from age 35 all the way to 65, thirty years straight.",
         ],
       },
       {
         type: "p",
-        text: "Maya put in money for ten years; Leo for thirty. Yet because Maya's money had decades longer to compound, she often ends up with *as much or more* than Leo — despite investing a fraction of what he did. Time did the work her wallet didn't have to.",
+        text: "Maya put in money for ten years; Leo for thirty. Yet because Maya's money had decades longer to compound, she often ends up with *as much or more* than Leo, despite investing a fraction of what he did. Time did the work her wallet didn't have to.",
       },
       {
         type: "tip",
@@ -268,19 +130,54 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Compound interest is the rare advantage that doesn't care how much money you have — only how early you begin. Time is the one resource a young person has more of than anyone. Spend it.",
+        text: "Compound interest is the rare advantage that doesn't care how much money you have, only how early you begin. Time is the one resource a young person has more of than anyone. Spend it.",
       },
       {
         type: "p",
-        text: "You don't need to be rich to make this work. You just need to start, stay consistent, and give it the one thing it's hungry for: years.",
+        text: "You don't need to be rich to make this work. You need to start, stay consistent, and give it the one thing it's hungry for: years.",
       },
     ],
-    related: ["roth-ira-explained", "dollar-cost-averaging", "saving-vs-investing"],
+    related: ["saving-vs-investing", "dollar-cost-averaging", "retirement-basics"],
+    quiz: [
+      {
+        question: "What is compound interest, in plain terms?",
+        options: [
+          "A bonus rate banks pay their longest-standing customers",
+          "Your earnings start making earnings of their own",
+          "Interest that only kicks in on large accounts",
+        ],
+        answer: 1,
+        explain:
+          "When $100 grows to $110, the next year you earn on the full $110, not just the original $100. Like a snowball rolling downhill, it grows faster the longer it rolls.",
+      },
+      {
+        question: "What's the biggest lever in how much compounding builds for you?",
+        options: [
+          "How much money you start with",
+          "How long the money gets to grow",
+          "Picking investments that never go down",
+        ],
+        answer: 1,
+        explain:
+          "Time matters more than the amount. That's why Maya, who invested for only ten years starting at 25, often ends up with as much or more than Leo, who invested for thirty years starting at 35.",
+      },
+      {
+        question: "You can only spare $20 a month right now. What's the smart move?",
+        options: [
+          "Wait until you can invest a bigger amount",
+          "Keep it in checking until it adds up to something worth investing",
+          "Start investing it now and stay consistent",
+        ],
+        answer: 2,
+        explain:
+          "Even $20 or $50 a month started now can outrun a much bigger amount started years later. The early dollars are worth the most because they grow the longest.",
+      },
+    ],
   },
 
   {
     slug: "dollar-cost-averaging",
-    order: 40,
+    order: 110,
     topicId: "investing",
     title: "Dollar-Cost Averaging",
     dek: "How to invest steadily without the impossible job of guessing what the market does next.",
@@ -288,14 +185,14 @@ export const investingExtraArticles: Article[] = [
     readMinutes: 5,
     takeaways: [
       "It means investing a fixed amount on a regular schedule, no matter the price.",
-      "It frees you from trying to time the market — which almost nobody can do.",
+      "It frees you from trying to time the market, which almost nobody can do.",
       "You automatically buy more when prices are low, less when they're high.",
       "Consistency beats cleverness for most everyday investors.",
     ],
     body: [
       {
         type: "p",
-        text: "Every new investor eventually asks the same nervous question: *is now a good time to buy?* What if it drops right after? What if I wait and it climbs? Dollar-cost averaging is the calm answer to all of it — a way to invest steadily without ever needing to predict the future.",
+        text: "Every new investor eventually asks the same nervous question: *is now a good time to buy?* What if it drops right after? What if I wait and it climbs? Dollar-cost averaging is the calm answer to all of it: a way to invest steadily without ever needing to predict the future.",
       },
       {
         type: "h2",
@@ -303,7 +200,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Dollar-cost averaging means investing a *fixed amount on a regular schedule* — say $100 on the first of every month — no matter what the market is doing that day. Up, down, sideways: you invest the same amount, on the same day, and you don't agonize over it. That's the whole method.",
+        text: "Dollar-cost averaging means investing a *fixed amount on a regular schedule* (say $100 on the first of every month) no matter what the market is doing that day. Up, down, sideways: you invest the same amount, on the same day, and you don't agonize over it. That's the whole method.",
       },
       {
         type: "h2",
@@ -311,11 +208,11 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Here's the quiet genius of it. When prices are high, your $100 buys fewer shares. When prices are low, that same $100 buys more. So you're automatically buying *more* when things are cheap and *less* when things are pricey — exactly what you'd want to do on purpose, happening without any decision from you.",
+        text: "When prices are high, your $100 buys fewer shares. When prices are low, that same $100 buys more. So you're automatically buying *more* when things are cheap and *less* when things are pricey. That's exactly what you'd want to do on purpose, happening without any decision from you.",
       },
       {
         type: "tip",
-        text: "Trying to 'time the market' — buy at the bottom, sell at the top — is something even full-time professionals get wrong constantly. Dollar-cost averaging quietly sidesteps that whole impossible game. You stop guessing and just keep showing up.",
+        text: "Trying to 'time the market' (buy at the bottom, sell at the top) is something even full-time professionals get wrong constantly. Dollar-cost averaging sidesteps that impossible game. You stop guessing and keep showing up.",
       },
       {
         type: "h2",
@@ -323,7 +220,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The hardest part of investing isn't math — it's emotion. When markets drop, every instinct screams *stop, sell, run.* When they soar, you want to pile in at the worst moment. A fixed automatic schedule takes the panic and the hype out of your hands entirely. The plan keeps going even when your nerves don't.",
+        text: "The hardest part of investing isn't math; it's emotion. When markets drop, every instinct screams *stop, sell, run.* When they soar, you want to pile in at the worst moment. A fixed automatic schedule takes the panic and the hype out of your hands entirely. The plan keeps going even when your nerves don't.",
       },
       {
         type: "h2",
@@ -334,13 +231,13 @@ export const investingExtraArticles: Article[] = [
         items: [
           "Pick an amount you can comfortably invest every month, even a small one.",
           "Choose a simple, diversified investment to put it in, like a broad index fund.",
-          "Automate it — set the same transfer and purchase to happen on the same day each month.",
+          "Automate it: set the same transfer and purchase to happen on the same day each month.",
           "Then mostly ignore it. Let it run for years without tinkering.",
         ],
       },
       {
         type: "key",
-        text: "You don't have to be smart about *when* to invest. You just have to be consistent about *that* you invest. Boring, automatic, and steady beats clever and anxious almost every time.",
+        text: "You don't have to be smart about *when* to invest. You have to be consistent about *that* you invest. Boring, automatic, and steady beats clever and anxious almost every time.",
       },
     ],
     related: ["long-term-strategy", "magic-of-compound-interest", "start-investing-with-50"],
@@ -348,10 +245,10 @@ export const investingExtraArticles: Article[] = [
 
   {
     slug: "investing-mistakes",
-    order: 50,
+    order: 120,
     topicId: "investing",
     title: "Beginner Investing Mistakes to Avoid",
-    dek: "Most early investing mistakes aren't about picking wrong — they're about acting on fear or hype.",
+    dek: "Most early investing mistakes aren't about picking wrong. They come from acting on fear or hype.",
     level: "Intermediate",
     readMinutes: 6,
     takeaways: [
@@ -363,7 +260,7 @@ export const investingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Most people imagine the big investing mistake is picking the 'wrong' stock. It almost never is. The real damage usually comes from how we *behave* — selling in a panic, chasing the hot thing, or paying fees we never noticed. The good news? Every one of these is avoidable once you see it coming.",
+        text: "Most people imagine the big investing mistake is picking the 'wrong' stock. It almost never is. The real damage usually comes from how we *behave*: selling in a panic, chasing the hot thing, or paying fees we never noticed. Every one of these is avoidable once you see it coming.",
       },
       {
         type: "h2",
@@ -383,7 +280,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "A coworker's 'can't-lose' stock. A coin blowing up on social media. The thing that already tripled and 'is just getting started.' By the time something is loud enough for you to hear about it, the easy money is usually gone — and you're at real risk of buying right at the top.",
+        text: "A coworker's 'can't-lose' stock. A coin blowing up on social media. The thing that already tripled and 'is just getting started.' By the time something is loud enough for you to hear about it, the easy money is usually gone, and you're at real risk of buying right at the top.",
       },
       {
         type: "list",
@@ -399,7 +296,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Fees feel tiny, so people wave them off. They shouldn't. A fund charging 1% a year instead of 0.05% can quietly siphon off tens of thousands of dollars over a working lifetime — money that should have been compounding for *you*. Always check what a fund or advisor charges, and lean toward low-cost options.",
+        text: "Fees feel tiny, so people wave them off. They shouldn't. A fund charging 1% a year instead of 0.05% can quietly siphon off tens of thousands of dollars over a working lifetime, money that should have been compounding for *you*. Always check what a fund or advisor charges, and lean toward low-cost options.",
       },
       {
         type: "h2",
@@ -411,7 +308,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Successful investing is less about being brilliant and more about avoiding the obvious traps: don't panic, don't chase hype, don't overpay in fees, and *don't* wait forever to begin.",
+        text: "Successful investing is less about being brilliant and more about avoiding the obvious traps: don't panic, don't chase hype, don't overpay in fees, and don't wait forever to begin.",
       },
     ],
     related: ["long-term-strategy", "risk-and-diversification", "crypto-explained"],
@@ -419,22 +316,22 @@ export const investingExtraArticles: Article[] = [
 
   {
     slug: "retirement-basics",
-    order: 110,
+    order: 20,
     topicId: "investing",
     title: "Retirement, When It's 40 Years Away",
-    dek: "Saving for something four decades out feels absurd — until you see how much easier it is now than later.",
+    dek: "Saving for something four decades out feels absurd, until you see how much easier it is now than later.",
     level: "Intermediate",
-    readMinutes: 6,
+    readMinutes: 4,
     takeaways: [
-      "Retirement saving is just investing with a very long runway.",
-      "Special accounts give you tax breaks for doing it.",
+      "Retirement saving is ordinary investing with a very long runway.",
       "Starting in your 20s means you can save far less overall.",
-      "A simple order of moves keeps it from feeling overwhelming.",
+      "The habit matters more than the amount at first.",
+      "Special accounts reward you for it; the account map covers them.",
     ],
     body: [
       {
         type: "p",
-        text: "Saving for retirement at 25 can feel almost silly. You might be juggling rent, student loans, and helping family — and someone wants you to set aside money for a version of you that won't exist for forty years? Stick with me, because the math here is wild: the further away retirement is, the *easier* it is to fund.",
+        text: "Saving for retirement at 25 can feel almost silly. You might be juggling rent, student loans, and helping family, and someone wants you to set aside money for a version of you that won't exist for forty years? Stick with me, because the math here is wild: the further away retirement is, the *easier* it is to fund.",
       },
       {
         type: "h2",
@@ -442,7 +339,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "There's nothing exotic about a 'retirement fund.' It's the same investing you'd do anyway — usually in simple, diversified funds — just aimed at a goal that's decades out. That long runway is a gift, because it gives compound growth an enormous amount of time to work.",
+        text: "There's nothing exotic about a 'retirement fund.' It's the same investing you'd do anyway, usually in simple, diversified funds, just aimed at a goal that's decades out. That long runway is a gift, because it gives compound growth an enormous amount of time to work.",
       },
       {
         type: "h2",
@@ -450,7 +347,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Because of compounding, the early years carry the most weight. Someone who starts in their twenties can often reach the same finish line saving a *much smaller* amount each month than someone who starts in their forties. Same destination — a fraction of the effort — purely because they started sooner.",
+        text: "Because of [compounding](/learn/investing/magic-of-compound-interest), the early years carry the most weight. Someone who starts in their twenties can often reach the same finish line saving a *much smaller* amount each month than someone who starts in their forties. Same destination, a fraction of the effort, purely because they started sooner.",
       },
       {
         type: "tip",
@@ -458,58 +355,42 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "The accounts that reward you for it",
+        text: "The accounts can wait; the start can't",
       },
       {
         type: "p",
-        text: "The system actually offers you tax breaks for saving toward retirement, through special accounts. You don't need to master all of them — just know the main two:",
+        text: "The system offers real tax breaks for retirement saving, through accounts like the 401(k) you get through a job and the IRA you open yourself. You don't need to master them before you begin. When you're ready for the details, [Retirement & Tax-Advantaged Accounts, Explained](/learn/investing/retirement-accounts-explained) is a short map of which account exists for what, and [What Is a 401(k)?](/learn/investing/what-is-a-401k) covers the one most people meet first.",
       },
       {
-        type: "list",
-        items: [
-          "**401(k)** — offered through some jobs, funded from your paycheck, often with an employer match (free money).",
-          "**IRA** (including the **Roth IRA**) — one you open yourself, great if your job offers no plan or you want to save more.",
-        ],
-      },
-      {
-        type: "h2",
-        text: "A simple order to follow",
-      },
-      {
-        type: "steps",
-        items: [
-          "If your job offers a 401(k) match, contribute enough to grab all of it first — that's free money.",
-          "Build a small emergency fund so a surprise doesn't force you to raid your investments.",
-          "Open a Roth IRA and contribute what you comfortably can toward it.",
-          "Increase the amount a little whenever your income grows.",
-        ],
+        type: "p",
+        text: "One rule of thumb is worth knowing even before you read any of that: if your job matches 401(k) contributions, putting in enough to capture the full match is usually the first move. It's part of your pay, and the match doubles your money on the spot.",
       },
       {
         type: "key",
-        text: "Retirement being far away isn't the problem — it's the superpower. The distance is exactly what lets small, early contributions turn into something large. Future you is counting on present you to start.",
+        text: "Retirement being far away isn't the problem. It's the advantage: the distance is exactly what lets small, early contributions turn into something large.",
       },
     ],
-    related: ["roth-ira-explained", "401k-and-match", "magic-of-compound-interest"],
+    related: ["retirement-accounts-explained", "magic-of-compound-interest", "what-is-a-401k"],
   },
 
   {
     slug: "crypto-explained",
-    order: 20,
+    order: 40,
     topicId: "investing",
     title: "A Calm Word on Crypto",
-    dek: "No hype, no fear of missing out — just an honest, risk-first look at what crypto actually is.",
+    dek: "No hype, no fear of missing out. Just an honest, risk-first look at what crypto actually is.",
     level: "Advanced",
     readMinutes: 6,
     takeaways: [
       "Crypto is a digital asset that can swing wildly in value.",
-      "It's speculative — closer to a bet than to a savings plan.",
+      "It's speculative, closer to a bet than to a savings plan.",
       "The space is full of scams aimed at newcomers.",
       "Only ever use money you can fully afford to lose.",
     ],
     body: [
       {
         type: "p",
-        text: "You've heard the stories — someone who got rich overnight, the friend who 'should have bought years ago.' Crypto comes wrapped in a lot of noise, hype, and fear of missing out. This won't be that. Just an honest, grounded look at what it is and the risks that come with it, so you can decide with clear eyes.",
+        text: "You've heard the stories: someone who got rich overnight, the friend who 'should have bought years ago.' Crypto comes wrapped in a lot of noise, hype, and fear of missing out. This is an honest, grounded look at what it is and the risks that come with it, so you can decide with clear eyes.",
       },
       {
         type: "h2",
@@ -525,11 +406,11 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the part you cannot skip. Crypto prices can swing enormously — it's normal for a coin to drop 30%, 50%, even more in a matter of days, then maybe bounce back, then drop again. A savings account barely moves. Crypto can move like a rollercoaster with no safety bar. That's not a flaw being fixed; that's just what it is right now.",
+        text: "This is the part you cannot skip. Crypto prices can swing enormously: it's normal for a coin to drop 30%, 50%, even more in a matter of days, then maybe bounce back, then drop again. A savings account barely moves. Crypto can move like a rollercoaster with no safety bar. That's not a flaw being fixed; that's what it is right now.",
       },
       {
         type: "key",
-        text: "Because of those wild swings, crypto is *speculative* — much closer to placing a bet than to a steady, long-term plan. It is the opposite of a safe place to park money you'll need.",
+        text: "Because of those wild swings, crypto is *speculative*, much closer to placing a bet than to a steady, long-term plan. It is the opposite of a safe place to park money you'll need.",
       },
       {
         type: "h2",
@@ -542,7 +423,7 @@ export const investingExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "Anyone *guaranteeing* profits or 'doubling your money' — that's always a lie.",
+          "Anyone *guaranteeing* profits or 'doubling your money.' That's always a lie.",
           "A stranger online who befriends you and steers you toward an investment.",
           "Pressure to act *right now* before you've had time to think or research.",
           "A coin pumped hard on social media that nobody can actually explain.",
@@ -562,9 +443,113 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Crypto isn't a shortcut out of a tight spot — treating it like one is exactly how people get hurt. Build your foundation first. Anything speculative comes last, with money you've already decided you can live without.",
+        text: "Crypto isn't a shortcut out of a tight spot, and treating it like one is exactly how people get hurt. Build your foundation first. Anything speculative comes last, with money you've already decided you can live without.",
       },
     ],
     related: ["investing-mistakes", "risk-and-diversification", "saving-vs-investing"],
+  },
+
+  {
+    slug: "building-generational-wealth",
+    order: 150,
+    topicId: "investing",
+    title: "Building Wealth When You're Starting From Zero",
+    dek: "If you're the first in your family to try this, here's the honest truth about how wealth actually gets built.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "Wealth is what you own that grows over time, not the size of your paycheck.",
+      "Starting from zero is hard, but it's absolutely possible.",
+      "The real engine is time plus consistency, not a huge salary.",
+      "You can be the person who breaks the cycle for everyone after you.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "There's a quiet belief a lot of us grow up with: rich people are just *other* people. Wealth feels like something that belongs to families who already had it, not to someone working a regular job and figuring money out alone. If that's you, the first in your family to even attempt this, read this slowly. The truth is more hopeful, and more honest, than what anyone probably told you.",
+      },
+      {
+        type: "h2",
+        text: "Wealth isn't what you earn — it's what you own",
+      },
+      {
+        type: "p",
+        text: "People assume wealth means a big paycheck. It doesn't. Plenty of people earn a lot and own almost nothing, and plenty of people with modest incomes quietly build real security.",
+      },
+      {
+        type: "p",
+        text: "*Wealth is owning things that grow while you live your life.* Your income covers today: rent, food, the bills. Wealth is the stuff working in the background, like money in a retirement account, investments that compound, eventually maybe a home. Your paycheck feeds you now. Your assets are what feed future-you, and the people who come after you.",
+      },
+      {
+        type: "key",
+        text: "Don't measure wealth by your salary. Measure it by what you own that's quietly growing, even if it's small right now, even if it's $50. That's the real scoreboard.",
+      },
+      {
+        type: "h2",
+        text: "Let's be honest about the wealth gap",
+      },
+      {
+        type: "p",
+        text: "If building wealth feels harder for you than for some people you know, you're not imagining it. For a lot of reasons (history, who got to own land and homes, who could pass things down, who was locked out of those chances), many families never got to build assets, let alone hand them to their kids. So some people inherit a head start, and some people inherit a starting line of zero.",
+      },
+      {
+        type: "p",
+        text: "That gap is real, and naming it matters, because here's what it means for *you*: starting from zero is not a personal failing. It's not because your family didn't try hard enough. It's a system you were born into, and understanding that frees you up to stop feeling behind and start building.",
+      },
+      {
+        type: "h2",
+        text: "The engine isn't a big salary. It's time and consistency.",
+      },
+      {
+        type: "p",
+        text: "This is the part that genuinely changes lives, so hold onto it. You do not need a high income to build wealth. The real engine is small amounts of money, invested early, left alone to grow, over a long time. That's it.",
+      },
+      {
+        type: "p",
+        text: "It works because of [compound interest](/learn/investing/magic-of-compound-interest): your money earns growth, and then that growth earns growth too, and over years it snowballs. The magic ingredient isn't the size of what you put in. It's *time*. Someone who invests a little starting in their twenties can end up far ahead of someone who invests much more but waits until their forties.",
+      },
+      {
+        type: "p",
+        text: "So if you're young and broke and feel like you've missed the boat: you haven't. Time is the one thing money can't buy back later, and right now you have more of it than anyone.",
+      },
+      {
+        type: "h2",
+        text: "How this actually looks, day to day",
+      },
+      {
+        type: "steps",
+        items: [
+          "Cover your needs and build a small emergency cushion first. Wealth is built on stable ground, not on top of a crisis.",
+          "Start investing something, even a tiny amount. [Starting with $50](/learn/investing/start-investing-with-50) is enough; the habit matters more than the size.",
+          "Automate it, so a fixed amount moves on its own every payday and willpower never enters the picture.",
+          "Then mostly leave it alone, add to it when you can, and let time and compounding do the heavy lifting.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Don't wait until you 'have enough' to start; that day can feel like it never comes. A small amount invested consistently, starting now, beats a big amount you keep promising you'll get to later.",
+      },
+      {
+        type: "h2",
+        text: "You're building for more than yourself",
+      },
+      {
+        type: "p",
+        text: "Here's the part that makes the slow, boring work worth it. When you build wealth as the first person in your family to do it, you're not just helping yourself. You're changing what's *normal* for everyone who comes after you: a younger sibling, a future kid, a cousin watching how you do it.",
+      },
+      {
+        type: "p",
+        text: "The head start you never got, you can become. Not overnight, not with one lucky break, but steadily, with small consistent moves that compound for decades. That's how cycles break: not in a single dramatic moment, but in a thousand quiet, deliberate ones.",
+      },
+      {
+        type: "key",
+        text: "You don't need to be rich to start building wealth. You need to start, stay consistent, and give it time. The person who breaks the cycle is someone who began, and that person can be you.",
+      },
+      {
+        type: "p",
+        text: "One honest note: this is general education to help you understand how wealth-building works, not personalized advice for your exact situation. As your money grows, it's worth learning more and, when it makes sense, talking to a trustworthy professional.",
+      },
+    ],
+    related: ["magic-of-compound-interest", "saving-vs-investing", "start-investing-with-50"],
   },
 ];
