@@ -51,6 +51,12 @@ export const toolCategories: ToolCategory[] = [
         short: "How big it should be — and how long to build it.",
         status: "live",
       },
+      {
+        slug: "reality-check",
+        title: "Reality Check",
+        short: "Pick the life you want; see the salary it takes.",
+        status: "live",
+      },
     ],
   },
   {
