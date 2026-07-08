@@ -1,4 +1,5 @@
 import type { TopicId } from "@/lib/topics";
+import { ROADMAP_SLUGS } from "../roadmaps";
 import type { Article, ArticleLevel } from "./types";
 import { budgetingArticles } from "./budgeting";
 import { creditArticles } from "./credit";
@@ -111,4 +112,23 @@ export function getTopicRoadmap(topicId: TopicId): ArticleGroup[] {
         .slice()
         .sort((a, b) => (a.order ?? 1000) - (b.order ?? 1000)),
     }));
+}
+
+/** Resolved roadmap articles (registry slugs that exist), first per topic
+ *  wins for topic-level lookups. Server-side use only - importing this from
+ *  a client component drags every article into the bundle. */
+export interface RoadmapRef {
+  slug: string;
+  title: string;
+  topicId: TopicId;
+  href: string;
+}
+
+export function getRoadmapRefs(): RoadmapRef[] {
+  return ROADMAP_SLUGS.flatMap((slug) => {
+    const a = getArticleBySlug(slug);
+    return a
+      ? [{ slug, title: a.title, topicId: a.topicId, href: `/learn/${a.topicId}/${slug}` }]
+      : [];
+  });
 }

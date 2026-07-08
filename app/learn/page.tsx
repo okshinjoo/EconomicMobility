@@ -100,7 +100,7 @@ export default function LearnHub() {
           .filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a));
         if (roadmaps.length === 0) return null;
         return (
-          <section className="border-y-2 border-ink bg-amber">
+          <section id="roadmaps" className="scroll-mt-20 border-y-2 border-ink bg-amber">
             <div className="mx-auto max-w-7xl px-6 py-10">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>

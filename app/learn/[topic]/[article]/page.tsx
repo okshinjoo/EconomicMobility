@@ -9,8 +9,7 @@ import {
   Clock,
   Sparkles,
   Wrench,
-  BookMarked,
-} from "lucide-react";
+  BookMarked, Map } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
@@ -20,7 +19,7 @@ import MarkAsRead from "@/components/MarkAsRead";
 import ArticleQuiz from "@/components/ArticleQuiz";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import { learnContent, LEARN_UPDATED } from "@/lib/learnContent";
-import { allArticles, getArticle, getArticleBySlug } from "@/lib/articles";
+import { allArticles, getArticle, getArticleBySlug, getRoadmapRefs } from "@/lib/articles";
 import { extractHeadings } from "@/lib/articles/headings";
 import { articleTools } from "@/lib/articleTools";
 
@@ -60,6 +59,10 @@ export default async function ArticlePage({
   const meta = getTopic(topic);
   const accent = meta.color;
   const tool = articleTools[found.slug] ?? learnContent[topic].tool;
+  // This topic's roadmap article, for the "part of a path" banner below.
+  const roadmapRef = getRoadmapRefs().find(
+    (r) => r.topicId === topic && r.slug !== found.slug
+  );
   const headings = extractHeadings(found.body);
   const related = (found.related ?? [])
     .map((slug) => getArticleBySlug(slug))
@@ -264,6 +267,30 @@ export default async function ArticlePage({
                     </p>
                     <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
                       {tool.label}
+                    </h3>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
+                </Link>
+              )}
+
+              {/* Roadmap cross-link: every guide points at its topic's path */}
+              {roadmapRef && (
+                <Link
+                  href={roadmapRef.href}
+                  className="group flex items-center gap-4 rounded-2xl border-2 border-ink bg-cream p-6 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+                >
+                  <span
+                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
+                    style={{ background: `${accent}1A`, color: accent }}
+                  >
+                    <Map className="h-6 w-6" strokeWidth={1.5} />
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-stone">
+                      One stop on a longer path
+                    </p>
+                    <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
+                      {roadmapRef.title}
                     </h3>
                   </div>
                   <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />

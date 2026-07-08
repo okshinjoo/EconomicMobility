@@ -46,7 +46,16 @@ interface KCQuestionInstance {
 
 const emptyAnswers: QuizAnswers = { q1: "", q2: "", q3: [], q4: [], q5: "" };
 
-export default function QuizFlow() {
+/** TopicId -> its roadmap article, server-derived (see app/quiz/page.tsx). */
+export type RoadmapsByTopic = Partial<
+  Record<string, { title: string; href: string }>
+>;
+
+export default function QuizFlow({
+  roadmapsByTopic,
+}: {
+  roadmapsByTopic?: RoadmapsByTopic;
+}) {
   const [step, setStep] = useState<StepId>("welcome");
   const [answers, setAnswers] = useState<QuizAnswers>(emptyAnswers);
   const [kcIndex, setKcIndex] = useState(0);
@@ -417,6 +426,7 @@ export default function QuizFlow() {
         {step === "results" && (
           <div className="mx-auto max-w-3xl">
           <QuizResults
+            roadmapsByTopic={roadmapsByTopic}
             answers={answers}
             tier={tier}
             isNotSure={isNotSure}

@@ -401,6 +401,18 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+
+          {/* Roadmaps pointer (owner-approved homepage addition, July 2026) */}
+          <p className="mt-8 text-base text-stone">
+            Rather follow a route than browse? Every topic has a{" "}
+            <Link
+              href="/learn#roadmaps"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+            >
+              roadmap that puts its guides in order
+            </Link>
+            , from your first bank account to your first home.
+          </p>
         </div>
       </section>
 

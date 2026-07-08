@@ -28,6 +28,8 @@ interface QuizResultsProps {
   selectedTopicIds: TopicId[];
   kcAnswers: KCAnswers;
   onRetake: () => void;
+  /** TopicId -> roadmap article for the "follow the path" links (server-derived). */
+  roadmapsByTopic?: Partial<Record<string, { title: string; href: string }>>;
 }
 
 export default function QuizResults({
@@ -38,6 +40,7 @@ export default function QuizResults({
   selectedTopicIds,
   kcAnswers,
   onRetake,
+  roadmapsByTopic,
 }: QuizResultsProps) {
   const profile = getFinancialProfile(answers.q1, answers.q2, tier);
 
@@ -183,6 +186,16 @@ export default function QuizResults({
                   <p className="mt-1 text-sm leading-6 text-stone">
                     {step.why}
                   </p>
+                  {roadmapsByTopic?.[step.topicId] && (
+                    <p className="mt-2 text-sm">
+                      <Link
+                        href={roadmapsByTopic[step.topicId]!.href}
+                        className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+                      >
+                        Follow the roadmap: {roadmapsByTopic[step.topicId]!.title}
+                      </Link>
+                    </p>
+                  )}
                 </div>
               </li>
             );

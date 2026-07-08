@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap, lastReadSlug } from "@/lib/readTracking";
+import { ROADMAP_SET } from "@/lib/roadmaps";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
@@ -36,6 +37,7 @@ interface Recommendation {
   color: string;
   readCount: number;
   topicTotal: number;
+  roadmapHref?: string;
 }
 
 /**
@@ -77,6 +79,9 @@ export default function WelcomeBack({
     const nextIn = (topic: TopicPath): Recommendation | null => {
       const next = topic.articles.find((a) => !read[a.slug]);
       if (!next) return null;
+      const roadmap = topic.articles.find(
+        (a) => ROADMAP_SET.has(a.slug) && a.slug !== next.slug
+      );
       return {
         kicker: "Pick up where you left off",
         title: next.title,
@@ -85,6 +90,7 @@ export default function WelcomeBack({
         color: topic.color,
         readCount: topic.articles.filter((a) => read[a.slug]).length,
         topicTotal: topic.articles.length,
+        roadmapHref: roadmap ? `${topic.href}/${roadmap.slug}` : undefined,
       };
     };
 
@@ -159,6 +165,17 @@ export default function WelcomeBack({
               >
                 {rec.title}
               </Link>
+              {rec.roadmapHref && (
+                <span className="text-stone">
+                  {" "}&middot; or follow{" "}
+                  <Link
+                    href={rec.roadmapHref}
+                    className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+                  >
+                    the {rec.topicShort.toLowerCase()} roadmap
+                  </Link>
+                </span>
+              )}
             </p>
           </div>
         ) : (
