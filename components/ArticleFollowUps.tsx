@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Map, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Map, Sparkles, Wrench } from "lucide-react";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
 
@@ -22,7 +22,7 @@ export function QuizPromo() {
   if (taken) return null;
 
   return (
-    <div className="py-10">
+    <div>
       <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-ink p-8 text-cream sm:flex-row sm:items-center">
         <div className="max-w-md">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber">
@@ -46,6 +46,46 @@ export function QuizPromo() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export function ToolCard({
+  href,
+  label,
+  accent,
+}: {
+  href: string;
+  label: string;
+  accent: string;
+}) {
+  const [visited, setVisited] = useState(false);
+  useEffect(() => {
+    const map = loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools);
+    if (map?.[href]) setVisited(true);
+  }, [href]);
+  if (visited) return null;
+
+  return (
+    <Link
+      href={href}
+      className="group flex items-center gap-4 rounded-2xl border border-sand bg-cream p-6 transition-colors hover:border-ink/20"
+    >
+      <span
+        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
+        style={{ background: `${accent}1A`, color: accent }}
+      >
+        <Wrench className="h-6 w-6" strokeWidth={1.5} />
+      </span>
+      <div className="flex-1">
+        <p className="text-xs font-semibold uppercase tracking-wide text-stone">
+          Try it yourself
+        </p>
+        <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
+          {label}
+        </h3>
+      </div>
+      <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
+    </Link>
   );
 }
 

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Lora, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatLauncher from "@/components/ChatLauncher";
+import VisitTracker from "@/components/VisitTracker";
 import { getSearchItems } from "@/lib/search";
 
 const geistSans = Geist({
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <ChatLauncher items={getSearchItems()} />
+        <VisitTracker />
         <Analytics />
       </body>
     </html>

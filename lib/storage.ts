@@ -30,6 +30,7 @@ export const STORAGE_KEYS = {
   netWorth: "empower:net-worth:v1",
   compareOffers: "empower:compare-offers:v1",
   jars: "empower:jars:v1",
+  visitedTools: "empower:visited-tools:v1",
   flashcards: "empower:flashcards:v1",
 } as const;
 

@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight, Clock, Wrench, BookMarked } from "lucide-react";
+import { ChevronRight, Clock, BookMarked } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
@@ -12,6 +12,7 @@ import MarkAsRead from "@/components/MarkAsRead";
 import TopicQuizCard from "@/components/TopicQuizCard";
 import {
   QuizPromo,
+  ToolCard,
   RoadmapPathCard,
   RelatedArticles,
   type RelatedItem,
@@ -225,51 +226,33 @@ export default async function ArticlePage({
                 </p>
               </div>
 
-              {/* Test your knowledge — hides itself once the quiz is taken */}
-              <QuizPromo />
+              {/* Follow-ups: each hides itself once done/visited. The
+                  container spacing keeps the glossary note clear of them
+                  no matter which cards survive. */}
+              <div className="mt-10 space-y-4">
+                <QuizPromo />
 
-              {/* Topic mini quiz — above the other suggestions on purpose */}
-              {hasTopicQuiz && (
-                <TopicQuizCard
-                  topicId={topic}
-                  topicShort={meta.short}
-                  accent={accent}
-                />
-              )}
+                {hasTopicQuiz && (
+                  <TopicQuizCard
+                    topicId={topic}
+                    topicShort={meta.short}
+                    accent={accent}
+                  />
+                )}
 
-              {/* Tool cross-link */}
-              {tool && (
-                <Link
-                  href={tool.href}
-                  className="group flex items-center gap-4 rounded-2xl border border-sand bg-cream p-6 transition-colors hover:border-ink/20"
-                >
-                  <span
-                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-                    style={{ background: `${accent}1A`, color: accent }}
-                  >
-                    <Wrench className="h-6 w-6" strokeWidth={1.5} />
-                  </span>
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-stone">
-                      Try it yourself
-                    </p>
-                    <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
-                      {tool.label}
-                    </h3>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
-                </Link>
-              )}
+                {tool && (
+                  <ToolCard href={tool.href} label={tool.label} accent={accent} />
+                )}
 
-              {/* Roadmap cross-link — hides itself once the roadmap is read */}
-              {roadmapRef && (
-                <RoadmapPathCard
-                  href={roadmapRef.href}
-                  title={roadmapRef.title}
-                  slug={roadmapRef.slug}
-                  accent={accent}
-                />
-              )}
+                {roadmapRef && (
+                  <RoadmapPathCard
+                    href={roadmapRef.href}
+                    title={roadmapRef.title}
+                    slug={roadmapRef.slug}
+                    accent={accent}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>

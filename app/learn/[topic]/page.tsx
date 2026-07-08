@@ -9,6 +9,7 @@ import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
 import { ROADMAP_SET } from "@/lib/roadmaps";
+import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
 import TopicMark from "@/components/TopicMark";
 
@@ -228,12 +229,15 @@ export default async function TopicPage({
                         </span>
                       </div>
 
-                      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                        {rest.map((art) => (
+                      <ReadOrderedGrid
+                        className="mt-5 grid gap-4 sm:grid-cols-2"
+                        items={rest.map((art) => ({
+                          slug: art.slug,
+                          node: (
                           <Link
                             key={art.slug}
                             href={`/learn/${topic}/${art.slug}`}
-                            className="group flex flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                            className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
                           >
                             <div className="flex items-center justify-between">
                               <span
@@ -270,8 +274,9 @@ export default async function TopicPage({
                               Read
                             </span>
                           </Link>
-                        ))}
-                      </div>
+                          ),
+                        }))}
+                      />
                     </div>
                   );
                 })}
