@@ -2,14 +2,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  ArrowRight,
-  ArrowLeft,
-  ChevronRight,
-  Clock,
-  Sparkles,
-  Wrench,
-  BookMarked, Map } from "lucide-react";
+import { ArrowRight, ChevronRight, Clock, Wrench, BookMarked } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
@@ -17,6 +10,12 @@ import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
 import TopicQuizCard from "@/components/TopicQuizCard";
+import {
+  QuizPromo,
+  RoadmapPathCard,
+  RelatedArticles,
+  type RelatedItem,
+} from "@/components/ArticleFollowUps";
 import ArticleQuiz from "@/components/ArticleQuiz";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import { learnContent, LEARN_UPDATED } from "@/lib/learnContent";
@@ -226,31 +225,8 @@ export default async function ArticlePage({
                 </p>
               </div>
 
-              {/* Test your knowledge */}
-              <div className="py-10">
-                <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-ink p-8 text-cream sm:flex-row sm:items-center">
-                  <div className="max-w-md">
-                    <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-                      <Sparkles className="h-4 w-4" />
-                      Put it to the test
-                    </span>
-                    <h2 className="mt-3 font-display text-2xl font-bold">
-                      See where you stand
-                    </h2>
-                    <p className="mt-2 text-base leading-7 text-cream/70">
-                      The 2-minute quiz checks what you know and points you to
-                      what to read next.
-                    </p>
-                  </div>
-                  <Link
-                    href="/quiz"
-                    className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
-                  >
-                    Take the quiz
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
+              {/* Test your knowledge — hides itself once the quiz is taken */}
+              <QuizPromo />
 
               {/* Topic mini quiz — above the other suggestions on purpose */}
               {hasTopicQuiz && (
@@ -285,77 +261,36 @@ export default async function ArticlePage({
                 </Link>
               )}
 
-              {/* Roadmap cross-link: every guide points at its topic's path */}
+              {/* Roadmap cross-link — hides itself once the roadmap is read */}
               {roadmapRef && (
-                <Link
+                <RoadmapPathCard
                   href={roadmapRef.href}
-                  className="group flex items-center gap-4 rounded-2xl border-2 border-ink bg-cream p-6 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
-                >
-                  <span
-                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-                    style={{ background: `${accent}1A`, color: accent }}
-                  >
-                    <Map className="h-6 w-6" strokeWidth={1.5} />
-                  </span>
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-stone">
-                      One stop on a longer path
-                    </p>
-                    <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
-                      {roadmapRef.title}
-                    </h3>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
-                </Link>
+                  title={roadmapRef.title}
+                  slug={roadmapRef.slug}
+                  accent={accent}
+                />
               )}
             </div>
           </div>
         </div>
       </article>
 
-      {/* Related articles */}
+      {/* Related articles — already-read guides drop out client-side */}
       {related.length > 0 && (
-        <section className="bg-paper-deep">
-          <div className="mx-auto max-w-2xl px-6 py-14">
-            <h2 className="font-display text-2xl font-bold text-ink">
-              Keep reading
-            </h2>
-            <div className="mt-6 space-y-3">
-              {related.map((rel) => {
-                const relTopic = getTopic(rel.topicId);
-                return (
-                  <Link
-                    key={rel.slug}
-                    href={`/learn/${rel.topicId}/${rel.slug}`}
-                    className="group flex items-center justify-between gap-4 rounded-2xl border border-sand bg-cream p-5 transition-colors hover:border-ink/20"
-                  >
-                    <div>
-                      <p
-                        className="text-xs font-semibold uppercase tracking-wide"
-                        style={{ color: relTopic.color }}
-                      >
-                        {relTopic.title}
-                      </p>
-                      <h3 className="mt-1 font-display text-lg font-semibold text-ink">
-                        {rel.title}
-                      </h3>
-                    </div>
-                    <ArrowRight className="h-5 w-5 flex-shrink-0 text-stone transition-transform group-hover:translate-x-1" />
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="mt-8">
-              <Link
-                href={meta.href}
-                className="inline-flex items-center gap-2 text-base font-semibold text-forest transition-colors hover:text-ink"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                All {meta.title} guides
-              </Link>
-            </div>
-          </div>
-        </section>
+        <RelatedArticles
+          items={related.map((rel): RelatedItem => {
+            const relTopic = getTopic(rel.topicId);
+            return {
+              slug: rel.slug,
+              href: `/learn/${rel.topicId}/${rel.slug}`,
+              kicker: relTopic.title,
+              color: relTopic.color,
+              title: rel.title,
+            };
+          })}
+          backHref={meta.href}
+          backLabel={`All ${meta.title} guides`}
+        />
       )}
 
       <Footer />

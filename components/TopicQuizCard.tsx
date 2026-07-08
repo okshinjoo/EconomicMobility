@@ -10,8 +10,9 @@ type QuizScoreMap = Record<string, { score: number; total: number; at: number }>
 
 /**
  * The end-of-article suggestion for a topic's mini quiz. Sits just above the
- * tool/roadmap suggestions. Shows the visitor's best run once they've taken
- * it (renders that chip only after mount, so no hydration mismatch).
+ * tool/roadmap suggestions — and disappears entirely once the visitor has
+ * taken that quiz (owner directive: don't keep prompting for things already
+ * done; the quiz page stays reachable on its own).
  */
 export default function TopicQuizCard({
   topicId,
@@ -22,12 +23,14 @@ export default function TopicQuizCard({
   topicShort: string;
   accent: string;
 }) {
-  const [best, setBest] = useState<{ score: number; total: number } | null>(null);
+  const [taken, setTaken] = useState(false);
 
   useEffect(() => {
     const saved = loadJSON<QuizScoreMap>(QUIZ_SCORES_KEY);
-    if (saved?.[`topic-quiz:${topicId}`]) setBest(saved[`topic-quiz:${topicId}`]);
+    if (saved?.[`topic-quiz:${topicId}`]) setTaken(true);
   }, [topicId]);
+
+  if (taken) return null;
 
   return (
     <Link
@@ -43,7 +46,7 @@ export default function TopicQuizCard({
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">
-          {best ? `Your best: ${best.score}/${best.total} · take it again` : "Test yourself"}
+          Test yourself
         </p>
         <h3 className="mt-0.5 font-display text-lg font-semibold text-ink">
           The {topicShort.toLowerCase()} mini quiz
