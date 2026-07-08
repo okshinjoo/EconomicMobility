@@ -187,7 +187,7 @@ export default function StartHerePage() {
 
       {/* Progress backup — the no-account answer to "what if I switch devices?" */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-3xl px-6 pb-16">
+        <div className="mx-auto max-w-3xl px-6 py-16">
           <DataBackup />
         </div>
       </section>

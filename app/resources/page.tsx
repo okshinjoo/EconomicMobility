@@ -227,7 +227,7 @@ export default function ResourcesPage() {
 
       {/* Check-a-broker: the investor.gov habit, one click */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-3xl px-6 pb-16">
+        <div className="mx-auto max-w-3xl px-6 py-16">
           <CheckBroker />
         </div>
       </section>
