@@ -103,15 +103,25 @@ export const lifestyleCategories: LifestyleCategory[] = [
     ],
   },
   {
-    id: "debt",
-    title: "Any debt payments?",
-    short: "Debt",
+    id: "student-loans",
+    title: "Student loans?",
+    short: "Student loans",
     color: "#7b5e7d",
     options: [
-      { id: "none", label: "None", blurb: "Nothing follows you month to month.", monthly: 0 },
-      { id: "student", label: "A typical student loan", blurb: "About the average federal-loan payment after college.", monthly: 300 },
-      { id: "student-plus", label: "Loans plus a card balance", blurb: "The degree and the furniture it got bought with.", monthly: 550 },
+      { id: "none", label: "None", blurb: "No student debt, or not yet.", monthly: 0 },
+      { id: "average", label: "Average", blurb: "About the average federal-loan payment after college.", monthly: 300 },
+      { id: "more", label: "More than average", blurb: "Grad school, private loans, or borrowing past the average.", monthly: 500 },
     ],
+  },
+  {
+    id: "debts",
+    title: "Other debt payments?",
+    short: "Debts",
+    color: "#5d6b8a",
+    freeEntry: {
+      hint: "Car note, credit cards, medical bills - whatever you actually pay per month, not counting student loans. $0 if nothing follows you around.",
+    },
+    options: [],
   },
   {
     id: "fun",
@@ -172,6 +182,9 @@ export const lifestyleCategories: LifestyleCategory[] = [
     title: "Helping family out?",
     short: "Family",
     color: "#9c6b30",
+    freeEntry: {
+      hint: "Rent help, remittances, the family phone plan - whatever leaves your account for family in a typical month. $0 is a fine answer.",
+    },
     options: [
       { id: "none", label: "Not right now", blurb: "Your money covers you.", monthly: 0 },
       { id: "sometimes", label: "When it matters", blurb: "Covering a bill or a birthday when someone needs it.", monthly: 100 },

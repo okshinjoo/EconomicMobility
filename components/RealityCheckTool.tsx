@@ -44,7 +44,7 @@ const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
   {
     title: "Health, debt & family",
     blurb: "The grown-up line items most calculators skip.",
-    cats: ["health", "debt", "family"],
+    cats: ["health", "student-loans", "debts", "family"],
   },
   {
     title: "The fun column",
@@ -86,7 +86,13 @@ export default function RealityCheckTool() {
   useEffect(() => {
     const saved = loadJSON<Snapshot>(STORAGE_KEYS.realityCheck);
     // New snapshots carry a complete flag; older ones had a pick per category.
-    if (saved?.picks && (saved.complete || Object.keys(saved.picks).length === totalCats)) {
+    // Snapshots from before the debt split (a "debt" pick) don't map onto the
+    // new categories, so those start fresh rather than resume with holes.
+    if (
+      saved?.picks &&
+      !saved.picks["debt"] &&
+      (saved.complete || Object.keys(saved.picks).length === totalCats)
+    ) {
       setPicks(saved.picks);
       setStateCode(saved.stateCode ?? "");
       setOverrides(saved.overrides ?? {});
