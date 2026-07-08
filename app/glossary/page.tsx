@@ -28,9 +28,10 @@ export default function GlossaryPage() {
   }
   const letters = [...groups.keys()];
 
-  // A rotating sample of real terms for the marquee strip.
+  // A rotating sample of real terms for the marquee strip (the glossary is
+  // 400+ terms now; every 7th keeps the marquee a strip, not a wall).
   const tickerItems = sorted
-    .filter((_, i) => i % 4 === 0)
+    .filter((_, i) => i % 7 === 0)
     .map((t) => ({ label: t.term, href: `#${t.slug}` }));
 
   return (
@@ -88,7 +89,22 @@ export default function GlossaryPage() {
 
       {/* Terms — editorial A–Z with giant letters */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-5xl px-6 pb-20 pt-10">
+        <div className="mx-auto max-w-5xl px-6 pb-20 pt-10 lg:grid lg:grid-cols-[2.75rem_1fr] lg:gap-10">
+          {/* Sticky A–Z rail (desktop) — the hero chips scroll away; this doesn't */}
+          <nav aria-label="Jump to a letter" className="hidden lg:block">
+            <div className="sticky top-24 flex flex-col gap-1">
+              {letters.map((letter) => (
+                <a
+                  key={letter}
+                  href={`#letter-${letter}`}
+                  className="flex h-7 w-7 items-center justify-center rounded-md border border-sand bg-cream text-xs font-bold text-stone transition-colors hover:border-ink hover:bg-amber hover:text-ink"
+                >
+                  {letter}
+                </a>
+              ))}
+            </div>
+          </nav>
+
           <div className="space-y-8">
             {letters.map((letter) => {
               const terms = groups.get(letter)!;
@@ -120,6 +136,11 @@ export default function GlossaryPage() {
                           className="scroll-mt-24 border-b border-sand py-3"
                         >
                           <dt className="font-display text-base font-semibold text-ink">
+                            <span
+                              aria-hidden="true"
+                              className="mr-2 inline-block h-2.5 w-2.5 -rotate-3 rounded-[3px] align-baseline"
+                              style={{ background: rel?.color ?? "#c9bfa9" }}
+                            />
                             {term.term}
                             {term.aliases && term.aliases.length > 0 && (
                               <span className="ml-2 text-xs font-normal italic text-stone">
