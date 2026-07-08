@@ -88,60 +88,63 @@ export default function GlossaryPage() {
 
       {/* Terms — editorial A–Z with giant letters */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-5xl px-6 pb-24 pt-14">
-          <div className="space-y-14">
+        <div className="mx-auto max-w-5xl px-6 pb-20 pt-10">
+          <div className="space-y-8">
             {letters.map((letter) => {
               const terms = groups.get(letter)!;
               return (
                 <div
                   key={letter}
                   id={`letter-${letter}`}
-                  className="grid scroll-mt-24 gap-x-12 gap-y-2 border-t-2 border-ink/10 pt-8 first:border-t-0 first:pt-0 lg:grid-cols-[140px_1fr]"
+                  className="grid scroll-mt-24 gap-x-10 gap-y-1 border-t-2 border-ink/10 pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[80px_1fr]"
                 >
-                  <div className="flex items-baseline gap-4 lg:block">
+                  <div className="flex items-baseline gap-3 lg:block">
                     <span
                       aria-hidden="true"
-                      className="select-none font-display text-7xl font-bold leading-none text-sand sm:text-8xl"
+                      className="select-none font-display text-4xl font-bold leading-none text-sand sm:text-5xl"
                     >
                       {letter}
                     </span>
-                    <span className="block text-xs font-bold uppercase tracking-wide text-stone lg:mt-3">
+                    <span className="block text-xs font-bold uppercase tracking-wide text-stone lg:mt-2">
                       {terms.length} term{terms.length > 1 ? "s" : ""}
                     </span>
                   </div>
 
-                  <dl className="grid gap-x-10 sm:grid-cols-2">
+                  <dl className="grid gap-x-8 sm:grid-cols-2">
                     {terms.map((term) => {
                       const rel = term.related ? getTopic(term.related) : null;
                       return (
                         <div
                           key={term.slug}
                           id={term.slug}
-                          className="scroll-mt-24 border-b border-sand py-5"
+                          className="scroll-mt-24 border-b border-sand py-3"
                         >
-                          <dt className="font-display text-lg font-semibold text-ink">
+                          <dt className="font-display text-base font-semibold text-ink">
                             {term.term}
+                            {term.aliases && term.aliases.length > 0 && (
+                              <span className="ml-2 text-xs font-normal italic text-stone">
+                                also: {term.aliases.join(", ")}
+                              </span>
+                            )}
                           </dt>
-                          {term.aliases && term.aliases.length > 0 && (
-                            <p className="mt-0.5 text-xs italic text-stone">
-                              also: {term.aliases.join(", ")}
-                            </p>
-                          )}
-                          <dd className="mt-2 text-[15px] leading-7 text-ink/80">
+                          <dd className="mt-1 text-sm leading-6 text-ink/80">
                             {term.definition}
+                            {rel && (
+                              <>
+                                {" "}
+                                <Link
+                                  href={rel.href}
+                                  className="whitespace-nowrap text-xs font-semibold underline decoration-2 underline-offset-4 transition-opacity hover:opacity-75"
+                                  style={{
+                                    color: rel.color,
+                                    textDecorationColor: `${rel.color}55`,
+                                  }}
+                                >
+                                  More on {rel.title}
+                                </Link>
+                              </>
+                            )}
                           </dd>
-                          {rel && (
-                            <Link
-                              href={rel.href}
-                              className="mt-3 inline-block text-sm font-semibold underline decoration-2 underline-offset-4 transition-opacity hover:opacity-75"
-                              style={{
-                                color: rel.color,
-                                textDecorationColor: `${rel.color}55`,
-                              }}
-                            >
-                              Learn more about {rel.title}
-                            </Link>
-                          )}
                         </div>
                       );
                     })}
