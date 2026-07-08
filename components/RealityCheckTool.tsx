@@ -6,13 +6,18 @@ import { ArrowLeft, RotateCcw } from "lucide-react";
 import {
   lifestyleCategories,
   salaryForLifestyle,
+  type LifestyleCategory,
   type RealityResult,
 } from "@/lib/realityCheck";
 import { US_STATES } from "@/lib/taxData";
 import { readBudgetSummary } from "@/lib/calcImports";
 import { getReadMap } from "@/lib/readTracking";
 import { Donut, Legend } from "@/components/Charts";
+import { MoneyInput, num } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
+
+const usd = (n: number) =>
+  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
 /** Follow-up reads for people who already have a real budget saved,
  *  most on-topic first; the first unread one gets recommended. */
@@ -23,63 +28,102 @@ const NEXT_READS = [
   { slug: "needs-vs-wants", title: "Needs vs. Wants — Without the Guilt" },
 ];
 
-const usd = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+/** Jump$tart-style grouped slides: a few related questions per screen
+ *  instead of one per click. Ids reference lifestyleCategories. */
+const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
+  {
+    title: "Home",
+    blurb: "Where you live and what keeps the lights on.",
+    cats: ["housing", "home-bills"],
+  },
+  {
+    title: "Day to day",
+    blurb: "The stuff that happens every single week.",
+    cats: ["food", "transport", "phone"],
+  },
+  {
+    title: "Health, debt & family",
+    blurb: "The grown-up line items most calculators skip.",
+    cats: ["health", "debt", "family"],
+  },
+  {
+    title: "The fun column",
+    blurb: "Be honest. The tool doesn't judge.",
+    cats: ["fun", "style", "travel", "pets"],
+  },
+  {
+    title: "Future you & everything else",
+    blurb: "Savings, the everyday restock, and where this life happens.",
+    cats: ["extras", "savings"],
+  },
+];
 
 interface Snapshot {
   picks: Record<string, string>;
   stateCode: string;
+  /** Corrected monthly amounts, keyed by category id (results-screen edits). */
+  overrides?: Record<string, string>;
 }
 
-/** picks: categoryId -> optionId. Steps: one category at a time, then state, then results. */
+const catById = (id: string): LifestyleCategory =>
+  lifestyleCategories.find((c) => c.id === id)!;
+
 export default function RealityCheckTool() {
   const [picks, setPicks] = useState<Record<string, string>>({});
   const [stateCode, setStateCode] = useState("");
-  const [step, setStep] = useState(0); // 0..categories.length-1, then state step, then results
-  const total = lifestyleCategories.length;
-  const stateStep = total;
-  const resultStep = total + 1;
+  const [overrides, setOverrides] = useState<Record<string, string>>({});
+  const [slide, setSlide] = useState(0); // 0..SLIDES.length-1, then results
+  const resultStep = SLIDES.length;
+  const totalCats = lifestyleCategories.length;
 
   // Resume a finished check ("pick up where you left off" convention).
   useEffect(() => {
     const saved = loadJSON<Snapshot>(STORAGE_KEYS.realityCheck);
-    if (saved?.picks && Object.keys(saved.picks).length === total) {
+    if (saved?.picks && Object.keys(saved.picks).length === totalCats) {
       setPicks(saved.picks);
       setStateCode(saved.stateCode ?? "");
-      setStep(resultStep);
+      setOverrides(saved.overrides ?? {});
+      setSlide(resultStep);
     }
-  }, [total, resultStep]);
+  }, [totalCats, resultStep]);
 
-  const monthlyFor = (catId: string): number => {
-    const cat = lifestyleCategories.find((c) => c.id === catId);
-    const opt = cat?.options.find((o) => o.id === picks[catId]);
-    return opt?.monthly ?? 0;
+  /** Our estimate for a category from its pick. */
+  const estimateFor = (catId: string): number => {
+    const cat = catById(catId);
+    return cat.options.find((o) => o.id === picks[catId])?.monthly ?? 0;
   };
+  /** What actually counts: their correction if they made one, else our estimate. */
+  const effectiveFor = (catId: string): number =>
+    overrides[catId] !== undefined && overrides[catId] !== ""
+      ? num(overrides[catId])
+      : estimateFor(catId);
+
   const monthlyTotal = lifestyleCategories.reduce(
-    (sum, c) => sum + monthlyFor(c.id),
+    (sum, c) => sum + effectiveFor(c.id),
     0
   );
 
-  const pick = (catId: string, optId: string) => {
-    setPicks((prev) => ({ ...prev, [catId]: optId }));
-    // Small pause so the selection registers visually before advancing.
-    setTimeout(() => setStep((s) => Math.min(s + 1, stateStep)), 180);
-  };
-
-  const finish = () => {
-    saveJSON(STORAGE_KEYS.realityCheck, { picks, stateCode } satisfies Snapshot);
-    setStep(resultStep);
-  };
+  const persist = (next?: Partial<Snapshot>) =>
+    saveJSON(STORAGE_KEYS.realityCheck, {
+      picks,
+      stateCode,
+      overrides,
+      ...next,
+    } satisfies Snapshot);
 
   const restart = () => {
     setPicks({});
     setStateCode("");
-    setStep(0);
+    setOverrides({});
+    setSlide(0);
   };
 
   // ── Results ────────────────────────────────────────────────────────────────
-  if (step === resultStep) {
+  if (slide === resultStep) {
     const result: RealityResult = salaryForLifestyle(monthlyTotal, stateCode);
+    // The honest presentation: a $5,000 band, not fake-precise dollars.
+    const bandLo = Math.floor(result.grossSalary / 5000) * 5000;
+    const bandHi = bandLo + 5000;
     const minWageMultiple = result.hourly / 7.25;
     const verdict =
       result.grossSalary < 45000
@@ -91,7 +135,7 @@ export default function RealityCheckTool() {
             : "The full package costs more than most households in America earn. Now you know what the lifestyle influencers aren't saying.";
 
     const segments = lifestyleCategories
-      .map((c) => ({ label: c.short, color: c.color, value: monthlyFor(c.id) }))
+      .map((c) => ({ label: c.short, color: c.color, value: effectiveFor(c.id) }))
       .filter((s) => s.value > 0);
 
     return (
@@ -101,7 +145,7 @@ export default function RealityCheckTool() {
             Your reality check
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
-            That life costs {usd(monthlyTotal)} a month.
+            That life costs about {usd(monthlyTotal)} a month.
           </h2>
           <p className="mt-2 text-base leading-7 text-cream/75">{verdict}</p>
 
@@ -111,7 +155,7 @@ export default function RealityCheckTool() {
                 Salary you&apos;d need
               </p>
               <p className="mt-1 font-display text-2xl font-bold text-amber">
-                {usd(result.grossSalary)}
+                {usd(bandLo)}–{usd(bandHi)}
               </p>
               <p className="mt-1 text-xs text-cream/60">
                 before taxes{stateCode ? "" : " (no state tax counted)"}
@@ -122,7 +166,7 @@ export default function RealityCheckTool() {
                 That&apos;s per hour
               </p>
               <p className="mt-1 font-display text-2xl font-bold text-amber">
-                {usd(Math.round(result.hourly))}
+                about {usd(Math.round(result.hourly))}
               </p>
               <p className="mt-1 text-xs text-cream/60">
                 full-time, {minWageMultiple.toFixed(1)}× the $7.25 federal minimum
@@ -159,6 +203,61 @@ export default function RealityCheckTool() {
           </div>
         </div>
 
+        {/* The receipt: how we valued each pick, correctable */}
+        <div className="mt-6 rounded-2xl border-2 border-ink bg-cream p-6 shadow-[4px_4px_0_#11211c] sm:p-7">
+          <p className="font-display text-lg font-semibold text-ink">
+            How we priced your picks
+          </p>
+          <p className="mt-1.5 text-sm leading-6 text-stone">
+            These are national ballparks; things like fun, travel, and savings
+            vary hugely from person to person. If a number looks wrong for
+            your life, type over it and everything above updates.
+          </p>
+          <div className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            {lifestyleCategories.map((cat) => {
+              const pick = cat.options.find((o) => o.id === picks[cat.id]);
+              const edited =
+                overrides[cat.id] !== undefined &&
+                overrides[cat.id] !== "" &&
+                num(overrides[cat.id]) !== estimateFor(cat.id);
+              return (
+                <div
+                  key={cat.id}
+                  className="flex items-center justify-between gap-4 border-b border-sand pb-3"
+                >
+                  <div className="min-w-0">
+                    <p
+                      className="text-xs font-bold uppercase tracking-wide"
+                      style={{ color: cat.color }}
+                    >
+                      {cat.short}
+                      {edited && (
+                        <span className="ml-2 font-semibold normal-case tracking-normal text-stone">
+                          your number
+                        </span>
+                      )}
+                    </p>
+                    <p className="truncate text-sm font-medium text-ink">
+                      {pick?.label ?? "—"}
+                    </p>
+                  </div>
+                  <div className="w-28 shrink-0">
+                    <MoneyInput
+                      value={overrides[cat.id] ?? String(estimateFor(cat.id))}
+                      onChange={(v) => {
+                        const next = { ...overrides, [cat.id]: v };
+                        setOverrides(next);
+                        persist({ overrides: next });
+                      }}
+                      placeholder={String(estimateFor(cat.id))}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         <NextStep grossSalary={result.grossSalary} monthlyTotal={monthlyTotal} />
 
         <div className="mt-6">
@@ -175,133 +274,135 @@ export default function RealityCheckTool() {
     );
   }
 
-  // ── State picker step ─────────────────────────────────────────────────────
-  if (step === stateStep) {
-    return (
-      <div className="mx-auto max-w-2xl">
-        <StepHeader
-          index={stateStep}
-          total={total + 1}
-          monthlyTotal={monthlyTotal}
-          onBack={() => setStep(total - 1)}
-        />
-        <h2 className="mt-4 font-display text-2xl font-semibold text-ink sm:text-3xl">
-          Last one: where would this life happen?
-        </h2>
-        <p className="mt-2 text-sm leading-6 text-stone">
-          State income tax changes how big the salary has to be. Skip it and
-          we&apos;ll count federal taxes only.
-        </p>
-        <select
-          value={stateCode}
-          onChange={(e) => setStateCode(e.target.value)}
-          className="mt-5 w-full max-w-sm rounded-lg border border-sand bg-cream px-4 py-3 text-base text-ink focus:border-amber focus:outline-none"
-        >
-          <option value="">Skip (federal taxes only)</option>
-          {US_STATES.map((s) => (
-            <option key={s.code} value={s.code}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-        <div className="mt-6">
-          <button
-            type="button"
-            onClick={finish}
-            className="rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
-          >
-            Show me the number
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // ── Grouped question slides ───────────────────────────────────────────────
+  const group = SLIDES[slide];
+  const answered = group.cats.every((id) => picks[id]);
+  const isLast = slide === SLIDES.length - 1;
 
-  // ── Category steps ────────────────────────────────────────────────────────
-  const cat = lifestyleCategories[step];
   return (
     <div className="mx-auto max-w-2xl">
-      <StepHeader
-        index={step}
-        total={total + 1}
-        monthlyTotal={monthlyTotal}
-        onBack={step > 0 ? () => setStep(step - 1) : undefined}
-      />
-      <h2 className="mt-4 font-display text-2xl font-semibold text-ink sm:text-3xl">
-        {cat.title}
-      </h2>
-      <div className="mt-5 space-y-3">
-        {cat.options.map((opt) => {
-          const selected = picks[cat.id] === opt.id;
-          return (
-            <button
-              key={opt.id}
-              type="button"
-              onClick={() => pick(cat.id, opt.id)}
-              className={`flex w-full items-baseline justify-between gap-4 rounded-xl border px-5 py-4 text-left transition-colors ${
-                selected
-                  ? "border-forest bg-forest/[0.08]"
-                  : "border-sand bg-cream hover:border-ink/30"
-              }`}
-            >
-              <span>
-                <span className="block font-semibold text-ink">{opt.label}</span>
-                <span className="mt-0.5 block text-sm leading-6 text-stone">
-                  {opt.blurb}
-                </span>
-              </span>
-              <span className="shrink-0 font-display text-lg font-bold tabular-nums" style={{ color: cat.color }}>
-                {opt.monthly === 0 ? "$0" : `${usd(opt.monthly)}/mo`}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function StepHeader({
-  index,
-  total,
-  monthlyTotal,
-  onBack,
-}: {
-  index: number;
-  total: number;
-  monthlyTotal: number;
-  onBack?: () => void;
-}) {
-  return (
-    <div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          {onBack && (
-            <button
-              type="button"
-              onClick={onBack}
-              aria-label="Back"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-sand bg-cream text-ink transition-colors hover:border-ink/30"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-          )}
-          <span className="text-sm font-semibold tabular-nums text-stone">
-            {index + 1} of {total + 1}
+      <div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {slide > 0 && (
+              <button
+                type="button"
+                onClick={() => setSlide(slide - 1)}
+                aria-label="Back"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-sand bg-cream text-ink transition-colors hover:border-ink/30"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+            )}
+            <span className="text-sm font-semibold tabular-nums text-stone">
+              {slide + 1} of {SLIDES.length}
+            </span>
+          </div>
+          <span className="text-sm font-medium text-stone">
+            The prices come at the end.
           </span>
         </div>
-        <span className="text-sm font-semibold text-ink">
-          Running total:{" "}
-          <span className="font-display tabular-nums text-forest">
-            {usd(monthlyTotal)}/mo
-          </span>
-        </span>
+        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-sand">
+          <div
+            className="h-full rounded-full bg-amber transition-[width] duration-300"
+            style={{ width: `${((slide + 1) / (SLIDES.length + 1)) * 100}%` }}
+          />
+        </div>
       </div>
-      <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-sand">
-        <div
-          className="h-full rounded-full bg-amber transition-[width] duration-300"
-          style={{ width: `${((index + 1) / (total + 2)) * 100}%` }}
-        />
+
+      <h2 className="mt-6 font-display text-2xl font-semibold text-ink sm:text-3xl">
+        {group.title}
+      </h2>
+      <p className="mt-1 text-sm leading-6 text-stone">{group.blurb}</p>
+
+      <div className="mt-6 space-y-8">
+        {group.cats.map((catId) => {
+          const cat = catById(catId);
+          return (
+            <fieldset key={catId}>
+              <legend
+                className="text-sm font-bold uppercase tracking-[0.14em]"
+                style={{ color: cat.color }}
+              >
+                {cat.title}
+              </legend>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                {cat.options.map((opt) => {
+                  const selected = picks[catId] === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() =>
+                        setPicks((prev) => ({ ...prev, [catId]: opt.id }))
+                      }
+                      className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                        selected
+                          ? "border-forest bg-forest/[0.08]"
+                          : "border-sand bg-cream hover:border-ink/30"
+                      }`}
+                    >
+                      <span className="block text-sm font-semibold text-ink">
+                        {opt.label}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-5 text-stone">
+                        {opt.blurb}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+          );
+        })}
+
+        {isLast && (
+          <fieldset>
+            <legend className="text-sm font-bold uppercase tracking-[0.14em] text-forest">
+              Where would this life happen?
+            </legend>
+            <p className="mt-1 text-xs leading-5 text-stone">
+              State income tax changes the answer. Skip it and we&apos;ll count
+              federal taxes only.
+            </p>
+            <select
+              value={stateCode}
+              onChange={(e) => setStateCode(e.target.value)}
+              className="mt-3 w-full max-w-sm rounded-lg border border-sand bg-cream px-4 py-3 text-base text-ink focus:border-amber focus:outline-none"
+            >
+              <option value="">Skip (federal taxes only)</option>
+              {US_STATES.map((s) => (
+                <option key={s.code} value={s.code}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </fieldset>
+        )}
+      </div>
+
+      <div className="mt-8">
+        <button
+          type="button"
+          disabled={!answered}
+          onClick={() => {
+            if (isLast) {
+              persist();
+              setSlide(resultStep);
+            } else {
+              setSlide(slide + 1);
+              window.scrollTo({ top: 0 });
+            }
+          }}
+          className="rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {isLast ? "Show me the number" : "Next"}
+        </button>
+        {!answered && (
+          <p className="mt-2 text-xs text-stone">
+            Pick one option in each section to keep going.
+          </p>
+        )}
       </div>
     </div>
   );
