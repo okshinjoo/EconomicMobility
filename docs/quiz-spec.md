@@ -159,9 +159,9 @@ The knowledge check is intentionally not too hard — the goal is calibration, n
 
 1. You have three credit cards. Card A has a $500 limit and $400 balance. Card B has a $2,000 limit and $200 balance. Card C has a $1,000 limit and $0 balance. What is your overall credit utilization rate?
    - 20%
-   - **29%** ✓
+   - 29%
    - 40%
-   - 17%
+   - **17%** ✓ *(answer key corrected July 2026: $600 / $3,500 ≈ 17%)*
 2. You're about to apply for a mortgage and want to maximize your credit score first. You have 6 months. Which strategy is most effective?
    - Open two new credit cards to increase your available credit
    - **Pay down revolving balances and avoid any new credit applications** ✓
@@ -274,12 +274,12 @@ The knowledge check is intentionally not too hard — the goal is calibration, n
 
 **Advanced**
 
-1. What is "Expected Family Contribution" (EFC) and how does it affect your aid?
+1. What is the "Student Aid Index" (SAI) on the FAFSA and how does it affect your aid? *(updated July 2026: the FAFSA replaced EFC with the SAI)*
    - It's the amount your school expects you to fundraise
-   - **It's a number used to determine how much financial aid you're eligible for — lower EFC generally means more aid** ✓
+   - **It's a number used to determine how much financial aid you're eligible for — lower SAI generally means more aid** ✓
    - It's only relevant for graduate students
    - It's the total cost of attendance at your school
-2. A college's "Cost of Attendance" is $45,000 and your financial aid package is $30,000. What is your "unmet need" if your EFC is $5,000?
+2. A college's "Cost of Attendance" is $45,000 and your financial aid package is $30,000. What is your "unmet need" if your Student Aid Index is $5,000?
    - $15,000
    - **$10,000** ✓
    - $20,000

@@ -50,7 +50,7 @@ export const creditExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you don't pay it all off, the grace period disappears and the card starts charging interest on what's left. Credit card interest is steep, often somewhere around 20% or more a year, so check the current rate on your own card. And it compounds, meaning you get charged interest on top of interest. That's how a balance can quietly grow even after you've stopped using the card.",
+        text: "If you don't pay it all off, the grace period disappears and the card starts charging interest on what's left. Credit card interest is steep, averaging around 21% to 24% a year in 2026, so check the rate on your own card. And it compounds, meaning you get charged interest on top of interest. That's how a balance can quietly grow even after you've stopped using the card.",
       },
       {
         type: "h2",
@@ -279,7 +279,7 @@ export const creditExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You can pull your reports from each of the three bureaus there. A common move is to space them out, one bureau every few months, so you're keeping an eye on things all year long without paying anyone.",
+        text: "You can pull your reports from each of the three bureaus there, free, as often as once a week; the bureaus made weekly access permanent in 2023. So there's no need to ration your looks. Checking each bureau a few times a year keeps an eye on things without paying anyone.",
       },
       {
         type: "h2",

@@ -207,7 +207,7 @@ export const investingRetirementArticles: Article[] = [
       },
       {
         type: "p",
-        text: "An IRA is a *retirement* account, so the same rule applies as with a 401(k): the money is meant to stay invested for the long haul. Pulling earnings out early (generally before age 59½) usually means income tax plus a 10% penalty, with some specific exceptions. The rules are detailed and they change, so for your specifics, lean on IRS.gov or a qualified tax professional.",
+        text: "An IRA is a *retirement* account, so the same rule applies as with a 401(k): the money is meant to stay invested for the long haul. Pulling earnings out early (generally before age 59½) usually means income tax plus a 10% penalty, with some specific exceptions. The exceptions are detailed, so for your specifics, a qualified tax professional is worth asking.",
       },
       {
         type: "key",

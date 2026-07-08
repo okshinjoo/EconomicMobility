@@ -481,7 +481,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The key piece of paper is the **1098-T**, a form your school sends (often you download it from the student portal) showing what was paid in tuition and fees. Keep receipts for required books and supplies too. Both credits start phasing out once your income passes about **$80,000** (single) or **$160,000** (married filing jointly), and disappear above **$90,000** / **$180,000**, so most students and families qualify in full. Free software or a VITA volunteer will confirm the exact figures for your situation.",
+        text: "The key piece of paper is the **1098-T**, a form your school sends (often you download it from the student portal) showing what was paid in tuition and fees. Keep receipts for required books and supplies too. Both credits start phasing out once your income passes about **$80,000** (single) or **$160,000** (married filing jointly), and disappear above **$90,000** / **$180,000**, so most students and families qualify in full.",
       },
       {
         type: "p",
@@ -493,7 +493,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is general information, not personal tax advice, and the exact limits change every year. But the headline is simple and worth remembering: education isn't only an expense at tax time. Handled right, part of it can come back to you.",
+        text: "This is general information, not personal tax advice. But the headline is simple and worth remembering: education isn't only an expense at tax time. Handled right, part of it can come back to you.",
       },
     ],
     related: ["deductions-vs-credits", "earned-income-tax-credit", "free-ways-to-file"],

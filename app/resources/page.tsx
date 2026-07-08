@@ -43,8 +43,8 @@ const groups = [
     accent: "#157a5a",
     links: [
       {
-        name: "Benefits.gov",
-        url: "https://www.benefits.gov",
+        name: "USA.gov benefit finder",
+        url: "https://www.usa.gov/benefit-finder",
         desc: "Answer a few questions to find federal benefits you may qualify for.",
       },
       {

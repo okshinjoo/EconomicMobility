@@ -285,7 +285,7 @@ export const budgetingMoneyArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "A frustrating truth: banks make a lot of money from fees, and those fees hit hardest exactly when you can least afford them, when your balance is already low. A few dollars here, thirty-something dollars there, and a tight account gets quietly drained by charges that have nothing to do with your spending. The fix isn't to avoid banks. It's to know the traps and sidestep them.",
+        text: "A frustrating truth: banks make a lot of money from fees, and those fees hit hardest exactly when you can least afford them, when your balance is already low. A few dollars here, twenty-something dollars there, and a tight account gets quietly drained by charges that have nothing to do with your spending. The fix isn't to avoid banks. It's to know the traps and sidestep them.",
       },
       {
         type: "h2",

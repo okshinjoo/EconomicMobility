@@ -449,4 +449,4 @@ export function guideCount(topicId: TopicId): number {
   );
 }
 
-export const LEARN_UPDATED = "Updated June 2026";
+export const LEARN_UPDATED = "Updated July 2026";

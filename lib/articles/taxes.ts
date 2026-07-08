@@ -387,7 +387,6 @@ export const taxesArticles: Article[] = [
         type: "list",
         items: [
           "Free guided software programs offered through the government for filers under an income limit.",
-          "Direct free-filing tools the government provides in some areas. Check what's available this year.",
           "Free fillable forms online, if you're comfortable doing the return yourself.",
         ],
       },
@@ -593,7 +592,7 @@ export const taxesArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The basics: you need income from working (a job or self-employment), your total income has to be under a limit that depends on your family size, and you (and your spouse and any qualifying kids) generally need a valid Social Security number. For 2026 the credit is worth up to **$664** with no kids, **$4,427** with one child, **$7,316** with two, and **$8,231** with three or more. Income limits scale with family size, from roughly **$20,000** with no kids up to about **$69,000** for a married couple with three kids. The numbers shift a little each year; free tax software applies the right ones for you automatically.",
+        text: "The basics: you need income from working (a job or self-employment), your total income has to be under a limit that depends on your family size, and you (and your spouse and any qualifying kids) generally need a valid Social Security number. For 2026 the credit is worth up to **$664** with no kids, **$4,427** with one child, **$7,316** with two, and **$8,231** with three or more. Income limits scale with family size, from roughly **$20,000** with no kids up to about **$70,000** for a married couple with three kids. The numbers shift a little each year; free tax software applies the right ones for you automatically.",
       },
       {
         type: "tip",

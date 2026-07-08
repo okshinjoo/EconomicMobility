@@ -42,11 +42,11 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This surprises a lot of people: you don't have to be unemployed or have zero income. Plenty of folks who work full time still qualify, especially with kids or high rent. As a rough federal baseline, most households need a gross income under **130% of the poverty line**, which works out to about **$2,800 a month** (roughly **$33,600 a year**) for a household of three, and higher for bigger families. Many states set the cutoff *higher* than that, so don't rule yourself out based on a number a friend mentioned.",
+        text: "This surprises a lot of people: you don't have to be unemployed or have zero income. Plenty of folks who work full time still qualify, especially with kids or high rent. As a rough federal baseline, most households need a gross income under **130% of the poverty line**, which works out to about **$2,890 a month** (roughly **$34,700 a year**) for a household of three, and higher for bigger families. Many states set the cutoff *higher* than that, so don't rule yourself out based on a number a friend mentioned.",
       },
       {
         type: "tip",
-        text: "Not sure if you'd qualify? Use the free screening tool at Benefits.gov, or call 211. It takes a few minutes, costs nothing, and commits you to nothing.",
+        text: "Not sure if you'd qualify? Use the free benefit finder at USA.gov, or call 211. It takes a few minutes, costs nothing, and commits you to nothing.",
       },
       {
         type: "h2",
@@ -59,7 +59,7 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "steps",
         items: [
-          "Find your state's SNAP office online (search your state name plus 'SNAP apply') or start at Benefits.gov.",
+          "Find your state's SNAP office online (search your state name plus 'SNAP apply') or start with the benefit finder at USA.gov.",
           "Fill out the application, online, by mail, or in person. Gather ID, proof of income like pay stubs, and your rent and utility costs.",
           "Do a short interview, usually by phone, where a caseworker confirms your details.",
           "Wait for the decision. If approved, your EBT card arrives in the mail, and you'll reapply periodically to keep it.",
@@ -111,7 +111,7 @@ export const governmentAidExtraArticles: Article[] = [
         ],
         answer: 2,
         explain:
-          "Nobody legitimate ever charges you to apply for SNAP. You apply for free through your state's SNAP agency, and screening tools like Benefits.gov cost nothing too.",
+          "Nobody legitimate ever charges you to apply for SNAP. You apply for free through your state's SNAP agency, and screening tools like USA.gov's benefit finder cost nothing too.",
       },
     ],
   },
@@ -157,7 +157,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Earn a little too much for Medicaid? You're not out of options. Through the health insurance marketplace, the government often pays a big chunk of your monthly premium based on your income. Once those subsidies kick in, many people end up with a real plan for a very low monthly cost, sometimes close to nothing. (If words like premium and deductible are still fuzzy, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers how coverage works piece by piece.)",
+        text: "Earn a little too much for Medicaid? You're not out of options. Through the health insurance marketplace, the government often pays part of your monthly premium based on your income. The extra-generous pandemic-era subsidies ended after 2025, so plans cost more than they did a couple of years ago, but the income-based help is still real and can cut the price substantially. (If words like premium and deductible are still fuzzy, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers how coverage works piece by piece.)",
       },
       {
         type: "tip",
@@ -575,7 +575,7 @@ export const governmentAidExtraArticles: Article[] = [
         type: "steps",
         items: [
           "Call or text 211, or visit 211.org, and tell them what you're facing.",
-          "Check Benefits.gov to screen for programs like LIHEAP you may qualify for.",
+          "Use the benefit finder at USA.gov to screen for programs like LIHEAP you may qualify for.",
           "Contact your utility company directly to ask about hardship programs and payment plans.",
           "For housing, search for local rental assistance and free tenant legal aid in your city or county.",
         ],

@@ -77,7 +77,7 @@ export const insuranceArticles: Article[] = [
         items: [
           "**Usually essential:** health insurance (a serious illness or injury is one of the biggest financial risks there is), and auto insurance if you drive, which is legally required in most places.",
           "**Important once people depend on you:** life insurance if someone relies on your income, and disability coverage if losing your paycheck would sink your household.",
-          "**Cheap and worth a look:** [renters insurance](/learn/home-ownership/renters-insurance) protects your belongings for a few dollars a month. The small add-ons companies love to sell, like phone protection and extended warranties, are usually skippable.",
+          "**Cheap and worth a look:** [renters insurance](/learn/home-ownership/renters-insurance) protects your belongings for around $15 to $20 a month. The small add-ons companies love to sell, like phone protection and extended warranties, are usually skippable.",
         ],
       },
       {
@@ -201,7 +201,7 @@ export const insuranceArticles: Article[] = [
           "**A job.** Many employers offer a health plan and pay part of the premium for you. If you have this option, it's usually the easiest place to start.",
           "**The government marketplace.** At **HealthCare.gov** (or your state's own marketplace), you can shop for a plan on your own. Many people qualify for help that lowers the cost, so it's worth checking even if you assume you can't afford it.",
           "**Medicaid.** If your income is low, you may qualify for [Medicaid](/learn/government-aid/medicaid-explained), which provides coverage at little or no cost. Eligibility and how to apply vary by state.",
-          "**A parent's plan.** Young adults can often stay on a parent's health plan into their mid-20s, which can be the simplest and cheapest option while it lasts.",
+          "**A parent's plan.** Young adults can stay on a parent's health plan until they turn 26, which can be the simplest and cheapest option while it lasts.",
         ],
       },
       {
@@ -885,7 +885,7 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Your landlord's policy covers the building, not one thing you own inside it. [Renters Insurance: Cheap Protection Most People Skip](/learn/home-ownership/renters-insurance) explains the few-dollars-a-month policy that replaces your stuff after a fire, theft, or burst pipe.",
+        text: "Your landlord's policy covers the building, not one thing you own inside it. [Renters Insurance: Cheap Protection Most People Skip](/learn/home-ownership/renters-insurance) explains the $15-to-$20-a-month policy that replaces your stuff after a fire, theft, or burst pipe.",
       },
       {
         type: "h2",

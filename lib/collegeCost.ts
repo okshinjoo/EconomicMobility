@@ -20,8 +20,9 @@ export interface CollegeResult {
   coveredShare: number; // 0..1 of cost covered without loans
 }
 
-// Illustrative federal-ish student-loan rate for the repayment estimate.
-const LOAN_RATE = 0.065;
+// Federal undergrad Direct Loan rate for the repayment estimate (2026–27
+// rate, 6.52%; resets each July 1).
+const LOAN_RATE = 0.0652;
 const REPAY_MONTHS = 120; // standard 10-year repayment
 
 function monthlyPayment(

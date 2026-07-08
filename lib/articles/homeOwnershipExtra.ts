@@ -50,7 +50,7 @@ export const homeOwnershipExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the part that changes minds. A typical policy runs somewhere around $15 to $20 a month; it varies by where you live and how much coverage you pick, so check current quotes. For that, you might be covering $20,000 or $30,000 worth of your belongings. One stolen laptop usually costs more than a whole year of premiums.",
+        text: "This is the part that changes minds. A typical policy runs somewhere around $15 to $20 a month in 2026; the exact price depends on where you live and how much coverage you pick. For that, you might be covering $20,000 or $30,000 worth of your belongings. One stolen laptop usually costs more than a whole year of premiums.",
       },
       {
         type: "key",
@@ -398,7 +398,7 @@ export const homeOwnershipExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Different loan types have different minimums, and those vary by lender. As a rough guide: government-backed **FHA loans** often go down to about a **580** score (sometimes **500** with a bigger down payment), while **conventional loans** usually want around **620** or higher. Individual lenders can set their bar higher, so check current requirements rather than trusting a number you heard. The takeaway isn't a specific cutoff. 'My score isn't perfect' rarely means 'I can't buy'; it usually just means fewer options or a higher rate.",
+        text: "Different loan types have different minimums, and those vary by lender. As a rough guide: government-backed **FHA loans** often go down to about a **580** score (sometimes **500** with a bigger down payment), while **conventional loans** usually want around **620** or higher. Individual lenders can set their bar higher, so ask each lender for its own minimums rather than trusting a number you heard. The takeaway isn't a specific cutoff. 'My score isn't perfect' rarely means 'I can't buy'; it usually just means fewer options or a higher rate.",
       },
       {
         type: "h2",

@@ -256,7 +256,7 @@ export const budgetingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Picture two people who each put $5,000 in savings and don't touch it for a year. One earns a few cents. The other earns over a hundred dollars. Same money, same year, no extra work. The only difference is a little three-letter term most people skim right past: APY.",
+        text: "Picture two people who each put $5,000 in savings and don't touch it for a year. One earns about fifty cents. The other earns over a hundred dollars. Same money, same year, no extra work. The only difference is a little three-letter term most people skim right past: APY.",
       },
       {
         type: "h2",

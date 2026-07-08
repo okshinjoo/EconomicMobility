@@ -205,7 +205,7 @@ export const knowledgeCheckBank: Record<
         question:
           "You have three credit cards. Card A has a $500 limit and $400 balance. Card B has a $2,000 limit and $200 balance. Card C has a $1,000 limit and $0 balance. What is your overall credit utilization rate?",
         options: ["20%", "29%", "40%", "17%"],
-        correctIndex: 1,
+        correctIndex: 3,
       },
       {
         question:
@@ -392,10 +392,10 @@ export const knowledgeCheckBank: Record<
     advanced: [
       {
         question:
-          'What is "Expected Family Contribution" (EFC) and how does it affect your aid?',
+          'What is the "Student Aid Index" (SAI) on the FAFSA and how does it affect your aid?',
         options: [
           "It's the amount your school expects you to fundraise",
-          "It's a number used to determine how much financial aid you're eligible for — lower EFC generally means more aid",
+          "It's a number used to determine how much financial aid you're eligible for — lower SAI generally means more aid",
           "It's only relevant for graduate students",
           "It's the total cost of attendance at your school",
         ],
@@ -403,7 +403,7 @@ export const knowledgeCheckBank: Record<
       },
       {
         question:
-          'A college\'s "Cost of Attendance" is $45,000 and your financial aid package is $30,000. What is your "unmet need" if your EFC is $5,000?',
+          'A college\'s "Cost of Attendance" is $45,000 and your financial aid package is $30,000. What is your "unmet need" if your Student Aid Index is $5,000?',
         options: ["$15,000", "$10,000", "$20,000", "$40,000"],
         correctIndex: 1,
       },
