@@ -10,6 +10,9 @@ import { TopicBar } from "@/components/ReadBadge";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap, getArticleBySlug } from "@/lib/articles";
+import { glossary } from "@/lib/glossary";
+import { toolCategories } from "@/lib/toolsRegistry";
+import CountUp from "@/components/CountUp";
 import { ROADMAP_SLUGS } from "@/lib/roadmaps";
 
 export const metadata: Metadata = {
@@ -90,6 +93,40 @@ export default function LearnHub() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* The library, by the numbers — counts up on scroll (same "alive" family as the Ticker) */}
+      <section className="border-b-2 border-ink bg-cream">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-10 sm:grid-cols-4">
+          {(
+            [
+              { n: totalGuides, label: "free guides", color: "#0c4a39" },
+              { n: 9, label: "topics, all connected", color: "#c9842a" },
+              { n: glossary.length, label: "money words defined", color: "#b7593f" },
+              {
+                n: toolCategories.reduce(
+                  (sum, c) => sum + c.items.filter((i) => i.status === "live").length,
+                  0
+                ),
+                label: "calculators & tools",
+                color: "#3f6478",
+              },
+            ] as const
+          ).map((stat) => (
+            <div key={stat.label} className="text-center">
+              <CountUp
+                value={stat.n}
+                className="font-display text-5xl font-bold leading-none sm:text-6xl"
+              />
+              <p
+                className="mt-2 text-xs font-bold uppercase tracking-[0.14em]"
+                style={{ color: stat.color }}
+              >
+                {stat.label}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

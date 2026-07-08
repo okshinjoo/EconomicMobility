@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogList, { type BlogListItem } from "@/components/BlogList";
+import Ticker from "@/components/Ticker";
 import { sortedBlogPosts } from "@/lib/blog";
 import { allArticles } from "@/lib/articles";
 import { topics, type TopicId } from "@/lib/topics";
@@ -66,6 +67,11 @@ export default function BlogPage() {
           </p>
         </div>
       </section>
+
+      {/* All twenty posts on a slow loop — the blog's version of the question ticker */}
+      <Ticker
+        items={posts.map((p) => ({ label: p.title, href: `/blog/${p.slug}` }))}
+      />
 
       <section className="bg-paper">
         <div className="mx-auto max-w-4xl px-6 py-12 lg:py-16">

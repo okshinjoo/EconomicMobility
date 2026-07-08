@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Ticker from "@/components/Ticker";
 import type { Metadata } from "next";
 import { ArrowRight, FileSpreadsheet, Download } from "lucide-react";
 import Header from "@/components/Header";
@@ -76,6 +77,18 @@ export default function ToolsHub() {
           </div>
         </div>
       </section>
+
+      {/* Every live calculator, drifting by — same marquee as the homepage questions */}
+      <Ticker
+        items={toolCategories.flatMap((cat) =>
+          cat.items
+            .filter((i) => i.status === "live")
+            .map((i) => ({
+              label: i.title,
+              href: i.main ? cat.base : `${cat.base}/${i.slug}`,
+            }))
+        )}
+      />
 
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl space-y-14 px-6 py-14">
