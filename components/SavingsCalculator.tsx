@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { Target, Link2 } from "lucide-react";
 import { readBudgetSummary } from "@/lib/calcImports";
@@ -231,7 +233,7 @@ export default function SavingsCalculator() {
                   Save each month
                 </p>
                 <p className="mt-2 font-display text-5xl font-bold">
-                  {hasGoal ? usd(byDate.monthly) : "$0"}
+                  {hasGoal ? <AnimatedNumber value={byDate.monthly} format={usd} /> : "$0"}
                 </p>
                 <p className="mt-1 text-sm text-cream/70">
                   {hasGoal

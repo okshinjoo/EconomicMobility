@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { Plus, X, Info, RotateCcw, Link2 } from "lucide-react";
 import {
@@ -566,7 +568,7 @@ export default function BudgetCalculator() {
               Your monthly take-home
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {hasIncome ? usd(netMonthly) : "$0"}
+              {hasIncome ? <AnimatedNumber value={netMonthly} format={usd} /> : "$0"}
             </p>
             <p className="mt-1 text-sm text-cream/70">
               {hasIncome

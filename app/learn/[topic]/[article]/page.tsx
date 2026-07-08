@@ -10,6 +10,7 @@ import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
 import TopicQuizCard from "@/components/TopicQuizCard";
+import CompoundStory from "@/components/CompoundStory";
 import {
   QuizPromo,
   ToolCard,
@@ -203,6 +204,9 @@ export default async function ArticlePage({
               {/* Body */}
               <div className="pt-2">
                 <ArticleBody blocks={found.body} accent={accent} />
+                {/* Flagship scrollytelling interlude - this article only */}
+                {found.slug === "magic-of-compound-interest" && <CompoundStory />}
+
                 {found.quiz && found.quiz.length > 0 && (
                   <ArticleQuiz
                     slug={found.slug}

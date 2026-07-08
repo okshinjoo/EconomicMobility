@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { Info } from "lucide-react";
 import {
@@ -217,7 +219,7 @@ export default function PaycheckCalculator() {
               Take-home pay
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {ready ? usd(taxes.net / 12) : "$0"}
+              {ready ? <AnimatedNumber value={taxes.net / 12} format={usd} /> : "$0"}
               <span className="ml-1 font-sans text-base font-medium text-cream/55">
                 /mo
               </span>

@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { Home } from "lucide-react";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
@@ -88,7 +90,7 @@ export default function RentCalculator() {
               Comfortable rent
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {ready ? usd(recommended) : "$0"}
+              {ready ? <AnimatedNumber value={recommended} format={usd} /> : "$0"}
               <span className="ml-1 font-sans text-base font-medium text-cream/55">
                 /mo
               </span>

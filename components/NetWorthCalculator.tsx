@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
@@ -125,7 +127,7 @@ export default function NetWorthCalculator() {
             Your net worth
           </p>
           <p className="mt-2 font-display text-5xl font-bold tabular-nums text-amber">
-            {hasInput ? usd(net) : "—"}
+            {hasInput ? <AnimatedNumber value={net} format={usd} /> : "—"}
           </p>
           <p className="mt-1 text-sm text-cream/70">
             what you own minus what you owe

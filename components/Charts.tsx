@@ -1,4 +1,38 @@
+"use client";
+
 // Small dependency-free SVG charts (donut + trend line) for the calculators.
+// Each chart draws itself in once on first viewport entry (donut segments
+// bloom with a stagger, trend lines draw left to right); prefers-reduced-
+// motion renders the finished chart immediately.
+
+import { useEffect, useRef, useState } from "react";
+
+function useDrawIn() {
+  const ref = useRef<SVGSVGElement>(null);
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDrawn(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          // Double rAF so the pre-draw state paints first and the
+          // transition actually runs.
+          requestAnimationFrame(() => requestAnimationFrame(() => setDrawn(true)));
+          io.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return { ref, drawn };
+}
 
 export interface Segment {
   value: number;
@@ -19,12 +53,14 @@ export function Donut({
   centerTop?: string;
   centerSub?: string;
 }) {
+  const { ref, drawn } = useDrawIn();
   const r = (size - thickness) / 2;
   const c = 2 * Math.PI * r;
   const total = segments.reduce((s, x) => s + Math.max(0, x.value), 0) || 1;
   let acc = 0;
   return (
     <svg
+      ref={ref}
       viewBox={`0 0 ${size} ${size}`}
       className="h-44 w-44 flex-shrink-0"
       aria-hidden="true"
@@ -49,8 +85,11 @@ export function Donut({
               fill="none"
               stroke={seg.color}
               strokeWidth={thickness}
-              strokeDasharray={`${len} ${c - len}`}
+              strokeDasharray={drawn ? `${len} ${c - len}` : `0 ${c}`}
               strokeDashoffset={-acc}
+              style={{
+                transition: `stroke-dasharray 650ms cubic-bezier(0.25, 0.6, 0.3, 1) ${i * 110}ms`,
+              }}
             />
           );
           acc += len;
@@ -135,6 +174,7 @@ export function TrendChart({
   startLabel?: string;
   endLabel?: string;
 }) {
+  const { ref, drawn } = useDrawIn();
   const maxLen = Math.max(2, ...series.map((s) => s.data.length));
   const maxY = yMax ?? Math.max(1, ...series.flatMap((s) => s.data));
   const X = (i: number) => (i / (maxLen - 1)) * 100;
@@ -148,6 +188,7 @@ export function TrendChart({
   return (
     <div>
       <svg
+        ref={ref}
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         style={{ height, width: "100%" }}
@@ -167,21 +208,48 @@ export function TrendChart({
         ))}
         {series.map((s, i) =>
           s.fill ? (
-            <path key={`a${i}`} d={area(s.data)} fill={s.color} fillOpacity="0.15" />
+            <path
+              key={`a${i}`}
+              d={area(s.data)}
+              fill={s.color}
+              fillOpacity={drawn ? 0.15 : 0}
+              style={{ transition: "fill-opacity 500ms ease 500ms" }}
+            />
           ) : null
         )}
-        {series.map((s, i) => (
-          <path
-            key={`l${i}`}
-            d={line(s.data)}
-            fill="none"
-            stroke={s.color}
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-            strokeDasharray={s.dashed ? "4 3" : undefined}
-            vectorEffect="non-scaling-stroke"
-          />
-        ))}
+        {series.map((s, i) =>
+          s.dashed ? (
+            // Dashed lines can't use the dashoffset draw trick; fade in.
+            <path
+              key={`l${i}`}
+              d={line(s.data)}
+              fill="none"
+              stroke={s.color}
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+              strokeDasharray="4 3"
+              vectorEffect="non-scaling-stroke"
+              opacity={drawn ? 1 : 0}
+              style={{ transition: "opacity 450ms ease 350ms" }}
+            />
+          ) : (
+            <path
+              key={`l${i}`}
+              d={line(s.data)}
+              fill="none"
+              stroke={s.color}
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+              pathLength={1}
+              strokeDasharray={1}
+              strokeDashoffset={drawn ? 0 : 1}
+              style={{
+                transition: `stroke-dashoffset 900ms cubic-bezier(0.3, 0.6, 0.3, 1) ${i * 130}ms`,
+              }}
+            />
+          )
+        )}
       </svg>
       {(startLabel || endLabel) && (
         <div className="mt-1.5 flex justify-between text-[11px] text-cream/45">

@@ -7,6 +7,7 @@ import type { CourseQuizQuestion } from "@/lib/courses";
 import { PASS_PERCENT } from "@/lib/courses";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, saveJSON } from "@/lib/storage";
+import BadgeBurst from "@/components/BadgeBurst";
 
 const BADGES_KEY = "empower:course-badges:v1";
 
@@ -104,11 +105,14 @@ export default function CourseQuiz({
   const score = picked.filter((p, i) => p === questions[i].answer).length;
   const passed = score / questions.length >= PASS_PERCENT / 100;
 
+  const [celebrate, setCelebrate] = useState(false);
+
   const grade = () => {
     setGraded(true);
     if (passed) {
       const map = getBadges();
       if (!map[courseId]) {
+        setCelebrate(true);
         const earned: CourseBadge = {
           earnedAt: Date.now(),
           score,
@@ -273,7 +277,9 @@ export default function CourseQuiz({
         <div className="mt-8 border-t border-sand pt-6">
           {passed ? (
             <div className="flex flex-wrap items-center gap-5">
-              <BadgeMedal color={accent} />
+              <BadgeBurst fire={celebrate}>
+                <BadgeMedal color={accent} />
+              </BadgeBurst>
               <div>
                 <p className="font-display text-xl font-semibold text-ink">
                   {score}/{questions.length} — you&apos;ve mastered {courseTitle}.

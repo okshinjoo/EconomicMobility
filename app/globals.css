@@ -106,6 +106,22 @@ body {
   animation-play-state: paused;
 }
 
+/* Badge celebration (BadgeBurst.tsx): one-shot pop + confetti.
+   Kept above the article-dropcap block — see the Turbopack gotcha. */
+@keyframes badge-pop {
+  0% { transform: scale(0.3); }
+  55% { transform: scale(1.16); }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+@keyframes badge-burst {
+  0% { transform: translate(-50%, -50%); opacity: 1; }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
 
 /* Faint paper grain to kill the flat, vector-perfect look. */
 body::before {

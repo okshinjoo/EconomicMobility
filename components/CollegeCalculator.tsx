@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { GraduationCap } from "lucide-react";
 import {
@@ -151,7 +153,7 @@ export default function CollegeCalculator() {
               {fullyCovered ? "You're covered" : "Likely loans needed"}
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {hasCost ? usd(result.totalLoans) : "$0"}
+              {hasCost ? <AnimatedNumber value={result.totalLoans} format={usd} /> : "$0"}
             </p>
             <p className="mt-1 text-sm text-cream/70">
               {!hasCost

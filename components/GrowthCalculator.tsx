@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { growthSeries } from "@/lib/savingsGoal";
 import { Donut, Legend, TrendChart } from "@/components/Charts";
@@ -169,7 +171,7 @@ export default function GrowthCalculator({ config }: { config: GrowthConfig }) {
               {config.resultLabel}
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {ready ? usd(finalBalance) : "$0"}
+              {ready ? <AnimatedNumber value={finalBalance} format={usd} /> : "$0"}
             </p>
             <p className="mt-1 text-sm text-cream/70">
               {ready

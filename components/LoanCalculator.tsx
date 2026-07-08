@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { loanPayment } from "@/lib/debtPayoff";
 import { Donut, Legend } from "@/components/Charts";
@@ -167,7 +169,7 @@ export default function LoanCalculator({ config }: { config: LoanConfig }) {
               Monthly payment
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {ready ? usd(monthly) : "$0"}
+              {ready ? <AnimatedNumber value={monthly} format={usd} /> : "$0"}
             </p>
             <p className="mt-1 text-sm text-cream/70">
               {ready

@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, RotateCcw } from "lucide-react";
@@ -166,7 +168,7 @@ export default function RealityCheckTool() {
             Your reality check
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
-            That life costs about {usd(monthlyTotal)} a month.
+            That life costs about <AnimatedNumber value={monthlyTotal} format={usd} /> a month.
           </h2>
           <p className="mt-2 text-base leading-7 text-cream/75">{verdict}</p>
 

@@ -6,6 +6,7 @@ import { Check, Flag, MessageCircle } from "lucide-react";
 import type { Challenge } from "@/lib/challenges";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import { loadJSON, saveJSON } from "@/lib/storage";
+import BadgeBurst from "@/components/BadgeBurst";
 
 const PROGRESS_KEY = "empower:challenge-progress:v1";
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
@@ -37,6 +38,7 @@ export default function ChallengeChecklist({
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState<ChallengeProgress | null>(null);
   const [badge, setBadge] = useState<ChallengeBadge | null>(null);
+  const [celebrate, setCelebrate] = useState(false);
 
   useEffect(() => {
     setProgress(getChallengeProgress()[challenge.id] ?? null);
@@ -59,6 +61,7 @@ export default function ChallengeChecklist({
       badges[challenge.id] = earned;
       saveJSON(CHALLENGE_BADGES_KEY, badges);
       setBadge(earned);
+      setCelebrate(true);
     }
   };
 
@@ -186,7 +189,9 @@ export default function ChallengeChecklist({
       {/* Completion */}
       {complete && (
         <div className="card-ink-lg mt-8 flex flex-wrap items-center gap-5 rounded-2xl bg-cream p-6 sm:p-8">
-          <BadgeMedal color={accent} />
+          <BadgeBurst fire={celebrate}>
+            <BadgeMedal color={accent} />
+          </BadgeBurst>
           <div className="min-w-0 flex-1">
             <p className="font-display text-xl font-semibold text-ink">
               You finished {challenge.title}.

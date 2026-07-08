@@ -1,5 +1,7 @@
 "use client";
 
+import AnimatedNumber from "@/components/AnimatedNumber";
+
 import { useEffect, useMemo, useState } from "react";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
 import {
@@ -112,7 +114,7 @@ export default function DtiCalculator() {
               Your debt-to-income
             </p>
             <p className="mt-2 font-display text-5xl font-bold">
-              {ready ? `${dti.toFixed(0)}%` : "—"}
+              {ready ? <AnimatedNumber value={dti} format={(n) => `${n.toFixed(0)}%`} /> : "—"}
             </p>
             <p className="mt-1 text-sm text-cream/70">
               {ready
