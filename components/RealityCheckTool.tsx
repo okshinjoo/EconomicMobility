@@ -32,6 +32,8 @@ const NEXT_READS = [
 
 /** Jump$tart-style grouped slides: a few related questions per screen
  *  instead of one per click. Ids reference lifestyleCategories. */
+// Choice-based categories come first (four slides), then every type-it-in
+// category lands together on the final slide, beside the state picker.
 const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
   {
     title: "Home",
@@ -44,19 +46,20 @@ const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
     cats: ["food", "transport", "phone"],
   },
   {
-    title: "Health, debt & family",
-    blurb: "The grown-up line items most calculators skip.",
-    cats: ["health", "student-loans", "debts", "family"],
+    title: "The grown-up line items",
+    blurb: "The ones most calculators skip.",
+    cats: ["health", "student-loans"],
   },
   {
-    title: "The fun column",
-    blurb: "Be honest. The tool doesn't judge.",
-    cats: ["fun", "style", "travel", "pets"],
+    title: "Clothes, pets & the household",
+    blurb: "The odds and ends that still add up.",
+    cats: ["style", "pets", "extras"],
   },
   {
-    title: "Future you & everything else",
-    blurb: "Savings, the everyday restock, and where this life happens.",
-    cats: ["extras", "savings"],
+    title: "Your own numbers",
+    blurb:
+      "These swing too much from person to person for us to guess, so type what fits your life. Leave any blank and we count it as $0.",
+    cats: ["debts", "fun", "travel", "family", "savings"],
   },
 ];
 
