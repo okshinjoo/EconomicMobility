@@ -264,7 +264,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The quiet appeal of an index fund is that it asks almost nothing of you. You're not trying to beat the market — you're trying to match it, which historically has been hard for even the pros to do. You buy in, keep adding over time, and let it ride. For most people building wealth slowly, that simplicity is the whole point.",
+        text: "The quiet appeal of an index fund is that it asks almost nothing of you. You're not trying to beat the market, just match it, and even the pros have historically struggled to do better than that. You buy in, keep adding over time, and let it ride. For most people building wealth slowly, that simplicity is the whole point.",
       },
     ],
     related: ["what-is-a-stock", "etf-vs-mutual-fund", "risk-and-diversification"],
@@ -386,7 +386,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "key",
-        text: "The biggest threat to your returns usually isn't the market — it's your own urge to react to it. A plan you stick to through the scary times will almost always beat a clever one you abandon.",
+        text: "The biggest threat to your returns usually isn't the market itself but your own urge to react to it. A plan you stick to through the scary times will almost always beat a clever one you abandon.",
       },
       {
         type: "h2",

@@ -18,7 +18,7 @@ export const homeOwnershipArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "You've probably heard that renting is 'throwing money away' and that buying is always the smart move. The truth is more honest and more useful: both choices have real costs and real benefits. The best one for you depends on your money, your plans, and your life right now.",
+        text: "You've probably heard that renting is 'throwing money away' and that buying is always the smart move. Both claims oversell it: each choice has real costs and real benefits. The best one for you depends on your money, your plans, and your life right now.",
       },
       {
         type: "h2",

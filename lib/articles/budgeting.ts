@@ -6,7 +6,7 @@ export const budgetingArticles: Article[] = [
     order: 10,
     topicId: "budgeting",
     title: "Building Your First Budget",
-    dek: "A budget isn't a spreadsheet that judges you. It's a plan that finally tells you where your money goes.",
+    dek: "A budget is just a plan that finally tells you where your money goes. Here's how to build your first one in a single sitting.",
     level: "Beginner",
     readMinutes: 6,
     takeaways: [
@@ -22,7 +22,7 @@ export const budgetingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "That's what a budget is for. Not a spreadsheet that makes you feel bad. Just a simple plan for where your money goes, so you stop getting to the end of the month wondering where it all went. And if you're the first in your family figuring this out, you're not behind. This guide was written for exactly that.",
+        text: "That's what a budget is for: a simple plan for where your money goes, so you stop getting to the end of the month wondering where it all went. And if you're the first in your family figuring this out, you're not behind. This guide was written for exactly that.",
       },
       {
         type: "h2",
@@ -250,7 +250,7 @@ export const budgetingArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Sorting needs from wants isn't about cutting all the fun. It's about covering what matters first, so the fun you do have comes guilt-free.",
+        text: "Sorting needs from wants is about covering what matters first, so the fun you do have comes guilt-free.",
       },
       {
         type: "p",
@@ -477,7 +477,7 @@ export const budgetingArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "A lot of money advice quietly assumes your paycheck is only yours. For many of us, that was never the deal. You might send money home every month, cover a sibling's books, help a parent who's getting older, or be the person everyone calls when something breaks. That isn't a flaw in your budget. It's one of the most generous things you can do, and it deserves an actual plan rather than guilt and guessing.",
+        text: "A lot of money advice quietly assumes your paycheck is only yours. For many of us, that was never the deal. You might send money home every month, cover a sibling's books, help a parent who's getting older, or be the person everyone calls when something breaks. Supporting them is one of the most generous things you can do with money, not a flaw in your budget, and it deserves an actual plan rather than guilt and guessing.",
       },
       {
         type: "h2",
@@ -489,7 +489,7 @@ export const budgetingArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Think of it like the oxygen-mask rule on a plane: you secure your own mask first, not because you matter more, but because you can't help anyone if you pass out. A version of you that's stable can support people for decades. A version that's broke and buried in debt can't.",
+        text: "It's the oxygen-mask rule on a plane: put your own mask on first, because you can't help anyone if you pass out. A version of you that's stable can support people for decades. A version that's broke and buried in debt can't.",
       },
       {
         type: "h2",
@@ -521,7 +521,7 @@ export const budgetingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Finding the actual words, especially across a generational or cultural gap, is its own skill. [Talking About Money With Your Family](/learn/budgeting/talking-about-money-with-family) is the companion guide for that conversation. Setting a limit doesn't mean you love anyone less. It means you're planning to be there for the long haul, which is its own kind of devotion.",
+        text: "Finding the actual words, especially across a generational or cultural gap, is its own skill. [Talking About Money With Your Family](/learn/budgeting/talking-about-money-with-family) is the companion guide for that conversation. Setting a limit just means you're planning to be there for the long haul, which is its own kind of devotion.",
       },
     ],
     related: ["talking-about-money-with-family", "budgeting-irregular-income", "sinking-funds"],
@@ -544,7 +544,7 @@ export const budgetingArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "A bank account sounds like the most basic thing in the world, right up until it's your first one, nobody walked you through it, and the bank's website is a wall of fine print. If keeping your money in cash or on a prepaid card is what you know, that's okay. Here's the plain version of how this works.",
+        text: "A bank account sounds like the most basic thing in the world, right up until it's your first one, nobody walked you through it, and the bank's website is a wall of fine print. If keeping your money in cash or on a prepaid card is what you know, here's the plain version of how the bank side works.",
       },
       {
         type: "h2",

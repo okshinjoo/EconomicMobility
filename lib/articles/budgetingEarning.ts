@@ -270,7 +270,7 @@ export const budgetingEarningArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You won't always get a yes, and that's okay. But you almost never get what you don't ask for, and the asking gets less scary each time you do it. Prepare, stay calm, and treat it as the normal conversation it actually is.",
+        text: "You won't always get a yes. But you almost never get one you didn't ask for, and the asking gets less scary each time you do it. Prepare, stay calm, and treat it as the normal conversation it actually is.",
       },
     ],
     related: ["reading-a-job-offer", "cost-of-living", "your-first-paycheck"],

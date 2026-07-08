@@ -91,7 +91,7 @@ export default function ArticleQuiz({
             {score} of {questions.length}.
             <span className="ml-2 font-normal text-stone">
               {score === questions.length
-                ? "Solid — you've got this one."
+                ? "All of them. Nothing to reread."
                 : "Worth a skim back through the parts you missed."}
             </span>
           </p>

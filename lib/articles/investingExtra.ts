@@ -95,7 +95,7 @@ export const investingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "There's a piece of math so powerful that people have called it the eighth wonder of the world. It's not flashy and it's not complicated. It's just this: money can make money, and then *that* money makes money too. It's called compound interest, and it quietly rewards anyone who starts early, even with almost nothing.",
+        text: "There's a piece of math so powerful that people have called it the eighth wonder of the world, and it comes down to something plain: money can make money, and then *that* money makes money too. It's called compound interest, and it quietly rewards anyone who starts early, even with almost nothing.",
       },
       {
         type: "h2",
@@ -111,7 +111,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the part that surprises people. The biggest lever isn't how much you invest — it's how *long* it gets to grow. Consider two people, using a 7% average annual return as a rough historical example (not a promise — markets go up and down):",
+        text: "This is the part that surprises people. The biggest lever is not how much you invest but how *long* it gets to grow. Consider two people, using a 7% average annual return as a rough historical example (not a promise; markets go up and down):",
       },
       {
         type: "list",
@@ -272,7 +272,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "A drop in the market isn't your money vanishing — it's the same shares on sale. If you're investing for decades, downturns are when your steady contributions buy the most. The hardest move, doing nothing, is often the right one.",
+        text: "A drop in the market means the same shares are on sale, not that your money has vanished. If you're investing for decades, downturns are when your steady contributions buy the most. The hardest move, doing nothing, is often the right one.",
       },
       {
         type: "h2",
@@ -466,11 +466,11 @@ export const investingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "There's a quiet belief a lot of us grow up with: rich people are just *other* people. Wealth feels like something that belongs to families who already had it, not to someone working a regular job and figuring money out alone. If that's you, the first in your family to even attempt this, read this slowly. The truth is more hopeful, and more honest, than what anyone probably told you.",
+        text: "There's a quiet belief a lot of us grow up with: rich people are just *other* people. Wealth feels like something that belongs to families who already had it, not to someone working a regular job and figuring money out alone. If that's you, the first in your family to even attempt this, read this slowly. The full picture is more hopeful, and more honest, than what anyone probably told you.",
       },
       {
         type: "h2",
-        text: "Wealth isn't what you earn — it's what you own",
+        text: "Wealth is what you own, not what you earn",
       },
       {
         type: "p",
@@ -486,7 +486,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "Let's be honest about the wealth gap",
+        text: "The wealth gap is real",
       },
       {
         type: "p",
@@ -494,11 +494,11 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "That gap is real, and naming it matters, because here's what it means for *you*: starting from zero is not a personal failing. It's not because your family didn't try hard enough. It's a system you were born into, and understanding that frees you up to stop feeling behind and start building.",
+        text: "That gap is real, and naming it matters because of what it means for *you*: starting from zero is not a personal failing, and not a sign your family didn't try hard enough. You were born into a system, and understanding that frees you up to stop feeling behind and start building.",
       },
       {
         type: "h2",
-        text: "The engine isn't a big salary. It's time and consistency.",
+        text: "The engine is time and consistency, not a big salary",
       },
       {
         type: "p",
@@ -506,7 +506,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "It works because of [compound interest](/learn/investing/magic-of-compound-interest): your money earns growth, and then that growth earns growth too, and over years it snowballs. The magic ingredient isn't the size of what you put in. It's *time*. Someone who invests a little starting in their twenties can end up far ahead of someone who invests much more but waits until their forties.",
+        text: "It works because of [compound interest](/learn/investing/magic-of-compound-interest): your money earns growth, and then that growth earns growth too, and over years it snowballs. The magic ingredient is *time*, not the size of what you put in. Someone who invests a little starting in their twenties can end up far ahead of someone who invests much more but waits until their forties.",
       },
       {
         type: "p",

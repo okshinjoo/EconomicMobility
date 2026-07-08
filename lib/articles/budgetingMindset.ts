@@ -76,7 +76,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "You're not trying to win an argument with your family or decide they were wrong. You're just sorting which inherited beliefs are *yours* to keep, and giving yourself permission to put the rest down.",
+        text: "You're not trying to win an argument with your family or decide they were wrong, just sorting which inherited beliefs are *yours* to keep, and giving yourself permission to put the rest down.",
       },
       {
         type: "h2",
@@ -84,7 +84,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Changing a money story isn't one big breakthrough. It's a hundred small moments where you notice the old script and choose a little differently. If you flinch every time you spend, you might practice making one *planned* purchase and letting yourself actually enjoy it. If you never look at your money, you might practice looking for sixty seconds, just to prove it's survivable. The new story gets written one quiet repetition at a time. And if the story you want to rewrite involves the whole family, [Talking About Money With Your Family](/learn/budgeting/talking-about-money-with-family) has words for that conversation.",
+        text: "Changing a money story takes a hundred small moments where you notice the old script and choose a little differently, not one big breakthrough. If you flinch every time you spend, you might practice making one *planned* purchase and letting yourself actually enjoy it. If you never look at your money, you might practice looking for sixty seconds, just to prove it's survivable. The new story gets written one quiet repetition at a time. And if the story you want to rewrite involves the whole family, [Talking About Money With Your Family](/learn/budgeting/talking-about-money-with-family) has words for that conversation.",
       },
       {
         type: "p",
@@ -111,7 +111,7 @@ export const budgetingMindsetArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Money stress doesn't stay politely in the money part of your life. It shows up at 2 a.m. when you can't sleep. It tightens your shoulders when a number flashes on your phone. It makes you short with the people you love and quiet when you should ask for help. If money has been wearing you down lately, you're not weak and you're not alone. You're having a completely normal response to a genuinely hard thing.",
+        text: "Money stress doesn't stay politely in the money part of your life. It shows up at 2 a.m. when you can't sleep. It tightens your shoulders when a number flashes on your phone. It makes you short with the people you love and quiet when you should ask for help. If money has been wearing you down lately, you're having a completely normal response to a genuinely hard thing.",
       },
       {
         type: "p",
@@ -184,7 +184,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Sometimes money stress stops being just stress. It follows you everywhere, steals your sleep, and starts to dim everything else. If that's where you are, please hear this gently: reaching out for support is a strength, not a weakness. Talk to someone you trust, or to a mental-health resource. Taking care of your mind is part of taking care of your money, and you deserve both.",
+        text: "Sometimes money stress stops being just stress. It follows you everywhere, steals your sleep, and starts to dim everything else. If that's where you are, please hear this gently: reaching out for support is a strength, not a weakness. Talk to someone you trust, or to a mental-health resource. Taking care of your mind is part of taking care of your money.",
       },
       {
         type: "p",
@@ -235,7 +235,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If these conversations were easy, you'd have had them already. The difficulty isn't a sign you're doing it wrong. It's a sign of how much you care.",
+        text: "If these conversations were easy, you'd have had them already. The difficulty is a sign of how much you care, not proof you're doing it wrong.",
       },
       {
         type: "h2",
@@ -243,7 +243,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The goal isn't to win or to lay down the law. It's to be understood while keeping the relationship intact. A few things that lower the temperature before you even start:",
+        text: "The goal is to be understood while keeping the relationship intact, not to win or lay down the law. A few things that lower the temperature before you even start:",
       },
       {
         type: "list",
@@ -293,7 +293,7 @@ export const budgetingMindsetArticles: Article[] = [
       },
       {
         type: "p",
-        text: "When the gap is wide, slow down and translate instead of arguing. Connect a new idea to a value you both already share: 'saving for emergencies is how I protect the family,' or 'this is me planning ahead, the way you always taught me to.' Ask about how things worked for them; people soften when they feel respected rather than corrected. You're not trying to prove them outdated. You're two people who love each other, finally talking about the thing you both quietly worry about.",
+        text: "When the gap is wide, slow down and translate instead of arguing. Connect a new idea to a value you both already share: 'saving for emergencies is how I protect the family,' or 'this is me planning ahead, the way you always taught me to.' Ask about how things worked for them; people soften when they feel respected rather than corrected. You're not trying to prove them outdated, just two people who love each other, finally talking about the thing you both quietly worry about.",
       },
       {
         type: "p",

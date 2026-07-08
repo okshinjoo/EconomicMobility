@@ -149,7 +149,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Tracking isn't about guilt. It's about awareness. Once you can see your spending clearly, you get to make real choices instead of being surprised every month.",
+        text: "Tracking is about awareness, not guilt. Once you can see your spending clearly, you get to make real choices instead of being surprised every month.",
       },
       {
         type: "p",
@@ -319,7 +319,7 @@ export const budgetingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Let's be honest about something most money articles skip: sometimes there isn't extra money. Rent's up, groceries cost more, and the advice to 'just save 20%' can feel almost insulting. If that's where you are, you're not doing anything wrong. This article is about where saving hides when every dollar is already spoken for.",
+        text: "Most money articles skip right past a basic fact: sometimes there isn't extra money. Rent's up, groceries cost more, and the advice to 'just save 20%' can feel almost insulting. If that's where you are, you're not doing anything wrong. This article is about where saving hides when every dollar is already spoken for.",
       },
       {
         type: "h2",
@@ -327,7 +327,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "When money's tight, the goal isn't to save a lot. It's to keep a small habit alive that can grow later. Five dollars a week is $260 a year: a real emergency cushion built from an amount you'll barely feel. The mechanics of making that automatic, and why a tiny automated amount beats waiting for 'extra' money, are covered in [Building a Savings Habit That Sticks](/learn/budgeting/building-a-savings-habit). What that guide can't do is find you the five dollars. That's what the rest of this one is for.",
+        text: "When money's tight, the goal is to keep a small habit alive that can grow later, not to save a lot right now. Five dollars a week is $260 a year: a real emergency cushion built from an amount you'll barely feel. The mechanics of making that automatic, and why a tiny automated amount beats waiting for 'extra' money, are covered in [Building a Savings Habit That Sticks](/learn/budgeting/building-a-savings-habit). What that guide can't do is find you the five dollars. That's what the rest of this one is for.",
       },
       {
         type: "h2",
@@ -481,7 +481,7 @@ export const budgetingExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Most people think saving money is about discipline: gritting your teeth and going without. But the people who actually save aren't more disciplined than you. They've set things up so saving happens automatically, on its own, without a daily fight. That's not a personality trait. It's a system, and you can build it this week.",
+        text: "Most people think saving money is about discipline: gritting your teeth and going without. But the people who actually save aren't more disciplined than you. They've set things up so saving happens automatically, on its own, without a daily fight. That's a system, not a personality trait, and you can build it this week.",
       },
       {
         type: "h2",
@@ -509,7 +509,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The biggest mistake is starting too ambitious: $300 a month, feeling the pinch, quitting in week two. Flip it. Start with an amount so small it's almost silly, like $10 a paycheck. The point right now isn't the money; it's proving to yourself that you're someone who saves. You raise the amount later, once the habit is real. And if even $10 feels out of reach, that's a different problem with its own playbook — [Saving Money When There's Barely Any to Save](/learn/budgeting/saving-on-a-tight-budget) is about finding the room first.",
+        text: "The biggest mistake is starting too ambitious: $300 a month, feeling the pinch, quitting in week two. Flip it. Start with an amount so small it's almost silly, like $10 a paycheck. The point right now is proving to yourself that you're someone who saves, not the dollar amount. You raise the amount later, once the habit is real. And if even $10 feels out of reach, that's a different problem with its own playbook — [Saving Money When There's Barely Any to Save](/learn/budgeting/saving-on-a-tight-budget) is about finding the room first.",
       },
       {
         type: "h2",
@@ -636,7 +636,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Knowing your rights isn't about looking for a fight. It's about not being quietly cheated out of money you earned, and understanding that the law is on the side of getting paid for your work.",
+        text: "Knowing your rights is how you stop being quietly cheated out of money you earned, not a way of picking a fight. The law is on the side of getting paid for your work.",
       },
     ],
     related: [
@@ -762,7 +762,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Buying a used car well isn't about being a tough negotiator or a car expert. It's about knowing the few places the process is rigged, showing up prepared, and being willing to walk away.",
+        text: "You don't need to be a tough negotiator or a car expert to buy a used car well. Know the few places the process is rigged, show up prepared, and be willing to walk away.",
       },
     ],
     related: [

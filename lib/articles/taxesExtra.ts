@@ -30,11 +30,11 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "So a $2,400 refund doesn't mean you won anything. It means about $200 a month came out of your checks that you didn't actually owe, and you got it back all at once, months later.",
+        text: "So a $2,400 refund means about $200 a month came out of your checks that you didn't actually owe, and you got it back all at once, months later. You didn't win anything.",
       },
       {
         type: "key",
-        text: "A refund isn't a gift. It's your overpayment coming home, and a big refund means you loaned the government your money all year for free.",
+        text: "A refund is your overpayment coming home, not a gift, and a big refund means you loaned the government your money all year for free.",
       },
       {
         type: "h2",
@@ -62,7 +62,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Your refund isn't magic and it isn't a windfall. It's a number you have some control over. Once you see it that way, you get to decide when you want your own money: now, or later.",
+        text: "Your refund is a number you have some control over, not magic and not a windfall. Once you see it that way, you get to decide when you want your own money: now, or later.",
       },
     ],
     related: ["how-to-fill-out-w4", "free-ways-to-file", "earned-income-tax-credit", "tax-season-roadmap"],
@@ -104,7 +104,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The goal isn't to game it. It's to land close to even, so April is a non-event instead of a shock.",
+        text: "You're not trying to game it, just to land close to even, so April is a non-event instead of a shock.",
       },
       {
         type: "h2",

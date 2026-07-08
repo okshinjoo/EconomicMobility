@@ -554,7 +554,7 @@ export const taxesArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Bottom line: not being able to get an SSN doesn't lock you out of the tax system or the money it can return to you. It means one extra form and finding a preparer who knows ITINs. Plenty do, [for free](/learn/taxes/free-ways-to-file).",
+        text: "Not being able to get an SSN doesn't lock you out of the tax system or the money it can return to you. It means one extra form and finding a preparer who knows ITINs. Plenty do, [for free](/learn/taxes/free-ways-to-file).",
       },
     ],
     related: ["filing-taxes-first-time", "do-you-need-to-file", "free-ways-to-file"],

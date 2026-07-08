@@ -78,7 +78,7 @@ Single select.
 ## 5. Question 3 — Topics
 
 **"What topics would you like to learn more about?"**
-*Helper text: Select all that apply — we'll build your personalized resource list from these.*
+*Helper text: Select all that apply. We'll build your personalized resource list from these.*
 
 | id | Label |
 |---|---|
@@ -89,7 +89,7 @@ Single select.
 | `home-ownership` | 🏡 Renting or buying a home |
 | `government-aid` | 🏥 Government aid, benefits, and debt relief |
 | `taxes` | 🧾 Taxes and filing basics |
-| `not-sure` | 📊 I'm not sure — help me figure it out |
+| `not-sure` | 📊 I'm not sure, help me figure it out |
 
 Multi-select. The emojis are intentional — they make the options feel less intimidating for younger users.
 
@@ -107,11 +107,11 @@ Multi-select. The emojis are intentional — they make the options feel less int
 
 | id | Label |
 |---|---|
-| `clear-path` | Point me to the right place to start — I want a clear path |
+| `clear-path` | Point me to the right place to start |
 | `tools` | Give me tools I can use right now (calculators, budget planners) |
 | `aid-scholarships` | Help me find financial aid, scholarships, or government programs |
 | `test-knowledge` | Let me test what I already know with a quiz |
-| `browse` | I just want to browse — I'll figure it out |
+| `browse` | I just want to browse and figure things out myself |
 
 Multi-select. Used to pick which resource cards appear in results (e.g. `tools` → feature the Tools hub card; `aid-scholarships` → feature Government Aid / Scholarship Finder card).
 
@@ -123,10 +123,10 @@ Multi-select. Used to pick which resource cards appear in results (e.g. `tools` 
 
 | id | Label | Knowledge-check tier |
 |---|---|---|
-| `starting-out` | Just starting out — I don't know much yet and that's okay | beginner |
-| `finding-footing` | Finding my footing — I know a little but have a lot of questions | beginner |
-| `getting-there` | Getting there — I understand the basics and want to go deeper | advanced |
-| `pretty-confident` | Pretty confident — I want to sharpen specific skills or fill in gaps | advanced |
+| `starting-out` | Just starting out | beginner |
+| `finding-footing` | Finding my footing: I know a little but have a lot of questions | beginner |
+| `getting-there` | Getting there: I understand the basics and want to go deeper | advanced |
+| `pretty-confident` | Pretty confident: I want to sharpen specific skills or fill in gaps | advanced |
 
 Single select. This answer sets the **tier** (`beginner` or `advanced`) used to pick knowledge-check questions in Q6, and is also one of the inputs to the Financial Profile in results.
 
@@ -199,7 +199,7 @@ The knowledge check is intentionally not too hard — the goal is calibration, n
    - Cancel all discretionary spending immediately
    - **Review your last 3 months of transactions and identify patterns** ✓
    - Move money from your savings to cover it
-   - Ignore it — it will balance out eventually
+   - Ignore it, it will balance out eventually
 
 ### 📈 Investing
 
@@ -276,7 +276,7 @@ The knowledge check is intentionally not too hard — the goal is calibration, n
 
 1. What is the "Student Aid Index" (SAI) on the FAFSA and how does it affect your aid? *(updated July 2026: the FAFSA replaced EFC with the SAI)*
    - It's the amount your school expects you to fundraise
-   - **It's a number used to determine how much financial aid you're eligible for — lower SAI generally means more aid** ✓
+   - **It's a number used to determine how much financial aid you're eligible for, and a lower SAI generally means more aid** ✓
    - It's only relevant for graduate students
    - It's the total cost of attendance at your school
 2. A college's "Cost of Attendance" is $45,000 and your financial aid package is $30,000. What is your "unmet need" if your Student Aid Index is $5,000?

@@ -250,7 +250,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "The real cost is the normalization" },
       {
         type: "p",
-        text: "The deepest trick isn't any single fee. It's making borrowing feel like a default setting: every checkout pre-loaded with installments, every balance a few taps from an advance. Once owing small amounts everywhere feels normal, a budget gets very hard to see clearly.",
+        text: "The deepest trick is bigger than any single fee: making borrowing feel like a default setting, every checkout pre-loaded with installments, every balance a few taps from an advance. Once owing small amounts everywhere feels normal, a budget gets very hard to see clearly.",
       },
       {
         type: "p",
@@ -511,7 +511,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "This post isn't a buy or a don't-buy. It's the part your feed skipped: what mechanically happened that day, because it's the single best live lesson in [how IPOs actually work](/learn/investing/what-is-an-ipo) that anyone will get for years.",
+        text: "No buy call here, and no don't-buy either. This is the part your feed skipped: what mechanically happened that day, because it's the single best live lesson in [how IPOs actually work](/learn/investing/what-is-an-ipo) that anyone will get for years.",
       },
       { type: "h2", text: "Who got $135, and who got $161" },
       {
@@ -876,7 +876,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "What negotiation actually is" },
       {
         type: "p",
-        text: "Not combat. An information exchange. The employer named a number based on what they know; you respond with information they don't have, about the market, your other options, the parts of the offer that matter to you. Companies budget salary as a range and rarely open at the top of it, which means the counter isn't an insult to the offer. It's the second half of a process they started. The recruiter does this every week; you'll do it a few times a decade. They will not faint.",
+        text: "Not combat. An information exchange. The employer named a number based on what they know; you respond with information they don't have, about the market, your other options, the parts of the offer that matter to you. Companies budget salary as a range and rarely open at the top of it, which means the counter is the second half of a process they started, not an insult to the offer. The recruiter does this every week; you'll do it a few times a decade. They will not faint.",
       },
       {
         type: "p",

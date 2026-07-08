@@ -17,7 +17,7 @@ export const governmentAidArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "If money is tight, you are not alone, and you have not failed. Public benefits are programs your tax dollars already pay for, built to catch people during the rough patches that happen to almost everyone. Asking for that help is not a handout you should feel ashamed of. It is using a tool that exists for exactly this moment.",
+        text: "If money is tight right now, you're in a spot the system actually planned for. Public benefits are programs your tax dollars already pay for, built to catch people during the rough patches that happen to almost everyone. Asking for that help is using a tool that exists for exactly this moment, not a handout to be ashamed of.",
       },
       {
         type: "p",

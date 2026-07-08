@@ -225,7 +225,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Unemployment is funded mainly by taxes your employers paid on your wages. You're not taking anyone's money. You're using a safety net that was built and paid for on your behalf, for situations exactly like this one.",
+        text: "Unemployment is funded mainly by taxes your employers paid on your wages. The safety net was built and paid for on your behalf, for situations exactly like this one.",
       },
       {
         type: "h2",
@@ -605,7 +605,7 @@ export const governmentAidExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Notice how check-cashing places, payday lenders, and 'easy cash' storefronts seem to cluster in low-income and immigrant neighborhoods, not wealthy ones? That's not an accident. These businesses do their best business when people are stretched thin and out of options, when you need money *today* and the bank feels out of reach. This isn't about being bad with money. It's about an industry built to profit from a hard moment. Here's how it works, so it can't work on you.",
+        text: "Notice how check-cashing places, payday lenders, and 'easy cash' storefronts seem to cluster in low-income and immigrant neighborhoods, not wealthy ones? That's not an accident. These businesses do their best business when people are stretched thin and out of options, when you need money *today* and the bank feels out of reach. That's an industry built to profit from a hard moment, not a verdict on how anyone handles money. Here's how it works, so it can't work on you.",
       },
       {
         type: "h2",
@@ -617,7 +617,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "That little fee translates into an *annual percentage rate* (APR) that's often around 400%. For comparison, even a high-interest credit card is usually under 30%. You're not borrowing at a slightly worse rate than a card. You're borrowing at a rate many times higher.",
+        text: "That little fee translates into an *annual percentage rate* (APR) that's often around 400%. For comparison, even a high-interest credit card is usually under 30%. A payday loan is many times more expensive, not just a little worse.",
       },
       {
         type: "key",
@@ -670,7 +670,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Needing money fast doesn't make you irresponsible. It does make you exactly the customer these lenders are built for. Knowing how the trap works, and that real alternatives exist, is how you keep one bad week from turning into months of debt.",
+        text: "Needing money fast doesn't make you irresponsible, but it does make you exactly the customer these lenders are built for. Knowing how the trap works, and that real alternatives exist, is how you keep one bad week from turning into months of debt.",
       },
     ],
     related: ["prioritizing-bills-when-money-is-tight", "avoiding-bank-fees", "what-is-debt-relief"],

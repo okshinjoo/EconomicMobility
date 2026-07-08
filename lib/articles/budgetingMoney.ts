@@ -220,7 +220,7 @@ export const budgetingMoneyArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Think of it as a ranked list. Work down it as far as your money goes. This is guidance, not a rigid law, so adjust it to your real situation:",
+        text: "It's a ranked list. Work down it as far as your money goes. This is guidance, not a rigid law, so adjust it to your real situation:",
       },
       {
         type: "steps",
@@ -242,7 +242,7 @@ export const budgetingMoneyArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Credit cards, store cards, and other *unsecured* debts (debts with no physical thing attached that can be taken back) are usually the most flexible. That doesn't mean ignore them. It means they're often where you have room to *negotiate*. Many credit card companies and lenders have hardship programs and would rather set up a smaller payment than get nothing at all. You frequently have more power here than you think.",
+        text: "Credit cards, store cards, and other *unsecured* debts (debts with no physical thing attached that can be taken back) are usually the most flexible. Don't ignore them, but know that they're often where you have room to *negotiate*. Many credit card companies and lenders have hardship programs and would rather set up a smaller payment than get nothing at all. You frequently have more power here than you think.",
       },
       {
         type: "key",
@@ -441,7 +441,7 @@ export const budgetingMoneyArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "The prices on your monthly bills look official and final. Plenty of them aren't. Internet, phone, streaming bundles, some fees, even medical bills all have more give in them than the invoice suggests, and companies quietly count on most customers never testing that. Negotiating a bill isn't a special skill or a confrontation. It's usually one phone call, a specific request, and a little patience on hold.",
+        text: "The prices on your monthly bills look official and final. Plenty of them aren't. Internet, phone, streaming bundles, some fees, even medical bills all have more give in them than the invoice suggests, and companies quietly count on most customers never testing that. Negotiating a bill usually takes one phone call, a specific request, and a little patience on hold, not a special skill or a confrontation.",
       },
       {
         type: "h2",

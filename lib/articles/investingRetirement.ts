@@ -82,7 +82,7 @@ export const investingRetirementArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Plenty of jobs, especially part-time, gig, or smaller employers, don't offer one at all. That's okay. You can open an [IRA](/learn/investing/what-is-an-ira) on your own and get many of the same long-term benefits. The account matters less than the habit of putting money in.",
+        text: "Plenty of jobs, especially part-time, gig, or smaller employers, don't offer one at all. You can still open an [IRA](/learn/investing/what-is-an-ira) on your own and get many of the same long-term benefits. The account matters less than the habit of putting money in.",
       },
       {
         type: "p",

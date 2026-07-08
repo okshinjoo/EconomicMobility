@@ -58,7 +58,7 @@ export const creditExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Your bill lists a minimum payment: a small amount, maybe $35 on a $1,000 balance. It looks generous. It isn't. The minimum is the *least* you can pay to stay out of trouble, and paying only that keeps you in debt for years while interest piles on. The card company loves the minimum. It's how the whole thing makes money off you.",
+        text: "Your bill lists a minimum payment: a small amount, maybe $35 on a $1,000 balance. It looks generous, but the minimum is the *least* you can pay to stay out of trouble, and paying only that keeps you in debt for years while interest piles on. The card company loves the minimum. It's how the whole thing makes money off you.",
       },
       {
         type: "tip",
@@ -168,7 +168,7 @@ export const creditExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Credit card debt has a particular kind of weight to it. You make a payment, and somehow the balance barely moves. You're running and running and the floor keeps sliding back under you. That feeling is real, and it's not because you're bad with money; card interest is built to keep you running. The way off isn't more guilt. It's a plan.",
+        text: "Credit card debt has a particular kind of weight to it. You make a payment, and somehow the balance barely moves. You're running and running and the floor keeps sliding back under you. That feeling is real, and it's not because you're bad with money; card interest is built to keep you running. The way off is a plan, not more guilt.",
       },
       {
         type: "h2",
@@ -329,7 +329,7 @@ export const creditExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "You pull your credit report, and something's off. An account you don't recognize. A payment marked late that you know you paid on time. An old debt that should've fallen off years ago. Your stomach drops. Take a breath: errors on credit reports are genuinely common, and the system has a built-in way to fix them. This isn't you begging for mercy. It's a right.",
+        text: "You pull your credit report, and something's off. An account you don't recognize. A payment marked late that you know you paid on time. An old debt that should've fallen off years ago. Your stomach drops. Take a breath: errors on credit reports are genuinely common, and the system has a built-in way to fix them. Disputing one is a legal right, not a favor you have to beg for.",
       },
       {
         type: "h2",

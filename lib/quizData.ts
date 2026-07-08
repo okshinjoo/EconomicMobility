@@ -70,7 +70,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: "q3",
     title: "What topics would you like to learn more about?",
     helper:
-      "Select all that apply — we'll build your personalized resource list from these.",
+      "Select all that apply. We'll build your personalized resource list from these.",
     multiSelect: true,
     options: [
       { id: "credit", label: "Credit scores and building credit" },
@@ -93,8 +93,8 @@ export const quizQuestions: QuizQuestion[] = [
         id: "money-safety",
         label: "Spotting scams and protecting your money",
       },
-      { id: "insurance", label: "Insurance — health, auto, renters, life" },
-      { id: "not-sure", label: "I'm not sure — help me figure it out" },
+      { id: "insurance", label: "Insurance: health, auto, renters, life" },
+      { id: "not-sure", label: "I'm not sure, help me figure it out" },
     ],
   },
   {
@@ -105,7 +105,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "clear-path",
-        label: "Point me to the right place to start — I want a clear path",
+        label: "Point me to the right place to start",
       },
       {
         id: "tools",
@@ -121,7 +121,7 @@ export const quizQuestions: QuizQuestion[] = [
         id: "test-knowledge",
         label: "Let me test what I already know with a quiz",
       },
-      { id: "browse", label: "I just want to browse — I'll figure it out" },
+      { id: "browse", label: "I just want to browse and figure things out myself" },
     ],
   },
   {
@@ -131,20 +131,20 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "starting-out",
-        label: "Just starting out — I don't know much yet and that's okay",
+        label: "Just starting out",
       },
       {
         id: "finding-footing",
-        label: "Finding my footing — I know a little but have a lot of questions",
+        label: "Finding my footing: I know a little but have a lot of questions",
       },
       {
         id: "getting-there",
-        label: "Getting there — I understand the basics and want to go deeper",
+        label: "Getting there: I understand the basics and want to go deeper",
       },
       {
         id: "pretty-confident",
         label:
-          "Pretty confident — I want to sharpen specific skills or fill in gaps",
+          "Pretty confident: I want to sharpen specific skills or fill in gaps",
       },
     ],
   },
@@ -268,7 +268,7 @@ export const knowledgeCheckBank: Record<
           "Cancel all discretionary spending immediately",
           "Review your last 3 months of transactions and identify patterns",
           "Move money from your savings to cover it",
-          "Ignore it — it will balance out eventually",
+          "Ignore it, it will balance out eventually",
         ],
         correctIndex: 1,
       },
@@ -395,7 +395,7 @@ export const knowledgeCheckBank: Record<
           'What is the "Student Aid Index" (SAI) on the FAFSA and how does it affect your aid?',
         options: [
           "It's the amount your school expects you to fundraise",
-          "It's a number used to determine how much financial aid you're eligible for — lower SAI generally means more aid",
+          "It's a number used to determine how much financial aid you're eligible for, and a lower SAI generally means more aid",
           "It's only relevant for graduate students",
           "It's the total cost of attendance at your school",
         ],
@@ -511,7 +511,7 @@ export const knowledgeCheckBank: Record<
           "Someone calls claiming to be from your bank and asks you to read back the verification code they just texted you. What should you do?",
         options: [
           "Read them the code so they can confirm it's really you",
-          "Never share the code — hang up and call the number on your card yourself",
+          "Never share the code. Hang up and call the number on your card yourself",
           "Give them only the first half of the code to be safe",
           "Text the code instead of saying it out loud",
         ],
@@ -593,7 +593,7 @@ export const knowledgeCheckBank: Record<
         question: "Who most needs life insurance?",
         options: [
           "Everyone, in equal amounts",
-          "People whom others depend on financially — like children or a partner",
+          "People whom others depend on financially, like children or a partner",
           "Only people who are retired",
           "Only people who own a home",
         ],
@@ -620,7 +620,7 @@ export function scoreKnowledgeCheck(
 }
 
 // ---------------------------------------------------------------------------
-// General "simpler" knowledge check — for people who pick "I'm not sure" on Q3
+// General "simpler" knowledge check, for people who pick "I'm not sure" on Q3
 // and have no specific topics to be quizzed on. A short, always-beginner spread
 // across the most foundational topics. Skippable like any knowledge check.
 // ---------------------------------------------------------------------------
@@ -652,7 +652,7 @@ export function getGeneralCheckFeedback(correct: number, total: number): string 
     return `You got ${correct} of ${total}. For someone who answered "I'm not sure," you know a fair amount. We'll skip the very basics and point you toward what to sharpen next.`;
   }
   if (pct >= 0.4) {
-    return `You got ${correct} of ${total}: some solid instincts, a few gaps. That's normal. The path below starts with the fundamentals so nothing feels shaky.`;
+    return `You got ${correct} of ${total}: some solid instincts, a few gaps. The path below starts with the fundamentals so nothing feels shaky.`;
   }
   return `You got ${correct} of ${total}, which is a fine place to begin. We've put the clearest, most beginner-friendly guides first so you can build from there.`;
 }
@@ -712,7 +712,7 @@ export function getKnowledgeCheckFeedback(
   if (tier === "advanced") {
     return `You mentioned feeling confident about ${topicLabel}, but some of these questions tripped you up. That happens to a lot of people, and the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base.`;
   }
-  return `${topicLabel} might be newer territory for you than you thought, and that's okay. We'd recommend starting from the beginning on this one. It's more straightforward than it seems.`;
+  return `Your answers suggest ${topicLabel} is mostly new territory for you. We'd recommend starting from the beginning on this one; it's more straightforward than it seems.`;
 }
 
 // ---------------------------------------------------------------------------
@@ -965,7 +965,7 @@ export const extraResourceCards: Record<string, ResourceCard> = {
 };
 
 // Shown in place of Knowledge Check Feedback when the user picked "not sure"
-// on Q3 — they skip the knowledge check entirely.
+// on Q3; they skip the knowledge check entirely.
 export const NOT_SURE_MESSAGE =
   "You weren't sure where to focus, and that's what this quiz is for. Based on where you are right now, here's where we'd suggest starting:";
 

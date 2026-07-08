@@ -284,7 +284,7 @@ export const insuranceArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The premium is only one piece of what a plan costs you. A low premium usually comes with a high deductible and bigger out-of-pocket costs when you actually use the plan; that's [the trade-off built into all insurance](/learn/insurance/how-insurance-works). The real question isn't the monthly price. It's what the plan will likely cost you over the whole year, all in.",
+        text: "The premium is only one piece of what a plan costs you. A low premium usually comes with a high deductible and bigger out-of-pocket costs when you actually use the plan; that's [the trade-off built into all insurance](/learn/insurance/how-insurance-works). The real question is what the plan will likely cost you over the whole year, all in, not what it costs per month.",
       },
       {
         type: "p",

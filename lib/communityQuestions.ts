@@ -50,7 +50,7 @@ export const communityQuestions: CommunityQA[] = [
     id: "rent-share",
     question: "How much of my paycheck should go to rent?",
     answer: [
-      "A common rule of thumb is to keep rent around 30% of your take-home pay, but treat that as a guidepost, not a law. In expensive cities it's often higher, and that's okay if the rest of your budget still works.",
+      "A common rule of thumb is to keep rent around 30% of your take-home pay, but treat that as a guidepost, not a law. In expensive cities it's often higher, and a higher share can work as long as the rest of your budget still does.",
       "The real test comes after rent: can you cover your other needs, chip at any debt, and save even a little? If rent leaves nothing for those, that's the signal to adjust.",
     ],
     topic: "budgeting",

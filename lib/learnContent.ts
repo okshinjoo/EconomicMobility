@@ -96,7 +96,7 @@ export const learnContent: Record<TopicId, LearnTopic> = {
       "A simple plan for where your money goes, not a spreadsheet that makes you feel bad.",
     intro: [
       "A budget is a decision you make once so you don't have to stress about money every day. Once you know the essentials are covered, spending on what matters stops feeling like a guilty secret.",
-      "Whether your income is steady, seasonal, or all over the place, there's a way to build a plan that holds up in real life.",
+      "Steady paycheck, seasonal work, income that's all over the place: there's a way to build a plan that holds up in real life.",
     ],
     level: "Beginner-friendly",
     path: [

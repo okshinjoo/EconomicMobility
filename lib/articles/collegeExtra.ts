@@ -26,7 +26,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Federal student loans come from the government, and they carry built-in protections that private loans usually don't. These aren't small perks. They're the things that keep a rough patch from becoming a disaster.",
+        text: "Federal student loans come from the government, and they carry built-in protections that private loans usually don't. Those protections are no small perks; they're what keeps a rough patch from becoming a disaster.",
       },
       {
         type: "list",
@@ -188,7 +188,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Work-study is a part-time job, usually right on campus, that's part of your financial aid package. It's need-based, which is another reason [the FAFSA](/learn/college/fafsa-step-by-step) matters. The dollar figure on your letter isn't cash handed to you. It's the *most* you can earn through the program, and you get there by actually working and collecting a paycheck, just like any job.",
+        text: "Work-study is a part-time job, usually right on campus, that's part of your financial aid package. It's need-based, which is another reason [the FAFSA](/learn/college/fafsa-step-by-step) matters. The dollar figure on your letter is the *most* you can earn through the program, not cash handed to you, and you get there by actually working and collecting a paycheck, just like any job.",
       },
       {
         type: "h2",
@@ -380,7 +380,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "An appeal isn't about arguing the school was wrong. It's about telling them something the FAFSA didn't capture, usually a real change or an expense the standard formula missed. Strong reasons include:",
+        text: "An appeal tells the school something the FAFSA didn't capture, usually a real change or an expense the standard formula missed, rather than arguing they got it wrong. Strong reasons include:",
       },
       {
         type: "list",

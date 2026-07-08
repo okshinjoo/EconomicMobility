@@ -22,7 +22,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you're the first in your family to do this, you are not behind and you are not alone. Plenty of students fill out the FAFSA with no one to ask, and the form is more tedious than it is hard.",
+        text: "If you're the first in your family to do this, you're in big company: plenty of students fill out the FAFSA with no one to ask, and the form is more tedious than it is hard.",
       },
       {
         type: "h2",

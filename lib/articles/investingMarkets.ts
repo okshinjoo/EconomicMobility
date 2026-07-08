@@ -299,7 +299,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Here's the catch: regular investors almost never get the offering price. By the time you can click 'buy,' you're trading at the opening price, the higher, hyped-up one. The cheap seats were already taken before the market opened.",
+        text: "Regular investors almost never get the offering price. By the time you can click 'buy,' you're trading at the opening price, the higher, hyped-up one. The cheap seats were already taken before the market opened.",
       },
       {
         type: "h2",
@@ -589,7 +589,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "The catch: fees vary wildly",
+        text: "Fees vary wildly",
       },
       {
         type: "p",
@@ -772,7 +772,7 @@ export const investingMarketsArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Look up any [stock](/learn/investing/what-is-a-stock) in a brokerage app and you get a wall of numbers, most of them unlabeled beyond a cryptic abbreviation. The good news is that only six of them do most of the work, and once you can read those, every quote page on the internet becomes legible. Here's each one, then a full read-through of a made-up company so you can see them working together.",
+        text: "Look up any [stock](/learn/investing/what-is-a-stock) in a brokerage app and you get a wall of numbers, most of them unlabeled beyond a cryptic abbreviation. Only six of them do most of the work, though, and once you can read those, every quote page on the internet becomes legible. Here's each one, then a full read-through of a made-up company so you can see them working together.",
       },
       {
         type: "h2",
@@ -870,7 +870,7 @@ export const investingMarketsArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "At some point your brokerage will offer to upgrade you to a margin account, usually framed as unlocking your account's full potential. This article explains what you'd actually be unlocking: the two sharpest tools in retail investing, how each one works, and who genuinely needs them. Spoiler on that last part: almost certainly not you, and that's not an insult. It's the happy conclusion.",
+        text: "At some point your brokerage will offer to upgrade you to a margin account, usually framed as unlocking your account's full potential. This article explains what you'd actually be unlocking: the two sharpest tools in retail investing, how each one works, and who genuinely needs them. The answer to that last one is almost certainly not you, and that's less an insult than the happy conclusion.",
       },
       {
         type: "h2",

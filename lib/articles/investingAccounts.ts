@@ -69,7 +69,7 @@ export const investingAccountsArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Don't get stuck on the perfect choice. The biggest mistake isn't picking the 'wrong' one; it's not opening an IRA at all. Either version, funded consistently, beats a flawless plan you never start.",
+        text: "Don't get stuck on the perfect choice. Picking the 'wrong' version is a far smaller mistake than never opening an IRA at all. Either one, funded consistently, beats a flawless plan you never start.",
       },
       {
         type: "p",
