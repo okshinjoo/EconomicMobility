@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CheckBroker from "@/components/CheckBroker";
@@ -15,6 +16,8 @@ const groups = [
   {
     id: "college-scholarships",
     title: "College & scholarships",
+    bg: "#f3dfba",
+    accent: "#c9842a",
     links: [
       {
         name: "Federal Student Aid (FAFSA)",
@@ -36,6 +39,8 @@ const groups = [
   {
     id: "government-benefits",
     title: "Government benefits & programs",
+    bg: "#d9e5d6",
+    accent: "#157a5a",
     links: [
       {
         name: "Benefits.gov",
@@ -62,6 +67,8 @@ const groups = [
   {
     id: "money-help",
     title: "Money help & credit",
+    bg: "#d8e2e9",
+    accent: "#3f6478",
     links: [
       {
         name: "Consumer Financial Protection Bureau",
@@ -88,6 +95,8 @@ const groups = [
   {
     id: "free-tax-filing",
     title: "Free tax filing",
+    bg: "#f0d0c0",
+    accent: "#b7593f",
     links: [
       {
         name: "IRS Free File",
@@ -139,7 +148,7 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        {/* National resources — editorial numbered link lists */}
+        {/* National resources — pastel panels, ink-&-shadow link cards */}
         <section className="bg-paper">
           <div className="mx-auto max-w-5xl px-6 pb-20 pt-16">
             <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
@@ -149,38 +158,48 @@ export default function ResourcesPage() {
               Free, reputable programs and tools that work anywhere in the U.S.
             </p>
 
-            <div className="mt-10 space-y-12">
+            <div className="mt-10 space-y-10">
               {groups.map((group, gi) => (
                 <div
                   key={group.title}
                   id={group.id}
-                  className="grid scroll-mt-24 gap-x-12 gap-y-4 border-t-2 border-ink/10 pt-8 lg:grid-cols-[240px_1fr]"
+                  className={`card-ink-lg scroll-mt-24 rounded-2xl p-6 sm:p-8 ${
+                    gi % 2 === 1 ? "lg:rotate-[0.35deg]" : "lg:-rotate-[0.35deg]"
+                  }`}
+                  style={{ background: group.bg }}
                 >
-                  <div>
+                  <div className="flex flex-wrap items-center gap-4">
                     <span
                       aria-hidden="true"
-                      className="block select-none font-display text-7xl font-bold leading-none text-sand"
+                      className="inline-flex -rotate-2 select-none items-center rounded-lg border-2 border-ink bg-cream px-3 py-1 font-display text-xl font-bold text-ink shadow-[3px_3px_0_#11211c]"
                     >
                       {String(gi + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-ink">
+                    <h3 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
                       {group.title}
                     </h3>
                   </div>
 
-                  <ul className="divide-y divide-sand">
+                  <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                     {group.links.map((link) => (
                       <li key={link.url}>
                         <a
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group block py-5 first:pt-0"
+                          className="group flex h-full flex-col rounded-xl border-2 border-ink bg-cream p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
                         >
-                          <span className="font-display text-lg font-semibold text-ink underline decoration-amber decoration-2 underline-offset-4 transition-colors group-hover:text-forest">
-                            {link.name}
+                          <span className="flex items-start justify-between gap-3">
+                            <span className="font-display text-lg font-semibold leading-snug text-ink underline decoration-2 underline-offset-4 transition-colors group-hover:text-forest" style={{ textDecorationColor: group.accent }}>
+                              {link.name}
+                            </span>
+                            <ExternalLink
+                              className="mt-1 h-4 w-4 shrink-0"
+                              style={{ color: group.accent }}
+                              aria-hidden
+                            />
                           </span>
-                          <p className="mt-1.5 text-sm leading-6 text-stone">
+                          <p className="mt-2 text-sm leading-6 text-stone">
                             {link.desc}
                           </p>
                         </a>
