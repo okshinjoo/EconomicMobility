@@ -131,8 +131,11 @@ export default async function CoursePage({
         </div>
       </section>
 
-      {/* Flashcards */}
-      <section className="bg-paper-deep">
+      {/* Flashcards — tinted in the course's own color */}
+      <section
+        className="border-y-2 border-ink"
+        style={{ background: `${accent}0d` }}
+      >
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
@@ -152,7 +155,7 @@ export default async function CoursePage({
                 guide it came from is one click back up the page.
               </p>
             </div>
-            <Flashcards cards={cards} accent={accent} />
+            <Flashcards cards={cards} accent={accent} deckId={found.id} />
           </div>
         </div>
       </section>
