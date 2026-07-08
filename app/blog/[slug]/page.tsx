@@ -7,7 +7,8 @@ import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
-import { blogPosts, getBlogPost } from "@/lib/blog";
+import { blogPosts, getBlogPost, sortedBlogPosts } from "@/lib/blog";
+import NextPost from "@/components/NextPost";
 
 const BLOG_ACCENT = "#d26a4c"; // terracotta — the blog's editorial identity
 
@@ -115,6 +116,10 @@ export default async function BlogPostPage({
               </Link>
               .
             </p>
+            <NextPost
+              current={post.slug}
+              posts={sortedBlogPosts().map(({ slug, title }) => ({ slug, title }))}
+            />
           </div>
         </div>
       </article>

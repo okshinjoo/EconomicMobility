@@ -111,7 +111,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the part that surprises people. The biggest lever is not how much you invest but how *long* it gets to grow. Consider two people, using a 7% average annual return as a rough historical example (not a promise; markets go up and down):",
+        text: "This is the part that surprises people. The biggest lever is not how much you invest but how *long* it gets to grow. Consider two people, using a 7% [average annual return](/learn/investing/average-rate-of-return) as a rough historical example (not a promise; markets go up and down):",
       },
       {
         type: "list",
@@ -126,7 +126,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "If you can't invest much yet, don't wait until you can. Even $20 or $50 a month, started now, can outrun a much bigger amount you start years from today. The early dollars are worth the most because they grow the longest.",
+        text: "If you can't invest much yet, don't wait until you can. Even [$20 or $50 a month](/learn/investing/start-investing-with-50), started now, can outrun a much bigger amount you start years from today. The early dollars are worth the most because they grow the longest.",
       },
       {
         type: "key",
@@ -220,7 +220,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The hardest part of investing isn't math; it's emotion. When markets drop, every instinct screams *stop, sell, run.* When they soar, you want to pile in at the worst moment. A fixed automatic schedule takes the panic and the hype out of your hands entirely. The plan keeps going even when your nerves don't.",
+        text: "The hardest part of investing isn't math; it's emotion. When [markets drop](/learn/investing/market-crashes), every instinct screams *stop, sell, run.* When they soar, you want to pile in at the worst moment. A fixed automatic schedule takes the panic and the hype out of your hands entirely. The plan keeps going even when your nerves don't.",
       },
       {
         type: "h2",
@@ -230,7 +230,7 @@ export const investingExtraArticles: Article[] = [
         type: "steps",
         items: [
           "Pick an amount you can comfortably invest every month, even a small one.",
-          "Choose a simple, diversified investment to put it in, like a broad index fund.",
+          "Choose a simple, diversified investment to put it in, like a broad [index fund](/learn/investing/index-funds-explained).",
           "Automate it: set the same transfer and purchase to happen on the same day each month.",
           "Then mostly ignore it. Let it run for years without tinkering.",
         ],
@@ -268,11 +268,11 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Markets fall sometimes. It's normal, it's expected, and it always feels terrible. The mistake is selling everything when you see red, because that turns a temporary dip into a permanent loss. If you sell low, you've locked it in. Investors who simply held on through scary drops have, historically, watched things recover and keep climbing.",
+        text: "[Markets fall](/learn/investing/market-crashes) sometimes. It's normal, it's expected, and it always feels terrible. The mistake is selling everything when you see red, because that turns a temporary dip into a permanent loss. If you sell low, you've locked it in. Investors who simply held on through scary drops have, historically, watched things recover and keep climbing.",
       },
       {
         type: "tip",
-        text: "A drop in the market means the same shares are on sale, not that your money has vanished. If you're investing for decades, downturns are when your steady contributions buy the most. The hardest move, doing nothing, is often the right one.",
+        text: "A drop in the market means the same shares are on sale, not that your money has vanished. If you're investing for decades, downturns are when your [steady contributions](/learn/investing/dollar-cost-averaging) buy the most. The hardest move, doing nothing, is often the right one.",
       },
       {
         type: "h2",
@@ -296,7 +296,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Fees feel tiny, so people wave them off. They shouldn't. A fund charging 1% a year instead of 0.05% can quietly siphon off tens of thousands of dollars over a working lifetime, money that should have been compounding for *you*. Always check what a fund or advisor charges, and lean toward low-cost options.",
+        text: "Fees feel tiny, so people wave them off. They shouldn't. A fund charging 1% a year instead of 0.05% can quietly siphon off tens of thousands of dollars over a working lifetime, money that should have been compounding for *you*. Always check [what a fund or advisor charges](/learn/investing/expense-ratios-and-fees), and lean toward low-cost options.",
       },
       {
         type: "h2",
@@ -418,7 +418,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "It's painful but necessary to say plainly: the crypto world is crawling with scams, and they often target people who are new, hopeful, or short on cash and looking for a way up. Watch for the classic traps:",
+        text: "It's painful but necessary to say plainly: the crypto world is crawling with [scams](/learn/money-safety/investment-fraud), and they often target people who are new, hopeful, or short on cash and looking for a way up. Watch for the classic traps:",
       },
       {
         type: "list",
@@ -435,7 +435,7 @@ export const investingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Curiosity is fine. If you choose to dip in, do it from a place of strength, not desperation. The order matters: cover your needs, build an emergency fund, and invest in boring long-term basics *first*. Only after that should any spare, truly-can-lose money even be on the table.",
+        text: "Curiosity is fine. If you choose to dip in, do it from a place of strength, not desperation. The order matters: cover your needs, build an emergency fund, and invest in [boring long-term basics](/learn/investing/long-term-strategy) *first*. Only after that should any spare, truly-can-lose money even be on the table.",
       },
       {
         type: "tip",

@@ -278,7 +278,7 @@ export const creditArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Of all the pieces of a credit score, credit utilization is the one people understand least, and it's also one of the easiest to improve quickly. Once you see how it works, you can often nudge your score up within a few weeks.",
+        text: "Of all the pieces of a [credit score](/learn/credit/what-is-a-credit-score), credit utilization is the one people understand least, and it's also one of the easiest to improve quickly. Once you see how it works, you can often nudge your score up within a few weeks.",
       },
       {
         type: "h2",
@@ -298,7 +298,7 @@ export const creditArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Utilization makes up roughly 30% of your score, second only to payment history. And unlike the length of your credit history, which only grows with time, utilization can change the moment you pay down a balance. That makes it the fastest lever you have.",
+        text: "Utilization makes up roughly 30% of your score, second only to [payment history](/learn/credit/what-hurts-your-score). And unlike the length of your credit history, which only grows with time, utilization can change the moment you pay down a balance. That makes it the fastest lever you have.",
       },
       {
         type: "tip",

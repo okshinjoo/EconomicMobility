@@ -240,7 +240,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Owning hundreds of companies gives you diversification: your money is spread out, so one company having a terrible year barely dents you. If you'd bet everything on a single stock and it crashed, you'd feel it badly. In an index fund, that one company is a drop in a very large bucket.",
+        text: "Owning hundreds of companies gives you [diversification](/learn/investing/risk-and-diversification): your money is spread out, so one company having a terrible year barely dents you. If you'd bet everything on a single stock and it crashed, you'd feel it badly. In an index fund, that one company is a drop in a very large bucket.",
       },
       {
         type: "key",
@@ -252,7 +252,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Every fund charges a small yearly fee, taken as a percentage of what you have invested. It sounds tiny, but over decades it adds up to real money. Index funds are popular partly because their fees are usually very low: they follow a list instead of paying experts to pick stocks. Lower fees mean more of your money stays yours and keeps compounding.",
+        text: "Every fund charges [a small yearly fee](/learn/investing/expense-ratios-and-fees), taken as a percentage of what you have invested. It sounds tiny, but over decades it adds up to real money. Index funds are popular partly because their fees are usually very low: they follow a list instead of paying experts to pick stocks. Lower fees mean more of your money stays yours and keeps [compounding](/learn/investing/magic-of-compound-interest).",
       },
       {
         type: "tip",
@@ -303,7 +303,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You can't erase risk, but you can spread it out. Diversification means holding many different investments so no single one can sink you. Mix in different companies, different industries, even bonds alongside your stocks, and a bad result in one corner gets cushioned by the others. This is why a broad index fund feels steadier than a single stock: the losses and gains average out.",
+        text: "You can't erase risk, but you can spread it out. Diversification means holding many different investments so no single one can sink you. Mix in different companies, different industries, even [bonds](/learn/investing/bonds-explained) alongside your stocks, and a bad result in one corner gets cushioned by the others. This is why a broad [index fund](/learn/investing/index-funds-explained) feels steadier than a single stock: the losses and gains average out.",
       },
       {
         type: "key",
@@ -315,7 +315,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The longer you plan to stay invested, the more risk you can comfortably take. If you won't touch the money for 30 years, a rough year barely matters; there's plenty of time to recover and keep growing through compound interest. If you need the money next year, a downturn could force you to sell at a loss. Your time horizon, more than anything, should shape how much risk you take on.",
+        text: "The longer you plan to stay invested, the more risk you can comfortably take. If you won't touch the money for 30 years, a rough year barely matters; there's plenty of time to recover and keep growing through [compound interest](/learn/investing/magic-of-compound-interest). If you need the money next year, a downturn could force you to sell at a loss. Your time horizon, more than anything, should shape how much risk you take on.",
       },
       {
         type: "tip",

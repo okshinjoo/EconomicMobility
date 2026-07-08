@@ -147,7 +147,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The problem shows up when returns swing hard. Picture an investment that gains 50% one year, then loses 50% the next. The simple average is (50 − 50) ÷ 2 = **0%**, which sounds like you broke even. But watch what actually happens to $100:",
+        text: "The problem shows up when returns [swing hard](/learn/investing/risk-and-diversification). Picture an investment that gains 50% one year, then loses 50% the next. The simple average is (50 − 50) ÷ 2 = **0%**, which sounds like you broke even. But watch what actually happens to $100:",
       },
       {
         type: "list",
@@ -193,7 +193,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You don't need to do this math by hand. A compound interest calculator does it instantly, but knowing what's under the hood means a flashy 'average' will never trick you again.",
+        text: "You don't need to do this math by hand. A [compound interest](/learn/investing/magic-of-compound-interest) calculator does it instantly, but knowing what's under the hood means a flashy 'average' will never trick you again.",
       },
     ],
     related: ["magic-of-compound-interest", "compare-investment-vehicles", "risk-and-diversification"],
@@ -224,7 +224,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Most companies start out *private*, owned by their founders, employees, and a handful of early investors. The general public can't buy in. An IPO is the moment that changes: the company sells shares on a public stock exchange for the first time, so anyone with a brokerage account can become a part-owner.",
+        text: "Most companies start out *private*, owned by their founders, employees, and a handful of early investors. The general public can't buy in. An IPO is the moment that changes: the company sells shares on a public stock exchange for the first time, so anyone with a [brokerage account](/learn/investing/how-to-pick-a-brokerage) can become a part-owner.",
       },
       {
         type: "h2",
@@ -256,7 +256,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "IPOs are a normal part of how the market works, not a secret door to wealth. Treat a new stock like any other: understand the business, ignore the hype, and never bet money you can't afford to lose on a first-day pop.",
+        text: "IPOs are a normal part of how the market works, not a secret door to wealth. Treat a new stock like any other: understand the business, ignore the hype, and never bet money you can't afford to lose on a [first-day pop](/learn/investing/opening-vs-offering-price).",
       },
     ],
     related: ["what-is-a-stock", "opening-vs-offering-price", "investing-mistakes"],
@@ -381,7 +381,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Buying options is closer to placing a timed bet than to investing. It's possible to do thoughtfully, but it is speculative, fast, and unforgiving: the opposite of the slow, boring, diversified approach that quietly builds wealth.",
+        text: "Buying options is closer to placing a timed bet than to investing. It's possible to do thoughtfully, but it is speculative, fast, and unforgiving: the opposite of the [slow, boring, diversified approach](/learn/investing/long-term-strategy) that quietly builds wealth.",
       },
       {
         type: "tip",
@@ -389,7 +389,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you're still building your foundation (an emergency fund, steady index-fund investing, retirement contributions), options aren't a missing piece you need. They're an advanced tool, and there's zero shame in deciding they're not for you. The people who build real wealth rarely needed them.",
+        text: "If you're still building your foundation (an emergency fund, steady [index-fund](/learn/investing/index-funds-explained) investing, retirement contributions), options aren't a missing piece you need. They're an advanced tool, and there's zero shame in deciding they're not for you. The people who build real wealth rarely needed them.",
       },
     ],
     related: ["margin-and-short-selling", "investing-mistakes", "risk-and-diversification", "markets-tour"],

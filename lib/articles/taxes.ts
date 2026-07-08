@@ -373,7 +373,7 @@ export const taxesArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Tax companies spend a fortune advertising, so it's easy to assume filing costs money. For a simple return, it usually shouldn't. If your taxes are mostly a W-2 and maybe a 1099, you have several genuinely free paths.",
+        text: "Tax companies spend a fortune advertising, so it's easy to assume filing costs money. For a simple return, it usually shouldn't. If your taxes are mostly [a W-2 and maybe a 1099](/learn/taxes/understanding-tax-forms), you have several genuinely free paths.",
       },
       {
         type: "h2",
@@ -420,7 +420,7 @@ export const taxesArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Whichever route you pick, gather your forms first so you're not hunting mid-filing: your W-2s, any 1099s, your Social Security number or ITIN, and a bank account number if you want your refund sent straight to you. Direct deposit is the fastest way to get your money.",
+        text: "Whichever route you pick, gather your forms first so you're not hunting mid-filing: your W-2s, any 1099s, your Social Security number or ITIN, and a bank account number if you want [your refund](/learn/taxes/tax-refund-explained) sent straight to you. Direct deposit is the fastest way to get your money.",
       },
       {
         type: "p",
