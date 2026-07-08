@@ -8,6 +8,7 @@ import {
   Compass,
   Lock,
   Clock,
+  X,
 } from "lucide-react";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import {
@@ -42,7 +43,20 @@ interface KCQuestionInstance {
   indexInTopic: number;
   question: string;
   options: string[];
+  correctIndex: number;
 }
+
+// Gentle in-flow feedback for the knowledge check (owner directive: nudge,
+// don't grade). Keyed by the question's index within its topic (0 or 1), so
+// two questions in a row don't repeat the same line.
+const KC_RIGHT = [
+  "Nice, that's right.",
+  "Exactly. You clearly know some of this already.",
+];
+const KC_WRONG = [
+  "Not quite, and that's completely okay. The answer is",
+  "No worries, this is exactly the kind of thing we're here for. The one to remember is",
+];
 
 const emptyAnswers: QuizAnswers = { q1: "", q2: "", q3: [], q4: [], q5: "" };
 
@@ -101,6 +115,7 @@ export default function QuizFlow({
             indexInTopic: i,
             question: q.question,
             options: q.options,
+            correctIndex: q.correctIndex,
           }))
       );
     }
@@ -113,6 +128,7 @@ export default function QuizFlow({
           indexInTopic: index,
           question: q.question,
           options: q.options,
+          correctIndex: q.correctIndex,
         };
       });
     }
@@ -290,6 +306,13 @@ export default function QuizFlow({
       if (!q) return null;
       const topic = getTopic(q.topicId);
       const selected = kcAnswers[q.topicId]?.[q.indexInTopic];
+      const answered = selected !== undefined;
+      const gotIt = answered && selected === q.correctIndex;
+      const nudge = answered
+        ? gotIt
+          ? KC_RIGHT[q.indexInTopic % KC_RIGHT.length]
+          : KC_WRONG[q.indexInTopic % KC_WRONG.length]
+        : null;
       return (
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-forest/10 py-1.5 pl-1.5 pr-4 text-xs font-semibold uppercase tracking-wide text-forest">
@@ -302,16 +325,62 @@ export default function QuizFlow({
             {q.question}
           </h2>
           <div className="mt-6 space-y-3">
-            {q.options.map((opt, i) => (
-              <OptionButton
-                key={i}
-                label={opt}
-                index={i}
-                selected={selected === i}
-                onClick={() => setKcAnswer(q.topicId, q.indexInTopic, i)}
-              />
-            ))}
+            {q.options.map((opt, i) => {
+              // Once answered, options lock and reveal: the correct one turns
+              // green, a wrong pick turns terracotta, the rest dim.
+              const state = !answered
+                ? undefined
+                : i === q.correctIndex
+                  ? "correct"
+                  : i === selected
+                    ? "wrong"
+                    : "muted";
+              return (
+                <OptionButton
+                  key={i}
+                  label={opt}
+                  index={i}
+                  selected={selected === i}
+                  answerState={state}
+                  disabled={answered}
+                  onClick={() => setKcAnswer(q.topicId, q.indexInTopic, i)}
+                />
+              );
+            })}
           </div>
+          {nudge && (
+            <div
+              className={`mt-4 flex items-start gap-3 rounded-2xl border-2 p-4 ${
+                gotIt
+                  ? "border-forest/30 bg-forest/[0.06]"
+                  : "border-terracotta/30 bg-terracotta/[0.06]"
+              }`}
+            >
+              <span
+                className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-cream ${
+                  gotIt ? "bg-forest" : "bg-terracotta"
+                }`}
+              >
+                {gotIt ? (
+                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                ) : (
+                  <X className="h-3.5 w-3.5" strokeWidth={3} />
+                )}
+              </span>
+              <p className="text-sm leading-6 text-ink/80">
+                {nudge}
+                {!gotIt && (
+                  <>
+                    {" "}
+                    <span className="font-semibold text-ink">
+                      {q.options[q.correctIndex]}
+                    </span>
+                    .
+                  </>
+                )}
+              </p>
+            </div>
+          )}
         </div>
       );
     }
@@ -631,32 +700,53 @@ function OptionButton({
   multi,
   index,
   onClick,
+  /** Knowledge-check reveal: once answered, options lock and show a soft
+   *  right/wrong state. Undefined for the Q1–Q5 preference questions. */
+  answerState,
+  disabled,
 }: {
   label: string;
   selected: boolean;
   multi?: boolean;
   index?: number;
   onClick: () => void;
+  answerState?: "correct" | "wrong" | "muted";
+  disabled?: boolean;
 }) {
   const letter =
     index !== undefined ? String.fromCharCode(65 + index) : undefined;
+
+  // Locked reveal states take priority over the plain selected style.
+  let shell: string;
+  let badge: string;
+  if (answerState === "correct") {
+    shell = "border-2 border-forest bg-forest/[0.08] font-semibold text-ink";
+    badge = "bg-forest text-cream";
+  } else if (answerState === "wrong") {
+    shell = "border-2 border-terracotta bg-terracotta/[0.07] text-ink";
+    badge = "bg-terracotta text-cream";
+  } else if (answerState === "muted") {
+    shell = "border-2 border-sand bg-white text-ink/55";
+    badge = "bg-ink/5 text-stone";
+  } else if (selected) {
+    shell = "card-ink bg-amber font-semibold text-ink";
+    badge = "bg-ink text-cream";
+  } else {
+    shell =
+      "border-2 border-sand bg-white text-ink hover:-translate-y-0.5 hover:border-ink/40 hover:shadow-md";
+    badge = "bg-ink/5 text-stone group-hover:bg-amber/20 group-hover:text-amber-deep";
+  }
+
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`group flex w-full items-center gap-4 rounded-2xl px-4 py-4 text-left text-base font-medium transition-all duration-150 ${
-        selected
-          ? "card-ink bg-amber font-semibold text-ink"
-          : "border-2 border-sand bg-white text-ink hover:-translate-y-0.5 hover:border-ink/40 hover:shadow-md"
-      }`}
+      disabled={disabled}
+      className={`group flex w-full items-center gap-4 rounded-2xl px-4 py-4 text-left text-base font-medium transition-all duration-150 disabled:cursor-default ${shell}`}
     >
       {letter && (
         <span
-          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold transition-colors ${
-            selected
-              ? "bg-ink text-cream"
-              : "bg-ink/5 text-stone group-hover:bg-amber/20 group-hover:text-amber-deep"
-          }`}
+          className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold transition-colors ${badge}`}
         >
           {letter}
         </span>
@@ -666,12 +756,20 @@ function OptionButton({
         className={`flex h-6 w-6 flex-shrink-0 items-center justify-center border-2 ${
           multi ? "rounded-md" : "rounded-full"
         } ${
-          selected
-            ? "border-ink bg-ink text-amber"
-            : "border-ink/20 bg-transparent"
+          answerState === "correct"
+            ? "border-forest bg-forest text-cream"
+            : answerState === "wrong"
+              ? "border-terracotta bg-terracotta text-cream"
+              : answerState === "muted"
+                ? "border-ink/15 bg-transparent"
+                : selected
+                  ? "border-ink bg-ink text-amber"
+                  : "border-ink/20 bg-transparent"
         }`}
       >
-        {selected && <Check className="h-4 w-4" strokeWidth={3} />}
+        {answerState === "correct" && <Check className="h-4 w-4" strokeWidth={3} />}
+        {answerState === "wrong" && <X className="h-4 w-4" strokeWidth={3} />}
+        {!answerState && selected && <Check className="h-4 w-4" strokeWidth={3} />}
       </span>
     </button>
   );
