@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
+import ToolMark from "@/components/ToolMark";
 import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
 import { templates } from "@/lib/templates";
 
@@ -113,14 +114,12 @@ export default function ToolsHub() {
                     const live = item.status === "live";
                     const inner = (
                       <>
-                        <div className="flex items-center justify-between gap-2">
-                          <h3
-                            className={`font-display text-base font-bold leading-snug ${
-                              live ? "text-ink" : "text-stone"
-                            }`}
-                          >
-                            {item.title}
-                          </h3>
+                        <div className="flex items-start justify-between gap-2">
+                          <ToolMark
+                            slug={item.slug}
+                            color={accent}
+                            className="h-8 w-8 shrink-0"
+                          />
                           {item.main ? (
                             <span
                               className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide"
@@ -133,6 +132,15 @@ export default function ToolsHub() {
                               Soon
                             </span>
                           ) : null}
+                        </div>
+                        <div className="mt-2.5 flex items-center justify-between gap-2">
+                          <h3
+                            className={`font-display text-base font-bold leading-snug ${
+                              live ? "text-ink" : "text-stone"
+                            }`}
+                          >
+                            {item.title}
+                          </h3>
                         </div>
                         <p
                           className={`mt-1.5 flex-1 text-xs leading-5 ${
