@@ -9,7 +9,7 @@ import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
 import { ROADMAP_SET } from "@/lib/roadmaps";
-import ReadOrderedGrid from "@/components/ReadOrderedGrid";
+import ReadOrderedGrid, { HideWhenRead } from "@/components/ReadOrderedGrid";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
 import TopicMark from "@/components/TopicMark";
 
@@ -52,6 +52,11 @@ export default async function TopicPage({
   const allInOrder = roadmap.flatMap((g) => g.articles);
   const featured = allInOrder[0];
   const numberOf = new Map(allInOrder.map((a, i) => [a.slug, i + 1]));
+  // The Start-here banner demotes into its group's grid once read - but only
+  // when that group has other cards for it to join (else it stays put).
+  const featuredCanDemote =
+    (roadmap.find((g) => g.articles.some((a) => a.slug === featured?.slug))
+      ?.articles.length ?? 0) > 1;
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -125,6 +130,10 @@ export default async function TopicPage({
         <>
           {/* Featured "Start here" article — B voice with a solid accent edge */}
           {featured && (
+            <MaybeHideWhenRead
+              slug={featured.slug}
+              active={featuredCanDemote}
+            >
             <section className="bg-paper">
               <div className="mx-auto max-w-5xl px-6 pt-12">
                 <Link
@@ -162,6 +171,7 @@ export default async function TopicPage({
                 </Link>
               </div>
             </section>
+            </MaybeHideWhenRead>
           )}
 
           {/* The full path — card grid by level */}
@@ -213,6 +223,11 @@ export default async function TopicPage({
                     (a) => a.slug !== featured?.slug
                   );
                   if (rest.length === 0) return null;
+                  // Featured rides along hidden; it surfaces (at the bottom,
+                  // read-chipped) once the banner above has bowed out.
+                  const gridArticles = featuredCanDemote
+                    ? group.articles
+                    : rest;
                   return (
                     <div key={group.level}>
                       <div className="flex items-center gap-3">
@@ -231,8 +246,9 @@ export default async function TopicPage({
 
                       <ReadOrderedGrid
                         className="mt-5 grid gap-4 sm:grid-cols-2"
-                        items={rest.map((art) => ({
+                        items={gridArticles.map((art) => ({
                           slug: art.slug,
+                          onlyWhenRead: art.slug === featured?.slug,
                           node: (
                           <Link
                             key={art.slug}
@@ -437,4 +453,18 @@ export default async function TopicPage({
       <Footer />
     </div>
   );
+}
+
+/** Applies HideWhenRead only when the demote behavior is active. */
+function MaybeHideWhenRead({
+  slug,
+  active,
+  children,
+}: {
+  slug: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
+  if (!active) return <>{children}</>;
+  return <HideWhenRead slug={slug}>{children}</HideWhenRead>;
 }
