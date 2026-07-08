@@ -39,36 +39,60 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
           <Link
             key={course.id}
             href={`/courses/${course.id}`}
-            className={`card-ink group flex flex-col rounded-2xl bg-paper p-6 transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
-            style={{ background: `${course.color}0d` }}
+            className={`card-ink group relative flex flex-col rounded-2xl bg-paper p-6 transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
+            style={{ background: `color-mix(in srgb, ${course.color} 11%, #fbf8f1)` }}
           >
-            <div className="flex items-start justify-between gap-3">
+            {/* The badge this module ends in: ghosted until it's earned. */}
+            <BadgeMedal
+              color={course.color}
+              className={`absolute right-5 top-5 h-12 w-12 transition-opacity ${
+                badge ? "" : "opacity-20 group-hover:opacity-40"
+              }`}
+            />
+
+            <div className="flex flex-wrap gap-1.5 pr-14">
               <span
-                className="text-xs font-semibold uppercase tracking-[0.16em]"
-                style={{ color: course.color }}
+                className="-rotate-1 rounded-md border-2 border-ink px-2 py-0.5 text-[11px] font-bold text-cream shadow-[2px_2px_0_#11211c]"
+                style={{ background: course.color }}
               >
-                {total} guides · {course.cardCount} flashcards ·{" "}
-                {course.quizCount}-question final
+                {total} guides
               </span>
-              {badge && <BadgeMedal color={course.color} className="h-10 w-10 shrink-0" />}
+              <span className="rounded-md border-2 border-ink bg-cream px-2 py-0.5 text-[11px] font-bold text-ink">
+                {course.cardCount} flashcards
+              </span>
+              <span className="rounded-md border-2 border-ink bg-cream px-2 py-0.5 text-[11px] font-bold text-ink">
+                final + badge
+              </span>
             </div>
-            <h2 className="mt-3 font-display text-2xl font-semibold text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4" style={{ textDecorationColor: course.color }}>
+
+            <h2
+              className="mt-4 font-display text-2xl font-semibold text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+              style={{ textDecorationColor: course.color }}
+            >
               {course.title}
             </h2>
-            <p className="mt-1 text-sm font-semibold text-ink/80">{course.goal}</p>
-            <p className="mt-2 flex-1 text-sm leading-6 text-stone">
+            <p
+              className="mt-1 font-display text-base italic leading-snug"
+              style={{ color: course.color }}
+            >
+              {course.goal}
+            </p>
+            <p className="mt-2.5 flex-1 text-sm leading-6 text-stone">
               {course.description}
             </p>
 
             {/* Progress */}
             <div className="mt-5">
               {badge ? (
-                <p className="text-sm font-semibold" style={{ color: course.color }}>
-                  Mastered — badge earned
+                <p
+                  className="inline-flex -rotate-1 items-center gap-1.5 self-start rounded-md border-2 border-ink px-2.5 py-1 text-xs font-bold text-cream shadow-[2px_2px_0_#11211c]"
+                  style={{ background: course.color }}
+                >
+                  Mastered · badge earned
                 </p>
               ) : (
                 <>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-sand">
+                  <div className="h-2 w-full overflow-hidden rounded-full border border-ink/15 bg-cream">
                     <div
                       className="h-full rounded-full transition-[width]"
                       style={{
@@ -77,12 +101,12 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
                       }}
                     />
                   </div>
-                  <p className="mt-2 text-xs font-medium text-stone">
+                  <p className="mt-2 text-xs font-semibold text-ink/70">
                     {started
                       ? `${done} of ${total} read — keep going`
                       : done === total && total > 0
                         ? "All read — take the final"
-                        : "Not started"}
+                        : "Fresh start, about an evening of reading"}
                   </p>
                 </>
               )}
