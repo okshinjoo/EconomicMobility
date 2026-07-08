@@ -5,6 +5,7 @@
 // Add a post here and it appears on /blog (newest first) and in site search.
 
 import type { ArticleBlock } from "./articles/types";
+import type { TopicId } from "./topics";
 
 export interface BlogPost {
   slug: string;
@@ -14,6 +15,8 @@ export interface BlogPost {
   date: string;
   /** Short editorial tag shown as the kicker, e.g. "Watch out" or "Noticed". */
   tag: string;
+  /** Learn topics this post is adjacent to — drives the /blog "picked for you" ordering. */
+  topics: TopicId[];
   readMinutes: number;
   body: ArticleBlock[];
 }
@@ -25,6 +28,7 @@ export const blogPosts: BlogPost[] = [
     dek: "When the house feels impossible, the $9 treat feels like the only vote you get.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting"],
     readMinutes: 5,
     body: [
       {
@@ -84,6 +88,7 @@ export const blogPosts: BlogPost[] = [
     dek: "How 'saving 40%' became the most expensive habit in America.",
     date: "2026-07-07",
     tag: "Watch out",
+    topics: ["budgeting", "money-safety"],
     readMinutes: 4,
     body: [
       {
@@ -126,6 +131,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Cash had a built-in ouch. We engineered it away, and the receipts show it.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -167,6 +173,7 @@ export const blogPosts: BlogPost[] = [
     dek: "The rented Lamborghini is a clue. Here are the others.",
     date: "2026-07-07",
     tag: "Watch out",
+    topics: ["money-safety", "investing"],
     readMinutes: 4,
     body: [
       {
@@ -219,6 +226,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Your food delivery app is offering you a loan. That's not generosity.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["credit", "money-safety"],
     readMinutes: 3,
     body: [
       {
@@ -260,6 +268,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Skip the LLC, the logo, and the personal brand. The first weekend is smaller than the internet says.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting", "taxes"],
     readMinutes: 4,
     body: [
       {
@@ -313,6 +322,7 @@ export const blogPosts: BlogPost[] = [
     dek: "TikTok rediscovered a budgeting method older than the checking account. It went viral for a reason.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -358,6 +368,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Five classic sayings, one loving audit. The wisdom holds up better than you'd think.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting", "credit"],
     readMinutes: 4,
     body: [
       {
@@ -401,6 +412,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Splitting a bill is easy. Splitting it fairly, with people you love, on different budgets: that's the hard part.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -447,6 +459,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Your feed shows purchases, never balances. That changes the math of comparison.",
     date: "2026-07-07",
     tag: "Watch out",
+    topics: ["budgeting", "investing"],
     readMinutes: 4,
     body: [
       {
@@ -489,6 +502,7 @@ export const blogPosts: BlogPost[] = [
     dek: "The biggest IPO in history is a free masterclass in how IPOs treat regular buyers.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["investing"],
     readMinutes: 5,
     body: [
       {
@@ -526,6 +540,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Sports betting apps turned gambling into a hobby with a login. The math didn't change.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["money-safety", "investing"],
     readMinutes: 4,
     body: [
       {
@@ -568,6 +583,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Terry Pratchett explained it with a pair of boots. Your bank explains it with a $35 fee.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting", "government-aid"],
     readMinutes: 4,
     body: [
       {
@@ -616,6 +632,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Tipping screens turned checkout into a small social experiment. You're allowed to walk in with answers.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -667,6 +684,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Dynamic pricing escaped the rideshare app. Your best defenses are older than the algorithm.",
     date: "2026-07-07",
     tag: "Noticed",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -707,6 +725,7 @@ export const blogPosts: BlogPost[] = [
     dek: "A field guide to dark patterns: the roach motel, the shame button, and the box that checked itself.",
     date: "2026-07-07",
     tag: "Watch out",
+    topics: ["money-safety", "budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -755,6 +774,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Some people feel broke with a cushion. Some feel fine while sinking. The fix is the same in both directions.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -792,6 +812,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Every raise you've ever gotten went somewhere. Each destination felt reasonable at the time.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting", "investing"],
     readMinutes: 4,
     body: [
       {
@@ -836,6 +857,7 @@ export const blogPosts: BlogPost[] = [
     dek: "The offer comes in, and your whole body says: take it before they change their minds.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["budgeting"],
     readMinutes: 4,
     body: [
       {
@@ -877,6 +899,7 @@ export const blogPosts: BlogPost[] = [
     dek: "Three digits got promoted into a character grade. They measure something much narrower.",
     date: "2026-07-07",
     tag: "Real talk",
+    topics: ["credit"],
     readMinutes: 4,
     body: [
       {

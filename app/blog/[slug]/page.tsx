@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
 import ReadingProgress from "@/components/ReadingProgress";
+import MarkAsRead from "@/components/MarkAsRead";
 import { blogPosts, getBlogPost } from "@/lib/blog";
 
 const BLOG_ACCENT = "#d26a4c"; // terracotta — the blog's editorial identity
@@ -48,6 +49,9 @@ export default async function BlogPostPage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <ReadingProgress />
+      {/* Namespaced so blog reads share the read map without colliding
+          with Learn article slugs (consumers look up bare slugs only). */}
+      <MarkAsRead slug={`blog/${post.slug}`} />
       <Header />
 
       <article className="bg-paper">

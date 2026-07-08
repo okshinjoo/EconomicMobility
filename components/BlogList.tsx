@@ -1,0 +1,194 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { Check, Clock } from "lucide-react";
+import type { TopicId } from "@/lib/topics";
+import { getReadMap } from "@/lib/readTracking";
+import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
+
+/** The light, serializable slice of a BlogPost the index needs (no body). */
+export interface BlogListItem {
+  slug: string;
+  title: string;
+  dek: string;
+  date: string;
+  tag: string;
+  topics: TopicId[];
+  readMinutes: number;
+}
+
+/**
+ * The /blog index list, personalized without a login: the featured post and
+ * the ordering come from this device's reading history. Learn articles the
+ * visitor has read (plus their quiz topics and past blog reads) build a
+ * topic-affinity score; unread posts that match what they actually read
+ * float up, posts they've already read sink to the bottom with a check.
+ * First visit (no history) falls back to newest-first, so the server render
+ * and a fresh device see the same page.
+ */
+export default function BlogList({
+  posts,
+  articleTopics,
+  topicNames,
+}: {
+  /** Newest first — the default order. */
+  posts: BlogListItem[];
+  /** Learn-article slug -> its topic, for scoring read history. */
+  articleTopics: Record<string, TopicId>;
+  /** TopicId -> short human name, for the "because you read about…" line. */
+  topicNames: Record<string, string>;
+}) {
+  const [readBlog, setReadBlog] = useState<Set<string>>(new Set());
+  const [affinity, setAffinity] = useState<Map<TopicId, number>>(new Map());
+  const [personal, setPersonal] = useState(false);
+
+  useEffect(() => {
+    const read = getReadMap();
+    const score = new Map<TopicId, number>();
+    const blogRead = new Set<string>();
+    const bump = (t: TopicId, by: number) =>
+      score.set(t, (score.get(t) ?? 0) + by);
+
+    for (const slug of Object.keys(read)) {
+      if (slug.startsWith("blog/")) {
+        const bare = slug.slice(5);
+        blogRead.add(bare);
+        for (const t of posts.find((p) => p.slug === bare)?.topics ?? [])
+          bump(t, 1);
+      } else if (articleTopics[slug]) {
+        bump(articleTopics[slug], 1);
+      }
+    }
+    // Quiz-selected topics count as interest too, a little louder.
+    const quiz = loadJSON<{ answers?: { q3?: string[] } }>(
+      STORAGE_KEYS.quizResult
+    );
+    for (const id of quiz?.answers?.q3 ?? []) {
+      if (id !== "not-sure" && id in topicNames) bump(id as TopicId, 2);
+    }
+
+    setReadBlog(blogRead);
+    setAffinity(score);
+    setPersonal(score.size > 0 || blogRead.size > 0);
+  }, [posts, articleTopics, topicNames]);
+
+  const { featured, rest, becauseOf } = useMemo(() => {
+    const postScore = (p: BlogListItem) =>
+      p.topics.reduce((sum, t) => sum + (affinity.get(t) ?? 0), 0);
+
+    if (!personal) {
+      // Server render + first visit: newest first, newest featured.
+      return { featured: posts[0], rest: posts.slice(1), becauseOf: null };
+    }
+
+    const unread = posts.filter((p) => !readBlog.has(p.slug));
+    const read = posts.filter((p) => readBlog.has(p.slug));
+    // Stable within equal scores: `posts` arrives newest-first.
+    const ranked = [...unread].sort((a, b) => postScore(b) - postScore(a));
+    const featured = ranked[0] ?? posts[0];
+    const rest = [...ranked.slice(1), ...read];
+
+    // Name the strongest interests the featured pick actually matches.
+    const matched = featured.topics
+      .filter((t) => (affinity.get(t) ?? 0) > 0)
+      .sort((a, b) => (affinity.get(b) ?? 0) - (affinity.get(a) ?? 0))
+      .slice(0, 2)
+      .map((t) => topicNames[t])
+      .filter(Boolean);
+    return {
+      featured,
+      rest,
+      becauseOf: postScore(featured) > 0 && matched.length ? matched : null,
+    };
+  }, [posts, personal, readBlog, affinity, topicNames]);
+
+  if (!featured) return null;
+
+  return (
+    <div>
+      {/* Featured pick */}
+      <article className="card-ink-lg rounded-2xl bg-cream p-7 sm:p-9 lg:-rotate-[0.35deg]">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
+            {personal ? "Picked for you" : "The latest"}
+          </span>
+          {becauseOf && (
+            <span className="text-sm font-medium text-stone">
+              Because you&apos;ve been reading about{" "}
+              {becauseOf.join(" and ").toLowerCase()}.
+            </span>
+          )}
+        </div>
+        <Link href={`/blog/${featured.slug}`} className="group mt-5 block">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
+            <span className="text-terracotta">{featured.tag}</span>
+            <span className="font-medium normal-case tracking-normal text-stone">
+              {formatDate(featured.date)}
+            </span>
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-5xl">
+            {featured.title}
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-stone sm:text-lg sm:leading-8">
+            {featured.dek}
+          </p>
+          <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
+            <Clock className="h-3.5 w-3.5" />
+            {featured.readMinutes} min read
+          </p>
+        </Link>
+      </article>
+
+      {/* Everything else */}
+      <div className="mt-12 divide-y-2 divide-ink border-y-2 border-ink">
+        {rest.map((post) => {
+          const wasRead = readBlog.has(post.slug);
+          return (
+            <article key={post.slug}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group block py-9"
+              >
+                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
+                  <span className="text-terracotta">{post.tag}</span>
+                  <span className="font-medium normal-case tracking-normal text-stone">
+                    {formatDate(post.date)}
+                  </span>
+                  {wasRead && (
+                    <span className="inline-flex items-center gap-1 font-semibold normal-case tracking-normal text-forest">
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                      You read this
+                    </span>
+                  )}
+                </p>
+                <h2
+                  className={`mt-3 font-display text-2xl font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl ${
+                    wasRead ? "text-ink/60" : "text-ink"
+                  }`}
+                >
+                  {post.title}
+                </h2>
+                <p className="mt-2 max-w-3xl text-base leading-7 text-stone">
+                  {post.dek}
+                </p>
+                <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
+                  <Clock className="h-3.5 w-3.5" />
+                  {post.readMinutes} min read
+                </p>
+              </Link>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function formatDate(iso: string): string {
+  return new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
