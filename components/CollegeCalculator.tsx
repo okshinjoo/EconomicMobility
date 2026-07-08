@@ -146,7 +146,7 @@ export default function CollegeCalculator() {
       {/* Result */}
       <div className="lg:sticky lg:top-24">
         <div className="overflow-hidden rounded-3xl border border-ink-600 bg-ink text-cream shadow-xl">
-          <div className="border-b border-ink-600 bg-gradient-to-br from-ink-700 to-ink p-7">
+          <div className="border-b border-ink-600 bg-ink-700 p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
               {fullyCovered ? "You're covered" : "Likely loans needed"}
             </p>

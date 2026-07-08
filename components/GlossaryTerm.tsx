@@ -59,7 +59,7 @@ export default function GlossaryTerm({
               href={`/glossary#${slug}`}
               className="inline-block text-xs font-semibold text-forest hover:text-amber-deep"
             >
-              Open in glossary →
+              Open in glossary
             </Link>
           </span>
           <span className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45 border-b border-r border-sand bg-cream" />

@@ -116,7 +116,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
                   href={f.href}
                   className="text-xs font-semibold text-amber transition-colors hover:text-cream"
                 >
-                  {f.label} →
+                  {f.label}
                 </Link>
               ))}
             </div>
