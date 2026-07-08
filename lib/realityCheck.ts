@@ -11,6 +11,8 @@ export interface LifestyleOption {
   label: string;
   blurb: string;
   monthly: number;
+  /** Big-expensive-city price, where it differs meaningfully (housing). */
+  monthlyHigh?: number;
 }
 
 export interface LifestyleCategory {
@@ -20,6 +22,10 @@ export interface LifestyleCategory {
   short: string;
   color: string;
   options: LifestyleOption[];
+  /** Amounts vary too widely for presets (fun, travel, savings): the UI
+   *  shows a type-it-yourself money field instead of the options. The
+   *  options stay as estimates for old saved snapshots. */
+  freeEntry?: { hint: string };
 }
 
 export const lifestyleCategories: LifestyleCategory[] = [
@@ -29,11 +35,11 @@ export const lifestyleCategories: LifestyleCategory[] = [
     short: "Housing",
     color: "#0c4a39",
     options: [
-      { id: "family", label: "With family", blurb: "Chipping in for your share of the household.", monthly: 300 },
-      { id: "roommates", label: "Splitting a place with roommates", blurb: "Your room, shared everything else.", monthly: 800 },
-      { id: "studio", label: "A studio, just you", blurb: "One room, one name on the lease.", monthly: 1150 },
-      { id: "solo", label: "Your own one-bedroom", blurb: "Nobody else's dishes. All of the rent.", monthly: 1400 },
-      { id: "nice-solo", label: "Your own place, nice building", blurb: "In-unit laundry and a landlord who answers.", monthly: 2100 },
+      { id: "family", label: "With family", blurb: "Chipping in for your share of the household.", monthly: 300, monthlyHigh: 450 },
+      { id: "roommates", label: "Splitting a place with roommates", blurb: "Your room, shared everything else.", monthly: 800, monthlyHigh: 1400 },
+      { id: "studio", label: "A studio, just you", blurb: "One room, one name on the lease.", monthly: 1150, monthlyHigh: 2100 },
+      { id: "solo", label: "Your own one-bedroom", blurb: "Nobody else's dishes. All of the rent.", monthly: 1400, monthlyHigh: 2600 },
+      { id: "nice-solo", label: "Your own place, nice building", blurb: "In-unit laundry and a landlord who answers.", monthly: 2100, monthlyHigh: 3800 },
     ],
   },
   {
@@ -112,6 +118,9 @@ export const lifestyleCategories: LifestyleCategory[] = [
     title: "Streaming, games & going out?",
     short: "Fun",
     color: "#d26a4c",
+    freeEntry: {
+      hint: "Streaming, games, concerts, nights out - your real monthly number. Most people land somewhere between $30 and $400.",
+    },
     options: [
       { id: "low", label: "A subscription and a hangout", blurb: "One or two services, mostly free fun.", monthly: 60 },
       { id: "mid", label: "The usual lineup", blurb: "A few subscriptions, movies, nights out.", monthly: 150 },
@@ -136,6 +145,9 @@ export const lifestyleCategories: LifestyleCategory[] = [
     title: "Trips?",
     short: "Travel",
     color: "#0f7d74",
+    freeEntry: {
+      hint: "Average it out: a $1,200 trip once a year is $100 a month. $0 is a fine answer.",
+    },
     options: [
       { id: "none", label: "Not a travel person", blurb: "Home is the destination.", monthly: 0 },
       { id: "rare", label: "A weekend thing now and then", blurb: "Day trips, one modest getaway a year.", monthly: 50 },
@@ -182,6 +194,9 @@ export const lifestyleCategories: LifestyleCategory[] = [
     title: "Paying future-you?",
     short: "Savings",
     color: "#e7a33c",
+    freeEntry: {
+      hint: "Savings and investing together, per month. $0 is an honest answer too - the guides can help change it.",
+    },
     options: [
       { id: "later", label: "Skipping for now", blurb: "We get it. (The guides can help change this.)", monthly: 0 },
       { id: "starter", label: "A starter habit", blurb: "Automatic transfer, small but real.", monthly: 150 },

@@ -61,8 +61,13 @@ const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
 interface Snapshot {
   picks: Record<string, string>;
   stateCode: string;
-  /** Corrected monthly amounts, keyed by category id (results-screen edits). */
+  /** Corrected monthly amounts, keyed by category id. Also holds the typed
+   *  amounts for free-entry categories (fun, travel, savings). */
   overrides?: Record<string, string>;
+  /** "high" = big expensive city; scales the housing estimates. */
+  col?: "high" | "normal";
+  /** Set when the run reaches results (resume marker). */
+  complete?: boolean;
 }
 
 const catById = (id: string): LifestyleCategory =>
@@ -72,6 +77,7 @@ export default function RealityCheckTool() {
   const [picks, setPicks] = useState<Record<string, string>>({});
   const [stateCode, setStateCode] = useState("");
   const [overrides, setOverrides] = useState<Record<string, string>>({});
+  const [col, setCol] = useState<"" | "high" | "normal">("");
   const [slide, setSlide] = useState(0); // 0..SLIDES.length-1, then results
   const resultStep = SLIDES.length;
   const totalCats = lifestyleCategories.length;
@@ -79,18 +85,24 @@ export default function RealityCheckTool() {
   // Resume a finished check ("pick up where you left off" convention).
   useEffect(() => {
     const saved = loadJSON<Snapshot>(STORAGE_KEYS.realityCheck);
-    if (saved?.picks && Object.keys(saved.picks).length === totalCats) {
+    // New snapshots carry a complete flag; older ones had a pick per category.
+    if (saved?.picks && (saved.complete || Object.keys(saved.picks).length === totalCats)) {
       setPicks(saved.picks);
       setStateCode(saved.stateCode ?? "");
       setOverrides(saved.overrides ?? {});
+      setCol(saved.col ?? "normal");
       setSlide(resultStep);
     }
   }, [totalCats, resultStep]);
 
-  /** Our estimate for a category from its pick. */
+  /** Our estimate for a category from its pick (big-city pricing when chosen). */
   const estimateFor = (catId: string): number => {
     const cat = catById(catId);
-    return cat.options.find((o) => o.id === picks[catId])?.monthly ?? 0;
+    const opt = cat.options.find((o) => o.id === picks[catId]);
+    if (!opt) return 0;
+    return col === "high" && opt.monthlyHigh !== undefined
+      ? opt.monthlyHigh
+      : opt.monthly;
   };
   /** What actually counts: their correction if they made one, else our estimate. */
   const effectiveFor = (catId: string): number =>
@@ -108,6 +120,8 @@ export default function RealityCheckTool() {
       picks,
       stateCode,
       overrides,
+      col: col || "normal",
+      complete: true,
       ...next,
     } satisfies Snapshot);
 
@@ -115,6 +129,7 @@ export default function RealityCheckTool() {
     setPicks({});
     setStateCode("");
     setOverrides({});
+    setCol("");
     setSlide(0);
   };
 
@@ -216,7 +231,13 @@ export default function RealityCheckTool() {
           <div className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {lifestyleCategories.map((cat) => {
               const pick = cat.options.find((o) => o.id === picks[cat.id]);
+              const pickLabel = cat.freeEntry
+                ? "Your number, as typed"
+                : cat.id === "housing" && col === "high" && pick
+                  ? `${pick.label} (big-city pricing)`
+                  : (pick?.label ?? "—");
               const edited =
+                !cat.freeEntry &&
                 overrides[cat.id] !== undefined &&
                 overrides[cat.id] !== "" &&
                 num(overrides[cat.id]) !== estimateFor(cat.id);
@@ -238,7 +259,7 @@ export default function RealityCheckTool() {
                       )}
                     </p>
                     <p className="truncate text-sm font-medium text-ink">
-                      {pick?.label ?? "—"}
+                      {pickLabel}
                     </p>
                   </div>
                   <div className="w-28 shrink-0">
@@ -276,7 +297,12 @@ export default function RealityCheckTool() {
 
   // ── Grouped question slides ───────────────────────────────────────────────
   const group = SLIDES[slide];
-  const answered = group.cats.every((id) => picks[id]);
+  const catAnswered = (id: string) =>
+    catById(id).freeEntry
+      ? overrides[id] !== undefined && overrides[id] !== ""
+      : Boolean(picks[id]);
+  const answered =
+    group.cats.every(catAnswered) && (slide !== 0 || col !== "");
   const isLast = slide === SLIDES.length - 1;
 
   return (
@@ -316,8 +342,80 @@ export default function RealityCheckTool() {
       <p className="mt-1 text-sm leading-6 text-stone">{group.blurb}</p>
 
       <div className="mt-6 space-y-8">
+        {slide === 0 && (
+          <fieldset>
+            <legend className="text-sm font-bold uppercase tracking-[0.14em] text-forest">
+              What kind of city?
+            </legend>
+            <p className="mt-1 text-xs leading-5 text-stone">
+              Rent in the biggest, priciest cities runs very differently from
+              everywhere else. This scales the housing estimates.
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {(
+                [
+                  {
+                    id: "high",
+                    label: "A big, expensive city",
+                    blurb: "New York, LA, SF, Boston, DC and company.",
+                  },
+                  {
+                    id: "normal",
+                    label: "A typical city or town",
+                    blurb: "Most of the country, honestly.",
+                  },
+                ] as const
+              ).map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => setCol(opt.id)}
+                  className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                    col === opt.id
+                      ? "border-forest bg-forest/[0.08]"
+                      : "border-sand bg-cream hover:border-ink/30"
+                  }`}
+                >
+                  <span className="block text-sm font-semibold text-ink">
+                    {opt.label}
+                  </span>
+                  <span className="mt-0.5 block text-xs leading-5 text-stone">
+                    {opt.blurb}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </fieldset>
+        )}
+
         {group.cats.map((catId) => {
           const cat = catById(catId);
+          if (cat.freeEntry) {
+            // Amounts vary too widely for presets: type the real number.
+            return (
+              <fieldset key={catId}>
+                <legend
+                  className="text-sm font-bold uppercase tracking-[0.14em]"
+                  style={{ color: cat.color }}
+                >
+                  {cat.title}
+                </legend>
+                <p className="mt-1 max-w-md text-xs leading-5 text-stone">
+                  {cat.freeEntry.hint}
+                </p>
+                <div className="mt-3 w-40">
+                  <MoneyInput
+                    value={overrides[catId] ?? ""}
+                    onChange={(v) =>
+                      setOverrides((prev) => ({ ...prev, [catId]: v }))
+                    }
+                    placeholder="0"
+                  />
+                </div>
+                <p className="mt-1 text-xs text-stone">per month</p>
+              </fieldset>
+            );
+          }
           return (
             <fieldset key={catId}>
               <legend
@@ -400,7 +498,7 @@ export default function RealityCheckTool() {
         </button>
         {!answered && (
           <p className="mt-2 text-xs text-stone">
-            Pick one option in each section to keep going.
+            Answer each section (typed amounts count) to keep going.
           </p>
         )}
       </div>
