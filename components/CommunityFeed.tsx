@@ -262,7 +262,7 @@ function PostCard({
   return (
     <article
       id={`post-${post.id}`}
-      className="scroll-mt-24 rounded-2xl border-2 border-sand bg-cream p-5 sm:p-7"
+      className="card-ink scroll-mt-24 rounded-2xl bg-cream p-5 sm:p-7"
     >
       <div className="flex items-center gap-3">
         <Avatar name={post.author} team={post.team} />
@@ -270,7 +270,7 @@ function PostCard({
           <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
             {post.author}
             {post.team && (
-              <span className="rounded-full bg-forest/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-forest">
+              <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
                 Team
               </span>
             )}

@@ -720,7 +720,7 @@ export default function BudgetCalculator() {
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border border-sand bg-cream p-6 shadow-sm sm:p-7">
+    <div className="rounded-2xl border-2 border-ink bg-cream p-6 shadow-[5px_5px_0_#11211c] sm:p-7">
       {children}
     </div>
   );
@@ -754,7 +754,7 @@ function SectionHeading({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
+      <span className="flex h-7 w-7 flex-shrink-0 -rotate-2 items-center justify-center rounded-md border-2 border-ink bg-amber text-sm font-bold text-ink shadow-[2px_2px_0_#11211c]">
         {step}
       </span>
       <h2 className="font-display text-xl font-semibold text-ink">{title}</h2>

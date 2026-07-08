@@ -64,20 +64,22 @@ export default function AskPage() {
               </p>
             </div>
 
-            <div className="mt-6">
-              {communityQuestions.map((qa) => {
+            <div className="mt-8 space-y-6">
+              {communityQuestions.map((qa, qi) => {
                 const topic = qa.topic ? getTopic(qa.topic) : null;
                 return (
                   <article
                     key={qa.id}
                     id={`ask-${qa.id}`}
-                    className="scroll-mt-24 border-t-2 border-ink/10 py-10 first:border-t-0"
+                    className={`card-ink scroll-mt-24 rounded-2xl bg-cream p-6 sm:p-8 ${
+                      qi % 3 === 1 ? "lg:rotate-[0.35deg]" : qi % 3 === 2 ? "lg:-rotate-[0.35deg]" : ""
+                    }`}
                   >
                     {topic && (
                       <Link
                         href={topic.href}
-                        className="text-xs font-bold uppercase tracking-[0.18em] underline-offset-4 transition-opacity hover:underline hover:opacity-80"
-                        style={{ color: topic.color }}
+                        className="inline-block -rotate-1 rounded-md border-2 border-ink px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-cream shadow-[2px_2px_0_#11211c] transition-transform hover:-translate-y-0.5"
+                        style={{ background: topic.color }}
                       >
                         {topic.title}
                       </Link>
