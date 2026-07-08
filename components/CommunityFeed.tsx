@@ -7,7 +7,7 @@ import type { CommunityPost } from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
 
 // Same moderated-inbox channel as the Ask box (components/AskQuestion.tsx):
-// paste the Web3Forms access key for help@economicmobilityproject.org here to
+// paste the Web3Forms access key for Help@economicmobilityproject.org here to
 // go live. Until then the forms run in preview mode: visitors still see
 // their own pending posts/comments (saved locally), nothing is sent anywhere.
 const WEB3FORMS_ACCESS_KEY = "";

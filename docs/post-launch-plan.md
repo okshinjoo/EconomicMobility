@@ -12,7 +12,7 @@ gate content** — the brand promises no sign-up walls.
 - [ ] Host on **Vercel** (or any Node host). Not a static export — the chat
       API route (phase 1) needs a server.
 - [ ] **Web3Forms key**: get a free access key at web3forms.com tied to
-      `help@economicmobilityproject.org` and paste it into the
+      `Help@economicmobilityproject.org` and paste it into the
       `WEB3FORMS_ACCESS_KEY` constant in `components/AskQuestion.tsx` and the
       matching constant in `components/CommunityFeed.tsx`. Until then both
       forms run in preview mode (confirm to the visitor, send nowhere).

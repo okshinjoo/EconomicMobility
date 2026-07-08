@@ -6,7 +6,7 @@ import { topics } from "@/lib/topics";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SET UP SUBMISSIONS (≈2 minutes, free, no account):
-//   1. Go to https://web3forms.com and enter help@economicmobilityproject.org
+//   1. Go to https://web3forms.com and enter Help@economicmobilityproject.org
 //   2. Web3Forms emails you an "access key" (a long code).
 //   3. Paste it between the quotes below and redeploy.
 // Submitted questions then arrive in that inbox. Prefer Formspree/Tally instead?

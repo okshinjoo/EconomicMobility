@@ -5,7 +5,7 @@ import { Send } from "lucide-react";
 
 // The project's real inbox. With no backend, the form opens the visitor's email
 // app pre-filled (mailto) — simple and reliable.
-const CONTACT_EMAIL = "help@economicmobilityproject.org";
+const CONTACT_EMAIL = "Help@economicmobilityproject.org";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
