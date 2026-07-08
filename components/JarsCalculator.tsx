@@ -70,7 +70,7 @@ export default function JarsCalculator() {
           return (
             <div
               key={jar.id}
-              className={`rounded-2xl bg-cream p-5 sm:p-6 ${done ? "card-ink" : "border-2 border-sand"}`}
+              className={`rounded-2xl bg-cream p-5 sm:p-6 ${done ? "card-ink" : "border-2 border-ink shadow-[3px_3px_0_#11211c]"}`}
               style={done ? { background: `${color}0d` } : undefined}
             >
               <div className="grid gap-4 sm:grid-cols-[1.2fr_0.9fr_0.9fr_auto] sm:items-end">

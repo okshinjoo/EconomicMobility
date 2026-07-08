@@ -377,10 +377,10 @@ export default function RealityCheckTool() {
                   key={opt.id}
                   type="button"
                   onClick={() => setCol(opt.id)}
-                  className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                  className={`rounded-xl border-2 px-4 py-3 text-left transition-all ${
                     col === opt.id
-                      ? "border-forest bg-forest/[0.08]"
-                      : "border-sand bg-cream hover:border-ink/30"
+                      ? "border-ink bg-forest/[0.08] shadow-[3px_3px_0_#11211c]"
+                      : "border-ink/20 bg-cream hover:border-ink"
                   }`}
                 >
                   <span className="block text-sm font-semibold text-ink">
@@ -443,10 +443,10 @@ export default function RealityCheckTool() {
                       onClick={() =>
                         setPicks((prev) => ({ ...prev, [catId]: opt.id }))
                       }
-                      className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                      className={`rounded-xl border-2 px-4 py-3 text-left transition-all ${
                         selected
-                          ? "border-forest bg-forest/[0.08]"
-                          : "border-sand bg-cream hover:border-ink/30"
+                          ? "border-ink bg-forest/[0.08] shadow-[3px_3px_0_#11211c]"
+                          : "border-ink/20 bg-cream hover:border-ink"
                       }`}
                     >
                       <span className="block text-sm font-semibold text-ink">
@@ -501,7 +501,7 @@ export default function RealityCheckTool() {
               window.scrollTo({ top: 0 });
             }
           }}
-          className="rounded-md bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-amber-deep hover:text-cream disabled:cursor-not-allowed disabled:opacity-40"
+          className="btn-ink rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
         >
           {isLast ? "Show me the number" : "Next"}
         </button>

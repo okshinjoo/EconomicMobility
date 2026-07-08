@@ -88,7 +88,7 @@ export default function ChallengeChecklist({
     <div>
       {/* Join / progress header */}
       {!progress ? (
-        <div className="rounded-2xl border border-sand bg-cream p-6 sm:p-8">
+        <div className="card-ink rounded-2xl bg-cream p-6 sm:p-8">
           <p className="font-display text-xl font-semibold text-ink">
             Ready? It&apos;s {total} steps, at your own pace.
           </p>
@@ -135,7 +135,7 @@ export default function ChallengeChecklist({
             <li
               key={step.id}
               className={`rounded-2xl bg-cream p-5 transition-all ${
-                checked ? "card-ink" : "border-2 border-sand"
+                checked ? "card-ink" : "border-2 border-ink shadow-[3px_3px_0_#11211c]"
               }`}
               style={checked ? { background: `${accent}0d` } : undefined}
             >
