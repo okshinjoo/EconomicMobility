@@ -33,10 +33,30 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
 });
 
+const SITE_DESCRIPTION =
+  "Free, jargon-free financial education built to break the cycle of economic disadvantage for first-generation, low-income, and immigrant youth — and anyone ready to take control of their financial future.";
+
 export const metadata: Metadata = {
+  // Resolves relative OG/Twitter URLs to absolute and sets the canonical
+  // origin for shared links. (Inner pages already self-brand their titles,
+  // so no title template here — it would double the brand.)
+  metadataBase: new URL("https://economicmobilityproject.org"),
   title: "Empower | Economic Mobility Project",
-  description:
-    "Free, jargon-free financial education built to break the cycle of economic disadvantage for first-generation, low-income, and immigrant youth — and anyone ready to take control of their financial future.",
+  description: SITE_DESCRIPTION,
+  applicationName: "Empower",
+  openGraph: {
+    type: "website",
+    siteName: "Empower — Economic Mobility Project",
+    title: "Empower | Economic Mobility Project",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "Empower | Economic Mobility Project",
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
