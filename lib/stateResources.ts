@@ -134,7 +134,7 @@ export const stateResources: Record<string, StateResource> = {
   },
   FL: {
     benefits: { label: "MyACCESS Florida", url: "https://myaccess.myflfamilies.com" },
-    unemployment: { label: "FL Reemployment Asst.", url: "https://www.floridajobs.org/Reemployment-Assistance-Service-Center/reemployment-assistance/claimants" },
+    unemployment: { label: "FL Reemployment Asst.", url: "https://www.floridajobs.org" },
     localHelp: { label: "211 Florida", url: "https://fl211.org" },
     highlights: [
       {
@@ -433,7 +433,7 @@ export const stateResources: Record<string, StateResource> = {
   TX: {
     benefits: { label: "Your Texas Benefits", url: "https://www.yourtexasbenefits.com" },
     unemployment: { label: "File a claim (TWC)", url: "https://www.twc.texas.gov/programs/unemployment-benefits" },
-    localHelp: { label: "2-1-1 Texas", url: "https://www.211texas.org" },
+    localHelp: { label: "2-1-1 Texas", url: "https://211texas.org" },
   },
   UT: {
     benefits: { label: "Utah myCase", url: "https://jobs.utah.gov/mycase/home" },

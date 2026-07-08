@@ -31,7 +31,7 @@ const groups = [
       },
       {
         name: "BigFuture Scholarships",
-        url: "https://bigfuture.collegeboard.org/pay-for-college/scholarships",
+        url: "https://bigfuture.collegeboard.org/scholarship-search",
         desc: "Scholarship search and step-by-step actions you can get rewarded for.",
       },
     ],

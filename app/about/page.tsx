@@ -94,7 +94,7 @@ export default function AboutPage() {
       </section>
 
       {/* The story — B: ink-framed photo + tilted quote card */}
-      <section className="bg-paper-deep">
+      <section id="story" className="scroll-mt-24 bg-paper-deep">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
           <div className="relative">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:-rotate-1">
