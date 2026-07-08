@@ -20,15 +20,32 @@ export default function ToolsHub() {
       <Header />
 
       {/* Hero — A: solid amber field */}
-      <section className="bg-amber text-ink">
+      <section className="border-b-2 border-ink bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 pb-14 pt-14">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             Free Tools
           </span>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-7xl">
-            Run your real numbers.
+          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+            Run your{" "}
+            <span className="relative whitespace-nowrap text-forest">
+              real numbers.
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 18"
+                className="absolute -bottom-1.5 left-0 h-3 w-full text-amber"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M3,13 C60,4 120,4 160,9 C210,15 260,8 297,5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
             Each calculator answers one question and updates as you type. No
             sign-up, nothing saved to our servers, no catch.
           </p>
@@ -43,12 +60,7 @@ export default function ToolsHub() {
                   <a
                     href={`#${cat.id}`}
                     className="card-ink group block rounded-xl p-4 text-ink transition-transform duration-200 hover:-translate-y-1"
-                    style={{
-                      // The budgeting pastel is a pale amber — too close to the
-                      // field it sits on, so that tile goes cream instead.
-                      backgroundColor:
-                        cat.id === "budgeting" ? "#fbf8f1" : style.bg,
-                    }}
+                    style={{ backgroundColor: style.bg }}
                   >
                     <ToolDoodle id={cat.id} color={style.accent} />
                     <span className="mt-3 block text-sm font-bold leading-tight">
@@ -75,8 +87,8 @@ export default function ToolsHub() {
                 {/* Pastel category banner */}
                 <Reveal>
                   <div
-                    className="flex flex-wrap items-end justify-between gap-4 rounded-2xl px-6 py-5 text-ink sm:px-8"
-                    style={{ backgroundColor: style.bg }}
+                    className="flex flex-wrap items-end justify-between gap-4 rounded-xl border-l-8 bg-cream px-5 py-3.5 text-ink"
+                    style={{ borderColor: accent }}
                   >
                     <div>
                       <h2 className="font-display text-2xl font-bold sm:text-3xl">
@@ -96,18 +108,14 @@ export default function ToolsHub() {
                   </div>
                 </Reveal>
 
-                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {cat.items.map((item, i) => {
                     const live = item.status === "live";
                     const inner = (
                       <>
-                        <div
-                          className="h-1.5 w-10 rounded-full"
-                          style={{ background: live ? accent : "var(--color-sand)" }}
-                        />
-                        <div className="mt-3 flex items-center justify-between gap-2">
+                        <div className="flex items-center justify-between gap-2">
                           <h3
-                            className={`font-display text-lg font-semibold ${
+                            className={`font-display text-base font-bold leading-snug ${
                               live ? "text-ink" : "text-stone"
                             }`}
                           >
@@ -127,21 +135,21 @@ export default function ToolsHub() {
                           ) : null}
                         </div>
                         <p
-                          className={`mt-2 flex-1 text-sm leading-6 ${
-                            live ? "text-stone" : "text-stone/70"
+                          className={`mt-1.5 flex-1 text-xs leading-5 ${
+                            live ? "text-ink/65" : "text-stone/70"
                           }`}
                         >
                           {item.short}
                         </p>
                         {live ? (
                           <span
-                            className="mt-4 text-sm font-semibold underline decoration-2 underline-offset-4"
-                            style={{ color: accent, textDecorationColor: `${accent}55` }}
+                            className="mt-3 text-xs font-bold underline decoration-2 underline-offset-4"
+                            style={{ color: accent, textDecorationColor: `${accent}66` }}
                           >
                             Open
                           </span>
                         ) : (
-                          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-stone/60">
+                          <span className="mt-3 text-xs font-medium text-stone/60">
                             Coming soon
                           </span>
                         )}
@@ -152,12 +160,13 @@ export default function ToolsHub() {
                         {live ? (
                           <Link
                             href={hrefFor(cat, item)}
-                            className="card-ink group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"
+                            className="group flex h-full flex-col rounded-xl border-2 border-ink p-4 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-0.5"
+                            style={{ backgroundColor: style.bg }}
                           >
                             {inner}
                           </Link>
                         ) : (
-                          <div className="flex h-full flex-col rounded-2xl border border-sand bg-cream/50 p-6">
+                          <div className="flex h-full flex-col rounded-xl border-2 border-sand bg-cream/50 p-4">
                             {inner}
                           </div>
                         )}
