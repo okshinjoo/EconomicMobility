@@ -121,6 +121,40 @@ export default function StateResources() {
               );
             })}
           </div>
+          {data.highlights && data.highlights.length > 0 && (
+            <div className="mt-6">
+              <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-amber-deep">
+                <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4">
+                  <path
+                    d="M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Worth knowing in {stateName}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-stone">
+                Programs {stateName} offers beyond the national baseline.
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {data.highlights.map((h) => (
+                  <a
+                    key={h.url}
+                    href={h.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col rounded-xl border-2 border-amber bg-amber/10 p-4 shadow-[3px_3px_0_#c9842a] transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <h4 className="font-display text-base font-bold leading-snug text-ink underline decoration-amber decoration-2 underline-offset-4">
+                      {h.label}
+                    </h4>
+                    <p className="mt-1.5 text-xs leading-5 text-ink/70">
+                      {h.desc}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
           <p className="mt-4 text-xs leading-6 text-stone">
             These are official {stateName} government sites. If a link has
             moved, search the program name plus &quot;{stateName}&quot;. And
