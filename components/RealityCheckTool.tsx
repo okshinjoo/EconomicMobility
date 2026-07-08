@@ -9,8 +9,19 @@ import {
   type RealityResult,
 } from "@/lib/realityCheck";
 import { US_STATES } from "@/lib/taxData";
+import { readBudgetSummary } from "@/lib/calcImports";
+import { getReadMap } from "@/lib/readTracking";
 import { Donut, Legend } from "@/components/Charts";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
+
+/** Follow-up reads for people who already have a real budget saved,
+ *  most on-topic first; the first unread one gets recommended. */
+const NEXT_READS = [
+  { slug: "cost-of-living", title: "What It Really Costs to Live" },
+  { slug: "50-30-20-rule", title: "The 50/30/20 Rule, Explained" },
+  { slug: "building-your-first-budget", title: "Building Your First Budget" },
+  { slug: "needs-vs-wants", title: "Needs vs. Wants — Without the Guilt" },
+];
 
 const usd = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -148,39 +159,13 @@ export default function RealityCheckTool() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-sand bg-cream p-6">
-          <p className="font-display text-lg font-semibold text-ink">
-            Make it real
-          </p>
-          <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
-            <li>
-              See what {usd(result.grossSalary)} looks like per
-              paycheck in the{" "}
-              <Link href="/tools/budget/paycheck" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                Paycheck Calculator
-              </Link>
-              .
-            </li>
-            <li>
-              Build the real version of this in the{" "}
-              <Link href="/tools/budget" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                Budget Planner
-              </Link>
-              .
-            </li>
-            <li>
-              Read{" "}
-              <Link href="/learn/budgeting/cost-of-living" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                What It Really Costs to Live
-              </Link>
-              . The numbers here are national ballparks; your city writes its
-              own.
-            </li>
-          </ul>
+        <NextStep grossSalary={result.grossSalary} monthlyTotal={monthlyTotal} />
+
+        <div className="mt-6">
           <button
             type="button"
             onClick={restart}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             <RotateCcw className="h-4 w-4" />
             Try a different life
@@ -318,6 +303,77 @@ function StepHeader({
           style={{ width: `${((index + 1) / (total + 2)) * 100}%` }}
         />
       </div>
+    </div>
+  );
+}
+
+/**
+ * The one referral under the results, chosen from what this device has
+ * already done. No saved budget -> point at the Budget Planner so the
+ * salary becomes a real after-tax picture. Budget already filled out ->
+ * compare it to this lifestyle and recommend the first unread follow-up
+ * article. Budget saved AND all the reads read -> nothing to push.
+ */
+function NextStep({
+  grossSalary,
+  monthlyTotal,
+}: {
+  grossSalary: number;
+  monthlyTotal: number;
+}) {
+  const budget = readBudgetSummary();
+
+  if (!budget) {
+    return (
+      <div className="mt-6 rounded-2xl border border-sand bg-cream p-6">
+        <p className="font-display text-lg font-semibold text-ink">
+          Now see it after taxes
+        </p>
+        <p className="mt-2 text-sm leading-6 text-stone">
+          {usd(grossSalary)} is the sticker, not what hits your account. Put
+          it into the{" "}
+          <Link
+            href="/tools/budget"
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Budget Planner
+          </Link>{" "}
+          to see the monthly take-home, then build this life in it line by
+          line and watch what&apos;s left over.
+        </p>
+      </div>
+    );
+  }
+
+  const read = getReadMap();
+  const nextRead = NEXT_READS.find((a) => !read[a.slug]);
+  if (!nextRead) return null;
+
+  const diff = budget.netMonthly - monthlyTotal;
+  const comparison =
+    budget.netMonthly > 0
+      ? diff >= 0
+        ? `Your saved budget has you taking home about ${usd(budget.netMonthly)} a month, so this life fits with ${usd(diff)} to spare. `
+        : `Your saved budget has you taking home about ${usd(budget.netMonthly)} a month, so this life runs ${usd(-diff)} past it. `
+      : "";
+
+  return (
+    <div className="mt-6 rounded-2xl border border-sand bg-cream p-6">
+      <p className="font-display text-lg font-semibold text-ink">
+        How it squares with your real budget
+      </p>
+      <p className="mt-2 text-sm leading-6 text-stone">
+        {comparison}
+        These numbers are national ballparks; your city writes its own. A
+        good next read:{" "}
+        <Link
+          href={`/learn/budgeting/${nextRead.slug}`}
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          {nextRead.title}
+        </Link>
+        .
+      </p>
     </div>
   );
 }
