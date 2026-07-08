@@ -79,6 +79,7 @@ function linkTerms(
         slug={slug}
         term={surface}
         definition={getGlossaryTerm(slug)?.definition ?? ""}
+        articleHref={getGlossaryTerm(slug)?.article}
       />
     );
     last = m.index + surface.length;

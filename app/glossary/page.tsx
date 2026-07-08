@@ -150,6 +150,17 @@ export default function GlossaryPage() {
                           </dt>
                           <dd className="mt-1 text-sm leading-6 text-ink/80">
                             {term.definition}
+                            {term.article && (
+                              <>
+                                {" "}
+                                <Link
+                                  href={term.article}
+                                  className="whitespace-nowrap text-xs font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                                >
+                                  Read the full guide
+                                </Link>
+                              </>
+                            )}
                             {rel && (
                               <>
                                 {" "}
