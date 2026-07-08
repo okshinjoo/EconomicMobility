@@ -25,26 +25,30 @@ export default function ChallengesPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* Hero — A: solid terracotta field */}
-      <section className="text-cream" style={{ background: "#d26a4c" }}>
+      {/* Hero — soft terracotta tint (the solid field read as abrasive) */}
+      <section className="border-b-2 border-ink" style={{ background: "#f0d0c0" }}>
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
-          <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
+          <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
             Challenges
           </span>
-          <h1 className="mt-4 max-w-2xl font-display text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">
-            Doing beats knowing.
+          <h1 className="mt-5 max-w-2xl font-display text-5xl font-semibold leading-[1.02] tracking-tight text-ink sm:text-6xl">
+            Doing{" "}
+            <span className="italic" style={{ color: "#b7593f" }}>
+              beats
+            </span>{" "}
+            knowing.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/80">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
             Guides teach; challenges make you actually do the thing. Join with
             one click (no account — progress saves on this device), work through
             real steps at your own pace, swap notes with everyone else in the
             challenge thread, and earn the badge at the end.
           </p>
-          <p className="mt-4 text-sm text-cream/70">
+          <p className="mt-4 text-sm text-ink/70">
             Every challenge has an official thread on the{" "}
             <Link
               href="/community"
-              className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               community feed
             </Link>{" "}
