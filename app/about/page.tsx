@@ -99,8 +99,8 @@ export default function AboutPage() {
           <div className="relative">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:-rotate-1">
               <Image
-                src="/images/studying.jpg"
-                alt="A student studying"
+                src="/images/founder.jpg"
+                alt="The founder of the Economic Mobility Project"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
