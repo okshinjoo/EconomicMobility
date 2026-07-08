@@ -646,15 +646,49 @@ export function scoreGeneralCheck(answers: KCAnswers): {
 }
 
 /** Encouraging, honest feedback for the general knowledge check. */
+// Deterministic variant picker: same seed always yields the same phrasing, so
+// a resumed or re-rendered result stays consistent, while different topics
+// (different seeds) read differently instead of repeating one template.
+function seededIndex(seed: string, len: number): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return Math.abs(h) % len;
+}
+function pickVariant(variants: string[], seed: string): string {
+  return variants[seededIndex(seed, variants.length)];
+}
+
 export function getGeneralCheckFeedback(correct: number, total: number): string {
   const pct = total > 0 ? correct / total : 0;
+  const seed = `general-${correct}-${total}`;
   if (pct >= 0.75) {
-    return `You got ${correct} of ${total}. For someone who answered "I'm not sure," you know a fair amount. We'll skip the very basics and point you toward what to sharpen next.`;
+    return pickVariant(
+      [
+        `You got ${correct} of ${total}. For someone who answered "I'm not sure," you know a fair amount. We'll skip the very basics and point you toward what to sharpen next.`,
+        `${correct} of ${total} right, from someone who said they weren't sure. You know more than you gave yourself credit for, so we'll start a notch above the basics.`,
+      ],
+      seed
+    );
   }
   if (pct >= 0.4) {
-    return `You got ${correct} of ${total}: some solid instincts, a few gaps. The path below starts with the fundamentals so nothing feels shaky.`;
+    return pickVariant(
+      [
+        `You got ${correct} of ${total}: some solid instincts, a few gaps. The path below starts with the fundamentals so nothing feels shaky.`,
+        `${correct} of ${total}: the instincts are there, with a couple of soft spots. We'll begin with the fundamentals so the rest has something to stand on.`,
+      ],
+      seed
+    );
   }
-  return `You got ${correct} of ${total}, which is a fine place to begin. We've put the clearest, most beginner-friendly guides first so you can build from there.`;
+  return pickVariant(
+    [
+      `You got ${correct} of ${total}, which is a fine place to begin. We've put the clearest, most beginner-friendly guides first so you can build from there.`,
+      `${correct} of ${total}, and that's a perfectly good starting line. The friendliest guides are up first so you can build from the ground up.`,
+    ],
+    seed
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -699,20 +733,63 @@ export function getKnowledgeCheckFeedback(
   score: number,
   tier: Tier
 ): string {
+  const t = topicLabel;
+  // Seeded by topic name alone so multiple selected topics read differently
+  // instead of repeating one template (the score/tier already pick the
+  // bucket), and a resumed result stays consistent.
+  const seed = t;
+
   if (score >= 2) {
     if (tier === "beginner") {
-      return `You said you were just getting started, but your answers on ${topicLabel} suggest you know more than you think. Don't sell yourself short: we've included some intermediate resources.`;
+      return pickVariant(
+        [
+          `You said you were just getting started, but your answers on ${t} suggest you know more than you think. Don't sell yourself short: we've included some intermediate resources.`,
+          `You called yourself a beginner on ${t}, then got both right. We've bumped you past the basics so you're not stuck rereading what you already know.`,
+          `Turns out you know ${t} better than you let on: two for two. The resources below lean a little further than "beginner" to keep it interesting.`,
+        ],
+        seed
+      );
     }
-    return `Your answers on ${topicLabel} show you've got a solid foundation. We'll point you to some deeper resources to keep building on that.`;
+    return pickVariant(
+      [
+        `Your answers on ${t} show you've got a solid foundation. We'll point you to some deeper resources to keep building on that.`,
+        `Two for two on ${t}: the foundation is clearly there. What's below leans toward the deeper end so you keep moving.`,
+        `You know your way around ${t}. We'll skip the groundwork and point you at what actually adds to what you've got.`,
+      ],
+      seed
+    );
   }
+
   if (score === 1) {
-    return `You know some of the basics on ${topicLabel}, but there are gaps worth filling. We'd suggest starting with our intro guide before jumping into the advanced material.`;
+    return pickVariant(
+      [
+        `You know some of the basics on ${t}, but there are gaps worth filling. We'd suggest starting with our intro guide before jumping into the advanced material.`,
+        `Halfway there on ${t}: you've got the gist, with a spot or two to firm up. The intro guide below closes those quickly.`,
+        `One right, one that slipped on ${t}. Nothing a quick pass through the fundamentals won't sort out, and that's exactly where we've pointed you.`,
+      ],
+      seed
+    );
   }
-  // score === 0
+
+  // score === 0 — keep the confidence-mismatch honesty for the advanced tier.
   if (tier === "advanced") {
-    return `You mentioned feeling confident about ${topicLabel}, but some of these questions tripped you up. That happens to a lot of people, and the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base.`;
+    return pickVariant(
+      [
+        `You mentioned feeling confident about ${t}, but some of these questions tripped you up. That happens to a lot of people, and the gaps are usually specific and easy to fill. We've put the foundational resources first so you can build a stronger base.`,
+        `You felt good about ${t}, but these two didn't go your way. No shame in it: the gaps here are usually small and specific. We've led with the fundamentals so you can shore them up fast.`,
+        `You rated yourself confident on ${t}, and these questions pushed back a little. More common than you'd think, and quick to fix: start with the foundational guides below.`,
+      ],
+      seed
+    );
   }
-  return `Your answers suggest ${topicLabel} is mostly new territory for you. We'd recommend starting from the beginning on this one; it's more straightforward than it seems.`;
+  return pickVariant(
+    [
+      `Your answers suggest ${t} is mostly new territory for you. We'd recommend starting from the beginning on this one; it's more straightforward than it seems.`,
+      `${t} looks like fresh ground for you, which is a perfectly fine place to start. Begin with the first guide below; it's friendlier than the jargon makes it sound.`,
+      `Looks like ${t} is new to you, and that's good to know: it means the beginner guides below are exactly where you should be, and they move faster than you'd expect.`,
+    ],
+    seed
+  );
 }
 
 // ---------------------------------------------------------------------------

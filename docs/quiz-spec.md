@@ -365,7 +365,7 @@ Reference examples (use as tone models, not a literal lookup table — write one
 
 ### Part 2 — Your Knowledge Check Feedback
 
-Per real topic selected (for *pure* `not-sure`, show the single combined general-check card instead; if the user skipped the knowledge check via `skippedKc`, show the "Based on what you told us" note in place of scores), one of five tones based on knowledge-check score (0/1/2 correct) vs. stated confidence tier:
+Per real topic selected (for *pure* `not-sure`, show the single combined general-check card instead; if the user skipped the knowledge check via `skippedKc`, show the "Based on what you told us" note in place of scores), one of five tones based on knowledge-check score (0/1/2 correct) vs. stated confidence tier. **Each tone is a POOL of ~3 phrasings (July 2026), picked deterministically by topic name (`pickVariant`/`seededIndex` in `quizData.ts`) so that selecting several topics doesn't repeat one template, while a resumed/re-rendered result stays consistent. The distribution is balanced 3/3/3 across the nine topics. The general check (`getGeneralCheckFeedback`) is likewise a pool per score band. When adding phrasings keep the same tone; the confidence-mismatch honesty (below) must survive in every advanced-score-0 variant.** Sample of each tone:
 
 - **Scored well (2/2 correct):** "Your answers on [topic] show you've got a solid foundation. We'll point you to some deeper resources to keep building on that."
 - **Scored partially (1/2 correct):** "You know some of the basics on [topic], but there are some gaps worth filling. We'd suggest starting with our intro guide before jumping to the advanced material."
