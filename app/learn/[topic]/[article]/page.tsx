@@ -16,12 +16,14 @@ import ArticleBody from "@/components/ArticleBody";
 import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
+import TopicQuizCard from "@/components/TopicQuizCard";
 import ArticleQuiz from "@/components/ArticleQuiz";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import { learnContent, LEARN_UPDATED } from "@/lib/learnContent";
 import { allArticles, getArticle, getArticleBySlug, getRoadmapRefs } from "@/lib/articles";
 import { extractHeadings } from "@/lib/articles/headings";
 import { articleTools } from "@/lib/articleTools";
+import { getTopicQuiz } from "@/lib/topicQuizzes";
 
 function isTopicId(value: string): value is TopicId {
   return topics.some((t) => t.id === value);
@@ -63,6 +65,7 @@ export default async function ArticlePage({
   const roadmapRef = getRoadmapRefs().find(
     (r) => r.topicId === topic && r.slug !== found.slug
   );
+  const hasTopicQuiz = Boolean(getTopicQuiz(topic));
   const headings = extractHeadings(found.body);
   const related = (found.related ?? [])
     .map((slug) => getArticleBySlug(slug))
@@ -248,6 +251,15 @@ export default async function ArticlePage({
                   </Link>
                 </div>
               </div>
+
+              {/* Topic mini quiz — above the other suggestions on purpose */}
+              {hasTopicQuiz && (
+                <TopicQuizCard
+                  topicId={topic}
+                  topicShort={meta.short}
+                  accent={accent}
+                />
+              )}
 
               {/* Tool cross-link */}
               {tool && (
