@@ -80,7 +80,7 @@ export default function WelcomeBack({
       const next = topic.articles.find((a) => !read[a.slug]);
       if (!next) return null;
       const roadmap = topic.articles.find(
-        (a) => ROADMAP_SET.has(a.slug) && a.slug !== next.slug
+        (a) => ROADMAP_SET.has(a.slug) && a.slug !== next.slug && !read[a.slug]
       );
       return {
         kicker: "Pick up where you left off",

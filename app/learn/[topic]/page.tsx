@@ -183,6 +183,7 @@ export default async function TopicPage({
                 );
                 if (!topicRoadmapArticle) return null;
                 return (
+                  <HideWhenRead slug={topicRoadmapArticle.slug}>
                   <Link
                     href={`/learn/${topic}/${topicRoadmapArticle.slug}`}
                     className="card-ink mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl px-6 py-4 transition-transform duration-200 hover:-translate-y-0.5 lg:-rotate-[0.3deg]"
@@ -203,6 +204,7 @@ export default async function TopicPage({
                       The whole path, one page
                     </span>
                   </Link>
+                  </HideWhenRead>
                 );
               })()}
               <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">

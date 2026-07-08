@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MomentReads from "@/components/MomentReads";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -65,19 +66,7 @@ export default function LifePage() {
                     <TopicMark id={m.markTopic} className="h-10 w-10 shrink-0" />
                   </div>
 
-                  <ul className="mt-5 flex-1 space-y-2 border-t-2 pt-4" style={{ borderColor: `${m.color}33` }}>
-                    {m.reads.map((r) => (
-                      <li key={r.href}>
-                        <Link
-                          href={r.href}
-                          className="text-sm font-semibold text-ink/85 underline decoration-2 underline-offset-4 transition-colors hover:text-ink"
-                          style={{ textDecorationColor: `${m.color}66` }}
-                        >
-                          {r.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <MomentReads reads={m.reads} color={m.color} />
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {m.tool && (

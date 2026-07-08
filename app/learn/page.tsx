@@ -6,7 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
-import { TopicBar } from "@/components/ReadBadge";
+import { TopicBar, ReadBadge } from "@/components/ReadBadge";
+import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap, getArticleBySlug } from "@/lib/articles";
@@ -116,9 +117,12 @@ export default function LearnHub() {
                   and point at the next step.
                 </p>
               </div>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {roadmaps.map((a, i) => (
-                  <Reveal key={a.slug} delay={(i % 3) * 60}>
+              <ReadOrderedGrid
+                className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+                items={roadmaps.map((a, i) => ({
+                  slug: a.slug,
+                  node: (
+                  <Reveal key={a.slug} delay={(i % 3) * 60} className="h-full">
                     <Link
                       href={`/learn/${a.topicId}/${a.slug}`}
                       className={`card-ink flex h-full items-center gap-3 rounded-xl bg-cream px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5 ${
@@ -126,13 +130,15 @@ export default function LearnHub() {
                       }`}
                     >
                       <TopicMark id={a.topicId} className="h-7 w-7 shrink-0" />
-                      <span className="text-sm font-bold leading-snug text-ink">
+                      <span className="flex-1 text-sm font-bold leading-snug text-ink">
                         {a.title}
                       </span>
+                      <ReadBadge slug={a.slug} accent="#11211c" />
                     </Link>
                   </Reveal>
-                ))}
-              </div>
+                  ),
+                }))}
+              />
             </div>
           </section>
         );

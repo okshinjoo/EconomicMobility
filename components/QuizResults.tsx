@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getReadMap } from "@/lib/readTracking";
+import { loadJSON } from "@/lib/storage";
 import { getTopic, type TopicId } from "@/lib/topics";
 import TopicMark from "@/components/TopicMark";
 import {
@@ -32,6 +35,27 @@ interface QuizResultsProps {
   roadmapsByTopic?: Partial<Record<string, { title: string; href: string }>>;
 }
 
+/** Done-state from this device: read slugs + earned badges (mounted-only). */
+function useDoneState() {
+  const [done, setDone] = useState<{
+    read: Set<string>;
+    courseBadges: Set<string>;
+    challengeBadges: Set<string>;
+  }>({ read: new Set(), courseBadges: new Set(), challengeBadges: new Set() });
+  useEffect(() => {
+    setDone({
+      read: new Set(Object.keys(getReadMap())),
+      courseBadges: new Set(
+        Object.keys(loadJSON<Record<string, unknown>>("empower:course-badges:v1") ?? {})
+      ),
+      challengeBadges: new Set(
+        Object.keys(loadJSON<Record<string, unknown>>("empower:challenge-badges:v1") ?? {})
+      ),
+    });
+  }, []);
+  return done;
+}
+
 export default function QuizResults({
   answers,
   tier,
@@ -43,6 +67,7 @@ export default function QuizResults({
   roadmapsByTopic,
 }: QuizResultsProps) {
   const profile = getFinancialProfile(answers.q1, answers.q2, tier);
+  const doneState = useDoneState();
 
   const hasTopics = selectedTopicIds.length > 0;
   // "Pure" not-sure = unsure with no specific topics → general check + broad guidance.
@@ -186,7 +211,10 @@ export default function QuizResults({
                   <p className="mt-1 text-sm leading-6 text-stone">
                     {step.why}
                   </p>
-                  {roadmapsByTopic?.[step.topicId] && (
+                  {roadmapsByTopic?.[step.topicId] &&
+                    !doneState.read.has(
+                      roadmapsByTopic[step.topicId]!.href.split("/").pop() ?? ""
+                    ) && (
                     <p className="mt-2 text-sm">
                       <Link
                         href={roadmapsByTopic[step.topicId]!.href}
@@ -242,7 +270,16 @@ export default function QuizResults({
           "government-aid": { title: "The Money Reset Week", href: "/challenges/money-reset-week", kind: "challenge" },
           insurance: { title: "Your First Paycheck", href: "/courses/first-paycheck", kind: "course" },
         };
-        const rec = selectedTopicIds.map((t) => courseByTopic[t]).find(Boolean);
+        const earned = (r: { href: string; kind: string }) => {
+          const id = r.href.split("/").pop() ?? "";
+          return r.kind === "course"
+            ? doneState.courseBadges.has(id)
+            : doneState.challengeBadges.has(id);
+        };
+        const rec = selectedTopicIds
+          .map((t) => courseByTopic[t])
+          .filter((r): r is NonNullable<typeof r> => Boolean(r))
+          .find((r) => !earned(r));
         if (!rec) return null;
         return (
           <section className="mt-10">

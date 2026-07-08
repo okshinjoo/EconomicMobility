@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Map, Sparkles, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Map, Sparkles, Wrench } from "lucide-react";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
 
@@ -153,8 +153,12 @@ export function RelatedArticles({
     setReadSlugs(new Set(Object.keys(getReadMap())));
   }, []);
 
+  // Owner rule: read articles stay listed, sunk to the bottom with a Read
+  // chip. Only when EVERYTHING here is read does the section bow out (a
+  // list that recommends nothing new isn't a recommendation).
   const unread = items.filter((i) => !readSlugs.has(i.slug));
   if (unread.length === 0) return null;
+  const ordered = [...unread, ...items.filter((i) => readSlugs.has(i.slug))];
 
   return (
     <section className="bg-paper-deep">
@@ -163,26 +167,44 @@ export function RelatedArticles({
           Keep reading
         </h2>
         <div className="mt-6 space-y-3">
-          {unread.map((rel) => (
+          {ordered.map((rel) => {
+            const wasRead = readSlugs.has(rel.slug);
+            return (
             <Link
               key={rel.slug}
               href={rel.href}
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-sand bg-cream p-5 transition-colors hover:border-ink/20"
+              className={`group flex items-center justify-between gap-4 rounded-2xl border border-sand p-5 transition-colors hover:border-ink/20 ${
+                wasRead ? "bg-paper" : "bg-cream"
+              }`}
             >
               <div>
                 <p
-                  className="text-xs font-semibold uppercase tracking-wide"
+                  className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide"
                   style={{ color: rel.color }}
                 >
                   {rel.kicker}
+                  {wasRead && (
+                    <span
+                      className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold normal-case tracking-normal text-cream"
+                      style={{ background: rel.color }}
+                    >
+                      <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                      Read
+                    </span>
+                  )}
                 </p>
-                <h3 className="mt-1 font-display text-lg font-semibold text-ink">
+                <h3
+                  className={`mt-1 font-display text-lg font-semibold ${
+                    wasRead ? "text-ink/60" : "text-ink"
+                  }`}
+                >
                   {rel.title}
                 </h3>
               </div>
               <ArrowRight className="h-5 w-5 flex-shrink-0 text-stone transition-transform group-hover:translate-x-1" />
             </Link>
-          ))}
+            );
+          })}
         </div>
         <div className="mt-8">
           <Link
