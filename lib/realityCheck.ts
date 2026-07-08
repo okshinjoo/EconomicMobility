@@ -72,10 +72,13 @@ export const lifestyleCategories: LifestyleCategory[] = [
     short: "Transport",
     color: "#3f6478",
     options: [
-      { id: "transit", label: "Transit, bike, rides", blurb: "Bus pass, bike tires, the occasional rideshare.", monthly: 130 },
+      { id: "walk-bike", label: "Walking & biking", blurb: "Sneakers, tires, and the occasional bus fare.", monthly: 25 },
+      { id: "transit", label: "Public transit", blurb: "Bus or subway pass, the occasional rideshare.", monthly: 130 },
+      { id: "family-car", label: "Borrowing the family car", blurb: "Chipping in for gas, maybe a share of insurance.", monthly: 120 },
       { id: "paid-off", label: "An older car, paid off", blurb: "No payment - just insurance, gas, and repairs.", monthly: 320 },
       { id: "used-car", label: "A financed used car", blurb: "Payment, insurance, gas, and the odd repair.", monthly: 500 },
-      { id: "new-car", label: "A new car", blurb: "That new-car smell has a monthly price.", monthly: 850 },
+      { id: "lease", label: "Leasing something newer", blurb: "A payment that never ends, but always under warranty.", monthly: 600 },
+      { id: "new-car", label: "A new car, financed", blurb: "That new-car smell has a monthly price.", monthly: 850 },
     ],
   },
   {

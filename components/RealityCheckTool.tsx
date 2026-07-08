@@ -238,7 +238,9 @@ export default function RealityCheckTool() {
             {lifestyleCategories.map((cat) => {
               const pick = cat.options.find((o) => o.id === picks[cat.id]);
               const pickLabel = cat.freeEntry
-                ? "Your number, as typed"
+                ? overrides[cat.id]
+                  ? "Your number, as typed"
+                  : "Left blank, counted as $0"
                 : cat.id === "housing" && col === "high" && pick
                   ? `${pick.label} (big-city pricing)`
                   : (pick?.label ?? "—");
@@ -303,10 +305,9 @@ export default function RealityCheckTool() {
 
   // ── Grouped question slides ───────────────────────────────────────────────
   const group = SLIDES[slide];
+  // Free-entry money boxes never gate: leaving one blank just counts as $0.
   const catAnswered = (id: string) =>
-    catById(id).freeEntry
-      ? overrides[id] !== undefined && overrides[id] !== ""
-      : Boolean(picks[id]);
+    catById(id).freeEntry ? true : Boolean(picks[id]);
   const answered =
     group.cats.every(catAnswered) && (slide !== 0 || col !== "");
   const isLast = slide === SLIDES.length - 1;
@@ -418,7 +419,9 @@ export default function RealityCheckTool() {
                     placeholder="0"
                   />
                 </div>
-                <p className="mt-1 text-xs text-stone">per month</p>
+                <p className="mt-1 text-xs text-stone">
+                  per month &middot; leave it blank and we count $0
+                </p>
               </fieldset>
             );
           }
@@ -504,7 +507,8 @@ export default function RealityCheckTool() {
         </button>
         {!answered && (
           <p className="mt-2 text-xs text-stone">
-            Answer each section (typed amounts count) to keep going.
+            Pick an option in each section to keep going. Money boxes can
+            stay blank; blank counts as $0.
           </p>
         )}
       </div>
