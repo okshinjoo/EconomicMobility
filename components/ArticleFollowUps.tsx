@@ -39,7 +39,7 @@ export function QuizPromo() {
         </div>
         <Link
           href="/quiz"
-          className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-amber px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:bg-cream"
+          className="btn-ink inline-flex flex-shrink-0 items-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
         >
           Take the quiz
           <ArrowRight className="h-4 w-4" />
@@ -71,10 +71,10 @@ export function ToolCard({
       className="group flex items-center gap-4 rounded-2xl border border-sand bg-cream p-6 transition-colors hover:border-ink/20"
     >
       <span
-        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-        style={{ background: `${accent}1A`, color: accent }}
+        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-cream"
+        style={{ color: accent }}
       >
-        <Wrench className="h-6 w-6" strokeWidth={1.5} />
+        <Wrench className="h-6 w-6" strokeWidth={1.75} />
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">
@@ -113,10 +113,10 @@ export function RoadmapPathCard({
       className="group flex items-center gap-4 rounded-2xl border-2 border-ink bg-cream p-6 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
     >
       <span
-        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-        style={{ background: `${accent}1A`, color: accent }}
+        className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-cream"
+        style={{ color: accent }}
       >
-        <Map className="h-6 w-6" strokeWidth={1.5} />
+        <Map className="h-6 w-6" strokeWidth={1.75} />
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">

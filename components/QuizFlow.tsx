@@ -379,7 +379,7 @@ export default function QuizFlow({
               <button
                 type="button"
                 onClick={goBack}
-                className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink/5"
+                className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink/5"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back
@@ -388,7 +388,7 @@ export default function QuizFlow({
                 type="button"
                 onClick={goNext}
                 disabled={!canProceed}
-                className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3 text-sm font-semibold text-ink transition-colors enabled:hover:bg-ink enabled:hover:text-cream disabled:cursor-not-allowed disabled:opacity-40"
+                className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-8 py-3 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
               >
                 {isLastBeforeResults ? "See My Results" : "Next"}
                 <ArrowRight className="h-4 w-4" />
