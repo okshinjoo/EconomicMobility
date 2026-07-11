@@ -40,8 +40,13 @@ export default function ContactForm() {
         from_name: "Empower — Contact Form",
         name: name.trim() || "Not given",
         message: message.trim(),
+        // The `email` field must always be a VALID address or Web3Forms
+        // rejects the submission — use the visitor's if given, else a
+        // no-reply placeholder so no-email messages still send.
+        email: trimmedEmail.includes("@")
+          ? trimmedEmail
+          : "noreply@economicmobilityproject.org",
       };
-      if (trimmedEmail.includes("@")) payload.email = trimmedEmail;
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",

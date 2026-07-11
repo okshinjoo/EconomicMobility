@@ -48,8 +48,13 @@ export default function AskQuestion() {
         topic: topic || "Not specified",
         question: question.trim(),
         reply_wanted: trimmedEmail ? "Yes" : "No (anonymous)",
+        // The `email` field must always be a VALID address or Web3Forms
+        // rejects the submission — use the visitor's if given, else a
+        // no-reply placeholder so anonymous questions still send.
+        email: trimmedEmail.includes("@")
+          ? trimmedEmail
+          : "noreply@economicmobilityproject.org",
       };
-      if (trimmedEmail.includes("@")) payload.email = trimmedEmail;
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
