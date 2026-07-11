@@ -10,7 +10,7 @@ import { loadJSON, saveJSON } from "@/lib/storage";
 // paste the Web3Forms access key for Help@economicmobilityproject.org here to
 // go live. Until then the forms run in preview mode: visitors still see
 // their own pending posts/comments (saved locally), nothing is sent anywhere.
-const WEB3FORMS_ACCESS_KEY = "";
+const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
 const PENDING_POSTS_KEY = "empower:community-posts:v1";

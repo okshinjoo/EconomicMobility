@@ -14,7 +14,7 @@ import { topics } from "@/lib/topics";
 //
 // Until this is set, the form runs in PREVIEW MODE: it thanks the visitor but
 // does NOT send anywhere.
-const WEB3FORMS_ACCESS_KEY = "";
+const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 // ─────────────────────────────────────────────────────────────────────────────
 
 type Status = "idle" | "sending" | "done" | "error";
