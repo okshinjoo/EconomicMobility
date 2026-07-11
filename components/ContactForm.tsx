@@ -1,24 +1,81 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
-// The project's real inbox. With no backend, the form opens the visitor's email
-// app pre-filled (mailto) — simple and reliable.
+// The project's real inbox, shown as a fallback link. Submissions send through
+// Web3Forms (same moderated channel as the Ask/Community forms), so the form
+// posts in-page instead of opening the visitor's email app. The access key is
+// public by design (front-end submission key).
 const CONTACT_EMAIL = "Help@economicmobilityproject.org";
+const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
+
+type Status = "idle" | "sending" | "done" | "error";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Hello from ${name || "the website"}`);
-    const body = encodeURIComponent(
-      `${message}\n\n— ${name}${email ? ` (${email})` : ""}`
+    if (!message.trim()) return;
+    setStatus("sending");
+
+    // No key configured (e.g. local preview): confirm without sending.
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setStatus("done");
+      return;
+    }
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New message from ${name.trim() || "the website"}`,
+          from_name: "Empower — Contact Form",
+          name: name.trim() || "Not given",
+          email: email.trim() || "Not given",
+          message: message.trim(),
+        }),
+      });
+      const data = await res.json().catch(() => ({ success: res.ok }));
+      setStatus(res.ok && data.success !== false ? "done" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "done") {
+    return (
+      <div className="rounded-2xl border-2 border-forest/30 bg-forest/[0.06] p-6 text-center sm:p-8">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-forest" strokeWidth={1.75} />
+        <p className="mt-3 font-display text-xl font-semibold text-ink">
+          Thanks, we&apos;ve got it.
+        </p>
+        <p className="mt-1.5 text-sm leading-6 text-stone">
+          Your message is on its way to us. If it needs a reply, we&apos;ll get
+          back to you at the email you left.
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setName("");
+            setEmail("");
+            setMessage("");
+            setStatus("idle");
+          }}
+          className="mt-5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          Send another
+        </button>
+      </div>
     );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -43,7 +100,8 @@ export default function ContactForm() {
           htmlFor="contact-email"
           className="mb-1.5 block text-sm font-medium text-ink"
         >
-          Your email
+          Your email{" "}
+          <span className="font-normal text-stone">(so we can reply)</span>
         </label>
         <input
           id="contact-email"
@@ -73,14 +131,32 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
+        disabled={status === "sending" || !message.trim()}
+        className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
       >
+        {status === "sending" ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <Send className="h-4 w-4" />
+        )}
         Send message
-        <Send className="h-4 w-4" />
       </button>
+      {status === "error" && (
+        <p className="text-sm font-medium text-terracotta">
+          Something went wrong sending that. Please try again, or email us
+          directly at{" "}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="font-semibold text-terracotta underline underline-offset-4"
+          >
+            {CONTACT_EMAIL}
+          </a>
+          .
+        </p>
+      )}
       <p className="text-xs text-stone">
-        This opens your email app with the message ready to send. You can also
-        write us directly at{" "}
+        Sends straight to us, no email app needed. You can also write directly
+        to{" "}
         <a
           href={`mailto:${CONTACT_EMAIL}`}
           className="font-semibold text-forest hover:text-amber-deep"
