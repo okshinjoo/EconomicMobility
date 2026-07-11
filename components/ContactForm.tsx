@@ -29,20 +29,27 @@ export default function ContactForm() {
       return;
     }
     try {
+      // Web3Forms validates any field named `email` as a real address and
+      // rejects the submission if it isn't one — so a blank email field
+      // must be omitted, not sent as a placeholder string. Only include it
+      // when the visitor gave a valid-looking address (for reply-to).
+      const trimmedEmail = email.trim();
+      const payload: Record<string, string> = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `New message from ${name.trim() || "the website"}`,
+        from_name: "Empower — Contact Form",
+        name: name.trim() || "Not given",
+        message: message.trim(),
+      };
+      if (trimmedEmail.includes("@")) payload.email = trimmedEmail;
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New message from ${name.trim() || "the website"}`,
-          from_name: "Empower — Contact Form",
-          name: name.trim() || "Not given",
-          email: email.trim() || "Not given",
-          message: message.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({ success: res.ok }));
       setStatus(res.ok && data.success !== false ? "done" : "error");

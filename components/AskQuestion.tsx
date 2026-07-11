@@ -36,17 +36,25 @@ export default function AskQuestion() {
       return;
     }
     try {
+      // Web3Forms validates any field literally named `email` as a real
+      // address and rejects the whole submission if it isn't one. This form
+      // is anonymous by design, so only include `email` when the visitor
+      // actually gave a valid-looking one — otherwise leave it out entirely.
+      const trimmedEmail = email.trim();
+      const payload: Record<string, string> = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "New question from Empower",
+        from_name: "Empower — Ask a Question",
+        topic: topic || "Not specified",
+        question: question.trim(),
+        reply_wanted: trimmedEmail ? "Yes" : "No (anonymous)",
+      };
+      if (trimmedEmail.includes("@")) payload.email = trimmedEmail;
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New question from Empower",
-          from_name: "Empower — Ask a Question",
-          topic: topic || "Not specified",
-          email: email.trim() || "Anonymous",
-          question: question.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({ success: res.ok }));
       setStatus(res.ok && data.success !== false ? "done" : "error");
