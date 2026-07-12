@@ -829,4 +829,83 @@ export const collegeExtraArticles: Article[] = [
     ],
     related: ["fafsa-step-by-step", "reading-aid-award-letter", "graduation-money-checklist"],
   },
+  {
+    slug: "taking-a-break-from-college",
+    topicId: "college",
+    title: "Taking a Break From College: The Money Checklist",
+    dek: "Stopping out is common and nothing to be ashamed of. But the money side has tripwires, and they start the day you drop below half-time.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Dropping below half-time starts your student loans' 6-month grace period.",
+      "Withdrawing mid-semester can force your school to return aid and bill you for it.",
+      "An official leave of absence protects you in ways just walking away doesn't.",
+      "A break survived with a plan is a comma, not a period.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Maybe money ran out, maybe family needs you, maybe the major stopped making sense. Whatever the reason, plenty of students step away from college for a while, and many come back and finish. The mistake isn't taking a break. The mistake is leaving without doing the twenty minutes of money homework first, because several clocks start ticking the moment you stop being a student.",
+      },
+      {
+        type: "h2",
+        text: "Clock 1: your loan grace period starts",
+      },
+      {
+        type: "p",
+        text: "Federal student loans give you a 6-month grace period before payments start, and it begins when you graduate, leave, OR drop below half-time enrollment. A 'break' and 'dropping out' look identical to your loan servicer. The good news: if you re-enroll at least half-time before the 6 months run out, you keep your full grace period for later. If you don't, payments begin, and [repaying your student loans](/learn/college/repaying-student-loans) becomes your next read. If payments would be impossible, [income-driven repayment](/learn/government-aid/income-driven-repayment) can take them as low as $0 while your income is low.",
+      },
+      {
+        type: "key",
+        text: "Before you leave, log into StudentAid.gov, see exactly what you owe and who your servicer is, and put the grace-period end date in your phone. The students who get hurt are the ones who find out by missing a payment they never knew existed.",
+      },
+      {
+        type: "h2",
+        text: "Clock 2: the aid you already received this term",
+      },
+      {
+        type: "p",
+        text: "Financial aid is 'earned' day by day through the semester. Withdraw before about the 60% mark of the term, and federal rules make the school send back the unearned share of your aid. The school then often bills YOU for the tuition that aid was covering. This is the infamous surprise bill, and it's why the timing of your exit matters: finishing the current term, or at least passing the 60% point, can be worth thousands. Ask the financial aid office to run the 'return of aid' math for your exact date before you decide anything.",
+      },
+      {
+        type: "h2",
+        text: "Do it officially or it costs you",
+      },
+      {
+        type: "steps",
+        items: [
+          "Talk to the financial aid office BEFORE you stop attending. Ghosting your classes can mean failing grades, which damage the academic-progress standing your future aid depends on.",
+          "Ask about an official leave of absence. An approved leave (up to 180 days) can keep your loans in in-school status and holds your spot.",
+          "Get the withdrawal or leave in writing, with the effective date.",
+          "Complete exit counseling if it's required. It's a short online module, and skipping it doesn't skip the loans.",
+          "Before you go, ask the registrar whether any unpaid balance would hold your transcript, and settle or set up a payment plan if so. Rules on transcript holds have loosened in many states, but don't assume.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What a break does NOT cost you",
+      },
+      {
+        type: "list",
+        items: [
+          "Your Pell Grant eligibility doesn't burn while you're away. The lifetime limit (about six years' worth) only counts terms you actually received it.",
+          "Your credits generally keep. If you return elsewhere, the [community college path](/learn/college/community-college-path) is often the cheapest bridge back to a four-year degree.",
+          "Your FAFSA isn't ruined. File it again for the year you return, like [the step-by-step guide](/learn/college/fafsa-step-by-step) shows. Aid offices see returning students constantly.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Make the break a plan, not a drift",
+      },
+      {
+        type: "p",
+        text: "Give the break a shape: a return term written down, a savings target while you work ([even a small cushion](/learn/investing/high-yield-savings-account) changes your options), and one conversation with an advisor about what re-entry takes. Students who leave with a date come back at far higher rates than students who leave with a shrug. Your degree can wait a year. It just shouldn't have to wait on a bill you didn't see coming.",
+      },
+      {
+        type: "tip",
+        text: "If the reason you're leaving is money, appeal first. Schools can adjust aid mid-year when circumstances change, and [how to appeal your financial aid](/learn/college/appealing-financial-aid) takes an afternoon. The break you're planning might not be necessary.",
+      },
+    ],
+    related: ["repaying-student-loans", "community-college-path", "appealing-financial-aid"],
+  },
 ];

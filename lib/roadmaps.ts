@@ -17,6 +17,7 @@ export const ROADMAP_SLUGS: string[] = [
   "first-home-runway",
   "insurance-checkup",
   "security-tune-up",
+  "your-first-benefits-enrollment",
 ];
 
 export const ROADMAP_SET = new Set(ROADMAP_SLUGS);

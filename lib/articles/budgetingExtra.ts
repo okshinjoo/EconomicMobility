@@ -822,4 +822,89 @@ export const budgetingExtraArticles: Article[] = [
     ],
     related: ["unbanked-underbanked", "sending-money-abroad", "immigrants-and-benefits"],
   },
+  {
+    slug: "your-first-benefits-enrollment",
+    topicId: "budgeting",
+    title: "Your First Benefits Enrollment, Form by Form",
+    dek: "HR hands you a packet and a deadline. Here's the order to tackle it in, and which boxes quietly matter most.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "You usually get about 30 days from your start date. After that, most choices lock until next year.",
+      "The 401(k) match line is the highest-paid decision in the packet.",
+      "This guide routes you to the right deep-dive at each form.",
+      "Doing nothing is also a choice, and usually the worst one.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "New job, first week, and HR sends over a stack of enrollment forms with words like 'elections' and 'pre-tax' and a deadline. If there's nobody at home who's filled these out before, the packet can feel like a test you never studied for. It isn't a test. It's five decisions, they go in a sensible order, and every one of them has a full guide on this site. This page is the map.",
+      },
+      {
+        type: "key",
+        text: "The deadline is real: most employers give new hires about 30 days to enroll. Miss it, and outside of big life events you generally wait for the annual open-enrollment window to fix anything.",
+      },
+      {
+        type: "h2",
+        text: "Form 1: the W-4 (your paycheck's accuracy)",
+      },
+      {
+        type: "p",
+        text: "This one decides how much tax comes out of each check. For a single person with one job, the default is usually fine; get it wrong in either direction and you're giving up money now or owing it in April. [How to fill out a W-4](/learn/taxes/how-to-fill-out-w4) walks every line.",
+      },
+      {
+        type: "h2",
+        text: "Form 2: the health plan (the biggest bill)",
+      },
+      {
+        type: "p",
+        text: "Don't pick by premium alone; the deductible and out-of-pocket maximum decide what a bad year actually costs you. [How to choose a health plan](/learn/insurance/choosing-a-health-plan) gives you the honest comparison method, and if a high-deductible plan is on the menu, it may come with the HSA below.",
+      },
+      {
+        type: "h2",
+        text: "Form 3: the 401(k) (the free-money line)",
+      },
+      {
+        type: "p",
+        text: "If your employer matches contributions, enrolling at least up to the full match is the single highest-paying choice in the packet: it's a 100% return on those dollars. [What is a 401(k)?](/learn/investing/what-is-a-401k) covers the mechanics, and a target-date fund is a perfectly good first pick inside it. If money is genuinely too tight, start at 1% to 2% and raise it each raise.",
+      },
+      {
+        type: "h2",
+        text: "Form 4: HSA or FSA (the tax-free health money)",
+      },
+      {
+        type: "list",
+        items: [
+          "An [HSA](/learn/investing/what-is-an-hsa) comes only with high-deductible plans, rolls over forever, and is yours for life. For 2026 you can put in up to $4,400 for self-only coverage. If you have one available, even $20 a paycheck builds a real medical cushion.",
+          "An FSA is use-it-or-lose-it by the deadline (plans may let a small amount carry over), so fund it only to what you'll genuinely spend on care, glasses, or prescriptions this year.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Form 5: the checkboxes people skip",
+      },
+      {
+        type: "list",
+        items: [
+          "Disability insurance: often free or cheap through work, and it protects the paycheck everything else depends on. [The coverage nobody mentions](/learn/insurance/disability-insurance) explains why it matters more than life insurance for most young workers.",
+          "Life insurance: the free employer-paid base amount is worth taking; whether you need more depends on who depends on you. [Do you even need life insurance?](/learn/insurance/do-you-need-life-insurance) is the two-minute answer.",
+          "Beneficiary forms: fill them in. This decides who gets the money in your 401(k) and life insurance, and it overrides everything else.",
+          "Commuter or other pre-tax perks: nice if you'll truly use them; skip if not.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Done. Now check the first paycheck",
+      },
+      {
+        type: "p",
+        text: "Elections made, one last step: when the first full paycheck lands, [read the stub](/learn/budgeting/how-to-read-a-pay-stub) and confirm the deductions match what you picked. Payroll mistakes happen, and they're easiest to fix in week two, not month six. Then build the budget on the number that's actually arriving, starting with [what to do with your first paycheck](/learn/budgeting/your-first-paycheck).",
+      },
+      {
+        type: "tip",
+        text: "Big life changes (marriage, a baby, losing other coverage) reopen your benefits outside the annual window. If your situation shifts mid-year, ask HR about a 'qualifying life event' before assuming you're stuck.",
+      },
+    ],
+    related: ["reading-a-job-offer", "your-first-paycheck", "how-to-read-a-pay-stub"],
+  },
 ];
