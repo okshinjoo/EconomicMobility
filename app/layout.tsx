@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatLauncher from "@/components/ChatLauncher";
 import VisitTracker from "@/components/VisitTracker";
+import ScrollProgress from "@/components/ScrollProgress";
 import { getSearchItems } from "@/lib/search";
 
 const geistSans = Geist({
@@ -79,6 +80,7 @@ export default function RootLayout({
         {modal ?? null}
         <ChatLauncher items={getSearchItems()} />
         <VisitTracker />
+        <ScrollProgress />
         <Analytics />
       </body>
     </html>
