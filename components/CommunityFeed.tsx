@@ -11,6 +11,7 @@ import {
   fetchLiveComments,
   type LiveComment,
 } from "@/lib/liveComments";
+import { fetchLikes, setLike } from "@/lib/liveLikes";
 import {
   Heart,
   MessageCircle,
@@ -218,6 +219,55 @@ function FlairChips({ labels }: { labels?: string[] }) {
       ))}
     </>
   );
+}
+
+/** Member-backed like tallies for a set of targets (post ids + "c:<id>"
+ *  comment keys). Signed-in: hearts live in the DB and count publicly, with
+ *  optimistic toggling. Signed out (or accounts off): toggle() declines and
+ *  the caller falls back to the personal-only local map. */
+function useLiveLikes(targets: string[]) {
+  const [likeSession, setLikeSession] = useState<Session | null>(null);
+  const [counts, setCounts] = useState<Record<string, number>>({});
+  const [mine, setMine] = useState<Record<string, boolean>>({});
+  const targetsKey = targets.join("|");
+
+  useEffect(() => {
+    if (!accountsEnabled) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => setLikeSession(data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) =>
+      setLikeSession(s)
+    );
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const load = () => {
+      fetchLikes(targetsKey ? targetsKey.split("|") : []).then((d) => {
+        setCounts(d.counts);
+        setMine(d.mine);
+      });
+    };
+    load();
+    window.addEventListener("empower:community-updated", load);
+    return () => window.removeEventListener("empower:community-updated", load);
+  }, [targetsKey]);
+
+  /** Returns false when signed out so the caller can fall back locally. */
+  const toggle = (target: string): boolean => {
+    if (!likeSession) return false;
+    const liked = !mine[target];
+    setMine((prev) => ({ ...prev, [target]: liked }));
+    setCounts((prev) => ({
+      ...prev,
+      [target]: Math.max(0, (prev[target] ?? 0) + (liked ? 1 : -1)),
+    }));
+    void setLike(likeSession, target, liked);
+    return true;
+  };
+
+  return { likeSession, counts, mine, toggle };
 }
 
 function DeleteOwnButton({ liveId }: { liveId: string }) {
@@ -569,6 +619,7 @@ function CommentItem({
   onToggleLike,
   pendingReplies,
   authorMeta,
+  likeCounts,
 }: {
   postId: string;
   comment: CommunityComment;
@@ -576,6 +627,7 @@ function CommentItem({
   onToggleLike: (key: string) => void;
   pendingReplies: PendingComment[];
   authorMeta: Record<string, { cred: number; earned: string[] }>;
+  likeCounts?: Record<string, number>;
 }) {
   const [replyOpen, setReplyOpen] = useState(false);
   const likeKey = `c:${comment.id}`;
@@ -621,6 +673,9 @@ function CommentItem({
                 fill={liked ? "currentColor" : "none"}
               />
               {liked ? "Liked" : "Like"}
+              {(likeCounts?.[likeKey] ?? 0) > 0 && (
+                <span className="tabular-nums">{likeCounts![likeKey]}</span>
+              )}
             </button>
             <button
               type="button"
@@ -765,10 +820,12 @@ function MiniCard({
 function CompactRow({
   post,
   commentTotal,
+  likeCount = 0,
   onTag,
 }: {
   post: CommunityPost;
   commentTotal: number;
+  likeCount?: number;
   onTag: (id: ChannelId) => void;
 }) {
   const { hub, tag } = usePostChips(post);
@@ -828,6 +885,15 @@ function CompactRow({
             ? "No comments yet"
             : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
         </span>
+        {likeCount > 0 && (
+          <>
+            <span>·</span>
+            <span className="inline-flex items-center gap-1">
+              <Heart className="h-3 w-3" />
+              {likeCount}
+            </span>
+          </>
+        )}
       </p>
     </Link>
   );
@@ -839,6 +905,7 @@ function PostCard({
   onToggleLike,
   pendingMap,
   authorMeta,
+  likeCounts,
   onTag,
   full = false,
   saved = false,
@@ -849,6 +916,7 @@ function PostCard({
   onToggleLike: (key: string) => void;
   pendingMap: PendingCommentMap;
   authorMeta: Record<string, { cred: number; earned: string[] }>;
+  likeCounts?: Record<string, number>;
   onTag?: (id: ChannelId) => void;
   /** true on the post's own page: comments + forms render. In the feed
    *  (false) the card is Reddit-style — content + action bar only. */
@@ -965,6 +1033,9 @@ function PostCard({
             fill={liked ? "currentColor" : "none"}
           />
           {liked ? "Liked" : "Like"}
+          {(likeCounts?.[post.id] ?? 0) > 0 && (
+            <span className="tabular-nums">{likeCounts![post.id]}</span>
+          )}
         </button>
         {full ? (
           <button
@@ -1033,6 +1104,7 @@ function PostCard({
               onToggleLike={onToggleLike}
               pendingReplies={pendingMap[`${post.id}::${c.id}`] ?? []}
               authorMeta={authorMeta}
+              likeCounts={likeCounts}
             />
           ))}
           {pendingComments.map((c) => (
@@ -1146,13 +1218,26 @@ export function SinglePost({
     });
   };
 
+  const likeTargets = useMemo(() => {
+    const t = [post.id];
+    for (const c of mergedPost.comments ?? []) {
+      t.push(`c:${c.id}`);
+      for (const r of c.replies ?? []) t.push(`c:${r.id}`);
+    }
+    return t;
+  }, [mergedPost, post.id]);
+  const liveLikes = useLiveLikes(likeTargets);
+
   return (
     <PostCard
       post={mergedPost}
-      likes={likes}
-      onToggleLike={toggleLike}
+      likes={liveLikes.likeSession ? liveLikes.mine : likes}
+      onToggleLike={(key) => {
+        if (!liveLikes.toggle(key)) toggleLike(key);
+      }}
       pendingMap={mergedPending}
       authorMeta={authorMeta}
+      likeCounts={liveLikes.counts}
       full
       saved={Boolean(savedPosts[post.id])}
       onToggleSave={toggleSaved}
@@ -1228,6 +1313,9 @@ export default function CommunityFeed({
   useEffect(() => {
     setPinnedChannels(loadJSON<ChannelId[]>(PINNED_CHANNELS_KEY) ?? []);
   }, []);
+
+  const feedLikeTargets = useMemo(() => posts.map((p) => p.id), [posts]);
+  const feedLikes = useLiveLikes(feedLikeTargets);
 
   const togglePinChannel = (id: ChannelId) => {
     setPinnedChannels((prev) => {
@@ -1810,10 +1898,13 @@ export default function CommunityFeed({
           <PostCard
             key={post.id}
             post={post}
-            likes={likes}
-            onToggleLike={toggleLike}
+            likes={feedLikes.likeSession ? feedLikes.mine : likes}
+            onToggleLike={(key) => {
+              if (!feedLikes.toggle(key)) toggleLike(key);
+            }}
             pendingMap={pendingComments}
             authorMeta={authorMeta}
+            likeCounts={feedLikes.counts}
             onTag={setActive}
             saved={Boolean(savedPosts[post.id])}
             onToggleSave={() => toggleSaved(post.id)}
@@ -1829,6 +1920,7 @@ export default function CommunityFeed({
             key={post.id}
             post={post}
             commentTotal={commentTotalFor(post, pendingComments)}
+            likeCount={feedLikes.counts[post.id] ?? 0}
             onTag={setActive}
           />
         )

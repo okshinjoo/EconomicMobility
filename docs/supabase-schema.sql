@@ -157,3 +157,28 @@ create policy "moderators: read own row" on public.moderators
 drop policy if exists "comments: delete own pending" on public.comments;
 create policy "comments: delete own" on public.comments
   for delete using (auth.uid() = user_id);
+
+
+-- July 2026 (owner request): REAL like tallies. One row per member per
+-- target (a post id, or "c:<comment id>"). Counts are public; only the
+-- signed-in member can add/remove their own row. Run in the SQL Editor:
+create table if not exists public.likes (
+  target text not null,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  primary key (target, user_id)
+);
+create index if not exists likes_target_idx on public.likes (target);
+alter table public.likes enable row level security;
+
+drop policy if exists "likes: read all" on public.likes;
+create policy "likes: read all" on public.likes
+  for select using (true);
+
+drop policy if exists "likes: insert own" on public.likes;
+create policy "likes: insert own" on public.likes
+  for insert with check (auth.uid() = user_id);
+
+drop policy if exists "likes: delete own" on public.likes;
+create policy "likes: delete own" on public.likes
+  for delete using (auth.uid() = user_id);
