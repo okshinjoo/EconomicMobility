@@ -22,6 +22,9 @@ import {
   Briefcase,
   Users,
   ShieldAlert,
+  Wallet,
+  Receipt,
+  Home,
   type LucideIcon,
 } from "lucide-react";
 
@@ -30,16 +33,19 @@ import {
  *  the composer's picker automatically. */
 export type ChannelId =
   | "say-hello"
-  | "wins"
   | "questions"
   | "students"
   | "financial-aid"
   | "student-loans"
-  | "budgeting-saving"
-  | "credit-debt"
   | "investing"
+  | "credit-debt"
+  | "budgeting-saving"
+  | "banking"
   | "work-income"
+  | "taxes"
+  | "housing"
   | "family-firstgen"
+  | "wins"
   | "scams-safety"
   | "challenges";
 
@@ -65,17 +71,10 @@ export const CHANNELS: Channel[] = [
     color: "#c9842a",
   },
   {
-    id: "wins",
-    icon: Trophy,
-    name: "Wins",
-    tagline: "Victories of every size, celebrated properly.",
-    color: "#15624b",
-  },
-  {
     id: "questions",
     icon: MessageCircleQuestion,
-    name: "Questions",
-    tagline: "Ask anything. Nothing is too basic here.",
+    name: "Ask Anything",
+    tagline: "The catch-all room. No question is too basic.",
     color: "#d26a4c",
   },
   {
@@ -88,8 +87,8 @@ export const CHANNELS: Channel[] = [
   {
     id: "financial-aid",
     icon: FileText,
-    name: "Financial Aid & Offers",
-    tagline: "FAFSA, award letters, and comparing packages line by line.",
+    name: "Financial Aid & FAFSA",
+    tagline: "Award letters, the FAFSA, and comparing offers line by line.",
     color: "#b3762f",
     parent: "students",
   },
@@ -102,32 +101,53 @@ export const CHANNELS: Channel[] = [
     parent: "students",
   },
   {
-    id: "budgeting-saving",
-    icon: PiggyBank,
-    name: "Budgeting & Saving",
-    tagline: "Paychecks, plans, and making the leftover grow.",
-    color: "#0c4a39",
+    id: "investing",
+    icon: TrendingUp,
+    name: "Investing & Retirement",
+    tagline: "401(k)s, Roth IRAs, index funds, and the questions you've been sitting on.",
+    color: "#15624b",
   },
   {
     id: "credit-debt",
     icon: CreditCard,
     name: "Credit & Debt",
-    tagline: "Scores, cards, loans, and getting out from under them.",
+    tagline: "Building a score, card trouble, collections, and getting out from under.",
     color: "#7a5230",
   },
   {
-    id: "investing",
-    icon: TrendingUp,
-    name: "Investing",
-    tagline: "Index funds, IRAs, and the questions you've been sitting on.",
-    color: "#15624b",
+    id: "budgeting-saving",
+    icon: PiggyBank,
+    name: "Making Ends Meet",
+    tagline: "Stretching the paycheck, cutting bills, and the month math.",
+    color: "#0c4a39",
+  },
+  {
+    id: "banking",
+    icon: Wallet,
+    name: "Banks, Cards & Apps",
+    tagline: "Which bank? Which card? Is this app legit? Ask before you sign up.",
+    color: "#2f6d80",
   },
   {
     id: "work-income",
     icon: Briefcase,
-    name: "Work & Income",
+    name: "Jobs & Side Hustles",
     tagline: "Paychecks, side gigs, raises, and getting paid right.",
     color: "#4b5f8a",
+  },
+  {
+    id: "taxes",
+    icon: Receipt,
+    name: "Taxes",
+    tagline: "First filings, refunds, W-4 confusion, and tax-season panic.",
+    color: "#8a6d1f",
+  },
+  {
+    id: "housing",
+    icon: Home,
+    name: "Rent & Housing",
+    tagline: "First apartments, deposits, roommates, and dreaming of keys.",
+    color: "#a35d3d",
   },
   {
     id: "family-firstgen",
@@ -135,6 +155,13 @@ export const CHANNELS: Channel[] = [
     name: "Family & First-Gen",
     tagline: "Helping family, sending money home, going first.",
     color: "#d26a4c",
+  },
+  {
+    id: "wins",
+    icon: Trophy,
+    name: "Wins",
+    tagline: "Victories of every size, celebrated properly.",
+    color: "#15624b",
   },
   {
     id: "scams-safety",
@@ -464,7 +491,68 @@ export const communityPosts: CommunityPost[] = [
     link: { label: "How to spot a scam", href: "/learn/money-safety/how-to-spot-a-scam" },
     comments: [],
   },
+  {
+    id: "banking-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Which bank, which card, is this app legit? Ask before you sign up",
+    channel: "banking",
+    pinned: true,
+    body: [
+      "The most expensive account is the one you picked because the ad was everywhere. Before you open anything — a checking account, a first credit card, a money app your friend swears by — ask here. Someone has probably already read the fine print.",
+      "Good posts for this room: fee surprises, switching-banks stories, and 'is this legit?' screenshots described in words (no personal details).",
+    ],
+    link: { label: "The bank fees that quietly add up", href: "/learn/budgeting/avoiding-bank-fees" },
+    comments: [],
+  },
+  {
+    id: "taxes-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Tax season survival: first filings welcome",
+    channel: "taxes",
+    pinned: true,
+    body: [
+      "Nobody teaches this and then suddenly it's April. First time filing? Confused about what a W-4 did to your paycheck? Waiting on a refund that feels wrong? This is the room.",
+      "One rule of thumb worth pinning to your wall: if a preparer promises a bigger refund before seeing your documents, walk away.",
+    ],
+    link: { label: "Filing taxes for the first time", href: "/learn/taxes/filing-taxes-first-time" },
+    comments: [],
+  },
+  {
+    id: "housing-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "First apartments, deposits, and roommate math",
+    channel: "housing",
+    pinned: true,
+    body: [
+      "Rent is most people's biggest bill, and first leases are full of trapdoors: application fees, deposits that never come back, utilities nobody mentioned. Ask here before you sign, vent here after.",
+      "Also welcome: roommate cost-splitting systems that actually survived the year.",
+    ],
+    link: { label: "Renting your first apartment", href: "/learn/home-ownership/renting-your-first-apartment" },
+    comments: [],
+  },
+  {
+    id: "ends-meet-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "The month math: making it stretch",
+    channel: "budgeting-saving",
+    pinned: true,
+    body: [
+      "This room is for the real version of budgeting: when the numbers barely reach, which bill to pay first, the grocery strategies that actually work. No judgment about starting points — that's a house rule.",
+      "Small systems welcome. The person who figured out how to make the last week of the month not terrible has something to teach all of us.",
+    ],
+    link: { label: "Where does the money keep going?", href: "/learn/budgeting/tracking-your-spending" },
+    comments: [],
+  },
 ];
+
 
 /* ------------------------- members & community cred ---------------------- */
 
