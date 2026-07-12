@@ -4,7 +4,10 @@
 import { Plus, X, RotateCcw } from "lucide-react";
 
 export const num = (v: string): number => {
-  const n = parseFloat(v);
+  // People type money the way it's written: "1,500" or "$65,000".
+  // parseFloat stops at the comma and would read those as 1 and 65 — strip
+  // separators and currency symbols before parsing.
+  const n = parseFloat(v.replace(/[$,\s_]/g, ""));
   return isNaN(n) || n < 0 ? 0 : n;
 };
 

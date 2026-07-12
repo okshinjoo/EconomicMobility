@@ -66,7 +66,8 @@ const DEFAULT_EXPENSES: ExpenseRow[] = [
 ];
 
 const num = (v: string) => {
-  const n = parseFloat(v);
+  // Strip thousands separators and $ first — parseFloat("1,500") reads 1.
+  const n = parseFloat(v.replace(/[$,\s_]/g, ""));
   return isNaN(n) || n < 0 ? 0 : n;
 };
 

@@ -13,7 +13,9 @@ const PERIOD_PER_YEAR: Record<string, number> = {
 };
 
 const n = (v: unknown): number => {
-  const x = parseFloat(String(v ?? ""));
+  // Snapshots store the raw typed strings, which may include thousands
+  // separators ("1,500") — strip them or parseFloat reads 1.
+  const x = parseFloat(String(v ?? "").replace(/[$,\s_]/g, ""));
   return isNaN(x) || x < 0 ? 0 : x;
 };
 
