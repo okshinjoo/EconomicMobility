@@ -15,6 +15,18 @@ import { ROADMAP_SLUGS } from "@/lib/roadmaps";
 import { glossary } from "@/lib/glossary";
 import TermOfTheDay from "@/components/TermOfTheDay";
 
+// Real questions -> real guides (the /learn front door; keep slugs valid).
+const LEARN_QUESTIONS = [
+  { question: "Why is my first paycheck smaller than I expected?", href: "/learn/budgeting/your-first-paycheck" },
+  { question: "How do I build credit when I have none at all?", href: "/learn/credit/build-credit-from-zero" },
+  { question: "What is the FAFSA, and how do I actually fill it out?", href: "/learn/college/fafsa-step-by-step" },
+  { question: "It's my first time filing taxes. Where do I start?", href: "/learn/taxes/filing-taxes-first-time" },
+  { question: "Is $50 really enough to start investing?", href: "/learn/investing/start-investing-with-50" },
+  { question: "How much cash do I need to move into my first place?", href: "/learn/home-ownership/renting-your-first-apartment" },
+  { question: "How do I spot a scam before it costs me?", href: "/learn/money-safety/how-to-spot-a-scam" },
+  { question: "Money's tight this month — which bills come first?", href: "/learn/budgeting/prioritizing-bills-when-money-is-tight" },
+];
+
 export const metadata: Metadata = {
   title: "Learn | Empower — Economic Mobility Project",
   description:
@@ -102,6 +114,50 @@ export default function LearnHub() {
         </div>
       </section>
 
+      {/* Start with your question — the Base44-audit element the owner liked:
+          real questions, real guides, revealed as you scroll (July 2026). */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 pb-4 pt-14">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+            Start with your question
+          </span>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+            Nobody comes here to &ldquo;study finance.&rdquo;
+          </h2>
+          <p className="mt-3 max-w-xl text-base leading-7 text-stone">
+            They come with a question that&apos;s been bugging them. Start with
+            yours — each one opens the guide that answers it.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {LEARN_QUESTIONS.map((q, i) => (
+              <Reveal key={q.href} delay={(i % 2) * 80} className="h-full">
+                <Link
+                  href={q.href}
+                  className={`card-ink group flex h-full items-start gap-4 rounded-2xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-0.5 ${
+                    i % 3 === 1 ? "lg:rotate-[0.3deg]" : i % 4 === 3 ? "lg:-rotate-[0.3deg]" : ""
+                  }`}
+                >
+                  <span
+                    aria-hidden
+                    className="font-display text-4xl font-bold italic leading-none text-amber"
+                  >
+                    ?
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-lg font-semibold leading-snug text-ink">
+                      {q.question}
+                    </span>
+                    <span className="mt-2 inline-block text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 group-hover:text-ink">
+                      Read the guide
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Roadmap articles: the "what order do I do this in" pathfinders */}
       {(() => {
         const roadmaps = ROADMAP_SLUGS
@@ -155,6 +211,21 @@ export default function LearnHub() {
       {/* Topic grid */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-10 max-w-2xl">
+            <h2 className="font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+              What do you want to learn?
+            </h2>
+            <p className="mt-3 text-base leading-7 text-stone">
+              Dive into any topic below, or{" "}
+              <Link
+                href="/quiz"
+                className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                take the 2-minute quiz
+              </Link>{" "}
+              for a path built around exactly where you are right now.
+            </p>
+          </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {topics.map((topic, i) => {
               const content = learnContent[topic.id];
