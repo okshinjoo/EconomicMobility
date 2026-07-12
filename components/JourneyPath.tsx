@@ -136,7 +136,22 @@ function RoadmapTrail({
   fraction: number;
   statuses: StageStatus[];
 }) {
-  const litDots = Math.round(fraction * DOTS.length);
+  // The stroke animates from whatever was last painted to `drawn`. Arming it
+  // two frames after `fraction` changes guarantees the browser paints the
+  // starting state first — so the trail visibly fills in on every visit,
+  // instead of sometimes snapping when hydration outruns the first paint.
+  const [drawn, setDrawn] = useState(0);
+  useEffect(() => {
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setDrawn(fraction));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, [fraction]);
+  const litDots = Math.round(drawn * DOTS.length);
   return (
     <div className="relative w-full" aria-hidden>
       <svg
@@ -206,7 +221,7 @@ function RoadmapTrail({
           filter="url(#trailGlow)"
           style={{
             strokeDasharray: TRAIL_LEN,
-            strokeDashoffset: TRAIL_LEN * (1 - fraction),
+            strokeDashoffset: TRAIL_LEN * (1 - drawn),
             transition: "stroke-dashoffset 1.5s cubic-bezier(0.22,1,0.36,1)",
           }}
         />
@@ -312,6 +327,29 @@ export default function JourneyPath({
         : "upcoming"
   );
 
+  // "7/16" rolls up from 0 while the trail draws itself in.
+  const [shownCount, setShownCount] = useState(0);
+  useEffect(() => {
+    if (shownCount === doneCount) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShownCount(doneCount);
+      return;
+    }
+    const from = shownCount;
+    const t0 = performance.now();
+    const duration = 1200;
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setShownCount(Math.round(from + (doneCount - from) * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [doneCount]);
+
   return (
     <div className="grid items-start gap-8 md:grid-cols-2">
       {/* Sticky trail card */}
@@ -325,7 +363,7 @@ export default function JourneyPath({
         >
           <div className="mb-2 text-center">
             <p className="font-display text-4xl font-bold text-forest">
-              {doneCount}
+              {shownCount}
               <span className="text-xl text-stone">/{allItems.length}</span>
             </p>
             <p className="text-xs uppercase tracking-wider text-stone">
