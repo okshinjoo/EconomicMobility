@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
@@ -90,6 +91,17 @@ export default async function BlogPostPage({
               {post.readMinutes} min read
             </span>
           </p>
+
+          <div className="relative mt-7 aspect-[16/9] overflow-hidden rounded-2xl border border-sand">
+            <Image
+              src={post.image.src}
+              alt={post.image.alt}
+              fill
+              priority
+              sizes="(min-width: 768px) 48rem, 100vw"
+              className="object-cover"
+            />
+          </div>
 
           <div className="pt-2">
             <ArticleBody blocks={post.body} accent={BLOG_ACCENT} />

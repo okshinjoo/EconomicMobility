@@ -18,6 +18,8 @@ export interface BlogPost {
   /** Learn topics this post is adjacent to — drives the /blog "picked for you" ordering. */
   topics: TopicId[];
   readMinutes: number;
+  /** Feature photo (public/images/blog/<slug>.jpg) + alt text. */
+  image: { src: string; alt: string };
   body: ArticleBlock[];
 }
 
@@ -30,6 +32,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting"],
     readMinutes: 5,
+    image: { src: "/images/blog/the-lipstick-effect.jpg", alt: "Two bright red lipsticks against a clean studio background" },
     body: [
       {
         type: "p",
@@ -90,6 +93,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Watch out",
     topics: ["budgeting", "money-safety"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-sale-rack-is-lying.jpg", alt: "A row of shirts on hangers in a clothing store" },
     body: [
       {
         type: "p",
@@ -133,6 +137,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/why-tapping-doesnt-hurt.jpg", alt: "A contactless card payment being tapped at a terminal" },
     body: [
       {
         type: "p",
@@ -175,6 +180,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Watch out",
     topics: ["money-safety", "investing"],
     readMinutes: 4,
+    image: { src: "/images/blog/how-to-spot-a-fake-financial-guru.jpg", alt: "A microphone in front of a blurred audience" },
     body: [
       {
         type: "p",
@@ -228,6 +234,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["credit", "money-safety"],
     readMinutes: 3,
+    image: { src: "/images/blog/why-every-app-wants-to-lend-you-money.jpg", alt: "A smartphone home screen filled with apps" },
     body: [
       {
         type: "p",
@@ -270,6 +277,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting", "taxes"],
     readMinutes: 4,
+    image: { src: "/images/blog/so-you-want-a-side-hustle.jpg", alt: "A laptop and notebook set up on a small desk" },
     body: [
       {
         type: "p",
@@ -324,6 +332,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/cash-stuffing-is-back.jpg", alt: "Dollar bills spread out flat on a surface" },
     body: [
       {
         type: "p",
@@ -370,6 +379,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting", "credit"],
     readMinutes: 4,
+    image: { src: "/images/blog/grandmas-money-rules-fact-checked.jpg", alt: "A pair of hands counting one-dollar bills" },
     body: [
       {
         type: "p",
@@ -414,6 +424,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-group-dinner-problem.jpg", alt: "A plated meal on a restaurant table" },
     body: [
       {
         type: "p",
@@ -461,6 +472,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Watch out",
     topics: ["budgeting", "investing"],
     readMinutes: 4,
+    image: { src: "/images/blog/why-everyone-online-seems-rich.jpg", alt: "An orange sports car parked on a city street" },
     body: [
       {
         type: "p",
@@ -504,6 +516,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["investing"],
     readMinutes: 5,
+    image: { src: "/images/blog/spacex-ipo-what-actually-happened.jpg", alt: "A rocket lifting off from the launch pad in a cloud of smoke" },
     body: [
       {
         type: "p",
@@ -542,6 +555,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["money-safety", "investing"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-parlay-is-not-a-plan.jpg", alt: "A sprinter crouched at the starting blocks holding a relay baton" },
     body: [
       {
         type: "p",
@@ -585,6 +599,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting", "government-aid"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-boots-theory.jpg", alt: "A person lacing up a pair of brown leather boots" },
     body: [
       {
         type: "p",
@@ -634,6 +649,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-tablet-will-ask-you-a-question.jpg", alt: "A customer paying with a card at a cafe counter" },
     body: [
       {
         type: "p",
@@ -686,6 +702,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Noticed",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/everything-is-surge-priced.jpg", alt: "A busy city street full of traffic" },
     body: [
       {
         type: "p",
@@ -727,6 +744,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Watch out",
     topics: ["money-safety", "budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/the-cancel-button-is-hidden.jpg", alt: "A hand pointing a TV remote at a streaming screen" },
     body: [
       {
         type: "p",
@@ -776,6 +794,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/money-dysmorphia.jpg", alt: "A person going over paperwork with a pen" },
     body: [
       {
         type: "p",
@@ -814,6 +833,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting", "investing"],
     readMinutes: 4,
+    image: { src: "/images/blog/lifestyle-creep-never-feels-like-creep.jpg", alt: "A woman carrying shopping bags" },
     body: [
       {
         type: "p",
@@ -859,6 +879,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["budgeting"],
     readMinutes: 4,
+    image: { src: "/images/blog/negotiating-feels-rude.jpg", alt: "Two people shaking hands across a table" },
     body: [
       {
         type: "p",
@@ -901,6 +922,7 @@ export const blogPosts: BlogPost[] = [
     tag: "Real talk",
     topics: ["credit"],
     readMinutes: 4,
+    image: { src: "/images/blog/your-credit-score-is-not-a-report-card.jpg", alt: "A person holding a credit card while typing on a laptop" },
     body: [
       {
         type: "p",

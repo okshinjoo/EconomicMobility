@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Check, Clock } from "lucide-react";
 import type { TopicId } from "@/lib/topics";
@@ -16,6 +17,7 @@ export interface BlogListItem {
   tag: string;
   topics: TopicId[];
   readMinutes: number;
+  image: { src: string; alt: string };
 }
 
 /**
@@ -121,6 +123,15 @@ export default function BlogList({
           )}
         </div>
         <Link href={`/blog/${featured.slug}`} className="group mt-5 block">
+          <div className="relative mb-6 aspect-[16/9] overflow-hidden rounded-xl border-2 border-ink sm:aspect-[21/9]">
+            <Image
+              src={featured.image.src}
+              alt={featured.image.alt}
+              fill
+              sizes="(min-width: 1024px) 56rem, 100vw"
+              className="object-cover"
+            />
+          </div>
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
             <span className="text-terracotta">{featured.tag}</span>
             <span className="font-medium normal-case tracking-normal text-stone">
@@ -148,34 +159,49 @@ export default function BlogList({
             <article key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block py-9"
+                className="group flex items-start gap-6 py-9 sm:gap-8"
               >
-                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
-                  <span className="text-terracotta">{post.tag}</span>
-                  <span className="font-medium normal-case tracking-normal text-stone">
-                    {formatDate(post.date)}
-                  </span>
-                  {wasRead && (
-                    <span className="inline-flex items-center gap-1 font-semibold normal-case tracking-normal text-forest">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                      You read this
+                <div className="min-w-0 flex-1">
+                  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
+                    <span className="text-terracotta">{post.tag}</span>
+                    <span className="font-medium normal-case tracking-normal text-stone">
+                      {formatDate(post.date)}
                     </span>
-                  )}
-                </p>
-                <h2
-                  className={`mt-3 font-display text-2xl font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl ${
-                    wasRead ? "text-ink/60" : "text-ink"
+                    {wasRead && (
+                      <span className="inline-flex items-center gap-1 font-semibold normal-case tracking-normal text-forest">
+                        <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                        You read this
+                      </span>
+                    )}
+                  </p>
+                  <h2
+                    className={`mt-3 font-display text-2xl font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl ${
+                      wasRead ? "text-ink/60" : "text-ink"
+                    }`}
+                  >
+                    {post.title}
+                  </h2>
+                  <p className="mt-2 max-w-3xl text-base leading-7 text-stone">
+                    {post.dek}
+                  </p>
+                  <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
+                    <Clock className="h-3.5 w-3.5" />
+                    {post.readMinutes} min read
+                  </p>
+                </div>
+                <div
+                  className={`relative mt-1 hidden h-24 w-36 shrink-0 overflow-hidden rounded-xl border border-sand sm:block sm:h-28 sm:w-44 ${
+                    wasRead ? "opacity-60" : ""
                   }`}
                 >
-                  {post.title}
-                </h2>
-                <p className="mt-2 max-w-3xl text-base leading-7 text-stone">
-                  {post.dek}
-                </p>
-                <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
-                  <Clock className="h-3.5 w-3.5" />
-                  {post.readMinutes} min read
-                </p>
+                  <Image
+                    src={post.image.src}
+                    alt={post.image.alt}
+                    fill
+                    sizes="11rem"
+                    className="object-cover"
+                  />
+                </div>
               </Link>
             </article>
           );

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const posts: BlogListItem[] = sortedBlogPosts().map(
-    ({ slug, title, dek, date, tag, topics, readMinutes }) => ({
+    ({ slug, title, dek, date, tag, topics, readMinutes, image }) => ({
       slug,
       title,
       dek,
@@ -23,6 +23,7 @@ export default function BlogPage() {
       tag,
       topics,
       readMinutes,
+      image,
     })
   );
 
