@@ -19,6 +19,7 @@ import {
   type Profile,
   type ProfileRole,
   ROLE_LABELS,
+  GOAL_OPTIONS,
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
@@ -498,7 +499,7 @@ function GoogleMark() {
 
 /* ------------------------------ signed in ------------------------------- */
 
-function ProfileEditor({
+export function ProfileEditor({
   supabase,
   session,
   syncedKeys,
@@ -516,32 +517,72 @@ function ProfileEditor({
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<ProfileRole>("");
   const [showTag, setShowTag] = useState(false);
+  const [goals, setGoals] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [tab, setTab] = useState<"about" | "goals" | "security">("about");
+  // Security-tab state: change email + change password forms.
+  const [newEmail, setNewEmail] = useState("");
+  const [emailNotice, setEmailNotice] = useState<string | null>(null);
+  const [emailBusy, setEmailBusy] = useState(false);
+  const [newPw, setNewPw] = useState("");
+  const [confirmPw, setConfirmPw] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [pwNotice, setPwNotice] = useState<string | null>(null);
+  const [pwError, setPwError] = useState<string | null>(null);
+  const [pwBusy, setPwBusy] = useState(false);
+  // "You're in" banner: only when this load came from an auth redirect AND
+  // the account was confirmed in the last few minutes (fresh verification or
+  // a brand-new Google signup) — routine sign-ins never see it. MUST live
+  // above the loading early-return (hooks can't render conditionally).
+  const [showWelcome, setShowWelcome] = useState(() => {
+    const confirmedAt = session.user.email_confirmed_at
+      ? Date.parse(session.user.email_confirmed_at)
+      : 0;
+    return (
+      fromAuthRedirect &&
+      confirmedAt > 0 &&
+      Date.now() - confirmedAt < 5 * 60_000
+    );
+  });
 
   const userId = session.user.id;
 
   useEffect(() => {
     let cancelled = false;
+    const apply = (data: Record<string, unknown> | null) => {
+      if (cancelled) return;
+      if (data) {
+        const p: Profile = {
+          displayName: (data.display_name as string) ?? "",
+          role: ((data.role as ProfileRole) ?? "") as ProfileRole,
+          showTag: Boolean(data.show_tag),
+          goals: Array.isArray(data.goals) ? (data.goals as string[]) : [],
+        };
+        setDisplayName(p.displayName);
+        setRole(p.role);
+        setShowTag(p.showTag);
+        setGoals(p.goals);
+        writeLocalProfile(p);
+      }
+      setLoading(false);
+    };
     supabase
       .from("profiles")
-      .select("display_name, role, show_tag")
+      .select("display_name, role, show_tag, goals")
       .eq("id", userId)
       .maybeSingle()
-      .then(({ data }) => {
-        if (cancelled) return;
-        if (data) {
-          setDisplayName(data.display_name ?? "");
-          setRole((data.role as ProfileRole) ?? "");
-          setShowTag(Boolean(data.show_tag));
-          writeLocalProfile({
-            displayName: data.display_name ?? "",
-            role: (data.role as ProfileRole) ?? "",
-            showTag: Boolean(data.show_tag),
-          });
-        }
-        setLoading(false);
+      .then(({ data, error }) => {
+        if (!error) return apply(data);
+        // goals column not migrated yet — fall back so the page still works.
+        supabase
+          .from("profiles")
+          .select("display_name, role, show_tag")
+          .eq("id", userId)
+          .maybeSingle()
+          .then(({ data: d2 }) => apply(d2));
       });
     return () => {
       cancelled = true;
@@ -551,20 +592,77 @@ function ProfileEditor({
   const save = useCallback(async () => {
     setSaving(true);
     setSaved(false);
-    const profile: Profile = { displayName: displayName.trim(), role, showTag };
+    setSaveError(null);
+    const profile: Profile = {
+      displayName: displayName.trim(),
+      role,
+      showTag,
+      goals,
+    };
     const { error } = await supabase.from("profiles").upsert({
       id: userId,
       display_name: profile.displayName,
       role: profile.role,
       show_tag: profile.showTag,
+      goals: profile.goals,
     });
     setSaving(false);
     if (!error) {
       writeLocalProfile(profile);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
+    } else {
+      setSaveError(
+        /goals/.test(error.message)
+          ? "The goals column hasn't been added to the database yet."
+          : "Couldn't save just now — try again in a moment."
+      );
     }
-  }, [supabase, userId, displayName, role, showTag]);
+  }, [supabase, userId, displayName, role, showTag, goals]);
+
+  async function changeEmail(e: React.FormEvent) {
+    e.preventDefault();
+    const target = newEmail.trim();
+    if (!target.includes("@")) return;
+    setEmailBusy(true);
+    setEmailNotice(null);
+    const { error } = await supabase.auth.updateUser({ email: target });
+    setEmailBusy(false);
+    setEmailNotice(
+      error
+        ? `Couldn't start the change: ${error.message}`
+        : "Confirmation sent — check the NEW address (and possibly your current one) and click the link to finish the switch."
+    );
+    if (!error) setNewEmail("");
+  }
+
+  async function changePassword(e: React.FormEvent) {
+    e.preventDefault();
+    setPwError(null);
+    setPwNotice(null);
+    if (newPw.length < 8) {
+      setPwError("Password needs at least 8 characters.");
+      return;
+    }
+    if (newPw !== confirmPw) {
+      setPwError("Those passwords don't match.");
+      return;
+    }
+    setPwBusy(true);
+    const { error } = await supabase.auth.updateUser({ password: newPw });
+    setPwBusy(false);
+    if (error) {
+      setPwError(
+        /same password/i.test(error.message)
+          ? "That's already your password."
+          : error.message
+      );
+      return;
+    }
+    setNewPw("");
+    setConfirmPw("");
+    setPwNotice("Password updated.");
+  }
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -577,16 +675,6 @@ function ProfileEditor({
       </div>
     );
   }
-
-  // "You're in" banner: only when this load came from an auth redirect AND
-  // the account was confirmed in the last few minutes (fresh verification or
-  // a brand-new Google signup) — routine sign-ins never see it.
-  const confirmedAt = session.user.email_confirmed_at
-    ? Date.parse(session.user.email_confirmed_at)
-    : 0;
-  const [showWelcome, setShowWelcome] = useState(
-    fromAuthRedirect && confirmedAt > 0 && Date.now() - confirmedAt < 5 * 60_000
-  );
 
   return (
     <div className="space-y-5">
@@ -628,119 +716,330 @@ function ProfileEditor({
         onSignOut={signOut}
       />
 
-      {/* profile */}
-      <div className="card-ink rounded-2xl bg-cream p-6 sm:p-8">
-        <h2 className="font-display text-2xl font-bold text-ink">
-          About you
-        </h2>
-        <p className="mt-2 text-base leading-7 text-stone">
-          Totally optional. It helps us point you at the right guides, and if
-          you want, it shows next to your name when you post in the community.
-        </p>
-
-        <div className="mt-6 space-y-5">
-          <div>
-            <label htmlFor="profile-name" className={labelCls}>
-              Display name
-            </label>
-            <input
-              id="profile-name"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="First name is plenty"
-              maxLength={40}
-              className={inputCls}
-            />
-          </div>
-
-          <fieldset>
-            <legend className={labelCls}>Where are you in life?</legend>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {(
-                [
-                  ["student", ROLE_LABELS.student],
-                  ["working", ROLE_LABELS.working],
-                  ["retired", ROLE_LABELS.retired],
-                  ["", "Prefer not to say"],
-                ] as const
-              ).map(([value, label]) => (
-                <label
-                  key={label}
-                  className={`flex cursor-pointer items-center gap-2.5 rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors ${
-                    role === value
-                      ? "border-ink bg-paper text-ink shadow-[3px_3px_0_#11211c]"
-                      : "border-sand bg-paper text-stone hover:border-ink/30"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="profile-role"
-                    checked={role === value}
-                    onChange={() => setRole(value)}
-                    className="h-4 w-4 accent-forest"
-                  />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <label className="flex items-start gap-2.5 rounded-xl border border-sand bg-paper p-4 text-sm leading-6 text-ink">
-            <input
-              type="checkbox"
-              checked={showTag}
-              onChange={(e) => setShowTag(e.target.checked)}
-              className="mt-1 h-4 w-4 accent-forest"
-            />
-            <span>
-              <span className="font-semibold">
-                Show my tag when I post.
-              </span>{" "}
-              <span className="text-stone">
-                Community posts and questions include{" "}
-                {displayName.trim() || role
-                  ? `"${[displayName.trim(), role ? ROLE_LABELS[role as Exclude<ProfileRole, "">] : ""].filter(Boolean).join(" · ")}"`
-                  : "your name and tag"}
-                . Leave it off to stay anonymous.
-              </span>
-            </span>
-          </label>
-
-          <div className="flex items-center gap-4">
+      {/* settings — sectioned like a real profile page */}
+      <div className="card-ink overflow-hidden rounded-2xl bg-cream">
+        <div className="flex border-b-2 border-ink">
+          {(
+            [
+              ["about", "About you"],
+              ["goals", "Goals"],
+              ["security", "Sign-in & security"],
+            ] as const
+          ).map(([id, label]) => (
             <button
+              key={id}
               type="button"
-              onClick={save}
-              disabled={saving}
-              className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-7 py-3 text-base font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={() => setTab(id)}
+              aria-pressed={tab === id}
+              className={`flex-1 px-2 py-3.5 text-center text-sm font-bold transition-colors sm:px-4 ${
+                tab === id
+                  ? "bg-ink text-cream"
+                  : "bg-cream text-stone hover:text-ink"
+              }`}
             >
-              {saving && <Loader2 className="h-4 w-4 animate-spin" />}
-              Save profile
+              {label}
             </button>
-            {saved && (
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
-                <CheckCircle2 className="h-4 w-4" />
-                Saved
-              </span>
-            )}
-          </div>
+          ))}
+        </div>
+
+        <div className="p-6 sm:p-8">
+          {tab === "about" && (
+            <div className="space-y-5">
+              <p className="text-base leading-7 text-stone">
+                Totally optional. It helps us point you at the right guides,
+                and if you want, it shows next to your name when you post in
+                the community.
+              </p>
+              <div>
+                <label htmlFor="profile-name" className={labelCls}>
+                  Display name
+                </label>
+                <input
+                  id="profile-name"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="First name is plenty"
+                  maxLength={40}
+                  className={inputCls}
+                />
+              </div>
+
+              <fieldset>
+                <legend className={labelCls}>Where are you in life?</legend>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {(
+                    [
+                      ["student", ROLE_LABELS.student],
+                      ["working", ROLE_LABELS.working],
+                      ["retired", ROLE_LABELS.retired],
+                      ["", "Prefer not to say"],
+                    ] as const
+                  ).map(([value, label]) => (
+                    <label
+                      key={label}
+                      className={`flex cursor-pointer items-center gap-2.5 rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors ${
+                        role === value
+                          ? "border-ink bg-paper text-ink shadow-[3px_3px_0_#11211c]"
+                          : "border-sand bg-paper text-stone hover:border-ink/30"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="profile-role"
+                        checked={role === value}
+                        onChange={() => setRole(value)}
+                        className="h-4 w-4 accent-forest"
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <label className="flex items-start gap-2.5 rounded-xl border border-sand bg-paper p-4 text-sm leading-6 text-ink">
+                <input
+                  type="checkbox"
+                  checked={showTag}
+                  onChange={(e) => setShowTag(e.target.checked)}
+                  className="mt-1 h-4 w-4 accent-forest"
+                />
+                <span>
+                  <span className="font-semibold">
+                    Show my tag when I post.
+                  </span>{" "}
+                  <span className="text-stone">
+                    Community posts and questions include{" "}
+                    {displayName.trim() || role
+                      ? `"${[displayName.trim(), role ? ROLE_LABELS[role as Exclude<ProfileRole, "">] : ""].filter(Boolean).join(" · ")}"`
+                      : "your name and tag"}
+                    . Leave it off to stay anonymous.
+                  </span>
+                </span>
+              </label>
+              <SaveRow
+                saving={saving}
+                saved={saved}
+                error={saveError}
+                onSave={save}
+              />
+            </div>
+          )}
+
+          {tab === "goals" && (
+            <div className="space-y-5">
+              <p className="text-base leading-7 text-stone">
+                What are you working toward? Pick as many as you like — we use
+                them to steer recommendations toward what actually matters to
+                you.
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {GOAL_OPTIONS.map((g) => {
+                  const on = goals.includes(g.id);
+                  return (
+                    <button
+                      key={g.id}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() =>
+                        setGoals((prev) =>
+                          on
+                            ? prev.filter((id) => id !== g.id)
+                            : [...prev, g.id]
+                        )
+                      }
+                      className={`rounded-xl border-2 px-4 py-2.5 text-sm font-semibold transition-colors ${
+                        on
+                          ? "border-ink bg-amber text-ink shadow-[3px_3px_0_#11211c]"
+                          : "border-sand bg-paper text-stone hover:border-ink/30 hover:text-ink"
+                      }`}
+                    >
+                      {g.label}
+                    </button>
+                  );
+                })}
+              </div>
+              <SaveRow
+                saving={saving}
+                saved={saved}
+                error={saveError}
+                onSave={save}
+                label="Save goals"
+              />
+            </div>
+          )}
+
+          {tab === "security" && (
+            <div className="space-y-8">
+              <form onSubmit={changeEmail} className="space-y-3">
+                <h3 className="font-display text-lg font-bold text-ink">
+                  Email
+                </h3>
+                <p className="text-sm leading-6 text-stone">
+                  You sign in as{" "}
+                  <span className="font-semibold text-ink">
+                    {session.user.email}
+                  </span>
+                  . To change it, enter the new address — we&apos;ll email a
+                  confirmation link before anything switches.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    placeholder="new-address@example.com"
+                    className={`${inputCls} sm:max-w-xs`}
+                  />
+                  <button
+                    type="submit"
+                    disabled={emailBusy || !newEmail.includes("@")}
+                    className="btn-ink inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {emailBusy && <Loader2 className="h-4 w-4 animate-spin" />}
+                    Change email
+                  </button>
+                </div>
+                {emailNotice && (
+                  <p className="text-sm font-medium text-forest">
+                    {emailNotice}
+                  </p>
+                )}
+              </form>
+
+              <form
+                onSubmit={changePassword}
+                className="space-y-3 border-t border-sand pt-6"
+              >
+                <h3 className="font-display text-lg font-bold text-ink">
+                  Password
+                </h3>
+                <div>
+                  <label htmlFor="sec-new-pw" className={labelCls}>
+                    New password{" "}
+                    <span className="font-normal text-stone">
+                      (at least 8 characters)
+                    </span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="sec-new-pw"
+                      type={showPw ? "text" : "password"}
+                      value={newPw}
+                      onChange={(e) => setNewPw(e.target.value)}
+                      autoComplete="new-password"
+                      className={`${inputCls} pr-12`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPw((s) => !s)}
+                      aria-label={showPw ? "Hide password" : "Show password"}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
+                    >
+                      {showPw ? (
+                        <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+                      ) : (
+                        <Eye className="h-5 w-5" strokeWidth={1.75} />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="sec-confirm-pw" className={labelCls}>
+                    Type it again
+                  </label>
+                  <input
+                    id="sec-confirm-pw"
+                    type={showPw ? "text" : "password"}
+                    value={confirmPw}
+                    onChange={(e) => setConfirmPw(e.target.value)}
+                    autoComplete="new-password"
+                    className={inputCls}
+                  />
+                </div>
+                {pwError && (
+                  <p className="text-sm font-medium text-terracotta">
+                    {pwError}
+                  </p>
+                )}
+                {pwNotice && (
+                  <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+                    <CheckCircle2 className="h-4 w-4" />
+                    {pwNotice}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={pwBusy}
+                  className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {pwBusy && <Loader2 className="h-4 w-4 animate-spin" />}
+                  Update password
+                </button>
+              </form>
+
+              <div className="border-t border-sand pt-6">
+                <h3 className="font-display text-lg font-bold text-ink">
+                  Delete your account
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-stone">
+                  Email{" "}
+                  <a
+                    href="mailto:Help@economicmobilityproject.org"
+                    className="font-semibold text-forest"
+                  >
+                    Help@economicmobilityproject.org
+                  </a>{" "}
+                  from your account email and we&apos;ll permanently remove
+                  the account and everything attached to it. Details in the{" "}
+                  <Link href="/privacy" className="font-semibold text-forest">
+                    privacy policy
+                  </Link>
+                  .
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      <p className="px-1 text-xs leading-5 text-stone">
-        Want your account and data deleted? Email{" "}
-        <a
-          href="mailto:Help@economicmobilityproject.org"
-          className="font-semibold text-forest"
-        >
-          Help@economicmobilityproject.org
-        </a>{" "}
-        from your account email and we&apos;ll remove everything. Details in
-        the{" "}
-        <Link href="/privacy" className="font-semibold text-forest">
-          privacy policy
-        </Link>
-        .
-      </p>
+    </div>
+  );
+}
+
+/** Save button + inline status, shared by the About/Goals tabs. */
+function SaveRow({
+  saving,
+  saved,
+  error,
+  onSave,
+  label = "Save profile",
+}: {
+  saving: boolean;
+  saved: boolean;
+  error: string | null;
+  onSave: () => void;
+  label?: string;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <button
+        type="button"
+        onClick={onSave}
+        disabled={saving}
+        className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-7 py-3 text-base font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+        {label}
+      </button>
+      {saved && (
+        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+          <CheckCircle2 className="h-4 w-4" />
+          Saved
+        </span>
+      )}
+      {error && (
+        <span className="text-sm font-medium text-terracotta">{error}</span>
+      )}
     </div>
   );
 }

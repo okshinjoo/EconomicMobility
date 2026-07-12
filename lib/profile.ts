@@ -14,6 +14,8 @@ export interface Profile {
   role: ProfileRole;
   /** Show "Name · Student" style tag on community posts/questions. */
   showTag: boolean;
+  /** Goal ids from GOAL_OPTIONS — what the member is working toward. */
+  goals: string[];
 }
 
 export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {
@@ -21,6 +23,19 @@ export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {
   working: "Working professional",
   retired: "Retired",
 };
+
+/** The pickable goals on the profile page (ids stored in profiles.goals). */
+export const GOAL_OPTIONS: { id: string; label: string }[] = [
+  { id: "credit", label: "Build my credit" },
+  { id: "debt", label: "Pay off debt" },
+  { id: "budget", label: "Get better at budgeting" },
+  { id: "emergency", label: "Build an emergency fund" },
+  { id: "invest", label: "Start investing" },
+  { id: "college", label: "Pay for college" },
+  { id: "home", label: "Buy a home someday" },
+  { id: "retirement", label: "Plan for retirement" },
+  { id: "safety", label: "Protect my money from scams" },
+];
 
 export function roleLabel(role: ProfileRole): string {
   return role ? ROLE_LABELS[role] : "";

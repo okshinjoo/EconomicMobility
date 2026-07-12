@@ -60,3 +60,7 @@ create trigger profiles_touch before update on public.profiles
 drop trigger if exists user_data_touch on public.user_data;
 create trigger user_data_touch before update on public.user_data
   for each row execute function public.touch_updated_at();
+
+-- Added July 2026 (profile Goals tab): what the member is working toward.
+alter table public.profiles
+  add column if not exists goals jsonb not null default '[]'::jsonb;
