@@ -93,6 +93,62 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* The mission — leads the page: the case for access, in the owner's
+          own words. The founder story follows it. */}
+      <section className="bg-paper">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:py-24">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+              Why this matters
+            </span>
+            <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
+              Financial literacy is a{" "}
+              <span className="italic text-amber-deep">right,</span> not a
+              luxury.
+            </h2>
+            <p className="mt-8 hidden border-l-2 border-amber pl-5 font-display text-2xl italic leading-snug text-ink lg:block">
+              No pressure. No fluff. Just honest, practical help, for
+              everyone.
+            </p>
+          </div>
+          <div className="space-y-5 text-lg leading-8 text-stone">
+            <p>
+              This website was created with one goal in mind: to break down
+              the barriers that keep people from understanding and managing
+              their own money. Financial information is often hard to find,
+              buried in jargon, or stuck behind an expensive price tag. That
+              leaves too many people feeling overwhelmed and left out.
+            </p>
+            <p>
+              And a lot of what you do find isn&apos;t really trying to teach
+              you. Search a basic money question and you&apos;ll land on
+              pages built to sell you a credit card, an insurance plan, or a
+              course. When every answer comes with a pitch, it&apos;s hard to
+              know what to trust.
+            </p>
+            <p>
+              We believe financial literacy is a right, not a luxury. A
+              budget that works. Credit you actually understand. A plan for
+              debt, and a start on investing. None of this is advanced
+              knowledge reserved for other people. These are basic life
+              skills, and the earlier you pick them up, the more they change
+              where you end up.
+            </p>
+            <p>
+              That&apos;s why everything here is 100% free, with no account
+              and no paywall. Whether you&apos;re learning how to budget,
+              rebuilding credit, paying off debt, or planning for the future,
+              you&apos;ll find clear, judgment-free guides, tools, and
+              resources made for real people living real lives.
+            </p>
+            <p className="border-l-2 border-amber pl-5 font-display text-xl italic leading-snug text-ink lg:hidden">
+              No pressure. No fluff. Just honest, practical help, for
+              everyone.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* The story — B: ink-framed photo + tilted quote card */}
       <section id="story" className="scroll-mt-24 bg-paper-deep">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
@@ -135,28 +191,27 @@ export default function AboutPage() {
                 before.
               </p>
               <p>
-                For me, the way in was investing. I got curious about the
-                market, started digging, and kept finding small, learnable
-                moves that could shift the whole trajectory of a life.
-                Learning how money works is the single best thing I have ever
-                done for myself. It taught me how to invest, and it gave me
-                something better: a clear path and a real reason to stay on
-                it. Once the fog lifted, the steps were simple.
+                For me, the way in was investing. I got curious, started
+                digging, and kept running into small changes I could make that
+                would completely alter my trajectory. Honestly, learning about
+                finance is the best thing I&apos;ve ever done for myself. Not
+                just because it taught me how to invest, but because it gave
+                me a clear path and real motivation to keep going. Once the
+                fog lifted, the steps were a lot clearer.
               </p>
               <p>
-                Lifting that fog was the hard part. I parsed confusing
-                articles written for people who already knew the answers. I
-                bounced between sites that wanted to sell me a credit card or
-                an insurance plan before they would teach me anything. And
-                every time I finally figured something out, I thought the same
-                thing: someone could have told me this years ago.
+                Getting there was the frustrating part. Before I understood
+                anything, I had to dig through confusing articles and bounce
+                between sites that seemed more interested in selling me a
+                credit card or an insurance plan than in explaining anything.
+                Every time something finally clicked, I had the same thought:
+                someone could have told me this years ago.
               </p>
               <p>
                 So I decided to become that &ldquo;someone&rdquo; for the next
-                student in my shoes. This education is life-changing, it&apos;s
-                effectively mandatory, and it&apos;s quietly locked away.
-                The Economic Mobility Project exists to unlock it, for anyone
-                the system was never built to inform.
+                student in my shoes. Education this useful shouldn&apos;t be
+                this hard to reach. That&apos;s what the Economic Mobility
+                Project is here to fix.
               </p>
             </div>
             <div className="mt-8 border-l-2 border-amber pl-4">
@@ -167,55 +222,6 @@ export default function AboutPage() {
               )}
               <p className="text-sm font-medium text-stone">{FOUNDER_TITLE}</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why this matters — editorial statement + the case for access */}
-      <section className="bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:py-24">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-              Why this matters
-            </span>
-            <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
-              Financial literacy is a{" "}
-              <span className="italic text-amber-deep">right,</span> not a
-              luxury.
-            </h2>
-            <p className="mt-8 hidden border-l-2 border-amber pl-5 font-display text-2xl italic leading-snug text-ink lg:block">
-              No pressure. No fluff. Just honest, practical help, for
-              everyone.
-            </p>
-          </div>
-          <div className="space-y-5 text-lg leading-8 text-stone">
-            <p>
-              This website was built with one goal: break down the barriers
-              that keep people from understanding and managing their own
-              money. Financial information is hard to find, wrapped in terms
-              nobody uses at a kitchen table, or sold at a price too many
-              people can&apos;t pay. The result is predictable. People feel
-              overwhelmed, left out, and convinced that money is something
-              other families are supposed to understand.
-            </p>
-            <p>
-              The stakes are too high to accept that. A handful of small,
-              learnable habits (how you budget, when you start investing, what
-              you do first about debt) can change the entire trajectory of a
-              life. Education that powerful shouldn&apos;t depend on the
-              family you were born into or the price tag you can afford.
-            </p>
-            <p>
-              That&apos;s why everything here is completely free and built to
-              meet you exactly where you are. Learning to budget, rebuilding
-              credit, paying off debt, planning for the future: clear,
-              judgment-free guides, tools, and resources made for real people
-              living real lives.
-            </p>
-            <p className="border-l-2 border-amber pl-5 font-display text-xl italic leading-snug text-ink lg:hidden">
-              No pressure. No fluff. Just honest, practical help, for
-              everyone.
-            </p>
           </div>
         </div>
       </section>
