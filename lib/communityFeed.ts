@@ -425,7 +425,7 @@ export const communityPosts: CommunityPost[] = [
     team: true,
     date: "2026-07-07",
     title: "From the Ask box: \"I have no credit history at all. What's the fastest honest way to start?\"",
-    channel: "credit-debt",
+    channel: "building-credit",
     topicId: "credit",
     body: [
       "A reader sent this in, and it's one of the most common questions we get. The short version of our answer: start with a secured card or a credit-builder loan, then let two boring habits do the work. Pay in full on time, keep the balance low. There's no legitimate fast-track, and anyone charging a fee to \"boost\" your score is selling you something you can do free.",

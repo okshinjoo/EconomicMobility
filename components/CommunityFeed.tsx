@@ -129,6 +129,16 @@ function Avatar({
   );
 }
 
+/** A post's display chips: the TOP-LEVEL channel, plus (when the post
+ *  lives in a sub-channel) a clickable Reddit-style tag that filters the
+ *  feed to that sub. */
+function usePostChips(post: CommunityPost) {
+  const own = getChannel(post.channel);
+  const hub = own.parent ? getChannel(own.parent) : own;
+  const tag = own.parent ? own : null;
+  return { hub, tag };
+}
+
 function commentTotalFor(
   post: CommunityPost,
   pendingMap: PendingCommentMap
@@ -628,11 +638,14 @@ function CompactRow({
   post,
   commentTotal,
   onOpen,
+  onTag,
 }: {
   post: CommunityPost;
   commentTotal: number;
   onOpen: () => void;
+  onTag: (id: ChannelId) => void;
 }) {
+  const { hub, tag } = usePostChips(post);
   return (
     <button
       type="button"
@@ -648,13 +661,31 @@ function CompactRow({
         )}
         <span
           className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
-          style={{
-            color: getChannel(post.channel).color,
-            background: `${getChannel(post.channel).color}1a`,
-          }}
+          style={{ color: hub.color, background: `${hub.color}1a` }}
         >
-          {getChannel(post.channel).name}
+          {hub.name}
         </span>
+        {tag && (
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={(e) => {
+              e.stopPropagation();
+              onTag(tag.id);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.stopPropagation();
+                onTag(tag.id);
+              }
+            }}
+            title={`Show only ${tag.name} posts`}
+            className="rounded-md border px-1.5 py-0.5 text-[10px] font-bold transition-opacity hover:opacity-70"
+            style={{ borderColor: tag.color, color: tag.color }}
+          >
+            {tag.name}
+          </span>
+        )}
         <span className="min-w-0 flex-1 truncate font-display text-base font-semibold text-ink group-hover:underline">
           {post.title}
         </span>
@@ -681,13 +712,16 @@ function PostCard({
   onToggleLike,
   pendingMap,
   authorMeta,
+  onTag,
 }: {
   post: CommunityPost;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingMap: PendingCommentMap;
   authorMeta: Record<string, { cred: number; earned: string[] }>;
+  onTag: (id: ChannelId) => void;
 }) {
+  const { hub, tag } = usePostChips(post);
   const pendingComments = pendingMap[post.id] ?? [];
   const commentTotal = commentTotalFor(post, pendingMap);
   const [open, setOpen] = useState(post.comments.length > 0);
@@ -724,13 +758,21 @@ function PostCard({
           )}
           <span
             className="rounded-md px-2 py-0.5 text-[11px] font-bold"
-            style={{
-              color: getChannel(post.channel).color,
-              background: `${getChannel(post.channel).color}1a`,
-            }}
+            style={{ color: hub.color, background: `${hub.color}1a` }}
           >
-            {getChannel(post.channel).name}
+            {hub.name}
           </span>
+          {tag && (
+            <button
+              type="button"
+              onClick={() => onTag(tag.id)}
+              title={`Show only ${tag.name} posts`}
+              className="rounded-md border px-2 py-0.5 text-[11px] font-bold transition-opacity hover:opacity-70"
+              style={{ borderColor: tag.color, color: tag.color }}
+            >
+              {tag.name}
+            </button>
+          )}
         </div>
       </div>
 
@@ -977,7 +1019,7 @@ export default function CommunityFeed({
   const pinnedSet = new Set(pinnedChannels);
   const orderedForChips = [
     ...pinnedChannels.map(getChannel),
-    ...CHANNELS.filter((c) => !pinnedSet.has(c.id)),
+    ...CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent),
   ];
 
   const ChannelRow = ({
@@ -989,7 +1031,10 @@ export default function CommunityFeed({
   }) => (
     <div
       className={`group/row flex items-center rounded-lg transition-colors ${
-        active === c.id ? "bg-amber/25" : "hover:bg-paper"
+        active === c.id ||
+        (active !== "all" && getChannel(active).parent === c.id)
+          ? "bg-amber/25"
+          : "hover:bg-paper"
       } ${indent ? "ml-6" : ""}`}
     >
       <button
@@ -1105,7 +1150,7 @@ export default function CommunityFeed({
                   c.name.toLowerCase().includes(q) ||
                   c.tagline.toLowerCase().includes(q)
               )
-            : CHANNELS.filter((c) => !pinnedSet.has(c.id));
+            : CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent);
           if (q && list.length === 0) {
             return (
               <p className="px-3 py-2 text-xs text-stone">
@@ -1205,12 +1250,35 @@ export default function CommunityFeed({
         ))}
       </div>
 
-      {/* the active channel's one-line intro */}
-      {active !== "all" && (
-        <p className="px-1 text-sm font-medium text-stone">
-          {getChannel(active).tagline}
-        </p>
-      )}
+      {/* the active channel's one-line intro — or, for a sub picked via a
+          post tag, a removable filter pill */}
+      {active !== "all" &&
+        (getChannel(active).parent ? (
+          <div className="flex items-center gap-2 px-1">
+            <span className="text-sm font-medium text-stone">Tag:</span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-bold"
+              style={{
+                borderColor: getChannel(active).color,
+                color: getChannel(active).color,
+              }}
+            >
+              {getChannel(active).name}
+              <button
+                type="button"
+                onClick={() => setActive(getChannel(active).parent!)}
+                aria-label="Clear tag filter"
+                className="rounded-full hover:opacity-70"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </span>
+          </div>
+        ) : (
+          <p className="px-1 text-sm font-medium text-stone">
+            {getChannel(active).tagline}
+          </p>
+        ))}
 
       {showComposer && (
         <div id="community-composer" className="relative scroll-mt-24">
@@ -1432,6 +1500,7 @@ export default function CommunityFeed({
               onToggleLike={toggleLike}
               pendingMap={pendingComments}
               authorMeta={authorMeta}
+              onTag={setActive}
             />
           </div>
         ) : post.pinned ? (
@@ -1447,6 +1516,7 @@ export default function CommunityFeed({
             post={post}
             commentTotal={commentTotalFor(post, pendingComments)}
             onOpen={() => toggleExpanded(post.id)}
+            onTag={setActive}
           />
         )
       )}
