@@ -63,6 +63,17 @@ export default function CoursesPage() {
 
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+          <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-amber px-6 py-5 text-ink">
+            <p className="font-display text-lg font-semibold">
+              Not sure which one? Start from your goal instead.
+            </p>
+            <Link
+              href="/journey"
+              className="btn-ink rounded-md bg-cream px-4 py-2 text-sm font-bold text-ink"
+            >
+              Find your path
+            </Link>
+          </div>
           <CourseGrid items={items} />
         </div>
       </section>

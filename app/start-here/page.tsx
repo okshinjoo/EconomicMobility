@@ -24,10 +24,10 @@ const steps = [
   },
   {
     n: "02",
-    title: "Browse the guides",
-    text: "Plain-English articles on credit, budgeting, taxes, college, investing, and more.",
-    href: "/learn",
-    cta: "Explore Learn",
+    title: "Follow your path",
+    text: "Pick a money goal and walk it milestone by milestone — the right guide at the right time, with a clear next step whenever you come back.",
+    href: "/journey",
+    cta: "Find your path",
     accent: "#0f5c46", // forest
   },
   {

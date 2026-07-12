@@ -1,5 +1,11 @@
 "use client";
 
+// The /courses hub grid, redesigned for pick-ability (owner feedback July
+// 2026: the old cards were walls of same-looking text). Each card is now a
+// color-banded poster: solid course-color header with the title + medal,
+// then just the goal line, a compact meta row, and progress. The longer
+// description lives on the course page, where you read it AFTER choosing.
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap } from "@/lib/readTracking";
@@ -39,77 +45,64 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
           <Link
             key={course.id}
             href={`/courses/${course.id}`}
-            className={`card-ink group relative flex flex-col rounded-2xl bg-paper p-6 transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
-            style={{ background: `color-mix(in srgb, ${course.color} 11%, #fbf8f1)` }}
+            className={`card-ink group flex flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
           >
-            {/* The badge this module ends in: ghosted until it's earned. */}
-            <BadgeMedal
-              color={course.color}
-              className={`absolute right-5 top-5 h-12 w-12 transition-opacity ${
-                badge ? "" : "opacity-20 group-hover:opacity-40"
-              }`}
-            />
-
-            <div className="flex flex-wrap gap-1.5 pr-14">
-              <span
-                className="-rotate-1 rounded-md border-2 border-ink px-2 py-0.5 text-[11px] font-bold text-cream shadow-[2px_2px_0_#11211c]"
-                style={{ background: course.color }}
-              >
-                {total} guides
-              </span>
-              <span className="rounded-md border-2 border-ink bg-cream px-2 py-0.5 text-[11px] font-bold text-ink">
-                {course.cardCount} flashcards
-              </span>
-              <span className="rounded-md border-2 border-ink bg-cream px-2 py-0.5 text-[11px] font-bold text-ink">
-                final + badge
-              </span>
+            {/* Poster band: the course's own color does the differentiating */}
+            <div
+              className="flex items-start justify-between gap-3 p-5 pb-4"
+              style={{ background: course.color }}
+            >
+              <h2 className="font-display text-2xl font-semibold leading-tight text-cream">
+                {course.title}
+              </h2>
+              <BadgeMedal
+                color="#fbf8f1"
+                className={`h-11 w-11 shrink-0 transition-opacity ${
+                  badge ? "" : "opacity-30 group-hover:opacity-50"
+                }`}
+              />
             </div>
 
-            <h2
-              className="mt-4 font-display text-2xl font-semibold text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-              style={{ textDecorationColor: course.color }}
-            >
-              {course.title}
-            </h2>
-            <p
-              className="mt-1 font-display text-base italic leading-snug"
-              style={{ color: course.color }}
-            >
-              {course.goal}
-            </p>
-            <p className="mt-2.5 flex-1 text-sm leading-6 text-stone">
-              {course.description}
-            </p>
+            <div className="flex flex-1 flex-col border-t-2 border-ink p-5">
+              <p
+                className="font-display text-[1.05rem] italic leading-snug"
+                style={{ color: course.color }}
+              >
+                {course.goal}
+              </p>
+              <p className="mt-3 text-xs font-semibold text-ink/60">
+                {total} guides · {course.cardCount} flashcards · final + badge
+              </p>
 
-            {/* Progress */}
-            <div className="mt-5">
-              {badge ? (
-                <p
-                  className="inline-flex -rotate-1 items-center gap-1.5 self-start rounded-md border-2 border-ink px-2.5 py-1 text-xs font-bold text-cream shadow-[2px_2px_0_#11211c]"
-                  style={{ background: course.color }}
-                >
-                  Mastered · badge earned
-                </p>
-              ) : (
-                <>
-                  <div className="h-2 w-full overflow-hidden rounded-full border border-ink/15 bg-cream">
-                    <div
-                      className="h-full rounded-full transition-[width]"
-                      style={{
-                        width: `${(done / total) * 100}%`,
-                        background: course.color,
-                      }}
-                    />
-                  </div>
-                  <p className="mt-2 text-xs font-semibold text-ink/70">
-                    {started
-                      ? `${done} of ${total} read — keep going`
-                      : done === total && total > 0
-                        ? "All read — take the final"
-                        : "Fresh start, about an evening of reading"}
+              <div className="mt-auto pt-4">
+                {badge ? (
+                  <p
+                    className="inline-flex -rotate-1 items-center gap-1.5 rounded-md border-2 border-ink px-2.5 py-1 text-xs font-bold text-cream shadow-[2px_2px_0_#11211c]"
+                    style={{ background: course.color }}
+                  >
+                    Mastered · badge earned
                   </p>
-                </>
-              )}
+                ) : (
+                  <>
+                    <div className="h-2 w-full overflow-hidden rounded-full border border-ink/15 bg-paper">
+                      <div
+                        className="h-full rounded-full transition-[width]"
+                        style={{
+                          width: `${(done / total) * 100}%`,
+                          background: course.color,
+                        }}
+                      />
+                    </div>
+                    <p className="mt-2 text-xs font-semibold text-ink/70">
+                      {started
+                        ? `${done} of ${total} read — keep going`
+                        : done === total && total > 0
+                          ? "All read — take the final"
+                          : "About an evening of reading"}
+                    </p>
+                  </>
+                )}
+              </div>
             </div>
           </Link>
         );

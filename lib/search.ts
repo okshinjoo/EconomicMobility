@@ -10,6 +10,7 @@ import { topics, getTopic } from "./topics";
 import { toolCategories, hrefFor } from "./toolsRegistry";
 import { glossary } from "./glossary";
 import { blogPosts } from "./blog";
+import { journeys } from "./journeys";
 
 export type SearchKind = "Article" | "Calculator" | "Topic" | "Term" | "Page";
 
@@ -27,6 +28,7 @@ export interface SearchItem {
 // A few important non-article destinations.
 const PAGES: SearchItem[] = [
   { kind: "Page", title: "Take the Quiz", subtitle: "Find your starting point in about 2 minutes.", href: "/quiz", group: "Pages" },
+  { kind: "Page", title: "Your Path", subtitle: "Pick a money goal, follow it milestone by milestone.", href: "/journey", group: "Pages", keywords: "journey guided path goals roadmap walkthrough" },
   { kind: "Page", title: "Free Templates", subtitle: "Downloadable budget, debt, and savings spreadsheets.", href: "/tools/templates", group: "Pages", keywords: "spreadsheet excel download worksheet tracker" },
   { kind: "Page", title: "Resources", subtitle: "Trusted outside help, plus a finder for your state.", href: "/resources", group: "Pages", keywords: "benefits state help 211" },
   { kind: "Page", title: "Ask a Question", subtitle: "Ask anything about money, anonymously.", href: "/ask", group: "Pages", keywords: "ask faq community questions" },
@@ -41,6 +43,15 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Life Moments", subtitle: "First job, moving out, graduating: start from your moment.", href: "/life", group: "Pages", keywords: "first job apartment college graduate scammed tight" },
   { kind: "Page", title: "Letter Generator", subtitle: "Credit dispute and debt validation letters, free.", href: "/tools/letters", group: "Pages", keywords: "dispute letter debt validation collector template" },
 ];
+
+const journeyItems: SearchItem[] = journeys.map((j) => ({
+  kind: "Page" as const,
+  title: `Path: ${j.title}`,
+  subtitle: j.promise,
+  href: `/journey/${j.id}`,
+  group: "Pages",
+  keywords: "journey guided path goal roadmap",
+}));
 
 const blogItems: SearchItem[] = blogPosts.map((p) => ({
   kind: "Page" as const,
@@ -95,5 +106,5 @@ export function getSearchItems(): SearchItem[] {
     keywords: (g.aliases ?? []).join(" "),
   }));
 
-  return [...topicItems, ...toolItems, ...articleItems, ...blogItems, ...termItems, ...PAGES];
+  return [...topicItems, ...toolItems, ...articleItems, ...blogItems, ...journeyItems, ...termItems, ...PAGES];
 }

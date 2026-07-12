@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON } from "@/lib/storage";
 import { getTopic, type TopicId } from "@/lib/topics";
+import { journeyByTopic, getJourney } from "@/lib/journeys";
 import TopicMark from "@/components/TopicMark";
 import {
   ALL_TOPIC_IDS,
@@ -221,6 +222,18 @@ export default function QuizResults({
                         className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
                       >
                         Follow the roadmap: {roadmapsByTopic[step.topicId]!.title}
+                      </Link>
+                    </p>
+                  )}
+                  {journeyByTopic[step.topicId] && (
+                    <p className="mt-2 text-sm">
+                      <Link
+                        href={`/journey/${journeyByTopic[step.topicId]}`}
+                        className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+                      >
+                        Or let us walk you through it: the{" "}
+                        {getJourney(journeyByTopic[step.topicId]!)?.title.toLowerCase()}{" "}
+                        path
                       </Link>
                     </p>
                   )}

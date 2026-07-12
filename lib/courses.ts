@@ -664,6 +664,286 @@ export const courses: Course[] = [
       },
     ],
   },
+  {
+    id: "debt-comeback",
+    title: "The Debt Comeback",
+    goal: "Turn a pile of debts into a plan with an end date.",
+    description:
+      "Pick a payoff method you'll actually stick with, know your rights when collectors call, negotiate from strength, and shut the door on the traps that pull people back in.",
+    color: "#9c4a2e",
+    articleSlugs: [
+      "paying-off-credit-cards",
+      "debt-relief-options",
+      "negotiating-debt",
+      "debt-collector-rights",
+      "payday-loans-and-predatory-lending",
+      "avoiding-debt-scams",
+    ],
+    finalQuiz: [
+      {
+        question:
+          "You want to pay the least total interest across three credit cards. Which balance gets your extra money first?",
+        options: [
+          "The smallest balance, to knock one out fast",
+          "The balance with the highest interest rate",
+          "A little extra on each, split evenly",
+        ],
+        answer: 1,
+        explain:
+          "That's the avalanche method: highest APR first saves the most money. The snowball (smallest first) costs a bit more but buys quick wins — the best method is the one you'll keep running.",
+        sourceSlug: "paying-off-credit-cards",
+      },
+      {
+        question:
+          "A company says it can cut your debt in half — just stop paying your cards and pay them instead. What are they selling?",
+        options: [
+          "Debt settlement, which tanks your credit and offers no guarantee creditors will deal",
+          "Debt consolidation, a standard banking product",
+          "Nonprofit credit counseling",
+        ],
+        answer: 0,
+        explain:
+          "Stopping payments is the settlement playbook: your accounts go delinquent, your score drops, and the creditor may sue instead of settle. A nonprofit credit counselor is the safer first call.",
+        sourceSlug: "debt-relief-options",
+      },
+      {
+        question:
+          "A collector agrees to settle your $2,000 debt for $800. What must happen before you send a dollar?",
+        options: [
+          "You record the phone call",
+          "You get the agreement in writing",
+          "You pay a good-faith deposit to lock the deal",
+        ],
+        answer: 1,
+        explain:
+          "A verbal deal can evaporate after you pay. Get the settlement terms in writing first — amount, that it settles the debt in full, and how it will be reported.",
+        sourceSlug: "negotiating-debt",
+      },
+      {
+        question:
+          "A debt collector threatens to have you arrested tomorrow if you don't pay tonight. What do you know?",
+        options: [
+          "You should pay something small to show good faith",
+          "They're breaking the law — collectors can't threaten arrest, and you can demand written validation of the debt",
+          "You have 24 hours to respond before it goes to court",
+        ],
+        answer: 1,
+        explain:
+          "The Fair Debt Collection Practices Act bans threats, harassment, and late-night calls, and gives you the right to demand the debt be validated in writing before anything else happens.",
+        sourceSlug: "debt-collector-rights",
+      },
+      {
+        question: "Why does a $300 payday loan so often turn into months of payments?",
+        options: [
+          "The fee repeats every time the loan rolls over, working out to around 400% APR",
+          "Payday lenders add hidden collateral requirements",
+          "Banks report payday loans to credit bureaus at double weight",
+        ],
+        answer: 0,
+        explain:
+          "The two-week fee looks small, but most borrowers can't repay the full amount plus the fee, so it rolls over — and the fee lands again. That loop is the product.",
+        sourceSlug: "payday-loans-and-predatory-lending",
+      },
+      {
+        question:
+          "A 'credit repair' service wants $200 up front to remove accurate negative marks. What's the truth?",
+        options: [
+          "It's worth it for the time saved",
+          "Accurate information can't be removed by anyone — and everything legitimate they'd do, you can do yourself for free",
+          "Only lawyers can remove negative marks",
+        ],
+        answer: 1,
+        explain:
+          "Nobody can erase accurate history, and disputing real errors is free. Charging up front before doing anything is itself illegal under the Credit Repair Organizations Act.",
+        sourceSlug: "avoiding-debt-scams",
+      },
+    ],
+  },
+  {
+    id: "retirement-started",
+    title: "Retirement, Started",
+    goal: "Open the right account and put future-you on autopilot.",
+    description:
+      "What the accounts actually are, which one comes first, Roth vs. traditional in plain English, and the setup that runs itself once you've done it.",
+    color: "#0c4a39",
+    articleSlugs: [
+      "retirement-basics",
+      "what-is-a-401k",
+      "what-is-an-ira",
+      "roth-vs-traditional-ira",
+      "401k-vs-ira",
+    ],
+    finalQuiz: [
+      {
+        question:
+          "Two friends each invest $200 a month for retirement. One starts at 25, one at 35. Why is the gap at 65 so large?",
+        options: [
+          "The early starter picked better funds",
+          "Ten extra years of compounding means her earnings spent decades making earnings of their own",
+          "Contribution limits were higher in the past",
+        ],
+        answer: 1,
+        explain:
+          "Time in the market is the ingredient you can't buy back later. Starting small at 25 routinely beats starting big at 40.",
+        sourceSlug: "retirement-basics",
+      },
+      {
+        question:
+          "Your employer matches 401(k) contributions up to 4% of your salary. What is that match, honestly stated?",
+        options: [
+          "A 100% instant return on those dollars — the best deal in personal finance",
+          "A loan you repay when you leave the company",
+          "A perk that mostly benefits high earners",
+        ],
+        answer: 0,
+        explain:
+          "Contribute 4%, and your employer doubles it on the spot. Whatever else your plan looks like, contributing at least to the full match comes first.",
+        sourceSlug: "what-is-a-401k",
+      },
+      {
+        question: "How is an IRA different from a 401(k)?",
+        options: [
+          "An IRA is only for self-employed people",
+          "An IRA pays a government-guaranteed return",
+          "You open an IRA yourself at any brokerage — no employer involved, and you pick the investments",
+        ],
+        answer: 2,
+        explain:
+          "The 401(k) comes through a job; the IRA is yours alone. For 2026 you can put up to $7,500 into an IRA, and it travels with you no matter where you work.",
+        sourceSlug: "what-is-an-ira",
+      },
+      {
+        question:
+          "You're early in your career and expect to earn (and be taxed) more later. Which IRA flavor usually wins?",
+        options: [
+          "Traditional, because the deduction is worth more now",
+          "Roth — pay today's low tax rate, then withdrawals in retirement are tax-free",
+          "They always come out exactly equal",
+        ],
+        answer: 1,
+        explain:
+          "Roth means taxed now, never again. Paying tax while your rate is low and letting decades of growth come out tax-free is the classic early-career move.",
+        sourceSlug: "roth-vs-traditional-ira",
+      },
+      {
+        question:
+          "You have $300 a month for retirement, a 401(k) with a match, and an IRA. What's the widely used order?",
+        options: [
+          "Fill the IRA completely first, since fees are lower",
+          "401(k) up to the full match, then the IRA, then back to the 401(k)",
+          "Split it 50/50 from day one",
+        ],
+        answer: 1,
+        explain:
+          "The match is free money, so it comes first. After that, an IRA usually offers more fund choices and lower costs — then any remainder goes back into the 401(k).",
+        sourceSlug: "401k-vs-ira",
+      },
+      {
+        question: "What happens to the money in your 401(k) if you leave the job?",
+        options: [
+          "It's forfeited unless you worked there five years",
+          "Your own contributions are always yours; you can roll the account into an IRA or a new employer's plan",
+          "It converts automatically to a pension",
+        ],
+        answer: 1,
+        explain:
+          "Every dollar you contributed is yours, period (employer-match dollars may vest on a schedule). A rollover moves it without taxes or penalties — losing track of old accounts is the real risk.",
+        sourceSlug: "what-is-a-401k",
+      },
+    ],
+  },
+  {
+    id: "taxes-handled",
+    title: "Taxes, Handled",
+    goal: "File for the first time without fear — or fees.",
+    description:
+      "Whether you even need to file, what the forms mean, the free ways to do it, why a refund isn't a bonus, and the credit low-income workers leave on the table.",
+    color: "#8a6d1f",
+    articleSlugs: [
+      "do-you-need-to-file",
+      "filing-taxes-first-time",
+      "understanding-tax-forms",
+      "free-ways-to-file",
+      "tax-refund-explained",
+      "earned-income-tax-credit",
+    ],
+    finalQuiz: [
+      {
+        question:
+          "You earned $9,000 at a part-time job — below the filing threshold. Why might you file anyway?",
+        options: [
+          "Filing is legally required at any income",
+          "Your employer likely withheld tax from each check, and filing is the only way to get that money back",
+          "Not filing lowers your credit score",
+        ],
+        answer: 1,
+        explain:
+          "Below the threshold, filing is optional — but any withheld tax stays with the IRS unless you file to claim it. For low earners, that's often hundreds of dollars.",
+        sourceSlug: "do-you-need-to-file",
+      },
+      {
+        question: "What's the one document you can't start your tax return without?",
+        options: [
+          "Your W-2 (or 1099s), which employers must send by the end of January",
+          "A letter from the IRS inviting you to file",
+          "Last year's tax return",
+        ],
+        answer: 0,
+        explain:
+          "The W-2 is your year in one page: what you earned and what was already withheld. If it hasn't arrived by early February, ask your employer — don't guess the numbers.",
+        sourceSlug: "filing-taxes-first-time",
+      },
+      {
+        question: "You got a W-2 from your job and a 1099 for gig work. What's the difference?",
+        options: [
+          "They're interchangeable names for the same form",
+          "The W-2 job withheld taxes as you went; the 1099 income had nothing withheld, so tax on it is still owed",
+          "1099 income is tax-free below $10,000",
+        ],
+        answer: 1,
+        explain:
+          "That's the trap of gig income: it arrives untaxed. A W-2 job pays your tax bill as you earn; 1099 income leaves the whole bill for filing time.",
+        sourceSlug: "understanding-tax-forms",
+      },
+      {
+        question: "What should filing a simple tax return cost you?",
+        options: [
+          "Around $100 at a preparer, as a necessary safety measure",
+          "Nothing — IRS Direct File, Free File, and VITA volunteer sites all file simple returns for $0",
+          "A percentage of your refund",
+        ],
+        answer: 1,
+        explain:
+          "Most people with straightforward returns qualify to file completely free. Paid storefronts count on you not knowing that — and 'refund advance' products are loans with fees.",
+        sourceSlug: "free-ways-to-file",
+      },
+      {
+        question: "Your refund this year is $1,800. What is that money?",
+        options: [
+          "A reward from the government for filing on time",
+          "Interest the IRS pays on your withholding",
+          "Your own overpaid tax coming back — an interest-free loan you gave the government all year",
+        ],
+        answer: 2,
+        explain:
+          "A big refund means too much was withheld from each check. It feels great, but it was your money all along — adjusting your W-4 puts it in your paychecks instead.",
+        sourceSlug: "tax-refund-explained",
+      },
+      {
+        question:
+          "You worked all year at a low wage and owe $0 in tax. What can the Earned Income Tax Credit still do?",
+        options: [
+          "Nothing — credits only reduce tax you owe",
+          "Pay you a refund anyway, because the EITC is refundable — up to $8,231 for 2026",
+          "Roll over to reduce next year's taxes",
+        ],
+        answer: 1,
+        explain:
+          "Refundable means the credit can exceed your tax bill and come back as cash. It's one of the largest anti-poverty programs in the country, and millions who qualify never claim it.",
+        sourceSlug: "earned-income-tax-credit",
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {

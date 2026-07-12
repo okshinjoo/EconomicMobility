@@ -5,12 +5,13 @@ import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { blogPosts } from "@/lib/blog";
+import { journeys } from "@/lib/journeys";
 
 const BASE = "https://economicmobilityproject.org";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
-    "", "/learn", "/tools", "/courses", "/challenges", "/community", "/blog",
+    "", "/learn", "/tools", "/courses", "/challenges", "/community", "/blog", "/journey",
     "/ask", "/quiz", "/glossary", "/resources", "/start-here", "/about",
     "/contact", "/life", "/tools/letters", "/tools/templates", "/account",
     "/privacy",
@@ -50,6 +51,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
+  const journeyRoutes = journeys.map((j) => ({
+    url: `${BASE}/journey/${j.id}`,
+    changeFrequency: "monthly" as const,
+  }));
+
   return [
     ...staticRoutes,
     ...topicRoutes,
@@ -58,5 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courseRoutes,
     ...challengeRoutes,
     ...blogRoutes,
+    ...journeyRoutes,
   ];
 }

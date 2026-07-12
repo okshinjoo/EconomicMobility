@@ -38,6 +38,7 @@ export const nav: NavEntry[] = [
       { label: "Glossary", href: "/glossary" },
     ],
   },
+  { label: "Your Path", href: "/journey" },
   { label: "Courses", href: "/courses" },
   {
     label: "Tools",
