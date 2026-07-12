@@ -16,7 +16,8 @@ export interface Profile {
   showTag: boolean;
   /** Goal ids from GOAL_OPTIONS — what the member is working toward. */
   goals: string[];
-  /** Flair ids from FLAIR_OPTIONS — max MAX_FLAIRS, shown with the tag. */
+  /** Flair ids from FLAIR_OPTIONS, in pick order. Any number may be
+   *  picked; only the first MAX_FLAIRS display anywhere. */
   flairs: string[];
 }
 
@@ -27,7 +28,8 @@ export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {
 };
 
 /** Profile flairs: little badges members pick to show with their name.
- *  Some useful, some personality. Hard cap: MAX_FLAIRS per profile. */
+ *  Some useful, some personality. Members may PICK any number, but only the
+ *  first MAX_FLAIRS in their pick-order are ever displayed. */
 export const MAX_FLAIRS = 2;
 
 export interface FlairOption {

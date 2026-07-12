@@ -655,9 +655,7 @@ export function ProfileEditor({
           role: ((data.role as ProfileRole) ?? "") as ProfileRole,
           showTag: Boolean(data.show_tag),
           goals: Array.isArray(data.goals) ? (data.goals as string[]) : [],
-          flairs: Array.isArray(data.flairs)
-            ? (data.flairs as string[]).slice(0, MAX_FLAIRS)
-            : [],
+          flairs: Array.isArray(data.flairs) ? (data.flairs as string[]) : [],
         };
         setDisplayName(p.displayName);
         setRole(p.role);
@@ -697,7 +695,7 @@ export function ProfileEditor({
       role,
       showTag,
       goals,
-      flairs: flairs.slice(0, MAX_FLAIRS),
+      flairs,
     };
     const { error } = await supabase.from("profiles").upsert({
       id: userId,
@@ -904,7 +902,10 @@ export function ProfileEditor({
                   name={displayName}
                   email={session.user.email ?? ""}
                   role={role}
-                  flairLabels={flairs.map(flairLabel).filter(Boolean)}
+                  flairLabels={flairs
+                    .slice(0, MAX_FLAIRS)
+                    .map(flairLabel)
+                    .filter(Boolean)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
                   quizTopicCount={member.quizTopics.length}
@@ -1021,8 +1022,8 @@ export function ProfileEditor({
                 <legend className={labelCls}>
                   Flairs{" "}
                   <span className="font-normal text-stone">
-                    (pick up to {MAX_FLAIRS} — they show next to your name
-                    when your tag is on)
+                    (pick as many as you like — the first {MAX_FLAIRS} you
+                    picked are the ones everyone sees)
                   </span>
                 </legend>
                 {(
@@ -1038,26 +1039,33 @@ export function ProfileEditor({
                     <div className="mt-1.5 flex flex-wrap gap-2">
                       {FLAIR_OPTIONS.filter((f) => f.kind === kind).map(
                         (f) => {
-                          const on = flairs.includes(f.id);
-                          const full = !on && flairs.length >= MAX_FLAIRS;
+                          const idx = flairs.indexOf(f.id);
+                          const on = idx !== -1;
+                          const showing = on && idx < MAX_FLAIRS;
                           return (
                             <button
                               key={f.id}
                               type="button"
                               aria-pressed={on}
-                              disabled={full}
+                              title={
+                                showing
+                                  ? "Showing on your profile"
+                                  : on
+                                    ? "Picked, but only your first two show"
+                                    : undefined
+                              }
                               onClick={() =>
                                 setFlairs((prev) =>
                                   on
                                     ? prev.filter((id) => id !== f.id)
-                                    : [...prev, f.id].slice(0, MAX_FLAIRS)
+                                    : [...prev, f.id]
                                 )
                               }
                               className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
-                                on
+                                showing
                                   ? "border-forest bg-forest text-cream"
-                                  : full
-                                    ? "cursor-not-allowed border-[#eee7d9] bg-white text-stone/40"
+                                  : on
+                                    ? "border-forest bg-white text-forest"
                                     : "border-[#eee7d9] bg-white text-stone hover:border-forest/40 hover:text-ink"
                               }`}
                             >
@@ -1070,13 +1078,15 @@ export function ProfileEditor({
                   </div>
                 ))}
                 <p className="mt-2 text-xs text-stone">
-                  {flairs.length} of {MAX_FLAIRS} picked
-                  {flairs.length > 0 && (
-                    <>
-                      {" — "}
-                      {flairs.map(flairLabel).filter(Boolean).join(" · ")}
-                    </>
-                  )}
+                  {flairs.length === 0
+                    ? "Nothing picked yet."
+                    : flairs.length <= MAX_FLAIRS
+                      ? `Showing: ${flairs.map(flairLabel).filter(Boolean).join(" · ")}`
+                      : `${flairs.length} picked — showing ${flairs
+                          .slice(0, MAX_FLAIRS)
+                          .map(flairLabel)
+                          .filter(Boolean)
+                          .join(" · ")} (solid). Unpick one to promote another.`}
                 </p>
               </fieldset>
 
