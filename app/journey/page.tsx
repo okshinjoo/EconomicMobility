@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TopicMark from "@/components/TopicMark";
 import JourneyIndex, {
   type JourneyCardData,
   type IndexStep,
@@ -65,11 +64,24 @@ export default function JourneyIndexPage() {
 
       {/* Hero — C: editorial maximal */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="budgeting"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
-        />
+        {/* Flowing path lines (Base44 direct copy, owner call July 2026) —
+            faint white contours winding across the green, like a trail map. */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08]"
+          viewBox="0 0 800 500"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          {[60, 100, 140, 180, 220, 260, 300, 340, 380, 420].map((y) => (
+            <path
+              key={y}
+              d={`M0,${y} Q200,${y - 30} 400,${y + 10} T800,${y - 15}`}
+              stroke="white"
+              strokeWidth="1.5"
+              fill="none"
+            />
+          ))}
+        </svg>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Your path
