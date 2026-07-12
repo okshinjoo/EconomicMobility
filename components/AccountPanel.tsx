@@ -11,7 +11,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { Loader2, CheckCircle2, LogOut, UserRound } from "lucide-react";
+import { Loader2, CheckCircle2, UserRound } from "lucide-react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { syncOnLogin, stopMirror } from "@/lib/accountSync";
@@ -22,6 +22,8 @@ import {
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
+import AccountDashboard from "@/components/AccountDashboard";
+import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 type Mode = "signin" | "signup" | "forgot";
 
@@ -29,7 +31,13 @@ const inputCls =
   "w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none";
 const labelCls = "mb-1.5 block text-sm font-medium text-ink";
 
-export default function AccountPanel() {
+export default function AccountPanel({
+  paths = [],
+  badgeSources = [],
+}: {
+  paths?: TopicPath[];
+  badgeSources?: BadgeSource[];
+}) {
   const supabase = getSupabase();
   const [session, setSession] = useState<Session | null>(null);
   const [booted, setBooted] = useState(false);
@@ -90,6 +98,8 @@ export default function AccountPanel() {
       supabase={supabase}
       session={session}
       syncedKeys={syncedKeys}
+      paths={paths}
+      badgeSources={badgeSources}
     />
   ) : (
     <AuthForms supabase={supabase} />
@@ -394,10 +404,14 @@ function ProfileEditor({
   supabase,
   session,
   syncedKeys,
+  paths,
+  badgeSources,
 }: {
   supabase: SupabaseClient;
   session: Session;
   syncedKeys: number | null;
+  paths: TopicPath[];
+  badgeSources: BadgeSource[];
 }) {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<ProfileRole>("");
@@ -466,27 +480,17 @@ function ProfileEditor({
 
   return (
     <div className="space-y-5">
-      {/* sync status */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sand bg-cream p-5">
-        <div>
-          <p className="font-display text-lg font-semibold text-ink">
-            Signed in as {session.user.email}
-          </p>
-          <p className="mt-0.5 text-sm text-stone">
-            {syncedKeys === null
-              ? "Your progress syncs to this account automatically."
-              : `Progress synced — your reading, quiz results, calculators, and badges follow you to any device.`}
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={signOut}
-          className="inline-flex items-center gap-1.5 rounded-md border border-ink/15 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-ink/40"
-        >
-          <LogOut className="h-4 w-4" />
-          Sign out
-        </button>
-      </div>
+      {/* the member dashboard: stats, badges, progress, next step.
+          syncedKeys is only used to gate rendering until the login merge
+          has run, so the numbers reflect merged cross-device history. */}
+      <AccountDashboard
+        key={syncedKeys === null ? "pre-sync" : "post-sync"}
+        email={session.user.email ?? ""}
+        displayName={displayName}
+        paths={paths}
+        badgeSources={badgeSources}
+        onSignOut={signOut}
+      />
 
       {/* profile */}
       <div className="card-ink rounded-2xl bg-cream p-6 sm:p-8">
