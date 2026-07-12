@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 // Personalize these two lines, then add your headshot at /public/images/founder.jpg
 // and swap the story image below for it. Leave name empty to show just the title.
-const FOUNDER_NAME = "";
+const FOUNDER_NAME = "Shinjoo";
 const FOUNDER_TITLE = "Founder, Economic Mobility Project";
 
 const pillars = [
@@ -100,7 +100,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:-rotate-1">
               <Image
                 src="/images/founder.jpg"
-                alt="The founder of the Economic Mobility Project"
+                alt="Shinjoo, founder of the Economic Mobility Project"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
