@@ -149,3 +149,11 @@ create policy "moderators: read own row" on public.moderators
 -- FINAL STEP, run separately: make yourself a moderator. Find your user id
 -- in Authentication -> Users (it's the UUID on your own account), then:
 -- insert into public.moderators (user_id) values ('YOUR-USER-UUID-HERE');
+
+
+-- July 2026 (owner request): members may delete their OWN comments at any
+-- time, published or pending (replies under a deleted comment cascade away).
+-- Run these two statements in the SQL Editor:
+drop policy if exists "comments: delete own pending" on public.comments;
+create policy "comments: delete own" on public.comments
+  for delete using (auth.uid() = user_id);

@@ -324,6 +324,10 @@ export interface CommunityComment {
   authorFlairs?: string[];
   /** Approved replies, one level deep (curated here like everything else). */
   replies?: CommunityComment[];
+  /** Client-only: true when this is the signed-in visitor's own live comment. */
+  mine?: boolean;
+  /** Client-only: Supabase row id, present on own live comments (deletion). */
+  liveId?: string;
 }
 
 export interface CommunityPost {

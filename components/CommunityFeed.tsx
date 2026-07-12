@@ -7,6 +7,7 @@ import { getSupabase } from "@/lib/supabase";
 import {
   accountsEnabled,
   addLiveComment,
+  deleteLiveComment,
   fetchLiveComments,
   type LiveComment,
 } from "@/lib/liveComments";
@@ -35,6 +36,7 @@ import {
   Share2,
   Bookmark,
   Check as CheckIcon,
+  Trash2,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -68,6 +70,8 @@ interface PendingComment {
   author: string;
   text: string;
   at: number;
+  /** Present on DB-backed pending comments (deletable, cross-device). */
+  liveId?: string;
 }
 type PendingCommentMap = Record<string, PendingComment[]>;
 
@@ -213,6 +217,29 @@ function FlairChips({ labels }: { labels?: string[] }) {
         </span>
       ))}
     </>
+  );
+}
+
+function DeleteOwnButton({ liveId }: { liveId: string }) {
+  const [busy, setBusy] = useState(false);
+  return (
+    <button
+      type="button"
+      disabled={busy}
+      onClick={async () => {
+        if (!window.confirm("Delete this comment? This can't be undone."))
+          return;
+        setBusy(true);
+        const err = await deleteLiveComment(liveId);
+        setBusy(false);
+        if (!err)
+          window.dispatchEvent(new Event("empower:community-updated"));
+      }}
+      className="inline-flex items-center gap-1 text-xs font-semibold text-stone transition-colors hover:text-terracotta disabled:opacity-50"
+    >
+      <Trash2 className="h-3.5 w-3.5" />
+      Delete
+    </button>
   );
 }
 
@@ -564,10 +591,14 @@ function CommentItem({
         />
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
-            <AuthorName
-              name={comment.author}
-              meta={authorMeta[comment.author]}
-            />
+            {comment.mine ? (
+              <span>You</span>
+            ) : (
+              <AuthorName
+                name={comment.author}
+                meta={authorMeta[comment.author]}
+              />
+            )}
             <FlairChips labels={comment.authorFlairs} />
             <span className="font-normal text-stone">
               {formatDate(comment.date)}
@@ -599,6 +630,9 @@ function CommentItem({
               <MessageCircle className="h-3.5 w-3.5" />
               Reply
             </button>
+            {comment.mine && comment.liveId && (
+              <DeleteOwnButton liveId={comment.liveId} />
+            )}
           </div>
 
           {/* approved replies */}
@@ -611,7 +645,11 @@ function CommentItem({
               />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
-                  <AuthorName name={r.author} meta={authorMeta[r.author]} />
+                  {r.mine ? (
+                    <span>You</span>
+                  ) : (
+                    <AuthorName name={r.author} meta={authorMeta[r.author]} />
+                  )}
                   <FlairChips labels={r.authorFlairs} />
                   <span className="font-normal text-stone">
                     {formatDate(r.date)}
@@ -620,6 +658,11 @@ function CommentItem({
                 <p className="mt-1 text-[0.95rem] leading-6 text-stone">
                   {r.text}
                 </p>
+                {r.mine && r.liveId && (
+                  <div className="mt-1">
+                    <DeleteOwnButton liveId={r.liveId} />
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -630,8 +673,9 @@ function CommentItem({
               <Avatar name={r.author} />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
-                  {r.author}
+                  You
                   <PendingChip />
+                  {r.liveId && <DeleteOwnButton liveId={r.liveId} />}
                 </p>
                 <p className="mt-1 text-[0.95rem] leading-6 text-stone">
                   {r.text}
@@ -996,8 +1040,9 @@ function PostCard({
               <Avatar name={c.author} />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
-                  {c.author}
+                  You
                   <PendingChip />
+                  {c.liveId && <DeleteOwnButton liveId={c.liveId} />}
                 </p>
                 <p className="mt-1 text-[0.95rem] leading-6 text-stone">{c.text}</p>
               </div>
@@ -1049,6 +1094,8 @@ export function SinglePost({
       date: c.date,
       text: c.text,
       authorFlairs: c.authorFlairs.length ? c.authorFlairs : undefined,
+      mine: c.mine || undefined,
+      liveId: c.mine ? c.id : undefined,
     });
     const all: CommunityComment[] = (post.comments ?? []).map((c) => ({
       ...c,
@@ -1077,7 +1124,7 @@ export function SinglePost({
       const key = c.parentId ? `${post.id}::${c.parentId}` : post.id;
       next[key] = [
         ...(next[key] ?? []),
-        { author: c.author, text: c.text, at: c.at },
+        { author: c.author, text: c.text, at: c.at, liveId: c.id },
       ];
     }
     return next;

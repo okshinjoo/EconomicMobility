@@ -153,5 +153,14 @@ export async function addLiveComment(opts: {
   return { error: null, published: false };
 }
 
+/** Delete one of YOUR OWN comments (RLS enforces ownership server-side;
+ *  replies under it cascade away with it). Returns an error message or null. */
+export async function deleteLiveComment(id: string): Promise<string | null> {
+  const supabase = getSupabase();
+  if (!supabase) return "Not available right now.";
+  const { error } = await supabase.from("comments").delete().eq("id", id);
+  return error ? "Couldn't delete that. Please try again." : null;
+}
+
 /** Small session hook shared by the comment form and the admin queue. */
 export { accountsEnabled };
