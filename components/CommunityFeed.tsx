@@ -13,6 +13,10 @@ import {
   BookOpen,
   Inbox,
   Pin,
+  Award,
+  Flame,
+  Clock,
+  BarChart3,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -451,6 +455,12 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
   const [active, setActive] = useState<"all" | ChannelId>("all");
   const [pinnedChannels, setPinnedChannels] = useState<ChannelId[]>([]);
+  // Reddit-style sorting. No public vote counts exist here (honesty rule),
+  // so ranking runs on the real signals: approved comments + age.
+  const [sort, setSort] = useState<"best" | "hot" | "new" | "top">("best");
+  const [topRange, setTopRange] = useState<
+    "day" | "week" | "month" | "year" | "all"
+  >("week");
 
   useEffect(() => {
     setPinnedChannels(loadJSON<ChannelId[]>(PINNED_CHANNELS_KEY) ?? []);
@@ -485,9 +495,40 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
     });
   };
 
-  const visiblePosts = [...posts]
-    .filter((p) => active === "all" || channelMatches(p.channel, active))
-    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+  const inChannel = posts.filter(
+    (p) => active === "all" || channelMatches(p.channel, active)
+  );
+  const postTime = (p: CommunityPost) => Date.parse(`${p.date}T12:00:00`);
+  const engagement = (p: CommunityPost) => p.comments.length;
+  const hotScore = (p: CommunityPost) => {
+    const ageHours = Math.max(0, (Date.now() - postTime(p)) / 3_600_000);
+    return (engagement(p) + 1) / Math.pow(ageHours + 2, 1.2);
+  };
+  const TOP_RANGES: Record<typeof topRange, number> = {
+    day: 1,
+    week: 7,
+    month: 30,
+    year: 365,
+    all: Infinity,
+  };
+  let visiblePosts: CommunityPost[];
+  if (sort === "new") {
+    visiblePosts = [...inChannel].sort((a, b) => postTime(b) - postTime(a));
+  } else if (sort === "hot") {
+    visiblePosts = [...inChannel].sort((a, b) => hotScore(b) - hotScore(a));
+  } else if (sort === "top") {
+    const cutoff = Date.now() - TOP_RANGES[topRange] * 86_400_000;
+    visiblePosts = inChannel
+      .filter((p) => topRange === "all" || postTime(p) >= cutoff)
+      .sort(
+        (a, b) => engagement(b) - engagement(a) || postTime(b) - postTime(a)
+      );
+  } else {
+    // "best" = the curated file order, pinned posts first.
+    visiblePosts = [...inChannel].sort(
+      (a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0)
+    );
+  }
   const visiblePending = pendingPosts.filter(
     (p) =>
       active === "all" || !p.channel || channelMatches(p.channel, active)
@@ -687,6 +728,48 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
 
       <Composer activeChannel={active} />
 
+      {/* sort bar */}
+      <div className="flex flex-wrap items-center gap-1.5">
+        {(
+          [
+            ["best", "Best", Award, "The curated order"],
+            ["hot", "Hot", Flame, "Active lately"],
+            ["new", "New", Clock, "Newest first"],
+            ["top", "Top", BarChart3, "Most discussed"],
+          ] as const
+        ).map(([id, label, Icon, tip]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setSort(id)}
+            aria-pressed={sort === id}
+            title={tip}
+            className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
+              sort === id
+                ? "bg-ink text-cream"
+                : "border border-sand bg-cream text-stone hover:text-ink"
+            }`}
+          >
+            <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+            {label}
+          </button>
+        ))}
+        {sort === "top" && (
+          <select
+            value={topRange}
+            onChange={(e) => setTopRange(e.target.value as typeof topRange)}
+            aria-label="Top range"
+            className="rounded-lg border border-sand bg-cream px-2.5 py-1.5 text-sm font-semibold text-ink focus:border-amber focus:outline-none"
+          >
+            <option value="day">Today</option>
+            <option value="week">This week</option>
+            <option value="month">This month</option>
+            <option value="year">This year</option>
+            <option value="all">All time</option>
+          </select>
+        )}
+      </div>
+
       {/* The visitor's own posts awaiting review */}
       {visiblePending.map((p) => (
         <article
@@ -707,6 +790,11 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
         </article>
       ))}
 
+      {visiblePosts.length === 0 && sort === "top" && (
+        <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
+          Nothing posted in this window yet — try a longer range.
+        </p>
+      )}
       {visiblePosts.map((post) => (
         <PostCard
           key={post.id}
