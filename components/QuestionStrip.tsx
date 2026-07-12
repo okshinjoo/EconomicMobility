@@ -58,26 +58,32 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
   }
 
   return (
-    <ul className="space-y-4">
+    <ul>
       {items.map((item, i) => (
-        <li key={item.slug}>
-          <Reveal delay={i * 90}>
+        <li key={item.slug} className={i > 0 ? "-mt-3" : ""}>
+          <Reveal delay={i * 80}>
             <Link
               href={item.href}
-              className="group flex items-baseline gap-4 rounded-xl bg-cream px-5 py-4 shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:gap-5 sm:px-6"
+              className={`group block rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] p-5 text-[#1A1A1A] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl md:p-7 ${
+                i % 2 === 1 ? "md:ml-10" : ""
+              } ${i % 2 === 0 ? "md:-rotate-[0.5deg]" : "md:rotate-[0.5deg]"}`}
             >
-              <span
-                aria-hidden
-                className="shrink-0 font-display text-2xl font-bold text-transparent transition-colors duration-200 [-webkit-text-stroke:1.5px_#d26a4c] group-hover:text-terracotta sm:text-3xl"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="flex-1 font-display text-lg font-semibold leading-snug text-ink sm:text-xl">
-                {item.q}
-              </span>
-              <span className="hidden shrink-0 text-sm font-semibold text-stone underline decoration-stone/25 decoration-2 underline-offset-4 transition-colors duration-200 group-hover:text-amber-deep group-hover:decoration-amber sm:block">
-                Read the guide
-              </span>
+              <div className="flex items-start gap-4">
+                <span
+                  aria-hidden
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#E69A37]/10 font-display text-3xl font-bold leading-none text-[#E69A37] transition-colors group-hover:bg-[#E69A37] group-hover:text-[#1A1A1A]"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-display text-lg font-medium leading-snug md:text-xl">
+                    {item.q}
+                  </span>
+                  <span className="mt-1.5 block text-sm text-[#616161] transition-colors group-hover:text-[#E69A37]">
+                    Read the guide &rarr;
+                  </span>
+                </span>
+              </div>
             </Link>
           </Reveal>
         </li>
