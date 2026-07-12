@@ -58,32 +58,26 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
   }
 
   return (
-    <ul>
+    <ul className="space-y-4">
       {items.map((item, i) => (
-        <li key={item.slug} className={i > 0 ? "-mt-3" : ""}>
+        <li key={item.slug}>
           <Reveal delay={i * 80}>
             <Link
               href={item.href}
-              className={`group block rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] p-5 text-[#1A1A1A] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl md:p-7 ${
-                i % 2 === 1 ? "md:ml-10" : ""
-              } ${i % 2 === 0 ? "md:-rotate-[0.5deg]" : "md:rotate-[0.5deg]"}`}
+              className="group flex items-center gap-4 rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] px-5 py-3.5 text-[#1A1A1A] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="flex items-start gap-4">
-                <span
-                  aria-hidden
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#E69A37]/10 font-display text-3xl font-bold leading-none text-[#E69A37] transition-colors group-hover:bg-[#E69A37] group-hover:text-[#1A1A1A]"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="min-w-0">
-                  <span className="block font-display text-lg font-medium leading-snug md:text-xl">
-                    {item.q}
-                  </span>
-                  <span className="mt-1.5 block text-sm text-[#616161] transition-colors group-hover:text-[#E69A37]">
-                    Read the guide &rarr;
-                  </span>
-                </span>
-              </div>
+              <span
+                aria-hidden
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[#E69A37]/10 font-display text-xl font-bold leading-none text-[#E69A37] transition-colors group-hover:bg-[#E69A37] group-hover:text-[#1A1A1A]"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="flex-1 font-display text-base font-medium leading-snug sm:text-lg">
+                {item.q}
+              </span>
+              <span className="hidden shrink-0 text-sm text-[#616161] transition-colors group-hover:text-[#E69A37] sm:block">
+                Read the guide &rarr;
+              </span>
             </Link>
           </Reveal>
         </li>
