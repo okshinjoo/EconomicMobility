@@ -392,7 +392,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-07",
     title: "What's your money win this week?",
     channel: "wins",
-    pinned: true,
     body: [
       "Any size counts. Packed lunch three days in a row, set up autopay so a bill stops sneaking up on you, checked your credit report for the first time, asked a question you'd been sitting on. Small wins are how every big one starts.",
       "Drop yours in the comments. We'll add our favorites to this thread.",
@@ -413,7 +412,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-07",
     title: "The money question you never felt you could ask",
     channel: "questions",
-    pinned: true,
     body: [
       "Most of us carry one around for years: something everyone else seems to already understand, so asking feels embarrassing. What's yours? Odds are a dozen other people reading this have the same one.",
       "Ask it in the comments, or completely anonymously through the Ask box. The best ones get full plain-English answers on the site.",
@@ -513,7 +511,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "The student corner: what goes where",
     channel: "students",
-    pinned: true,
     body: [
       "Home base for money-while-in-school: aid packages, loans, part-time paychecks, textbook math, all of it. Two focused rooms live under this one — Financial Aid & Offers for FAFSA and comparing packages, and Student Loans for everything borrowing.",
       "Not sure where something fits? Post it right here and we'll point you the right way.",
@@ -528,7 +525,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Comparing aid offers? Bring the confusing line items here",
     channel: "financial-aid",
-    pinned: true,
     body: [
       "Award letters are weirdly hard to compare on purpose: one school buries loans inside the \"aid,\" another leaves out costs entirely. If you're weighing offers, this is the room. Ask about any line you don't recognize — school names and dollar amounts optional.",
       "A good place to start: run both letters through the side-by-side tool below, then post whatever still doesn't add up.",
@@ -543,7 +539,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Student loans: ask before you sign",
     channel: "student-loans",
-    pinned: true,
     body: [
       "The cheapest loan mistake is the one you never make. Before you sign anything, ask here: federal versus private, subsidized versus not, what a servicer actually does, whether that refinancing ad is too good to be true (usually).",
       "Already borrowed? Repayment questions, forgiveness confusion, and payoff wins of any size belong here too.",
@@ -558,7 +553,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Investing, minus the jargon",
     channel: "investing",
-    pinned: true,
     body: [
       "No gatekeeping in this room: index funds, Roth IRAs, the thing your coworker keeps saying about crypto. If you've been nodding along to a term you don't actually understand, this is where you stop nodding and start asking.",
       "One house reminder: experiences and questions are always welcome, but nobody here can tell you what to buy — and anyone who tries is breaking the rules.",
@@ -573,7 +567,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "First paychecks, side gigs, and getting paid right",
     channel: "work-income",
-    pinned: true,
     body: [
       "Why is the check smaller than the offer letter? What do I actually put on a W-4? Is the side gig worth it after gas? Every working-for-money question lives here.",
       "Wins count double in this room: first paycheck, first raise, first invoice that actually got paid.",
@@ -588,7 +581,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Money and family: the conversations nobody preps you for",
     channel: "family-firstgen",
-    pinned: true,
     body: [
       "Helping parents with bills, sending money home, being the first in the family to navigate any of this — it's money and love at the same time, which makes it the hardest kind. This room is for those questions, judgment-free.",
       "Share what worked, ask what you're stuck on, or just say the thing out loud. Plenty of us are the family's unofficial CFO.",
@@ -603,7 +595,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Seen a scam? Post it here",
     channel: "scams-safety",
-    pinned: true,
     body: [
       "The fastest scam alarm is each other. A text about a job you never applied for, a \"bank\" asking you to verify anything, an investing guru in your DMs: describe it here so the next person scrolls right past it.",
       "And zero shame if one got you — posting it is the win that protects everyone else.",
@@ -618,7 +609,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Which bank, which card, is this app legit? Ask before you sign up",
     channel: "banking",
-    pinned: true,
     body: [
       "The most expensive account is the one you picked because the ad was everywhere. Before you open anything — a checking account, a first credit card, a money app your friend swears by — ask here. Someone has probably already read the fine print.",
       "Good posts for this room: fee surprises, switching-banks stories, and 'is this legit?' screenshots described in words (no personal details).",
@@ -633,7 +623,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "Tax season survival: first filings welcome",
     channel: "taxes",
-    pinned: true,
     body: [
       "Nobody teaches this and then suddenly it's April. First time filing? Confused about what a W-4 did to your paycheck? Waiting on a refund that feels wrong? This is the room.",
       "One rule of thumb worth pinning to your wall: if a preparer promises a bigger refund before seeing your documents, walk away.",
@@ -648,7 +637,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "First apartments, deposits, and roommate math",
     channel: "housing",
-    pinned: true,
     body: [
       "Rent is most people's biggest bill, and first leases are full of trapdoors: application fees, deposits that never come back, utilities nobody mentioned. Ask here before you sign, vent here after.",
       "Also welcome: roommate cost-splitting systems that actually survived the year.",
@@ -663,7 +651,6 @@ export const communityPosts: CommunityPost[] = [
     date: "2026-07-12",
     title: "The month math: making it stretch",
     channel: "budgeting-saving",
-    pinned: true,
     body: [
       "This room is for the real version of budgeting: when the numbers barely reach, which bill to pay first, the grocery strategies that actually work. No judgment about starting points — that's a house rule.",
       "Small systems welcome. The person who figured out how to make the last week of the month not terrible has something to teach all of us.",

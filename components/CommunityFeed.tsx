@@ -558,6 +558,70 @@ function CommentItem({
   );
 }
 
+/** Medium treatment for PINNED posts in compact view (owner call): bigger
+ *  than a row — title + a two-line teaser + meta — smaller than the full
+ *  card. Click anywhere to expand. */
+function MiniCard({
+  post,
+  commentTotal,
+  onOpen,
+}: {
+  post: CommunityPost;
+  commentTotal: number;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      id={`post-${post.id}`}
+      onClick={onOpen}
+      className="group block w-full scroll-mt-24 rounded-2xl border-2 border-ink bg-cream p-5 text-left shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="rounded-md bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-cream">
+          Pinned
+        </span>
+        <span
+          className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
+          style={{
+            color: getChannel(post.channel).color,
+            background: `${getChannel(post.channel).color}1a`,
+          }}
+        >
+          {getChannel(post.channel).name}
+        </span>
+      </div>
+      <p className="mt-2 font-display text-lg font-semibold text-ink group-hover:underline">
+        {post.title}
+      </p>
+      <p
+        className="mt-1 text-sm leading-6 text-stone"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
+        {post.body[0]}
+      </p>
+      <p className="mt-2 flex flex-wrap items-center gap-x-2 text-xs text-stone">
+        <span className="font-semibold">{post.author}</span>
+        <span>·</span>
+        <span className="inline-flex items-center gap-1">
+          <MessageCircle className="h-3 w-3" />
+          {commentTotal === 0
+            ? "Be the first to say hi"
+            : `${commentTotal} intro${commentTotal === 1 ? "" : "s"} and counting`}
+        </span>
+        <span className="ml-auto font-semibold text-forest">
+          Read &amp; introduce yourself →
+        </span>
+      </p>
+    </button>
+  );
+}
+
 /** Compact (Reddit-style) row: chip + title + meta. Click to expand the
  *  full post in place. Carries the post-<id> anchor so deep links work. */
 function CompactRow({
@@ -1298,6 +1362,13 @@ export default function CommunityFeed({
               authorMeta={authorMeta}
             />
           </div>
+        ) : post.pinned ? (
+          <MiniCard
+            key={post.id}
+            post={post}
+            commentTotal={commentTotalFor(post, pendingComments)}
+            onOpen={() => toggleExpanded(post.id)}
+          />
         ) : (
           <CompactRow
             key={post.id}
