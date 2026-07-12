@@ -46,13 +46,9 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <SearchDialog items={getSearchItems()} />
+          {/* Auth-aware CTA slot: quiz button while accounts are dark or
+              booting, "Sign in" when signed out, avatar when signed in. */}
           <AccountButton />
-          <Link
-            href="/quiz"
-            className="hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"
-          >
-            Take the Quiz
-          </Link>
           <MobileNav />
         </div>
       </nav>
