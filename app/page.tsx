@@ -289,7 +289,7 @@ export default function Home() {
       <section className="bg-paper-deep">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-16 lg:py-28">
           {/* photo + pull quote */}
-          <div className="relative order-last lg:order-first">
+          <Reveal className="relative order-last lg:order-first">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-[2rem] border border-sand shadow-xl">
               <Image
                 src="/images/graduate.jpg"
@@ -308,38 +308,49 @@ export default function Home() {
                 freedom.&rdquo;
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          {/* copy */}
+          {/* copy — headline and prose surface in sequence on scroll */}
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
-              Why this matters
-            </span>
-            <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-[2.75rem]">
-              Financial knowledge shouldn&apos;t depend on the family
-              you&apos;re born into.
-            </h2>
+            <Reveal>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
+                Why this matters
+              </span>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-[2.75rem]">
+                Financial knowledge shouldn&apos;t depend on the family
+                you&apos;re born into.
+              </h2>
+            </Reveal>
             <div className="mt-6 space-y-4 text-lg leading-8 text-stone">
-              <p>
-                This project exists to break the cycle of economic
-                disadvantage for first-generation, low-income, and immigrant
-                youth. I&apos;m a first-generation student and the kid of
-                immigrants myself. So much of what builds wealth is passed
-                down quietly at kitchen tables some of us never had access to.
-              </p>
-              <p>
-                We&apos;re changing that three ways: education anyone can
-                reach, community that makes it stick, and research that names
-                the real barriers. This website is where the first of those
-                begins.
-              </p>
+              <Reveal delay={120}>
+                <p>
+                  This project exists to break the cycle of economic
+                  disadvantage for first-generation, low-income, and immigrant
+                  youth. I&apos;m a first-generation student and the kid of
+                  immigrants myself. So much of what builds wealth is passed
+                  down quietly at kitchen tables some of us never had access
+                  to.
+                </p>
+              </Reveal>
+              <Reveal delay={200}>
+                <p>
+                  We&apos;re changing that three ways: education anyone can
+                  reach, community that makes it stick, and research that
+                  names the real barriers. This website is where the first of
+                  those begins.
+                </p>
+              </Reveal>
             </div>
 
             <div className="mt-9 grid gap-4 sm:grid-cols-3">
-              {missionPillars.map((pillar) => (
-                <div
+              {missionPillars.map((pillar, pi) => (
+                <Reveal
                   key={pillar.title}
-                  className="rounded-2xl border border-sand bg-cream p-5"
+                  delay={260 + pi * 80}
+                  className="h-full"
+                >
+                <div
+                  className="h-full rounded-2xl border border-sand bg-cream p-5"
                 >
                   <h3 className="text-sm font-bold text-ink">
                     {pillar.title}
@@ -348,6 +359,7 @@ export default function Home() {
                     {pillar.description}
                   </p>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
