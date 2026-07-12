@@ -17,8 +17,8 @@ export default function Ticker({
   const amber = tone === "amber";
   const row = (ariaHidden: boolean) => (
     <div aria-hidden={ariaHidden} className="flex shrink-0 items-center">
-      {items.map((item) => (
-        <span key={item.href} className="flex items-center">
+      {items.map((item, i) => (
+        <span key={`${item.href}-${i}`} className="flex items-center">
           <Link
             href={item.href}
             tabIndex={ariaHidden ? -1 : undefined}

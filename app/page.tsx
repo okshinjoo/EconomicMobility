@@ -382,7 +382,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {/* Featured quiz promo card */}
             <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-forest p-8 text-cream sm:col-span-2 lg:col-span-1 lg:row-span-1">
               <div className="absolute inset-0 opacity-40">
@@ -419,42 +419,56 @@ export default function Home() {
               <Reveal key={topic.href} delay={(ti % 3) * 70}>
               <Link
                 href={topic.href}
-                className={`card-ink group relative flex h-full flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
+                className={`card-ink group relative flex flex-col overflow-hidden rounded-2xl bg-cream transition-all duration-300 hover:-translate-y-1 ${
                   ti === 1 ? "lg:rotate-[0.5deg]" : ti === 6 ? "lg:-rotate-[0.5deg]" : ""
                 }`}
               >
-                {/* Topic photo + illustration badge */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-sand">
-                  <Image
-                    src={topic.image}
-                    alt=""
-                    fill
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                    <TopicMark id={topic.id} className="h-8 w-8" />
-                  </span>
+                {/* Photo: rolled up until hover (Base44 mechanic, our design) */}
+                <div className="h-0 overflow-hidden transition-all duration-300 group-hover:h-32">
+                  <div className="relative h-32 w-full">
+                    <Image
+                      src={topic.image}
+                      alt=""
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-                {/* Content */}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-lg font-semibold text-ink">
-                    {topic.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-6 text-stone">
-                    {topic.description}
-                  </p>
-                  <div className="mt-4 flex items-baseline justify-between">
+                {/* Always visible: mark + title + ghost count */}
+                <div className="p-5">
+                  <div className="flex items-center gap-3">
+                    <TopicMark
+                      id={topic.id}
+                      className="h-8 w-8 shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <h3 className="flex-1 font-display text-base font-semibold leading-tight text-ink">
+                      {topic.title}
+                    </h3>
                     <span
-                      className="text-sm font-semibold underline-offset-4 group-hover:underline"
-                      style={{ color: topic.color }}
+                      aria-hidden
+                      className="shrink-0 font-display text-2xl font-bold text-ink/15"
                     >
-                      Start learning
+                      {getTopicArticles(topic.id).length}
                     </span>
-                    <span className="text-sm font-medium text-stone/80">
-                      {getTopicArticles(topic.id).length} guides
-                    </span>
+                  </div>
+                  {/* Expands on hover */}
+                  <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:mt-3 group-hover:max-h-44 group-hover:opacity-100">
+                    <p className="text-sm leading-6 text-stone">
+                      {topic.description}
+                    </p>
+                    <div className="mt-3 flex items-baseline justify-between">
+                      <span
+                        className="text-sm font-semibold underline-offset-4 group-hover:underline"
+                        style={{ color: topic.color }}
+                      >
+                        Start learning
+                      </span>
+                      <span className="text-sm font-medium text-stone/80">
+                        {getTopicArticles(topic.id).length} guides
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
