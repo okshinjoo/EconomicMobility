@@ -832,15 +832,17 @@ export function ProfileEditor({
   ] as const;
 
   return (
-    <section className={overlay ? "" : "bg-ink"}>
+    <section className={overlay ? "" : "bg-paper-deep"}>
       <div
         className={
           overlay ? "" : "mx-auto max-w-[88rem] px-3 py-6 sm:px-6 lg:py-10"
         }
       >
         <div
-          className={`overflow-hidden rounded-3xl shadow-2xl ${
-            overlay ? "ring-1 ring-white/20" : ""
+          className={`overflow-hidden rounded-3xl ${
+            overlay
+              ? "shadow-2xl ring-1 ring-white/20"
+              : "shadow-xl ring-1 ring-black/5"
           }`}
           style={{ background: DASH.surface }}
         >
