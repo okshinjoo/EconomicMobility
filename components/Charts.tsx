@@ -46,12 +46,18 @@ export function Donut({
   thickness = 26,
   centerTop,
   centerSub,
+  className = "h-44 w-44 flex-shrink-0",
+  light = false,
 }: {
   segments: Segment[];
   size?: number;
   thickness?: number;
   centerTop?: string;
   centerSub?: string;
+  /** Rendered box (the viewBox scales into it). */
+  className?: string;
+  /** Set on cream/paper cards: ink center text + dark track. */
+  light?: boolean;
 }) {
   const { ref, drawn } = useDrawIn();
   const r = (size - thickness) / 2;
@@ -62,7 +68,7 @@ export function Donut({
     <svg
       ref={ref}
       viewBox={`0 0 ${size} ${size}`}
-      className="h-44 w-44 flex-shrink-0"
+      className={className}
       aria-hidden="true"
     >
       <circle
@@ -70,7 +76,7 @@ export function Donut({
         cy={size / 2}
         r={r}
         fill="none"
-        stroke="rgba(255,255,255,0.06)"
+        stroke={light ? "rgba(17,33,28,0.08)" : "rgba(255,255,255,0.06)"}
         strokeWidth={thickness}
       />
       <g transform={`rotate(-90 ${size / 2} ${size / 2})`}>
@@ -105,7 +111,7 @@ export function Donut({
           className="font-display"
           fontSize="26"
           fontWeight="700"
-          fill="#fbf8f1"
+          fill={light ? "#11211c" : "#fbf8f1"}
         >
           {centerTop}
         </text>
@@ -117,7 +123,7 @@ export function Donut({
           textAnchor="middle"
           dominantBaseline="middle"
           fontSize="10"
-          fill="rgba(251,248,241,0.55)"
+          fill={light ? "rgba(17,33,28,0.55)" : "rgba(251,248,241,0.55)"}
         >
           {centerSub}
         </text>

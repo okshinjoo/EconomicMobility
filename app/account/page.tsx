@@ -49,7 +49,7 @@ export default function AccountPage() {
           (brand panel + form) needing the wide container; signed IN it
           centers the dashboard column itself. */}
       <section className="bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 py-10 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 py-10 lg:py-16">
           <AccountPanel paths={paths} badgeSources={badgeSources} />
         </div>
       </section>

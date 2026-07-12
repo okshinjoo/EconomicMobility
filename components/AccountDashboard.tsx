@@ -13,6 +13,7 @@ import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
+import { Donut } from "@/components/Charts";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 interface EarnedBadge extends BadgeSource {
@@ -160,34 +161,128 @@ export function useMemberData(
   return data;
 }
 
-/** The stat tiles across the top of the signed-in page. */
-export function StatsRow({ data }: { data: MemberData }) {
-  if (!data.mounted) return null;
-  const { stats, earned } = data;
+/** Legend for light (cream) cards — Charts.tsx's Legend is styled for dark. */
+function LightLegend({
+  items,
+}: {
+  items: { color: string; label: string; value: string }[];
+}) {
   return (
-    <div className="grid grid-cols-3 gap-3">
-      {(
-        [
-          [stats.guides, stats.guides === 1 ? "guide read" : "guides read"],
-          [
-            earned.length,
-            earned.length === 1 ? "badge earned" : "badges earned",
-          ],
-          [stats.tools, stats.tools === 1 ? "tool tried" : "tools tried"],
-        ] as const
-      ).map(([n, label], i) => (
-        <div
-          key={label}
-          className={`card-ink rounded-2xl bg-cream px-4 py-5 text-center ${
-            i === 1 ? "lg:rotate-[0.5deg]" : ""
-          }`}
+    <ul className="min-w-0 flex-1 space-y-2">
+      {items.map((it) => (
+        <li
+          key={it.label}
+          className="flex items-center justify-between gap-3 text-sm"
         >
-          <p className="font-display text-3xl font-bold text-ink">{n}</p>
-          <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-stone">
-            {label}
-          </p>
-        </div>
+          <span className="inline-flex min-w-0 items-center gap-2 text-stone">
+            <span
+              className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+              style={{ background: it.color }}
+            />
+            <span className="truncate">{it.label}</span>
+          </span>
+          <span className="font-semibold text-ink">{it.value}</span>
+        </li>
       ))}
+    </ul>
+  );
+}
+
+const SAND = "#e8dfcf";
+
+/** The two chart stat cards across the top of the signed-in page (the
+ *  reference's "Car Rides Stats" / "Total Trip Spend" positions). */
+export function DonutStatsCards({
+  data,
+  paths,
+  badgeTotal,
+}: {
+  data: MemberData;
+  paths: TopicPath[];
+  badgeTotal: number;
+}) {
+  if (!data.mounted) return null;
+  const { stats, earned, progress } = data;
+  const libraryTotal = paths.reduce((s, t) => s + t.articles.length, 0);
+  const unread = Math.max(0, libraryTotal - stats.guides);
+
+  const readingSegments =
+    stats.guides > 0
+      ? [
+          ...progress.map((t) => ({
+            value: t.read,
+            color: t.color,
+            label: t.short,
+          })),
+          { value: unread, color: SAND, label: "Still unread" },
+        ]
+      : [{ value: 1, color: SAND, label: "Nothing read yet" }];
+  const readingLegend = [
+    ...progress
+      .slice(0, 3)
+      .map((t) => ({ color: t.color, label: t.short, value: String(t.read) })),
+    { color: SAND, label: "Still unread", value: String(unread) },
+  ];
+
+  return (
+    <div className="grid gap-5 xl:grid-cols-2">
+      {/* reading */}
+      <div className="rounded-2xl border border-sand bg-cream p-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="font-display text-lg font-bold text-ink">
+            Your reading
+          </h3>
+          <span className="text-xs font-semibold text-stone">All time</span>
+        </div>
+        <div className="mt-4 flex items-center gap-5">
+          <Donut
+            segments={readingSegments}
+            size={116}
+            thickness={16}
+            centerTop={String(stats.guides)}
+            centerSub={stats.guides === 1 ? "guide" : "guides"}
+            className="h-[116px] w-[116px] flex-shrink-0"
+            light
+          />
+          <LightLegend items={readingLegend} />
+        </div>
+      </div>
+
+      {/* activity */}
+      <div className="rounded-2xl border border-sand bg-cream p-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="font-display text-lg font-bold text-ink">
+            Your activity
+          </h3>
+          <span className="text-xs font-semibold text-stone">All time</span>
+        </div>
+        <div className="mt-4 flex items-center gap-5">
+          {/* bubbles, like the reference's spend card */}
+          <div className="relative h-[116px] w-[116px] flex-shrink-0">
+            <span className="absolute left-0 top-0 flex h-[84px] w-[84px] items-center justify-center rounded-full bg-amber font-display text-2xl font-bold text-ink">
+              {earned.length}
+            </span>
+            <span className="absolute bottom-0 right-0 flex h-[56px] w-[56px] items-center justify-center rounded-full bg-forest font-display text-lg font-bold text-cream">
+              {stats.tools}
+            </span>
+          </div>
+          <LightLegend
+            items={[
+              {
+                color: "#e7a33c",
+                label: "Badges earned",
+                value: `${earned.length} of ${badgeTotal}`,
+              },
+              { color: "#0c4a39", label: "Tools tried", value: String(stats.tools) },
+              {
+                color: "#d26a4c",
+                label: "Mini-quizzes taken",
+                value: String(stats.quizzes),
+              },
+            ]}
+          />
+        </div>
+      </div>
     </div>
   );
 }

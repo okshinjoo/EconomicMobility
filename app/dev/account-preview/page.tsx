@@ -47,7 +47,7 @@ export default function DevAccountPreviewPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
       <section className="bg-paper-deep">
-        <div className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
           <p className="mb-6 rounded-lg border-2 border-terracotta bg-terracotta/10 px-4 py-2 text-sm font-bold text-terracotta">
             Dev harness — fake session, saves are stubbed. Not reachable in
             production.

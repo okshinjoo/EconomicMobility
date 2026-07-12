@@ -21,6 +21,12 @@ import {
   Check,
   Pencil,
   LogOut,
+  LayoutDashboard,
+  Target,
+  ShieldCheck,
+  BookOpen,
+  Mail,
+  CalendarDays,
 } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
@@ -36,9 +42,19 @@ import {
 } from "@/lib/profile";
 import {
   useMemberData,
-  StatsRow,
+  DonutStatsCards,
   OverviewPanels,
 } from "@/components/AccountDashboard";
+
+/** The signed-in sections, navigated by the left rail. */
+type PanelTab = "overview" | "about" | "goals" | "security";
+
+const PANEL_TITLES: Record<PanelTab, string> = {
+  overview: "Overview",
+  about: "About you",
+  goals: "Your goals",
+  security: "Sign-in & security",
+};
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 type Mode = "signin" | "signup" | "forgot";
@@ -119,7 +135,7 @@ export default function AccountPanel({
 
   if (session) {
     return (
-      <div className="mx-auto max-w-3xl">
+      <div>
         <ProfileEditor
           supabase={supabase}
           session={session}
@@ -134,7 +150,7 @@ export default function AccountPanel({
 
   // Signed out: split-screen — a brand "identity" panel beside the form.
   return (
-    <div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
+    <div className="mx-auto grid max-w-5xl items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
       <div className="relative overflow-hidden rounded-3xl bg-forest p-8 text-cream sm:p-10">
         <TopicMark
           id="investing"
@@ -585,9 +601,7 @@ export function ProfileEditor({
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
-  const [tab, setTab] = useState<"overview" | "about" | "goals" | "security">(
-    "overview"
-  );
+  const [tab, setTab] = useState<PanelTab>("overview");
   // Security-tab state: change email + change password forms.
   const [newEmail, setNewEmail] = useState("");
   const [emailNotice, setEmailNotice] = useState<string | null>(null);
@@ -742,6 +756,17 @@ export function ProfileEditor({
     await supabase.auth.signOut();
   }
 
+  // Switch section; below lg the rail sits far above the panel, so bring
+  // the panel into view.
+  function selectTab(t: PanelTab) {
+    setTab(t);
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      document
+        .getElementById("account-settings")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16 text-stone">
@@ -778,57 +803,44 @@ export function ProfileEditor({
         </div>
       )}
 
-      {/* Kinetik-style member layout (owner reference): identity card on
-          the left, stats + one wide tabbed panel on the right. */}
-      <div className="grid gap-6 lg:grid-cols-[300px_1fr] lg:items-start">
+      {/* Kinetik-style member layout (owner reference): nav rail on the
+          far left, the identity card beside it, chart stat cards + the
+          section panel on the right. */}
+      <div className="grid gap-5 lg:grid-cols-[13rem_17rem_1fr] lg:items-start">
+        <NavRail
+          active={tab}
+          onSelect={selectTab}
+          nextHref={member.next?.href ?? "/learn"}
+        />
+
         <IdentityCard
           name={displayName}
           email={session.user.email ?? ""}
           role={role}
           goalsCount={goals.length}
           memberSince={memberSince}
-          onEdit={() => {
-            setTab("about");
-            document
-              .getElementById("account-settings")
-              ?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
+          quizTaken={member.quizTopics.length > 0}
+          badgesEarned={member.earned.length}
+          badgeTotal={badgeSources.length}
+          onEdit={() => selectTab("about")}
           onSignOut={signOut}
         />
 
         <div className="min-w-0 space-y-5">
-          <StatsRow data={member} />
+          <DonutStatsCards
+            data={member}
+            paths={paths}
+            badgeTotal={badgeSources.length}
+          />
 
           <div
             id="account-settings"
-            className="card-ink scroll-mt-24 overflow-hidden rounded-2xl bg-cream"
+            className="card-ink scroll-mt-24 rounded-2xl bg-cream p-6 sm:p-8"
           >
-            <div className="flex border-b-2 border-ink">
-              {(
-                [
-                  ["overview", "Overview"],
-                  ["about", "About you"],
-                  ["goals", "Goals"],
-                  ["security", "Security"],
-                ] as const
-              ).map(([id, label]) => (
-                <button
-                  key={id}
-                  type="button"
-                  onClick={() => setTab(id)}
-                  aria-pressed={tab === id}
-                  className={`flex-1 whitespace-nowrap px-1.5 py-3.5 text-center text-[13px] font-bold transition-colors sm:px-4 sm:text-sm ${
-                    tab === id
-                      ? "bg-ink text-cream"
-                      : "bg-cream text-stone hover:text-ink"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-
-        <div className="p-6 sm:p-8">
+            <h2 className="font-display text-2xl font-bold text-ink">
+              {PANEL_TITLES[tab]}
+            </h2>
+            <div className="mt-5">
           {tab === "overview" && (
             <OverviewPanels
               data={member}
@@ -1100,14 +1112,68 @@ export function ProfileEditor({
   );
 }
 
-/** The left identity card of the signed-in layout (the reference's
- *  patient-card position): who you are, at a glance. */
+/** The far-left nav rail (the reference's sidebar position): one action
+ *  button on top, then the section links. Horizontal chip row below lg. */
+function NavRail({
+  active,
+  onSelect,
+  nextHref,
+}: {
+  active: PanelTab;
+  onSelect: (t: PanelTab) => void;
+  nextHref: string;
+}) {
+  const items = [
+    ["overview", "Overview", LayoutDashboard],
+    ["about", "About you", UserRound],
+    ["goals", "Goals", Target],
+    ["security", "Security", ShieldCheck],
+  ] as const;
+  return (
+    <div className="rounded-2xl border border-sand bg-cream p-3 lg:sticky lg:top-24">
+      <Link
+        href={nextHref}
+        className="btn-ink mb-3 flex w-full items-center justify-center gap-2 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink"
+      >
+        <BookOpen className="h-4 w-4" strokeWidth={2} />
+        Keep learning
+      </Link>
+      <nav className="flex gap-1 overflow-x-auto lg:flex-col">
+        {items.map(([id, label, Icon]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => onSelect(id)}
+            aria-pressed={active === id}
+            className={`flex flex-shrink-0 items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors lg:w-full ${
+              active === id
+                ? "bg-amber/25 text-ink"
+                : "text-stone hover:bg-paper hover:text-ink"
+            }`}
+          >
+            <Icon
+              className={`h-4 w-4 flex-shrink-0 ${active === id ? "text-amber-deep" : ""}`}
+              strokeWidth={1.75}
+            />
+            {label}
+          </button>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
+/** The identity card (the reference's patient-card position): who you are,
+ *  at a glance — avatar block, contact rows, then label/value details. */
 function IdentityCard({
   name,
   email,
   role,
   goalsCount,
   memberSince,
+  quizTaken,
+  badgesEarned,
+  badgeTotal,
   onEdit,
   onSignOut,
 }: {
@@ -1116,6 +1182,9 @@ function IdentityCard({
   role: ProfileRole;
   goalsCount: number;
   memberSince: string;
+  quizTaken: boolean;
+  badgesEarned: number;
+  badgeTotal: number;
   onEdit: () => void;
   onSignOut: () => void;
 }) {
@@ -1129,6 +1198,7 @@ function IdentityCard({
         <Pencil className="h-3.5 w-3.5" />
         Edit
       </button>
+
       <div className="flex flex-col items-center pt-2 text-center">
         <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-amber bg-forest-700 font-display text-3xl font-bold text-amber">
           {(name.trim() || email).charAt(0).toUpperCase()}
@@ -1136,23 +1206,50 @@ function IdentityCard({
         <p className="mt-3 font-display text-xl font-semibold">
           {name.trim() || "Add your name"}
         </p>
-        <p className="mt-0.5 w-full truncate text-xs text-cream/60">{email}</p>
-        {role && (
-          <span className="mt-3 inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold text-ink shadow-[2px_2px_0_#11211c]">
+        {role ? (
+          <span className="mt-2 inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold text-ink shadow-[2px_2px_0_#11211c]">
             {ROLE_LABELS[role]}
           </span>
+        ) : (
+          <p className="mt-1 text-xs text-cream/55">Member</p>
         )}
       </div>
-      <dl className="mt-6 space-y-2.5 border-t border-white/10 pt-5 text-sm">
-        <div className="flex items-baseline justify-between gap-3">
-          <dt className="text-cream/60">Member since</dt>
-          <dd className="font-semibold">{memberSince || "—"}</dd>
-        </div>
+
+      {/* contact-style icon rows */}
+      <div className="mt-6 space-y-3 border-t border-white/10 pt-5 text-sm">
+        <p className="flex min-w-0 items-center gap-2.5">
+          <Mail className="h-4 w-4 flex-shrink-0 text-amber" strokeWidth={1.75} />
+          <span className="truncate text-cream/85">{email}</span>
+        </p>
+        <p className="flex items-center gap-2.5">
+          <CalendarDays
+            className="h-4 w-4 flex-shrink-0 text-amber"
+            strokeWidth={1.75}
+          />
+          <span className="text-cream/85">
+            Member since {memberSince || "today"}
+          </span>
+        </p>
+      </div>
+
+      {/* label/value details, like the reference's Sex/ID/Insurance block */}
+      <dl className="mt-5 space-y-2.5 border-t border-white/10 pt-5 text-sm">
         <div className="flex items-baseline justify-between gap-3">
           <dt className="text-cream/60">Goals picked</dt>
           <dd className="font-semibold">{goalsCount}</dd>
         </div>
+        <div className="flex items-baseline justify-between gap-3">
+          <dt className="text-cream/60">Quiz profile</dt>
+          <dd className="font-semibold">{quizTaken ? "Taken" : "Not yet"}</dd>
+        </div>
+        <div className="flex items-baseline justify-between gap-3">
+          <dt className="text-cream/60">Badges</dt>
+          <dd className="font-semibold">
+            {badgesEarned} of {badgeTotal}
+          </dd>
+        </div>
       </dl>
+
       <button
         type="button"
         onClick={onSignOut}
