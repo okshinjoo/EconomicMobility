@@ -133,9 +133,9 @@ export default function AskPage() {
               Want the full picture?
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-ink/75">
-              The Learn library has {allArticles.length} plain-English
-              guides on credit, budgeting, taxes, college, investing, scams,
-              and more.
+              The Learn library has {Math.floor(allArticles.length / 50) * 50}+
+              plain-English guides on credit, budgeting, taxes, college,
+              investing, scams, and more.
             </p>
             <Link
               href="/learn"
