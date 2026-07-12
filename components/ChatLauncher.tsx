@@ -153,13 +153,13 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
               <div key={i}>
                 {m.role === "user" ? (
                   <div className="flex justify-end">
-                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-forest px-3.5 py-2 text-sm text-cream">
+                    <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-forest px-4 py-2.5 text-[0.95rem] leading-7 text-cream">
                       {m.text}
                     </p>
                   </div>
                 ) : (
                   <div className="space-y-2.5">
-                    <p className="max-w-[90%] rounded-2xl rounded-bl-sm bg-cream px-3.5 py-2 text-sm leading-6 text-ink">
+                    <p className="max-w-[90%] rounded-2xl rounded-bl-sm bg-cream px-4 py-2.5 text-[0.95rem] leading-7 text-ink">
                       {m.text}
                     </p>
                     {m.items && m.items.length > 0 && (
@@ -172,7 +172,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
                             className="group flex items-center gap-2 rounded-xl border border-sand bg-cream px-3 py-2 transition-colors hover:border-forest/40"
                           >
                             <span className="min-w-0 flex-1">
-                              <span className="block truncate text-sm font-semibold text-ink">
+                              <span className="block truncate text-[0.95rem] font-semibold text-ink">
                                 {item.title}
                               </span>
                               <span className="block truncate text-xs text-stone">
@@ -223,7 +223,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a money question…"
               aria-label="Ask the money guide"
-              className="w-full bg-transparent px-1 text-sm text-ink placeholder:text-stone/60 focus:outline-none"
+              className="w-full bg-transparent px-1 text-[0.95rem] text-ink placeholder:text-stone/60 focus:outline-none"
               autoComplete="off"
             />
             <button
