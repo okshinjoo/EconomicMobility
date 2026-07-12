@@ -82,15 +82,15 @@ export default function JourneyIndexPage() {
             />
           ))}
         </svg>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <div className="relative mx-auto max-w-7xl px-6 py-12 lg:py-16">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Your path
           </span>
-          <h1 className="mt-6 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
+          <h1 className="mt-3 max-w-3xl font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             Don&apos;t browse.{" "}
             <span className="italic text-amber">Follow a path.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
             Pick the goal, and we&apos;ll walk you there: ordered milestones,
             the right guide at the right moment, a calculator when it&apos;s
             time to run your numbers, and a clear next step every time you come
