@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
 import CommunityFeed from "@/components/CommunityFeed";
-import { communityPosts } from "@/lib/communityFeed";
+import { communityPosts, getMemberIndex } from "@/lib/communityFeed";
 
 export const metadata: Metadata = {
   title: "Community | Empower — Economic Mobility Project",
@@ -12,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityPage() {
+  // Cred scores, computed from published content at build time.
+  const credByAuthor: Record<string, number> = {};
+  for (const m of getMemberIndex()) credByAuthor[m.name] = m.cred;
+
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
@@ -43,7 +47,7 @@ export default function CommunityPage() {
       {/* Rail + feed (CommunityFeed owns the CGF-style left rail) */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          <CommunityFeed posts={communityPosts} />
+          <CommunityFeed posts={communityPosts} credByAuthor={credByAuthor} />
         </div>
       </section>
 

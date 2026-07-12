@@ -17,15 +17,18 @@ import {
   Flame,
   Clock,
   BarChart3,
+  UserCheck,
 } from "lucide-react";
 import {
   CHANNELS,
   getChannel,
   channelMatches,
+  memberSlug,
   type ChannelId,
   type CommunityPost,
   type CommunityComment,
 } from "@/lib/communityFeed";
+import { getFollows } from "@/components/FollowButton";
 import { loadJSON, saveJSON } from "@/lib/storage";
 import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } from "@/lib/profile";
 
@@ -104,6 +107,35 @@ function Avatar({ name, team }: { name: string; team?: boolean }) {
     >
       {name.trim().charAt(0).toUpperCase() || "A"}
     </span>
+  );
+}
+
+/** Author names link to member pages; published authors wear a small
+ *  Community Cred chip (score computed server-side from curated content). */
+function AuthorName({
+  name,
+  cred,
+}: {
+  name: string;
+  cred?: number;
+}) {
+  return (
+    <>
+      <Link
+        href={`/community/member/${memberSlug(name)}`}
+        className="hover:underline"
+      >
+        {name}
+      </Link>
+      {typeof cred === "number" && cred > 0 && (
+        <span
+          title="Community Cred — earned when contributions are published"
+          className="rounded bg-forest/10 px-1.5 py-0.5 text-[10px] font-bold text-forest"
+        >
+          {cred}
+        </span>
+      )}
+    </>
   );
 }
 
@@ -378,12 +410,14 @@ function CommentItem({
   likes,
   onToggleLike,
   pendingReplies,
+  credByAuthor,
 }: {
   postId: string;
   comment: CommunityComment;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingReplies: PendingComment[];
+  credByAuthor: Record<string, number>;
 }) {
   const [replyOpen, setReplyOpen] = useState(false);
   const likeKey = `c:${comment.id}`;
@@ -395,7 +429,10 @@ function CommentItem({
         <Avatar name={comment.author} team={comment.author === "Empower Team"} />
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
-            {comment.author}
+            <AuthorName
+              name={comment.author}
+              cred={credByAuthor[comment.author]}
+            />
             <FlairChips labels={comment.authorFlairs} />
             <span className="font-normal text-stone">
               {formatDate(comment.date)}
@@ -435,7 +472,7 @@ function CommentItem({
               <Avatar name={r.author} team={r.author === "Empower Team"} />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
-                  {r.author}
+                  <AuthorName name={r.author} cred={credByAuthor[r.author]} />
                   <FlairChips labels={r.authorFlairs} />
                   <span className="font-normal text-stone">
                     {formatDate(r.date)}
@@ -484,11 +521,13 @@ function PostCard({
   likes,
   onToggleLike,
   pendingMap,
+  credByAuthor,
 }: {
   post: CommunityPost;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingMap: PendingCommentMap;
+  credByAuthor: Record<string, number>;
 }) {
   const pendingComments = pendingMap[post.id] ?? [];
   const approvedReplies = post.comments.reduce(
@@ -515,7 +554,7 @@ function PostCard({
         <Avatar name={post.author} team={post.team} />
         <div>
           <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
-            {post.author}
+            <AuthorName name={post.author} cred={credByAuthor[post.author]} />
             <FlairChips labels={post.authorFlairs} />
             {post.team && (
               <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
@@ -598,6 +637,7 @@ function PostCard({
               likes={likes}
               onToggleLike={onToggleLike}
               pendingReplies={pendingMap[`${post.id}::${c.id}`] ?? []}
+              credByAuthor={credByAuthor}
             />
           ))}
           {pendingComments.map((c) => (
@@ -619,7 +659,13 @@ function PostCard({
   );
 }
 
-export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
+export default function CommunityFeed({
+  posts,
+  credByAuthor = {},
+}: {
+  posts: CommunityPost[];
+  credByAuthor?: Record<string, number>;
+}) {
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
@@ -628,6 +674,8 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   // Reddit-style sorting. No public vote counts exist here (honesty rule),
   // so ranking runs on the real signals: approved comments + age.
   const [sort, setSort] = useState<"best" | "hot" | "new" | "top">("best");
+  const [followingOnly, setFollowingOnly] = useState(false);
+  const [follows, setFollows] = useState<string[]>([]);
   const [topRange, setTopRange] = useState<
     "day" | "week" | "month" | "year" | "all"
   >("week");
@@ -651,6 +699,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
       setLikes(loadJSON<Record<string, boolean>>(LIKES_KEY) ?? {});
       setPendingComments(loadJSON<PendingCommentMap>(PENDING_COMMENTS_KEY) ?? {});
       setPendingPosts(loadJSON<PendingPost[]>(PENDING_POSTS_KEY) ?? []);
+      setFollows(getFollows());
     };
     refresh();
     window.addEventListener("empower:community-updated", refresh);
@@ -666,8 +715,11 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
     });
   };
 
+  const followSet = new Set(follows);
   const inChannel = posts.filter(
-    (p) => active === "all" || channelMatches(p.channel, active)
+    (p) =>
+      (active === "all" || channelMatches(p.channel, active)) &&
+      (!followingOnly || followSet.has(memberSlug(p.author)))
   );
   const postTime = (p: CommunityPost) => Date.parse(`${p.date}T12:00:00`);
   const engagement = (p: CommunityPost) => p.comments.length;
@@ -925,6 +977,20 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
             {label}
           </button>
         ))}
+        <button
+          type="button"
+          onClick={() => setFollowingOnly((f) => !f)}
+          aria-pressed={followingOnly}
+          title="Only posts from members you follow"
+          className={`ml-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
+            followingOnly
+              ? "bg-forest text-cream"
+              : "border border-sand bg-cream text-stone hover:text-ink"
+          }`}
+        >
+          <UserCheck className="h-3.5 w-3.5" strokeWidth={2} />
+          Following
+        </button>
         {sort === "top" && (
           <select
             value={topRange}
@@ -962,7 +1028,13 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
         </article>
       ))}
 
-      {visiblePosts.length === 0 && sort === "top" && (
+      {visiblePosts.length === 0 && followingOnly && (
+        <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
+          No posts from members you follow yet. Open someone&apos;s profile
+          (click their name on any post) and hit Follow.
+        </p>
+      )}
+      {visiblePosts.length === 0 && !followingOnly && sort === "top" && (
         <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
           Nothing posted in this window yet — try a longer range.
         </p>
@@ -974,6 +1046,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
           likes={likes}
           onToggleLike={toggleLike}
           pendingMap={pendingComments}
+          credByAuthor={credByAuthor}
         />
       ))}
       </div>

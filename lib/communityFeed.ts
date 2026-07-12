@@ -465,3 +465,117 @@ export const communityPosts: CommunityPost[] = [
     comments: [],
   },
 ];
+
+/* ------------------------- members & community cred ---------------------- */
+
+/** Points earned when a contribution is PUBLISHED (curated into this file).
+ *  Honest by construction: the score counts real published content only. */
+export const CRED_POINTS = { post: 10, comment: 5, reply: 3 } as const;
+
+export interface MemberContribution {
+  postId: string;
+  postTitle: string;
+  channel: ChannelId;
+  date: string;
+  /** For comments/replies: the text excerpt. */
+  text?: string;
+  kind: "post" | "comment" | "reply";
+}
+
+export interface MemberSummary {
+  name: string;
+  slug: string;
+  team: boolean;
+  /** Latest flairs seen on any published contribution. */
+  flairs: string[];
+  cred: number;
+  counts: { posts: number; comments: number; replies: number };
+  /** Earliest contribution date — the public "member since". */
+  firstDate: string;
+  contributions: MemberContribution[];
+}
+
+export function memberSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Everyone with PUBLISHED content, indexed for member pages and cred chips.
+ *  Curation note: first names collide — disambiguate when adding ("Maria R.")
+ *  since the slug is derived from the display name. */
+export function getMemberIndex(): MemberSummary[] {
+  const bySlug = new Map<string, MemberSummary>();
+  const touch = (
+    name: string,
+    isTeam: boolean,
+    flairs: string[] | undefined,
+    contribution: MemberContribution
+  ) => {
+    const slug = memberSlug(name);
+    if (!slug) return;
+    let m = bySlug.get(slug);
+    if (!m) {
+      m = {
+        name,
+        slug,
+        team: isTeam,
+        flairs: [],
+        cred: 0,
+        counts: { posts: 0, comments: 0, replies: 0 },
+        firstDate: contribution.date,
+        contributions: [],
+      };
+      bySlug.set(slug, m);
+    }
+    if (flairs && flairs.length > 0) m.flairs = flairs;
+    if (contribution.date < m.firstDate) m.firstDate = contribution.date;
+    m.contributions.push(contribution);
+    if (contribution.kind === "post") {
+      m.counts.posts += 1;
+      m.cred += CRED_POINTS.post;
+    } else if (contribution.kind === "comment") {
+      m.counts.comments += 1;
+      m.cred += CRED_POINTS.comment;
+    } else {
+      m.counts.replies += 1;
+      m.cred += CRED_POINTS.reply;
+    }
+  };
+
+  for (const post of communityPosts) {
+    touch(post.author, Boolean(post.team), post.authorFlairs, {
+      postId: post.id,
+      postTitle: post.title,
+      channel: post.channel,
+      date: post.date,
+      kind: "post",
+    });
+    for (const c of post.comments) {
+      touch(c.author, c.author === "Empower Team", c.authorFlairs, {
+        postId: post.id,
+        postTitle: post.title,
+        channel: post.channel,
+        date: c.date,
+        text: c.text,
+        kind: "comment",
+      });
+      for (const r of c.replies ?? []) {
+        touch(r.author, r.author === "Empower Team", r.authorFlairs, {
+          postId: post.id,
+          postTitle: post.title,
+          channel: post.channel,
+          date: r.date,
+          text: r.text,
+          kind: "reply",
+        });
+      }
+    }
+  }
+  return [...bySlug.values()].sort((a, b) => b.cred - a.cred);
+}
+
+export function getMember(slug: string): MemberSummary | undefined {
+  return getMemberIndex().find((m) => m.slug === slug);
+}
