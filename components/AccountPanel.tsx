@@ -19,6 +19,8 @@ import {
   EyeOff,
   X,
   Check,
+  Pencil,
+  LogOut,
 } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
@@ -32,7 +34,11 @@ import {
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
-import AccountDashboard from "@/components/AccountDashboard";
+import {
+  useMemberData,
+  StatsRow,
+  OverviewPanels,
+} from "@/components/AccountDashboard";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 type Mode = "signin" | "signup" | "forgot";
@@ -579,7 +585,9 @@ export function ProfileEditor({
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
-  const [tab, setTab] = useState<"about" | "goals" | "security">("about");
+  const [tab, setTab] = useState<"overview" | "about" | "goals" | "security">(
+    "overview"
+  );
   // Security-tab state: change email + change password forms.
   const [newEmail, setNewEmail] = useState("");
   const [emailNotice, setEmailNotice] = useState<string | null>(null);
@@ -606,6 +614,15 @@ export function ProfileEditor({
   });
 
   const userId = session.user.id;
+  // Member progress for the stats row + Overview tab; re-reads once the
+  // login sync merge lands (syncedKeys flips from null).
+  const member = useMemberData(paths, badgeSources, syncedKeys);
+  const memberSince = session.user.created_at
+    ? new Date(session.user.created_at).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
+    : "";
 
   useEffect(() => {
     let cancelled = false;
@@ -761,45 +778,64 @@ export function ProfileEditor({
         </div>
       )}
 
-      {/* the member dashboard: stats, badges, progress, next step.
-          syncedKeys is only used to gate rendering until the login merge
-          has run, so the numbers reflect merged cross-device history. */}
-      <AccountDashboard
-        key={syncedKeys === null ? "pre-sync" : "post-sync"}
-        email={session.user.email ?? ""}
-        displayName={displayName}
-        paths={paths}
-        badgeSources={badgeSources}
-        onSignOut={signOut}
-      />
+      {/* Kinetik-style member layout (owner reference): identity card on
+          the left, stats + one wide tabbed panel on the right. */}
+      <div className="grid gap-6 lg:grid-cols-[300px_1fr] lg:items-start">
+        <IdentityCard
+          name={displayName}
+          email={session.user.email ?? ""}
+          role={role}
+          goalsCount={goals.length}
+          memberSince={memberSince}
+          onEdit={() => {
+            setTab("about");
+            document
+              .getElementById("account-settings")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          onSignOut={signOut}
+        />
 
-      {/* settings — sectioned like a real profile page */}
-      <div className="card-ink overflow-hidden rounded-2xl bg-cream">
-        <div className="flex border-b-2 border-ink">
-          {(
-            [
-              ["about", "About you"],
-              ["goals", "Goals"],
-              ["security", "Sign-in & security"],
-            ] as const
-          ).map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setTab(id)}
-              aria-pressed={tab === id}
-              className={`flex-1 px-2 py-3.5 text-center text-sm font-bold transition-colors sm:px-4 ${
-                tab === id
-                  ? "bg-ink text-cream"
-                  : "bg-cream text-stone hover:text-ink"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <div className="min-w-0 space-y-5">
+          <StatsRow data={member} />
+
+          <div
+            id="account-settings"
+            className="card-ink scroll-mt-24 overflow-hidden rounded-2xl bg-cream"
+          >
+            <div className="flex border-b-2 border-ink">
+              {(
+                [
+                  ["overview", "Overview"],
+                  ["about", "About you"],
+                  ["goals", "Goals"],
+                  ["security", "Security"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setTab(id)}
+                  aria-pressed={tab === id}
+                  className={`flex-1 whitespace-nowrap px-1.5 py-3.5 text-center text-[13px] font-bold transition-colors sm:px-4 sm:text-sm ${
+                    tab === id
+                      ? "bg-ink text-cream"
+                      : "bg-cream text-stone hover:text-ink"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
 
         <div className="p-6 sm:p-8">
+          {tab === "overview" && (
+            <OverviewPanels
+              data={member}
+              paths={paths}
+              badgeTotal={badgeSources.length}
+            />
+          )}
           {tab === "about" && (
             <div className="space-y-5">
               <p className="text-base leading-7 text-stone">
@@ -1056,9 +1092,75 @@ export function ProfileEditor({
               </div>
             </div>
           )}
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
 
+/** The left identity card of the signed-in layout (the reference's
+ *  patient-card position): who you are, at a glance. */
+function IdentityCard({
+  name,
+  email,
+  role,
+  goalsCount,
+  memberSince,
+  onEdit,
+  onSignOut,
+}: {
+  name: string;
+  email: string;
+  role: ProfileRole;
+  goalsCount: number;
+  memberSince: string;
+  onEdit: () => void;
+  onSignOut: () => void;
+}) {
+  return (
+    <div className="relative rounded-3xl bg-forest p-6 text-cream lg:sticky lg:top-24">
+      <button
+        type="button"
+        onClick={onEdit}
+        className="absolute right-5 top-5 inline-flex items-center gap-1 text-xs font-semibold text-cream/70 transition-colors hover:text-amber"
+      >
+        <Pencil className="h-3.5 w-3.5" />
+        Edit
+      </button>
+      <div className="flex flex-col items-center pt-2 text-center">
+        <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-amber bg-forest-700 font-display text-3xl font-bold text-amber">
+          {(name.trim() || email).charAt(0).toUpperCase()}
+        </span>
+        <p className="mt-3 font-display text-xl font-semibold">
+          {name.trim() || "Add your name"}
+        </p>
+        <p className="mt-0.5 w-full truncate text-xs text-cream/60">{email}</p>
+        {role && (
+          <span className="mt-3 inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold text-ink shadow-[2px_2px_0_#11211c]">
+            {ROLE_LABELS[role]}
+          </span>
+        )}
+      </div>
+      <dl className="mt-6 space-y-2.5 border-t border-white/10 pt-5 text-sm">
+        <div className="flex items-baseline justify-between gap-3">
+          <dt className="text-cream/60">Member since</dt>
+          <dd className="font-semibold">{memberSince || "—"}</dd>
+        </div>
+        <div className="flex items-baseline justify-between gap-3">
+          <dt className="text-cream/60">Goals picked</dt>
+          <dd className="font-semibold">{goalsCount}</dd>
+        </div>
+      </dl>
+      <button
+        type="button"
+        onClick={onSignOut}
+        className="mt-6 inline-flex w-full items-center justify-center gap-1.5 rounded-md border-2 border-cream/40 py-2.5 text-sm font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
+      >
+        <LogOut className="h-4 w-4" />
+        Sign out
+      </button>
     </div>
   );
 }
