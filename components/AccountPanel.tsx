@@ -27,6 +27,7 @@ import {
   Mail,
 } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
+import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { ensureSynced, stopMirror } from "@/lib/accountSync";
@@ -65,6 +66,22 @@ type Mode = "signin" | "signup" | "forgot";
 const inputCls =
   "w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none";
 const labelCls = "mb-1.5 block text-sm font-medium text-ink";
+
+/** The overlay's close control — integrated into the sheet chrome. */
+function CloseX({ className = "" }: { className?: string }) {
+  const router = useRouter();
+  return (
+    <button
+      type="button"
+      onClick={() => router.back()}
+      aria-label="Close and go back"
+      title="Close (Esc)"
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#eee7d9] bg-white text-stone transition-colors hover:bg-paper hover:text-ink ${className}`}
+    >
+      <X className="h-4.5 w-4.5 h-[18px] w-[18px]" strokeWidth={2.25} />
+    </button>
+  );
+}
 
 export default function AccountPanel({
   paths = [],
@@ -162,9 +179,10 @@ export default function AccountPanel({
     <section className={overlay ? "" : "bg-paper-deep"}>
     <div className={
       overlay
-        ? "mx-auto grid max-w-5xl items-stretch gap-6 rounded-3xl bg-paper-deep p-5 shadow-2xl lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8"
+        ? "relative mx-auto grid max-w-5xl items-stretch gap-6 rounded-3xl bg-paper-deep p-5 pt-14 shadow-2xl ring-1 ring-white/20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8 lg:pt-14"
         : "mx-auto grid max-w-5xl items-stretch gap-6 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:py-16"
     }>
+    {overlay && <CloseX className="absolute right-4 top-4 z-10" />}
       <div className="relative overflow-hidden rounded-3xl bg-forest p-8 text-cream sm:p-10">
         <TopicMark
           id="investing"
@@ -816,7 +834,9 @@ export function ProfileEditor({
         }
       >
         <div
-          className="overflow-hidden rounded-3xl shadow-2xl"
+          className={`overflow-hidden rounded-3xl shadow-2xl ${
+            overlay ? "ring-1 ring-white/20" : ""
+          }`}
           style={{ background: DASH.surface }}
         >
           {/* in-frame top bar */}
@@ -825,9 +845,13 @@ export function ProfileEditor({
             style={{ borderColor: DASH.divider }}
           >
             <p className="text-lg font-bold text-ink">Your account</p>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
-              {initial}
-            </span>
+            {overlay ? (
+              <CloseX />
+            ) : (
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
+                {initial}
+              </span>
+            )}
           </div>
 
           <div className="flex">

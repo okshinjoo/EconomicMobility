@@ -11,7 +11,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { X } from "lucide-react";
 
 export default function AccountOverlayShell({
   children,
@@ -46,21 +45,10 @@ export default function AccountOverlayShell({
         className="absolute inset-0 bg-ink/70 backdrop-blur-[2px]"
       />
 
-      {/* sheet */}
+      {/* sheet — the close X lives inside the account panel's own chrome */}
       <div className="absolute inset-0 overflow-y-auto">
         <div className="pointer-events-none mx-auto flex min-h-full max-w-[88rem] items-start justify-center px-3 py-6 sm:px-6 lg:py-10">
-          <div className="pointer-events-auto relative w-full">
-            <button
-              type="button"
-              onClick={() => router.back()}
-              aria-label="Close and go back"
-              title="Close (Esc)"
-              className="absolute -top-2 right-0 z-10 flex h-10 w-10 -translate-y-full items-center justify-center rounded-full bg-cream text-ink shadow-md transition-colors hover:bg-amber"
-            >
-              <X className="h-5 w-5" strokeWidth={2.25} />
-            </button>
-            {children}
-          </div>
+          <div className="pointer-events-auto relative w-full">{children}</div>
         </div>
       </div>
     </div>
