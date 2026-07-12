@@ -35,6 +35,9 @@ import {
   type ProfileRole,
   ROLE_LABELS,
   GOAL_OPTIONS,
+  FLAIR_OPTIONS,
+  MAX_FLAIRS,
+  flairLabel,
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
@@ -600,6 +603,7 @@ export function ProfileEditor({
   const [role, setRole] = useState<ProfileRole>("");
   const [showTag, setShowTag] = useState(false);
   const [goals, setGoals] = useState<string[]>([]);
+  const [flairs, setFlairs] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -651,18 +655,22 @@ export function ProfileEditor({
           role: ((data.role as ProfileRole) ?? "") as ProfileRole,
           showTag: Boolean(data.show_tag),
           goals: Array.isArray(data.goals) ? (data.goals as string[]) : [],
+          flairs: Array.isArray(data.flairs)
+            ? (data.flairs as string[]).slice(0, MAX_FLAIRS)
+            : [],
         };
         setDisplayName(p.displayName);
         setRole(p.role);
         setShowTag(p.showTag);
         setGoals(p.goals);
+        setFlairs(p.flairs);
         writeLocalProfile(p);
       }
       setLoading(false);
     };
     supabase
       .from("profiles")
-      .select("display_name, role, show_tag, goals")
+      .select("display_name, role, show_tag, goals, flairs")
       .eq("id", userId)
       .maybeSingle()
       .then(({ data, error }) => {
@@ -689,6 +697,7 @@ export function ProfileEditor({
       role,
       showTag,
       goals,
+      flairs: flairs.slice(0, MAX_FLAIRS),
     };
     const { error } = await supabase.from("profiles").upsert({
       id: userId,
@@ -696,6 +705,7 @@ export function ProfileEditor({
       role: profile.role,
       show_tag: profile.showTag,
       goals: profile.goals,
+      flairs: profile.flairs,
     });
     setSaving(false);
     if (!error) {
@@ -704,8 +714,8 @@ export function ProfileEditor({
       setTimeout(() => setSaved(false), 2500);
     } else {
       setSaveError(
-        /goals/.test(error.message)
-          ? "The goals column hasn't been added to the database yet."
+        /goals|flairs/.test(error.message)
+          ? "The goals/flairs columns haven't been added to the database yet."
           : "Couldn't save just now — try again in a moment."
       );
     }
@@ -894,6 +904,7 @@ export function ProfileEditor({
                   name={displayName}
                   email={session.user.email ?? ""}
                   role={role}
+                  flairLabels={flairs.map(flairLabel).filter(Boolean)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
                   quizTopicCount={member.quizTopics.length}
@@ -1004,6 +1015,69 @@ export function ProfileEditor({
                     </label>
                   ))}
                 </div>
+              </fieldset>
+
+              <fieldset>
+                <legend className={labelCls}>
+                  Flairs{" "}
+                  <span className="font-normal text-stone">
+                    (pick up to {MAX_FLAIRS} — they show next to your name
+                    when your tag is on)
+                  </span>
+                </legend>
+                {(
+                  [
+                    ["useful", "Where you're coming from"],
+                    ["fun", "Just for fun"],
+                  ] as const
+                ).map(([kind, groupLabel]) => (
+                  <div key={kind} className="mt-2.5">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-stone">
+                      {groupLabel}
+                    </p>
+                    <div className="mt-1.5 flex flex-wrap gap-2">
+                      {FLAIR_OPTIONS.filter((f) => f.kind === kind).map(
+                        (f) => {
+                          const on = flairs.includes(f.id);
+                          const full = !on && flairs.length >= MAX_FLAIRS;
+                          return (
+                            <button
+                              key={f.id}
+                              type="button"
+                              aria-pressed={on}
+                              disabled={full}
+                              onClick={() =>
+                                setFlairs((prev) =>
+                                  on
+                                    ? prev.filter((id) => id !== f.id)
+                                    : [...prev, f.id].slice(0, MAX_FLAIRS)
+                                )
+                              }
+                              className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
+                                on
+                                  ? "border-forest bg-forest text-cream"
+                                  : full
+                                    ? "cursor-not-allowed border-[#eee7d9] bg-white text-stone/40"
+                                    : "border-[#eee7d9] bg-white text-stone hover:border-forest/40 hover:text-ink"
+                              }`}
+                            >
+                              {f.label}
+                            </button>
+                          );
+                        }
+                      )}
+                    </div>
+                  </div>
+                ))}
+                <p className="mt-2 text-xs text-stone">
+                  {flairs.length} of {MAX_FLAIRS} picked
+                  {flairs.length > 0 && (
+                    <>
+                      {" — "}
+                      {flairs.map(flairLabel).filter(Boolean).join(" · ")}
+                    </>
+                  )}
+                </p>
               </fieldset>
 
               <label className="flex items-start gap-2.5 rounded-lg border border-[#eee7d9] bg-white p-4 text-sm leading-6 text-ink">
@@ -1226,6 +1300,7 @@ function FlatIdentityCard({
   name,
   email,
   role,
+  flairLabels,
   goalsCount,
   memberSince,
   quizTopicCount,
@@ -1238,6 +1313,7 @@ function FlatIdentityCard({
   name: string;
   email: string;
   role: ProfileRole;
+  flairLabels: string[];
   goalsCount: number;
   memberSince: string;
   quizTopicCount: number;
@@ -1271,6 +1347,18 @@ function FlatIdentityCard({
           <span className="mt-2.5 rounded-md bg-white/15 px-2.5 py-1 text-xs font-bold">
             {ROLE_LABELS[role]}
           </span>
+        )}
+        {flairLabels.length > 0 && (
+          <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+            {flairLabels.map((f) => (
+              <span
+                key={f}
+                className="rounded-full bg-amber/20 px-2.5 py-0.5 text-[11px] font-bold text-amber"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
         )}
       </div>
       <div className="mx-6 mt-4 space-y-2.5 border-t border-white/15 py-5 text-sm">

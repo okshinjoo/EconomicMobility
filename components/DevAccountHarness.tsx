@@ -19,6 +19,7 @@ const mockSupabase = {
             role: "student",
             show_tag: true,
             goals: ["credit", "invest"],
+            flairs: ["first-gen", "spreadsheet-lover"],
           },
           error: null,
         }),

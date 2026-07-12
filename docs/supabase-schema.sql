@@ -64,3 +64,7 @@ create trigger user_data_touch before update on public.user_data
 -- Added July 2026 (profile Goals tab): what the member is working toward.
 alter table public.profiles
   add column if not exists goals jsonb not null default '[]'::jsonb;
+
+-- Added July 2026 (profile flairs): up to two badges shown with the tag.
+alter table public.profiles
+  add column if not exists flairs jsonb not null default '[]'::jsonb;

@@ -27,7 +27,7 @@ import {
   type CommunityComment,
 } from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
-import { communityTag, readLocalProfile } from "@/lib/profile";
+import { communityTag, communityFlairs, readLocalProfile } from "@/lib/profile";
 
 // Same moderated-inbox channel as the Ask box (components/AskQuestion.tsx):
 // paste the Web3Forms access key for Help@economicmobilityproject.org here to
@@ -52,6 +52,8 @@ interface PendingPost {
   text: string;
   at: number;
   channel?: ChannelId;
+  /** Flair labels captured at submit time. */
+  flairs?: string[];
 }
 
 type SendStatus = "idle" | "sending" | "error";
@@ -66,8 +68,9 @@ async function submitToInbox(payload: Record<string, string>): Promise<boolean> 
         access_key: WEB3FORMS_ACCESS_KEY,
         from_name: "Empower Community",
         // Signed-in members who opted in share their profile tag
-        // ("Jordan · Student") for display when the post is published.
+        // ("Jordan · Student") + flairs for display when published.
         member_tag: communityTag() || "None (anonymous visitor)",
+        member_flairs: communityFlairs().join(" | ") || "None",
         ...payload,
       }),
     });
@@ -101,6 +104,22 @@ function Avatar({ name, team }: { name: string; team?: boolean }) {
     >
       {name.trim().charAt(0).toUpperCase() || "A"}
     </span>
+  );
+}
+
+function FlairChips({ labels }: { labels?: string[] }) {
+  if (!labels || labels.length === 0) return null;
+  return (
+    <>
+      {labels.map((f) => (
+        <span
+          key={f}
+          className="rounded-full bg-amber/15 px-2 py-0.5 text-[10px] font-bold text-amber-deep"
+        >
+          {f}
+        </span>
+      ))}
+    </>
   );
 }
 
@@ -152,6 +171,7 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
       text: text.trim(),
       at: Date.now(),
       channel,
+      flairs: communityFlairs(),
     });
     saveJSON(PENDING_POSTS_KEY, pending);
     setText("");
@@ -370,9 +390,10 @@ function CommentItem({
       <div className="flex items-start gap-3">
         <Avatar name={comment.author} team={comment.author === "Empower Team"} />
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-ink">
+          <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
             {comment.author}
-            <span className="ml-2 font-normal text-stone">
+            <FlairChips labels={comment.authorFlairs} />
+            <span className="font-normal text-stone">
               {formatDate(comment.date)}
             </span>
           </p>
@@ -409,9 +430,10 @@ function CommentItem({
             <div key={r.id} className="mt-3 flex items-start gap-2.5 border-l-2 border-sand pl-3">
               <Avatar name={r.author} team={r.author === "Empower Team"} />
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-ink">
+                <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
                   {r.author}
-                  <span className="ml-2 font-normal text-stone">
+                  <FlairChips labels={r.authorFlairs} />
+                  <span className="font-normal text-stone">
                     {formatDate(r.date)}
                   </span>
                 </p>
@@ -490,6 +512,7 @@ function PostCard({
         <div>
           <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
             {post.author}
+            <FlairChips labels={post.authorFlairs} />
             {post.team && (
               <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
                 Team
@@ -925,6 +948,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
             <div>
               <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
                 {p.author}
+                <FlairChips labels={p.flairs} />
                 <PendingChip />
               </p>
               <p className="text-xs font-medium text-stone">{timeAgo(p.at)}</p>

@@ -16,6 +16,8 @@ export interface Profile {
   showTag: boolean;
   /** Goal ids from GOAL_OPTIONS — what the member is working toward. */
   goals: string[];
+  /** Flair ids from FLAIR_OPTIONS — max MAX_FLAIRS, shown with the tag. */
+  flairs: string[];
 }
 
 export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {
@@ -23,6 +25,52 @@ export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {
   working: "Working professional",
   retired: "Retired",
 };
+
+/** Profile flairs: little badges members pick to show with their name.
+ *  Some useful, some personality. Hard cap: MAX_FLAIRS per profile. */
+export const MAX_FLAIRS = 2;
+
+export interface FlairOption {
+  id: string;
+  label: string;
+  kind: "useful" | "fun";
+}
+
+export const FLAIR_OPTIONS: FlairOption[] = [
+  // useful — where you're coming from
+  { id: "first-gen", label: "First-gen", kind: "useful" },
+  { id: "intl-student", label: "International student", kind: "useful" },
+  { id: "parent", label: "Parent", kind: "useful" },
+  { id: "two-jobs", label: "Working two jobs", kind: "useful" },
+  { id: "debt-free-journey", label: "Debt-free journey", kind: "useful" },
+  { id: "rebuilding-credit", label: "Rebuilding credit", kind: "useful" },
+  { id: "future-homeowner", label: "Future homeowner", kind: "useful" },
+  { id: "new-investor", label: "New investor", kind: "useful" },
+  // fun — personality
+  { id: "spreadsheet-lover", label: "Spreadsheet lover", kind: "fun" },
+  { id: "coupon-wizard", label: "Coupon wizard", kind: "fun" },
+  { id: "thrift-legend", label: "Thrift store legend", kind: "fun" },
+  { id: "family-cfo", label: "Family CFO", kind: "fun" },
+  { id: "meal-prep-champ", label: "Meal prep champion", kind: "fun" },
+  { id: "ask-me-fafsa", label: "Ask me about FAFSA", kind: "fun" },
+  { id: "recovering-impulse", label: "Recovering impulse buyer", kind: "fun" },
+  { id: "pro-latte", label: "Pro-latte budgeter", kind: "fun" },
+];
+
+export function flairLabel(id: string): string {
+  return FLAIR_OPTIONS.find((f) => f.id === id)?.label ?? "";
+}
+
+/** Flair labels to show beside the member's name on community submissions —
+ *  same privacy switch as the tag itself. */
+export function communityFlairs(): string[] {
+  const p = readLocalProfile();
+  if (!p?.showTag) return [];
+  return (p.flairs ?? [])
+    .map(flairLabel)
+    .filter(Boolean)
+    .slice(0, MAX_FLAIRS);
+}
 
 /** The pickable goals on the profile page (ids stored in profiles.goals). */
 export const GOAL_OPTIONS: { id: string; label: string }[] = [

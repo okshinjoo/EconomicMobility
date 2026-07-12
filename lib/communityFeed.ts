@@ -172,6 +172,9 @@ export interface CommunityComment {
   /** ISO date, e.g. "2026-07-06" */
   date: string;
   text: string;
+  /** Flair labels the author shared when submitting (copy them from the
+   *  review email's member_flairs line when curating). */
+  authorFlairs?: string[];
   /** Approved replies, one level deep (curated here like everything else). */
   replies?: CommunityComment[];
 }
@@ -181,6 +184,8 @@ export interface CommunityPost {
   author: string;
   /** Team posts get a small badge so member posts stand apart. */
   team?: boolean;
+  /** Flair labels the author shared when submitting. */
+  authorFlairs?: string[];
   date: string;
   title: string;
   /** Paragraphs. Inline [label](/path) links are NOT parsed here; plain text only. */
@@ -213,6 +218,7 @@ export const communityPosts: CommunityPost[] = [
       {
         id: "hello-founder",
         author: "Shinjoo",
+        authorFlairs: ["First-gen", "Family CFO"],
         date: "2026-07-12",
         text: "I'll go first: I'm Shinjoo, the founder. First-gen college student, kid of immigrants, and the reason this site exists is that learning how money works completely changed my trajectory. This year I'm working on growing this community. The thing I've figured out: the fog lifts faster when you ask the question out loud.",
       },
