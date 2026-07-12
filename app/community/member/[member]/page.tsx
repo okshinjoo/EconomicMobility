@@ -9,6 +9,7 @@ import {
   getMemberIndex,
   getChannel,
   CRED_POINTS,
+  credRingColor,
 } from "@/lib/communityFeed";
 import { flairColorByLabel } from "@/lib/profile";
 
@@ -73,6 +74,11 @@ export default async function MemberPage({
                   className={`flex h-16 w-16 items-center justify-center rounded-full font-display text-2xl font-bold ${
                     m.team ? "bg-forest text-cream" : "bg-amber/25 text-amber-deep"
                   }`}
+                  style={
+                    credRingColor(m.cred)
+                      ? { boxShadow: `0 0 0 3px ${credRingColor(m.cred)}` }
+                      : undefined
+                  }
                 >
                   {m.name.charAt(0).toUpperCase()}
                 </span>
@@ -137,6 +143,27 @@ export default async function MemberPage({
                 {m.counts.replies}{" "}
                 {m.counts.replies === 1 ? "reply" : "replies"}.
               </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone">
+                <span className="font-semibold uppercase tracking-wide">
+                  Avatar rings
+                </span>
+                {(
+                  [
+                    ["10+", "#a05f2c"],
+                    ["25+", "#98a2ad"],
+                    ["50+", "#e7a33c"],
+                    ["100+", "#15624b"],
+                  ] as const
+                ).map(([label, color]) => (
+                  <span key={label} className="inline-flex items-center gap-1.5">
+                    <span
+                      className="h-3 w-3 rounded-full border-2 border-cream"
+                      style={{ boxShadow: `0 0 0 2px ${color}` }}
+                    />
+                    {label}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 

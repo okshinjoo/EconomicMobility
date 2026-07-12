@@ -838,6 +838,17 @@ export function getMemberIndex(): MemberSummary[] {
   return members.sort((a, b) => b.cred - a.cred);
 }
 
+/** Avatar ring color by Community Cred tier (the quiet status signal —
+ *  replaces inline score chips): 10+ bronze, 25+ silver, 50+ gold,
+ *  100+ money-green. Below 10: no ring. */
+export function credRingColor(cred: number): string | null {
+  if (cred >= 100) return "#15624b";
+  if (cred >= 50) return "#e7a33c";
+  if (cred >= 25) return "#98a2ad";
+  if (cred >= 10) return "#a05f2c";
+  return null;
+}
+
 export function getMember(slug: string): MemberSummary | undefined {
   return getMemberIndex().find((m) => m.slug === slug);
 }

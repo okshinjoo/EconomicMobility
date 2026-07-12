@@ -30,6 +30,7 @@ import {
   getChannel,
   channelMatches,
   memberSlug,
+  credRingColor,
   type ChannelId,
   type CommunityPost,
   type CommunityComment,
@@ -105,12 +106,23 @@ function formatDate(iso: string): string {
   });
 }
 
-function Avatar({ name, team }: { name: string; team?: boolean }) {
+function Avatar({
+  name,
+  team,
+  cred,
+}: {
+  name: string;
+  team?: boolean;
+  cred?: number;
+}) {
+  const ring = credRingColor(cred ?? 0);
   return (
     <span
+      title={ring ? `Community Cred: ${cred}` : undefined}
       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-base font-bold ${
         team ? "bg-forest text-cream" : "bg-amber/25 text-amber-deep"
       }`}
+      style={ring ? { boxShadow: `0 0 0 2px ${ring}` } : undefined}
     >
       {name.trim().charAt(0).toUpperCase() || "A"}
     </span>
@@ -148,14 +160,6 @@ function AuthorName({
       >
         {name}
       </Link>
-      {meta && meta.cred > 0 && (
-        <span
-          title="Community Cred — earned when contributions are published"
-          className="rounded bg-forest/10 px-1.5 py-0.5 text-[10px] font-bold text-forest"
-        >
-          {meta.cred}
-        </span>
-      )}
       {meta?.earned.map((e) => (
         <span
           key={e}
@@ -456,7 +460,11 @@ function CommentItem({
   return (
     <div className="mt-4">
       <div className="flex items-start gap-3">
-        <Avatar name={comment.author} team={comment.author === "Empower Team"} />
+        <Avatar
+          name={comment.author}
+          team={comment.author === "Empower Team"}
+          cred={authorMeta[comment.author]?.cred}
+        />
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
             <AuthorName
@@ -499,7 +507,11 @@ function CommentItem({
           {/* approved replies */}
           {(comment.replies ?? []).map((r) => (
             <div key={r.id} className="mt-3 flex items-start gap-2.5 border-l-2 border-sand pl-3">
-              <Avatar name={r.author} team={r.author === "Empower Team"} />
+              <Avatar
+                name={r.author}
+                team={r.author === "Empower Team"}
+                cred={authorMeta[r.author]?.cred}
+              />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
                   <AuthorName name={r.author} meta={authorMeta[r.author]} />
@@ -623,7 +635,11 @@ function PostCard({
       className="card-ink scroll-mt-24 rounded-2xl bg-cream p-5 sm:p-7"
     >
       <div className="flex items-center gap-3">
-        <Avatar name={post.author} team={post.team} />
+        <Avatar
+          name={post.author}
+          team={post.team}
+          cred={authorMeta[post.author]?.cred}
+        />
         <div>
           <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
             <AuthorName name={post.author} meta={authorMeta[post.author]} />
