@@ -150,7 +150,10 @@ export default function Home() {
             </span>
 
             <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.07] sm:leading-[1.05] tracking-tight text-ink sm:text-6xl">
-              Your money. Your future.{" "}
+              Your money.
+              <br />
+              Your future.
+              <br />
               <span className="relative whitespace-nowrap text-forest">
                 No gatekeepers.
                 <svg
@@ -170,7 +173,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-stone">
+            <p className="article-lead mt-8 max-w-xl text-xl leading-9 text-stone">
               Free, jargon-free financial education built to break the cycle
               of economic disadvantage — for first-generation, low-income, and
               immigrant students, and anyone ready to take control.
