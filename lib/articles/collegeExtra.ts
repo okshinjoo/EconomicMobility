@@ -853,7 +853,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Federal student loans give you a 6-month grace period before payments start, and it begins when you graduate, leave, OR drop below half-time enrollment. A 'break' and 'dropping out' look identical to your loan servicer. The good news: if you re-enroll at least half-time before the 6 months run out, you keep your full grace period for later. If you don't, payments begin, and [repaying your student loans](/learn/college/repaying-student-loans) becomes your next read. If payments would be impossible, [income-driven repayment](/learn/government-aid/income-driven-repayment) can take them as low as $0 while your income is low.",
+        text: "Federal student loans give you a 6-month grace period before payments start, and it begins when you graduate, leave, OR drop below half-time enrollment. A 'break' and 'dropping out' look identical to your loan servicer. One protection worth knowing: re-enroll at least half-time before the 6 months run out, and you keep your full grace period for later. If you don't, payments begin, and [repaying your student loans](/learn/college/repaying-student-loans) becomes your next read. If payments would be impossible, [income-driven repayment](/learn/government-aid/income-driven-repayment) can take them as low as $0 while your income is low.",
       },
       {
         type: "key",

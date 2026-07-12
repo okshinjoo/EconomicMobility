@@ -1051,7 +1051,7 @@ export const governmentAidExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Here's a problem almost nobody in power talks about honestly: help programs have income limits, and some of them are cliffs, not slopes. Stay a dollar under the line and you keep the benefit. Earn a dollar over and the whole thing can vanish. For a family getting help with food, health coverage, and child care, a small raise can trigger losses bigger than the raise itself. If that's ever happened to you, you weren't imagining it, and you did nothing wrong.",
+        text: "There's a problem with help programs that almost nobody explains ahead of time: they have income limits, and some of those limits are cliffs, not slopes. Stay a dollar under the line and you keep the benefit. Earn a dollar over and the whole thing can vanish. For a family getting help with food, health coverage, and child care, a small raise can trigger losses bigger than the raise itself. If that's ever happened to you, you weren't imagining it, and you did nothing wrong.",
       },
       {
         type: "h2",
