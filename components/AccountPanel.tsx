@@ -11,7 +11,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { Loader2, CheckCircle2, UserRound } from "lucide-react";
+import { Loader2, CheckCircle2, UserRound, Eye, EyeOff, X } from "lucide-react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { syncOnLogin, stopMirror } from "@/lib/accountSync";
@@ -42,6 +42,14 @@ export default function AccountPanel({
   const [session, setSession] = useState<Session | null>(null);
   const [booted, setBooted] = useState(false);
   const [syncedKeys, setSyncedKeys] = useState<number | null>(null);
+  // True when this page load arrived from an auth email/OAuth redirect
+  // (?code=...) — captured before Supabase strips it from the URL, so the
+  // dashboard can greet a freshly verified member.
+  const [fromAuthRedirect] = useState<boolean>(() =>
+    typeof window === "undefined"
+      ? false
+      : new URLSearchParams(window.location.search).has("code")
+  );
 
   useEffect(() => {
     if (!supabase) {
@@ -100,6 +108,7 @@ export default function AccountPanel({
       syncedKeys={syncedKeys}
       paths={paths}
       badgeSources={badgeSources}
+      fromAuthRedirect={fromAuthRedirect}
     />
   ) : (
     <AuthForms supabase={supabase} />
@@ -112,16 +121,44 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
   const [mode, setMode] = useState<Mode>("signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
   const [ageOk, setAgeOk] = useState(false);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // Resend-verification cooldown (seconds left; 0 = ready).
+  const [resendWait, setResendWait] = useState(0);
+  const [resent, setResent] = useState(false);
 
   const switchMode = (m: Mode) => {
     setMode(m);
     setError(null);
     setNotice(null);
+    setResent(false);
+    // Land the cursor in the email field so switching feels seamless.
+    requestAnimationFrame(() => {
+      document.getElementById("acct-email")?.focus();
+    });
   };
+
+  useEffect(() => {
+    if (resendWait <= 0) return;
+    const t = setTimeout(() => setResendWait((s) => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [resendWait]);
+
+  async function resendVerification() {
+    if (resendWait > 0 || !email.trim()) return;
+    setResent(false);
+    const { error: err } = await supabase.auth.resend({
+      type: "signup",
+      email: email.trim(),
+    });
+    // The SMTP throttle answers with an error if it's too soon; either way,
+    // start the cooldown so the button can't be hammered.
+    setResendWait(60);
+    if (!err) setResent(true);
+  }
 
   // The reset-link notice returns to sign-in on its own after a beat, so
   // nobody is stranded on a confirmation with no way back.
@@ -214,27 +251,29 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
 
   return (
     <div className="card-ink rounded-2xl bg-cream p-6 sm:p-8">
-      {/* mode switch */}
-      <div className="flex gap-2">
+      {/* mode switch — segmented control in the ink style */}
+      <div className="flex rounded-lg border-2 border-ink bg-paper p-1">
         {(
           [
             ["signup", "Create account"],
             ["signin", "Sign in"],
           ] as const
-        ).map(([m, label]) => (
-          <button
-            key={m}
-            type="button"
-            onClick={() => switchMode(m)}
-            className={`rounded-md px-4 py-2 text-sm font-bold transition-colors ${
-              mode === m || (mode === "forgot" && m === "signin")
-                ? "bg-ink text-cream"
-                : "bg-paper text-stone hover:text-ink"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+        ).map(([m, label]) => {
+          const active = mode === m || (mode === "forgot" && m === "signin");
+          return (
+            <button
+              key={m}
+              type="button"
+              onClick={() => switchMode(m)}
+              aria-pressed={active}
+              className={`flex-1 rounded-md px-4 py-2.5 text-sm font-bold transition-colors ${
+                active ? "bg-ink text-cream" : "text-stone hover:text-ink"
+              }`}
+            >
+              {label}
+            </button>
+          );
+        })}
       </div>
 
       <h2 className="mt-6 font-display text-2xl font-bold text-ink">
@@ -255,6 +294,26 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
         <div className="mt-6 rounded-xl border-2 border-forest/30 bg-forest/[0.06] p-5 text-center">
           <CheckCircle2 className="mx-auto h-8 w-8 text-forest" strokeWidth={1.75} />
           <p className="mt-2 text-sm leading-6 text-ink">{notice}</p>
+          {mode === "signup" && (
+            <p className="mt-3 text-xs leading-5 text-stone">
+              Nothing after a few minutes? Check spam, or{" "}
+              {resendWait > 0 ? (
+                <span className="font-semibold">
+                  {resent ? "sent again ✓ — " : ""}resend available in{" "}
+                  {resendWait}s
+                </span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={resendVerification}
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+                >
+                  resend the email
+                </button>
+              )}
+              .
+            </p>
+          )}
           <button
             type="button"
             onClick={() => switchMode("signin")}
@@ -311,18 +370,32 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
                   </span>
                 )}
               </label>
-              <input
-                id="acct-password"
-                type="password"
-                required
-                minLength={mode === "signup" ? 8 : undefined}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete={
-                  mode === "signup" ? "new-password" : "current-password"
-                }
-                className={inputCls}
-              />
+              <div className="relative">
+                <input
+                  id="acct-password"
+                  type={showPw ? "text" : "password"}
+                  required
+                  minLength={mode === "signup" ? 8 : undefined}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete={
+                    mode === "signup" ? "new-password" : "current-password"
+                  }
+                  className={`${inputCls} pr-12`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPw((s) => !s)}
+                  aria-label={showPw ? "Hide password" : "Show password"}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
+                >
+                  {showPw ? (
+                    <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+                  ) : (
+                    <Eye className="h-5 w-5" strokeWidth={1.75} />
+                  )}
+                </button>
+              </div>
             </div>
           )}
           {mode === "signup" && (
@@ -367,6 +440,31 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
               Forgot your password?
             </button>
           )}
+          <p className="border-t border-sand pt-4 text-sm text-stone">
+            {mode === "signup" ? (
+              <>
+                Already have an account?{" "}
+                <button
+                  type="button"
+                  onClick={() => switchMode("signin")}
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Sign in
+                </button>
+              </>
+            ) : (
+              <>
+                New here?{" "}
+                <button
+                  type="button"
+                  onClick={() => switchMode("signup")}
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Create an account — it&apos;s free
+                </button>
+              </>
+            )}
+          </p>
         </form>
         </>
       )}
@@ -406,12 +504,14 @@ function ProfileEditor({
   syncedKeys,
   paths,
   badgeSources,
+  fromAuthRedirect,
 }: {
   supabase: SupabaseClient;
   session: Session;
   syncedKeys: number | null;
   paths: TopicPath[];
   badgeSources: BadgeSource[];
+  fromAuthRedirect: boolean;
 }) {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<ProfileRole>("");
@@ -478,8 +578,44 @@ function ProfileEditor({
     );
   }
 
+  // "You're in" banner: only when this load came from an auth redirect AND
+  // the account was confirmed in the last few minutes (fresh verification or
+  // a brand-new Google signup) — routine sign-ins never see it.
+  const confirmedAt = session.user.email_confirmed_at
+    ? Date.parse(session.user.email_confirmed_at)
+    : 0;
+  const [showWelcome, setShowWelcome] = useState(
+    fromAuthRedirect && confirmedAt > 0 && Date.now() - confirmedAt < 5 * 60_000
+  );
+
   return (
     <div className="space-y-5">
+      {showWelcome && (
+        <div className="flex items-start justify-between gap-4 rounded-2xl border-2 border-forest bg-forest/[0.07] p-5">
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-forest" strokeWidth={1.75} />
+            <div>
+              <p className="font-display text-lg font-semibold text-ink">
+                You&apos;re in — welcome to Empower.
+              </p>
+              <p className="mt-0.5 text-sm leading-6 text-stone">
+                Your email is verified and everything you&apos;ve done on this
+                device is now saved to your account. Fill in the profile below
+                if you&apos;d like sharper recommendations.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowWelcome(false)}
+            aria-label="Dismiss"
+            className="rounded p-1 text-stone transition-colors hover:text-ink"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+
       {/* the member dashboard: stats, badges, progress, next step.
           syncedKeys is only used to gate rendering until the login merge
           has run, so the numbers reflect merged cross-device history. */}

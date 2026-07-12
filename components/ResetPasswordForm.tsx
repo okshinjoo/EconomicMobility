@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { Loader2, CheckCircle2, Eye, EyeOff } from "lucide-react";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 
 export default function ResetPasswordForm() {
@@ -15,6 +15,7 @@ export default function ResetPasswordForm() {
   const [ready, setReady] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [showPw, setShowPw] = useState(false);
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -101,16 +102,30 @@ export default function ResetPasswordForm() {
           New password{" "}
           <span className="font-normal text-stone">(at least 8 characters)</span>
         </label>
-        <input
-          id="new-password"
-          type="password"
-          required
-          minLength={8}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="new-password"
-          className="w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink focus:border-amber focus:outline-none"
-        />
+        <div className="relative">
+          <input
+            id="new-password"
+            type={showPw ? "text" : "password"}
+            required
+            minLength={8}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="new-password"
+            className="w-full rounded-xl border border-sand bg-paper py-3 pl-4 pr-12 text-ink focus:border-amber focus:outline-none"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPw((s) => !s)}
+            aria-label={showPw ? "Hide password" : "Show password"}
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
+          >
+            {showPw ? (
+              <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+            ) : (
+              <Eye className="h-5 w-5" strokeWidth={1.75} />
+            )}
+          </button>
+        </div>
       </div>
       <div>
         <label
@@ -121,7 +136,7 @@ export default function ResetPasswordForm() {
         </label>
         <input
           id="confirm-password"
-          type="password"
+          type={showPw ? "text" : "password"}
           required
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
