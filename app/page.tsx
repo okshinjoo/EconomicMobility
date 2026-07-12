@@ -173,7 +173,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="article-lead mt-8 max-w-xl text-xl leading-9 text-stone">
+            <p className="mt-8 max-w-xl text-lg leading-8 text-stone">
               Free, jargon-free financial education built to break the cycle
               of economic disadvantage — for first-generation, low-income, and
               immigrant students, and anyone ready to take control.
