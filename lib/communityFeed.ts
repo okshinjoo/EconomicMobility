@@ -172,6 +172,8 @@ export interface CommunityComment {
   /** ISO date, e.g. "2026-07-06" */
   date: string;
   text: string;
+  /** Approved replies, one level deep (curated here like everything else). */
+  replies?: CommunityComment[];
 }
 
 export interface CommunityPost {

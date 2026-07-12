@@ -24,6 +24,7 @@ import {
   channelMatches,
   type ChannelId,
   type CommunityPost,
+  type CommunityComment,
 } from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
 import { communityTag, readLocalProfile } from "@/lib/profile";
@@ -237,7 +238,16 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
   );
 }
 
-function CommentForm({ postId }: { postId: string }) {
+function CommentForm({
+  postId,
+  replyTo,
+  onSent,
+}: {
+  postId: string;
+  /** Set when this form replies to a specific comment. */
+  replyTo?: { id: string; author: string };
+  onSent?: () => void;
+}) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<SendStatus>("idle");
@@ -247,29 +257,45 @@ function CommentForm({ postId }: { postId: string }) {
     if (p?.displayName) setName(p.displayName);
   }, []);
 
+  // Pending replies live under a composite key so they render beneath the
+  // right comment: "<postId>::<commentId>".
+  const storageKey = replyTo ? `${postId}::${replyTo.id}` : postId;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!text.trim()) return;
     setStatus("sending");
-    const ok = await submitToInbox({
-      subject: `New community comment for review (post: ${postId})`,
-      post_id: postId,
-      author: name.trim() || "Anonymous",
-      comment: text.trim(),
-    });
+    const ok = await submitToInbox(
+      replyTo
+        ? {
+            subject: `New community reply for review (post: ${postId})`,
+            post_id: postId,
+            reply_to_comment: replyTo.id,
+            reply_to_author: replyTo.author,
+            author: name.trim() || "Anonymous",
+            comment: text.trim(),
+          }
+        : {
+            subject: `New community comment for review (post: ${postId})`,
+            post_id: postId,
+            author: name.trim() || "Anonymous",
+            comment: text.trim(),
+          }
+    );
     if (!ok) {
       setStatus("error");
       return;
     }
     const map = loadJSON<PendingCommentMap>(PENDING_COMMENTS_KEY) ?? {};
-    map[postId] = [
-      ...(map[postId] ?? []),
+    map[storageKey] = [
+      ...(map[storageKey] ?? []),
       { author: name.trim() || "Anonymous", text: text.trim(), at: Date.now() },
     ];
     saveJSON(PENDING_COMMENTS_KEY, map);
     setText("");
     setStatus("idle");
     window.dispatchEvent(new Event("empower:community-updated"));
+    onSent?.();
   }
 
   return (
@@ -280,7 +306,7 @@ function CommentForm({ postId }: { postId: string }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={2}
-          placeholder="Add a comment…"
+          placeholder={replyTo ? `Reply to ${replyTo.author}…` : "Add a comment…"}
           className="w-full rounded-lg border border-sand bg-paper px-4 py-2.5 text-[0.95rem] leading-6 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
         />
       </div>
@@ -319,19 +345,140 @@ function CommentForm({ postId }: { postId: string }) {
   );
 }
 
+/** One approved comment: like (personal), reply (review-first), and its
+ *  approved + pending replies indented beneath. Replies are one level deep —
+ *  replying to a reply isn't offered (the eventual live system can nest). */
+function CommentItem({
+  postId,
+  comment,
+  likes,
+  onToggleLike,
+  pendingReplies,
+}: {
+  postId: string;
+  comment: CommunityComment;
+  likes: Record<string, boolean>;
+  onToggleLike: (key: string) => void;
+  pendingReplies: PendingComment[];
+}) {
+  const [replyOpen, setReplyOpen] = useState(false);
+  const likeKey = `c:${comment.id}`;
+  const liked = Boolean(likes[likeKey]);
+
+  return (
+    <div className="mt-4">
+      <div className="flex items-start gap-3">
+        <Avatar name={comment.author} team={comment.author === "Empower Team"} />
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold text-ink">
+            {comment.author}
+            <span className="ml-2 font-normal text-stone">
+              {formatDate(comment.date)}
+            </span>
+          </p>
+          <p className="mt-1 text-[0.95rem] leading-6 text-stone">
+            {comment.text}
+          </p>
+          <div className="mt-1.5 flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => onToggleLike(likeKey)}
+              aria-pressed={liked}
+              className={`inline-flex items-center gap-1 text-xs font-semibold transition-colors ${
+                liked ? "text-terracotta" : "text-stone hover:text-ink"
+              }`}
+            >
+              <Heart
+                className="h-3.5 w-3.5"
+                fill={liked ? "currentColor" : "none"}
+              />
+              {liked ? "Liked" : "Like"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setReplyOpen((o) => !o)}
+              className="inline-flex items-center gap-1 text-xs font-semibold text-stone transition-colors hover:text-ink"
+            >
+              <MessageCircle className="h-3.5 w-3.5" />
+              Reply
+            </button>
+          </div>
+
+          {/* approved replies */}
+          {(comment.replies ?? []).map((r) => (
+            <div key={r.id} className="mt-3 flex items-start gap-2.5 border-l-2 border-sand pl-3">
+              <Avatar name={r.author} team={r.author === "Empower Team"} />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-ink">
+                  {r.author}
+                  <span className="ml-2 font-normal text-stone">
+                    {formatDate(r.date)}
+                  </span>
+                </p>
+                <p className="mt-1 text-[0.95rem] leading-6 text-stone">
+                  {r.text}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          {/* the visitor's own pending replies */}
+          {pendingReplies.map((r) => (
+            <div key={r.at} className="mt-3 flex items-start gap-2.5 border-l-2 border-amber/50 pl-3">
+              <Avatar name={r.author} />
+              <div className="min-w-0">
+                <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
+                  {r.author}
+                  <PendingChip />
+                </p>
+                <p className="mt-1 text-[0.95rem] leading-6 text-stone">
+                  {r.text}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          {replyOpen && (
+            <div className="mt-2 border-l-2 border-sand pl-3">
+              <CommentForm
+                postId={postId}
+                replyTo={{ id: comment.id, author: comment.author }}
+                onSent={() => setReplyOpen(false)}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PostCard({
   post,
-  liked,
+  likes,
   onToggleLike,
-  pendingComments,
+  pendingMap,
 }: {
   post: CommunityPost;
-  liked: boolean;
-  onToggleLike: () => void;
-  pendingComments: PendingComment[];
+  likes: Record<string, boolean>;
+  onToggleLike: (key: string) => void;
+  pendingMap: PendingCommentMap;
 }) {
-  const commentTotal = post.comments.length + pendingComments.length;
+  const pendingComments = pendingMap[post.id] ?? [];
+  const approvedReplies = post.comments.reduce(
+    (sum, c) => sum + (c.replies?.length ?? 0),
+    0
+  );
+  const pendingReplies = Object.entries(pendingMap)
+    .filter(([k]) => k.startsWith(`${post.id}::`))
+    .reduce((sum, [, v]) => sum + v.length, 0);
+  const commentTotal =
+    post.comments.length +
+    approvedReplies +
+    pendingComments.length +
+    pendingReplies;
   const [open, setOpen] = useState(post.comments.length > 0);
+  const liked = Boolean(likes[post.id]);
 
   return (
     <article
@@ -392,7 +539,7 @@ function PostCard({
       <div className="mt-5 flex items-center gap-5 border-t border-sand pt-4">
         <button
           type="button"
-          onClick={onToggleLike}
+          onClick={() => onToggleLike(post.id)}
           aria-pressed={liked}
           className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${
             liked ? "text-terracotta" : "text-stone hover:text-ink"
@@ -417,18 +564,14 @@ function PostCard({
       {(open || commentTotal === 0 || pendingComments.length > 0) && (
         <div className="mt-2">
           {post.comments.map((c) => (
-            <div key={c.id} className="mt-4 flex items-start gap-3">
-              <Avatar name={c.author} team={c.author === "Empower Team"} />
-              <div className="min-w-0">
-                <p className="text-sm font-semibold text-ink">
-                  {c.author}
-                  <span className="ml-2 font-normal text-stone">
-                    {formatDate(c.date)}
-                  </span>
-                </p>
-                <p className="mt-1 text-[0.95rem] leading-6 text-stone">{c.text}</p>
-              </div>
-            </div>
+            <CommentItem
+              key={c.id}
+              postId={post.id}
+              comment={c}
+              likes={likes}
+              onToggleLike={onToggleLike}
+              pendingReplies={pendingMap[`${post.id}::${c.id}`] ?? []}
+            />
           ))}
           {pendingComments.map((c) => (
             <div key={c.at} className="mt-4 flex items-start gap-3">
@@ -487,9 +630,10 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
     return () => window.removeEventListener("empower:community-updated", refresh);
   }, []);
 
-  const toggleLike = (id: string) => {
+  // Works for post ids and comment keys ("c:<commentId>") alike.
+  const toggleLike = (key: string) => {
     setLikes((prev) => {
-      const next = { ...prev, [id]: !prev[id] };
+      const next = { ...prev, [key]: !prev[key] };
       saveJSON(LIKES_KEY, next);
       return next;
     });
@@ -799,9 +943,9 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
         <PostCard
           key={post.id}
           post={post}
-          liked={Boolean(likes[post.id])}
-          onToggleLike={() => toggleLike(post.id)}
-          pendingComments={pendingComments[post.id] ?? []}
+          likes={likes}
+          onToggleLike={toggleLike}
+          pendingMap={pendingComments}
         />
       ))}
       </div>
