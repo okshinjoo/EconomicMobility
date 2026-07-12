@@ -1,3 +1,5 @@
+> **HISTORICAL (July 2026):** this plan is complete — the library passed 200 articles. Kept for reference; the current count lives in CLAUDE.md and derives live on the site.
+
 # Content Roadmap — toward 100+ articles
 
 Current count: **142** across **9 topics** (**Budgeting 26**, Credit 16, Taxes 14,

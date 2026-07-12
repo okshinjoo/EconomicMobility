@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { allArticles } from "@/lib/articles";
 import AskQuestion from "@/components/AskQuestion";
 import { communityQuestions } from "@/lib/communityQuestions";
 import { getTopic } from "@/lib/topics";
@@ -132,8 +133,9 @@ export default function AskPage() {
               Want the full picture?
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-ink/75">
-              The Learn library has over 100 plain-English guides on credit,
-              budgeting, taxes, college, investing, scams, and more.
+              The Learn library has {allArticles.length} plain-English
+              guides on credit, budgeting, taxes, college, investing, scams,
+              and more.
             </p>
             <Link
               href="/learn"
