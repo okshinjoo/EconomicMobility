@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Heart, MessageCircle, Send, Loader2, Clock3 } from "lucide-react";
+import {
+  Heart,
+  MessageCircle,
+  Send,
+  Loader2,
+  Clock3,
+  GraduationCap,
+  Compass,
+  BookOpen,
+  Inbox,
+} from "lucide-react";
 import {
   CHANNELS,
   getChannel,
@@ -466,10 +476,102 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   const countFor = (id: ChannelId) =>
     posts.filter((p) => p.channel === id).length;
 
+  const railGroups = (
+    <>
+      {/* channels */}
+      <p className="px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
+        Channels
+      </p>
+      <div className="mt-1.5 space-y-0.5">
+        <button
+          type="button"
+          onClick={() => setActive("all")}
+          aria-pressed={active === "all"}
+          className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+            active === "all"
+              ? "bg-amber/25 text-ink"
+              : "text-stone hover:bg-paper hover:text-ink"
+          }`}
+        >
+          <Inbox className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+          <span className="flex-1 text-left">All posts</span>
+          <span className="text-xs font-bold text-stone/70">{posts.length}</span>
+        </button>
+        {CHANNELS.map((c) => (
+          <button
+            key={c.id}
+            type="button"
+            onClick={() => setActive(c.id)}
+            aria-pressed={active === c.id}
+            title={c.tagline}
+            className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+              active === c.id
+                ? "bg-amber/25 text-ink"
+                : "text-stone hover:bg-paper hover:text-ink"
+            }`}
+          >
+            <c.icon
+              className="h-4 w-4 flex-shrink-0"
+              strokeWidth={1.75}
+              style={{ color: c.color }}
+            />
+            <span className="flex-1 text-left">{c.name}</span>
+            <span className="text-xs font-bold text-stone/70">
+              {countFor(c.id)}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* explore */}
+      <p className="mt-6 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
+        Explore
+      </p>
+      <div className="mt-1.5 space-y-0.5">
+        {(
+          [
+            ["/ask", "Ask a question", MessageCircle],
+            ["/courses", "Courses", GraduationCap],
+            ["/challenges", "Challenges", Compass],
+            ["/learn", "The library", BookOpen],
+          ] as const
+        ).map(([href, label, Icon]) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-stone transition-colors hover:bg-paper hover:text-ink"
+          >
+            <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+            {label}
+          </Link>
+        ))}
+      </div>
+
+      {/* house rules */}
+      <div className="mt-6 rounded-xl border border-sand bg-paper p-4">
+        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
+          House rules
+        </p>
+        <ul className="mt-2 space-y-1.5 text-xs leading-5 text-stone">
+          <li>Be kind. No shaming anyone&apos;s situation.</li>
+          <li>No selling or &ldquo;DM me&rdquo; offers.</li>
+          <li>No personal details, yours or anyone&apos;s.</li>
+          <li>Experiences welcome; individualized advice isn&apos;t.</li>
+        </ul>
+      </div>
+    </>
+  );
+
   return (
-    <div className="space-y-5">
-      {/* channel bar */}
-      <div className="flex gap-1.5 overflow-x-auto pb-1">
+    <div className="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-start lg:gap-8">
+      {/* left rail, CGF-style (desktop) */}
+      <aside className="card-ink hidden rounded-2xl bg-cream px-2 py-4 lg:sticky lg:top-24 lg:block">
+        {railGroups}
+      </aside>
+
+      <div className="min-w-0 space-y-5">
+      {/* channel bar (mobile fallback) */}
+      <div className="flex gap-1.5 overflow-x-auto pb-1 lg:hidden">
         <button
           type="button"
           onClick={() => setActive("all")}
@@ -545,6 +647,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
           pendingComments={pendingComments[post.id] ?? []}
         />
       ))}
+      </div>
     </div>
   );
 }

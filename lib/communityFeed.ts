@@ -8,6 +8,15 @@
 // attribute those to the name the writer gave (first name is plenty).
 
 import type { TopicId } from "./topics";
+import {
+  Hand,
+  Trophy,
+  MessageCircleQuestion,
+  PiggyBank,
+  CreditCard,
+  Flag,
+  type LucideIcon,
+} from "lucide-react";
 
 /** The community's channels (Clever-Girl-Finance-style spaces). Every post
  *  lives in exactly one. Adding a channel here adds it to the filter bar and
@@ -27,41 +36,49 @@ export interface Channel {
   tagline: string;
   /** Accent for the channel chip (text on a light tint). */
   color: string;
+  /** Rail icon (rendered as <channel.icon />, same pattern as topics). */
+  icon: LucideIcon;
 }
 
 export const CHANNELS: Channel[] = [
   {
     id: "say-hello",
+    icon: Hand,
     name: "Say Hello",
     tagline: "New here? Introduce yourself — everyone starts in this room.",
     color: "#c9842a",
   },
   {
     id: "wins",
+    icon: Trophy,
     name: "Wins",
     tagline: "Victories of every size, celebrated properly.",
     color: "#15624b",
   },
   {
     id: "questions",
+    icon: MessageCircleQuestion,
     name: "Questions",
     tagline: "Ask anything. Nothing is too basic here.",
     color: "#d26a4c",
   },
   {
     id: "budgeting-saving",
+    icon: PiggyBank,
     name: "Budgeting & Saving",
     tagline: "Paychecks, plans, and making the leftover grow.",
     color: "#0c4a39",
   },
   {
     id: "credit-debt",
+    icon: CreditCard,
     name: "Credit & Debt",
     tagline: "Scores, cards, loans, and getting out from under them.",
     color: "#7a5230",
   },
   {
     id: "challenges",
+    icon: Flag,
     name: "Challenges",
     tagline: "The official threads for every site challenge.",
     color: "#4b5f8a",
