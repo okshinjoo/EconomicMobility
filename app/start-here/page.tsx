@@ -84,7 +84,7 @@ export default function StartHerePage() {
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Start here
             </span>
-            <h1 className="mt-5 font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+            <h1 className="mt-5 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
               New here? <span className="italic text-amber">Welcome.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">

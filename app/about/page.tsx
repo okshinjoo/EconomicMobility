@@ -80,7 +80,7 @@ export default function AboutPage() {
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Our Mission
           </span>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+          <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
             Financial freedom shouldn&apos;t be a{" "}
             <span className="italic text-amber">family secret.</span>
           </h1>
@@ -106,7 +106,10 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -right-4 bottom-8 max-w-[16rem] rotate-2 rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] sm:-right-8">
+            {/* Mobile: the quote sits BELOW the photo (overlaying it covered
+                the founder's face on small screens). From lg it returns to
+                the tilted overlay card. */}
+            <div className="mt-6 max-w-md rotate-1 rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] lg:absolute lg:-right-8 lg:bottom-8 lg:mt-0 lg:max-w-[16rem] lg:rotate-2">
               <p className="font-display text-lg italic leading-snug">
                 &ldquo;Empower stands for the Economic Mobility Project, and
                 for what we want every reader to do: take control of their

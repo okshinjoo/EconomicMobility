@@ -38,7 +38,7 @@ export default function LearnHub() {
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               The Library
             </span>
-            <h1 className="mt-5 font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+            <h1 className="mt-5 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
               Learn money,
               <br />
               <span className="italic text-amber">your way.</span>
@@ -48,15 +48,21 @@ export default function LearnHub() {
               basics to the stuff that takes you further. Start anywhere — or
               let the quiz pick for you.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-cream/70">
-              <span className="inline-flex items-center gap-1.5">
+            {/* Separators live INSIDE the nowrap pairs so a wrap never
+                strands a lone "·" at a line edge on small screens. */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-cream/70">
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                 <BookOpen className="h-4 w-4 text-amber" />
                 {totalGuides} free guides
               </span>
-              <span className="text-cream/30">·</span>
-              <span>{topics.length} topics</span>
-              <span className="text-cream/30">·</span>
-              <span>No sign-up, no paywall</span>
+              <span className="inline-flex items-center gap-3 whitespace-nowrap">
+                <span className="hidden text-cream/30 sm:inline">·</span>
+                {topics.length} topics
+              </span>
+              <span className="inline-flex items-center gap-3 whitespace-nowrap">
+                <span className="hidden text-cream/30 sm:inline">·</span>
+                No sign-up, no paywall
+              </span>
             </div>
             <div className="mt-8">
               <Link

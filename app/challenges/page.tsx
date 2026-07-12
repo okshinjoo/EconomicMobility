@@ -31,7 +31,7 @@ export default function ChallengesPage() {
           <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
             Challenges
           </span>
-          <h1 className="mt-5 max-w-2xl font-display text-5xl font-semibold leading-[1.02] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-5 max-w-2xl font-display text-[2.6rem] font-semibold leading-[1.07] sm:leading-[1.02] tracking-tight text-ink sm:text-6xl">
             Doing{" "}
             <span className="italic" style={{ color: "#b7593f" }}>
               beats

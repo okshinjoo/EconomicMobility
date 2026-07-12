@@ -30,7 +30,7 @@ export default function AskPage() {
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Ask Empower
             </span>
-            <h1 className="mt-5 font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
               Real answers to{" "}
               <span className="italic text-amber">real questions.</span>
             </h1>

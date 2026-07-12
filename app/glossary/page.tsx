@@ -50,7 +50,7 @@ export default function GlossaryPage() {
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-ink/60">
             Glossary
           </span>
-          <h1 className="mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+          <h1 className="mt-5 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
             Money words,{" "}
             <span className="italic text-forest">in plain English.</span>
           </h1>

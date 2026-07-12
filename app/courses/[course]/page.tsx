@@ -71,7 +71,7 @@ export default async function CoursePage({
           >
             Learning module
           </span>
-          <h1 className="mt-4 max-w-3xl font-display text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl">
+          <h1 className="mt-4 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[1.02] tracking-tight sm:text-6xl">
             {found.title}
           </h1>
           <p className="mt-4 max-w-2xl text-lg font-semibold text-cream/90">

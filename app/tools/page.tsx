@@ -26,7 +26,7 @@ export default function ToolsHub() {
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             Free Tools
           </span>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-4 font-display text-[2.6rem] font-bold leading-[1.07] sm:leading-[1.05] tracking-tight text-ink sm:text-6xl">
             Run your{" "}
             <span className="relative whitespace-nowrap text-forest">
               real numbers.

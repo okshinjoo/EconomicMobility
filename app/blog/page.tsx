@@ -42,7 +42,7 @@ export default function BlogPage() {
           <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
             New reads, no lectures
           </span>
-          <h1 className="mt-7 max-w-3xl font-display text-5xl font-medium leading-[1.02] tracking-tight text-ink sm:text-7xl">
+          <h1 className="mt-7 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[1.02] tracking-tight text-ink sm:text-7xl">
             The stuff between the guides.
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-stone">

@@ -28,7 +28,7 @@ export default function CommunityPage() {
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             The community
           </span>
-          <h1 className="mt-6 max-w-4xl font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+          <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
             Learning out loud,{" "}
             <span className="italic text-amber">together.</span>
           </h1>

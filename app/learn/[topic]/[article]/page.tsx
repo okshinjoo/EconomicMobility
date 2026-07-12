@@ -161,17 +161,19 @@ export default async function ArticlePage({
                     </span>
                   </div>
                   <span className="hidden h-4 w-px bg-sand sm:block" />
+                  {/* Dots are hidden on mobile so a wrap never strands a
+                      lone "•" at a line edge. */}
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-stone">
                     <span className="font-semibold" style={{ color: accent }}>
                       {found.level}
                     </span>
-                    <span className="text-sand">•</span>
-                    <span className="inline-flex items-center gap-1.5">
+                    <span className="hidden text-sand sm:inline">•</span>
+                    <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                       <Clock className="h-4 w-4" />
                       {found.readMinutes} min read
                     </span>
-                    <span className="text-sand">•</span>
-                    <span>{LEARN_UPDATED}</span>
+                    <span className="hidden text-sand sm:inline">•</span>
+                    <span className="whitespace-nowrap">{LEARN_UPDATED}</span>
                   </div>
                 </div>
               </div>

@@ -36,7 +36,7 @@ export default function ContactPage() {
             <span className="-rotate-2 inline-block rounded-lg border-2 border-ink bg-cream px-4 py-1.5 text-sm font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]">
               Get in touch
             </span>
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="mt-6 font-display text-[2.6rem] font-bold leading-[1.07] sm:leading-[1.05] tracking-tight sm:text-6xl">
               We&apos;d love to hear from you.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">

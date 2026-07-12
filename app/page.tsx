@@ -149,7 +149,7 @@ export default function Home() {
               The Economic Mobility Project
             </span>
 
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+            <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.07] sm:leading-[1.05] tracking-tight text-ink sm:text-6xl">
               Your money. Your future.{" "}
               <span className="relative whitespace-nowrap text-forest">
                 No gatekeepers.
@@ -255,7 +255,9 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -right-4 bottom-8 max-w-[15rem] rounded-2xl bg-forest p-6 text-cream shadow-xl sm:-right-8">
+            {/* Mobile: quote below the photo (the overlay covered the
+                student's face on small screens); overlay card from lg up. */}
+            <div className="mt-5 max-w-md rounded-2xl bg-forest p-6 text-cream shadow-xl lg:absolute lg:-right-8 lg:bottom-8 lg:mt-0 lg:max-w-[15rem]">
               <p className="text-base font-medium italic leading-snug">
                 &ldquo;Empower stands for the Economic Mobility Project — and
                 for empowering people to take control of their financial
@@ -537,7 +539,7 @@ export default function Home() {
               return (
                 <>
                   {/* Featured letter */}
-                  <div className="flex flex-col rounded-2xl border border-sand bg-cream p-8 sm:p-10">
+                  <div className="flex flex-col rounded-2xl border border-sand bg-cream p-6 sm:p-10">
                     {featuredTopic && (
                       <span
                         className="text-xs font-semibold uppercase tracking-[0.18em]"
@@ -546,16 +548,16 @@ export default function Home() {
                         {featuredTopic.short}
                       </span>
                     )}
-                    <div className="mt-4 flex gap-4">
-                      <span className="font-display text-3xl font-bold italic leading-none text-terracotta">
+                    <div className="mt-4 flex gap-3 sm:gap-4">
+                      <span className="font-display text-2xl font-bold italic leading-none text-terracotta sm:text-3xl">
                         Q.
                       </span>
-                      <h3 className="font-display text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">
+                      <h3 className="font-display text-xl font-semibold leading-snug text-ink sm:text-[1.75rem]">
                         {featured.question}
                       </h3>
                     </div>
-                    <div className="mt-6 flex gap-4">
-                      <span className="font-display text-3xl font-bold italic leading-none text-forest">
+                    <div className="mt-6 flex gap-3 sm:gap-4">
+                      <span className="font-display text-2xl font-bold italic leading-none text-forest sm:text-3xl">
                         A.
                       </span>
                       <div className="space-y-4 text-base leading-7 text-stone">
@@ -634,17 +636,21 @@ export default function Home() {
           "Community", and the two live destination buttons */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-          <div className="relative overflow-hidden rounded-[2.5rem]">
+          {/* The photo is a fill background and the copy is in normal flow,
+              so on mobile the card grows with its content ("Join a
+              challenge" was clipped by the old fixed 420px height). Desktop
+              keeps the same centered ~460px band via min-h. */}
+          <div className="relative flex min-h-[420px] items-center overflow-hidden rounded-[2.5rem] sm:min-h-[460px]">
             <Image
               src="/images/community.jpg"
               alt="A community of students together"
-              width={1600}
-              height={900}
-              className="h-[420px] w-full object-cover sm:h-[460px]"
+              fill
+              sizes="(max-width: 1280px) 100vw, 1216px"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/85 to-forest/30" />
-            <div className="absolute inset-0 flex items-center">
-              <div className="max-w-xl px-8 sm:px-14">
+            <div className="relative">
+              <div className="max-w-xl px-6 py-12 sm:px-14 sm:py-14">
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
                   More than a website
                 </span>
