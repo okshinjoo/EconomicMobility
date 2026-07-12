@@ -18,7 +18,14 @@ import WelcomeBack, {
   type TopicPath,
   type BadgeSource,
 } from "@/components/WelcomeBack";
-import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
+import CompoundChart from "@/components/CompoundChart";
+import {
+  TrendingUp,
+  CreditCard,
+  PiggyBank,
+  GraduationCap,
+  Percent,
+} from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Ticker from "@/components/Ticker";
 import { courses } from "@/lib/courses";
@@ -27,6 +34,16 @@ import { challenges } from "@/lib/challenges";
 // Real questions, real guides — the honest front door to the library.
 // The first four render for everyone; once a reader finishes one of these
 // articles, QuestionStrip rotates it out and pulls in the next question.
+// "More calculators" rail beside the compound chart (Base44 direct copy,
+// owner call July 2026) — hints are theirs, hrefs point at our real tools.
+const mathCalcs = [
+  { name: "Compound Interest", hint: "See money grow", href: "/tools/savings/compound", icon: TrendingUp },
+  { name: "Debt Payoff", hint: "Snowball or avalanche", href: "/tools/debt", icon: CreditCard },
+  { name: "Savings Goal", hint: "How long to get there", href: "/tools/savings", icon: PiggyBank },
+  { name: "Student Loan", hint: "Real cost of borrowing", href: "/tools/college/student-loan", icon: GraduationCap },
+  { name: "Tax Estimator", hint: "What you actually keep", href: "/tools/budget/paycheck", icon: Percent },
+];
+
 const startingQuestions: StripQuestion[] = [
   {
     q: "Why is my first paycheck smaller than I expected?",
@@ -490,93 +507,80 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools — B: ink-and-shadow pastel cards */}
-      <section className="border-t-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-amber px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
-                Put it to work
-              </span>
-              <h2 className="mt-5 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-                Run your own numbers
+      {/* The math, visualized — Base44 direct copy (owner call, July 2026):
+          the compound-growth band replaces the old tools bento. The wavy
+          cream divider up top is theirs too (white melts into the green). */}
+      <section className="relative overflow-hidden bg-forest text-cream">
+        <svg
+          aria-hidden
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="absolute left-0 top-0 h-8 w-full text-paper"
+        >
+          <path
+            d="M0,30 C240,60 480,0 720,20 C960,40 1200,55 1440,25 L1440,60 L0,60 Z"
+            fill="currentColor"
+          />
+        </svg>
+        <div className="mx-auto grid max-w-7xl items-center gap-6 px-6 pb-20 pt-24 md:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-28">
+          <div className="md:col-span-4">
+            <Reveal>
+              <div className="flex items-center gap-3">
+                <span className="font-display text-xs font-bold tracking-wider text-amber">
+                  04
+                </span>
+                <span className="h-px max-w-[40px] flex-1 bg-amber/40" />
+                <span className="text-xs font-medium uppercase tracking-[0.18em] text-cream/60">
+                  The math, visualized
+                </span>
+              </div>
+              <h2 className="mt-4 font-display text-3xl font-semibold md:text-4xl">
+                Small, steady, unstoppable.
               </h2>
-              <p className="mt-4 text-lg leading-8 text-stone">
-                Every calculator works right in the page and saves your inputs
-                on your own device. No downloads, no sign-up.
+              <p className="mt-4 text-lg leading-8 text-cream/75">
+                $200 a month, invested in a broad index fund, over 30 years.
+                The line doesn&apos;t bend because you&apos;re clever — it
+                bends because compounding is patient.
               </p>
-            </div>
+              <p className="mt-4 text-sm text-cream/50">
+                This is what the calculators show you. Not a prediction. Just
+                arithmetic, applied.
+              </p>
+            </Reveal>
+          </div>
+          <div className="rounded-lg border border-cream/10 bg-cream/5 p-6 md:col-span-5">
+            <CompoundChart className="h-64" />
+          </div>
+          <div className="flex flex-col gap-2 md:col-span-3">
+            <p className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-amber">
+              More calculators
+            </p>
+            {mathCalcs.map((calc) => (
+              <Link
+                key={calc.name}
+                href={calc.href}
+                className="group flex items-center gap-3 rounded-lg border border-cream/10 bg-cream/5 p-3 transition-all hover:border-amber hover:bg-cream/10"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber/15 text-amber transition-colors group-hover:bg-amber group-hover:text-ink">
+                  <calc.icon className="h-4 w-4" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-medium leading-tight text-cream">
+                    {calc.name}
+                  </span>
+                  <span className="block text-xs leading-tight text-cream/50">
+                    {calc.hint}
+                  </span>
+                </span>
+              </Link>
+            ))}
             <Link
               href="/tools"
-              className="btn-ink inline-flex items-center rounded-xl bg-amber px-7 py-3.5 text-base font-bold text-ink"
+              className="mt-2 text-sm font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
             >
-              See all {calculatorTotal} tools
+              See all {calculatorTotal} calculators
             </Link>
           </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
-            {toolCategories.map((cat, ci) => {
-              const style = toolStyles[cat.id] ?? toolStyles.budgeting;
-              return (
-                <Reveal key={cat.id} delay={ci * 70}>
-                  <div
-                    className={`card-ink flex h-full flex-col rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1 ${
-                      ci % 2 === 1 ? "lg:rotate-[0.6deg]" : "lg:-rotate-[0.4deg]"
-                    }`}
-                    style={{ backgroundColor: style.bg }}
-                  >
-                    <ToolDoodle id={cat.id} color={style.accent} />
-                    <h3 className="mt-5 font-display text-xl font-bold text-ink">
-                      <Link href={cat.base} className="hover:underline hover:decoration-2 hover:underline-offset-4">
-                        {cat.label}
-                      </Link>
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-6 text-ink/70">
-                      {cat.blurb}
-                    </p>
-                    <ul className="mt-4 space-y-2 border-t-2 pt-4" style={{ borderColor: `${style.accent}55` }}>
-                      {cat.items
-                        .filter((item) => item.status === "live")
-                        .slice(0, 4)
-                        .map((item) => (
-                          <li key={item.slug}>
-                            <Link
-                              href={item.main ? cat.base : `${cat.base}/${item.slug}`}
-                              className="text-sm font-semibold text-ink/85 underline decoration-2 underline-offset-4 transition-colors hover:text-ink"
-                              style={{ textDecorationColor: `${style.accent}88` }}
-                            >
-                              {item.title}
-                            </Link>
-                          </li>
-                        ))}
-                      {cat.items.filter((i) => i.status === "live").length > 4 && (
-                        <li>
-                          <Link
-                            href={cat.base}
-                            className="text-sm font-bold"
-                            style={{ color: style.accent }}
-                          >
-                            +{cat.items.filter((i) => i.status === "live").length - 4} more
-                          </Link>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <p className="mt-8 text-base text-stone">
-            Prefer a spreadsheet?{" "}
-            <Link
-              href="/tools/templates"
-              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-            >
-              Download the free templates
-            </Link>
-            .
-          </p>
         </div>
       </section>
 
