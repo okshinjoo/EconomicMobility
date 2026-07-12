@@ -124,14 +124,16 @@ export default function SearchDialog({ items }: { items: SearchItem[] }) {
     const q = query.trim().toLowerCase();
 
     if (!q) {
-      const jump = items
-        .filter(
-          (i) =>
-            i.kind === "Topic" ||
-            i.title === "Take the Quiz" ||
-            i.title === "Free Templates"
-        )
-        .slice(0, 8);
+      // Key pages first so they can't get crowded out by the nine topics.
+      const keyPages = items.filter(
+        (i) =>
+          i.kind === "Page" &&
+          ["Take the Quiz", "Glossary", "Free Templates"].includes(i.title)
+      );
+      const jump = [
+        ...keyPages,
+        ...items.filter((i) => i.kind === "Topic"),
+      ].slice(0, 9);
       return {
         flat: jump,
         sections: [

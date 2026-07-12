@@ -1301,6 +1301,7 @@ export default function CommunityFeed({
             ["/courses", "Courses", GraduationCap],
             ["/challenges", "Challenges", Compass],
             ["/learn", "The library", BookOpen],
+            ["/glossary", "Glossary", BookOpen],
           ] as const
         ).map(([href, label, Icon]) => (
           <Link

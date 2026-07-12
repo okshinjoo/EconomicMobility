@@ -12,6 +12,8 @@ import { topics } from "@/lib/topics";
 import { guideCount, learnContent } from "@/lib/learnContent";
 import { getTopicRoadmap, getArticleBySlug } from "@/lib/articles";
 import { ROADMAP_SLUGS } from "@/lib/roadmaps";
+import { glossary } from "@/lib/glossary";
+import TermOfTheDay from "@/components/TermOfTheDay";
 
 export const metadata: Metadata = {
   title: "Learn | Empower — Economic Mobility Project",
@@ -219,6 +221,34 @@ export default function LearnHub() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Glossary band — A voice: the "every word, in plain English" promise */}
+      <section className="bg-forest text-cream">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:py-16">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber">
+              The glossary
+            </span>
+            <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold leading-tight sm:text-4xl">
+              {glossary.length} money words,{" "}
+              <span className="italic text-amber">zero jargon.</span>
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-7 text-cream/75">
+              Every term the guides use is defined in plain English — and
+              inside any guide, the first mention of a term shows its
+              definition right where you&apos;re reading. Hit a word you
+              don&apos;t know anywhere else? Look it up in seconds.
+            </p>
+            <Link
+              href="/glossary"
+              className="mt-5 inline-block font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+            >
+              Open the glossary
+            </Link>
+          </div>
+          <TermOfTheDay />
         </div>
       </section>
 
