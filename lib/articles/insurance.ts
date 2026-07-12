@@ -946,4 +946,143 @@ export const insuranceArticles: Article[] = [
     ],
     related: ["how-insurance-works", "choosing-a-health-plan", "disability-insurance"],
   },
+  {
+    slug: "turning-26-health-insurance",
+    topicId: "insurance",
+    title: "Turning 26: Getting Your Own Health Insurance",
+    dek: "The birthday nobody warns you about. Here's how to land your own coverage without a gap and without overpaying.",
+    level: "Beginner",
+    readMinutes: 6,
+    takeaways: [
+      "At 26 you age off a parent's plan, even if you live with them.",
+      "Losing that coverage opens a 60-day special enrollment window. Don't sleep on it.",
+      "Your realistic options: a job plan, the marketplace, or Medicaid.",
+      "Going uninsured to save money is the most expensive plan there is.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Federal law lets you stay on a parent's health plan until you turn 26, and then it doesn't. For most plans, coverage ends the last day of your birthday month (some employer plans end it at the end of the year, so ask). If nobody in your family has navigated American health insurance from scratch, this birthday can feel like a trapdoor. It's manageable, but it runs on deadlines.",
+      },
+      {
+        type: "h2",
+        text: "The 60-day window",
+      },
+      {
+        type: "p",
+        text: "Losing coverage is a 'qualifying life event,' which unlocks a special enrollment period: 60 days after (and even 60 days before) your old coverage ends to sign up for a new plan, no matter the time of year. Miss it, and outside of a job plan you're generally waiting for open enrollment in the fall, uninsured in the meantime. Put the deadline in your phone the month before you turn 26.",
+      },
+      {
+        type: "h2",
+        text: "Option 1: a plan through work",
+      },
+      {
+        type: "p",
+        text: "If your job offers health insurance, that's usually the cheapest door because your employer pays part of the premium. Turning 26 counts as a qualifying event at work too, so you can join mid-year. Ask HR for the summary of benefits and use [how to choose a health plan](/learn/insurance/choosing-a-health-plan) to compare premiums against deductibles honestly.",
+      },
+      {
+        type: "h2",
+        text: "Option 2: the marketplace",
+      },
+      {
+        type: "p",
+        text: "No job coverage? HealthCare.gov (or your state's own exchange) is where you shop. Premium tax credits lower the monthly bill based on your income, and at entry-level pay they can lower it a lot; the application shows your real price after credits before you commit. Under 30, you can also buy a catastrophic plan: low premium, very high deductible, real protection against the truly bad day.",
+      },
+      {
+        type: "h2",
+        text: "Option 3: Medicaid",
+      },
+      {
+        type: "p",
+        text: "If your income is modest (in states that expanded Medicaid, up to 138% of the federal poverty line, roughly $1,800 a month for one person under the guidelines in effect for 2026), you may qualify for [Medicaid](/learn/government-aid/medicaid-explained): comprehensive coverage for free or nearly free. You can apply any day of the year, and the marketplace application checks your eligibility automatically.",
+      },
+      {
+        type: "key",
+        text: "The order to check: job plan first, then the marketplace with your subsidy estimate, then Medicaid if your income qualifies. Never assume the sticker price is your price until the application shows it.",
+      },
+      {
+        type: "h2",
+        text: "What not to do",
+      },
+      {
+        type: "list",
+        items: [
+          "Don't go bare 'just for a few months.' One ER visit can cost more than years of premiums.",
+          "Don't buy the plan with the lowest premium without reading the deductible. [How insurance actually works](/learn/insurance/how-insurance-works) explains the trade.",
+          "Don't fall for short-term or 'health share' products marketed like insurance. They can decline to cover the exact thing you need.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Still in school? Many colleges offer student health plans, and campus clinics often treat enrolled students cheaply regardless of insurance. Compare that against the marketplace before you decide.",
+      },
+    ],
+    related: ["health-insurance-explained", "choosing-a-health-plan", "medicaid-explained"],
+  },
+  {
+    slug: "appealing-insurance-denial",
+    topicId: "insurance",
+    title: "When Health Insurance Says No: How to Appeal",
+    dek: "Denied claims feel final. They usually aren't, and the appeal process exists because insurers count on you not using it.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "You have a legal right to appeal, and then to an outside review.",
+      "Fewer than 1 in 100 denials ever get appealed, but a large share of appeals win.",
+      "The denial letter must tell you the reason and the deadline. Start there.",
+      "Your doctor's office is your best ally. Ask them to help.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The envelope says the claim was denied, the bill is suddenly yours, and the letter is written like the conversation is over. It isn't. Federal law gives you the right to make your insurer look again (an internal appeal), and if they still say no, the right to an independent outside reviewer whose decision binds them (an external review). Insurers reverse themselves on appeal far more often than people expect. The catch is that almost nobody appeals: studies of marketplace plans have found fewer than 1% of denied claims are ever challenged.",
+      },
+      {
+        type: "h2",
+        text: "First, decode the denial",
+      },
+      {
+        type: "p",
+        text: "The letter (or the explanation of benefits) must state a reason. Most denials fall into a few buckets: a paperwork error, 'not medically necessary,' 'out of network,' or 'prior authorization required.' A surprising share are simple coding mistakes, a wrong digit between the doctor's office and the insurer, and those can dissolve with one phone call asking the provider to rebill.",
+      },
+      {
+        type: "h2",
+        text: "The internal appeal",
+      },
+      {
+        type: "steps",
+        items: [
+          "Call the number on your card and ask exactly why the claim was denied and what would change the decision. Write down the date and the rep's name.",
+          "Ask your doctor's office for help. A 'letter of medical necessity' from the doctor is the single strongest attachment an appeal can have, and offices write them all the time.",
+          "Send the appeal in writing before the deadline (plans must give you at least 180 days). Include the claim number, the reason the denial is wrong, the doctor's letter, and any records.",
+          "Keep copies of everything and send it in a way you can prove arrived.",
+        ],
+      },
+      {
+        type: "key",
+        text: "An appeal is not a complaint; it's a case. 'The denial says not medically necessary, and here is my doctor's letter explaining why it is' beats ten paragraphs about how unfair this feels.",
+      },
+      {
+        type: "h2",
+        text: "The external review",
+      },
+      {
+        type: "p",
+        text: "If the internal appeal fails, the denial letter must explain how to request an external review by an independent third party, generally within 4 months. It's free or nearly free, you can attach everything from your internal appeal, and if the reviewer sides with you, the insurer must pay. For urgent care situations, both levels can be expedited to days instead of weeks.",
+      },
+      {
+        type: "h2",
+        text: "While the fight is on",
+      },
+      {
+        type: "p",
+        text: "Don't ignore the bill in the meantime; tell the provider's billing office an appeal is in progress and ask them to pause collections. Most will. If the appeal ultimately fails, you're not out of moves: [how to fight a medical bill](/learn/insurance/negotiating-medical-bills) covers financial assistance, self-pay discounts, and payment plans, and [free legal help](/learn/government-aid/free-legal-help) exists for the big ones.",
+      },
+      {
+        type: "tip",
+        text: "Every state has a consumer assistance program or insurance department that helps with appeals for free. Search your state plus 'insurance consumer assistance,' or call 211.",
+      },
+    ],
+    related: ["negotiating-medical-bills", "how-insurance-works", "health-insurance-explained"],
+  },
 ];

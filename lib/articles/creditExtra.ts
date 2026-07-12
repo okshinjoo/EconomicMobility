@@ -1071,4 +1071,152 @@ export const creditExtraArticles: Article[] = [
     ],
     related: ["build-credit-from-zero", "credit-utilization", "check-credit-free"],
   },
+  {
+    slug: "cosigning-explained",
+    topicId: "credit",
+    title: "Cosigning: What You're Really Signing Up For",
+    dek: "When family asks you to cosign (or asks you to find a cosigner), here's what that signature actually promises.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Cosigning means the debt is fully yours if the other person can't pay.",
+      "The loan lands on your credit report from day one, payments and all.",
+      "Getting released from a cosigned loan is hard; plan for it up front.",
+      "There are ways to help family that don't put your credit on the line.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "In a lot of families, cosigning is how things get done. A cousin needs a car to get to work, a sibling needs an apartment, a parent with thin credit needs someone with a score. Asking is an act of trust, and saying yes feels like love. Before you sign, you deserve to know exactly what the paper says.",
+      },
+      {
+        type: "h2",
+        text: "What the signature means",
+      },
+      {
+        type: "p",
+        text: "A cosigner is not a character reference. Legally, you are borrowing the money too. The lender can come to you for the full amount, plus late fees, without suing the other person first. When a cosigned loan goes bad, the Federal Trade Commission has found that in as many as 3 out of 4 cases, the cosigner is the one asked to repay.",
+      },
+      {
+        type: "key",
+        text: "Only cosign an amount you could absorb yourself without sinking. If losing that money every month would wreck you, the honest answer is no, even to someone you love.",
+      },
+      {
+        type: "h2",
+        text: "What it does to your credit",
+      },
+      {
+        type: "p",
+        text: "The account shows up on your [credit report](/learn/credit/reading-your-credit-report) the day it opens. Every on-time payment helps you a little. Every late payment hurts you exactly as much as it hurts the primary borrower, and you may not find out until the damage is done. The debt also counts against you when you apply for your own loan or apartment, because lenders see it as your obligation. Cosigning a $15,000 car loan can be the reason your own mortgage application gets a worse rate two years later.",
+      },
+      {
+        type: "h2",
+        text: "Before you sign",
+      },
+      {
+        type: "steps",
+        items: [
+          "Ask to see the full loan terms, not just the monthly payment. You're agreeing to all of it.",
+          "Set up your own access to the account online so you can see payments land. Surprises are the enemy.",
+          "Ask the lender about cosigner release. Some auto and private student loans let the cosigner off after 12 to 24 on-time payments and a credit check. Get the rules in writing.",
+          "Agree on what happens if a payment is short one month, before it ever is. An awkward conversation now beats a ruined score later.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "If you're the one who needs a cosigner",
+      },
+      {
+        type: "p",
+        text: "Treat your cosigner's signature like borrowed money in its own right. Put them on the account alerts, tell them the moment a payment might be late, and refinance them off the loan as soon as your own credit can carry it. If you're building from nothing, [building credit from zero](/learn/credit/build-credit-from-zero) shows the starter tools that don't need anyone's signature.",
+      },
+      {
+        type: "h2",
+        text: "Ways to help without cosigning",
+      },
+      {
+        type: "list",
+        items: [
+          "A one-time cash gift toward a bigger down payment, which shrinks the loan until they qualify alone.",
+          "Adding them as an [authorized user](/learn/credit/build-credit-from-zero) on your card, which shares your payment history without making you liable for a new loan.",
+          "Helping them shop credit unions, which often approve thinner credit files than banks.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Saying no to cosigning doesn't have to mean saying no to helping. 'I can't sign, but I can help another way' protects both the relationship and the rent money.",
+      },
+    ],
+    related: ["build-credit-from-zero", "what-hurts-your-score", "buying-a-used-car"],
+  },
+  {
+    slug: "balance-transfers-and-consolidation-loans",
+    topicId: "credit",
+    title: "Balance Transfers and Consolidation Loans",
+    dek: "Two legitimate tools for making expensive debt cheaper, and the fine print that decides whether they actually help.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "A balance transfer can pause interest for 12 to 21 months, for a 3% to 5% fee.",
+      "A consolidation loan trades many payments for one fixed one.",
+      "Neither tool shrinks the debt. They buy cheaper time to pay it down.",
+      "The trap is feeling done after the transfer and charging the old card back up.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Credit card interest around 21% to 24% means most of your payment feeds the interest, not the debt. Two tools exist specifically to cut that rate: the balance transfer and the consolidation loan. Used with a plan, either can save you real money. Used as a way to feel better without changing anything, they dig the hole deeper.",
+      },
+      {
+        type: "h2",
+        text: "Balance transfers: renting a 0% window",
+      },
+      {
+        type: "p",
+        text: "A balance transfer card takes your existing card balance and moves it to a new card with a 0% introductory rate, usually lasting 12 to 21 months. You pay a transfer fee, typically 3% to 5% of the amount moved, added to the balance. Moving $3,000 costs about $90 to $150 up front, and then every dollar you pay during the window hits the actual debt instead of interest.",
+      },
+      {
+        type: "p",
+        text: "The math works if, and only if, you can pay most of the balance off inside the window. When the intro period ends, the leftover balance starts charging the card's regular rate, which is just as high as the one you escaped. Divide your balance by the number of 0% months. That's your required monthly payment. If you can't realistically pay it, a transfer alone won't save you.",
+      },
+      {
+        type: "list",
+        items: [
+          "Approval usually takes a credit score in the high 600s or better.",
+          "New purchases on the card may not get the 0% rate or a grace period. Use the card for the old debt only.",
+          "Keep the old card open once it's paid off. Closing it raises your [credit utilization](/learn/credit/credit-utilization) and can drop your score right when it was recovering.",
+          "Miss a payment and many cards cancel the 0% deal on the spot.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Consolidation loans: one payment, fixed end date",
+      },
+      {
+        type: "p",
+        text: "A debt consolidation loan is a personal loan that pays off several debts at once, leaving you one fixed monthly payment at a fixed rate, usually over two to five years. For decent credit in 2026, personal loan rates commonly run 8% to 18%, well under card rates. Watch for an origination fee (often 1% to 8%, taken out of the loan before it reaches you) and compare the total cost, not just the rate.",
+      },
+      {
+        type: "key",
+        text: "Consolidation reorganizes debt; it doesn't reduce it. The win is a lower rate and a real end date. The loss happens when the freed-up cards fill back up and you end up with the loan AND new card debt.",
+      },
+      {
+        type: "h2",
+        text: "Which one, when",
+      },
+      {
+        type: "list",
+        items: [
+          "Balance under control and payable within about 18 months, credit still good: balance transfer usually wins.",
+          "Several debts, longer timeline, or you want one predictable payment: consolidation loan.",
+          "Struggling to make minimums at all: neither. A [nonprofit credit counselor](/learn/government-aid/debt-relief-options) is the right first call, and it's cheap or free.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Whichever you choose, pair it with a payoff plan. The [Debt Payoff Calculator](/tools/debt) shows what your new rate does to the timeline, and [how to pay off a credit card](/learn/credit/paying-off-credit-cards) covers the habits that keep it paid off.",
+      },
+    ],
+    related: ["paying-off-credit-cards", "credit-utilization", "debt-relief-options"],
+  },
 ];

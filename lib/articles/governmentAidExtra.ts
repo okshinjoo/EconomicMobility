@@ -1035,4 +1035,143 @@ export const governmentAidExtraArticles: Article[] = [
     ],
     related: ["what-is-debt-relief", "debt-relief-options", "what-happens-if-you-dont-pay-debts"],
   },
+  {
+    slug: "benefits-cliffs",
+    topicId: "government-aid",
+    title: "Benefits Cliffs: When a Raise Costs You Money",
+    dek: "Sometimes earning $50 more a month means losing $300 in help. Here's how to see the cliff before you step off it.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Some benefits end abruptly at an income line instead of phasing out.",
+      "A raise can genuinely leave your household with less each month.",
+      "You can check the math before accepting new hours or a new wage.",
+      "Long-term, growth usually wins. The goal is crossing cliffs on purpose.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Here's a problem almost nobody in power talks about honestly: help programs have income limits, and some of them are cliffs, not slopes. Stay a dollar under the line and you keep the benefit. Earn a dollar over and the whole thing can vanish. For a family getting help with food, health coverage, and child care, a small raise can trigger losses bigger than the raise itself. If that's ever happened to you, you weren't imagining it, and you did nothing wrong.",
+      },
+      {
+        type: "h2",
+        text: "Where the cliffs are",
+      },
+      {
+        type: "list",
+        items: [
+          "[SNAP](/learn/government-aid/snap-explained) uses a gross income test, 130% of the federal poverty line in most states, a bit over $1,700 a month for a single person under the guidelines in effect for 2026. Some states use higher limits, which softens the edge.",
+          "[Medicaid](/learn/government-aid/medicaid-explained) in expansion states ends near 138% of the poverty line. Crossing it means moving to a marketplace plan, which subsidies can make affordable, but rarely free.",
+          "Child care assistance and housing vouchers vary by state and often have the steepest cliffs of all, worth hundreds a month.",
+          "Not everything is a cliff: the [Earned Income Tax Credit](/learn/taxes/earned-income-tax-credit) phases out gradually, so more earnings never wipe out more than they add.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Do the math before, not after",
+      },
+      {
+        type: "steps",
+        items: [
+          "List what your household actually receives each month: food help, health coverage, child care, housing, utilities.",
+          "Before accepting a raise, extra shifts, or a second job, compare your new gross monthly income against each program's limit. The [per-state finder on our Resources page](/resources) links where to check yours.",
+          "If the new income lands just past a line, ask whether the timing can flex: some cliffs matter less crossed in January than in November, because programs count income over different periods.",
+          "Report income changes honestly and on time. Overpayments get clawed back later, at the worst possible moment.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Never quietly turn down growth to protect a benefit without doing the math first. Sometimes staying under the line is genuinely the right short-term call, but make it a calculation, not a fear.",
+      },
+      {
+        type: "h2",
+        text: "Crossing on purpose",
+      },
+      {
+        type: "p",
+        text: "The way through a cliff is momentum: a raise big enough to clear the loss, savings built up ([even a starter fund](/learn/investing/high-yield-savings-account)) to bridge the transition, and grabbing every gradual program (EITC, marketplace subsidies) on the far side. A one-time bump that costs you $100 a month stings; a career that keeps climbing buries the cliff behind you. If a raise would strand you mid-cliff, that's also a fact worth naming out loud to an employer: some will adjust hours or timing to help.",
+      },
+      {
+        type: "tip",
+        text: "Dial 211 or use your state's benefits calculator before a job change. Caseworkers and nonprofit navigators run cliff math every day and will do it with you for free.",
+      },
+    ],
+    related: ["benefits-you-qualify-for", "snap-explained", "earned-income-tax-credit"],
+  },
+  {
+    slug: "need-cash-fast",
+    topicId: "government-aid",
+    title: "Need Cash Fast? Your Options, Ranked",
+    dek: "When the car dies or the check comes up short, here's the full list, from cheapest to most dangerous.",
+    level: "Beginner",
+    readMinutes: 7,
+    takeaways: [
+      "There's a clear ranking, and payday loans are at the very bottom.",
+      "Asking the biller for a payment plan beats borrowing almost every time.",
+      "Credit unions make small emergency loans with capped rates.",
+      "The best option is the one that's over in a month, not the easiest one tonight.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Money emergencies don't wait for payday. When you need a few hundred dollars this week, the options in front of you are wildly unequal: some cost nothing, and one of them costs 400% a year. This is the whole menu, best to worst, so a bad week doesn't turn into a bad year.",
+      },
+      {
+        type: "h2",
+        text: "Before you borrow anything",
+      },
+      {
+        type: "steps",
+        items: [
+          "Ask the biller directly for more time or a payment plan. Utilities, hospitals, landlords, even mechanics say yes constantly. [What to pay first](/learn/budgeting/prioritizing-bills-when-money-is-tight) helps you triage while you negotiate.",
+          "Check for help you already qualify for: [utility and rent assistance](/learn/government-aid/utility-rent-assistance) exists precisely for this, and 211 connects you to local emergency funds.",
+          "Sell something or pick up one fast shift. Unsexy, interest-free.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Reasonable ways to borrow",
+      },
+      {
+        type: "list",
+        items: [
+          "Your emergency fund, if you have one. This is its job; spend it guilt-free and rebuild after.",
+          "A Payday Alternative Loan (PAL) from a federal credit union: $200 to $2,000, rates capped at 28%, repayment over months instead of two weeks. You may need to join the credit union, which often costs $5.",
+          "A small personal loan from a bank, credit union, or reputable online lender, with a fixed rate and fixed end date.",
+          "A 0% intro credit card if your credit allows, paid off within the intro window.",
+          "Borrowing from family, treated like a real loan: amount, date, and repayment written down, so the money problem doesn't become a family problem.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Expensive: think twice",
+      },
+      {
+        type: "list",
+        items: [
+          "Carrying the expense on a regular credit card. At 21% to 24%, fine for one tight month, corrosive as a habit.",
+          "A 401(k) loan: you repay yourself, but the money stops growing, and if you lose the job the balance can come due fast.",
+          "Buy-now-pay-later stacking: each plan looks harmless, and [four of them at once quietly become a payday-sized problem](/learn/credit/buy-now-pay-later).",
+          "Credit card cash advances: a fee up front, a higher rate than purchases, and interest that starts the same day, with no grace period.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Last resorts that usually make it worse",
+      },
+      {
+        type: "p",
+        text: "[Payday loans](/learn/government-aid/payday-loans-and-predatory-lending) and car title loans are built to trap: fees that work out to around 400% a year, two-week terms most borrowers can't meet, and rollovers that turn $300 into months of payments. A title loan can also cost you the car you need for work. If you're already caught in one, you're not stupid and you're not alone; that guide covers the exits, and a [nonprofit credit counselor](/learn/government-aid/debt-relief-options) can help you restructure the rest.",
+      },
+      {
+        type: "key",
+        text: "The ranking in one line: ask for time, then ask for help, then borrow cheap and boring, and never borrow at triple digits.",
+      },
+      {
+        type: "tip",
+        text: "Once this emergency passes, give future-you a head start: the [Starter Fund Sprint challenge](/challenges/starter-fund-sprint) walks you to your first $500 cushion, $20 at a time.",
+      },
+    ],
+    related: ["prioritizing-bills-when-money-is-tight", "payday-loans-and-predatory-lending", "utility-rent-assistance"],
+  },
 ];

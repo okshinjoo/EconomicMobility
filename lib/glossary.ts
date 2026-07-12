@@ -94,6 +94,7 @@ export const glossary: GlossaryTerm[] = [
     aliases: ["co-signer", "cosign"],
     definition:
       "To promise to repay someone else's loan if they can't. As a co-signer, the debt is legally yours too.",
+    article: "/learn/credit/cosigning-explained",
   },
 
   // --- Budgeting ---
@@ -837,6 +838,15 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Moving credit card debt onto a new card or loan with a lower interest rate. It only helps if the new rate is genuinely lower and you don't run the old card back up.",
     related: "credit",
+    article: "/learn/credit/balance-transfers-and-consolidation-loans",
+  },
+  {
+    slug: "benefits-cliff",
+    term: "benefits cliff",
+    aliases: ["benefit cliff"],
+    definition:
+      "An income line where a benefit ends all at once instead of phasing out, so a small raise can cost more in lost help than it adds in pay.",
+    article: "/learn/government-aid/benefits-cliffs",
   },
   {
     slug: "buy-now-pay-later",

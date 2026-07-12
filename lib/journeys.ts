@@ -92,7 +92,12 @@ export const journeys: Journey[] = [
         id: "yearone",
         milestone: "Run your first year on rails",
         why: "A month-by-month plan turns 'build credit' from a wish into a routine.",
-        articleSlugs: ["first-year-of-credit", "rent-reporting", "credit-freeze"],
+        articleSlugs: [
+          "first-year-of-credit",
+          "cosigning-explained",
+          "rent-reporting",
+          "credit-freeze",
+        ],
       },
     ],
   },
@@ -117,7 +122,11 @@ export const journeys: Journey[] = [
         id: "method",
         milestone: "Pick your payoff method and run the numbers",
         why: "Avalanche or snowball — a method you'll stick with beats a perfect one you won't.",
-        articleSlugs: ["paying-off-credit-cards", "debt-relief-options"],
+        articleSlugs: [
+          "paying-off-credit-cards",
+          "balance-transfers-and-consolidation-loans",
+          "debt-relief-options",
+        ],
         tool: { label: "Debt Payoff Calculator", href: "/tools/debt" },
       },
       {
@@ -136,9 +145,9 @@ export const journeys: Journey[] = [
         milestone: "Close the doors debt came in through",
         why: "The payday-loan and 'fix it fast' industries are waiting for a weak week.",
         articleSlugs: [
+          "need-cash-fast",
           "payday-loans-and-predatory-lending",
           "avoiding-debt-scams",
-          "buy-now-pay-later",
         ],
       },
     ],
