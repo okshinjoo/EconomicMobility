@@ -67,13 +67,18 @@ const inputCls =
   "w-full rounded-xl border border-sand bg-paper px-4 py-3 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none";
 const labelCls = "mb-1.5 block text-sm font-medium text-ink";
 
-/** The overlay's close control — integrated into the sheet chrome. */
+/** The close control — router.back() to exactly where you were, falling
+ *  back to home when there's no history (fresh tab / email landing). */
 function CloseX({ className = "" }: { className?: string }) {
   const router = useRouter();
+  const close = () => {
+    if (window.history.length > 1) router.back();
+    else router.push("/");
+  };
   return (
     <button
       type="button"
-      onClick={() => router.back()}
+      onClick={close}
       aria-label="Close and go back"
       title="Close (Esc)"
       className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#eee7d9] bg-white text-stone transition-colors hover:bg-paper hover:text-ink ${className}`}
@@ -848,8 +853,11 @@ export function ProfileEditor({
             {overlay ? (
               <CloseX />
             ) : (
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
-                {initial}
+              <span className="flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
+                  {initial}
+                </span>
+                <CloseX />
               </span>
             )}
           </div>
