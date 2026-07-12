@@ -43,6 +43,7 @@ import {
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
+import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 import {
   useMemberData,
   FlatStatCards,
@@ -653,22 +654,43 @@ export function ProfileEditor({
   const [pwNotice, setPwNotice] = useState<string | null>(null);
   const [pwError, setPwError] = useState<string | null>(null);
   const [pwBusy, setPwBusy] = useState(false);
-  // "You're in" banner: only when this load came from an auth redirect AND
-  // the account was confirmed in the last few minutes (fresh verification or
-  // a brand-new Google signup) — routine sign-ins never see it. MUST live
-  // above the loading early-return (hooks can't render conditionally).
+  // First-sign-in congrats: shown exactly once per account, ever. Fires for
+  // a genuinely new account (created within the last day — covers email AND
+  // Google signups, whichever door they came through) or a fresh-verification
+  // redirect. The empower:welcomed map is union-synced with the account, so a
+  // second device won't repeat it. MUST live above the loading early-return
+  // (hooks can't render conditionally).
   const [showWelcome, setShowWelcome] = useState(() => {
+    const welcomed =
+      loadJSON<Record<string, number>>(STORAGE_KEYS.welcomed) ?? {};
+    if (welcomed[session.user.id]) return false;
+    const createdAt = session.user.created_at
+      ? Date.parse(session.user.created_at)
+      : 0;
     const confirmedAt = session.user.email_confirmed_at
       ? Date.parse(session.user.email_confirmed_at)
       : 0;
     return (
-      fromAuthRedirect &&
-      confirmedAt > 0 &&
-      Date.now() - confirmedAt < 5 * 60_000
+      (createdAt > 0 && Date.now() - createdAt < 24 * 60 * 60_000) ||
+      (fromAuthRedirect &&
+        confirmedAt > 0 &&
+        Date.now() - confirmedAt < 5 * 60_000)
     );
   });
 
   const userId = session.user.id;
+  // Record the welcome the moment it renders, so it can never show twice
+  // (dismissed or not, navigating away counts as seen).
+  useEffect(() => {
+    if (!showWelcome) return;
+    const welcomed =
+      loadJSON<Record<string, number>>(STORAGE_KEYS.welcomed) ?? {};
+    if (!welcomed[userId]) {
+      welcomed[userId] = Date.now();
+      saveJSON(STORAGE_KEYS.welcomed, welcomed);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showWelcome, userId]);
   // Member progress for the stats row + Overview tab; re-reads once the
   // login sync merge lands (syncedKeys flips from null).
   const member = useMemberData(paths, badgeSources, syncedKeys);
@@ -912,9 +934,21 @@ export function ProfileEditor({
                         You&apos;re in — welcome to Empower.
                       </p>
                       <p className="mt-0.5 text-sm leading-6 text-stone">
-                        Your email is verified and everything you&apos;ve done
-                        on this device is now saved to your account.
+                        Your account is live, and everything you&apos;ve done
+                        on this device is saved to it. Take a minute to set up
+                        your profile: your name, what you&apos;re up to, and
+                        the goals you&apos;re working toward.
                       </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          selectTab("about");
+                          setShowWelcome(false);
+                        }}
+                        className="mt-3 rounded-lg bg-forest px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-forest-700"
+                      >
+                        Set up your profile
+                      </button>
                     </div>
                   </div>
                   <button

@@ -29,6 +29,7 @@ const MAP_KEYS = new Set([
   "empower:challenge-progress:v1",
   "empower:community-likes:v1",
   "empower:flashcards:v1",
+  "empower:welcomed:v1",
 ]);
 
 // Never synced: the profile mirror is managed by the account panel itself.

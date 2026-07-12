@@ -38,6 +38,7 @@ const mockSession = {
     id: "00000000-0000-0000-0000-00000000dev0",
     email: "dev-preview@example.com",
     email_confirmed_at: new Date().toISOString(),
+    created_at: new Date().toISOString(),
   },
 } as Session;
 

@@ -27,6 +27,8 @@ export const STORAGE_KEYS = {
   resourcesState: "empower:resources-state:v1",
   readArticles: "empower:read-articles:v1",
   realityCheck: "empower:reality-check:v1",
+  // userId -> epoch ms of the one-time first-sign-in welcome (union-synced).
+  welcomed: "empower:welcomed:v1",
   netWorth: "empower:net-worth:v1",
   compareOffers: "empower:compare-offers:v1",
   jars: "empower:jars:v1",
