@@ -832,6 +832,7 @@ export default function CommunityFeed({
   // full-post feed. Choice persists per device.
   const [view, setView] = useState<"compact" | "card">("compact");
   const [channelQuery, setChannelQuery] = useState("");
+  const [postQuery, setPostQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [showComposer, setShowComposer] = useState(false);
 
@@ -908,10 +909,33 @@ export default function CommunityFeed({
   };
 
   const followSet = new Set(follows);
+  const pq = postQuery.trim().toLowerCase();
+  const matchesQuery = (p: CommunityPost): boolean => {
+    if (!pq) return true;
+    if (p.title.toLowerCase().includes(pq)) return true;
+    if (p.author.toLowerCase().includes(pq)) return true;
+    if (p.body.some((para) => para.toLowerCase().includes(pq))) return true;
+    for (const c of p.comments) {
+      if (
+        c.text.toLowerCase().includes(pq) ||
+        c.author.toLowerCase().includes(pq)
+      )
+        return true;
+      for (const r of c.replies ?? []) {
+        if (
+          r.text.toLowerCase().includes(pq) ||
+          r.author.toLowerCase().includes(pq)
+        )
+          return true;
+      }
+    }
+    return false;
+  };
   const inChannel = posts.filter(
     (p) =>
       (active === "all" || channelMatches(p.channel, active)) &&
-      (!followingOnly || followSet.has(memberSlug(p.author)))
+      (!followingOnly || followSet.has(memberSlug(p.author))) &&
+      matchesQuery(p)
   );
   const postTime = (p: CommunityPost) => Date.parse(`${p.date}T12:00:00`);
   const engagement = (p: CommunityPost) => p.comments.length;
@@ -1202,6 +1226,38 @@ export default function CommunityFeed({
         </div>
       )}
 
+      {/* search posts */}
+      <div>
+        <div className="relative">
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone/60" />
+          <input
+            value={postQuery}
+            onChange={(e) => setPostQuery(e.target.value)}
+            placeholder="Search posts, authors, and comments…"
+            aria-label="Search posts"
+            className="w-full rounded-xl border border-sand bg-cream py-2.5 pl-10 pr-9 text-[0.95rem] text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
+          />
+          {postQuery && (
+            <button
+              type="button"
+              onClick={() => setPostQuery("")}
+              aria-label="Clear post search"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-1 text-stone hover:text-ink"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+        {pq && (
+          <p className="mt-1.5 px-1 text-xs font-medium text-stone">
+            {visiblePosts.length}{" "}
+            {visiblePosts.length === 1 ? "result" : "results"}{" "}
+            for &ldquo;{postQuery.trim()}&rdquo;
+            {active !== "all" && <> in {getChannel(active).name}</>}
+          </p>
+        )}
+      </div>
+
       {/* sort bar */}
       <div className="flex flex-wrap items-center gap-1.5">
         {!showComposer && (
@@ -1314,7 +1370,23 @@ export default function CommunityFeed({
         </article>
       ))}
 
+      {visiblePosts.length === 0 && pq && (
+        <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
+          No posts match &ldquo;{postQuery.trim()}&rdquo;
+          {active !== "all" && <> in {getChannel(active).name}</>}. Try fewer
+          words, another channel, or{" "}
+          <button
+            type="button"
+            onClick={() => setPostQuery("")}
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-2"
+          >
+            clear the search
+          </button>
+          .
+        </p>
+      )}
       {visiblePosts.length === 0 &&
+        !pq &&
         !followingOnly &&
         sort !== "top" &&
         active !== "all" && (
