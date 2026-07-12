@@ -129,7 +129,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
       {open && (
         <div
           ref={panelRef}
-          className="pointer-events-auto absolute bottom-5 right-5 flex h-[min(72vh,580px)] w-[min(92vw,384px)] flex-col overflow-hidden rounded-2xl border border-sand bg-paper shadow-2xl"
+          className="pointer-events-auto absolute bottom-5 right-5 flex h-[min(82vh,700px)] w-[min(92vw,448px)] flex-col overflow-hidden rounded-2xl border border-sand bg-paper shadow-2xl"
         >
           <div className="flex items-center justify-between gap-2 bg-forest px-4 py-3 text-cream">
             <div className="flex items-center gap-2">
