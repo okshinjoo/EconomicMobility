@@ -22,8 +22,11 @@ import {
   LayoutGrid,
   Plus,
   X,
-  ChevronUp,
   Search,
+  ArrowBigUp,
+  Share2,
+  Bookmark,
+  Check as CheckIcon,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -48,6 +51,7 @@ const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
 const PINNED_CHANNELS_KEY = "empower:community-pinned-channels:v1";
 const VIEW_KEY = "empower:community-view:v1";
+const SAVED_KEY = "empower:community-saved:v1";
 const PENDING_POSTS_KEY = "empower:community-posts:v1";
 const LIKES_KEY = "empower:community-likes:v1";
 
@@ -574,17 +578,14 @@ function CommentItem({
 function MiniCard({
   post,
   commentTotal,
-  onOpen,
 }: {
   post: CommunityPost;
   commentTotal: number;
-  onOpen: () => void;
 }) {
   return (
-    <button
-      type="button"
+    <Link
       id={`post-${post.id}`}
-      onClick={onOpen}
+      href={`/community/post/${post.id}`}
       className="group block w-full scroll-mt-24 rounded-2xl border-2 border-ink bg-cream p-5 text-left shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
     >
       <div className="flex flex-wrap items-center gap-2">
@@ -628,7 +629,7 @@ function MiniCard({
           Read &amp; introduce yourself →
         </span>
       </p>
-    </button>
+    </Link>
   );
 }
 
@@ -637,20 +638,17 @@ function MiniCard({
 function CompactRow({
   post,
   commentTotal,
-  onOpen,
   onTag,
 }: {
   post: CommunityPost;
   commentTotal: number;
-  onOpen: () => void;
   onTag: (id: ChannelId) => void;
 }) {
   const { hub, tag } = usePostChips(post);
   return (
-    <button
-      type="button"
+    <Link
       id={`post-${post.id}`}
-      onClick={onOpen}
+      href={`/community/post/${post.id}`}
       className="group block w-full scroll-mt-24 rounded-xl border border-sand bg-cream px-4 py-3 text-left transition-colors hover:border-ink/25"
     >
       <div className="flex flex-wrap items-center gap-2">
@@ -670,11 +668,13 @@ function CompactRow({
             role="button"
             tabIndex={0}
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onTag(tag.id);
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
                 e.stopPropagation();
                 onTag(tag.id);
               }
@@ -702,7 +702,7 @@ function CompactRow({
             : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
         </span>
       </p>
-    </button>
+    </Link>
   );
 }
 
@@ -713,19 +713,44 @@ function PostCard({
   pendingMap,
   authorMeta,
   onTag,
+  full = false,
+  saved = false,
+  onToggleSave,
 }: {
   post: CommunityPost;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingMap: PendingCommentMap;
   authorMeta: Record<string, { cred: number; earned: string[] }>;
-  onTag: (id: ChannelId) => void;
+  onTag?: (id: ChannelId) => void;
+  /** true on the post's own page: comments + forms render. In the feed
+   *  (false) the card is Reddit-style — content + action bar only. */
+  full?: boolean;
+  saved?: boolean;
+  onToggleSave?: () => void;
 }) {
   const { hub, tag } = usePostChips(post);
   const pendingComments = pendingMap[post.id] ?? [];
   const commentTotal = commentTotalFor(post, pendingMap);
-  const [open, setOpen] = useState(post.comments.length > 0);
+  const [open, setOpen] = useState(full && post.comments.length > 0);
+  const [copied, setCopied] = useState(false);
   const liked = Boolean(likes[post.id]);
+
+  const share = async () => {
+    const url = `${window.location.origin}/community/post/${post.id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   return (
     <article
@@ -762,7 +787,7 @@ function PostCard({
           >
             {hub.name}
           </span>
-          {tag && (
+          {tag && onTag && (
             <button
               type="button"
               onClick={() => onTag(tag.id)}
@@ -795,33 +820,82 @@ function PostCard({
         </p>
       )}
 
-      {/* Actions */}
-      <div className="mt-5 flex items-center gap-5 border-t border-sand pt-4">
+      {/* Reddit-style action bar */}
+      <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-sand pt-3">
         <button
           type="button"
           onClick={() => onToggleLike(post.id)}
           aria-pressed={liked}
-          className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${
-            liked ? "text-terracotta" : "text-stone hover:text-ink"
+          title="Like (only you see this)"
+          className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-bold transition-colors ${
+            liked
+              ? "bg-terracotta/15 text-terracotta"
+              : "text-stone hover:bg-paper hover:text-ink"
           }`}
         >
-          <Heart className="h-4 w-4" fill={liked ? "currentColor" : "none"} />
+          <ArrowBigUp
+            className="h-[18px] w-[18px]"
+            fill={liked ? "currentColor" : "none"}
+          />
           {liked ? "Liked" : "Like"}
         </button>
+        {full ? (
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold text-stone transition-colors hover:bg-paper hover:text-ink"
+          >
+            <MessageCircle className="h-4 w-4" />
+            {commentTotal === 0
+              ? "Comment"
+              : `${commentTotal} Comment${commentTotal === 1 ? "" : "s"}`}
+          </button>
+        ) : (
+          <Link
+            href={`/community/post/${post.id}`}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold text-stone transition-colors hover:bg-paper hover:text-ink"
+          >
+            <MessageCircle className="h-4 w-4" />
+            {commentTotal === 0
+              ? "Comment"
+              : `${commentTotal} Comment${commentTotal === 1 ? "" : "s"}`}
+          </Link>
+        )}
         <button
           type="button"
-          onClick={() => setOpen((o) => !o)}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone transition-colors hover:text-ink"
+          onClick={share}
+          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold text-stone transition-colors hover:bg-paper hover:text-ink"
         >
-          <MessageCircle className="h-4 w-4" />
-          {commentTotal === 0
-            ? "Comment"
-            : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
+          {copied ? (
+            <CheckIcon className="h-4 w-4 text-forest" />
+          ) : (
+            <Share2 className="h-4 w-4" />
+          )}
+          {copied ? "Copied" : "Share"}
         </button>
+        {onToggleSave && (
+          <button
+            type="button"
+            onClick={onToggleSave}
+            aria-pressed={saved}
+            title={saved ? "Unsave" : "Save (only you see this)"}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold transition-colors ${
+              saved
+                ? "bg-amber/20 text-amber-deep"
+                : "text-stone hover:bg-paper hover:text-ink"
+            }`}
+          >
+            <Bookmark
+              className="h-4 w-4"
+              fill={saved ? "currentColor" : "none"}
+            />
+            {saved ? "Saved" : "Save"}
+          </button>
+        )}
       </div>
 
-      {/* Comments: always visible while empty or when you have one pending */}
-      {(open || commentTotal === 0 || pendingComments.length > 0) && (
+      {/* Comments render only on the post's own page (Reddit model) */}
+      {full && (open || commentTotal === 0 || pendingComments.length > 0) && (
         <div className="mt-2">
           {post.comments.map((c) => (
             <CommentItem
@@ -853,6 +927,60 @@ function PostCard({
   );
 }
 
+/** The full post view for /community/post/[id]: same components, wired to
+ *  this device's likes/saves/pending state, comments + forms included. */
+export function SinglePost({
+  post,
+  authorMeta,
+}: {
+  post: CommunityPost;
+  authorMeta: Record<string, { cred: number; earned: string[] }>;
+}) {
+  const [likes, setLikes] = useState<Record<string, boolean>>({});
+  const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
+  const [savedPosts, setSavedPosts] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const refresh = () => {
+      setLikes(loadJSON<Record<string, boolean>>(LIKES_KEY) ?? {});
+      setPendingComments(loadJSON<PendingCommentMap>(PENDING_COMMENTS_KEY) ?? {});
+      setSavedPosts(loadJSON<Record<string, boolean>>(SAVED_KEY) ?? {});
+    };
+    refresh();
+    window.addEventListener("empower:community-updated", refresh);
+    return () => window.removeEventListener("empower:community-updated", refresh);
+  }, []);
+
+  const toggleLike = (key: string) => {
+    setLikes((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      saveJSON(LIKES_KEY, next);
+      return next;
+    });
+  };
+  const toggleSaved = () => {
+    setSavedPosts((prev) => {
+      const next = { ...prev, [post.id]: !prev[post.id] };
+      if (!next[post.id]) delete next[post.id];
+      saveJSON(SAVED_KEY, next);
+      return next;
+    });
+  };
+
+  return (
+    <PostCard
+      post={post}
+      likes={likes}
+      onToggleLike={toggleLike}
+      pendingMap={pendingComments}
+      authorMeta={authorMeta}
+      full
+      saved={Boolean(savedPosts[post.id])}
+      onToggleSave={toggleSaved}
+    />
+  );
+}
+
 export default function CommunityFeed({
   posts,
   authorMeta = {},
@@ -875,17 +1003,20 @@ export default function CommunityFeed({
   const [view, setView] = useState<"compact" | "card">("compact");
   const [channelQuery, setChannelQuery] = useState("");
   const [postQuery, setPostQuery] = useState("");
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [showComposer, setShowComposer] = useState(false);
+  const [savedPosts, setSavedPosts] = useState<Record<string, boolean>>({});
+  const [savedOnly, setSavedOnly] = useState(false);
 
   useEffect(() => {
     const v = loadJSON<string>(VIEW_KEY);
     if (v === "card" || v === "compact") setView(v);
-    // Deep links (/community#post-<id>) must open the post even in
-    // compact view.
+    setSavedPosts(loadJSON<Record<string, boolean>>(SAVED_KEY) ?? {});
+    // Legacy deep links (/community#post-<id>) now live on post pages.
     const hash = window.location.hash;
     if (hash.startsWith("#post-")) {
-      setExpanded(new Set([hash.slice("#post-".length)]));
+      window.location.replace(
+        `/community/post/${hash.slice("#post-".length)}`
+      );
     }
   }, []);
 
@@ -894,11 +1025,11 @@ export default function CommunityFeed({
     saveJSON(VIEW_KEY, v);
   };
 
-  const toggleExpanded = (id: string) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+  const toggleSaved = (id: string) => {
+    setSavedPosts((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      if (!next[id]) delete next[id];
+      saveJSON(SAVED_KEY, next);
       return next;
     });
   };
@@ -977,6 +1108,7 @@ export default function CommunityFeed({
     (p) =>
       (active === "all" || channelMatches(p.channel, active)) &&
       (!followingOnly || followSet.has(memberSlug(p.author))) &&
+      (!savedOnly || Boolean(savedPosts[p.id])) &&
       matchesQuery(p)
   );
   const postTime = (p: CommunityPost) => Date.parse(`${p.date}T12:00:00`);
@@ -1400,6 +1532,20 @@ export default function CommunityFeed({
           <UserCheck className="h-3.5 w-3.5" strokeWidth={2} />
           Following
         </button>
+        <button
+          type="button"
+          onClick={() => setSavedOnly((f) => !f)}
+          aria-pressed={savedOnly}
+          title="Only posts you saved"
+          className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
+            savedOnly
+              ? "bg-forest text-cream"
+              : "border border-sand bg-cream text-stone hover:text-ink"
+          }`}
+        >
+          <Bookmark className="h-3.5 w-3.5" strokeWidth={2} />
+          Saved
+        </button>
         </div>
         {sort === "top" && (
           <select
@@ -1470,7 +1616,12 @@ export default function CommunityFeed({
             and be the first.
           </p>
         )}
-      {visiblePosts.length === 0 && followingOnly && (
+      {visiblePosts.length === 0 && savedOnly && !pq && (
+        <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
+          Nothing saved yet — hit Save on any post and it lands here.
+        </p>
+      )}
+      {visiblePosts.length === 0 && followingOnly && !savedOnly && (
         <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
           No posts from members you follow yet. Open someone&apos;s profile
           (click their name on any post) and hit Follow.
@@ -1482,40 +1633,29 @@ export default function CommunityFeed({
         </p>
       )}
       {visiblePosts.map((post) =>
-        view === "card" || expanded.has(post.id) ? (
-          <div key={post.id}>
-            {view === "compact" && (
-              <button
-                type="button"
-                onClick={() => toggleExpanded(post.id)}
-                className="mb-1 inline-flex items-center gap-1 text-xs font-semibold text-stone transition-colors hover:text-ink"
-              >
-                <ChevronUp className="h-3.5 w-3.5" />
-                Collapse
-              </button>
-            )}
-            <PostCard
-              post={post}
-              likes={likes}
-              onToggleLike={toggleLike}
-              pendingMap={pendingComments}
-              authorMeta={authorMeta}
-              onTag={setActive}
-            />
-          </div>
+        view === "card" ? (
+          <PostCard
+            key={post.id}
+            post={post}
+            likes={likes}
+            onToggleLike={toggleLike}
+            pendingMap={pendingComments}
+            authorMeta={authorMeta}
+            onTag={setActive}
+            saved={Boolean(savedPosts[post.id])}
+            onToggleSave={() => toggleSaved(post.id)}
+          />
         ) : post.pinned ? (
           <MiniCard
             key={post.id}
             post={post}
             commentTotal={commentTotalFor(post, pendingComments)}
-            onOpen={() => toggleExpanded(post.id)}
           />
         ) : (
           <CompactRow
             key={post.id}
             post={post}
             commentTotal={commentTotalFor(post, pendingComments)}
-            onOpen={() => toggleExpanded(post.id)}
             onTag={setActive}
           />
         )

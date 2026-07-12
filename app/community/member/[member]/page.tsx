@@ -177,7 +177,7 @@ export default async function MemberPage({
                 {posts.map((c) => (
                   <Link
                     key={`${c.postId}-post`}
-                    href={`/community#post-${c.postId}`}
+                    href={`/community/post/${c.postId}`}
                     className="group flex items-center justify-between gap-4 rounded-2xl border border-sand bg-cream p-5 transition-colors hover:border-ink/20"
                   >
                     <div className="min-w-0">
@@ -210,7 +210,7 @@ export default async function MemberPage({
                 {commentsAndReplies.map((c, i) => (
                   <Link
                     key={`${c.postId}-${i}`}
-                    href={`/community#post-${c.postId}`}
+                    href={`/community/post/${c.postId}`}
                     className="group block rounded-2xl border border-sand bg-cream p-5 transition-colors hover:border-ink/20"
                   >
                     <p className="text-[0.95rem] leading-6 text-stone">

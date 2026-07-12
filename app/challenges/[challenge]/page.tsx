@@ -63,7 +63,7 @@ export default async function ChallengePage({
             {found.description}
           </p>
           <Link
-            href={`/community#post-${found.communityPostId}`}
+            href={`/community/post/${found.communityPostId}`}
             className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             <MessageCircle className="h-4 w-4" />

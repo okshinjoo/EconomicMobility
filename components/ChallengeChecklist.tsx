@@ -202,7 +202,7 @@ export default function ChallengeChecklist({
               went; your version helps the next person.
             </p>
             <Link
-              href={`/community#post-${challenge.communityPostId}`}
+              href={`/community/post/${challenge.communityPostId}`}
               className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               <MessageCircle className="h-4 w-4" />
