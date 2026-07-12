@@ -68,14 +68,14 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
             >
               <span
                 aria-hidden
-                className="shrink-0 font-display text-2xl font-bold text-terracotta sm:text-3xl"
+                className="shrink-0 font-display text-2xl font-bold text-terracotta/30 transition-colors duration-200 group-hover:text-terracotta sm:text-3xl"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="flex-1 font-display text-lg font-semibold leading-snug text-ink sm:text-xl">
                 {item.q}
               </span>
-              <span className="hidden shrink-0 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors group-hover:text-ink sm:block">
+              <span className="hidden shrink-0 text-sm font-semibold text-stone underline decoration-stone/25 decoration-2 underline-offset-4 transition-colors duration-200 group-hover:text-amber-deep group-hover:decoration-amber sm:block">
                 Read the guide
               </span>
             </Link>
