@@ -241,9 +241,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live-feeling strip of real questions from the library */}
+      {/* Value-prop marquee (Base44 swap, July 2026) — counts are live. */}
       <Ticker
-        items={startingQuestions.map((q) => ({ label: q.q, href: q.href }))}
+        tone="amber"
+        items={[
+          { label: "No sign-up required", href: "/start-here" },
+          { label: `${guideTotal} plain-English guides`, href: "/learn" },
+          { label: `${calculatorTotal} free calculators`, href: "/tools" },
+          { label: "Built for real people", href: "/about" },
+          { label: "Free forever", href: "/about" },
+          { label: "No paywall", href: "/start-here" },
+        ]}
       />
 
       {/* The library, in numbers — every figure derived live from the data
