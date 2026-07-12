@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Heart, MessageCircle, Send, Loader2, Clock3 } from "lucide-react";
-import type { CommunityPost } from "@/lib/communityFeed";
+import {
+  CHANNELS,
+  getChannel,
+  type ChannelId,
+  type CommunityPost,
+} from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
 import { communityTag, readLocalProfile } from "@/lib/profile";
 
@@ -28,6 +33,7 @@ interface PendingPost {
   author: string;
   text: string;
   at: number;
+  channel?: ChannelId;
 }
 
 type SendStatus = "idle" | "sending" | "error";
@@ -90,11 +96,17 @@ function PendingChip() {
 }
 
 /** The "share something" composer at the top of the feed. */
-function Composer() {
+function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
+  const [channel, setChannel] = useState<ChannelId>("questions");
   const [status, setStatus] = useState<SendStatus>("idle");
   const [sent, setSent] = useState(false);
+
+  // Follow the filter: browsing a channel preselects it in the picker.
+  useEffect(() => {
+    if (activeChannel !== "all") setChannel(activeChannel);
+  }, [activeChannel]);
 
   // Signed-in members with a display name get it prefilled (still editable).
   useEffect(() => {
@@ -107,7 +119,8 @@ function Composer() {
     if (!text.trim()) return;
     setStatus("sending");
     const ok = await submitToInbox({
-      subject: "New community post for review",
+      subject: `New community post for review (${getChannel(channel).name})`,
+      channel: getChannel(channel).name,
       author: name.trim() || "Anonymous",
       post: text.trim(),
     });
@@ -116,7 +129,12 @@ function Composer() {
       return;
     }
     const pending = loadJSON<PendingPost[]>(PENDING_POSTS_KEY) ?? [];
-    pending.unshift({ author: name.trim() || "Anonymous", text: text.trim(), at: Date.now() });
+    pending.unshift({
+      author: name.trim() || "Anonymous",
+      text: text.trim(),
+      at: Date.now(),
+      channel,
+    });
     saveJSON(PENDING_POSTS_KEY, pending);
     setText("");
     setName("");
@@ -139,9 +157,33 @@ function Composer() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={3}
-        placeholder="No account needed. Posts are reviewed before they appear for everyone."
+        placeholder={
+          channel === "say-hello"
+            ? "Introduce yourself: first name, where you're at in life, what you're working toward…"
+            : "No account needed. Posts are reviewed before they appear for everyone."
+        }
         className="mt-3 w-full rounded-lg border border-sand bg-paper px-4 py-3 text-[0.95rem] leading-6 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
       />
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <label
+          htmlFor="composer-channel"
+          className="text-xs font-semibold uppercase tracking-wide text-stone"
+        >
+          Post in
+        </label>
+        <select
+          id="composer-channel"
+          value={channel}
+          onChange={(e) => setChannel(e.target.value as ChannelId)}
+          className="rounded-lg border border-sand bg-paper px-3 py-1.5 text-sm font-semibold text-ink focus:border-amber focus:outline-none"
+        >
+          {CHANNELS.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <input
           type="text"
@@ -292,6 +334,22 @@ function PostCard({
           </p>
           <p className="text-xs font-medium text-stone">{formatDate(post.date)}</p>
         </div>
+        <div className="ml-auto flex flex-wrap items-center justify-end gap-1.5">
+          {post.pinned && (
+            <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
+              Pinned
+            </span>
+          )}
+          <span
+            className="rounded-md px-2 py-0.5 text-[11px] font-bold"
+            style={{
+              color: getChannel(post.channel).color,
+              background: `${getChannel(post.channel).color}1a`,
+            }}
+          >
+            {getChannel(post.channel).name}
+          </span>
+        </div>
       </div>
 
       <h2 className="mt-4 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
@@ -378,6 +436,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
+  const [active, setActive] = useState<"all" | ChannelId>("all");
 
   useEffect(() => {
     const refresh = () => {
@@ -398,12 +457,67 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
     });
   };
 
+  const visiblePosts = [...posts]
+    .filter((p) => active === "all" || p.channel === active)
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+  const visiblePending = pendingPosts.filter(
+    (p) => active === "all" || p.channel === active || !p.channel
+  );
+  const countFor = (id: ChannelId) =>
+    posts.filter((p) => p.channel === id).length;
+
   return (
     <div className="space-y-5">
-      <Composer />
+      {/* channel bar */}
+      <div className="flex gap-1.5 overflow-x-auto pb-1">
+        <button
+          type="button"
+          onClick={() => setActive("all")}
+          aria-pressed={active === "all"}
+          className={`whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors ${
+            active === "all"
+              ? "bg-ink text-cream"
+              : "border border-sand bg-cream text-stone hover:text-ink"
+          }`}
+        >
+          All posts
+        </button>
+        {CHANNELS.map((c) => (
+          <button
+            key={c.id}
+            type="button"
+            onClick={() => setActive(c.id)}
+            aria-pressed={active === c.id}
+            title={c.tagline}
+            className={`whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors ${
+              active === c.id
+                ? "bg-ink text-cream"
+                : "border border-sand bg-cream text-stone hover:text-ink"
+            }`}
+          >
+            {c.name}
+            <span
+              className={`ml-1.5 text-xs font-bold ${
+                active === c.id ? "text-cream/60" : "text-stone/60"
+              }`}
+            >
+              {countFor(c.id)}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* the active channel's one-line intro */}
+      {active !== "all" && (
+        <p className="px-1 text-sm font-medium text-stone">
+          {getChannel(active).tagline}
+        </p>
+      )}
+
+      <Composer activeChannel={active} />
 
       {/* The visitor's own posts awaiting review */}
-      {pendingPosts.map((p) => (
+      {visiblePending.map((p) => (
         <article
           key={p.at}
           className="rounded-2xl border-2 border-dashed border-amber/60 bg-cream p-5 sm:p-7"
@@ -422,7 +536,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
         </article>
       ))}
 
-      {posts.map((post) => (
+      {visiblePosts.map((post) => (
         <PostCard
           key={post.id}
           post={post}

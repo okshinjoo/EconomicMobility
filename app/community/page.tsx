@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
 import CommunityFeed from "@/components/CommunityFeed";
 import { communityPosts } from "@/lib/communityFeed";
+import { allArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Community | Empower — Economic Mobility Project",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityPage() {
+  const guideTotal = allArticles.length;
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
@@ -33,10 +35,10 @@ export default function CommunityPage() {
             <span className="italic text-amber">together.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/80">
-            Wins, questions, and honest money conversations from people
-            figuring it out — no account, no real name required. Everything is
-            reviewed by a human before it appears for everyone, so it stays
-            kind and useful.
+            Rooms for every conversation: say hello, share a win, ask the
+            question you&apos;ve been sitting on. No account, no real name
+            required — and everything is reviewed by a human before it appears
+            for everyone, so it stays kind and useful.
           </p>
         </div>
       </section>
@@ -99,7 +101,7 @@ export default function CommunityPage() {
                 >
                   library
                 </Link>{" "}
-                has 151 plain-English guides when a thread sparks something.
+                has {guideTotal} plain-English guides when a thread sparks something.
               </p>
             </div>
           </aside>
