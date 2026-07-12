@@ -1,9 +1,55 @@
-# Accounts & Authentication — Deferred Plan
+# Accounts & Authentication
 
-Status: **planned, not yet built.** The user wants real accounts; we deliberately
-sequenced a localStorage "pick up where you left off" layer first (shipped) and
-deferred full auth until the triggers below are met. This doc is the commitment
-and the build spec so the eventual implementation is a clean add, not a redesign.
+Status: **BUILT (July 2026), ships dark until env vars are set.** Password
+auth with email verification + reset, profile (display name / role tag /
+show-tag toggle), full progress sync, /privacy policy, keep-alive cron. The
+feature is invisible sitewide until `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` exist (see `lib/supabase.ts`
+`accountsEnabled`). Original deferred-plan rationale kept below for history.
+
+## Go-live checklist (owner + assistant)
+
+1. Owner creates a free Supabase project (supabase.com → New project).
+2. Owner runs `docs/supabase-schema.sql` in the project's SQL Editor (paste →
+   Run) — creates `profiles` + `user_data` with self-only RLS.
+3. Supabase dashboard → Authentication → URL Configuration: set Site URL to
+   `https://economicmobilityproject.org` and add
+   `https://economicmobilityproject.org/account` and `/account/reset` to
+   Redirect URLs.
+4. Add `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` to Vercel
+   (Project → Settings → Environment Variables) and to local `.env.local`.
+   Redeploy. Every account surface turns on by itself.
+5. BEFORE announcing: connect custom SMTP (Supabase → Auth → SMTP) via a free
+   Resend/Brevo account on the project domain — the built-in sender is
+   rate-limited to a handful of emails/hour and sends from supabase.io.
+6. When signups are real: upgrade Supabase to Pro ($25/mo) for no-pausing +
+   daily backups. Until then the `/api/keepalive` daily cron (vercel.json)
+   prevents free-tier pausing.
+
+## What was built (file map)
+
+- `lib/supabase.ts` — client, inert until env vars exist.
+- `docs/supabase-schema.sql` — tables + RLS (run once in Supabase).
+- `app/account/page.tsx` + `components/AccountPanel.tsx` — sign-up (password,
+  13+ checkbox, verification-link notice), sign-in, forgot-password, and the
+  signed-in profile editor (display name, student/working/retired role,
+  show-tag toggle). Profile mirrors to `empower:profile:v1` locally.
+- `app/account/reset/page.tsx` + `components/ResetPasswordForm.tsx` — the
+  reset-link landing page.
+- `lib/accountSync.ts` + the `setStorageMirror` hook in `lib/storage.ts` —
+  on-login merge (map keys union across devices; snapshots prefer local) and
+  a debounced live mirror of every subsequent `saveJSON`.
+- `components/AccountButton.tsx` in the Header (+ MobileNav "Your account"
+  link, Footer links) — hidden until configured.
+- `lib/profile.ts` — `communityTag()`; AskQuestion + CommunityFeed
+  submissions carry `member_tag`, composer name fields prefill.
+- `app/privacy/page.tsx` — plain-English policy (13+ for accounts, deletion
+  via Help@ email).
+- `app/api/keepalive/route.ts` + `vercel.json` cron.
+
+---
+
+# Original deferred plan (historical)
 
 ## Why deferred (revisit, don't forget)
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, ShieldCheck, Loader2 } from "lucide-react";
 import { topics } from "@/lib/topics";
+import { communityTag } from "@/lib/profile";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SET UP SUBMISSIONS (≈2 minutes, free, no account):
@@ -48,6 +49,9 @@ export default function AskQuestion() {
         topic: topic || "Not specified",
         question: question.trim(),
         reply_wanted: trimmedEmail ? "Yes" : "No (anonymous)",
+        // Signed-in members who opted in share their profile tag
+        // ("Jordan · Student") so it can be shown if the Q&A is published.
+        member_tag: communityTag() || "None (anonymous visitor)",
         // The `email` field must always be a VALID address or Web3Forms
         // rejects the submission — use the visitor's if given, else a
         // no-reply placeholder so anonymous questions still send.

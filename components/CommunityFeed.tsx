@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Heart, MessageCircle, Send, Loader2, Clock3 } from "lucide-react";
 import type { CommunityPost } from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
+import { communityTag, readLocalProfile } from "@/lib/profile";
 
 // Same moderated-inbox channel as the Ask box (components/AskQuestion.tsx):
 // paste the Web3Forms access key for Help@economicmobilityproject.org here to
@@ -40,6 +41,9 @@ async function submitToInbox(payload: Record<string, string>): Promise<boolean> 
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
         from_name: "Empower Community",
+        // Signed-in members who opted in share their profile tag
+        // ("Jordan · Student") for display when the post is published.
+        member_tag: communityTag() || "None (anonymous visitor)",
         ...payload,
       }),
     });
@@ -91,6 +95,12 @@ function Composer() {
   const [name, setName] = useState("");
   const [status, setStatus] = useState<SendStatus>("idle");
   const [sent, setSent] = useState(false);
+
+  // Signed-in members with a display name get it prefilled (still editable).
+  useEffect(() => {
+    const p = readLocalProfile();
+    if (p?.displayName) setName(p.displayName);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -172,6 +182,11 @@ function CommentForm({ postId }: { postId: string }) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<SendStatus>("idle");
+
+  useEffect(() => {
+    const p = readLocalProfile();
+    if (p?.displayName) setName(p.displayName);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

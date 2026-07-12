@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import MobileNav from "@/components/MobileNav";
 import SearchDialog from "@/components/SearchDialog";
+import AccountButton from "@/components/AccountButton";
 import { nav, type NavEntry } from "@/lib/nav";
 import { getSearchItems } from "@/lib/search";
 
@@ -45,6 +46,7 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <SearchDialog items={getSearchItems()} />
+          <AccountButton />
           <Link
             href="/quiz"
             className="hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block"

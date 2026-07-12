@@ -140,13 +140,20 @@ export default function MobileNav() {
               })}
             </nav>
 
-            <div className="flex-shrink-0 border-t border-ink-600/60 px-6 py-4">
+            <div className="flex-shrink-0 space-y-3 border-t border-ink-600/60 px-6 py-4">
               <Link
                 href="/quiz"
                 onClick={close}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber px-6 py-4 text-base font-semibold text-ink transition-colors hover:bg-cream"
               >
                 Take the Quiz
+              </Link>
+              <Link
+                href="/account"
+                onClick={close}
+                className="block text-center text-sm font-semibold text-cream/70 transition-colors hover:text-amber"
+              >
+                Your account
               </Link>
             </div>
           </div>,

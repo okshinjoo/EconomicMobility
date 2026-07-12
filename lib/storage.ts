@@ -44,12 +44,28 @@ export function loadJSON<T>(key: string): T | null {
   }
 }
 
+// Optional mirror hook: when a user is signed in, lib/accountSync.ts
+// registers a listener here so every local save also syncs to their account.
+// Null when signed out — local-only behavior is unchanged.
+let mirror: ((key: string, value: unknown) => void) | null = null;
+
+export function setStorageMirror(
+  fn: ((key: string, value: unknown) => void) | null
+): void {
+  mirror = fn;
+}
+
 export function saveJSON<T>(key: string, value: T): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
   } catch {
     // Storage full, disabled, or private-mode — fail silently.
+  }
+  try {
+    mirror?.(key, value);
+  } catch {
+    // Sync must never break a local save.
   }
 }
 
