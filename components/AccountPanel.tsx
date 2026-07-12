@@ -1243,9 +1243,15 @@ export function ProfileEditor({
                   </button>
                 </div>
                 {emailNotice && (
-                  <p className="text-sm font-medium text-forest">
-                    {emailNotice}
-                  </p>
+                  <div className="pt-3">
+                    <div className="flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
+                      <CheckCircle2
+                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
+                        strokeWidth={1.75}
+                      />
+                      <p className="text-sm leading-6 text-ink">{emailNotice}</p>
+                    </div>
+                  </div>
                 )}
               </form>
 
@@ -1304,12 +1310,6 @@ export function ProfileEditor({
                     {pwError}
                   </p>
                 )}
-                {pwNotice && (
-                  <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
-                    <CheckCircle2 className="h-4 w-4" />
-                    {pwNotice}
-                  </p>
-                )}
                 <button
                   type="submit"
                   disabled={pwBusy}
@@ -1318,6 +1318,20 @@ export function ProfileEditor({
                   {pwBusy && <Loader2 className="h-4 w-4 animate-spin" />}
                   Update password
                 </button>
+                {pwNotice && (
+                  <div className="pt-3">
+                    <div className="flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
+                      <CheckCircle2
+                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
+                        strokeWidth={1.75}
+                      />
+                      <p className="text-sm leading-6 text-ink">
+                        <span className="font-bold">{pwNotice}</span> Use the
+                        new one next time you sign in.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </form>
 
               <div className="border-t border-sand pt-6">
