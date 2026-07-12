@@ -227,12 +227,12 @@ export function DonutStatsCards({
   return (
     <div className="grid gap-5 xl:grid-cols-2">
       {/* reading */}
-      <div className="rounded-2xl border border-sand bg-cream p-5">
+      <div className="rounded-2xl border border-sand bg-cream p-5 shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-lg font-bold text-ink">
             Your reading
           </h3>
-          <span className="text-xs font-semibold text-stone">All time</span>
+          <span className="whitespace-nowrap text-xs font-semibold text-stone">All time</span>
         </div>
         <div className="mt-4 flex items-center gap-5">
           <Donut
@@ -249,12 +249,12 @@ export function DonutStatsCards({
       </div>
 
       {/* activity */}
-      <div className="rounded-2xl border border-sand bg-cream p-5">
+      <div className="rounded-2xl border border-sand bg-cream p-5 shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-lg font-bold text-ink">
             Your activity
           </h3>
-          <span className="text-xs font-semibold text-stone">All time</span>
+          <span className="whitespace-nowrap text-xs font-semibold text-stone">All time</span>
         </div>
         <div className="mt-4 flex items-center gap-5">
           {/* bubbles, like the reference's spend card */}
@@ -270,13 +270,13 @@ export function DonutStatsCards({
             items={[
               {
                 color: "#e7a33c",
-                label: "Badges earned",
+                label: "Badges",
                 value: `${earned.length} of ${badgeTotal}`,
               },
               { color: "#0c4a39", label: "Tools tried", value: String(stats.tools) },
               {
                 color: "#d26a4c",
-                label: "Mini-quizzes taken",
+                label: "Mini-quizzes",
                 value: String(stats.quizzes),
               },
             ]}
@@ -306,28 +306,25 @@ export function OverviewPanels({
       {next ? (
         <Link
           href={next.href}
-          className="group flex items-center justify-between gap-4 rounded-2xl border-2 border-ink bg-paper p-5 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+          className="group flex items-center justify-between gap-4 rounded-2xl border-2 border-ink bg-amber p-5 transition-transform duration-150 hover:-translate-y-0.5"
         >
           <div>
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.18em]"
-              style={{ color: next.color }}
-            >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/70">
               Keep going · {next.topicShort}
             </p>
             <h3 className="mt-1.5 font-display text-xl font-semibold text-ink">
               {next.title}
             </h3>
           </div>
-          <ArrowRight className="h-5 w-5 flex-shrink-0 text-stone transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="h-5 w-5 flex-shrink-0 text-ink transition-transform group-hover:translate-x-1" />
         </Link>
       ) : (
         <Link
           href={hasHistory ? "/learn" : "/quiz"}
-          className="group flex items-center justify-between gap-4 rounded-2xl border-2 border-ink bg-paper p-5 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+          className="group flex items-center justify-between gap-4 rounded-2xl border-2 border-ink bg-amber p-5 transition-transform duration-150 hover:-translate-y-0.5"
         >
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/70">
               Where to start
             </p>
             <h3 className="mt-1.5 font-display text-xl font-semibold text-ink">
@@ -336,7 +333,7 @@ export function OverviewPanels({
                 : "Take the 2-minute quiz for a path built around you"}
             </h3>
           </div>
-          <ArrowRight className="h-5 w-5 flex-shrink-0 text-stone transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="h-5 w-5 flex-shrink-0 text-ink transition-transform group-hover:translate-x-1" />
         </Link>
       )}
 

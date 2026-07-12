@@ -803,6 +803,17 @@ export function ProfileEditor({
         </div>
       )}
 
+      {/* Greeting header — every good profile dashboard opens with one. */}
+      <div>
+        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Welcome back{displayName.trim() ? `, ${displayName.trim().split(/\s+/)[0]}` : ""}.
+        </h1>
+        <p className="mt-1.5 text-sm text-stone">
+          Here&apos;s where your money journey stands — synced to your
+          account automatically.
+        </p>
+      </div>
+
       {/* Kinetik-style member layout (owner reference): nav rail on the
           far left, the identity card beside it, chart stat cards + the
           section panel on the right. */}
@@ -835,7 +846,7 @@ export function ProfileEditor({
 
           <div
             id="account-settings"
-            className="card-ink scroll-mt-24 rounded-2xl bg-cream p-6 sm:p-8"
+            className="scroll-mt-24 rounded-2xl border border-sand bg-cream p-6 shadow-sm sm:p-8"
           >
             <h2 className="font-display text-2xl font-bold text-ink">
               {PANEL_TITLES[tab]}
@@ -1130,7 +1141,7 @@ function NavRail({
     ["security", "Security", ShieldCheck],
   ] as const;
   return (
-    <div className="rounded-2xl border border-sand bg-cream p-3 lg:sticky lg:top-24">
+    <div className="rounded-2xl border border-sand bg-cream p-3 shadow-sm lg:sticky lg:top-24">
       <Link
         href={nextHref}
         className="btn-ink mb-3 flex w-full items-center justify-center gap-2 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink"
@@ -1189,7 +1200,7 @@ function IdentityCard({
   onSignOut: () => void;
 }) {
   return (
-    <div className="relative rounded-3xl bg-forest p-6 text-cream lg:sticky lg:top-24">
+    <div className="relative rounded-2xl bg-forest p-6 text-cream shadow-sm lg:sticky lg:top-24">
       <button
         type="button"
         onClick={onEdit}
