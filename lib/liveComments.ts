@@ -77,32 +77,80 @@ export async function fetchLiveComments(
   return (data as CommentRow[]).map((r) => rowToComment(r, myId));
 }
 
-/** Insert a member comment (or one-level reply) as pending. Returns an
- *  error message for the form, or null on success. */
+export interface AddCommentResult {
+  error: string | null;
+  /** True when the AI safety check published it instantly for everyone. */
+  published: boolean;
+}
+
+/** Insert a member comment (or one-level reply). Tries the AI-review route
+ *  first (/api/comment: clean comments publish instantly, uncertain ones go
+ *  to the human queue). If the route isn't configured (503) or unreachable,
+ *  falls back to a direct pending insert — the pre-AI behavior. */
 export async function addLiveComment(opts: {
   session: Session;
   postId: string;
   parentId?: string;
   text: string;
-}): Promise<string | null> {
+}): Promise<AddCommentResult> {
   const body = opts.text.trim();
-  if (!body) return "Write something first.";
-  if (body.length > 4000) return "That's a bit long — 4,000 characters max.";
-  const supabase = getSupabase();
-  if (!supabase) return "Accounts aren't available right now.";
+  if (!body) return { error: "Write something first.", published: false };
+  if (body.length > 4000)
+    return {
+      error: "That's a bit long — 4,000 characters max.",
+      published: false,
+    };
   const profile = readLocalProfile();
+  const authorName = profile?.displayName?.trim() || "Member";
+  const authorTag = communityTag() || null;
+  const authorFlairs = communityFlairs();
+
+  // 1) The AI-review pipeline.
+  try {
+    const res = await fetch("/api/comment", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${opts.session.access_token}`,
+      },
+      body: JSON.stringify({
+        postId: opts.postId,
+        parentId: opts.parentId,
+        text: body,
+        authorName,
+        authorTag,
+        authorFlairs,
+      }),
+    });
+    if (res.ok) {
+      const data = (await res.json()) as { status?: string };
+      return { error: null, published: data.status === "approved" };
+    }
+    if (res.status !== 503) {
+      return { error: "Couldn't send that. Please try again.", published: false };
+    }
+    // 503 = route not configured -> fall through to the direct insert.
+  } catch {
+    // Network hiccup on the route -> try the direct insert.
+  }
+
+  // 2) Fallback: direct pending insert (review-first, no AI).
+  const supabase = getSupabase();
+  if (!supabase)
+    return { error: "Accounts aren't available right now.", published: false };
   const { error } = await supabase.from("comments").insert({
     post_id: opts.postId,
     parent_id: opts.parentId ?? null,
     user_id: opts.session.user.id,
-    author_name: profile?.displayName?.trim() || "Member",
-    author_tag: communityTag() || null,
-    author_flairs: communityFlairs(),
+    author_name: authorName,
+    author_tag: authorTag,
+    author_flairs: authorFlairs,
     body,
     status: "pending",
   });
-  if (error) return "Couldn't send that. Please try again.";
-  return null;
+  if (error)
+    return { error: "Couldn't send that. Please try again.", published: false };
+  return { error: null, published: false };
 }
 
 /** Small session hook shared by the comment form and the admin queue. */

@@ -403,15 +403,16 @@ function CommentForm({
     e.preventDefault();
     if (!text.trim()) return;
     setStatus("sending");
-    // Members: straight into the database as pending (the live pipeline).
+    // Members: through the live pipeline (AI check -> instant publish, or
+    // pending for human review; falls back to plain pending when AI is off).
     if (accountsEnabled && session) {
-      const err = await addLiveComment({
+      const result = await addLiveComment({
         session,
         postId,
         parentId: replyTo?.id,
         text,
       });
-      if (err) {
+      if (result.error) {
         setStatus("error");
         return;
       }
@@ -516,7 +517,9 @@ function CommentForm({
             Comment
           </button>
           <span className="text-xs text-stone">
-            Reviewed before it appears for everyone.
+            {session
+              ? "Checked automatically — most comments publish right away."
+              : "Reviewed before it appears for everyone."}
           </span>
           {status === "error" && (
             <span className="text-xs font-medium text-terracotta">

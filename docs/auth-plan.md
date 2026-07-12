@@ -135,3 +135,26 @@ Daily flow: bookmark /admin/comments. Members' comments appear there the
 moment they're posted; Approve publishes for everyone, Reject hides it.
 Members always see their own comment immediately (marked pending), on
 every device they're signed into.
+
+
+## AI comment review go-live (July 2026 — BUILT, needs two env vars)
+
+Comments are screened by Claude and publish instantly when clean; anything
+uncertain waits in /admin/comments. Until configured, all comments simply
+wait for manual approval (nothing breaks). To turn on:
+
+1. Create an Anthropic API account at console.anthropic.com, add a payment
+   method, and create an API key (expect well under $1/month at current
+   volume — each comment check costs a fraction of a cent).
+2. Supabase -> Project Settings -> API -> copy the `service_role` key
+   (SECRET — it bypasses row security; never expose it in the browser).
+3. Vercel -> Settings -> Environment Variables -> add BOTH (all
+   environments, NOT prefixed with NEXT_PUBLIC):
+   - ANTHROPIC_API_KEY = the key from step 1
+   - SUPABASE_SERVICE_ROLE_KEY = the key from step 2
+4. Redeploy (or push). Test: post a normal comment as a member — it should
+   appear instantly. Post one containing a phone number — it should wait
+   in /admin/comments instead.
+
+The same ANTHROPIC_API_KEY later powers the smart "Ask" chatbot
+(docs/ai-chat-setup.md) — one key, both features.
