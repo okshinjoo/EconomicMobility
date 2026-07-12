@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 import { getReadMap } from "@/lib/readTracking";
 
 export interface StripQuestion {
@@ -58,19 +59,27 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
 
   return (
     <ul className="divide-y divide-white/10 border-y border-white/10">
-      {items.map((item) => (
+      {items.map((item, i) => (
         <li key={item.slug}>
-          <Link
-            href={item.href}
-            className="group flex items-baseline justify-between gap-6 py-5"
-          >
-            <span className="font-display text-lg font-medium leading-snug text-cream transition-colors group-hover:text-amber sm:text-xl">
-              {item.q}
-            </span>
-            <span className="hidden shrink-0 text-sm font-semibold text-amber underline decoration-amber/40 underline-offset-4 sm:block">
-              Read the guide
-            </span>
-          </Link>
+          <Reveal delay={i * 90}>
+            <Link
+              href={item.href}
+              className="group flex items-baseline gap-5 py-5"
+            >
+              <span
+                aria-hidden
+                className="w-9 shrink-0 font-display text-2xl font-bold text-cream/25 transition-colors group-hover:text-amber/70 sm:text-3xl"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="flex-1 font-display text-lg font-medium leading-snug text-cream transition-colors group-hover:text-amber sm:text-xl">
+                {item.q}
+              </span>
+              <span className="hidden shrink-0 text-sm font-semibold text-amber underline decoration-amber/40 underline-offset-4 sm:block">
+                Read the guide
+              </span>
+            </Link>
+          </Reveal>
         </li>
       ))}
     </ul>

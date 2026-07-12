@@ -9,6 +9,8 @@ import {
   getTopicRoadmap,
 } from "@/lib/articles";
 import { toolCategories } from "@/lib/toolsRegistry";
+import { glossary } from "@/lib/glossary";
+import CountUp from "@/components/CountUp";
 import { communityQuestions } from "@/lib/communityQuestions";
 import QuestionStrip, { type StripQuestion } from "@/components/QuestionStrip";
 import TopicMark from "@/components/TopicMark";
@@ -243,6 +245,36 @@ export default function Home() {
       <Ticker
         items={startingQuestions.map((q) => ({ label: q.q, href: q.href }))}
       />
+
+      {/* The library, in numbers — every figure derived live from the data
+          (honesty rule), counting up on first scroll into view. */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+            {(
+              [
+                [guideTotal, "Plain-English guides, all free"],
+                [calculatorTotal, "Calculators that run in your browser"],
+                [glossary.length, "Jargon terms, translated"],
+                [topics.length, "Core topics, credit to insurance"],
+              ] as const
+            ).map(([value, label], i) => (
+              <Reveal key={label} delay={i * 90}>
+                <div className={i % 2 === 1 ? "lg:mt-6" : ""}>
+                  <CountUp
+                    value={value}
+                    className="font-display text-6xl font-bold tracking-tight text-forest sm:text-7xl"
+                  />
+                  <div className="mt-2 h-1 w-10 rounded-full bg-amber" />
+                  <p className="mt-3 max-w-[16rem] text-sm font-medium leading-6 text-stone">
+                    {label}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Why this matters — mission */}
       <section className="bg-paper-deep">
