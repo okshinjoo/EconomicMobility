@@ -328,6 +328,17 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
           Post for review
         </button>
       </div>
+      <p className="mt-2 text-xs leading-5 text-stone">
+        Reviewed by a real person before it appears. We never sell your data
+        {" — "}
+        <Link
+          href="/privacy"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
+        >
+          privacy policy
+        </Link>
+        .
+      </p>
       {sent && (
         <p className="mt-3 text-sm font-medium text-forest">
           Sent. It&apos;s in the feed below for you now, and appears for everyone

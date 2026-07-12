@@ -86,6 +86,7 @@ export const nav: NavEntry[] = [
       { label: "Life Moments", href: "/life", desc: "Start from what's happening in your life." },
       { label: "Glossary", href: "/glossary", desc: "Every money word, in plain English." },
       { label: "Contact Us", href: "/contact", desc: "Questions, ideas, or get involved." },
+      { label: "Privacy", href: "/privacy", desc: "We never sell your data. Ever." },
     ],
   },
 ];

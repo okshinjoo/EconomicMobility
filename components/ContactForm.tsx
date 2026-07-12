@@ -153,6 +153,17 @@ export default function ContactForm() {
         )}
         Send message
       </button>
+      <p className="text-xs leading-5 text-stone">
+        Your message goes straight to our inbox and nowhere else. We never
+        sell your data —{" "}
+        <a
+          href="/privacy"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
+        >
+          privacy policy
+        </a>
+        .
+      </p>
       {status === "error" && (
         <p className="text-sm font-medium text-terracotta">
           Something went wrong sending that. Please try again, or email us

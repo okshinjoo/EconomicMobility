@@ -33,9 +33,12 @@ export default function PrivacyPage() {
             Privacy <span className="italic text-amber">policy.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            The short version: we store as little as possible, we never sell
-            it, and you can delete all of it with one email. Last updated{" "}
-            {LAST_UPDATED}.
+            The short version:{" "}
+            <strong className="text-cream">
+              we never sell your data. Ever.
+            </strong>{" "}
+            We store as little as possible, and you can delete all of it with
+            one email. Last updated {LAST_UPDATED}.
           </p>
         </div>
       </section>
@@ -59,12 +62,16 @@ export default function PrivacyPage() {
             When you sign up we store, on our database provider (Supabase):
           </p>
           <ul className="mt-3 list-disc space-y-2 pl-6">
-            <li>Your email address and a securely hashed password.</li>
+            <li>
+              Your email address and a securely hashed password. If you sign
+              in with Google instead, Google shares your name and email with
+              us and nothing else; we never see your Google password.
+            </li>
             <li>
               Your profile, if you fill it in: a display name, an optional
               &ldquo;where you are in life&rdquo; tag (student, working
-              professional, or retired), and whether you want that tag shown
-              when you post.
+              professional, or retired), the goals you pick, your flairs, and
+              whether you want the tag and flairs shown when you post.
             </li>
             <li>
               Your synced progress: the same reading history, quiz results,
@@ -74,7 +81,10 @@ export default function PrivacyPage() {
           <p className="mt-3">
             That&apos;s the whole list. No real names required, no phone
             numbers, no location, no browsing history beyond this site&apos;s
-            own pages.
+            own pages. Your likes, saved posts, follows, and pinned channels
+            are personal-only: they sync to your account so your devices
+            agree, but no one else can see them and no public counts are
+            built from them.
           </p>
 
           <H2>What we never do</H2>
@@ -90,8 +100,8 @@ export default function PrivacyPage() {
           <H2>Community posts</H2>
           <p className="mt-3">
             Posting is anonymous by default. If you turn on &ldquo;show my
-            tag,&rdquo; the name and tag from your profile appear next to
-            posts you submit. Submissions are reviewed by a human before they
+            tag,&rdquo; the name, tag, and flairs from your profile appear
+            next to posts you submit. Submissions are reviewed by a human before they
             appear publicly, and you can ask us to take a published post down
             at any time.
           </p>
@@ -133,7 +143,9 @@ export default function PrivacyPage() {
             Supabase (Postgres, hosted in the United States), protected so
             that each account can only ever read its own rows. Form
             submissions (contact, questions, community posts) are delivered
-            to our inbox by Web3Forms.
+            to our inbox by Web3Forms, and account emails (verification,
+            password resets) are sent through Resend. Each of these providers
+            processes data only to do that one job for us.
           </p>
 
           <H2>Changes</H2>

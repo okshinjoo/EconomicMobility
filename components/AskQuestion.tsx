@@ -173,7 +173,14 @@ export default function AskQuestion() {
         <p className="flex items-start gap-2 text-xs leading-5 text-stone">
           <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
           Anonymous by default, with no name or account needed. Leave the email
-          blank to stay that way.
+          blank to stay that way. We never sell your data —{" "}
+          <a
+            href="/privacy"
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
+          >
+            privacy policy
+          </a>
+          .
         </p>
         <button
           type="submit"
