@@ -58,24 +58,24 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
   }
 
   return (
-    <ul className="divide-y divide-white/10 border-y border-white/10">
+    <ul className="space-y-4">
       {items.map((item, i) => (
         <li key={item.slug}>
           <Reveal delay={i * 90}>
             <Link
               href={item.href}
-              className="group flex items-baseline gap-5 py-5"
+              className="group flex items-baseline gap-4 rounded-xl bg-cream px-5 py-4 shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:gap-5 sm:px-6"
             >
               <span
                 aria-hidden
-                className="w-9 shrink-0 font-display text-2xl font-bold text-cream/25 transition-colors group-hover:text-amber/70 sm:text-3xl"
+                className="shrink-0 font-display text-2xl font-bold text-terracotta sm:text-3xl"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="flex-1 font-display text-lg font-medium leading-snug text-cream transition-colors group-hover:text-amber sm:text-xl">
+              <span className="flex-1 font-display text-lg font-semibold leading-snug text-ink sm:text-xl">
                 {item.q}
               </span>
-              <span className="hidden shrink-0 text-sm font-semibold text-amber underline decoration-amber/40 underline-offset-4 sm:block">
+              <span className="hidden shrink-0 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors group-hover:text-ink sm:block">
                 Read the guide
               </span>
             </Link>
