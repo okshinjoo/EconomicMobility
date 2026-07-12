@@ -23,6 +23,7 @@ import {
   Plus,
   X,
   ChevronUp,
+  Search,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -741,6 +742,7 @@ export default function CommunityFeed({
   // Reddit-style compact view is the default; card view is the classic
   // full-post feed. Choice persists per device.
   const [view, setView] = useState<"compact" | "card">("compact");
+  const [channelQuery, setChannelQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [showComposer, setShowComposer] = useState(false);
 
@@ -927,8 +929,30 @@ export default function CommunityFeed({
         <Plus className="h-4 w-4" strokeWidth={2.5} />
         New post
       </button>
+      {/* find a channel */}
+      <div className="relative mb-3 px-0.5">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-stone/60" />
+        <input
+          value={channelQuery}
+          onChange={(e) => setChannelQuery(e.target.value)}
+          placeholder="Find a channel…"
+          aria-label="Find a channel"
+          className="w-full rounded-lg border border-sand bg-paper py-2 pl-8 pr-7 text-sm text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
+        />
+        {channelQuery && (
+          <button
+            type="button"
+            onClick={() => setChannelQuery("")}
+            aria-label="Clear channel search"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-0.5 text-stone hover:text-ink"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+        )}
+      </div>
+
       {/* pinned channels */}
-      {pinnedChannels.length > 0 && (
+      {!channelQuery && pinnedChannels.length > 0 && (
         <>
           <p className="px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
             Pinned
@@ -960,9 +984,26 @@ export default function CommunityFeed({
           <span className="flex-1 text-left">All posts</span>
           <span className="text-xs font-bold text-stone/70">{posts.length}</span>
         </button>
-        {CHANNELS.filter((c) => !pinnedSet.has(c.id)).map((c) => (
-          <ChannelRow key={c.id} c={c} indent={Boolean(c.parent)} />
-        ))}
+        {(() => {
+          const q = channelQuery.trim().toLowerCase();
+          const list = q
+            ? CHANNELS.filter(
+                (c) =>
+                  c.name.toLowerCase().includes(q) ||
+                  c.tagline.toLowerCase().includes(q)
+              )
+            : CHANNELS.filter((c) => !pinnedSet.has(c.id));
+          if (q && list.length === 0) {
+            return (
+              <p className="px-3 py-2 text-xs text-stone">
+                No channel matches &ldquo;{channelQuery.trim()}&rdquo;.
+              </p>
+            );
+          }
+          return list.map((c) => (
+            <ChannelRow key={c.id} c={c} indent={!q && Boolean(c.parent)} />
+          ));
+        })()}
       </div>
 
       {/* explore */}
@@ -1184,6 +1225,22 @@ export default function CommunityFeed({
         </article>
       ))}
 
+      {visiblePosts.length === 0 &&
+        !followingOnly &&
+        sort !== "top" &&
+        active !== "all" && (
+          <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
+            Nothing in {getChannel(active).name} yet — hit{" "}
+            <button
+              type="button"
+              onClick={openComposer}
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-2"
+            >
+              New post
+            </button>{" "}
+            and be the first.
+          </p>
+        )}
       {visiblePosts.length === 0 && followingOnly && (
         <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
           No posts from members you follow yet. Open someone&apos;s profile

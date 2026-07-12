@@ -25,6 +25,18 @@ import {
   Wallet,
   Receipt,
   Home,
+  Rocket,
+  Sprout,
+  Armchair,
+  Bitcoin,
+  Hammer,
+  Scissors,
+  FileWarning,
+  ShoppingCart,
+  Umbrella,
+  Lightbulb,
+  Banknote,
+  Key,
   type LucideIcon,
 } from "lucide-react";
 
@@ -47,7 +59,19 @@ export type ChannelId =
   | "family-firstgen"
   | "wins"
   | "scams-safety"
-  | "challenges";
+  | "challenges"
+  | "grad-life"
+  | "invest-start"
+  | "retirement-accounts"
+  | "crypto-check"
+  | "building-credit"
+  | "debt-payoff"
+  | "collections-repair"
+  | "groceries-food"
+  | "emergency-fund"
+  | "side-hustles"
+  | "salary-negotiation"
+  | "buying-someday";
 
 export interface Channel {
   id: ChannelId;
@@ -101,11 +125,43 @@ export const CHANNELS: Channel[] = [
     parent: "students",
   },
   {
+    id: "grad-life",
+    icon: Rocket,
+    name: "Life After Graduation",
+    tagline: "First salary, first apartment hunt, and loan payments starting.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
     id: "investing",
     icon: TrendingUp,
     name: "Investing & Retirement",
     tagline: "401(k)s, Roth IRAs, index funds, and the questions you've been sitting on.",
     color: "#15624b",
+  },
+  {
+    id: "invest-start",
+    icon: Sprout,
+    name: "Getting Started",
+    tagline: "Your first $50 in the market and every question before it.",
+    color: "#15624b",
+    parent: "investing",
+  },
+  {
+    id: "retirement-accounts",
+    icon: Armchair,
+    name: "Retirement Accounts",
+    tagline: "401(k)s, IRAs, Roth vs. traditional, and employer matches.",
+    color: "#15624b",
+    parent: "investing",
+  },
+  {
+    id: "crypto-check",
+    icon: Bitcoin,
+    name: "Crypto & Hype Check",
+    tagline: "The is-this-real room for coins, apps, and get-rich promises.",
+    color: "#15624b",
+    parent: "investing",
   },
   {
     id: "credit-debt",
@@ -115,11 +171,51 @@ export const CHANNELS: Channel[] = [
     color: "#7a5230",
   },
   {
+    id: "building-credit",
+    icon: Hammer,
+    name: "Building Credit",
+    tagline: "From no score to good score: first cards, on-time streaks.",
+    color: "#7a5230",
+    parent: "credit-debt",
+  },
+  {
+    id: "debt-payoff",
+    icon: Scissors,
+    name: "Debt Payoff Journeys",
+    tagline: "Snowballs, avalanches, and the month you finally hit zero.",
+    color: "#7a5230",
+    parent: "credit-debt",
+  },
+  {
+    id: "collections-repair",
+    icon: FileWarning,
+    name: "Collections & Credit Repair",
+    tagline: "Collectors calling, report errors, disputes, and your rights.",
+    color: "#7a5230",
+    parent: "credit-debt",
+  },
+  {
     id: "budgeting-saving",
     icon: PiggyBank,
     name: "Making Ends Meet",
     tagline: "Stretching the paycheck, cutting bills, and the month math.",
     color: "#0c4a39",
+  },
+  {
+    id: "groceries-food",
+    icon: ShoppingCart,
+    name: "Groceries & Food",
+    tagline: "Feeding yourself (or a family) without the bill winning.",
+    color: "#0c4a39",
+    parent: "budgeting-saving",
+  },
+  {
+    id: "emergency-fund",
+    icon: Umbrella,
+    name: "Emergency Funds",
+    tagline: "Building the cushion, one boring transfer at a time.",
+    color: "#0c4a39",
+    parent: "budgeting-saving",
   },
   {
     id: "banking",
@@ -136,6 +232,22 @@ export const CHANNELS: Channel[] = [
     color: "#4b5f8a",
   },
   {
+    id: "side-hustles",
+    icon: Lightbulb,
+    name: "Side Hustle Lab",
+    tagline: "What's actually worth the hours (after gas, fees, and taxes).",
+    color: "#4b5f8a",
+    parent: "work-income",
+  },
+  {
+    id: "salary-negotiation",
+    icon: Banknote,
+    name: "Salary & Negotiation",
+    tagline: "Offers, raises, and saying the number out loud.",
+    color: "#4b5f8a",
+    parent: "work-income",
+  },
+  {
     id: "taxes",
     icon: Receipt,
     name: "Taxes",
@@ -148,6 +260,14 @@ export const CHANNELS: Channel[] = [
     name: "Rent & Housing",
     tagline: "First apartments, deposits, roommates, and dreaming of keys.",
     color: "#a35d3d",
+  },
+  {
+    id: "buying-someday",
+    icon: Key,
+    name: "Buying Someday",
+    tagline: "Down payments, credit prep, and the long game to keys.",
+    color: "#a35d3d",
+    parent: "housing",
   },
   {
     id: "family-firstgen",
