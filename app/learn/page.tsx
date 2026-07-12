@@ -15,18 +15,6 @@ import { ROADMAP_SLUGS } from "@/lib/roadmaps";
 import { glossary } from "@/lib/glossary";
 import TermOfTheDay from "@/components/TermOfTheDay";
 
-// Real questions -> real guides (the /learn front door; keep slugs valid).
-const LEARN_QUESTIONS = [
-  { question: "Why is my first paycheck smaller than I expected?", href: "/learn/budgeting/your-first-paycheck" },
-  { question: "How do I build credit when I have none at all?", href: "/learn/credit/build-credit-from-zero" },
-  { question: "What is the FAFSA, and how do I actually fill it out?", href: "/learn/college/fafsa-step-by-step" },
-  { question: "It's my first time filing taxes. Where do I start?", href: "/learn/taxes/filing-taxes-first-time" },
-  { question: "Is $50 really enough to start investing?", href: "/learn/investing/start-investing-with-50" },
-  { question: "How much cash do I need to move into my first place?", href: "/learn/home-ownership/renting-your-first-apartment" },
-  { question: "How do I spot a scam before it costs me?", href: "/learn/money-safety/how-to-spot-a-scam" },
-  { question: "Money's tight this month — which bills come first?", href: "/learn/budgeting/prioritizing-bills-when-money-is-tight" },
-];
-
 export const metadata: Metadata = {
   title: "Learn | Empower — Economic Mobility Project",
   description:
@@ -247,56 +235,6 @@ export default function LearnHub() {
                 </Reveal>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Start with your question — Base44-audit element (owner-tuned July
-          2026: lives low on the page, single column so each card reveals as
-          you scroll to it, alternating offsets for rhythm). */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
-              Start with your question
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-ink sm:text-5xl">
-              Nobody comes here to{" "}
-              <span className="italic text-terracotta">&ldquo;study finance.&rdquo;</span>
-            </h2>
-            <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
-              They come with a question that&apos;s been bugging them. Start
-              with yours — each one opens the guide that answers it.
-            </p>
-          </div>
-          <div className="mx-auto mt-10 max-w-3xl space-y-5">
-            {LEARN_QUESTIONS.map((q, i) => (
-              <Reveal key={q.href} delay={60}>
-                <Link
-                  href={q.href}
-                  className={`card-ink group flex items-center gap-5 rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7 ${
-                    i % 2 === 1
-                      ? "lg:translate-x-10 lg:rotate-[0.35deg]"
-                      : "lg:-translate-x-10 lg:-rotate-[0.35deg]"
-                  }`}
-                >
-                  <span
-                    aria-hidden
-                    className="font-display text-5xl font-bold italic leading-none text-amber transition-transform duration-200 group-hover:-rotate-6 sm:text-6xl"
-                  >
-                    ?
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
-                      {q.question}
-                    </span>
-                    <span className="mt-2 inline-block text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 group-hover:text-ink">
-                      Read the guide
-                    </span>
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
