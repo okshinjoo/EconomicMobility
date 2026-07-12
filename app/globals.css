@@ -102,6 +102,24 @@ body {
   width: max-content;
   animation: ticker-scroll 55s linear infinite;
 }
+
+/* Pulsing "you are here" ring on the journey roadmap visual. */
+@keyframes roadmap-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+.roadmap-pulse {
+  animation: roadmap-pulse 2.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
 .ticker:hover .ticker-track {
   animation-play-state: paused;
 }

@@ -59,7 +59,7 @@ export default async function JourneyPage({
         kind: "tool",
         href: s.tool.href,
         title: s.tool.label,
-        meta: "Try it with your own numbers",
+        meta: "Calculator",
         key: s.tool.href,
       });
     if (s.courseId) {
@@ -69,7 +69,7 @@ export default async function JourneyPage({
           kind: "course",
           href: `/courses/${c.id}`,
           title: `Course: ${c.title}`,
-          meta: `${c.articleSlugs.length} guides · flashcards · final + badge`,
+          meta: `${c.articleSlugs.length} guides + final`,
           key: c.id,
         });
     }
@@ -80,7 +80,7 @@ export default async function JourneyPage({
           kind: "challenge",
           href: `/challenges/${ch.id}`,
           title: `Challenge: ${ch.title}`,
-          meta: "Do it, don't just read it",
+          meta: "Challenge",
           key: ch.id,
         });
     }
@@ -89,7 +89,7 @@ export default async function JourneyPage({
         kind: "quiz",
         href: `/learn/${s.topicQuiz}/quiz`,
         title: "Checkpoint: 5-question quiz",
-        meta: "Prove it to yourself",
+        meta: "5 questions",
         key: s.topicQuiz,
       });
     return { id: s.id, milestone: s.milestone, why: s.why, items };
@@ -136,7 +136,7 @@ export default async function JourneyPage({
       </section>
 
       <section className="bg-paper">
-        <div className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
+        <div className="mx-auto max-w-5xl px-6 py-12 lg:py-16">
           <JourneyPath stages={stages} color={journey.color} />
 
           <div className="mt-14 rounded-2xl border border-sand bg-cream p-6 sm:p-7">
