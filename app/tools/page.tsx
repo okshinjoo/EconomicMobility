@@ -50,9 +50,27 @@ export default function ToolsHub() {
             Each calculator answers one question and updates as you type. No
             sign-up, nothing saved to our servers, no catch.
           </p>
+          <p className="mt-4 text-sm font-semibold text-forest">
+            Not sure which tool? The Budget Planner does the most —{" "}
+            <Link
+              href="/tools/budget"
+              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              start there
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
 
-          {/* Category jump tiles — B: ink & shadow objects on the amber field */}
-          <div className="mt-9 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      {/* By category — jump tiles as their own section (Base44 structure,
+          our tiles) */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            By category
+          </span>
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {toolCategories.map((cat, i) => {
               const style = toolStyles[cat.id] ?? toolStyles.budgeting;
               const liveCount = cat.items.filter((x) => x.status === "live").length;
@@ -60,14 +78,20 @@ export default function ToolsHub() {
                 <Reveal key={cat.id} delay={i * 70}>
                   <a
                     href={`#${cat.id}`}
-                    className="card-ink group block rounded-xl p-4 text-ink transition-transform duration-200 hover:-translate-y-1"
+                    className="card-ink group flex h-full flex-col rounded-xl p-6 text-ink transition-transform duration-200 hover:-translate-y-1"
                     style={{ backgroundColor: style.bg }}
                   >
                     <ToolDoodle id={cat.id} color={style.accent} />
-                    <span className="mt-3 block text-sm font-bold leading-tight">
+                    <span className="mt-4 block font-display text-lg font-bold leading-tight">
                       {cat.label}
                     </span>
-                    <span className="mt-0.5 block text-xs font-medium text-ink/60">
+                    <span className="mt-1 flex-1 text-xs leading-5 text-ink/65">
+                      {cat.blurb}
+                    </span>
+                    <span
+                      className="mt-4 border-t-2 pt-3 text-xs font-bold text-ink/60"
+                      style={{ borderColor: `${style.accent}55` }}
+                    >
                       {liveCount} calculators
                     </span>
                   </a>
@@ -78,39 +102,85 @@ export default function ToolsHub() {
         </div>
       </section>
 
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl space-y-14 px-6 py-14">
+      <section className="border-t-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-6xl space-y-16 px-6 py-14">
+          <span className="block text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            All calculators
+          </span>
           {toolCategories.map((cat) => {
             const style = toolStyles[cat.id] ?? toolStyles.budgeting;
             const accent = style.accent;
+            const mainItem =
+              cat.items.find((x) => x.main && x.status === "live") ?? null;
+            const rest = cat.items.filter((x) => x !== mainItem);
             return (
               <div key={cat.id} className="scroll-mt-24" id={cat.id}>
-                {/* Pastel category banner */}
+                {/* Category heading: title + count on the same baseline,
+                    blurb underneath (Base44 rhythm, our type) */}
                 <Reveal>
-                  <div
-                    className="flex flex-wrap items-end justify-between gap-4 rounded-xl border-l-8 bg-cream px-5 py-3.5 text-ink"
-                    style={{ borderColor: accent }}
-                  >
-                    <div>
-                      <h2 className="font-display text-2xl font-bold sm:text-3xl">
+                  <div>
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                      <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
                         {cat.label}
                       </h2>
-                      <p className="mt-0.5 text-sm leading-6 text-ink/70">
-                        {cat.blurb}
-                      </p>
+                      <span
+                        className="text-sm font-bold"
+                        style={{ color: accent }}
+                      >
+                        {cat.items.filter((x) => x.status === "live").length}{" "}
+                        calculators
+                      </span>
                     </div>
-                    <span
-                      className="rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream"
-                      style={{ background: accent }}
-                    >
-                      {cat.items.filter((x) => x.status === "live").length}{" "}
-                      calculators
-                    </span>
+                    <p className="mt-1.5 max-w-2xl text-sm leading-6 text-stone">
+                      {cat.blurb}
+                    </p>
                   </div>
                 </Reveal>
 
-                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  {cat.items.map((item, i) => {
+                <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+                  {/* The main calculator gets the hero spot */}
+                  {mainItem && (
+                    <Reveal className="md:col-span-1">
+                      <Link
+                        href={hrefFor(cat, mainItem)}
+                        className="card-ink group flex h-full flex-col rounded-xl p-6 transition-transform duration-200 hover:-translate-y-1"
+                        style={{ backgroundColor: style.bg }}
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <ToolMark
+                            slug={mainItem.slug}
+                            color={accent}
+                            className="h-10 w-10 shrink-0"
+                          />
+                          <span
+                            className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide"
+                            style={{ background: accent, color: "#fbf8f1" }}
+                          >
+                            Main
+                          </span>
+                        </div>
+                        <h3 className="mt-4 font-display text-xl font-bold leading-snug text-ink">
+                          {mainItem.title}
+                        </h3>
+                        <p className="mt-2 flex-1 text-sm leading-6 text-ink/70">
+                          {mainItem.short}
+                        </p>
+                        <span
+                          className="mt-4 text-sm font-bold underline decoration-2 underline-offset-4"
+                          style={{ color: accent, textDecorationColor: `${accent}66` }}
+                        >
+                          Open
+                        </span>
+                      </Link>
+                    </Reveal>
+                  )}
+
+                  <div
+                    className={`grid grid-cols-1 gap-3 sm:grid-cols-2 ${
+                      mainItem ? "md:col-span-2" : "md:col-span-3 sm:grid-cols-2 lg:grid-cols-3"
+                    }`}
+                  >
+                  {rest.map((item, i) => {
                     const live = item.status === "live";
                     const inner = (
                       <>
@@ -181,6 +251,7 @@ export default function ToolsHub() {
                       </Reveal>
                     );
                   })}
+                  </div>
                 </div>
               </div>
             );
