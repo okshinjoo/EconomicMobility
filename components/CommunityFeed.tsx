@@ -39,6 +39,7 @@ import {
   type CommunityComment,
 } from "@/lib/communityFeed";
 import { getFollows } from "@/components/FollowButton";
+import { fuzzyScore } from "@/lib/fuzzy";
 import { loadJSON, saveJSON } from "@/lib/storage";
 import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } from "@/lib/profile";
 
@@ -1085,21 +1086,13 @@ export default function CommunityFeed({
   const pq = postQuery.trim().toLowerCase();
   const matchesQuery = (p: CommunityPost): boolean => {
     if (!pq) return true;
-    if (p.title.toLowerCase().includes(pq)) return true;
-    if (p.author.toLowerCase().includes(pq)) return true;
-    if (p.body.some((para) => para.toLowerCase().includes(pq))) return true;
+    // Typo-tolerant: the gist is enough ("buget", "scma", "FASFA"...).
+    if (fuzzyScore(pq, `${p.title} ${p.author}`) > 0) return true;
+    if (p.body.some((para) => fuzzyScore(pq, para) > 0)) return true;
     for (const c of p.comments) {
-      if (
-        c.text.toLowerCase().includes(pq) ||
-        c.author.toLowerCase().includes(pq)
-      )
-        return true;
+      if (fuzzyScore(pq, `${c.author} ${c.text}`) > 0) return true;
       for (const r of c.replies ?? []) {
-        if (
-          r.text.toLowerCase().includes(pq) ||
-          r.author.toLowerCase().includes(pq)
-        )
-          return true;
+        if (fuzzyScore(pq, `${r.author} ${r.text}`) > 0) return true;
       }
     }
     return false;
@@ -1280,7 +1273,8 @@ export default function CommunityFeed({
             ? CHANNELS.filter(
                 (c) =>
                   c.name.toLowerCase().includes(q) ||
-                  c.tagline.toLowerCase().includes(q)
+                  c.tagline.toLowerCase().includes(q) ||
+                  fuzzyScore(q, `${c.name} ${c.tagline}`) > 0
               )
             : CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent);
           if (q && list.length === 0) {

@@ -10,6 +10,7 @@
 // falling back to this guide if the call fails. This file stays as the fallback.
 
 import type { SearchItem } from "./search";
+import { bestTokenScore, tokensOf } from "./fuzzy";
 
 // Common words to ignore so a natural-language question ("how do I build credit
 // with no SSN?") ranks on its content words, not its filler.
@@ -32,11 +33,22 @@ function contentTokens(q: string): string[] {
 function score(item: SearchItem, tokens: string[], rawLower: string): number {
   const title = item.title.toLowerCase();
   const hay = `${title} ${item.subtitle.toLowerCase()} ${(item.keywords ?? "").toLowerCase()} ${item.group.toLowerCase()}`;
+  // Typo-tolerant scoring: a token "lands" via exact/prefix/substring or a
+  // small edit distance, so misspelled questions still retrieve the right
+  // guides.
+  const hayWords = tokensOf(hay);
+  const titleWords = tokensOf(title);
   let present = 0;
-  for (const t of tokens) if (hay.includes(t)) present++;
+  let s = 0;
+  for (const t of tokens) {
+    const b = bestTokenScore(t, hayWords);
+    if (b > 0) {
+      present++;
+      s += b * 12; // reward matching more of the question's words
+      s += bestTokenScore(t, titleWords) * 16; // title hits matter most
+    }
+  }
   if (present === 0) return -1;
-  let s = present * 12; // reward matching more of the question's words
-  for (const t of tokens) if (title.includes(t)) s += 16; // title hits matter most
   if (title === rawLower) s += 150;
   else if (rawLower.length > 2 && title.includes(rawLower)) s += 40;
   if (item.kind === "Topic" || item.kind === "Calculator" || item.kind === "Page") s += 6;

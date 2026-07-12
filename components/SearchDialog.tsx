@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
+import { bestTokenScore, tokensOf } from "@/lib/fuzzy";
 import {
   Search,
   CornerDownLeft,
@@ -43,8 +44,18 @@ const KIND_LABEL: Record<SearchKind, string> = {
 function scoreItem(item: SearchItem, q: string, tokens: string[]): number {
   const title = item.title.toLowerCase();
   const hay = `${title} ${item.subtitle.toLowerCase()} ${(item.keywords ?? "").toLowerCase()} ${item.group.toLowerCase()}`;
-  for (const t of tokens) if (!hay.includes(t)) return -1;
+  // Typo-tolerant: every query token must land somewhere (exact, prefix,
+  // substring, or small edit distance) — "buget calulator" still finds the
+  // Budget Planner.
+  const hayWords = tokensOf(hay);
+  const titleWords = tokensOf(title);
   let s = 0;
+  for (const t of tokens) {
+    const b = bestTokenScore(t, hayWords);
+    if (b === 0) return -1;
+    s += b * 30;
+    s += bestTokenScore(t, titleWords) * 25; // title hits matter most
+  }
   if (title === q) s += 200;
   else if (title.startsWith(q)) s += 120;
   else if (title.includes(q)) s += 60;
