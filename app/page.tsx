@@ -278,10 +278,10 @@ export default function Home() {
             <div className="mt-6 space-y-4 text-lg leading-8 text-stone">
               <p>
                 This project exists to break the cycle of economic
-                disadvantage for students like me — first-generation,
-                low-income, and immigrant youth. So much of what builds wealth
-                is passed down quietly at kitchen tables some of us never had
-                access to.
+                disadvantage for first-generation, low-income, and immigrant
+                youth. I&apos;m a first-generation student and the kid of
+                immigrants myself. So much of what builds wealth is passed
+                down quietly at kitchen tables some of us never had access to.
               </p>
               <p>
                 We&apos;re changing that three ways: education anyone can
