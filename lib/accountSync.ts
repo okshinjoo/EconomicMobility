@@ -138,4 +138,24 @@ export function stopMirror(): void {
     clearTimeout(timer);
     timer = null;
   }
+  syncedUser = null;
+  syncPromise = null;
+}
+
+// ---- Once-per-load guard ----------------------------------------------
+// Both the header AccountButton (mounted on every page) and the /account
+// panel trigger sync on login; this makes them share one merge instead of
+// racing duplicate upserts.
+
+let syncedUser: string | null = null;
+let syncPromise: Promise<number> | null = null;
+
+export function ensureSynced(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<number> {
+  if (syncedUser === userId && syncPromise) return syncPromise;
+  syncedUser = userId;
+  syncPromise = syncOnLogin(supabase, userId);
+  return syncPromise;
 }

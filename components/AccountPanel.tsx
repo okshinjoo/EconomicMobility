@@ -14,7 +14,7 @@ import Link from "next/link";
 import { Loader2, CheckCircle2, UserRound, Eye, EyeOff, X } from "lucide-react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
-import { syncOnLogin, stopMirror } from "@/lib/accountSync";
+import { ensureSynced, stopMirror } from "@/lib/accountSync";
 import {
   type Profile,
   type ProfileRole,
@@ -60,13 +60,13 @@ export default function AccountPanel({
       setSession(data.session);
       setBooted(true);
       if (data.session) {
-        void syncOnLogin(supabase, data.session.user.id).then(setSyncedKeys);
+        void ensureSynced(supabase, data.session.user.id).then(setSyncedKeys);
       }
     });
     const { data: sub } = supabase.auth.onAuthStateChange((event, s) => {
       setSession(s);
       if (event === "SIGNED_IN" && s) {
-        void syncOnLogin(supabase, s.user.id).then(setSyncedKeys);
+        void ensureSynced(supabase, s.user.id).then(setSyncedKeys);
       }
       if (event === "SIGNED_OUT") {
         stopMirror();
