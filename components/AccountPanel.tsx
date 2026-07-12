@@ -11,7 +11,16 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { Loader2, CheckCircle2, UserRound, Eye, EyeOff, X } from "lucide-react";
+import {
+  Loader2,
+  CheckCircle2,
+  UserRound,
+  Eye,
+  EyeOff,
+  X,
+  Check,
+} from "lucide-react";
+import TopicMark from "@/components/TopicMark";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { ensureSynced, stopMirror } from "@/lib/accountSync";
@@ -80,7 +89,7 @@ export default function AccountPanel({
 
   if (!accountsEnabled || !supabase) {
     return (
-      <div className="card-ink rounded-2xl bg-cream p-8 text-center">
+      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center">
         <UserRound className="mx-auto h-10 w-10 text-stone" strokeWidth={1.5} />
         <h2 className="mt-4 font-display text-2xl font-bold text-ink">
           Accounts aren&apos;t open quite yet
@@ -96,23 +105,71 @@ export default function AccountPanel({
 
   if (!booted) {
     return (
-      <div className="flex items-center justify-center py-16 text-stone">
+      <div className="flex items-center justify-center py-24 text-stone">
         <Loader2 className="h-6 w-6 animate-spin" />
       </div>
     );
   }
 
-  return session ? (
-    <ProfileEditor
-      supabase={supabase}
-      session={session}
-      syncedKeys={syncedKeys}
-      paths={paths}
-      badgeSources={badgeSources}
-      fromAuthRedirect={fromAuthRedirect}
-    />
-  ) : (
-    <AuthForms supabase={supabase} />
+  if (session) {
+    return (
+      <div className="mx-auto max-w-3xl">
+        <ProfileEditor
+          supabase={supabase}
+          session={session}
+          syncedKeys={syncedKeys}
+          paths={paths}
+          badgeSources={badgeSources}
+          fromAuthRedirect={fromAuthRedirect}
+        />
+      </div>
+    );
+  }
+
+  // Signed out: split-screen — a brand "identity" panel beside the form.
+  return (
+    <div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
+      <div className="relative overflow-hidden rounded-3xl bg-forest p-8 text-cream sm:p-10">
+        <TopicMark
+          id="investing"
+          color="#fbf8f1"
+          className="pointer-events-none absolute -bottom-14 -right-14 h-64 w-64 opacity-[0.07]"
+        />
+        <div className="relative">
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
+            Your account
+          </span>
+          <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
+            Your progress,{" "}
+            <span className="italic text-amber">wherever you are.</span>
+          </h1>
+          <p className="mt-5 text-base leading-7 text-cream/75">
+            An account is never required here — it just makes the site
+            remember you.
+          </p>
+          <ul className="mt-7 space-y-3.5">
+            {[
+              "Your reading, quiz results, calculators, and badges follow you to any device",
+              "Pick up exactly where you left off",
+              "A member tag you control when you post in the community",
+              "Free forever — no spam, and your data is never sold",
+            ].map((line) => (
+              <li key={line} className="flex items-start gap-2.5">
+                <Check
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber"
+                  strokeWidth={2.5}
+                />
+                <span className="text-[0.95rem] leading-6 text-cream/90">
+                  {line}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <AuthForms supabase={supabase} />
+    </div>
   );
 }
 

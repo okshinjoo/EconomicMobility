@@ -45,25 +45,11 @@ export default function AccountPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      <section className="bg-forest text-cream">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
-            Your account
-          </span>
-          <h1 className="mt-4 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] tracking-tight sm:text-6xl sm:leading-[0.98]">
-            Your progress,{" "}
-            <span className="italic text-amber">wherever you are.</span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            An account is never required here — it just makes the site
-            remember you across devices: what you&apos;ve read, your quiz
-            results, your calculators, and the badges you&apos;ve earned.
-          </p>
-        </div>
-      </section>
-
+      {/* The panel owns its layout: signed OUT it renders a split-screen
+          (brand panel + form) needing the wide container; signed IN it
+          centers the dashboard column itself. */}
       <section className="bg-paper-deep">
-        <div className="mx-auto max-w-3xl px-6 py-12 lg:py-16">
+        <div className="mx-auto max-w-6xl px-6 py-10 lg:py-16">
           <AccountPanel paths={paths} badgeSources={badgeSources} />
         </div>
       </section>
