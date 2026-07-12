@@ -398,7 +398,9 @@ export default function Home() {
               <Reveal key={topic.href} delay={(ti % 3) * 70}>
               <Link
                 href={topic.href}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-200 hover:border-ink/20 hover:shadow-lg"
+                className={`card-ink group relative flex h-full flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
+                  ti === 1 ? "lg:rotate-[0.5deg]" : ti === 6 ? "lg:-rotate-[0.5deg]" : ""
+                }`}
               >
                 {/* Topic photo + illustration badge */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-sand">
