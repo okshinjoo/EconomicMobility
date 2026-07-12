@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityPage() {
-  // Cred scores, computed from published content at build time.
-  const credByAuthor: Record<string, number> = {};
-  for (const m of getMemberIndex()) credByAuthor[m.name] = m.cred;
+  // Cred scores + earned achievement flairs, computed from published
+  // content at build time.
+  const authorMeta: Record<string, { cred: number; earned: string[] }> = {};
+  for (const m of getMemberIndex())
+    authorMeta[m.name] = { cred: m.cred, earned: m.earnedFlairs };
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -47,7 +49,7 @@ export default function CommunityPage() {
       {/* Rail + feed (CommunityFeed owns the CGF-style left rail) */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          <CommunityFeed posts={communityPosts} credByAuthor={credByAuthor} />
+          <CommunityFeed posts={communityPosts} authorMeta={authorMeta} />
         </div>
       </section>
 

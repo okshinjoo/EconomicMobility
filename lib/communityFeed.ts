@@ -701,7 +701,16 @@ export interface MemberSummary {
   /** Earliest contribution date — the public "member since". */
   firstDate: string;
   contributions: MemberContribution[];
+  /** Automatic achievement flairs ("Top 1% Commenter", "Credit & Debt
+   *  Regular") — computed from published activity, never picked. */
+  earnedFlairs: string[];
 }
+
+/** Earned flairs require real volume: percentile tiers only count once a
+ *  member clears this many published posts (poster tiers) or comments +
+ *  replies (commenter tiers) — and channel-regular needs this many in one
+ *  hub. Keeps "Top 1%" honest while the community is small. */
+export const MIN_EARNED_ACTIVITY = 10;
 
 export function memberSlug(name: string): string {
   return name
@@ -734,6 +743,7 @@ export function getMemberIndex(): MemberSummary[] {
         counts: { posts: 0, comments: 0, replies: 0 },
         firstDate: contribution.date,
         contributions: [],
+        earnedFlairs: [],
       };
       bySlug.set(slug, m);
     }
@@ -781,7 +791,51 @@ export function getMemberIndex(): MemberSummary[] {
       }
     }
   }
-  return [...bySlug.values()].sort((a, b) => b.cred - a.cred);
+  const members = [...bySlug.values()];
+
+  // ---- earned flairs (non-team only; team posting is their job) ----
+  const topLevel = (ch: ChannelId): ChannelId =>
+    getChannel(ch).parent ?? ch;
+  const assignTier = (
+    pool: MemberSummary[],
+    countOf: (m: MemberSummary) => number,
+    labelNoun: string
+  ) => {
+    const ranked = pool
+      .filter((m) => countOf(m) > 0)
+      .sort((a, b) => countOf(b) - countOf(a));
+    const n = ranked.length;
+    ranked.forEach((m, i) => {
+      if (countOf(m) < MIN_EARNED_ACTIVITY) return;
+      const rank = i + 1;
+      if (rank <= Math.ceil(n * 0.01)) {
+        m.earnedFlairs.push(`Top 1% ${labelNoun}`);
+      } else if (rank <= Math.ceil(n * 0.1)) {
+        m.earnedFlairs.push(`Top 10% ${labelNoun}`);
+      }
+    });
+  };
+  const regulars = members.filter((m) => !m.team);
+  assignTier(regulars, (m) => m.counts.posts, "Poster");
+  assignTier(
+    regulars,
+    (m) => m.counts.comments + m.counts.replies,
+    "Commenter"
+  );
+  for (const m of regulars) {
+    const perHub = new Map<ChannelId, number>();
+    for (const c of m.contributions) {
+      const hub = topLevel(c.channel);
+      perHub.set(hub, (perHub.get(hub) ?? 0) + 1);
+    }
+    for (const [hub, count] of perHub) {
+      if (count >= MIN_EARNED_ACTIVITY) {
+        m.earnedFlairs.push(`${getChannel(hub).name} Regular`);
+      }
+    }
+  }
+
+  return members.sort((a, b) => b.cred - a.cred);
 }
 
 export function getMember(slug: string): MemberSummary | undefined {

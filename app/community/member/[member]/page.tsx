@@ -85,6 +85,14 @@ export default async function MemberPage({
                       </span>
                     )}
                   </h1>
+                  {m.earnedFlairs.length > 0 && (
+                    <p
+                      className="mt-1 text-sm font-semibold italic text-ink/55"
+                      title="Earned automatically from published activity"
+                    >
+                      {m.earnedFlairs.join(" · ")}
+                    </p>
+                  )}
                   {m.flairs.length > 0 && (
                     <div className="mt-1.5 flex flex-wrap gap-1.5">
                       {m.flairs.map((f) => (

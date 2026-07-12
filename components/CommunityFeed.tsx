@@ -135,10 +135,10 @@ function commentTotalFor(
  *  Community Cred chip (score computed server-side from curated content). */
 function AuthorName({
   name,
-  cred,
+  meta,
 }: {
   name: string;
-  cred?: number;
+  meta?: { cred: number; earned: string[] };
 }) {
   return (
     <>
@@ -148,14 +148,23 @@ function AuthorName({
       >
         {name}
       </Link>
-      {typeof cred === "number" && cred > 0 && (
+      {meta && meta.cred > 0 && (
         <span
           title="Community Cred — earned when contributions are published"
           className="rounded bg-forest/10 px-1.5 py-0.5 text-[10px] font-bold text-forest"
         >
-          {cred}
+          {meta.cred}
         </span>
       )}
+      {meta?.earned.map((e) => (
+        <span
+          key={e}
+          title="Earned automatically from published activity"
+          className="text-[11px] font-semibold italic text-ink/55"
+        >
+          {e}
+        </span>
+      ))}
     </>
   );
 }
@@ -431,14 +440,14 @@ function CommentItem({
   likes,
   onToggleLike,
   pendingReplies,
-  credByAuthor,
+  authorMeta,
 }: {
   postId: string;
   comment: CommunityComment;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingReplies: PendingComment[];
-  credByAuthor: Record<string, number>;
+  authorMeta: Record<string, { cred: number; earned: string[] }>;
 }) {
   const [replyOpen, setReplyOpen] = useState(false);
   const likeKey = `c:${comment.id}`;
@@ -452,7 +461,7 @@ function CommentItem({
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
             <AuthorName
               name={comment.author}
-              cred={credByAuthor[comment.author]}
+              meta={authorMeta[comment.author]}
             />
             <FlairChips labels={comment.authorFlairs} />
             <span className="font-normal text-stone">
@@ -493,7 +502,7 @@ function CommentItem({
               <Avatar name={r.author} team={r.author === "Empower Team"} />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
-                  <AuthorName name={r.author} cred={credByAuthor[r.author]} />
+                  <AuthorName name={r.author} meta={authorMeta[r.author]} />
                   <FlairChips labels={r.authorFlairs} />
                   <span className="font-normal text-stone">
                     {formatDate(r.date)}
@@ -595,13 +604,13 @@ function PostCard({
   likes,
   onToggleLike,
   pendingMap,
-  credByAuthor,
+  authorMeta,
 }: {
   post: CommunityPost;
   likes: Record<string, boolean>;
   onToggleLike: (key: string) => void;
   pendingMap: PendingCommentMap;
-  credByAuthor: Record<string, number>;
+  authorMeta: Record<string, { cred: number; earned: string[] }>;
 }) {
   const pendingComments = pendingMap[post.id] ?? [];
   const commentTotal = commentTotalFor(post, pendingMap);
@@ -617,7 +626,7 @@ function PostCard({
         <Avatar name={post.author} team={post.team} />
         <div>
           <p className="flex flex-wrap items-center gap-2 font-semibold leading-tight text-ink">
-            <AuthorName name={post.author} cred={credByAuthor[post.author]} />
+            <AuthorName name={post.author} meta={authorMeta[post.author]} />
             <FlairChips labels={post.authorFlairs} />
             {post.team && (
               <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
@@ -700,7 +709,7 @@ function PostCard({
               likes={likes}
               onToggleLike={onToggleLike}
               pendingReplies={pendingMap[`${post.id}::${c.id}`] ?? []}
-              credByAuthor={credByAuthor}
+              authorMeta={authorMeta}
             />
           ))}
           {pendingComments.map((c) => (
@@ -724,10 +733,10 @@ function PostCard({
 
 export default function CommunityFeed({
   posts,
-  credByAuthor = {},
+  authorMeta = {},
 }: {
   posts: CommunityPost[];
-  credByAuthor?: Record<string, number>;
+  authorMeta?: Record<string, { cred: number; earned: string[] }>;
 }) {
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
@@ -1270,7 +1279,7 @@ export default function CommunityFeed({
               likes={likes}
               onToggleLike={toggleLike}
               pendingMap={pendingComments}
-              credByAuthor={credByAuthor}
+              authorMeta={authorMeta}
             />
           </div>
         ) : (
