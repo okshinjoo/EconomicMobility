@@ -1038,6 +1038,31 @@ export function ProfileEditor({
                     </div>
 
                     <div className="px-5 py-5 sm:px-6">
+          {tab === "overview" && !showWelcome && !role && goals.length === 0 && (
+            <div
+              className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 shadow-sm"
+            >
+              <div className="flex items-center gap-3">
+                <Target
+                  className="h-5 w-5 flex-shrink-0 text-forest"
+                  strokeWidth={1.75}
+                />
+                <p className="text-sm leading-6" style={{ color: DASH.muted }}>
+                  <span className="font-semibold text-ink">
+                    Finish setting up your profile
+                  </span>{" "}
+                  — add what you&apos;re up to and pick a goal or two.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => selectTab("about")}
+                className="rounded-lg bg-forest px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-forest-700"
+              >
+                Finish profile
+              </button>
+            </div>
+          )}
           {tab === "overview" && (
             <FlatOverview
               data={member}

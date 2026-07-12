@@ -5,33 +5,41 @@
 // can be inspected and iterated without authenticating. The route that mounts
 // this 404s in production (see app/dev/account-preview/page.tsx).
 
+import { useSearchParams } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { ProfileEditor } from "@/components/AccountPanel";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
-const mockSupabase = {
-  from: () => ({
-    select: () => ({
-      eq: () => ({
-        maybeSingle: async () => ({
-          data: {
-            display_name: "Shinjoo",
-            role: "student",
-            show_tag: true,
-            goals: ["credit", "invest"],
-            flairs: ["first-gen", "spreadsheet-lover"],
-          },
-          error: null,
+// ?fresh=1 renders a BRAND-NEW member (empty profile) so the first-sign-in
+// welcome + finish-your-profile chip can be previewed; default is the filled
+// demo profile used for dashboard styling work.
+function makeMockSupabase(fresh: boolean): SupabaseClient {
+  return {
+    from: () => ({
+      select: () => ({
+        eq: () => ({
+          maybeSingle: async () => ({
+            data: fresh
+              ? null
+              : {
+                  display_name: "Shinjoo",
+                  role: "student",
+                  show_tag: true,
+                  goals: ["credit", "invest"],
+                  flairs: ["first-gen", "spreadsheet-lover"],
+                },
+            error: null,
+          }),
         }),
       }),
+      upsert: async () => ({ error: null }),
     }),
-    upsert: async () => ({ error: null }),
-  }),
-  auth: {
-    updateUser: async () => ({ data: {}, error: null }),
-    signOut: async () => ({ error: null }),
-  },
-} as unknown as SupabaseClient;
+    auth: {
+      updateUser: async () => ({ data: {}, error: null }),
+      signOut: async () => ({ error: null }),
+    },
+  } as unknown as SupabaseClient;
+}
 
 const mockSession = {
   user: {
@@ -49,9 +57,10 @@ export default function DevAccountHarness({
   paths: TopicPath[];
   badgeSources: BadgeSource[];
 }) {
+  const fresh = useSearchParams().get("fresh") === "1";
   return (
     <ProfileEditor
-      supabase={mockSupabase}
+      supabase={makeMockSupabase(fresh)}
       session={mockSession}
       syncedKeys={0}
       paths={paths}
