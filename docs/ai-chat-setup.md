@@ -55,3 +55,12 @@ spending cap, it automatically falls back to the free retrieval guide.
   function retrieves the top 6 matches via `rankItems`; if answers feel thin for a
   topic, that usually means an article is missing or its title/dek doesn't match
   how people phrase the question.
+
+
+## STATUS UPDATE — July 2026: AI chat is LIVE
+
+All three steps are done: ANTHROPIC_API_KEY exists in Vercel (added for
+comment review — one key powers both features), AI_ENDPOINT is set to
+/api/chat, and the route now grounds answers in real article body text
+with conversation history for follow-ups. Locally (no key in .env.local)
+the chat automatically uses the free retrieval guide instead.

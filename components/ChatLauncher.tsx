@@ -8,21 +8,33 @@ import type { SearchItem } from "@/lib/search";
 import { guideAnswer, type GuideAnswer } from "@/lib/guide";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FLIP ON AI: set AI_ENDPOINT to a serverless function that holds your Anthropic
-// key and answers from these articles. Expected contract:
-//   POST { query: string }  ->  { reply: string, sourceHrefs?: string[] }
-// While empty, the chat uses the free retrieval guide (lib/guide.ts). If the AI
-// call fails, it also falls back to the guide, so the widget never breaks.
-const AI_ENDPOINT = "";
+// AI is ON (July 2026): /api/chat holds the Anthropic key server-side and
+// answers from the site's own articles, with conversation history for
+// follow-ups. If the route is unconfigured (503) or errors, this silently
+// falls back to the free retrieval guide (lib/guide.ts) — never breaks.
+const AI_ENDPOINT = "/api/chat";
 // ─────────────────────────────────────────────────────────────────────────────
 
-async function fetchAnswer(query: string, index: SearchItem[]): Promise<GuideAnswer> {
+type Msg = { role: "user" | "guide"; text: string; items?: SearchItem[] };
+
+async function fetchAnswer(
+  query: string,
+  history: Msg[],
+  index: SearchItem[]
+): Promise<GuideAnswer> {
   if (AI_ENDPOINT) {
     try {
       const res = await fetch(AI_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({
+          query,
+          // Recent turns (minus the canned greeting) so follow-ups work.
+          history: history
+            .slice(1)
+            .slice(-6)
+            .map((m) => ({ role: m.role, text: m.text })),
+        }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -38,8 +50,6 @@ async function fetchAnswer(query: string, index: SearchItem[]): Promise<GuideAns
   return guideAnswer(query, index);
 }
 
-type Msg = { role: "user" | "guide"; text: string; items?: SearchItem[] };
-
 const SUGGESTIONS = [
   "How do I start a budget?",
   "Build credit with no SSN",
@@ -49,7 +59,7 @@ const SUGGESTIONS = [
 
 const GREETING: Msg = {
   role: "guide",
-  text: "Hi, I'm your money guide. Ask me anything, or tell me what you're trying to do, and I'll point you to the right article, calculator, or resource.",
+  text: "Hi, I'm your money guide. Ask me anything about money — I'll explain it in plain English and hand you the exact guide or calculator for it.",
 };
 
 export default function ChatLauncher({ items }: { items: SearchItem[] }) {
@@ -90,9 +100,10 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
     const q = text.trim();
     if (!q || thinking) return;
     setInput("");
+    const priorMsgs = msgs;
     setMsgs((m) => [...m, { role: "user", text: q }]);
     setThinking(true);
-    const answer = await fetchAnswer(q, items);
+    const answer = await fetchAnswer(q, priorMsgs, items);
     setThinking(false);
     setMsgs((m) => [...m, { role: "guide", text: answer.reply, items: answer.items }]);
   }
@@ -125,7 +136,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
               <Sparkles className="h-5 w-5 text-amber" strokeWidth={2} />
               <div className="leading-tight">
                 <p className="text-sm font-semibold">Money Guide</p>
-                <p className="text-[11px] text-cream/70">Points you to the right info</p>
+                <p className="text-[11px] text-cream/70">Answers from our own guides</p>
               </div>
             </div>
             <button
@@ -226,7 +237,8 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
           </form>
 
           <p className="bg-cream px-4 pb-2.5 text-center text-[10px] leading-tight text-stone">
-            General education, not personal financial or legal advice.
+            AI answers from our guides — can make mistakes. General education,
+            not personal financial or legal advice.
           </p>
         </div>
       )}
