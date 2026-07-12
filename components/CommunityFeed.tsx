@@ -12,10 +12,12 @@ import {
   Compass,
   BookOpen,
   Inbox,
+  Pin,
 } from "lucide-react";
 import {
   CHANNELS,
   getChannel,
+  channelMatches,
   type ChannelId,
   type CommunityPost,
 } from "@/lib/communityFeed";
@@ -29,6 +31,7 @@ import { communityTag, readLocalProfile } from "@/lib/profile";
 const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
+const PINNED_CHANNELS_KEY = "empower:community-pinned-channels:v1";
 const PENDING_POSTS_KEY = "empower:community-posts:v1";
 const LIKES_KEY = "empower:community-likes:v1";
 
@@ -189,7 +192,7 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
         >
           {CHANNELS.map((c) => (
             <option key={c.id} value={c.id}>
-              {c.name}
+              {c.parent ? `\u2014 ${c.name}` : c.name}
             </option>
           ))}
         </select>
@@ -447,6 +450,21 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
   const [active, setActive] = useState<"all" | ChannelId>("all");
+  const [pinnedChannels, setPinnedChannels] = useState<ChannelId[]>([]);
+
+  useEffect(() => {
+    setPinnedChannels(loadJSON<ChannelId[]>(PINNED_CHANNELS_KEY) ?? []);
+  }, []);
+
+  const togglePinChannel = (id: ChannelId) => {
+    setPinnedChannels((prev) => {
+      const next = prev.includes(id)
+        ? prev.filter((x) => x !== id)
+        : [...prev, id];
+      saveJSON(PINNED_CHANNELS_KEY, next);
+      return next;
+    });
+  };
 
   useEffect(() => {
     const refresh = () => {
@@ -468,16 +486,88 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
   };
 
   const visiblePosts = [...posts]
-    .filter((p) => active === "all" || p.channel === active)
+    .filter((p) => active === "all" || channelMatches(p.channel, active))
     .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
   const visiblePending = pendingPosts.filter(
-    (p) => active === "all" || p.channel === active || !p.channel
+    (p) =>
+      active === "all" || !p.channel || channelMatches(p.channel, active)
   );
   const countFor = (id: ChannelId) =>
-    posts.filter((p) => p.channel === id).length;
+    posts.filter((p) => channelMatches(p.channel, id)).length;
+  const pinnedSet = new Set(pinnedChannels);
+  const orderedForChips = [
+    ...pinnedChannels.map(getChannel),
+    ...CHANNELS.filter((c) => !pinnedSet.has(c.id)),
+  ];
+
+  const ChannelRow = ({
+    c,
+    indent = false,
+  }: {
+    c: (typeof CHANNELS)[number];
+    indent?: boolean;
+  }) => (
+    <div
+      className={`group/row flex items-center rounded-lg transition-colors ${
+        active === c.id ? "bg-amber/25" : "hover:bg-paper"
+      } ${indent ? "ml-6" : ""}`}
+    >
+      <button
+        type="button"
+        onClick={() => setActive(c.id)}
+        aria-pressed={active === c.id}
+        title={c.tagline}
+        className={`flex min-w-0 flex-1 items-center gap-2.5 px-3 py-2 text-sm font-semibold ${
+          active === c.id ? "text-ink" : "text-stone hover:text-ink"
+        }`}
+      >
+        <c.icon
+          className="h-4 w-4 flex-shrink-0"
+          strokeWidth={1.75}
+          style={{ color: c.color }}
+        />
+        <span className="min-w-0 flex-1 truncate text-left">{c.name}</span>
+        <span className="text-xs font-bold text-stone/70">
+          {countFor(c.id)}
+        </span>
+      </button>
+      <button
+        type="button"
+        onClick={() => togglePinChannel(c.id)}
+        aria-label={
+          pinnedSet.has(c.id) ? `Unpin ${c.name}` : `Pin ${c.name}`
+        }
+        title={pinnedSet.has(c.id) ? "Unpin" : "Pin to top"}
+        className={`mr-1.5 rounded p-1 transition-opacity ${
+          pinnedSet.has(c.id)
+            ? "text-amber-deep"
+            : "text-stone/50 opacity-0 hover:text-ink group-hover/row:opacity-100 focus:opacity-100"
+        }`}
+      >
+        <Pin
+          className="h-3.5 w-3.5"
+          fill={pinnedSet.has(c.id) ? "currentColor" : "none"}
+        />
+      </button>
+    </div>
+  );
 
   const railGroups = (
     <>
+      {/* pinned channels */}
+      {pinnedChannels.length > 0 && (
+        <>
+          <p className="px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
+            Pinned
+          </p>
+          <div className="mb-4 mt-1.5 space-y-0.5">
+            {pinnedChannels.map((id) => (
+              <ChannelRow key={`pin-${id}`} c={getChannel(id)} />
+            ))}
+          </div>
+        </>
+      )}
+
       {/* channels */}
       <p className="px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
         Channels
@@ -497,29 +587,8 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
           <span className="flex-1 text-left">All posts</span>
           <span className="text-xs font-bold text-stone/70">{posts.length}</span>
         </button>
-        {CHANNELS.map((c) => (
-          <button
-            key={c.id}
-            type="button"
-            onClick={() => setActive(c.id)}
-            aria-pressed={active === c.id}
-            title={c.tagline}
-            className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-              active === c.id
-                ? "bg-amber/25 text-ink"
-                : "text-stone hover:bg-paper hover:text-ink"
-            }`}
-          >
-            <c.icon
-              className="h-4 w-4 flex-shrink-0"
-              strokeWidth={1.75}
-              style={{ color: c.color }}
-            />
-            <span className="flex-1 text-left">{c.name}</span>
-            <span className="text-xs font-bold text-stone/70">
-              {countFor(c.id)}
-            </span>
-          </button>
+        {CHANNELS.filter((c) => !pinnedSet.has(c.id)).map((c) => (
+          <ChannelRow key={c.id} c={c} indent={Boolean(c.parent)} />
         ))}
       </div>
 
@@ -584,7 +653,7 @@ export default function CommunityFeed({ posts }: { posts: CommunityPost[] }) {
         >
           All posts
         </button>
-        {CHANNELS.map((c) => (
+        {orderedForChips.map((c) => (
           <button
             key={c.id}
             type="button"

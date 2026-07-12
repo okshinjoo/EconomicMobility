@@ -15,6 +15,13 @@ import {
   PiggyBank,
   CreditCard,
   Flag,
+  GraduationCap,
+  FileText,
+  Landmark,
+  TrendingUp,
+  Briefcase,
+  Users,
+  ShieldAlert,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,8 +32,15 @@ export type ChannelId =
   | "say-hello"
   | "wins"
   | "questions"
+  | "students"
+  | "financial-aid"
+  | "student-loans"
   | "budgeting-saving"
   | "credit-debt"
+  | "investing"
+  | "work-income"
+  | "family-firstgen"
+  | "scams-safety"
   | "challenges";
 
 export interface Channel {
@@ -38,6 +52,8 @@ export interface Channel {
   color: string;
   /** Rail icon (rendered as <channel.icon />, same pattern as topics). */
   icon: LucideIcon;
+  /** Sub-channels set this to their parent's id and indent under it. */
+  parent?: ChannelId;
 }
 
 export const CHANNELS: Channel[] = [
@@ -63,6 +79,29 @@ export const CHANNELS: Channel[] = [
     color: "#d26a4c",
   },
   {
+    id: "students",
+    icon: GraduationCap,
+    name: "Students",
+    tagline: "Money while you're in school — aid, loans, part-time paychecks.",
+    color: "#b3762f",
+  },
+  {
+    id: "financial-aid",
+    icon: FileText,
+    name: "Financial Aid & Offers",
+    tagline: "FAFSA, award letters, and comparing packages line by line.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
+    id: "student-loans",
+    icon: Landmark,
+    name: "Student Loans",
+    tagline: "Before you sign, while you owe, and the payoff after.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
     id: "budgeting-saving",
     icon: PiggyBank,
     name: "Budgeting & Saving",
@@ -77,6 +116,34 @@ export const CHANNELS: Channel[] = [
     color: "#7a5230",
   },
   {
+    id: "investing",
+    icon: TrendingUp,
+    name: "Investing",
+    tagline: "Index funds, IRAs, and the questions you've been sitting on.",
+    color: "#15624b",
+  },
+  {
+    id: "work-income",
+    icon: Briefcase,
+    name: "Work & Income",
+    tagline: "Paychecks, side gigs, raises, and getting paid right.",
+    color: "#4b5f8a",
+  },
+  {
+    id: "family-firstgen",
+    icon: Users,
+    name: "Family & First-Gen",
+    tagline: "Helping family, sending money home, going first.",
+    color: "#d26a4c",
+  },
+  {
+    id: "scams-safety",
+    icon: ShieldAlert,
+    name: "Scams & Safety",
+    tagline: "Spotted something shady? Warn everyone here.",
+    color: "#a33d3d",
+  },
+  {
     id: "challenges",
     icon: Flag,
     name: "Challenges",
@@ -87,6 +154,16 @@ export const CHANNELS: Channel[] = [
 
 export function getChannel(id: ChannelId): Channel {
   return CHANNELS.find((c) => c.id === id) ?? CHANNELS[0];
+}
+
+/** True when a post in `postChannel` belongs under the `active` filter
+ *  (a parent channel includes its sub-channels' posts). */
+export function channelMatches(
+  postChannel: ChannelId,
+  active: ChannelId
+): boolean {
+  if (postChannel === active) return true;
+  return getChannel(postChannel).parent === active;
 }
 
 export interface CommunityComment {
@@ -272,6 +349,111 @@ export const communityPosts: CommunityPost[] = [
       "House rule reminder: name the service if you like, but keep it factual and kind.",
     ],
     link: { label: "Join the challenge", href: "/challenges/subscription-audit" },
+    comments: [],
+  },
+  {
+    id: "students-hub",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "The student corner: what goes where",
+    channel: "students",
+    pinned: true,
+    body: [
+      "Home base for money-while-in-school: aid packages, loans, part-time paychecks, textbook math, all of it. Two focused rooms live under this one — Financial Aid & Offers for FAFSA and comparing packages, and Student Loans for everything borrowing.",
+      "Not sure where something fits? Post it right here and we'll point you the right way.",
+    ],
+    link: { label: "The college money guides", href: "/learn/college" },
+    comments: [],
+  },
+  {
+    id: "aid-offers-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Comparing aid offers? Bring the confusing line items here",
+    channel: "financial-aid",
+    pinned: true,
+    body: [
+      "Award letters are weirdly hard to compare on purpose: one school buries loans inside the \"aid,\" another leaves out costs entirely. If you're weighing offers, this is the room. Ask about any line you don't recognize — school names and dollar amounts optional.",
+      "A good place to start: run both letters through the side-by-side tool below, then post whatever still doesn't add up.",
+    ],
+    link: { label: "Compare two aid offers side by side", href: "/tools/college/compare-offers" },
+    comments: [],
+  },
+  {
+    id: "student-loans-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Student loans: ask before you sign",
+    channel: "student-loans",
+    pinned: true,
+    body: [
+      "The cheapest loan mistake is the one you never make. Before you sign anything, ask here: federal versus private, subsidized versus not, what a servicer actually does, whether that refinancing ad is too good to be true (usually).",
+      "Already borrowed? Repayment questions, forgiveness confusion, and payoff wins of any size belong here too.",
+    ],
+    link: { label: "Estimate a loan's real monthly cost", href: "/tools/college/student-loan" },
+    comments: [],
+  },
+  {
+    id: "investing-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Investing, minus the jargon",
+    channel: "investing",
+    pinned: true,
+    body: [
+      "No gatekeeping in this room: index funds, Roth IRAs, the thing your coworker keeps saying about crypto. If you've been nodding along to a term you don't actually understand, this is where you stop nodding and start asking.",
+      "One house reminder: experiences and questions are always welcome, but nobody here can tell you what to buy — and anyone who tries is breaking the rules.",
+    ],
+    link: { label: "Getting started with investing", href: "/learn/investing" },
+    comments: [],
+  },
+  {
+    id: "work-income-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "First paychecks, side gigs, and getting paid right",
+    channel: "work-income",
+    pinned: true,
+    body: [
+      "Why is the check smaller than the offer letter? What do I actually put on a W-4? Is the side gig worth it after gas? Every working-for-money question lives here.",
+      "Wins count double in this room: first paycheck, first raise, first invoice that actually got paid.",
+    ],
+    link: { label: "Your first paycheck, explained", href: "/learn/budgeting/your-first-paycheck" },
+    comments: [],
+  },
+  {
+    id: "family-firstgen-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Money and family: the conversations nobody preps you for",
+    channel: "family-firstgen",
+    pinned: true,
+    body: [
+      "Helping parents with bills, sending money home, being the first in the family to navigate any of this — it's money and love at the same time, which makes it the hardest kind. This room is for those questions, judgment-free.",
+      "Share what worked, ask what you're stuck on, or just say the thing out loud. Plenty of us are the family's unofficial CFO.",
+    ],
+    link: { label: "Sending money abroad without losing a cut", href: "/learn/budgeting/sending-money-abroad" },
+    comments: [],
+  },
+  {
+    id: "scams-open",
+    author: "Empower Team",
+    team: true,
+    date: "2026-07-12",
+    title: "Seen a scam? Post it here",
+    channel: "scams-safety",
+    pinned: true,
+    body: [
+      "The fastest scam alarm is each other. A text about a job you never applied for, a \"bank\" asking you to verify anything, an investing guru in your DMs: describe it here so the next person scrolls right past it.",
+      "And zero shame if one got you — posting it is the win that protects everyone else.",
+    ],
+    link: { label: "How to spot a scam", href: "/learn/money-safety/how-to-spot-a-scam" },
     comments: [],
   },
 ];

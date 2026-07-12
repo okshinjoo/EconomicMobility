@@ -42,7 +42,7 @@ export default function CommunityPage() {
 
       {/* Rail + feed (CommunityFeed owns the CGF-style left rail) */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
           <CommunityFeed posts={communityPosts} />
         </div>
       </section>
