@@ -113,6 +113,14 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
     setNotice(null);
   };
 
+  // The reset-link notice returns to sign-in on its own after a beat, so
+  // nobody is stranded on a confirmation with no way back.
+  useEffect(() => {
+    if (!notice || mode !== "forgot") return;
+    const t = setTimeout(() => switchMode("signin"), 5000);
+    return () => clearTimeout(t);
+  }, [notice, mode]);
+
   async function googleSignIn() {
     setError(null);
     setBusy(true);
@@ -237,6 +245,13 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
         <div className="mt-6 rounded-xl border-2 border-forest/30 bg-forest/[0.06] p-5 text-center">
           <CheckCircle2 className="mx-auto h-8 w-8 text-forest" strokeWidth={1.75} />
           <p className="mt-2 text-sm leading-6 text-ink">{notice}</p>
+          <button
+            type="button"
+            onClick={() => switchMode("signin")}
+            className="mt-4 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Back to sign in
+          </button>
         </div>
       ) : (
         <>
