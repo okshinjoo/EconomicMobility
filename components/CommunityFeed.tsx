@@ -27,7 +27,7 @@ import {
   type CommunityComment,
 } from "@/lib/communityFeed";
 import { loadJSON, saveJSON } from "@/lib/storage";
-import { communityTag, communityFlairs, readLocalProfile } from "@/lib/profile";
+import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } from "@/lib/profile";
 
 // Same moderated-inbox channel as the Ask box (components/AskQuestion.tsx):
 // paste the Web3Forms access key for Help@economicmobilityproject.org here to
@@ -114,7 +114,11 @@ function FlairChips({ labels }: { labels?: string[] }) {
       {labels.map((f) => (
         <span
           key={f}
-          className="rounded-full bg-amber/15 px-2 py-0.5 text-[10px] font-bold text-amber-deep"
+          className="rounded-full px-2 py-0.5 text-[10px] font-bold"
+          style={{
+            color: flairColorByLabel(f),
+            background: `${flairColorByLabel(f)}1f`,
+          }}
         >
           {f}
         </span>

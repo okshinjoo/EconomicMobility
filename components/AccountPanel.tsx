@@ -38,6 +38,7 @@ import {
   FLAIR_OPTIONS,
   MAX_FLAIRS,
   flairLabel,
+  flairColor,
   writeLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
@@ -902,10 +903,7 @@ export function ProfileEditor({
                   name={displayName}
                   email={session.user.email ?? ""}
                   role={role}
-                  flairLabels={flairs
-                    .slice(0, MAX_FLAIRS)
-                    .map(flairLabel)
-                    .filter(Boolean)}
+                  flairIds={flairs.slice(0, MAX_FLAIRS)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
                   quizTopicCount={member.quizTopics.length}
@@ -1062,12 +1060,25 @@ export function ProfileEditor({
                                 )
                               }
                               className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
-                                showing
-                                  ? "border-forest bg-forest text-cream"
-                                  : on
-                                    ? "border-forest bg-white text-forest"
-                                    : "border-[#eee7d9] bg-white text-stone hover:border-forest/40 hover:text-ink"
+                                !on
+                                  ? "border-[#eee7d9] bg-white text-stone hover:text-ink"
+                                  : ""
                               }`}
+                              style={
+                                showing
+                                  ? {
+                                      background: f.color,
+                                      borderColor: f.color,
+                                      color: "#fbf8f1",
+                                    }
+                                  : on
+                                    ? {
+                                        background: "#fff",
+                                        borderColor: f.color,
+                                        color: f.color,
+                                      }
+                                    : undefined
+                              }
                             >
                               {f.label}
                             </button>
@@ -1310,7 +1321,7 @@ function FlatIdentityCard({
   name,
   email,
   role,
-  flairLabels,
+  flairIds,
   goalsCount,
   memberSince,
   quizTopicCount,
@@ -1323,7 +1334,7 @@ function FlatIdentityCard({
   name: string;
   email: string;
   role: ProfileRole;
-  flairLabels: string[];
+  flairIds: string[];
   goalsCount: number;
   memberSince: string;
   quizTopicCount: number;
@@ -1358,14 +1369,15 @@ function FlatIdentityCard({
             {ROLE_LABELS[role]}
           </span>
         )}
-        {flairLabels.length > 0 && (
+        {flairIds.length > 0 && (
           <div className="mt-2 flex flex-wrap justify-center gap-1.5">
-            {flairLabels.map((f) => (
+            {flairIds.map((id) => (
               <span
-                key={f}
-                className="rounded-full bg-amber/20 px-2.5 py-0.5 text-[11px] font-bold text-amber"
+                key={id}
+                className="rounded-full px-2.5 py-0.5 text-[11px] font-bold text-cream"
+                style={{ background: flairColor(id) }}
               >
-                {f}
+                {flairLabel(id)}
               </span>
             ))}
           </div>

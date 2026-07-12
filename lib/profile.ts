@@ -36,31 +36,44 @@ export interface FlairOption {
   id: string;
   label: string;
   kind: "useful" | "fun";
+  /** Distinct per-flair hue — dark enough for text on light surfaces and
+   *  for cream text when used as a solid chip. */
+  color: string;
 }
 
 export const FLAIR_OPTIONS: FlairOption[] = [
   // useful — where you're coming from
-  { id: "first-gen", label: "First-gen", kind: "useful" },
-  { id: "intl-student", label: "International student", kind: "useful" },
-  { id: "parent", label: "Parent", kind: "useful" },
-  { id: "two-jobs", label: "Working two jobs", kind: "useful" },
-  { id: "debt-free-journey", label: "Debt-free journey", kind: "useful" },
-  { id: "rebuilding-credit", label: "Rebuilding credit", kind: "useful" },
-  { id: "future-homeowner", label: "Future homeowner", kind: "useful" },
-  { id: "new-investor", label: "New investor", kind: "useful" },
+  { id: "first-gen", label: "First-gen", kind: "useful" , color: "#b3762f" },
+  { id: "intl-student", label: "International student", kind: "useful" , color: "#4b5f8a" },
+  { id: "parent", label: "Parent", kind: "useful" , color: "#7a5230" },
+  { id: "two-jobs", label: "Working two jobs", kind: "useful" , color: "#6b4f8a" },
+  { id: "debt-free-journey", label: "Debt-free journey", kind: "useful" , color: "#15624b" },
+  { id: "rebuilding-credit", label: "Rebuilding credit", kind: "useful" , color: "#a33d3d" },
+  { id: "future-homeowner", label: "Future homeowner", kind: "useful" , color: "#c9842a" },
+  { id: "new-investor", label: "New investor", kind: "useful" , color: "#0c4a39" },
   // fun — personality
-  { id: "spreadsheet-lover", label: "Spreadsheet lover", kind: "fun" },
-  { id: "coupon-wizard", label: "Coupon wizard", kind: "fun" },
-  { id: "thrift-legend", label: "Thrift store legend", kind: "fun" },
-  { id: "family-cfo", label: "Family CFO", kind: "fun" },
-  { id: "meal-prep-champ", label: "Meal prep champion", kind: "fun" },
-  { id: "ask-me-fafsa", label: "Ask me about FAFSA", kind: "fun" },
-  { id: "recovering-impulse", label: "Recovering impulse buyer", kind: "fun" },
-  { id: "pro-latte", label: "Pro-latte budgeter", kind: "fun" },
+  { id: "spreadsheet-lover", label: "Spreadsheet lover", kind: "fun" , color: "#2f6d80" },
+  { id: "coupon-wizard", label: "Coupon wizard", kind: "fun" , color: "#8a6d1f" },
+  { id: "thrift-legend", label: "Thrift store legend", kind: "fun" , color: "#7d5a8a" },
+  { id: "family-cfo", label: "Family CFO", kind: "fun" , color: "#d26a4c" },
+  { id: "meal-prep-champ", label: "Meal prep champion", kind: "fun" , color: "#5a7d3b" },
+  { id: "ask-me-fafsa", label: "Ask me about FAFSA", kind: "fun" , color: "#3b6d99" },
+  { id: "recovering-impulse", label: "Recovering impulse buyer", kind: "fun" , color: "#a34d6d" },
+  { id: "pro-latte", label: "Pro-latte budgeter", kind: "fun" , color: "#6b4a2f" },
 ];
 
 export function flairLabel(id: string): string {
   return FLAIR_OPTIONS.find((f) => f.id === id)?.label ?? "";
+}
+
+export function flairColor(id: string): string {
+  return FLAIR_OPTIONS.find((f) => f.id === id)?.color ?? "#6b7a72";
+}
+
+/** Community surfaces store flair LABELS (from the review email), so they
+ *  look colors up by label. */
+export function flairColorByLabel(label: string): string {
+  return FLAIR_OPTIONS.find((f) => f.label === label)?.color ?? "#6b7a72";
 }
 
 /** Flair labels to show beside the member's name on community submissions —
