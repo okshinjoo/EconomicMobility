@@ -222,6 +222,19 @@ export default function Home() {
       {/* Personalized "pick up where you left off" (renders only with history) */}
       <WelcomeBack paths={topicPaths} badgeSources={badgeSources} />
 
+      {/* Value-prop marquee (Base44 swap, July 2026) — counts are live. */}
+      <Ticker
+        tone="amber"
+        items={[
+          { label: "No sign-up required", href: "/start-here" },
+          { label: `${guideTotal} plain-English guides`, href: "/learn" },
+          { label: `${calculatorTotal} free calculators`, href: "/tools" },
+          { label: "Built for real people", href: "/about" },
+          { label: "Free forever", href: "/about" },
+          { label: "No paywall", href: "/start-here" },
+        ]}
+      />
+
       {/* Come with a real question — read articles rotate out of the list */}
       <section className="bg-forest text-cream">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
@@ -241,18 +254,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Value-prop marquee (Base44 swap, July 2026) — counts are live. */}
-      <Ticker
-        tone="amber"
-        items={[
-          { label: "No sign-up required", href: "/start-here" },
-          { label: `${guideTotal} plain-English guides`, href: "/learn" },
-          { label: `${calculatorTotal} free calculators`, href: "/tools" },
-          { label: "Built for real people", href: "/about" },
-          { label: "Free forever", href: "/about" },
-          { label: "No paywall", href: "/start-here" },
-        ]}
-      />
 
       {/* The library, in numbers — every figure derived live from the data
           (honesty rule), counting up on first scroll into view. */}
