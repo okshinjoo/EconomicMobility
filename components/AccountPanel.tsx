@@ -20,13 +20,11 @@ import {
   X,
   Check,
   Pencil,
-  LogOut,
   LayoutDashboard,
   Target,
   ShieldCheck,
   BookOpen,
   Mail,
-  CalendarDays,
 } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
@@ -42,18 +40,19 @@ import {
 } from "@/lib/profile";
 import {
   useMemberData,
-  DonutStatsCards,
-  OverviewPanels,
+  FlatStatCards,
+  FlatOverview,
+  DASH,
 } from "@/components/AccountDashboard";
 
 /** The signed-in sections, navigated by the left rail. */
 type PanelTab = "overview" | "about" | "goals" | "security";
 
-const PANEL_TITLES: Record<PanelTab, string> = {
+const PANEL_LABELS: Record<PanelTab, string> = {
   overview: "Overview",
   about: "About you",
-  goals: "Your goals",
-  security: "Sign-in & security",
+  goals: "Goals",
+  security: "Security",
 };
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
@@ -111,7 +110,8 @@ export default function AccountPanel({
 
   if (!accountsEnabled || !supabase) {
     return (
-      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center">
+      <section className="bg-paper-deep">
+      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center" style={{ marginTop: "3rem", marginBottom: "3rem" }}>
         <UserRound className="mx-auto h-10 w-10 text-stone" strokeWidth={1.5} />
         <h2 className="mt-4 font-display text-2xl font-bold text-ink">
           Accounts aren&apos;t open quite yet
@@ -122,21 +122,23 @@ export default function AccountPanel({
           on this device automatically — no account needed.
         </p>
       </div>
+      </section>
     );
   }
 
   if (!booted) {
     return (
-      <div className="flex items-center justify-center py-24 text-stone">
-        <Loader2 className="h-6 w-6 animate-spin" />
-      </div>
+      <section className="bg-paper-deep">
+        <div className="flex items-center justify-center py-32 text-stone">
+          <Loader2 className="h-6 w-6 animate-spin" />
+        </div>
+      </section>
     );
   }
 
   if (session) {
     return (
-      <div>
-        <ProfileEditor
+      <ProfileEditor
           supabase={supabase}
           session={session}
           syncedKeys={syncedKeys}
@@ -144,13 +146,13 @@ export default function AccountPanel({
           badgeSources={badgeSources}
           fromAuthRedirect={fromAuthRedirect}
         />
-      </div>
     );
   }
 
   // Signed out: split-screen — a brand "identity" panel beside the form.
   return (
-    <div className="mx-auto grid max-w-5xl items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
+    <section className="bg-paper-deep">
+    <div className="mx-auto grid max-w-5xl items-stretch gap-6 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:py-16">
       <div className="relative overflow-hidden rounded-3xl bg-forest p-8 text-cream sm:p-10">
         <TopicMark
           id="investing"
@@ -192,6 +194,7 @@ export default function AccountPanel({
 
       <AuthForms supabase={supabase} />
     </div>
+    </section>
   );
 }
 
@@ -775,85 +778,176 @@ export function ProfileEditor({
     );
   }
 
+  const initial = (displayName.trim() || session.user.email || "?")
+    .charAt(0)
+    .toUpperCase();
+  const keepHref = member.next?.href ?? "/learn";
+  const navItems = [
+    ["overview", LayoutDashboard],
+    ["about", UserRound],
+    ["goals", Target],
+    ["security", ShieldCheck],
+  ] as const;
+
   return (
-    <div className="space-y-5">
-      {showWelcome && (
-        <div className="flex items-start justify-between gap-4 rounded-2xl border-2 border-forest bg-forest/[0.07] p-5">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-forest" strokeWidth={1.75} />
-            <div>
-              <p className="font-display text-lg font-semibold text-ink">
-                You&apos;re in — welcome to Empower.
-              </p>
-              <p className="mt-0.5 text-sm leading-6 text-stone">
-                Your email is verified and everything you&apos;ve done on this
-                device is now saved to your account. Fill in the profile below
-                if you&apos;d like sharper recommendations.
-              </p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => setShowWelcome(false)}
-            aria-label="Dismiss"
-            className="rounded p-1 text-stone transition-colors hover:text-ink"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      )}
-
-      {/* Greeting header — every good profile dashboard opens with one. */}
-      <div>
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Welcome back{displayName.trim() ? `, ${displayName.trim().split(/\s+/)[0]}` : ""}.
-        </h1>
-        <p className="mt-1.5 text-sm text-stone">
-          Here&apos;s where your money journey stands — synced to your
-          account automatically.
-        </p>
-      </div>
-
-      {/* Kinetik-style member layout (owner reference): nav rail on the
-          far left, the identity card beside it, chart stat cards + the
-          section panel on the right. */}
-      <div className="grid gap-5 lg:grid-cols-[13rem_17rem_1fr] lg:items-start">
-        <NavRail
-          active={tab}
-          onSelect={selectTab}
-          nextHref={member.next?.href ?? "/learn"}
-        />
-
-        <IdentityCard
-          name={displayName}
-          email={session.user.email ?? ""}
-          role={role}
-          goalsCount={goals.length}
-          memberSince={memberSince}
-          quizTaken={member.quizTopics.length > 0}
-          badgesEarned={member.earned.length}
-          badgeTotal={badgeSources.length}
-          onEdit={() => selectTab("about")}
-          onSignOut={signOut}
-        />
-
-        <div className="min-w-0 space-y-5">
-          <DonutStatsCards
-            data={member}
-            paths={paths}
-            badgeTotal={badgeSources.length}
-          />
-
+    <section className="bg-ink">
+      <div className="mx-auto max-w-[88rem] px-3 py-6 sm:px-6 lg:py-10">
+        <div
+          className="overflow-hidden rounded-3xl shadow-2xl"
+          style={{ background: DASH.surface }}
+        >
+          {/* in-frame top bar */}
           <div
-            id="account-settings"
-            className="scroll-mt-24 rounded-2xl border border-sand bg-cream p-6 shadow-sm sm:p-8"
+            className="flex items-center justify-between border-b bg-white px-5 py-4 sm:px-7"
+            style={{ borderColor: DASH.divider }}
           >
-            <h2 className="font-display text-2xl font-bold text-ink">
-              {PANEL_TITLES[tab]}
-            </h2>
-            <div className="mt-5">
+            <p className="text-lg font-bold text-ink">Your account</p>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber text-sm font-bold text-ink">
+              {initial}
+            </span>
+          </div>
+
+          <div className="flex">
+            {/* flat sidebar */}
+            <aside
+              className="hidden w-56 flex-shrink-0 border-r bg-white px-4 pb-8 pt-6 lg:block"
+              style={{ borderColor: DASH.divider }}
+            >
+              <Link
+                href={keepHref}
+                className="mb-4 flex items-center justify-center gap-2 rounded-lg bg-forest py-2.5 text-sm font-bold text-cream transition-colors hover:bg-forest-700"
+              >
+                <BookOpen className="h-4 w-4" strokeWidth={2} />
+                Keep learning
+              </Link>
+              {navItems.map(([id, Icon]) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => selectTab(id)}
+                  aria-pressed={tab === id}
+                  className={`mb-1 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                    tab === id ? "text-forest" : "hover:text-ink"
+                  }`}
+                  style={
+                    tab === id
+                      ? { background: "rgba(12,74,57,0.08)" }
+                      : { color: DASH.muted }
+                  }
+                >
+                  <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+                  {PANEL_LABELS[id]}
+                </button>
+              ))}
+            </aside>
+
+            {/* content */}
+            <div className="min-w-0 flex-1 p-4 sm:p-6">
+              {showWelcome && (
+                <div className="mb-5 flex items-start justify-between gap-4 rounded-2xl bg-white p-5 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2
+                      className="mt-0.5 h-6 w-6 flex-shrink-0 text-forest"
+                      strokeWidth={1.75}
+                    />
+                    <div>
+                      <p className="text-base font-bold text-ink">
+                        You&apos;re in — welcome to Empower.
+                      </p>
+                      <p className="mt-0.5 text-sm leading-6 text-stone">
+                        Your email is verified and everything you&apos;ve done
+                        on this device is now saved to your account.
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowWelcome(false)}
+                    aria-label="Dismiss"
+                    className="rounded p-1 text-stone transition-colors hover:text-ink"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
+
+              {/* mobile section chips */}
+              <div className="mb-4 flex gap-1.5 overflow-x-auto lg:hidden">
+                {navItems.map(([id]) => (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => selectTab(id)}
+                    className={`whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold ${
+                      tab === id
+                        ? "bg-forest text-cream"
+                        : "bg-white text-stone shadow-sm"
+                    }`}
+                  >
+                    {PANEL_LABELS[id]}
+                  </button>
+                ))}
+              </div>
+
+              <div className="grid gap-5 lg:grid-cols-[280px_1fr] lg:items-start">
+                <FlatIdentityCard
+                  name={displayName}
+                  email={session.user.email ?? ""}
+                  role={role}
+                  goalsCount={goals.length}
+                  memberSince={memberSince}
+                  quizTopicCount={member.quizTopics.length}
+                  badgesEarned={member.earned.length}
+                  badgeTotal={badgeSources.length}
+                  streakDays={member.streakDays}
+                  onEdit={() => selectTab("about")}
+                  onSignOut={signOut}
+                />
+
+                <div className="min-w-0 space-y-5">
+                  <FlatStatCards
+                    data={member}
+                    paths={paths}
+                    badgeTotal={badgeSources.length}
+                  />
+
+                  <div
+                    id="account-settings"
+                    className="scroll-mt-24 rounded-2xl bg-white shadow-sm"
+                  >
+                    {/* tabs inside the panel, Kinetik-style */}
+                    <div
+                      className="flex items-center gap-0.5 overflow-x-auto border-b px-3 pt-1.5"
+                      style={{ borderColor: DASH.divider }}
+                    >
+                      {navItems.map(([id]) => (
+                        <button
+                          key={id}
+                          type="button"
+                          onClick={() => selectTab(id)}
+                          aria-pressed={tab === id}
+                          className={`relative whitespace-nowrap px-4 py-3 text-sm font-semibold ${
+                            tab === id ? "text-forest" : "hover:text-ink"
+                          }`}
+                          style={tab === id ? undefined : { color: DASH.muted }}
+                        >
+                          {PANEL_LABELS[id]}
+                          {tab === id && (
+                            <span className="absolute inset-x-3 bottom-0 h-[2.5px] rounded-full bg-forest" />
+                          )}
+                        </button>
+                      ))}
+                      <Link
+                        href={keepHref}
+                        className="ml-auto mr-2 hidden whitespace-nowrap rounded-lg bg-forest px-4 py-2 text-xs font-bold text-cream transition-colors hover:bg-forest-700 sm:block"
+                      >
+                        + Keep learning
+                      </Link>
+                    </div>
+
+                    <div className="px-5 py-5 sm:px-6">
           {tab === "overview" && (
-            <OverviewPanels
+            <FlatOverview
               data={member}
               paths={paths}
               badgeTotal={badgeSources.length}
@@ -893,10 +987,10 @@ export function ProfileEditor({
                   ).map(([value, label]) => (
                     <label
                       key={label}
-                      className={`flex cursor-pointer items-center gap-2.5 rounded-xl border-2 px-4 py-3 text-sm font-semibold transition-colors ${
+                      className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-4 py-3 text-sm font-semibold transition-colors ${
                         role === value
-                          ? "border-ink bg-paper text-ink shadow-[3px_3px_0_#11211c]"
-                          : "border-sand bg-paper text-stone hover:border-ink/30"
+                          ? "border-forest bg-forest/[0.06] text-ink"
+                          : "border-[#eee7d9] bg-white text-stone hover:border-forest/40"
                       }`}
                     >
                       <input
@@ -912,7 +1006,7 @@ export function ProfileEditor({
                 </div>
               </fieldset>
 
-              <label className="flex items-start gap-2.5 rounded-xl border border-sand bg-paper p-4 text-sm leading-6 text-ink">
+              <label className="flex items-start gap-2.5 rounded-lg border border-[#eee7d9] bg-white p-4 text-sm leading-6 text-ink">
                 <input
                   type="checkbox"
                   checked={showTag}
@@ -963,10 +1057,10 @@ export function ProfileEditor({
                             : [...prev, g.id]
                         )
                       }
-                      className={`rounded-xl border-2 px-4 py-2.5 text-sm font-semibold transition-colors ${
+                      className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
                         on
-                          ? "border-ink bg-amber text-ink shadow-[3px_3px_0_#11211c]"
-                          : "border-sand bg-paper text-stone hover:border-ink/30 hover:text-ink"
+                          ? "border-forest bg-forest text-cream"
+                          : "border-[#eee7d9] bg-white text-stone hover:border-forest/40 hover:text-ink"
                       }`}
                     >
                       {g.label}
@@ -1009,7 +1103,7 @@ export function ProfileEditor({
                   <button
                     type="submit"
                     disabled={emailBusy || !newEmail.includes("@")}
-                    className="btn-ink inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-lg bg-forest px-5 py-3 text-sm font-bold text-cream transition-colors hover:bg-forest-700 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {emailBusy && <Loader2 className="h-4 w-4 animate-spin" />}
                     Change email
@@ -1086,7 +1180,7 @@ export function ProfileEditor({
                 <button
                   type="submit"
                   disabled={pwBusy}
-                  className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-5 py-3 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-lg bg-forest px-5 py-3 text-sm font-bold text-cream transition-colors hover:bg-forest-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {pwBusy && <Loader2 className="h-4 w-4 animate-spin" />}
                   Update password
@@ -1115,76 +1209,29 @@ export function ProfileEditor({
               </div>
             </div>
           )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-/** The far-left nav rail (the reference's sidebar position): one action
- *  button on top, then the section links. Horizontal chip row below lg. */
-function NavRail({
-  active,
-  onSelect,
-  nextHref,
-}: {
-  active: PanelTab;
-  onSelect: (t: PanelTab) => void;
-  nextHref: string;
-}) {
-  const items = [
-    ["overview", "Overview", LayoutDashboard],
-    ["about", "About you", UserRound],
-    ["goals", "Goals", Target],
-    ["security", "Security", ShieldCheck],
-  ] as const;
-  return (
-    <div className="rounded-2xl border border-sand bg-cream p-3 shadow-sm lg:sticky lg:top-24">
-      <Link
-        href={nextHref}
-        className="btn-ink mb-3 flex w-full items-center justify-center gap-2 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink"
-      >
-        <BookOpen className="h-4 w-4" strokeWidth={2} />
-        Keep learning
-      </Link>
-      <nav className="flex gap-1 overflow-x-auto lg:flex-col">
-        {items.map(([id, label, Icon]) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => onSelect(id)}
-            aria-pressed={active === id}
-            className={`flex flex-shrink-0 items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors lg:w-full ${
-              active === id
-                ? "bg-amber/25 text-ink"
-                : "text-stone hover:bg-paper hover:text-ink"
-            }`}
-          >
-            <Icon
-              className={`h-4 w-4 flex-shrink-0 ${active === id ? "text-amber-deep" : ""}`}
-              strokeWidth={1.75}
-            />
-            {label}
-          </button>
-        ))}
-      </nav>
-    </div>
-  );
-}
-
-/** The identity card (the reference's patient-card position): who you are,
- *  at a glance — avatar block, contact rows, then label/value details. */
-function IdentityCard({
+/** The identity card (the reference's patient-card position), flat style. */
+function FlatIdentityCard({
   name,
   email,
   role,
   goalsCount,
   memberSince,
-  quizTaken,
+  quizTopicCount,
   badgesEarned,
   badgeTotal,
+  streakDays,
   onEdit,
   onSignOut,
 }: {
@@ -1193,80 +1240,76 @@ function IdentityCard({
   role: ProfileRole;
   goalsCount: number;
   memberSince: string;
-  quizTaken: boolean;
+  quizTopicCount: number;
   badgesEarned: number;
   badgeTotal: number;
+  streakDays: number;
   onEdit: () => void;
   onSignOut: () => void;
 }) {
   return (
-    <div className="relative rounded-2xl bg-forest p-6 text-cream shadow-sm lg:sticky lg:top-24">
+    <div className="relative overflow-hidden rounded-2xl bg-forest text-cream shadow-md lg:sticky lg:top-24">
       <button
         type="button"
         onClick={onEdit}
-        className="absolute right-5 top-5 inline-flex items-center gap-1 text-xs font-semibold text-cream/70 transition-colors hover:text-amber"
+        className="absolute right-4 top-4 inline-flex items-center gap-1 text-xs font-semibold text-cream/70 transition-colors hover:text-amber"
       >
         <Pencil className="h-3.5 w-3.5" />
         Edit
       </button>
-
-      <div className="flex flex-col items-center pt-2 text-center">
-        <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-amber bg-forest-700 font-display text-3xl font-bold text-amber">
+      <div className="flex flex-col items-center px-6 pb-1 pt-7 text-center">
+        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber text-3xl font-bold text-ink">
           {(name.trim() || email).charAt(0).toUpperCase()}
         </span>
-        <p className="mt-3 font-display text-xl font-semibold">
+        <p className="mt-3 text-xl font-semibold">
           {name.trim() || "Add your name"}
         </p>
-        {role ? (
-          <span className="mt-2 inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold text-ink shadow-[2px_2px_0_#11211c]">
+        <p className="mt-0.5 text-xs text-cream/60">
+          Member since {memberSince || "today"}
+        </p>
+        {role && (
+          <span className="mt-2.5 rounded-md bg-white/15 px-2.5 py-1 text-xs font-bold">
             {ROLE_LABELS[role]}
           </span>
-        ) : (
-          <p className="mt-1 text-xs text-cream/55">Member</p>
         )}
       </div>
-
-      {/* contact-style icon rows */}
-      <div className="mt-6 space-y-3 border-t border-white/10 pt-5 text-sm">
-        <p className="flex min-w-0 items-center gap-2.5">
+      <div className="mx-6 mt-4 space-y-2.5 border-t border-white/15 py-5 text-sm">
+        <p className="flex min-w-0 items-center gap-2.5 text-cream/85">
           <Mail className="h-4 w-4 flex-shrink-0 text-amber" strokeWidth={1.75} />
-          <span className="truncate text-cream/85">{email}</span>
+          <span className="truncate">{email}</span>
         </p>
-        <p className="flex items-center gap-2.5">
-          <CalendarDays
-            className="h-4 w-4 flex-shrink-0 text-amber"
-            strokeWidth={1.75}
-          />
-          <span className="text-cream/85">
-            Member since {memberSince || "today"}
-          </span>
+        <p className="flex items-center gap-2.5 text-cream/85">
+          <Target className="h-4 w-4 flex-shrink-0 text-amber" strokeWidth={1.75} />
+          {goalsCount} {goalsCount === 1 ? "goal" : "goals"} picked
         </p>
       </div>
-
-      {/* label/value details, like the reference's Sex/ID/Insurance block */}
-      <dl className="mt-5 space-y-2.5 border-t border-white/10 pt-5 text-sm">
-        <div className="flex items-baseline justify-between gap-3">
-          <dt className="text-cream/60">Goals picked</dt>
-          <dd className="font-semibold">{goalsCount}</dd>
+      <div className="mx-6 space-y-2 border-t border-white/15 py-5 text-sm">
+        <div className="flex justify-between gap-3">
+          <span className="text-cream/55">Quiz profile</span>
+          <span className="font-semibold">
+            {quizTopicCount > 0
+              ? `${quizTopicCount} ${quizTopicCount === 1 ? "topic" : "topics"}`
+              : "Not yet"}
+          </span>
         </div>
-        <div className="flex items-baseline justify-between gap-3">
-          <dt className="text-cream/60">Quiz profile</dt>
-          <dd className="font-semibold">{quizTaken ? "Taken" : "Not yet"}</dd>
-        </div>
-        <div className="flex items-baseline justify-between gap-3">
-          <dt className="text-cream/60">Badges</dt>
-          <dd className="font-semibold">
+        <div className="flex justify-between gap-3">
+          <span className="text-cream/55">Badges</span>
+          <span className="font-semibold">
             {badgesEarned} of {badgeTotal}
-          </dd>
+          </span>
         </div>
-      </dl>
-
+        <div className="flex justify-between gap-3">
+          <span className="text-cream/55">Streak this week</span>
+          <span className="font-semibold">
+            {streakDays} {streakDays === 1 ? "day" : "days"}
+          </span>
+        </div>
+      </div>
       <button
         type="button"
         onClick={onSignOut}
-        className="mt-6 inline-flex w-full items-center justify-center gap-1.5 rounded-md border-2 border-cream/40 py-2.5 text-sm font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
+        className="mx-6 mb-6 w-[calc(100%-3rem)] rounded-lg bg-white/10 py-2.5 text-sm font-semibold transition-colors hover:bg-white/20"
       >
-        <LogOut className="h-4 w-4" />
         Sign out
       </button>
     </div>
@@ -1293,7 +1336,7 @@ function SaveRow({
         type="button"
         onClick={onSave}
         disabled={saving}
-        className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-7 py-3 text-base font-bold text-ink disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex items-center gap-2 rounded-lg bg-forest px-6 py-2.5 text-sm font-bold text-cream transition-colors hover:bg-forest-700 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {saving && <Loader2 className="h-4 w-4 animate-spin" />}
         {label}

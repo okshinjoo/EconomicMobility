@@ -45,14 +45,10 @@ export default function AccountPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
-      {/* The panel owns its layout: signed OUT it renders a split-screen
-          (brand panel + form) needing the wide container; signed IN it
-          centers the dashboard column itself. */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-10 lg:py-16">
-          <AccountPanel paths={paths} badgeSources={badgeSources} />
-        </div>
-      </section>
+      {/* The panel owns its full layout per auth state: signed OUT it
+          renders the split-screen on paper; signed IN the dark app-frame
+          dashboard (owner-picked Kinetik clone). */}
+      <AccountPanel paths={paths} badgeSources={badgeSources} />
 
       <Footer />
     </div>
