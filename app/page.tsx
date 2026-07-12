@@ -382,39 +382,39 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Featured quiz promo card */}
-            <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-forest p-8 text-cream sm:col-span-2 lg:col-span-1 lg:row-span-1">
-              <div className="absolute inset-0 opacity-40">
-                <Image
-                  src="/images/studying.jpg"
-                  alt=""
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/90 to-forest/50" />
-              </div>
-              <div className="relative">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-                  Not sure where to start?
-                </span>
-                <h3 className="mt-3 font-display text-2xl font-semibold">
-                  Take the 2-minute quiz
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-cream/75">
-                  Answer a few questions and we&apos;ll point you to the
-                  topics that matter most for you right now.
-                </p>
-              </div>
-              <Link
-                href="/quiz"
-                className="relative mt-6 inline-flex w-fit items-center rounded-md bg-amber px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
-              >
-                Get started
-              </Link>
+          {/* Quiz promo: full-width banner right over the topic cards */}
+          <div className="relative mt-12 flex flex-col gap-6 overflow-hidden rounded-2xl bg-forest p-8 text-cream sm:flex-row sm:items-center sm:justify-between">
+            <div className="absolute inset-0 opacity-40">
+              <Image
+                src="/images/studying.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/90 to-forest/50" />
             </div>
+            <div className="relative max-w-2xl">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
+                Not sure where to start?
+              </span>
+              <h3 className="mt-2 font-display text-2xl font-semibold">
+                Take the 2-minute quiz
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-cream/75">
+                Answer a few questions and we&apos;ll point you to the topics
+                that matter most for you right now.
+              </p>
+            </div>
+            <Link
+              href="/quiz"
+              className="relative inline-flex w-fit shrink-0 items-center rounded-md bg-amber px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
+            >
+              Get started
+            </Link>
+          </div>
 
+          <div className="mt-5 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {topics.map((topic, ti) => (
               <Reveal key={topic.href} delay={(ti % 3) * 70}>
               <Link
