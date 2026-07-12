@@ -118,3 +118,20 @@ key suffix on any breaking shape change.
 
 Everything else (UI, header account menu, sign-in/up pages, sync logic, schema
 + RLS migrations) is scaffolded by us.
+
+
+## Live comments go-live (July 2026 — BUILT, needs one SQL run)
+
+The code ships dark until the tables exist. To turn it on:
+
+1. Supabase -> SQL Editor -> paste and run the "LIVE COMMENTS" block from
+   the end of docs/supabase-schema.sql (creates `comments` + `moderators`
+   with RLS).
+2. Authentication -> Users -> copy your own account's UUID, then run:
+   `insert into public.moderators (user_id) values ('<your-uuid>');`
+3. Deploy (push). That's it — no env vars, no template changes.
+
+Daily flow: bookmark /admin/comments. Members' comments appear there the
+moment they're posted; Approve publishes for everyone, Reject hides it.
+Members always see their own comment immediately (marked pending), on
+every device they're signed into.

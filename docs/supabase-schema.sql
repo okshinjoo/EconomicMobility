@@ -68,3 +68,84 @@ alter table public.profiles
 -- Added July 2026 (profile flairs): up to two badges shown with the tag.
 alter table public.profiles
   add column if not exists flairs jsonb not null default '[]'::jsonb;
+
+-- ============================================================
+-- Added July 2026: LIVE COMMENTS (approve-first, members-only)
+-- Run this whole block once in the Supabase SQL Editor.
+-- Then make yourself a moderator (see the insert at the bottom).
+-- ============================================================
+
+create table if not exists public.comments (
+  id uuid primary key default gen_random_uuid(),
+  -- The community post this belongs to (ids from lib/communityFeed.ts).
+  post_id text not null,
+  -- Set when this is a reply to another comment (one level deep in the UI).
+  parent_id uuid references public.comments(id) on delete cascade,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  -- Author display snapshot, captured at submit time from the profile.
+  author_name text not null default 'Member',
+  author_tag text,
+  author_flairs jsonb not null default '[]'::jsonb,
+  body text not null check (char_length(body) between 1 and 4000),
+  status text not null default 'pending'
+    check (status in ('pending', 'approved', 'rejected')),
+  created_at timestamptz not null default now()
+);
+
+create index if not exists comments_post_idx
+  on public.comments (post_id, status, created_at);
+create index if not exists comments_queue_idx
+  on public.comments (status, created_at);
+
+-- Who can moderate. A row here = full approve/reject/delete powers.
+create table if not exists public.moderators (
+  user_id uuid primary key references auth.users(id) on delete cascade
+);
+
+alter table public.comments enable row level security;
+alter table public.moderators enable row level security;
+
+-- Everyone (signed in or not) reads APPROVED comments; authors also see
+-- their own pending/rejected ones (that's the cross-device "pending" chip).
+drop policy if exists "comments: read approved or own" on public.comments;
+create policy "comments: read approved or own" on public.comments
+  for select using (status = 'approved' or auth.uid() = user_id);
+
+-- Moderators read everything (the review queue).
+drop policy if exists "comments: mods read all" on public.comments;
+create policy "comments: mods read all" on public.comments
+  for select using (
+    exists (select 1 from public.moderators m where m.user_id = auth.uid())
+  );
+
+-- Signed-in members insert their own comments, always as 'pending'.
+drop policy if exists "comments: insert own pending" on public.comments;
+create policy "comments: insert own pending" on public.comments
+  for insert with check (auth.uid() = user_id and status = 'pending');
+
+-- Authors may delete their own comment while it's still pending.
+drop policy if exists "comments: delete own pending" on public.comments;
+create policy "comments: delete own pending" on public.comments
+  for delete using (auth.uid() = user_id and status = 'pending');
+
+-- Moderators approve/reject/delete anything.
+drop policy if exists "comments: mods update" on public.comments;
+create policy "comments: mods update" on public.comments
+  for update using (
+    exists (select 1 from public.moderators m where m.user_id = auth.uid())
+  );
+drop policy if exists "comments: mods delete" on public.comments;
+create policy "comments: mods delete" on public.comments
+  for delete using (
+    exists (select 1 from public.moderators m where m.user_id = auth.uid())
+  );
+
+-- You can check your own moderator status (the admin page uses this);
+-- nobody can list who the moderators are.
+drop policy if exists "moderators: read own row" on public.moderators;
+create policy "moderators: read own row" on public.moderators
+  for select using (auth.uid() = user_id);
+
+-- FINAL STEP, run separately: make yourself a moderator. Find your user id
+-- in Authentication -> Users (it's the UUID on your own account), then:
+-- insert into public.moderators (user_id) values ('YOUR-USER-UUID-HERE');

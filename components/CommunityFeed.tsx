@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import type { Session } from "@supabase/supabase-js";
+import { getSupabase } from "@/lib/supabase";
+import {
+  accountsEnabled,
+  addLiveComment,
+  fetchLiveComments,
+  type LiveComment,
+} from "@/lib/liveComments";
 import {
   Heart,
   MessageCircle,
@@ -367,10 +375,24 @@ function CommentForm({
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<SendStatus>("idle");
+  // Live-comment auth state: ready + no session = show the sign-in nudge.
+  const [session, setSession] = useState<Session | null>(null);
+  const [authReady, setAuthReady] = useState(!accountsEnabled);
 
   useEffect(() => {
     const p = readLocalProfile();
     if (p?.displayName) setName(p.displayName);
+    if (!accountsEnabled) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setAuthReady(true);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) =>
+      setSession(s)
+    );
+    return () => sub.subscription.unsubscribe();
   }, []);
 
   // Pending replies live under a composite key so they render beneath the
@@ -381,6 +403,24 @@ function CommentForm({
     e.preventDefault();
     if (!text.trim()) return;
     setStatus("sending");
+    // Members: straight into the database as pending (the live pipeline).
+    if (accountsEnabled && session) {
+      const err = await addLiveComment({
+        session,
+        postId,
+        parentId: replyTo?.id,
+        text,
+      });
+      if (err) {
+        setStatus("error");
+        return;
+      }
+      setText("");
+      setStatus("idle");
+      window.dispatchEvent(new Event("empower:community-updated"));
+      onSent?.();
+      return;
+    }
     const ok = await submitToInbox(
       replyTo
         ? {
@@ -414,6 +454,28 @@ function CommentForm({
     onSent?.();
   }
 
+  // Accounts live but visitor signed out: comments are a member thing now.
+  if (accountsEnabled && authReady && !session) {
+    return (
+      <div className="mt-4 rounded-xl border border-sand bg-paper p-4">
+        <p className="text-sm leading-6 text-stone">
+          <span className="font-semibold text-ink">
+            Comments are for members.
+          </span>{" "}
+          A free account takes a minute, and your comments follow you across
+          devices. Reading stays open to everyone, forever.
+        </p>
+        <Link
+          href="/account"
+          className="mt-3 inline-block rounded-md bg-forest px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-forest-700"
+        >
+          Sign in or create an account
+        </Link>
+      </div>
+    );
+  }
+  if (accountsEnabled && !authReady) return null;
+
   return (
     <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2">
       <div className="flex items-start gap-3">
@@ -428,13 +490,19 @@ function CommentForm({
       </div>
       {text.trim() && (
         <div className="ml-[3.25rem] flex flex-wrap items-center gap-3">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name (optional)"
-            className="w-full max-w-[13rem] rounded-lg border border-sand bg-paper px-3 py-1.5 text-sm text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
-          />
+          {session ? (
+            <span className="text-xs font-semibold text-ink/70">
+              Posting as {name || "Member"}
+            </span>
+          ) : (
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name (optional)"
+              className="w-full max-w-[13rem] rounded-lg border border-sand bg-paper px-3 py-1.5 text-sm text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
+            />
+          )}
           <button
             type="submit"
             disabled={status === "sending"}
@@ -951,17 +1019,66 @@ export function SinglePost({
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [savedPosts, setSavedPosts] = useState<Record<string, boolean>>({});
+  const [live, setLive] = useState<LiveComment[]>([]);
 
   useEffect(() => {
     const refresh = () => {
       setLikes(loadJSON<Record<string, boolean>>(LIKES_KEY) ?? {});
       setPendingComments(loadJSON<PendingCommentMap>(PENDING_COMMENTS_KEY) ?? {});
       setSavedPosts(loadJSON<Record<string, boolean>>(SAVED_KEY) ?? {});
+      // The live pipeline: approved comments for everyone, own pending too.
+      fetchLiveComments(post.id).then(setLive);
     };
     refresh();
     window.addEventListener("empower:community-updated", refresh);
     return () => window.removeEventListener("empower:community-updated", refresh);
-  }, []);
+  }, [post.id]);
+
+  // Fold live comments into the same shapes the renderer already speaks:
+  // approved ones join post.comments (replies nested one level), own
+  // pending ones join the pending map (same "only you can see this" chip).
+  const mergedPost = useMemo(() => {
+    const approved = live.filter((c) => c.status === "approved");
+    if (approved.length === 0) return post;
+    const toComment = (c: LiveComment): CommunityComment => ({
+      id: c.id,
+      author: c.author,
+      date: c.date,
+      text: c.text,
+      authorFlairs: c.authorFlairs.length ? c.authorFlairs : undefined,
+    });
+    const all: CommunityComment[] = (post.comments ?? []).map((c) => ({
+      ...c,
+      replies: c.replies ? [...c.replies] : undefined,
+    }));
+    const byId = new Map(all.map((c) => [c.id, c]));
+    for (const c of approved.filter((x) => !x.parentId)) {
+      const cc = toComment(c);
+      all.push(cc);
+      byId.set(cc.id, cc);
+    }
+    for (const r of approved.filter((x) => x.parentId)) {
+      const parent = byId.get(r.parentId!);
+      const rc = toComment(r);
+      if (parent) parent.replies = [...(parent.replies ?? []), rc];
+      else all.push(rc);
+    }
+    return { ...post, comments: all };
+  }, [post, live]);
+
+  const mergedPending = useMemo(() => {
+    const mine = live.filter((c) => c.mine && c.status === "pending");
+    if (mine.length === 0) return pendingComments;
+    const next: PendingCommentMap = { ...pendingComments };
+    for (const c of mine) {
+      const key = c.parentId ? `${post.id}::${c.parentId}` : post.id;
+      next[key] = [
+        ...(next[key] ?? []),
+        { author: c.author, text: c.text, at: c.at },
+      ];
+    }
+    return next;
+  }, [pendingComments, live, post.id]);
 
   const toggleLike = (key: string) => {
     setLikes((prev) => {
@@ -981,10 +1098,10 @@ export function SinglePost({
 
   return (
     <PostCard
-      post={post}
+      post={mergedPost}
       likes={likes}
       onToggleLike={toggleLike}
-      pendingMap={pendingComments}
+      pendingMap={mergedPending}
       authorMeta={authorMeta}
       full
       saved={Boolean(savedPosts[post.id])}
