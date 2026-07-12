@@ -18,6 +18,11 @@ import {
   Clock,
   BarChart3,
   UserCheck,
+  List,
+  LayoutGrid,
+  Plus,
+  X,
+  ChevronUp,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -40,6 +45,7 @@ const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
 const PINNED_CHANNELS_KEY = "empower:community-pinned-channels:v1";
+const VIEW_KEY = "empower:community-view:v1";
 const PENDING_POSTS_KEY = "empower:community-posts:v1";
 const LIKES_KEY = "empower:community-likes:v1";
 
@@ -108,6 +114,20 @@ function Avatar({ name, team }: { name: string; team?: boolean }) {
       {name.trim().charAt(0).toUpperCase() || "A"}
     </span>
   );
+}
+
+function commentTotalFor(
+  post: CommunityPost,
+  pendingMap: PendingCommentMap
+): number {
+  const approvedReplies = post.comments.reduce(
+    (sum, c) => sum + (c.replies?.length ?? 0),
+    0
+  );
+  const pendingForPost = Object.entries(pendingMap)
+    .filter(([k]) => k === post.id || k.startsWith(`${post.id}::`))
+    .reduce((sum, [, v]) => sum + v.length, 0);
+  return post.comments.length + approvedReplies + pendingForPost;
 }
 
 /** Author names link to member pages; published authors wear a small
@@ -516,6 +536,59 @@ function CommentItem({
   );
 }
 
+/** Compact (Reddit-style) row: chip + title + meta. Click to expand the
+ *  full post in place. Carries the post-<id> anchor so deep links work. */
+function CompactRow({
+  post,
+  commentTotal,
+  onOpen,
+}: {
+  post: CommunityPost;
+  commentTotal: number;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      id={`post-${post.id}`}
+      onClick={onOpen}
+      className="group block w-full scroll-mt-24 rounded-xl border border-sand bg-cream px-4 py-3 text-left transition-colors hover:border-ink/25"
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        {post.pinned && (
+          <span className="rounded-md bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-cream">
+            Pinned
+          </span>
+        )}
+        <span
+          className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
+          style={{
+            color: getChannel(post.channel).color,
+            background: `${getChannel(post.channel).color}1a`,
+          }}
+        >
+          {getChannel(post.channel).name}
+        </span>
+        <span className="min-w-0 flex-1 truncate font-display text-base font-semibold text-ink group-hover:underline">
+          {post.title}
+        </span>
+      </div>
+      <p className="mt-1 flex flex-wrap items-center gap-x-2 text-xs text-stone">
+        <span className="font-semibold">{post.author}</span>
+        <span>·</span>
+        <span>{formatDate(post.date)}</span>
+        <span>·</span>
+        <span className="inline-flex items-center gap-1">
+          <MessageCircle className="h-3 w-3" />
+          {commentTotal === 0
+            ? "No comments yet"
+            : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
+        </span>
+      </p>
+    </button>
+  );
+}
+
 function PostCard({
   post,
   likes,
@@ -530,18 +603,7 @@ function PostCard({
   credByAuthor: Record<string, number>;
 }) {
   const pendingComments = pendingMap[post.id] ?? [];
-  const approvedReplies = post.comments.reduce(
-    (sum, c) => sum + (c.replies?.length ?? 0),
-    0
-  );
-  const pendingReplies = Object.entries(pendingMap)
-    .filter(([k]) => k.startsWith(`${post.id}::`))
-    .reduce((sum, [, v]) => sum + v.length, 0);
-  const commentTotal =
-    post.comments.length +
-    approvedReplies +
-    pendingComments.length +
-    pendingReplies;
+  const commentTotal = commentTotalFor(post, pendingMap);
   const [open, setOpen] = useState(post.comments.length > 0);
   const liked = Boolean(likes[post.id]);
 
@@ -676,6 +738,45 @@ export default function CommunityFeed({
   const [sort, setSort] = useState<"best" | "hot" | "new" | "top">("best");
   const [followingOnly, setFollowingOnly] = useState(false);
   const [follows, setFollows] = useState<string[]>([]);
+  // Reddit-style compact view is the default; card view is the classic
+  // full-post feed. Choice persists per device.
+  const [view, setView] = useState<"compact" | "card">("compact");
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [showComposer, setShowComposer] = useState(false);
+
+  useEffect(() => {
+    const v = loadJSON<string>(VIEW_KEY);
+    if (v === "card" || v === "compact") setView(v);
+    // Deep links (/community#post-<id>) must open the post even in
+    // compact view.
+    const hash = window.location.hash;
+    if (hash.startsWith("#post-")) {
+      setExpanded(new Set([hash.slice("#post-".length)]));
+    }
+  }, []);
+
+  const setViewPersist = (v: "compact" | "card") => {
+    setView(v);
+    saveJSON(VIEW_KEY, v);
+  };
+
+  const toggleExpanded = (id: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const openComposer = () => {
+    setShowComposer(true);
+    setTimeout(() => {
+      document
+        .getElementById("community-composer")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+  };
   const [topRange, setTopRange] = useState<
     "day" | "week" | "month" | "year" | "all"
   >("week");
@@ -818,6 +919,14 @@ export default function CommunityFeed({
 
   const railGroups = (
     <>
+      <button
+        type="button"
+        onClick={openComposer}
+        className="btn-ink mb-2 flex w-full items-center justify-center gap-2 rounded-md border-2 border-ink bg-amber px-4 py-2.5 text-sm font-bold text-ink"
+      >
+        <Plus className="h-4 w-4" strokeWidth={2.5} />
+        New post
+      </button>
       {/* pinned channels */}
       {pinnedChannels.length > 0 && (
         <>
@@ -902,7 +1011,7 @@ export default function CommunityFeed({
         {railGroups}
       </aside>
 
-      <div className="min-w-0 space-y-5">
+      <div className={view === "compact" ? "min-w-0 space-y-2.5" : "min-w-0 space-y-5"}>
       {/* channel bar (mobile fallback) */}
       <div className="flex gap-1.5 overflow-x-auto pb-1 lg:hidden">
         <button
@@ -949,10 +1058,32 @@ export default function CommunityFeed({
         </p>
       )}
 
-      <Composer activeChannel={active} />
+      {showComposer && (
+        <div id="community-composer" className="relative scroll-mt-24">
+          <button
+            type="button"
+            onClick={() => setShowComposer(false)}
+            aria-label="Close composer"
+            className="absolute right-4 top-4 z-10 rounded p-1 text-stone transition-colors hover:text-ink"
+          >
+            <X className="h-4 w-4" />
+          </button>
+          <Composer activeChannel={active} />
+        </div>
+      )}
 
       {/* sort bar */}
       <div className="flex flex-wrap items-center gap-1.5">
+        {!showComposer && (
+          <button
+            type="button"
+            onClick={openComposer}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-amber px-3 py-1.5 text-sm font-bold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
+          >
+            <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+            New post
+          </button>
+        )}
         {(
           [
             ["best", "Best", Award, "The curated order"],
@@ -977,12 +1108,36 @@ export default function CommunityFeed({
             {label}
           </button>
         ))}
+        <div className="ml-auto flex items-center gap-1.5">
+          <div className="flex overflow-hidden rounded-lg border border-sand">
+            {(
+              [
+                ["compact", List, "Compact view — titles only"],
+                ["card", LayoutGrid, "Card view — full posts"],
+              ] as const
+            ).map(([v, Icon, tip]) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setViewPersist(v)}
+                aria-pressed={view === v}
+                title={tip}
+                className={`px-2.5 py-1.5 transition-colors ${
+                  view === v
+                    ? "bg-ink text-cream"
+                    : "bg-cream text-stone hover:text-ink"
+                }`}
+              >
+                <Icon className="h-4 w-4" strokeWidth={2} />
+              </button>
+            ))}
+          </div>
         <button
           type="button"
           onClick={() => setFollowingOnly((f) => !f)}
           aria-pressed={followingOnly}
           title="Only posts from members you follow"
-          className={`ml-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
+          className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors ${
             followingOnly
               ? "bg-forest text-cream"
               : "border border-sand bg-cream text-stone hover:text-ink"
@@ -991,6 +1146,7 @@ export default function CommunityFeed({
           <UserCheck className="h-3.5 w-3.5" strokeWidth={2} />
           Following
         </button>
+        </div>
         {sort === "top" && (
           <select
             value={topRange}
@@ -1039,16 +1195,36 @@ export default function CommunityFeed({
           Nothing posted in this window yet — try a longer range.
         </p>
       )}
-      {visiblePosts.map((post) => (
-        <PostCard
-          key={post.id}
-          post={post}
-          likes={likes}
-          onToggleLike={toggleLike}
-          pendingMap={pendingComments}
-          credByAuthor={credByAuthor}
-        />
-      ))}
+      {visiblePosts.map((post) =>
+        view === "card" || expanded.has(post.id) ? (
+          <div key={post.id}>
+            {view === "compact" && (
+              <button
+                type="button"
+                onClick={() => toggleExpanded(post.id)}
+                className="mb-1 inline-flex items-center gap-1 text-xs font-semibold text-stone transition-colors hover:text-ink"
+              >
+                <ChevronUp className="h-3.5 w-3.5" />
+                Collapse
+              </button>
+            )}
+            <PostCard
+              post={post}
+              likes={likes}
+              onToggleLike={toggleLike}
+              pendingMap={pendingComments}
+              credByAuthor={credByAuthor}
+            />
+          </div>
+        ) : (
+          <CompactRow
+            key={post.id}
+            post={post}
+            commentTotal={commentTotalFor(post, pendingComments)}
+            onOpen={() => toggleExpanded(post.id)}
+          />
+        )
+      )}
       </div>
     </div>
   );
