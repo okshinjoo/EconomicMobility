@@ -61,8 +61,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  /** Parallel slot for intercepted overlays (the /account modal). */
+  modal?: React.ReactNode;
 }>) {
   return (
     <html
@@ -73,6 +76,7 @@ export default function RootLayout({
           references them at :root, where body-level variables can't be seen. */}
       <body className="antialiased">
         {children}
+        {modal ?? null}
         <ChatLauncher items={getSearchItems()} />
         <VisitTracker />
         <Analytics />

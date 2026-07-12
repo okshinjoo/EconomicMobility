@@ -69,9 +69,13 @@ const labelCls = "mb-1.5 block text-sm font-medium text-ink";
 export default function AccountPanel({
   paths = [],
   badgeSources = [],
+  overlay = false,
 }: {
   paths?: TopicPath[];
   badgeSources?: BadgeSource[];
+  /** True inside the intercepted /account modal: no full-page section
+   *  wrappers — the overlay shell provides scrim + scroll. */
+  overlay?: boolean;
 }) {
   const supabase = getSupabase();
   const [session, setSession] = useState<Session | null>(null);
@@ -114,8 +118,8 @@ export default function AccountPanel({
 
   if (!accountsEnabled || !supabase) {
     return (
-      <section className="bg-paper-deep">
-      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center" style={{ marginTop: "3rem", marginBottom: "3rem" }}>
+      <section className={overlay ? "" : "bg-paper-deep"}>
+      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center" style={overlay ? undefined : { marginTop: "3rem", marginBottom: "3rem" }}>
         <UserRound className="mx-auto h-10 w-10 text-stone" strokeWidth={1.5} />
         <h2 className="mt-4 font-display text-2xl font-bold text-ink">
           Accounts aren&apos;t open quite yet
@@ -132,8 +136,8 @@ export default function AccountPanel({
 
   if (!booted) {
     return (
-      <section className="bg-paper-deep">
-        <div className="flex items-center justify-center py-32 text-stone">
+      <section className={overlay ? "" : "bg-paper-deep"}>
+        <div className={overlay ? "flex items-center justify-center rounded-3xl bg-paper-deep py-32 text-stone" : "flex items-center justify-center py-32 text-stone"}>
           <Loader2 className="h-6 w-6 animate-spin" />
         </div>
       </section>
@@ -155,8 +159,12 @@ export default function AccountPanel({
 
   // Signed out: split-screen — a brand "identity" panel beside the form.
   return (
-    <section className="bg-paper-deep">
-    <div className="mx-auto grid max-w-5xl items-stretch gap-6 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:py-16">
+    <section className={overlay ? "" : "bg-paper-deep"}>
+    <div className={
+      overlay
+        ? "mx-auto grid max-w-5xl items-stretch gap-6 rounded-3xl bg-paper-deep p-5 shadow-2xl lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8"
+        : "mx-auto grid max-w-5xl items-stretch gap-6 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:py-16"
+    }>
       <div className="relative overflow-hidden rounded-3xl bg-forest p-8 text-cream sm:p-10">
         <TopicMark
           id="investing"
@@ -592,6 +600,7 @@ export function ProfileEditor({
   paths,
   badgeSources,
   fromAuthRedirect,
+  overlay = false,
 }: {
   supabase: SupabaseClient;
   session: Session;
@@ -599,6 +608,7 @@ export function ProfileEditor({
   paths: TopicPath[];
   badgeSources: BadgeSource[];
   fromAuthRedirect: boolean;
+  overlay?: boolean;
 }) {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<ProfileRole>("");
@@ -799,8 +809,12 @@ export function ProfileEditor({
   ] as const;
 
   return (
-    <section className="bg-ink">
-      <div className="mx-auto max-w-[88rem] px-3 py-6 sm:px-6 lg:py-10">
+    <section className={overlay ? "" : "bg-ink"}>
+      <div
+        className={
+          overlay ? "" : "mx-auto max-w-[88rem] px-3 py-6 sm:px-6 lg:py-10"
+        }
+      >
         <div
           className="overflow-hidden rounded-3xl shadow-2xl"
           style={{ background: DASH.surface }}
