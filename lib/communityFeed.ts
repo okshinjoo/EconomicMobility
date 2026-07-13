@@ -37,6 +37,10 @@ import {
   Lightbulb,
   Banknote,
   Key,
+  Award,
+  ArrowRightLeft,
+  Backpack,
+  School,
   type LucideIcon,
 } from "lucide-react";
 
@@ -71,7 +75,12 @@ export type ChannelId =
   | "emergency-fund"
   | "side-hustles"
   | "salary-negotiation"
-  | "buying-someday";
+  | "buying-someday"
+  | "scholarships"
+  | "internships"
+  | "transfer-talk"
+  | "campus-living"
+  | "high-school";
 
 export interface Channel {
   id: ChannelId;
@@ -129,6 +138,51 @@ export const CHANNELS: Channel[] = [
     icon: Rocket,
     name: "Life After Graduation",
     tagline: "First salary, first apartment hunt, and loan payments starting.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  // Added July 13, 2026 (owner: "added student categories that you can
+  // separately click on") — five more Students subs. Like all subs:
+  // deliberately NOT seeded (the hub seeds + roll-up cover them; don't
+  // team-spam the feed), hidden from the MAIN rail, but rendered as
+  // clickable rows on the student frame's rail (CommunityFeed studentMode).
+  {
+    id: "scholarships",
+    icon: Award,
+    name: "Scholarships",
+    tagline: "Essays, deadlines, wins, and which awards are worth a weekend.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
+    id: "internships",
+    icon: Briefcase,
+    name: "Internships & Campus Jobs",
+    tagline: "Getting paid while you study — applications, offers, work-study.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
+    id: "transfer-talk",
+    icon: ArrowRightLeft,
+    name: "Transfer Talk",
+    tagline: "Community college to four-year: credits, ASSIST, and aid that follows you.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
+    id: "campus-living",
+    icon: Backpack,
+    name: "Campus Living",
+    tagline: "Dorms, meal plans, textbooks — the costs between classes.",
+    color: "#b3762f",
+    parent: "students",
+  },
+  {
+    id: "high-school",
+    icon: School,
+    name: "High School Corner",
+    tagline: "Getting ahead before college: AP credit, first paychecks, applications.",
     color: "#b3762f",
     parent: "students",
   },

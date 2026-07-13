@@ -65,20 +65,6 @@ import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } fr
 // their own pending posts/comments (saved locally), nothing is sent anywhere.
 const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
 
-// The student frame's rail order (owner, July 13, 2026): Students leads
-// with its sub-categories separately clickable, the student-relevant hubs
-// follow, and every other channel collapses behind a "more channels"
-// toggle. The MAIN feed keeps the Reddit model (subs hidden from the
-// rail) — expanded subs eat too much space there, owner call.
-const STUDENT_RAIL: ChannelId[] = [
-  "students",
-  "say-hello",
-  "questions",
-  "work-income",
-  "banking",
-  "family-firstgen",
-];
-
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
 const PINNED_CHANNELS_KEY = "empower:community-pinned-channels:v1";
 const VIEW_KEY = "empower:community-view:v1";
@@ -1471,21 +1457,19 @@ export default function CommunityFeed({
   const countFor = (id: ChannelId) =>
     posts.filter((p) => channelMatches(p.channel, id)).length;
   const pinnedSet = new Set(pinnedChannels);
-  const studentSubs = CHANNELS.filter((c) => c.parent === "students");
-  // Student mode: Students (with its subs as their own chips/rows) and the
-  // student-relevant hubs lead; everything else trails (chips) or hides
-  // behind the more-channels toggle (rail).
-  const studentFeatured = STUDENT_RAIL.filter((id) => !pinnedSet.has(id)).flatMap(
-    (id) =>
-      id === "students"
-        ? [getChannel(id), ...studentSubs.filter((s) => !pinnedSet.has(s.id))]
-        : [getChannel(id)]
-  );
+  // Student mode (owner rework, July 13, 2026): ONLY Students and its
+  // sub-categories get full rows, front of the rail. Every other channel —
+  // say-hello and questions included — is heavily minimized: a closed
+  // "everything else" toggle that expands into COMPACT rows.
+  const studentFeatured = studentMode
+    ? [
+        getChannel("students"),
+        ...CHANNELS.filter((c) => c.parent === "students"),
+      ].filter((c) => !pinnedSet.has(c.id))
+    : [];
   const studentRest = CHANNELS.filter(
     (c) =>
-      !c.parent &&
-      !pinnedSet.has(c.id) &&
-      !STUDENT_RAIL.includes(c.id)
+      !c.parent && !pinnedSet.has(c.id) && c.id !== "students"
   );
   const orderedForChips = studentMode
     ? [...pinnedChannels.map(getChannel), ...studentFeatured, ...studentRest]
@@ -1497,9 +1481,12 @@ export default function CommunityFeed({
   const ChannelRow = ({
     c,
     indent = false,
+    compact = false,
   }: {
     c: (typeof CHANNELS)[number];
     indent?: boolean;
+    /** The student rail's minimized "everything else" rows. */
+    compact?: boolean;
   }) => (
     <div
       className={`group/row flex items-center rounded-lg transition-colors ${
@@ -1514,14 +1501,16 @@ export default function CommunityFeed({
         onClick={() => setActive(c.id)}
         aria-pressed={active === c.id}
         title={c.tagline}
-        className={`flex min-w-0 flex-1 items-center gap-2.5 px-3 py-2 text-sm font-semibold ${
-          active === c.id ? "text-ink" : "text-stone hover:text-ink"
-        }`}
+        className={`flex min-w-0 flex-1 items-center ${
+          compact
+            ? "gap-2 px-3 py-1 text-xs font-medium"
+            : "gap-2.5 px-3 py-2 text-sm font-semibold"
+        } ${active === c.id ? "text-ink" : "text-stone hover:text-ink"}`}
       >
         <c.icon
-          className="h-4 w-4 flex-shrink-0"
+          className={`flex-shrink-0 ${compact ? "h-3 w-3" : "h-4 w-4"}`}
           strokeWidth={1.75}
-          style={{ color: c.color }}
+          style={{ color: compact ? "#8a8577" : c.color }}
         />
         <span className="min-w-0 flex-1 truncate text-left">{c.name}</span>
         <span className="text-xs font-bold text-stone/70">
@@ -1646,19 +1635,21 @@ export default function CommunityFeed({
                   type="button"
                   onClick={() => setShowAllChannels((v) => !v)}
                   aria-expanded={showAllChannels}
-                  className="mt-2 flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wide text-stone/80 transition-colors hover:bg-paper hover:text-ink"
+                  className="mt-2 flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-stone/70 transition-colors hover:bg-paper hover:text-ink"
                 >
                   <ChevronDown
-                    className={`h-3.5 w-3.5 transition-transform ${
+                    className={`h-3 w-3 transition-transform ${
                       showAllChannels ? "rotate-180" : ""
                     }`}
                   />
                   {showAllChannels
-                    ? "Hide the other channels"
-                    : `All channels (${studentRest.length} more)`}
+                    ? "Hide the rest"
+                    : `Everything else (${studentRest.length} channels)`}
                 </button>
                 {showAllChannels &&
-                  studentRest.map((c) => <ChannelRow key={c.id} c={c} />)}
+                  studentRest.map((c) => (
+                    <ChannelRow key={c.id} c={c} compact />
+                  ))}
               </>
             );
           }
