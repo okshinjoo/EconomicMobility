@@ -82,7 +82,7 @@ function CloseX({ className = "" }: { className?: string }) {
       onClick={close}
       aria-label="Close and go back"
       title="Close (Esc)"
-      className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#eee7d9] bg-white text-stone transition-colors hover:bg-paper hover:text-ink ${className}`}
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-sand bg-cream text-stone transition-colors hover:bg-paper hover:text-ink ${className}`}
     >
       <X className="h-4.5 w-4.5 h-[18px] w-[18px]" strokeWidth={2.25} />
     </button>
@@ -871,19 +871,19 @@ export function ProfileEditor({
         }
       >
         <div
-          className={`overflow-hidden rounded-3xl ${
-            overlay
-              ? "shadow-2xl ring-1 ring-white/20"
-              : "shadow-xl ring-1 ring-black/5"
+          className={`overflow-hidden rounded-3xl border-2 border-ink ${
+            overlay ? "shadow-2xl" : "shadow-[6px_6px_0_rgba(17,33,28,0.9)]"
           }`}
           style={{ background: DASH.surface }}
         >
           {/* in-frame top bar */}
           <div
-            className="flex items-center justify-between border-b bg-white px-5 py-4 sm:px-7"
+            className="flex items-center justify-between border-b bg-cream px-5 py-4 sm:px-7"
             style={{ borderColor: DASH.divider }}
           >
-            <p className="text-lg font-bold text-ink">Your account</p>
+            <p className="font-display text-xl font-semibold text-ink">
+              Your account
+            </p>
             {overlay ? (
               <CloseX />
             ) : (
@@ -899,7 +899,7 @@ export function ProfileEditor({
           <div className="flex">
             {/* flat sidebar */}
             <aside
-              className="hidden w-56 flex-shrink-0 border-r bg-white px-4 pb-8 pt-6 lg:block"
+              className="hidden w-56 flex-shrink-0 border-r bg-cream px-4 pb-8 pt-6 lg:block"
               style={{ borderColor: DASH.divider }}
             >
               <Link
@@ -916,11 +916,14 @@ export function ProfileEditor({
                   onClick={() => selectTab(id)}
                   aria-pressed={tab === id}
                   className={`mb-1 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
-                    tab === id ? "text-forest" : "hover:text-ink"
+                    tab === id ? "text-ink" : "hover:text-ink"
                   }`}
                   style={
                     tab === id
-                      ? { background: "rgba(12,74,57,0.08)" }
+                      ? {
+                          background: "rgba(231,163,60,0.18)",
+                          boxShadow: "inset 3px 0 0 #e7a33c",
+                        }
                       : { color: DASH.muted }
                   }
                 >
@@ -933,14 +936,14 @@ export function ProfileEditor({
             {/* content */}
             <div className="min-w-0 flex-1 p-4 sm:p-6">
               {showWelcome && (
-                <div className="mb-5 flex items-start justify-between gap-4 rounded-2xl bg-white p-5 shadow-sm">
+                <div className="mb-5 flex items-start justify-between gap-4 rounded-2xl border-2 border-ink/10 bg-cream p-5">
                   <div className="flex items-start gap-3">
                     <CheckCircle2
                       className="mt-0.5 h-6 w-6 flex-shrink-0 text-forest"
                       strokeWidth={1.75}
                     />
                     <div>
-                      <p className="text-base font-bold text-ink">
+                      <p className="font-display text-lg font-bold text-ink">
                         You&apos;re in — welcome to Empower.
                       </p>
                       <p className="mt-0.5 text-sm leading-6 text-stone">
@@ -982,7 +985,7 @@ export function ProfileEditor({
                     className={`whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold ${
                       tab === id
                         ? "bg-forest text-cream"
-                        : "bg-white text-stone shadow-sm"
+                        : "border border-sand bg-cream text-stone"
                     }`}
                   >
                     {PANEL_LABELS[id]}
@@ -1015,7 +1018,7 @@ export function ProfileEditor({
 
                   <div
                     id="account-settings"
-                    className="scroll-mt-24 rounded-2xl bg-white shadow-sm"
+                    className="scroll-mt-24 rounded-2xl border-2 border-ink/10 bg-cream"
                   >
                     {/* tabs inside the panel, Kinetik-style */}
                     <div
@@ -1050,7 +1053,7 @@ export function ProfileEditor({
                     <div className="px-5 py-5 sm:px-6">
           {tab === "overview" && !showWelcome && !role && goals.length === 0 && (
             <div
-              className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 shadow-sm"
+              className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-ink/10 bg-cream px-5 py-4"
             >
               <div className="flex items-center gap-3">
                 <Target
@@ -1138,7 +1141,7 @@ export function ProfileEditor({
                       className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-4 py-3 text-sm font-semibold transition-colors ${
                         role === value
                           ? "border-forest bg-forest/[0.06] text-ink"
-                          : "border-[#eee7d9] bg-white text-stone hover:border-forest/40"
+                          : "border-sand bg-cream text-stone hover:border-forest/40"
                       }`}
                     >
                       <input
@@ -1199,7 +1202,7 @@ export function ProfileEditor({
                               }
                               className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
                                 !on
-                                  ? "border-[#eee7d9] bg-white text-stone hover:text-ink"
+                                  ? "border-sand bg-cream text-stone hover:text-ink"
                                   : ""
                               }`}
                               style={
@@ -1239,7 +1242,7 @@ export function ProfileEditor({
                 </p>
               </fieldset>
 
-              <label className="flex items-start gap-2.5 rounded-lg border border-[#eee7d9] bg-white p-4 text-sm leading-6 text-ink">
+              <label className="flex items-start gap-2.5 rounded-lg border border-sand bg-cream p-4 text-sm leading-6 text-ink">
                 <input
                   type="checkbox"
                   checked={showTag}
@@ -1260,7 +1263,7 @@ export function ProfileEditor({
                 </span>
               </label>
 
-              <label className="flex items-start gap-2.5 rounded-lg border border-[#eee7d9] bg-white p-4 text-sm leading-6 text-ink">
+              <label className="flex items-start gap-2.5 rounded-lg border border-sand bg-cream p-4 text-sm leading-6 text-ink">
                 <input
                   type="checkbox"
                   checked={publicProfile}
@@ -1313,7 +1316,7 @@ export function ProfileEditor({
                       className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
                         on
                           ? "border-forest bg-forest text-cream"
-                          : "border-[#eee7d9] bg-white text-stone hover:border-forest/40 hover:text-ink"
+                          : "border-sand bg-cream text-stone hover:border-forest/40 hover:text-ink"
                       }`}
                     >
                       {g.label}
@@ -1518,6 +1521,11 @@ function FlatIdentityCard({
 }) {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-forest text-cream shadow-md lg:sticky lg:top-24">
+      <TopicMark
+        id="budgeting"
+        color="#fbf8f1"
+        className="pointer-events-none absolute -bottom-10 -right-10 h-44 w-44 opacity-[0.07]"
+      />
       <button
         type="button"
         onClick={onEdit}
@@ -1530,7 +1538,7 @@ function FlatIdentityCard({
         <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber text-3xl font-bold text-ink">
           {(name.trim() || email).charAt(0).toUpperCase()}
         </span>
-        <p className="mt-3 text-xl font-semibold">
+        <p className="mt-3 font-display text-2xl font-semibold">
           {name.trim() || "Add your name"}
         </p>
         <p className="mt-0.5 text-xs text-cream/60">

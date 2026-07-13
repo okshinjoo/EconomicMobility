@@ -19,9 +19,9 @@ import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 // The dashboard zone's flat palette (deliberately calmer than bold-mix).
 export const DASH = {
-  divider: "#eee7d9",
-  muted: "#9aa5a0",
-  surface: "#faf7f0",
+  divider: "#e4d8c1",
+  muted: "#5f6f66",
+  surface: "#f7f2e8",
   sand: "#e8dfcf",
 };
 
@@ -288,9 +288,9 @@ export function FlatStatCards({
 
   return (
     <div className="grid gap-4 xl:grid-cols-2">
-      <div className="rounded-2xl bg-white p-5 shadow-sm">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-[15px] font-bold text-ink">Reading Stats</h3>
+          <h3 className="font-display text-base font-bold text-ink">Reading Stats</h3>
           <span
             className="whitespace-nowrap text-xs font-medium"
             style={{ color: DASH.muted }}
@@ -312,9 +312,9 @@ export function FlatStatCards({
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-sm">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-[15px] font-bold text-ink">Total Progress</h3>
+          <h3 className="font-display text-base font-bold text-ink">Total Progress</h3>
           <span
             className="whitespace-nowrap text-xs font-medium"
             style={{ color: DASH.muted }}
