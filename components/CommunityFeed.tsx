@@ -124,6 +124,17 @@ function formatDate(iso: string): string {
   });
 }
 
+/** Outlined "You" chip beside your own name — the GitHub-Author pattern,
+ *  so your comments are findable at a glance. Pairs with the amber outline
+ *  on the comment block itself. */
+function YouChip() {
+  return (
+    <span className="inline-flex items-center rounded-full border-[1.5px] border-amber-deep/60 px-2 py-px text-[11px] font-bold leading-4 text-amber-deep">
+      You
+    </span>
+  );
+}
+
 function Avatar({
   name,
   team,
@@ -638,7 +649,13 @@ function CommentItem({
 
   return (
     <div className="mt-4">
-      <div className="flex items-start gap-3">
+      <div
+        className={`flex items-start gap-3 ${
+          comment.mine
+            ? "-mx-2 rounded-xl border-[1.5px] border-amber/60 bg-amber/[0.06] p-2 sm:p-3"
+            : ""
+        }`}
+      >
         <Avatar
           name={comment.author}
           team={comment.author === "Empower Team"}
@@ -648,7 +665,7 @@ function CommentItem({
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
             {comment.mine ? (
-              <span>You</span>
+              <YouChip />
             ) : (
               <AuthorName
                 name={comment.author}
@@ -696,7 +713,14 @@ function CommentItem({
 
           {/* approved replies */}
           {(comment.replies ?? []).map((r) => (
-            <div key={r.id} className="mt-3 flex items-start gap-2.5 border-l-2 border-sand pl-3">
+            <div
+              key={r.id}
+              className={`mt-3 flex items-start gap-2.5 border-l-2 pl-3 ${
+                r.mine
+                  ? "rounded-r-xl border-amber bg-amber/[0.06] py-2 pr-2"
+                  : "border-sand"
+              }`}
+            >
               <Avatar
                 name={r.author}
                 team={r.author === "Empower Team"}
@@ -706,7 +730,7 @@ function CommentItem({
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
                   {r.mine ? (
-                    <span>You</span>
+                    <YouChip />
                   ) : (
                     <AuthorName name={r.author} meta={authorMeta[r.author]} />
                   )}
@@ -733,7 +757,7 @@ function CommentItem({
               <Avatar name={r.author} mine />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
-                  You
+                  <YouChip />
                   <PendingChip />
                   {r.liveId && <DeleteOwnButton liveId={r.liveId} />}
                 </p>
@@ -1117,7 +1141,7 @@ function PostCard({
               <Avatar name={c.author} mine />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
-                  You
+                  <YouChip />
                   <PendingChip />
                   {c.liveId && <DeleteOwnButton liveId={c.liveId} />}
                 </p>
