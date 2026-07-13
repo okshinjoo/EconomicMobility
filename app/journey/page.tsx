@@ -52,6 +52,7 @@ export default function JourneyIndexPage() {
       steps,
       milestones: j.stages.map((s) => s.milestone),
       stageSizes,
+      topicId: j.topic,
       quizTopics: Object.entries(journeyByTopic)
         .filter(([, jid]) => jid === j.id)
         .map(([topic]) => topic),

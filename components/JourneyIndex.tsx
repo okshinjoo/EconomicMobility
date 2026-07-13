@@ -7,9 +7,11 @@
 // render = the neutral registry order, so first visits and fresh devices
 // see the same page (no hydration mismatch).
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import TopicMark from "@/components/TopicMark";
+import type { TopicId } from "@/lib/topics";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
@@ -38,6 +40,87 @@ export interface JourneyCardData {
   stageSizes: number[];
   /** Learn topics that map to this journey (for quiz-topic boosting). */
   quizTopics: string[];
+  /** The journey's home topic — drives the card's hand-drawn mark. */
+  topicId: TopicId;
+}
+
+/** A pocket version of the detail page's winding roadmap: a little S-curve
+ *  trail whose stroke draws to the visitor's progress, with one dot per
+ *  milestone that fills as its stage completes. Dot positions are measured
+ *  off the real path so they sit exactly on the curve. */
+const MINI_TRAIL = "M6 30 C 40 6, 64 38, 100 20 C 136 4, 162 36, 194 12";
+
+function TrailMini({
+  color,
+  fraction,
+  stageDone,
+  boundaries,
+}: {
+  color: string;
+  fraction: number;
+  stageDone: boolean[];
+  /** Cumulative step-fraction where each milestone sits (last = 1). */
+  boundaries: number[];
+}) {
+  const pathRef = useRef<SVGPathElement>(null);
+  const [pts, setPts] = useState<Array<{ x: number; y: number }>>([]);
+
+  const key = boundaries.join(",");
+  useEffect(() => {
+    const p = pathRef.current;
+    if (!p) return;
+    const L = p.getTotalLength();
+    setPts(
+      boundaries.map((b) => {
+        const pt = p.getPointAtLength(L * Math.min(1, Math.max(0, b)));
+        return { x: pt.x, y: pt.y };
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  const currentIdx = stageDone.findIndex((d) => !d);
+
+  return (
+    <svg viewBox="0 0 200 40" className="h-10 w-full" fill="none" aria-hidden>
+      <path
+        d={MINI_TRAIL}
+        stroke="#d9cbb0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeDasharray="1.5 6"
+      />
+      <path
+        ref={pathRef}
+        d={MINI_TRAIL}
+        pathLength={100}
+        stroke={color}
+        strokeWidth="3"
+        strokeLinecap="round"
+        style={{
+          strokeDasharray: 100,
+          strokeDashoffset: 100 * (1 - fraction),
+          transition: "stroke-dashoffset 0.8s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      />
+      {pts.map((pt, i) => {
+        const done = stageDone[i];
+        const here = i === currentIdx && fraction > 0;
+        return (
+          <circle
+            key={i}
+            cx={pt.x}
+            cy={pt.y}
+            r="4.5"
+            fill={done ? color : "#fbf8f1"}
+            stroke={done ? color : here ? "#e7a33c" : "#c9bda2"}
+            strokeWidth="2"
+            style={{ transition: "fill 0.3s ease, stroke 0.3s ease" }}
+          />
+        );
+      })}
+    </svg>
+  );
 }
 
 export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
@@ -121,6 +204,24 @@ export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
           }
         }
         const isGoal = ready && goalIds.has(j.id);
+        // Per-stage done flags + cumulative boundaries for the mini trail.
+        const stageDone: boolean[] = [];
+        const boundaries: number[] = [];
+        {
+          let offset = 0;
+          for (const size of j.stageSizes) {
+            const stageSteps = j.steps.slice(offset, offset + size);
+            stageDone.push(
+              ready &&
+                stageSteps.length > 0 &&
+                stageSteps.every((s) =>
+                  doneKeys.has(`${j.id}:${s.kind}:${s.key}`)
+                )
+            );
+            offset += size;
+            boundaries.push(total ? offset / total : 1);
+          }
+        }
         const tilt =
           i === 1 ? "lg:rotate-[0.4deg]" : i === 5 ? "lg:-rotate-[0.4deg]" : "";
         return (
@@ -131,12 +232,18 @@ export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
             style={{ background: `color-mix(in srgb, ${j.color} 10%, #fbf8f1)` }}
           >
             <div className="flex items-start justify-between gap-3">
-              <h2
-                className="font-display text-2xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-                style={{ textDecorationColor: j.color }}
-              >
-                {j.title}
-              </h2>
+              <span className="flex min-w-0 items-start gap-2.5">
+                <TopicMark
+                  id={j.topicId}
+                  className="mt-0.5 h-7 w-7 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                />
+                <h2
+                  className="font-display text-2xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+                  style={{ textDecorationColor: j.color }}
+                >
+                  {j.title}
+                </h2>
+              </span>
               {isGoal && (
                 <span className="-rotate-2 whitespace-nowrap rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold text-ink shadow-[2px_2px_0_#11211c]">
                   Your goal
@@ -150,16 +257,13 @@ export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
               {j.stageCount} milestones · {j.guideCount} guides
             </p>
 
-            <div className="mt-3">
-              <div className="h-2 w-full overflow-hidden rounded-full border border-ink/15 bg-cream">
-                <div
-                  className="h-full rounded-full transition-[width]"
-                  style={{
-                    width: `${total ? (done / total) * 100 : 0}%`,
-                    background: j.color,
-                  }}
-                />
-              </div>
+            <div className="mt-2">
+              <TrailMini
+                color={j.color}
+                fraction={ready && total ? done / total : 0}
+                stageDone={stageDone}
+                boundaries={boundaries}
+              />
               <p className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-ink/70">
                 {finished ? (
                   <>
