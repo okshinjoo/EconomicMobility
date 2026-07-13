@@ -56,7 +56,7 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
             >
               <CourseDoodle
                 id={course.id}
-                className="pointer-events-none absolute -bottom-4 -right-3 h-24 w-24 -rotate-6 text-cream opacity-30 transition-transform duration-300 group-hover:rotate-0"
+                className="pointer-events-none absolute -bottom-4 right-16 h-24 w-24 -rotate-6 text-cream opacity-30 transition-transform duration-300 group-hover:rotate-0"
               />
               <h2 className="relative font-display text-2xl font-semibold leading-tight text-cream">
                 {course.title}
