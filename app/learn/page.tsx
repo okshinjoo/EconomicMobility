@@ -51,20 +51,20 @@ export default function LearnHub() {
       <Header />
 
       {/* Hero — light editorial (Base44 learn-page structure, our skin) */}
-      <section className="relative overflow-hidden border-b-2 border-ink bg-paper-deep">
+      <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
         <TopicMark
           id="budgeting"
-          color="#0c4a39"
-          className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.06]"
+          color="#fbf8f1"
+          className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.07]"
         />
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 pt-14 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div>
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             The Library
           </span>
-          <h1 className="mt-4 font-display text-[2.6rem] font-bold leading-[1.07] sm:leading-[1.05] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[1.05] tracking-tight sm:text-6xl">
             Learn money,{" "}
-            <span className="relative whitespace-nowrap text-forest">
+            <span className="relative whitespace-nowrap text-amber">
               your way.
               <svg
                 aria-hidden="true"
@@ -82,20 +82,20 @@ export default function LearnHub() {
               </svg>
             </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
             Nine core topics, each built as a clear path from the absolute
             basics to the stuff that takes you further. Start anywhere — or
             let the quiz pick for you.
           </p>
-          <p className="mt-4 text-sm font-semibold text-stone">
+          <p className="mt-4 text-sm font-semibold text-cream/70">
             {totalGuides} free guides · {topics.length} topics · No sign-up,
             no paywall
           </p>
-          <p className="mt-4 text-sm font-semibold text-forest">
+          <p className="mt-4 text-sm font-semibold text-cream">
             Not sure where to start?{" "}
             <Link
               href="/quiz"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
             >
               Take the 2-minute quiz
             </Link>
@@ -111,7 +111,7 @@ export default function LearnHub() {
               <Reveal key={t.id} delay={i * 45}>
                 <Link
                   href={t.href}
-                  className={`group flex flex-col items-center gap-1.5 rounded-xl border-2 border-ink px-3 py-3.5 text-center shadow-[2px_2px_0_#11211c] transition-transform duration-200 hover:-translate-y-1 ${
+                  className={`group flex flex-col items-center gap-1.5 rounded-xl px-3 py-3.5 text-center transition-transform duration-200 hover:-translate-y-1 ${
                     i === 2 ? "rotate-[1.2deg]" : i === 6 ? "-rotate-[1.2deg]" : ""
                   }`}
                   style={{
