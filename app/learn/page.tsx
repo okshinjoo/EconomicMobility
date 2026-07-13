@@ -51,8 +51,13 @@ export default function LearnHub() {
       <Header />
 
       {/* Hero — light editorial (Base44 learn-page structure, our skin) */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 pb-12 pt-14">
+      <section className="relative overflow-hidden border-b-2 border-ink bg-paper-deep">
+        <TopicMark
+          id="budgeting"
+          color="#0c4a39"
+          className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.06]"
+        />
+        <div className="relative mx-auto max-w-6xl px-6 pb-12 pt-14">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             The Library
           </span>
@@ -112,9 +117,12 @@ export default function LearnHub() {
               return (
                 <Reveal key={topic.id} delay={(i % 2) * 70}>
                   <div
-                    className={`card-ink group relative flex h-full items-stretch gap-4 overflow-hidden rounded-xl bg-cream p-4 transition-transform duration-200 hover:-translate-y-0.5 ${
+                    className={`card-ink group relative flex h-full items-stretch gap-4 overflow-hidden rounded-xl p-4 transition-transform duration-200 hover:-translate-y-0.5 ${
                       photoRight ? "flex-row-reverse" : ""
                     }`}
+                    style={{
+                      background: `color-mix(in srgb, ${topic.color} 12%, #fbf8f1)`,
+                    }}
                   >
                     <div className="relative hidden w-28 shrink-0 overflow-hidden rounded-lg bg-sand sm:block">
                       <Image
@@ -128,6 +136,11 @@ export default function LearnHub() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-baseline justify-between gap-3">
+                        <span className="flex min-w-0 items-center gap-2.5">
+                          <TopicMark
+                            id={topic.id}
+                            className="h-6 w-6 shrink-0 self-center transition-transform duration-200 group-hover:scale-110"
+                          />
                         <h2 className="font-display text-lg font-bold leading-snug text-ink">
                           <Link
                             href={topic.href}
@@ -137,6 +150,7 @@ export default function LearnHub() {
                             {topic.title}
                           </Link>
                         </h2>
+                        </span>
                         <span
                           aria-hidden
                           className="shrink-0 font-display text-xl font-bold text-ink/15"
@@ -173,15 +187,15 @@ export default function LearnHub() {
 
       {/* Start here — the four guides we'd hand you first */}
       {starters.length > 0 && (
-        <section className="border-y-2 border-ink bg-paper-deep">
+        <section className="border-y-2 border-ink bg-amber">
           <div className="mx-auto max-w-6xl px-6 py-12">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
               Start here
             </span>
-            <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
               Four guides we&apos;d hand you first
             </h2>
-            <p className="mt-2 text-base leading-7 text-stone">
+            <p className="mt-2 text-base font-medium leading-7 text-ink/75">
               Whatever your situation, one of these is probably the right
               first read.
             </p>
@@ -192,7 +206,13 @@ export default function LearnHub() {
                   <Reveal key={a.slug} delay={i * 70} className="h-full">
                     <Link
                       href={`/learn/${a.topicId}/${a.slug}`}
-                      className="card-ink group flex h-full flex-col overflow-hidden rounded-xl bg-cream transition-transform duration-200 hover:-translate-y-1"
+                      className={`card-ink group flex h-full flex-col overflow-hidden rounded-xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
+                        i === 1
+                          ? "lg:rotate-[0.5deg]"
+                          : i === 3
+                            ? "lg:-rotate-[0.5deg]"
+                            : ""
+                      }`}
                     >
                       <div className="relative aspect-[16/9] overflow-hidden bg-sand">
                         <Image
@@ -203,6 +223,9 @@ export default function LearnHub() {
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
+                        <span className="absolute bottom-2.5 left-2.5 flex h-11 w-11 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
+                          <TopicMark id={a.topicId} className="h-6 w-6" />
+                        </span>
                       </div>
                       <div className="flex flex-1 flex-col p-4">
                         <span
@@ -268,7 +291,10 @@ export default function LearnHub() {
                 <Reveal key={a.slug} delay={(i % 2) * 60} className="h-full">
                   <Link
                     href={`/learn/${a.topicId}/${a.slug}`}
-                    className="card-ink flex h-full items-center gap-3 rounded-xl bg-cream px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5"
+                    className="card-ink flex h-full items-center gap-3 rounded-xl px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5"
+                    style={{
+                      background: `color-mix(in srgb, ${getTopic(a.topicId).color} 10%, #fbf8f1)`,
+                    }}
                   >
                     <TopicMark id={a.topicId} className="h-7 w-7 shrink-0" />
                     <span className="flex-1 text-sm font-bold leading-snug text-ink">
