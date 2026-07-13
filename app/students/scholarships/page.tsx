@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScholarshipFinder from "@/components/ScholarshipFinder";
+import ScholarshipDbSearch from "@/components/ScholarshipDbSearch";
 import { scholarships } from "@/lib/scholarships";
 
 export const metadata: Metadata = {
@@ -72,6 +73,38 @@ export default function ScholarshipsPage() {
           <ScholarshipFinder />
         </div>
       </section>
+
+      {/* The full national database — renders only once the CareerOneStop
+          credentials exist in the environment (docs/scholarship-db-setup.md) */}
+      {process.env.CAREERONESTOP_USER_ID &&
+        process.env.CAREERONESTOP_TOKEN && (
+          <section className="border-t-2 border-ink bg-paper-deep">
+            <div className="mx-auto max-w-5xl px-6 py-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+                Go wider
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+                Search the full national database
+              </h2>
+              <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
+                Thousands more awards, searched live from the U.S. Department
+                of Labor&apos;s public scholarship database. Broader but less
+                hand-checked than our list above — read each one&apos;s
+                official page with{" "}
+                <Link
+                  href="/learn/money-safety/how-to-spot-a-scam"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  your scam radar on
+                </Link>
+                .
+              </p>
+              <div className="mt-6">
+                <ScholarshipDbSearch />
+              </div>
+            </div>
+          </section>
+        )}
 
       <Footer />
     </div>
