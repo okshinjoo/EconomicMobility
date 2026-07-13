@@ -10,6 +10,7 @@ import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
+import ReminderSignup from "@/components/ReminderSignup";
 
 export const metadata: Metadata = {
   title: "For Students | Empower — Economic Mobility Project",
@@ -137,6 +138,25 @@ export default function StudentsPage() {
           </div>
         </div>
       </section>
+
+      {/* Deadline reminders — renders only once the sending env exists
+          (docs/reminders-setup.md) */}
+      {process.env.RESEND_API_KEY &&
+        process.env.SUPABASE_SERVICE_ROLE_KEY && (
+          <section className="bg-paper">
+            <div className="mx-auto max-w-3xl px-6 pt-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+                Never miss one
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+                Get a nudge before each deadline
+              </h2>
+              <div className="mt-5">
+                <ReminderSignup />
+              </div>
+            </div>
+          </section>
+        )}
 
       {/* Read these first + the transfer-ready path */}
       <section className="bg-paper">

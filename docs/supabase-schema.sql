@@ -200,3 +200,27 @@ exception when duplicate_object then null; end $$;
 -- together with "read own profile", so members still see their own either way).
 create policy "read public profiles" on public.profiles
   for select using (public_profile = true);
+
+-- ------------------------------------------------------------------
+-- EMAIL DEADLINE REMINDERS (July 2026). Run this whole block once.
+-- Both tables are SERVICE-ROLE ONLY: RLS is on with no policies, so the
+-- anon key can't read or write them at all. Subscribing and unsubscribing
+-- go through our API routes, which use the service key.
+create table if not exists public.reminder_subscribers (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  wants_deadlines boolean not null default true,
+  wants_tips boolean not null default false,
+  token text not null unique,
+  created_at timestamptz not null default now()
+);
+alter table public.reminder_subscribers enable row level security;
+
+-- One row per deadline per year, so a reminder can never send twice.
+create table if not exists public.reminder_sends (
+  deadline_id text not null,
+  year int not null,
+  sent_at timestamptz not null default now(),
+  primary key (deadline_id, year)
+);
+alter table public.reminder_sends enable row level security;
