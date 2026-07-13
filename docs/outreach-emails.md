@@ -1,76 +1,67 @@
 # Partnership outreach drafts (July 2026)
 
-Send both from **partnerships@economicmobilityproject.org** (reply-to lands
-in the shared inbox). Where to send:
-- **Immigrants Rising:** the contact option on immigrantsrising.org
-  (contact form or the general email listed there).
-- **ASSIST:** the contact/feedback option on assist.org (ASSIST is run by
-  California's public colleges; their support channel routes to the right
-  team).
+Send both from **partnerships@economicmobilityproject.org**.
+- **Immigrants Rising:** info@immigrantsrising.org
+- **ASSIST:** help@assist.org
 
-Edit freely — these are drafts in Shinjoo's voice, not scripts.
+Edit freely. (Rewritten per owner note: plainer, no em dashes.)
 
 ---
 
-## 1. To Immigrants Rising — permission to feature their list
+## 1. To Immigrants Rising
 
-**Subject:** Partnership ask from a free financial-ed site for immigrant students
+**Subject:** Question about featuring your scholarship list
 
-Hi Immigrants Rising team,
+Hi,
 
-My name is Shinjoo Kim and I run Empower (economicmobilityproject.org), a
-free financial-education website for first-generation, low-income, and
-immigrant students. No ads, no paywall, no selling data — just plain-English
-money guides, calculators, and a scholarship finder.
+My name is Shinjoo Kim. I run Empower (economicmobilityproject.org), a free
+financial education site for first-gen, low-income, and immigrant students.
+There are no ads and no paywall, and we don't sell data.
 
-Your scholarships-and-fellowships list is the best resource we know of for
-students without citizenship paperwork, and we already point our readers to
-it. I'm writing to ask whether you'd be open to something closer: with your
-permission and full attribution, we'd love to feature entries from your list
-directly in our scholarship finder, so a student filtering for "no
-citizenship requirement" sees your work where they're already searching —
-always linked back to you and to each program's official page.
+The site has a scholarship finder with a filter for awards that don't
+require citizenship paperwork. Right now we link out to your scholarships
+and fellowships list, because it's the best resource we've found on this. I
+wanted to ask if you'd be open to us featuring entries from your list
+directly in the finder. Every entry would credit Immigrants Rising and link
+back to your list and to each program's official page.
 
-If you'd rather we keep it to linking, that's completely fine and we'll keep
-doing it gladly. And if there's a different way you prefer partners to work
-with the list, I'd love to hear it — we're a small operation and happy to
-follow your lead.
+If you'd rather we stick to linking, that's completely fine and we'll keep
+doing it. And if you already have a preferred way for other sites to use
+the list, just tell me and we'll follow it.
 
-Thank you for what you do. It shows up in the questions our students ask.
+Thanks for the work you all do.
 
 Shinjoo Kim
-Founder, Empower — Economic Mobility Project
+Founder, Empower
 economicmobilityproject.org
 
 ---
 
-## 2. To ASSIST — sanctioned access to articulation data
+## 2. To ASSIST
 
-**Subject:** Data access question from a free student financial-ed nonprofit
+**Subject:** Data access question from a free student site
 
 Hello,
 
-My name is Shinjoo Kim and I run Empower (economicmobilityproject.org), a
-free financial-education website for first-generation and low-income
-students — no ads, no paywall. Our "For Students" section teaches community
-college students how transfer agreements protect them from paying for
-courses twice, and today we simply send them to ASSIST.org to check their
-courses (which we'll do regardless).
+My name is Shinjoo Kim. I run Empower (economicmobilityproject.org), a free
+financial education site for first-generation and low-income students. Our
+students section teaches community college students to check ASSIST before
+registering so their courses actually transfer, and right now we simply
+link them to assist.org for that.
 
-My question: is there a sanctioned way for a nonprofit site like ours to
-access articulation data programmatically — an approved API, data-sharing
-agreement, or bulk export? Our goal would be modest and clearly attributed:
-helping a student see, inside the transfer-planning tools they use on our
-site, whether the courses they're planning appear in a current agreement —
-always labeled with the academic year, always linking back to ASSIST as the
-authoritative source, and refreshed on whatever schedule you'd require.
+I'm writing to ask whether there's an approved way for a site like ours to
+access articulation data, such as an API, a data sharing agreement, or a
+bulk export. The use would be small and clearly labeled: showing a student
+whether the courses in their transfer plan appear in a current agreement,
+with the academic year displayed, a link back to ASSIST as the official
+source on every result, and refreshes on whatever schedule you require.
 
-If no such program exists, no problem — we'll keep linking to ASSIST as the
-official record, and I'd welcome any guidance on doing that in the way you
-prefer.
+If nothing like that exists, no problem. We'll keep sending students to
+assist.org, and I'd welcome any guidance on how you prefer sites to link to
+it.
 
-Thank you for maintaining something our students genuinely rely on.
+Thank you,
 
 Shinjoo Kim
-Founder, Empower — Economic Mobility Project
+Founder, Empower
 economicmobilityproject.org
