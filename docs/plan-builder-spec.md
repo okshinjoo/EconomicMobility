@@ -137,9 +137,24 @@ carries an amber My Plan promo band, start-here step 02 hands to /plan
 ("Get your plan"), quiz results end with a forest plan-CTA band, /plan is
 in ⌘K search + sitemap, and re-plan pre-fills the previous answers.
 
-**Session 3 next:** the projection widget (deterministic math from the
-visitor's own Budget Planner / Savings Goal snapshots; no snapshot -> a
-run-the-planner prompt), polish, go-live checklist.
+**Session 3 SHIPPED (July 13, 2026):** ProjectionCard in PlanApp —
+deterministic math only, from readBudgetSummary() (the visitor's own saved
+Budget Planner inputs, recomputed via the real tax engine each visit).
+Light parse of the intake target (a $ amount + a month name; anything
+unparseable falls back to a generic six-month projection). Three states:
+no snapshot -> run-the-planner prompt; leftover <= 0 -> gentle
+budget-first note; leftover > 0 -> "on track for ~$Y by <Month>" with an
+over/short comparison when a target amount parsed. Always labeled an
+estimate. Verified with a seeded $38k/CA snapshot: "$717/month leftover ->
+about $3,585 by December — past your $1,200 target."
+
+**GO-LIVE: nothing left to configure.** ANTHROPIC_API_KEY already lives in
+Vercel (shared with chat + comment review), the route falls back safely
+without it, and no schema changes were needed. After the next push, run
+one real intake on the live site and confirm the plan comes back
+aiComposed:true (the fallback plan says "built from your goal's guided
+path" under the headline — if that line shows in production, check Vercel
+logs for /api/plan).
 
 ## Build order (one session each)
 

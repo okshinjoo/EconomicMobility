@@ -21,6 +21,7 @@ import {
   type PlanItem,
 } from "@/lib/plan";
 import { getReadMap } from "@/lib/readTracking";
+import { readBudgetSummary } from "@/lib/calcImports";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 
@@ -324,6 +325,123 @@ function Intake({
   );
 }
 
+/* --- Projection ----------------------------------------------------------- */
+
+const MONTHS = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
+
+/** Light parse of the free-text target: a $ amount and/or a month name.
+ *  Anything unparseable just means the generic projection shows instead. */
+function parseTarget(target: string): { amount: number | null; monthIdx: number | null } {
+  const amtMatch = target.replace(/,/g, "").match(/\$?\s?(\d{2,7})(?:\b|$)/);
+  const amount = amtMatch ? parseInt(amtMatch[1], 10) : null;
+  const lower = target.toLowerCase();
+  let monthIdx: number | null = null;
+  for (let i = 0; i < 12; i++) {
+    if (lower.includes(MONTHS[i]) || lower.includes(MONTHS[i].slice(0, 3) + " ")) {
+      monthIdx = i;
+      break;
+    }
+  }
+  return { amount, monthIdx };
+}
+
+function usd(n: number): string {
+  return `$${Math.round(n).toLocaleString("en-US")}`;
+}
+
+/** Deterministic "you're on track" math from the visitor's own Budget
+ *  Planner snapshot (readBudgetSummary recomputes from their saved inputs).
+ *  Client-only by construction: PlanApp renders nothing until mounted, so
+ *  the Date use here never touches hydration. */
+function ProjectionCard({ target }: { target: string }) {
+  const summary = readBudgetSummary();
+
+  if (!summary) {
+    return (
+      <div className="mt-6 rounded-xl border border-sand bg-cream p-5">
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-terracotta">
+          Make this plan do math
+        </p>
+        <p className="mt-1.5 text-sm leading-6 text-stone">
+          Run the{" "}
+          <Link
+            href="/tools/budget"
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Budget Planner
+          </Link>{" "}
+          once and this plan starts projecting with your real numbers — how
+          much you&apos;re on track to set aside, by when.
+        </p>
+      </div>
+    );
+  }
+
+  const { leftover } = summary;
+  if (leftover <= 0) {
+    return (
+      <div className="mt-6 rounded-xl border border-sand bg-cream p-5">
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-terracotta">
+          Your numbers right now
+        </p>
+        <p className="mt-1.5 text-sm leading-6 text-stone">
+          Your saved budget currently shows more going out than coming in,
+          which makes the budgeting steps below the real first move. Update
+          the{" "}
+          <Link
+            href="/tools/budget"
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Budget Planner
+          </Link>{" "}
+          anytime and this updates with you.
+        </p>
+      </div>
+    );
+  }
+
+  const { amount, monthIdx } = parseTarget(target);
+  const now = new Date();
+  let line: string;
+  if (monthIdx !== null) {
+    let months = monthIdx - now.getMonth();
+    if (months <= 0) months += 12;
+    const monthName = MONTHS[monthIdx][0].toUpperCase() + MONTHS[monthIdx].slice(1);
+    const projected = leftover * months;
+    line =
+      amount !== null
+        ? projected >= amount
+          ? `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName} — past your ${usd(amount)} target.`
+          : `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName} — about ${usd(amount - projected)} short of your ${usd(amount)} target, so a step below may be worth moving up.`
+        : `At your current ${usd(leftover)}/month leftover, you're on track to set aside about ${usd(projected)} by ${monthName}.`;
+  } else {
+    line = `At your current ${usd(leftover)}/month leftover, that's about ${usd(leftover * 6)} set aside in six months.`;
+  }
+
+  return (
+    <div className="mt-6 rounded-xl border-2 border-forest/25 bg-forest/[0.05] p-5">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest">
+        Your numbers right now
+      </p>
+      <p className="mt-1.5 text-sm leading-6 text-ink">{line}</p>
+      <p className="mt-2 text-xs leading-5 text-stone">
+        An estimate, not a promise — it&apos;s your own Budget Planner
+        numbers, recomputed every time you visit.{" "}
+        <Link
+          href="/tools/budget"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          Update them
+        </Link>{" "}
+        and this moves with you.
+      </p>
+    </div>
+  );
+}
+
 /* --- Plan view ------------------------------------------------------------ */
 
 function PlanView({
@@ -361,6 +479,8 @@ function PlanView({
           Re-plan
         </button>
       </div>
+
+      <ProjectionCard target={plan.intake.target} />
 
       {(() => {
         const undone = plan.items.filter((i) => !isDone(i));
