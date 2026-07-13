@@ -130,10 +130,16 @@ transfer scenario (fallback path locally; AI path engages in production
 where ANTHROPIC_API_KEY exists). Page is deliberately UNLINKED from nav
 until session 2.
 
-**Session 2 next:** Now/Next/Done grouping, nav wiring ("Your Path"
-dropdown or top-level decision for the owner), start-here/quiz-results
-handoffs, search + sitemap entries, re-plan pre-filled with last answers
-(currently starts blank).
+**Session 2 SHIPPED (July 13, 2026):** Now/Next/Done grouping (Now = first
+three undone, done items sink — memory contract), "Your Path" is now a nav
+DROPDOWN (My Plan + Guided paths, per this spec's fold-in call), /journey
+carries an amber My Plan promo band, start-here step 02 hands to /plan
+("Get your plan"), quiz results end with a forest plan-CTA band, /plan is
+in ⌘K search + sitemap, and re-plan pre-fills the previous answers.
+
+**Session 3 next:** the projection widget (deterministic math from the
+visitor's own Budget Planner / Savings Goal snapshots; no snapshot -> a
+run-the-planner prompt), polish, go-live checklist.
 
 ## Build order (one session each)
 

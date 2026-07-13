@@ -39,7 +39,15 @@ export const nav: NavEntry[] = [
       { label: "Glossary", href: "/glossary" },
     ],
   },
-  { label: "Your Path", href: "/journey" },
+  {
+    label: "Your Path",
+    href: "/journey",
+    columns: 1,
+    items: [
+      { label: "My Plan", href: "/plan", desc: "Five questions, one personal plan that checks itself off." },
+      { label: "Guided paths", href: "/journey", desc: "Nine money goals, walked milestone by milestone." },
+    ],
+  },
   { label: "Courses", href: "/courses" },
   { label: "For Students", href: "/students" },
   {

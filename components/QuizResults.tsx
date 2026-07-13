@@ -256,6 +256,30 @@ export default function QuizResults({
         </ol>
       </section>
 
+      {/* Handoff: turn these results into a living plan */}
+      <section className="mt-10">
+        <Link
+          href="/plan"
+          className="card-ink flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
+        >
+          <div className="max-w-xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+              Want this as one plan?
+            </p>
+            <p className="mt-1.5 font-display text-xl font-bold sm:text-2xl">
+              Five more questions and it&apos;s a living checklist.
+            </p>
+            <p className="mt-1 text-sm leading-6 text-cream/75">
+              Your goal, your deadlines, your next step — saved, and checking
+              itself off as you read and use the site.
+            </p>
+          </div>
+          <span className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
+            Build my plan
+          </span>
+        </Link>
+      </section>
+
       {/* Part 4: Resource Cards — B voice, one tilted */}
       <section className="mt-10">
         <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-amber-deep">

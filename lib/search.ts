@@ -29,6 +29,7 @@ export interface SearchItem {
 const PAGES: SearchItem[] = [
   { kind: "Page", title: "Take the Quiz", subtitle: "Find your starting point in about 2 minutes.", href: "/quiz", group: "Pages" },
   { kind: "Page", title: "Your Path", subtitle: "Pick a money goal, follow it milestone by milestone.", href: "/journey", group: "Pages", keywords: "journey guided path goals roadmap walkthrough" },
+  { kind: "Page", title: "My Plan", subtitle: "Five questions, one personal plan that checks itself off.", href: "/plan", group: "Pages", keywords: "plan personalized custom goals checklist my plan builder" },
   { kind: "Page", title: "Free Templates", subtitle: "Downloadable budget, debt, and savings spreadsheets.", href: "/tools/templates", group: "Pages", keywords: "spreadsheet excel download worksheet tracker" },
   { kind: "Page", title: "Resources", subtitle: "Trusted outside help, plus a finder for your state.", href: "/resources", group: "Pages", keywords: "benefits state help 211" },
   { kind: "Page", title: "Ask a Question", subtitle: "Ask anything about money, anonymously.", href: "/ask", group: "Pages", keywords: "ask faq community questions" },

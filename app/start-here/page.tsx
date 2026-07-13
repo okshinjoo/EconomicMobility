@@ -25,10 +25,10 @@ const steps = [
   },
   {
     n: "02",
-    title: "Follow your path",
-    text: "Pick a money goal and walk it milestone by milestone — the right guide at the right time, with a clear next step whenever you come back.",
-    href: "/journey",
-    cta: "Find your path",
+    title: "Get your plan",
+    text: "Answer five questions and get a personal plan: the right guides, calculators, and deadlines in the order that fits you, checking itself off as you go. Prefer to browse by goal? The guided paths cover the same ground.",
+    href: "/plan",
+    cta: "Build my plan",
     accent: "#0f5c46", // forest
   },
   {

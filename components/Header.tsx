@@ -62,7 +62,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
       <Link
         href={entry.href}
         aria-haspopup="true"
-        className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
+        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
       >
         {entry.label}
         <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />

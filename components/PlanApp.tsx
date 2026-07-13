@@ -94,6 +94,7 @@ export default function PlanApp() {
   const [plan, setPlan] = useState<MyPlan | null>(null);
   const [mounted, setMounted] = useState(false);
   const [building, setBuilding] = useState(false);
+  const [lastIntake, setLastIntake] = useState<IntakeAnswers | null>(null);
 
   useEffect(() => {
     setPlan(loadPlan());
@@ -106,6 +107,7 @@ export default function PlanApp() {
     return (
       <Intake
         building={building}
+        initial={lastIntake}
         onSubmit={async (intake) => {
           setBuilding(true);
           try {
@@ -132,7 +134,17 @@ export default function PlanApp() {
     );
   }
 
-  return <PlanView plan={plan} onUpdate={setPlan} onReset={() => { clearPlan(); setPlan(null); }} />;
+  return (
+    <PlanView
+      plan={plan}
+      onUpdate={setPlan}
+      onReset={() => {
+        setLastIntake(plan.intake);
+        clearPlan();
+        setPlan(null);
+      }}
+    />
+  );
 }
 
 /* --- Intake -------------------------------------------------------------- */
@@ -164,20 +176,28 @@ function Chip({
 
 function Intake({
   building,
+  initial,
   onSubmit,
 }: {
   building: boolean;
+  /** Re-plan passes the previous answers so nobody types twice. */
+  initial: IntakeAnswers | null;
   onSubmit: (intake: IntakeAnswers) => void;
 }) {
   const profile = readLocalProfile();
-  const [goal, setGoal] = useState(profile?.goals?.[0] ?? "");
-  const [detail, setDetail] = useState("");
+  const [goal, setGoal] = useState(initial?.goal ?? profile?.goals?.[0] ?? "");
+  const [detail, setDetail] = useState(initial?.detail ?? "");
   const [stage, setStage] = useState<IntakeAnswers["stage"] | "">(
-    profile?.role === "student" ? "" : profile?.role === "working" ? "working" : ""
+    initial?.stage ??
+      (profile?.role === "working" ? "working" : "")
   );
-  const [income, setIncome] = useState<IntakeAnswers["income"] | "">("");
-  const [family, setFamily] = useState<IntakeAnswers["family"] | "">("");
-  const [target, setTarget] = useState("");
+  const [income, setIncome] = useState<IntakeAnswers["income"] | "">(
+    initial?.income ?? ""
+  );
+  const [family, setFamily] = useState<IntakeAnswers["family"] | "">(
+    initial?.family ?? ""
+  );
+  const [target, setTarget] = useState(initial?.target ?? "");
 
   const ready = goal && stage && income && family;
 
@@ -342,11 +362,30 @@ function PlanView({
         </button>
       </div>
 
-      <ol className="mt-6 space-y-3">
-        {plan.items.map((item, i) => {
-          const checked = isDone(item);
-          const manual = !item.doneKey;
-          return (
+      {(() => {
+        const undone = plan.items.filter((i) => !isDone(i));
+        const groups: Array<[string, string, PlanItem[]]> = [
+          ["Now", "Start with these", undone.slice(0, 3)],
+          ["Next", "Then keep going", undone.slice(3)],
+          ["Done", "Behind you", plan.items.filter((i) => isDone(i))],
+        ];
+        const numberOf = new Map(plan.items.map((it, idx) => [it.id, idx + 1]));
+        return groups
+          .filter(([, , items]) => items.length > 0)
+          .map(([label, sub, items]) => (
+            <div key={label} className="mt-7 first:mt-6">
+              <p className="flex items-baseline gap-2.5">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
+                  {label}
+                </span>
+                <span className="text-xs font-medium text-stone">{sub}</span>
+              </p>
+              <ol className="mt-3 space-y-3">
+                {items.map((item) => {
+                  const i = (numberOf.get(item.id) ?? 1) - 1;
+                  const checked = isDone(item);
+                  const manual = !item.doneKey;
+                  return (
             <li
               key={item.id}
               className={`card-ink flex items-start gap-3 rounded-xl p-4 ${
@@ -399,9 +438,12 @@ function PlanView({
                 </p>
               </div>
             </li>
-          );
-        })}
-      </ol>
+                  );
+                })}
+              </ol>
+            </div>
+          ));
+      })()}
 
       <p className="mt-6 text-sm leading-6 text-stone">
         Steps check themselves off as you read and use the site, wherever you
