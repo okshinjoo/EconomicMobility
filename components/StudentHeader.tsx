@@ -14,6 +14,8 @@ import {
   ChevronDown,
   BookOpen,
   Library,
+  GraduationCap,
+  ArrowRightLeft,
   Wallet,
   Map,
   Compass,
@@ -59,31 +61,22 @@ interface StudentNavEntry {
   columns?: 2;
 }
 
-// Guides panel: every topic in the library, college first — the student
-// frame carries the WHOLE site, so the subnav says so (owner call July 13:
-// "should feel like a comprehensive site like the regular one").
-const GUIDE_TOPICS = [
-  ...topics.filter((t) => t.id === "college"),
-  ...topics.filter((t) => t.id !== "college"),
-];
 
 const NAV: StudentNavEntry[] = [
   { label: "Overview", href: "/students", exact: true },
   {
     label: "Guides",
     href: "/students/learn/college",
-    columns: 2,
-    items: GUIDE_TOPICS.map((t) => ({
-      label: t.title,
-      href: `/students/learn/${t.id}`,
-      desc: t.description,
-      icon: t.icon,
-      color: t.color,
-    })),
+    items: [
+      { label: "College & aid guides", href: "/students/learn/college", desc: "All 20 — FAFSA, aid letters, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
+      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one form that unlocks most college aid.", icon: FileText, color: "#0c4a39" },
+      { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
+      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
+      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c9842a" },
+      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day.", icon: Map, color: "#0c4a39" },
+    ],
     footer: [
-      { label: "The whole library", href: "/students/learn" },
-      { label: "Transfer money guide", href: "/students/learn/college/community-college-transfer-money" },
-      { label: "Student life essentials", href: "/students#shelf" },
+      { label: "All nine money topics", href: "/students/learn" },
       { label: "Glossary", href: "/students/glossary" },
     ],
   },
