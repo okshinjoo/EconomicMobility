@@ -10,6 +10,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges, BadgeMedal, type BadgeMap } from "@/components/CourseQuiz";
+import TopicMark from "@/components/TopicMark";
+import type { TopicId } from "@/lib/topics";
+
+// Ghost mark per course (owner call July 2026, her spin on the Base44
+// courses page's image headers): the closest topic's hand-drawn mark,
+// cream and semi-transparent, bleeding off the poster band's corner —
+// texture, not illustration.
+const COURSE_MARK: Record<string, TopicId> = {
+  "first-paycheck": "budgeting",
+  "credit-from-zero": "credit",
+  "paying-for-college": "college",
+  "first-apartment": "home-ownership",
+  "start-investing": "investing",
+  "scam-proof": "money-safety",
+  "invest-smarter": "taxes",
+  "debt-comeback": "government-aid",
+  "retirement-started": "investing",
+  "taxes-handled": "taxes",
+};
 
 export interface CourseCardData {
   id: string;
@@ -47,12 +66,18 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
             href={`/courses/${course.id}`}
             className={`card-ink group flex flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
           >
-            {/* Poster band: the course's own color does the differentiating */}
+            {/* Poster band: the course's own color does the differentiating,
+                with a ghost topic mark drifting off the corner */}
             <div
-              className="flex items-start justify-between gap-3 p-5 pb-4"
+              className="relative flex items-start justify-between gap-3 overflow-hidden p-5 pb-4"
               style={{ background: course.color }}
             >
-              <h2 className="font-display text-2xl font-semibold leading-tight text-cream">
+              <TopicMark
+                id={COURSE_MARK[course.id] ?? "budgeting"}
+                color="#fbf8f1"
+                className="pointer-events-none absolute -right-5 -top-5 h-28 w-28 opacity-[0.16] transition-transform duration-300 group-hover:rotate-6"
+              />
+              <h2 className="relative font-display text-2xl font-semibold leading-tight text-cream">
                 {course.title}
               </h2>
               <BadgeMedal
