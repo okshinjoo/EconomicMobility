@@ -57,7 +57,8 @@ export default function LearnHub() {
           color="#0c4a39"
           className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.06]"
         />
-        <div className="relative mx-auto max-w-6xl px-6 pb-12 pt-14">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 pt-14 lg:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             The Library
           </span>
@@ -100,6 +101,34 @@ export default function LearnHub() {
             </Link>
             .
           </p>
+          </div>
+
+          {/* Sticker-tile topic launcher — the old hero's beloved 3x3, back
+              in miniature. A couple of tiles sit slightly crooked on
+              purpose. */}
+          <div className="grid w-full max-w-sm grid-cols-3 gap-2.5 lg:w-auto">
+            {topics.map((t, i) => (
+              <Reveal key={t.id} delay={i * 45}>
+                <Link
+                  href={t.href}
+                  className={`group flex flex-col items-center gap-1.5 rounded-xl border-2 border-ink px-3 py-3.5 text-center shadow-[2px_2px_0_#11211c] transition-transform duration-200 hover:-translate-y-1 ${
+                    i === 2 ? "rotate-[1.2deg]" : i === 6 ? "-rotate-[1.2deg]" : ""
+                  }`}
+                  style={{
+                    background: `color-mix(in srgb, ${t.color} 14%, #fbf8f1)`,
+                  }}
+                >
+                  <TopicMark
+                    id={t.id}
+                    className="h-7 w-7 transition-transform duration-200 group-hover:scale-110"
+                  />
+                  <span className="text-[11px] font-bold leading-tight text-ink">
+                    {t.short}
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
