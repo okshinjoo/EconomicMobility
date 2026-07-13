@@ -26,6 +26,7 @@ export const DASHBOARD_CARDS: { id: string; label: string }[] = [
   { id: "heatmap", label: "Activity heatmap" },
   { id: "pipeline", label: "Scholarship pipeline & tracker" },
   { id: "tools", label: "Pinned tools" },
+  { id: "moments", label: "What's coming up" },
   { id: "student", label: "Student shortcuts" },
   { id: "recent", label: "Recent reading" },
   { id: "badges", label: "Badge case" },

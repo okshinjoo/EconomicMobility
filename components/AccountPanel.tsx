@@ -60,6 +60,16 @@ import {
   DEFAULT_PREFS,
   type DashboardPrefs,
 } from "@/lib/dashboardPrefs";
+import {
+  readAboutYou,
+  writeAboutYou,
+  EMPTY_ABOUT_YOU,
+  INCOME_CHOICES,
+  FAMILY_CHOICES,
+  CONFIDENCE_CHOICES,
+  type AboutYou,
+} from "@/lib/aboutYou";
+import { moments } from "@/lib/moments";
 
 /** The signed-in sections, navigated by the left rail. */
 type PanelTab = "overview" | "about" | "goals" | "security";
@@ -653,6 +663,9 @@ export function ProfileEditor({
   // Dashboard personalization: local-first, auto-synced (lib/dashboardPrefs).
   const [dashPrefs, setDashPrefs] = useState<DashboardPrefs>(DEFAULT_PREFS);
   const [dashPrefsReady, setDashPrefsReady] = useState(false);
+  // "About you" recommendation signals (lib/aboutYou): local-first, synced,
+  // saved instantly on change — no save button, never public.
+  const [aboutYou, setAboutYou] = useState<AboutYou>(EMPTY_ABOUT_YOU);
   const [goals, setGoals] = useState<string[]>([]);
   const [flairs, setFlairs] = useState<string[]>([]);
   const [bio, setBio] = useState("");
@@ -721,8 +734,18 @@ export function ProfileEditor({
 
   useEffect(() => {
     setDashPrefs(readDashboardPrefs());
+    setAboutYou(readAboutYou());
     setDashPrefsReady(true);
   }, [syncedKeys]);
+  // Functional updates on purpose: rapid clicks across fields must not
+  // clobber each other (the tracker's survive-rapid-clicks lesson).
+  const updateAboutYou = (fn: (prev: AboutYou) => AboutYou) => {
+    setAboutYou((prev) => {
+      const next = fn(prev);
+      writeAboutYou(next);
+      return next;
+    });
+  };
   const updateDashPrefs = (next: DashboardPrefs) => {
     setDashPrefs(next);
     writeDashboardPrefs(next);
@@ -1433,6 +1456,145 @@ export function ProfileEditor({
                 onSave={save}
                 label="Save goals"
               />
+
+              {/* Recommendation signals (owner ask July 13: "more options...
+                  as much info to recommend the best things"). Instant-save,
+                  local-first, never public — the copy says so plainly. */}
+              <div className="space-y-6 border-t pt-6" style={{ borderColor: DASH.divider }}>
+                <p className="text-sm leading-6 text-stone">
+                  The more of this you answer, the sharper the
+                  recommendations get — your plan, your dashboard, and the
+                  guides we surface first. Answers save instantly, sync with
+                  your account, and never show on any public page.
+                </p>
+
+                <fieldset>
+                  <legend className={labelCls}>What&apos;s money like month to month?</legend>
+                  <div className="flex flex-wrap gap-2">
+                    {INCOME_CHOICES.map((c) => {
+                      const on = aboutYou.income === c.id;
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() =>
+                            updateAboutYou((prev) => ({
+                              ...prev,
+                              income: prev.income === c.id ? "" : c.id,
+                            }))
+                          }
+                          className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                            on
+                              ? "border-forest bg-forest text-cream"
+                              : "border-sand bg-cream text-stone hover:border-forest/40 hover:text-ink"
+                          }`}
+                        >
+                          {c.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend className={labelCls}>Anyone counting on you, or helping you?</legend>
+                  <div className="flex flex-wrap gap-2">
+                    {FAMILY_CHOICES.map((c) => {
+                      const on = aboutYou.family === c.id;
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() =>
+                            updateAboutYou((prev) => ({
+                              ...prev,
+                              family: prev.family === c.id ? "" : c.id,
+                            }))
+                          }
+                          className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                            on
+                              ? "border-forest bg-forest text-cream"
+                              : "border-sand bg-cream text-stone hover:border-forest/40 hover:text-ink"
+                          }`}
+                        >
+                          {c.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend className={labelCls}>
+                    Anything happening soon?{" "}
+                    <span className="font-normal text-stone">(pick any)</span>
+                  </legend>
+                  <div className="flex flex-wrap gap-2">
+                    {moments.map((m) => {
+                      const on = aboutYou.moments.includes(m.id);
+                      return (
+                        <button
+                          key={m.id}
+                          type="button"
+                          aria-pressed={on}
+                          title={m.tagline}
+                          onClick={() =>
+                            updateAboutYou((prev) => ({
+                              ...prev,
+                              moments: prev.moments.includes(m.id)
+                                ? prev.moments.filter((id) => id !== m.id)
+                                : [...prev.moments, m.id],
+                            }))
+                          }
+                          className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                            on
+                              ? "border-forest bg-forest text-cream"
+                              : "border-sand bg-cream text-stone hover:border-forest/40 hover:text-ink"
+                          }`}
+                        >
+                          {m.title}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend className={labelCls}>How confident do you feel with money stuff?</legend>
+                  <div className="flex flex-wrap gap-2">
+                    {CONFIDENCE_CHOICES.map((c) => {
+                      const on = aboutYou.confidence === c.id;
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() =>
+                            updateAboutYou((prev) => ({
+                              ...prev,
+                              confidence: prev.confidence === c.id ? "" : c.id,
+                            }))
+                          }
+                          className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                            on
+                              ? "border-forest bg-forest text-cream"
+                              : "border-sand bg-cream text-stone hover:border-forest/40 hover:text-ink"
+                          }`}
+                        >
+                          {c.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
+                <p className="text-xs text-stone">
+                  These answers pre-fill your plan builder and shape the
+                  &ldquo;up next&rdquo; picks — change or clear them any time.
+                </p>
+              </div>
             </div>
           )}
 

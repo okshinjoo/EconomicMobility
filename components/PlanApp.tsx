@@ -25,6 +25,7 @@ import { readBudgetSummary } from "@/lib/calcImports";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { frameHref } from "@/lib/frame";
+import { readAboutYou } from "@/lib/aboutYou";
 import { useFrame } from "@/components/useFrame";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
@@ -538,10 +539,10 @@ function Intake({
       (profile?.role === "working" ? "working" : "")
   );
   const [income, setIncome] = useState<IntakeAnswers["income"] | "">(
-    initial?.income ?? ""
+    initial?.income ?? readAboutYou().income ?? ""
   );
   const [family, setFamily] = useState<IntakeAnswers["family"] | "">(
-    initial?.family ?? ""
+    initial?.family ?? readAboutYou().family ?? ""
   );
   const [target, setTarget] = useState(initial?.target ?? "");
 

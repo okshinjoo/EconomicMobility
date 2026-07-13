@@ -22,6 +22,8 @@ import {
   type DashboardPrefs,
 } from "@/lib/dashboardPrefs";
 import { loadTracker, summarize, summarizeApps } from "@/lib/studentTracker";
+import { readAboutYou } from "@/lib/aboutYou";
+import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
@@ -443,6 +445,48 @@ function PinnedToolsCard({
   );
 }
 
+/** The picked life moments' bundles, straight from lib/moments — the
+ *  About-you tab's "anything happening soon?" answers paying off. */
+function MomentsCard() {
+  const [picked, setPicked] = useState<string[]>([]);
+  useEffect(() => setPicked(readAboutYou().moments), []);
+  const mine = moments.filter((m) => picked.includes(m.id));
+  if (mine.length === 0) return null;
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">
+          For what&apos;s coming up
+        </h3>
+        <Link href="/life" className="text-xs font-semibold text-forest hover:underline">
+          All life moments →
+        </Link>
+      </div>
+      <div className="mt-3 space-y-4">
+        {mine.map((m) => (
+          <div key={m.id}>
+            <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: m.color }}>
+              {m.title}
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
+              {m.reads.slice(0, 3).map((r) => (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  className="text-sm font-semibold text-ink underline decoration-2 underline-offset-4 hover:text-forest"
+                  style={{ textDecorationColor: `${m.color}55` }}
+                >
+                  {r.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /** The personalization panel: avatar accent + which cards show. */
 export function CustomizeCard({
   prefs,
@@ -530,6 +574,7 @@ export function DashboardExtras({
       {!hidden.has("heatmap") && <ActivityHeatmap />}
       {!hidden.has("pipeline") && <PipelineCard />}
       {!hidden.has("tools") && <PinnedToolsCard prefs={prefs} onChange={onChange} />}
+      {!hidden.has("moments") && <MomentsCard />}
       <CustomizeCard prefs={prefs} onChange={onChange} />
     </div>
   );
