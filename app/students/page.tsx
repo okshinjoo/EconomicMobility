@@ -9,6 +9,9 @@ import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
+import Image from "next/image";
+import { deadlines } from "@/lib/deadlines";
+import { scholarships } from "@/lib/scholarships";
 import ReminderSignup from "@/components/ReminderSignup";
 import { AddOneToCalendar, AddAllToCalendar } from "@/components/AddToCalendar";
 
@@ -66,36 +69,146 @@ export default function StudentsPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
 
-      {/* Hero — C voice on the forest field */}
+      {/* Hero — the microsite's homepage opening: field, photo, live stats */}
       <section className="relative overflow-hidden bg-forest text-cream">
         <TopicMark
           id="college"
           color="#fbf8f1"
-          className="pointer-events-none absolute -right-14 -top-10 h-[22rem] w-[22rem] opacity-[0.07]"
+          className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.06]"
         />
-        <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
-          <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
-            For students
-          </span>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            The money side of school,{" "}
-            <span className="italic text-amber">in one place.</span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            Deadlines that actually move money, the guides worth reading
-            first, a path that keeps you on track, and calculators for your
-            real numbers. No jargon, no sign-up, no paywall.
-          </p>
-          <p className="mt-4 text-sm text-cream/60">
-            Not a student anymore?{" "}
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
+          <div>
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
+              For students
+            </span>
+            <h1 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              The money side of school,{" "}
+              <span className="italic text-amber">in one place.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-cream/75">
+              Deadlines that actually move money, the guides worth reading
+              first, a tracker that keeps score, and calculators for your
+              real numbers. No jargon, no sign-up, no paywall.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-cream/70">
+              <span className="whitespace-nowrap">
+                {collegeGuides.length} college guides
+              </span>
+              <span className="whitespace-nowrap">
+                <span className="text-cream/30">·</span>{" "}
+                {scholarships.length} vetted scholarships
+              </span>
+              <span className="whitespace-nowrap">
+                <span className="text-cream/30">·</span>{" "}
+                {STUDENT_TOOLS.length} calculators
+              </span>
+              <span className="whitespace-nowrap">
+                <span className="text-cream/30">·</span>{" "}
+                {deadlines.length} deadlines tracked
+              </span>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="#calendar"
+                className="btn-ink inline-flex items-center rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
+              >
+                See what&apos;s due
+              </Link>
+              <Link
+                href="/students/scholarships"
+                className="inline-flex items-center rounded-md border border-cream/30 px-6 py-3 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
+              >
+                Find scholarships
+              </Link>
+            </div>
+            <p className="mt-5 text-sm text-cream/60">
+              Not a student anymore?{" "}
+              <Link
+                href="/learn"
+                className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+              >
+                The whole library
+              </Link>{" "}
+              is still yours.
+            </p>
+          </div>
+          <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div className="relative aspect-[4/3] rotate-1 overflow-hidden rounded-2xl border-2 border-ink shadow-[8px_8px_0_#11211c]">
+              <Image
+                src="/images/graduate.jpg"
+                alt="A graduate celebrating"
+                fill
+                priority
+                sizes="(min-width: 1024px) 34rem, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The four doors — the microsite's pillars */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 py-12">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
-              href="/learn"
-              className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+              href="#calendar"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
             >
-              The whole library
-            </Link>{" "}
-            is still yours.
-          </p>
+              <p className="font-display text-2xl font-bold text-terracotta">
+                {deadlines.length}
+              </p>
+              <h2 className="mt-1 font-display text-lg font-bold text-ink">
+                Deadlines
+              </h2>
+              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
+                The dates that move real money, with reminders if you want
+                them.
+              </p>
+            </Link>
+            <Link
+              href="/students/scholarships"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 lg:rotate-[0.4deg]"
+            >
+              <p className="font-display text-2xl font-bold text-terracotta">
+                {scholarships.length}
+              </p>
+              <h2 className="mt-1 font-display text-lg font-bold text-ink">
+                Scholarships
+              </h2>
+              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
+                Real, verified awards — filter by where you are in school.
+              </p>
+            </Link>
+            <Link
+              href="/students/tracker"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <p className="font-display text-2xl font-bold text-terracotta">
+                60
+              </p>
+              <h2 className="mt-1 font-display text-lg font-bold text-ink">
+                Tracker
+              </h2>
+              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
+                Units, grades, and GPA — watch your transfer progress add up.
+              </p>
+            </Link>
+            <Link
+              href="#shelf"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 lg:-rotate-[0.4deg]"
+            >
+              <p className="font-display text-2xl font-bold text-terracotta">
+                {collegeGuides.length}+
+              </p>
+              <h2 className="mt-1 font-display text-lg font-bold text-ink">
+                Guides
+              </h2>
+              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
+                The whole student shelf, from FAFSA to your first paycheck.
+              </p>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -150,7 +263,7 @@ export default function StudentsPage() {
           (docs/reminders-setup.md) */}
       {process.env.RESEND_API_KEY &&
         process.env.SUPABASE_SERVICE_ROLE_KEY && (
-          <section className="bg-paper">
+          <section id="reminders" className="scroll-mt-20 bg-paper">
             <div className="mx-auto max-w-3xl px-6 pt-12">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
                 Never miss one
@@ -321,7 +434,7 @@ export default function StudentsPage() {
 
       {/* The whole student shelf — every college guide + the cross-topic
           student-life essentials. Read ones sink, never hide. */}
-      <section className="border-t-2 border-ink bg-paper">
+      <section id="shelf" className="scroll-mt-20 border-t-2 border-ink bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             The whole student shelf

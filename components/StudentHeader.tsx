@@ -1,23 +1,100 @@
 "use client";
 
-// The For Students microsite header (July 2026, owner call modeled on the
-// program-site pattern: enter /students and the section runs on its own
-// subnav, with an explicit door back to the main site). Applied to every
-// /students/* route by app/students/layout.tsx — those pages do NOT render
-// the main <Header />. Mobile: the subnav scrolls horizontally instead of
-// collapsing into a drawer, so every section stays one tap away.
+// The For Students microsite header (July 2026): its own subnav with REAL
+// dropdowns — every entry resolves to actual content — plus the door back
+// to the main site. CSS-only hover dropdowns (same pattern as the main
+// Header: pt-3 bridge, group-hover/focus-within). On touch screens there's
+// no hover, so each dropdown trigger navigates to its primary destination;
+// the subnav row scrolls horizontally instead of collapsing.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronDown } from "lucide-react";
 import AccountButton from "@/components/AccountButton";
 
-const LINKS: Array<{ label: string; href: string; exact?: boolean }> = [
+interface StudentDropItem {
+  label: string;
+  href: string;
+  desc: string;
+}
+
+interface StudentNavEntry {
+  label: string;
+  href: string;
+  exact?: boolean;
+  items?: StudentDropItem[];
+}
+
+const NAV: StudentNavEntry[] = [
   { label: "Overview", href: "/students", exact: true },
-  { label: "Deadlines", href: "/students#calendar" },
+  {
+    label: "Guides",
+    href: "/learn/college",
+    items: [
+      { label: "All college & aid guides", href: "/learn/college", desc: "Every FAFSA, loan, and aid guide in one library." },
+      { label: "The transfer money guide", href: "/learn/college/community-college-transfer-money", desc: "Protect the community-college discount." },
+      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition." },
+      { label: "Paying for College (course)", href: "/courses/paying-for-college", desc: "The focused module, badge at the end." },
+      { label: "The pay-for-college path", href: "/journey/college", desc: "Milestone by milestone, FAFSA to signing day." },
+    ],
+  },
+  {
+    label: "Deadlines",
+    href: "/students#calendar",
+    items: [
+      { label: "The money calendar", href: "/students#calendar", desc: "Six dates that move real money, every year." },
+      { label: "Email reminders", href: "/students#reminders", desc: "A nudge a few weeks ahead — pick your dates." },
+      { label: "FAFSA, Step by Step", href: "/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest." },
+    ],
+  },
   { label: "Scholarships", href: "/students/scholarships" },
-  { label: "Tracker", href: "/students/tracker" },
+  {
+    label: "Tools",
+    href: "/students/tracker",
+    items: [
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place." },
+      { label: "College Cost", href: "/tools/college", desc: "The gap after aid, and what filling it costs." },
+      { label: "Compare Aid Offers", href: "/tools/college/compare-offers", desc: "Two award letters, side by side." },
+      { label: "Student Loan", href: "/tools/college/student-loan", desc: "The real monthly cost of borrowing." },
+      { label: "Paycheck", href: "/tools/budget/paycheck", desc: "What a campus job pays after taxes." },
+    ],
+  },
 ];
+
+function DropMenu({ entry }: { entry: StudentNavEntry }) {
+  return (
+    <div className="group relative">
+      <Link
+        href={entry.href}
+        aria-haspopup="true"
+        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
+      >
+        {entry.label}
+        <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
+      </Link>
+      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div className="w-80 rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl">
+          <div className="space-y-0.5">
+            {entry.items!.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-ink-700"
+              >
+                <span className="block text-sm font-semibold text-cream">
+                  {item.label}
+                </span>
+                <span className="mt-0.5 block text-xs leading-snug text-cream/55">
+                  {item.desc}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function StudentHeader() {
   const pathname = usePathname();
@@ -25,7 +102,6 @@ export default function StudentHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-forest/95 text-cream backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5">
-        {/* Lockup: the brand plus the section sticker */}
         <Link
           href="/students"
           className="flex shrink-0 items-center gap-3 transition-opacity hover:opacity-90"
@@ -33,7 +109,7 @@ export default function StudentHeader() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
             E
           </span>
-          <span className="hidden font-display text-xl font-semibold tracking-tight sm:block">
+          <span className="hidden font-display text-xl font-semibold tracking-tight lg:block">
             <span className="text-amber">EMP</span>ower
           </span>
           <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
@@ -41,29 +117,28 @@ export default function StudentHeader() {
           </span>
         </Link>
 
-        {/* Section subnav — scrolls sideways on small screens */}
-        <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto text-sm font-medium">
-          {LINKS.map((l) => {
-            const active = l.exact
-              ? pathname === l.href
-              : !l.href.includes("#") && pathname.startsWith(l.href);
+        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-sm font-medium sm:overflow-visible">
+          {NAV.map((entry) => {
+            if (entry.items) return <DropMenu key={entry.label} entry={entry} />;
+            const active = entry.exact
+              ? pathname === entry.href
+              : pathname.startsWith(entry.href);
             return (
               <Link
-                key={l.href}
-                href={l.href}
+                key={entry.label}
+                href={entry.href}
                 className={`whitespace-nowrap rounded-full px-3 py-2 transition-colors ${
                   active
                     ? "font-bold text-amber"
                     : "text-cream/80 hover:text-amber"
                 }`}
               >
-                {l.label}
+                {entry.label}
               </Link>
             );
           })}
         </div>
 
-        {/* The door back, then the account */}
         <div className="flex shrink-0 items-center gap-3">
           <Link
             href="/"
