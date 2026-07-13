@@ -65,3 +65,32 @@ Thank you,
 Shinjoo Kim
 Founder, Empower
 economicmobilityproject.org
+
+
+---
+
+## 3. Reply to Kelly Tenner (CareerOneStop) — scholarship data availability
+
+Send as a REPLY in the same thread as the approval email, from Help@ (the
+address the account is registered under).
+
+**Subject:** (keep the thread's subject)
+
+Hi Kelly,
+
+Thank you for the quick approval and the credentials.
+
+Our main use case is scholarship search for students, but I don't see the
+Scholarship Finder among the services in the API explorer. Is scholarship
+data available through the Web API, or is there a bulk download or another
+approved way to show it on our site? We'd display it with your logo and
+attribution, free and with no login, per the agreement.
+
+If it's only available on careeronestop.org itself, no problem. We'll link
+students there instead.
+
+Thanks again,
+
+Shinjoo Kim
+Empower, Economic Mobility Project
+economicmobilityproject.org
