@@ -34,6 +34,7 @@ export const nav: NavEntry[] = [
     })),
     footer: [
       { label: "Browse all topics", href: "/learn" },
+      { label: "For students", href: "/students" },
       { label: "Life moments", href: "/life" },
       { label: "Glossary", href: "/glossary" },
     ],
@@ -84,6 +85,7 @@ export const nav: NavEntry[] = [
       { label: "Our Mission", href: "/about", desc: "Why this project exists." },
       { label: "Start Here", href: "/start-here", desc: "A quick tour for newcomers." },
       { label: "Life Moments", href: "/life", desc: "Start from what's happening in your life." },
+      { label: "For Students", href: "/students", desc: "Deadlines, guides, and tools for the school years." },
       { label: "Glossary", href: "/glossary", desc: "Every money word, in plain English." },
       { label: "Contact Us", href: "/contact", desc: "Questions, ideas, or get involved." },
       { label: "Privacy", href: "/privacy", desc: "We never sell your data. Ever." },

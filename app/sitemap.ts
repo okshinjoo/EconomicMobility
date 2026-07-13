@@ -13,7 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "", "/learn", "/tools", "/courses", "/challenges", "/community", "/blog", "/journey",
     "/ask", "/quiz", "/glossary", "/resources", "/start-here", "/about",
-    "/contact", "/life", "/tools/letters", "/tools/templates", "/account",
+    "/contact", "/life",
+    "/students", "/tools/letters", "/tools/templates", "/account",
     "/privacy",
   ].map((p) => ({ url: `${BASE}${p}`, changeFrequency: "weekly" as const }));
 
