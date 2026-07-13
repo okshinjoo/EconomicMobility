@@ -182,7 +182,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
       <Link
         href={entry.href}
         aria-haspopup="true"
-        className="inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
+        className="inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 min-[1400px]:px-2.5 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
       >
         {entry.label}
       </Link>
@@ -276,7 +276,7 @@ export default function StudentHeader({
             it horizontal-scrolls (dropdown panels off, triggers = links);
             xl+ must genuinely fit — that's what the compact search and the
             tightened paddings buy. Don't re-widen without re-measuring. */}
-        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-[13px] font-medium xl:overflow-visible">
+        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-[13px] font-medium min-[1400px]:gap-1.5 min-[1400px]:text-sm xl:overflow-visible">
           {NAV.map((entry) => {
             if (entry.items) return <DropMenu key={entry.label} entry={entry} />;
             const active = entry.exact
@@ -286,7 +286,7 @@ export default function StudentHeader({
               <Link
                 key={entry.label}
                 href={entry.href}
-                className={`shrink-0 whitespace-nowrap rounded-full px-2 py-2 transition-colors ${
+                className={`shrink-0 whitespace-nowrap rounded-full px-2 py-2 transition-colors min-[1400px]:px-2.5 ${
                   active
                     ? "font-bold text-amber"
                     : "text-cream/80 hover:text-amber"
