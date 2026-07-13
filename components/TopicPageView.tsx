@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";
+import { getTopicSections } from "@/lib/topicSections";
 import { ROADMAP_SET } from "@/lib/roadmaps";
 import ReadOrderedGrid, { HideWhenRead } from "@/components/ReadOrderedGrid";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
@@ -27,15 +28,32 @@ export default function TopicPageView({
   const content = learnContent[topic];
   const accent = meta.color;
   const roadmap = getTopicRoadmap(topic);
-  const hasArticles = roadmap.length > 0;
+  // Theme sections (lib/topicSections.ts) beat the level roadmap when the
+  // topic defines them — same grid, editorial groups (owner ask, July 2026:
+  // "some are more about admissions, some are more about finances").
+  const sections = getTopicSections(topic);
+  const groups = sections
+    ? sections.map((s) => ({
+        key: s.id,
+        label: s.title,
+        blurb: s.blurb as string | undefined,
+        articles: s.articles,
+      }))
+    : roadmap.map((g) => ({
+        key: g.level,
+        label: g.label,
+        blurb: undefined as string | undefined,
+        articles: g.articles,
+      }));
+  const hasArticles = groups.length > 0;
 
-  const allInOrder = roadmap.flatMap((g) => g.articles);
+  const allInOrder = groups.flatMap((g) => g.articles);
   const featured = allInOrder[0];
   const numberOf = new Map(allInOrder.map((a, i) => [a.slug, i + 1]));
   // The Start-here banner demotes into its group's grid once read - but only
   // when that group has other cards for it to join (else it stays put).
   const featuredCanDemote =
-    (roadmap.find((g) => g.articles.some((a) => a.slug === featured?.slug))
+    (groups.find((g) => g.articles.some((a) => a.slug === featured?.slug))
       ?.articles.length ?? 0) > 1;
 
   return (
@@ -187,11 +205,13 @@ export default function TopicPageView({
                 );
               })()}
               <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-                The full path
+                {sections ? "The full library" : "The full path"}
               </h2>
               <p className="mt-1.5 text-sm text-stone">
-                {allInOrder.length} guides, building from the basics up — read in
-                any order.
+                {allInOrder.length} guides,{" "}
+                {sections
+                  ? "grouped by what you're working on — read in any order."
+                  : "building from the basics up — read in any order."}
                 <TopicProgress
                   slugs={allInOrder.map((a) => a.slug)}
                   accent={accent}
@@ -199,7 +219,7 @@ export default function TopicPageView({
               </p>
 
               <div className="mt-9 space-y-12">
-                {roadmap.map((group) => {
+                {groups.map((group) => {
                   const rest = group.articles.filter(
                     (a) => a.slug !== featured?.slug
                   );
@@ -210,7 +230,7 @@ export default function TopicPageView({
                     ? group.articles
                     : rest;
                   return (
-                    <div key={group.level}>
+                    <div key={group.key}>
                       <div className="flex items-center gap-3">
                         <span
                           className="rounded-md border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-[2px_2px_0_#11211c]"
@@ -224,6 +244,11 @@ export default function TopicPageView({
                           {group.articles.length > 1 ? "s" : ""}
                         </span>
                       </div>
+                      {group.blurb && (
+                        <p className="mt-2 text-sm leading-6 text-stone">
+                          {group.blurb}
+                        </p>
+                      )}
 
                       <ReadOrderedGrid
                         className="mt-5 grid gap-4 sm:grid-cols-2"
