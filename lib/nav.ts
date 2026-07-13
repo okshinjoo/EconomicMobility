@@ -63,7 +63,6 @@ export const nav: NavEntry[] = [
       { label: "Free templates", href: "/tools/templates" },
     ],
   },
-  { label: "For Students", href: "/students" },
   {
     label: "Resources",
     href: "/resources",
@@ -99,4 +98,5 @@ export const nav: NavEntry[] = [
       { label: "Privacy", href: "/privacy", desc: "We never sell your data. Ever." },
     ],
   },
+  { label: "For Students", href: "/students" },
 ];
