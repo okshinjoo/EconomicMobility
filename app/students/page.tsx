@@ -241,6 +241,22 @@ export default function StudentsPage() {
                   </Link>
                 )}
                 <Link
+                  href="/students/tracker"
+                  className="card-ink block rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+                >
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
+                    New · your tracker
+                  </span>
+                  <h3 className="mt-1.5 font-display text-xl font-bold text-ink">
+                    Every unit, counted
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-6 text-stone">
+                    Courses, grades, and to-dos — with your progress toward
+                    the 60-unit transfer mark and the dollars each course
+                    protects.
+                  </p>
+                </Link>
+                <Link
                   href="/students/scholarships"
                   className="card-ink block rounded-xl bg-amber p-5 transition-transform duration-200 hover:-translate-y-1"
                 >
