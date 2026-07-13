@@ -42,6 +42,7 @@ export default function StudentsCommunityPage() {
             authorMeta={authorMeta}
             initialChannel="students"
             postBase="/students/community/post"
+            studentMode
           />
         </div>
       </section>

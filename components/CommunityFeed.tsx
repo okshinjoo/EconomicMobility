@@ -40,6 +40,7 @@ import {
   Bookmark,
   Check as CheckIcon,
   Trash2,
+  ChevronDown,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -63,6 +64,20 @@ import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } fr
 // go live. Until then the forms run in preview mode: visitors still see
 // their own pending posts/comments (saved locally), nothing is sent anywhere.
 const WEB3FORMS_ACCESS_KEY = "7fabe5df-806c-4348-b1a9-5a3bd206b692";
+
+// The student frame's rail order (owner, July 13, 2026): Students leads
+// with its sub-categories separately clickable, the student-relevant hubs
+// follow, and every other channel collapses behind a "more channels"
+// toggle. The MAIN feed keeps the Reddit model (subs hidden from the
+// rail) — expanded subs eat too much space there, owner call.
+const STUDENT_RAIL: ChannelId[] = [
+  "students",
+  "say-hello",
+  "questions",
+  "work-income",
+  "banking",
+  "family-firstgen",
+];
 
 const PENDING_COMMENTS_KEY = "empower:community-comments:v1";
 const PINNED_CHANNELS_KEY = "empower:community-pinned-channels:v1";
@@ -1287,11 +1302,15 @@ export default function CommunityFeed({
   authorMeta = {},
   initialChannel = "all",
   postBase = "/community/post",
+  studentMode = false,
 }: {
   posts: CommunityPost[];
   authorMeta?: Record<string, { cred: number; earned: string[] }>;
   initialChannel?: "all" | ChannelId;
   postBase?: string;
+  /** The /students frame's rail: STUDENT_RAIL order, Students' subs
+   *  clickable, every other channel behind a "more channels" toggle. */
+  studentMode?: boolean;
 }) {
   const frame = useFrame();
   const [likes, setLikes] = useState<Record<string, boolean>>({});
@@ -1308,6 +1327,8 @@ export default function CommunityFeed({
   // full-post feed. Choice persists per device.
   const [view, setView] = useState<"compact" | "card">("compact");
   const [channelQuery, setChannelQuery] = useState("");
+  // Student rail only: whether the non-student channels are expanded.
+  const [showAllChannels, setShowAllChannels] = useState(false);
   const [postQuery, setPostQuery] = useState("");
   const [showComposer, setShowComposer] = useState(false);
   const [savedPosts, setSavedPosts] = useState<Record<string, boolean>>({});
@@ -1450,10 +1471,28 @@ export default function CommunityFeed({
   const countFor = (id: ChannelId) =>
     posts.filter((p) => channelMatches(p.channel, id)).length;
   const pinnedSet = new Set(pinnedChannels);
-  const orderedForChips = [
-    ...pinnedChannels.map(getChannel),
-    ...CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent),
-  ];
+  const studentSubs = CHANNELS.filter((c) => c.parent === "students");
+  // Student mode: Students (with its subs as their own chips/rows) and the
+  // student-relevant hubs lead; everything else trails (chips) or hides
+  // behind the more-channels toggle (rail).
+  const studentFeatured = STUDENT_RAIL.filter((id) => !pinnedSet.has(id)).flatMap(
+    (id) =>
+      id === "students"
+        ? [getChannel(id), ...studentSubs.filter((s) => !pinnedSet.has(s.id))]
+        : [getChannel(id)]
+  );
+  const studentRest = CHANNELS.filter(
+    (c) =>
+      !c.parent &&
+      !pinnedSet.has(c.id) &&
+      !STUDENT_RAIL.includes(c.id)
+  );
+  const orderedForChips = studentMode
+    ? [...pinnedChannels.map(getChannel), ...studentFeatured, ...studentRest]
+    : [
+        ...pinnedChannels.map(getChannel),
+        ...CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent),
+      ];
 
   const ChannelRow = ({
     c,
@@ -1577,24 +1616,55 @@ export default function CommunityFeed({
         </button>
         {(() => {
           const q = channelQuery.trim().toLowerCase();
-          const list = q
-            ? CHANNELS.filter(
-                (c) =>
-                  c.name.toLowerCase().includes(q) ||
-                  c.tagline.toLowerCase().includes(q) ||
-                  fuzzyScore(q, `${c.name} ${c.tagline}`) > 0
-              )
-            : CHANNELS.filter((c) => !pinnedSet.has(c.id) && !c.parent);
-          if (q && list.length === 0) {
+          if (q) {
+            const list = CHANNELS.filter(
+              (c) =>
+                c.name.toLowerCase().includes(q) ||
+                c.tagline.toLowerCase().includes(q) ||
+                fuzzyScore(q, `${c.name} ${c.tagline}`) > 0
+            );
+            if (list.length === 0) {
+              return (
+                <p className="px-3 py-2 text-xs text-stone">
+                  No channel matches &ldquo;{channelQuery.trim()}&rdquo;.
+                </p>
+              );
+            }
+            return list.map((c) => <ChannelRow key={c.id} c={c} />);
+          }
+          if (studentMode) {
             return (
-              <p className="px-3 py-2 text-xs text-stone">
-                No channel matches &ldquo;{channelQuery.trim()}&rdquo;.
-              </p>
+              <>
+                {studentFeatured.map((c) => (
+                  <ChannelRow
+                    key={c.id}
+                    c={c}
+                    indent={Boolean(c.parent)}
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setShowAllChannels((v) => !v)}
+                  aria-expanded={showAllChannels}
+                  className="mt-2 flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wide text-stone/80 transition-colors hover:bg-paper hover:text-ink"
+                >
+                  <ChevronDown
+                    className={`h-3.5 w-3.5 transition-transform ${
+                      showAllChannels ? "rotate-180" : ""
+                    }`}
+                  />
+                  {showAllChannels
+                    ? "Hide the other channels"
+                    : `All channels (${studentRest.length} more)`}
+                </button>
+                {showAllChannels &&
+                  studentRest.map((c) => <ChannelRow key={c.id} c={c} />)}
+              </>
             );
           }
-          return list.map((c) => (
-            <ChannelRow key={c.id} c={c} indent={!q && Boolean(c.parent)} />
-          ));
+          return CHANNELS.filter(
+            (c) => !pinnedSet.has(c.id) && !c.parent
+          ).map((c) => <ChannelRow key={c.id} c={c} />);
         })()}
       </div>
 
