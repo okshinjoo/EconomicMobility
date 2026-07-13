@@ -11,6 +11,7 @@ import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
 import ReminderSignup from "@/components/ReminderSignup";
+import { AddOneToCalendar, AddAllToCalendar } from "@/components/AddToCalendar";
 
 export const metadata: Metadata = {
   title: "For Students | Empower — Economic Mobility Project",
@@ -132,9 +133,17 @@ export default function StudentsPage() {
                   >
                     {d.linkLabel}
                   </Link>
+                  <AddOneToCalendar deadlineId={d.deadlineId} />
                 </div>
               </Reveal>
             ))}
+          </div>
+          <div className="mt-7 flex flex-wrap items-center gap-4">
+            <AddAllToCalendar />
+            <p className="max-w-md text-sm font-medium leading-6 text-ink/75">
+              One file, six yearly-repeating events — your own calendar app
+              reminds you a week ahead, every year, no sign-up.
+            </p>
           </div>
         </div>
       </section>

@@ -11,6 +11,9 @@ export interface Deadline {
   when: string;
   /** 1-12, for ordering and "is this soon" logic. */
   month: number;
+  /** Day of month for calendar events. Fuzzy deadlines ("early spring")
+   *  anchor on the 1st with the fuzziness kept in the title/why. */
+  day: number;
   title: string;
   /** One plain sentence of why it matters. */
   why: string;
@@ -23,6 +26,7 @@ export interface Deadline {
 export const deadlines: Deadline[] = [
   {
     id: "fafsa-opens",
+    day: 1,
     when: "October 1",
     month: 10,
     title: "FAFSA opens for the next school year",
@@ -32,6 +36,7 @@ export const deadlines: Deadline[] = [
   },
   {
     id: "scholarship-season",
+    day: 1,
     when: "October through March",
     month: 10,
     title: "Major scholarship deadlines",
@@ -41,6 +46,7 @@ export const deadlines: Deadline[] = [
   },
   {
     id: "state-aid-spring",
+    day: 1,
     when: "Early spring (varies by state)",
     month: 3,
     title: "State aid deadlines",
@@ -50,6 +56,7 @@ export const deadlines: Deadline[] = [
   },
   {
     id: "tax-day",
+    day: 15,
     when: "April 15",
     month: 4,
     title: "Federal tax deadline",
@@ -59,6 +66,7 @@ export const deadlines: Deadline[] = [
   },
   {
     id: "fafsa-final",
+    day: 30,
     when: "June 30",
     month: 6,
     title: "FAFSA final federal deadline",
@@ -68,6 +76,7 @@ export const deadlines: Deadline[] = [
   },
   {
     id: "loan-rate-reset",
+    day: 1,
     when: "July 1",
     month: 7,
     title: "Federal student loan rates reset",
