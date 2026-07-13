@@ -23,6 +23,10 @@ import {
   type Grade,
   type TrackerData,
   type TrackerMode,
+  summarizeApps,
+  dollarsOf,
+  type ScholarshipApp,
+  type AppStatus,
 } from "@/lib/studentTracker";
 
 const STATUS_LABELS: Record<CourseStatus, string> = {
@@ -85,8 +89,12 @@ export default function StudentTracker() {
   };
 
   const summary = useMemo(() => (data ? summarize(data) : null), [data]);
+  const appsSummary = useMemo(
+    () => (data ? summarizeApps(data.apps) : null),
+    [data]
+  );
 
-  if (!data || !summary) return null;
+  if (!data || !summary || !appsSummary) return null;
 
   const mode = data.mode;
   const flagLabel = FLAG_LABELS[mode];
@@ -400,6 +408,123 @@ export default function StudentTracker() {
         />
       </div>
 
+      {/* Scholarship pipeline — all tracks */}
+      <div className="mt-10">
+        <h2 className="font-display text-2xl font-bold text-ink">
+          Scholarship applications
+        </h2>
+        <p className="mt-1.5 text-sm leading-6 text-stone">
+          Treat it like a part-time job with a pipeline: what you&apos;re
+          planning, what&apos;s in, what came back. Need more to apply to?{" "}
+          <Link
+            href="/students/scholarships"
+            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            The Scholarship Finder
+          </Link>{" "}
+          has {""}vetted awards filtered to your stage.
+        </p>
+
+        {data.apps.length > 0 && (
+          <p className="mt-3 text-sm font-semibold text-ink">
+            {appsSummary.sent} application{appsSummary.sent === 1 ? "" : "s"}{" "}
+            sent
+            {appsSummary.dollarsWon > 0 && (
+              <>
+                {" "}
+                ·{" "}
+                <span className="text-forest">
+                  ${appsSummary.dollarsWon.toLocaleString("en-US")} won
+                </span>
+              </>
+            )}
+            {appsSummary.dollarsInPlay > 0 && (
+              <>
+                {" "}
+                · ${appsSummary.dollarsInPlay.toLocaleString("en-US")} still
+                in play
+              </>
+            )}
+          </p>
+        )}
+
+        <div className="mt-4 space-y-2.5">
+          {data.apps.map((a) => (
+            <div
+              key={a.id}
+              className={`card-ink flex flex-wrap items-center gap-3 rounded-xl px-4 py-3 ${
+                a.status === "won"
+                  ? "bg-forest/10"
+                  : a.status === "lost"
+                    ? "bg-paper"
+                    : "bg-cream"
+              }`}
+            >
+              <span className="min-w-0 flex-1 basis-40 text-sm font-bold leading-snug text-ink">
+                {a.name}
+                {a.due && (
+                  <span className="ml-2 font-sans text-xs font-medium text-stone">
+                    due {a.due}
+                  </span>
+                )}
+              </span>
+              {dollarsOf(a) > 0 && (
+                <span
+                  className={`text-sm font-bold ${
+                    a.status === "won" ? "text-forest" : "text-stone"
+                  }`}
+                >
+                  ${dollarsOf(a).toLocaleString("en-US")}
+                </span>
+              )}
+              <select
+                value={a.status}
+                onChange={(e) =>
+                  update({
+                    ...data,
+                    apps: data.apps.map((x) =>
+                      x.id === a.id
+                        ? { ...x, status: e.target.value as AppStatus }
+                        : x
+                    ),
+                  })
+                }
+                className={selectCls}
+                aria-label="Application status"
+              >
+                <option value="planning">Planning</option>
+                <option value="applied">Applied</option>
+                <option value="won">Won</option>
+                <option value="lost">Didn&apos;t get it</option>
+              </select>
+              <button
+                type="button"
+                onClick={() =>
+                  update({
+                    ...data,
+                    apps: data.apps.filter((x) => x.id !== a.id),
+                  })
+                }
+                aria-label={`Remove ${a.name}`}
+                className="rounded p-1 text-stone transition-colors hover:text-terracotta"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <AddApp
+          onAdd={(app) => update({ ...data, apps: [...data.apps, app] })}
+        />
+        {data.apps.some((a) => a.status === "lost") && (
+          <p className="mt-3 text-xs leading-5 text-stone">
+            A no isn&apos;t wasted — the essay you wrote is a draft for the
+            next one. Most winners lost plenty first.
+          </p>
+        )}
+      </div>
+
       {/* To-dos */}
       <div className="mt-10">
         <h2 className="font-display text-2xl font-bold text-ink">To-dos</h2>
@@ -598,6 +723,62 @@ function AddCourse({
       >
         <Plus className="h-4 w-4" />
         Add {mode === "hs" ? "class" : "course"}
+      </button>
+    </form>
+  );
+}
+
+function AddApp({ onAdd }: { onAdd: (a: ScholarshipApp) => void }) {
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [due, setDue] = useState("");
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!name.trim()) return;
+        onAdd({
+          id: newId(),
+          name: name.trim().slice(0, 80),
+          amount: amount.trim().slice(0, 12),
+          due: due.trim().slice(0, 30),
+          status: "planning",
+        });
+        setName("");
+        setAmount("");
+        setDue("");
+      }}
+      className="mt-4 flex flex-wrap items-center gap-2"
+    >
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Scholarship name — “Dell Scholars”"
+        className="min-w-0 flex-1 basis-52 rounded-lg border-2 border-ink/15 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+      />
+      <input
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        inputMode="decimal"
+        placeholder="$"
+        aria-label="Award amount"
+        className="w-24 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm font-semibold text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+      />
+      <input
+        value={due}
+        onChange={(e) => setDue(e.target.value)}
+        placeholder="Due — “March 1”"
+        aria-label="Deadline"
+        className="w-32 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+      />
+      <button
+        type="submit"
+        disabled={!name.trim()}
+        className="btn-ink inline-flex items-center gap-1.5 rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+      >
+        <Plus className="h-4 w-4" />
+        Add application
       </button>
     </form>
   );

@@ -60,6 +60,18 @@ export interface Todo {
   done: boolean;
 }
 
+export type AppStatus = "planning" | "applied" | "won" | "lost";
+
+export interface ScholarshipApp {
+  id: string;
+  name: string;
+  /** Raw input; parsed with dollarsOf(). */
+  amount: string;
+  /** Free text: "March 1" — deadlines shift yearly, the student owns it. */
+  due: string;
+  status: AppStatus;
+}
+
 export interface TrackerData {
   /** Which track the student is on; existing snapshots default to cc. */
   mode: TrackerMode;
@@ -70,6 +82,8 @@ export interface TrackerData {
   targetUnits: string;
   courses: Course[];
   todos: Todo[];
+  /** Scholarship application pipeline — all tracks. */
+  apps: ScholarshipApp[];
 }
 
 export const EMPTY_TRACKER: TrackerData = {
@@ -78,6 +92,7 @@ export const EMPTY_TRACKER: TrackerData = {
   targetUnits: "120",
   courses: [],
   todos: [],
+  apps: [],
 };
 
 export function loadTracker(): TrackerData {
@@ -163,4 +178,29 @@ export function summarize(t: TrackerData): TrackerSummary {
     gpa: gradedUnits > 0 ? qualityPoints / gradedUnits : null,
     gradedUnits,
   };
+}
+
+export function dollarsOf(a: ScholarshipApp): number {
+  const n = parseFloat(a.amount.replace(/[$,]/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+export interface AppsSummary {
+  /** Applications actually submitted (applied + won + lost). */
+  sent: number;
+  dollarsWon: number;
+  /** Submitted and still undecided. */
+  dollarsInPlay: number;
+}
+
+export function summarizeApps(apps: ScholarshipApp[]): AppsSummary {
+  let sent = 0;
+  let dollarsWon = 0;
+  let dollarsInPlay = 0;
+  for (const a of apps) {
+    if (a.status !== "planning") sent++;
+    if (a.status === "won") dollarsWon += dollarsOf(a);
+    if (a.status === "applied") dollarsInPlay += dollarsOf(a);
+  }
+  return { sent, dollarsWon, dollarsInPlay };
 }
