@@ -5,7 +5,7 @@
 // to client components. The owner rule this serves: anywhere a student
 // article surfaces on the homepage, point the reader at For Students.
 
-import { getTopicArticles } from "@/lib/articles";
+import { getArticleBySlug, getTopicArticles } from "@/lib/articles";
 
 /** Cross-topic "student life" guides on the /students shelf. */
 export const STUDENT_LIFE_SLUGS = [
@@ -19,6 +19,19 @@ export const STUDENT_LIFE_SLUGS = [
   "your-first-benefits-enrollment",
 ] as const;
 
+/** Main-site homes of the eight student tools (the /students/tools/*
+ *  mirrors' canonicals — keep in sync with STUDENT_TOOLS on /students). */
+export const STUDENT_TOOL_PATHS = [
+  "/tools/college",
+  "/tools/college/compare-offers",
+  "/tools/college/student-loan",
+  "/tools/budget",
+  "/tools/budget/paycheck",
+  "/tools/budget/rent",
+  "/tools/budget/emergency-fund",
+  "/tools/budget/reality-check",
+] as const;
+
 let studentSet: Set<string> | null = null;
 
 /** True when a guide lives on the student shelf (college topic or life picks). */
@@ -30,4 +43,23 @@ export function isStudentArticle(slug: string): boolean {
     ]);
   }
   return studentSet.has(slug);
+}
+
+/**
+ * Every main-site pathname that counts as student-relevant — the college
+ * hub + its guides, the student-life guides (wherever their topic lives),
+ * and the student tools. Computed server-side (root layout) and handed to
+ * the return chip, so the client never imports the article registry.
+ */
+export function getStudentPagePaths(): string[] {
+  const life = STUDENT_LIFE_SLUGS.map((slug) => {
+    const a = getArticleBySlug(slug);
+    return a ? `/learn/${a.topicId}/${a.slug}` : null;
+  }).filter((p): p is string => Boolean(p));
+  return [
+    "/learn/college",
+    ...getTopicArticles("college").map((a) => `/learn/college/${a.slug}`),
+    ...life,
+    ...STUDENT_TOOL_PATHS,
+  ];
 }

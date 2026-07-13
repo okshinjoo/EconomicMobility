@@ -5,16 +5,19 @@
 // it. Two moods (owner notes, July 13: "Back" reads wrong if you started on
 // the homepage — and it must not linger once you're browsing the main site):
 // "Back to Students" appears ONLY on the very first page after a client-side
-// navigation out of /students; every other case — homepage click-throughs,
-// searches, reloads, the second hop after an exit — gets the "Check out For
-// Students" invite instead. sessionStorage just remembers the tab has seen
-// the hub; the back/invite call comes from the immediately-previous pathname
-// alone. Dismiss clears everything for the tab. Mounted as a direct child
-// of <body>, so position/z-index are INLINE (the unlayered body>* grain
-// rule would pin utility classes). z 52: under the chat (55); chip floats
-// bottom-left, chat bottom-right.
+// navigation out of /students (wherever that lands — it's a navigation aid).
+// The "Check out For Students" invite is contextual instead (owner rule,
+// July 13): it renders solely on student-RELEVANT pages — the college hub
+// and its guides, the student-life guides, the eight student tools — never
+// on the homepage or unrelated articles. That list is computed server-side
+// (lib/studentShelf.getStudentPagePaths, passed by the root layout) so the
+// client never bundles the article registry. sessionStorage just remembers
+// the tab has seen the hub; dismiss clears everything for the tab. Mounted
+// as a direct child of <body>, so position/z-index are INLINE (the
+// unlayered body>* grain rule would pin utility classes). z 52: under the
+// chat (55); chip floats bottom-left, chat bottom-right.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, GraduationCap, X } from "lucide-react";
@@ -23,10 +26,15 @@ const KEY = "empower:from-students";
 
 type Mode = "hidden" | "back" | "invite";
 
-export default function StudentReturnChip() {
+export default function StudentReturnChip({
+  studentPaths,
+}: {
+  studentPaths: string[];
+}) {
   const pathname = usePathname();
   const prevPath = useRef<string | null>(null);
   const [mode, setMode] = useState<Mode>("hidden");
+  const studentSet = useMemo(() => new Set(studentPaths), [studentPaths]);
 
   useEffect(() => {
     const prev = prevPath.current;
@@ -41,13 +49,14 @@ export default function StudentReturnChip() {
         setMode("hidden");
         return;
       }
-      // "Back" only on the single hop out of the hub; anything after is
-      // a main-site flow and gets the invite.
-      setMode(prev?.startsWith("/students") ? "back" : "invite");
+      // "Back" only on the single hop out of the hub. The invite needs a
+      // student-relevant page; everywhere else the chip stays quiet.
+      if (prev?.startsWith("/students")) setMode("back");
+      else setMode(studentSet.has(pathname) ? "invite" : "hidden");
     } catch {
       setMode("hidden");
     }
-  }, [pathname]);
+  }, [pathname, studentSet]);
 
   if (mode === "hidden") return null;
 

@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatLauncher from "@/components/ChatLauncher";
 import StudentReturnChip from "@/components/StudentReturnChip";
+import { getStudentPagePaths } from "@/lib/studentShelf";
 import VisitTracker from "@/components/VisitTracker";
 import ScrollProgress from "@/components/ScrollProgress";
 import { getSearchItems } from "@/lib/search";
@@ -80,7 +81,7 @@ export default function RootLayout({
         {children}
         {modal ?? null}
         <ChatLauncher items={getSearchItems()} />
-        <StudentReturnChip />
+        <StudentReturnChip studentPaths={getStudentPagePaths()} />
         <VisitTracker />
         <ScrollProgress />
         <Analytics />
