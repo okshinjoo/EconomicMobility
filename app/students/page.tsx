@@ -241,6 +241,21 @@ export default function StudentsPage() {
                   </Link>
                 )}
                 <Link
+                  href="/students/scholarships"
+                  className="card-ink block rounded-xl bg-amber p-5 transition-transform duration-200 hover:-translate-y-1"
+                >
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink/70">
+                    New · verified list
+                  </span>
+                  <h3 className="mt-1.5 font-display text-xl font-bold text-ink">
+                    The Scholarship Finder
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-6 text-ink/75">
+                    Real national awards, filterable by where you are in
+                    school — every one linked to its official site.
+                  </p>
+                </Link>
+                <Link
                   href="/life"
                   className="card-ink block rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
                 >
