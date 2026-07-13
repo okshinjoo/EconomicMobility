@@ -143,32 +143,25 @@ export default function ToolsHub() {
                     <Reveal className="md:col-span-1">
                       <Link
                         href={hrefFor(cat, mainItem)}
-                        className="card-ink group flex h-full flex-col rounded-xl p-6 transition-transform duration-200 hover:-translate-y-1"
-                        style={{ backgroundColor: style.bg }}
+                        className="group flex h-full flex-col rounded-xl border-2 border-ink bg-forest p-6 text-cream shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
                       >
                         <div className="flex items-start justify-between gap-2">
                           <ToolMark
                             slug={mainItem.slug}
-                            color={accent}
+                            color="#fbf8f1"
                             className="h-10 w-10 shrink-0"
                           />
-                          <span
-                            className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide"
-                            style={{ background: accent, color: "#fbf8f1" }}
-                          >
+                          <span className="rounded-full bg-amber px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">
                             Main
                           </span>
                         </div>
-                        <h3 className="mt-4 font-display text-xl font-bold leading-snug text-ink">
+                        <h3 className="mt-4 font-display text-xl font-bold leading-snug">
                           {mainItem.title}
                         </h3>
-                        <p className="mt-2 flex-1 text-sm leading-6 text-ink/70">
+                        <p className="mt-2 flex-1 text-sm leading-6 text-cream/75">
                           {mainItem.short}
                         </p>
-                        <span
-                          className="mt-4 text-sm font-bold underline decoration-2 underline-offset-4"
-                          style={{ color: accent, textDecorationColor: `${accent}66` }}
-                        >
+                        <span className="mt-4 text-sm font-bold text-amber underline decoration-amber/50 decoration-2 underline-offset-4 group-hover:text-cream">
                           Open
                         </span>
                       </Link>
