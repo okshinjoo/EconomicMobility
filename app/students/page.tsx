@@ -30,14 +30,14 @@ const STARTER_SLUGS = [
 ];
 
 const STUDENT_TOOLS = [
-  { title: "College Cost", href: "/tools/college", note: "The gap after aid, and what filling it costs." },
-  { title: "Compare Aid Offers", href: "/tools/college/compare-offers", note: "Two award letters, side by side." },
-  { title: "Student Loan", href: "/tools/college/student-loan", note: "The real monthly cost of borrowing." },
-  { title: "Paycheck", href: "/tools/budget/paycheck", note: "What your campus job actually pays after taxes." },
-  { title: "Budget Planner", href: "/tools/budget", note: "Take-home pay against real expenses, in one screen." },
-  { title: "Rent Affordability", href: "/tools/budget/rent", note: "What rent fits your income, before you sign." },
-  { title: "Emergency Fund", href: "/tools/budget/emergency-fund", note: "How big yours should be, and how long it takes." },
-  { title: "Reality Check", href: "/tools/budget/reality-check", note: "Pick the life you want; see the salary it takes." },
+  { title: "College Cost", href: "/students/tools/college-cost", note: "The gap after aid, and what filling it costs." },
+  { title: "Compare Aid Offers", href: "/students/tools/compare-offers", note: "Two award letters, side by side." },
+  { title: "Student Loan", href: "/students/tools/student-loan", note: "The real monthly cost of borrowing." },
+  { title: "Paycheck", href: "/students/tools/paycheck", note: "What your campus job actually pays after taxes." },
+  { title: "Budget Planner", href: "/students/tools/budget", note: "Take-home pay against real expenses, in one screen." },
+  { title: "Rent Affordability", href: "/students/tools/rent", note: "What rent fits your income, before you sign." },
+  { title: "Emergency Fund", href: "/students/tools/emergency-fund", note: "How big yours should be, and how long it takes." },
+  { title: "Reality Check", href: "/students/tools/reality-check", note: "Pick the life you want; see the salary it takes." },
 ];
 
 // The student money essentials that live OUTSIDE the college topic — the

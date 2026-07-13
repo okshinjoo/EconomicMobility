@@ -54,10 +54,10 @@ const NAV: StudentNavEntry[] = [
     href: "/students/tracker",
     items: [
       { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place." },
-      { label: "College Cost", href: "/tools/college", desc: "The gap after aid, and what filling it costs." },
-      { label: "Compare Aid Offers", href: "/tools/college/compare-offers", desc: "Two award letters, side by side." },
-      { label: "Student Loan", href: "/tools/college/student-loan", desc: "The real monthly cost of borrowing." },
-      { label: "Paycheck", href: "/tools/budget/paycheck", desc: "What a campus job pays after taxes." },
+      { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs." },
+      { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side." },
+      { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing." },
+      { label: "Paycheck", href: "/students/tools/paycheck", desc: "What a campus job pays after taxes." },
     ],
   },
 ];
