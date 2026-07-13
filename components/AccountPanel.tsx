@@ -51,8 +51,15 @@ import {
   useMemberData,
   FlatStatCards,
   FlatOverview,
+  DashboardExtras,
   DASH,
 } from "@/components/AccountDashboard";
+import {
+  readDashboardPrefs,
+  writeDashboardPrefs,
+  DEFAULT_PREFS,
+  type DashboardPrefs,
+} from "@/lib/dashboardPrefs";
 
 /** The signed-in sections, navigated by the left rail. */
 type PanelTab = "overview" | "about" | "goals" | "security";
@@ -641,6 +648,9 @@ export function ProfileEditor({
   const [role, setRole] = useState<ProfileRole>("");
   const [studentStage, setStudentStage] = useState<StudentStage>("");
   const [showTag, setShowTag] = useState(false);
+  // Dashboard personalization: local-first, auto-synced (lib/dashboardPrefs).
+  const [dashPrefs, setDashPrefs] = useState<DashboardPrefs>(DEFAULT_PREFS);
+  const [dashPrefsReady, setDashPrefsReady] = useState(false);
   const [goals, setGoals] = useState<string[]>([]);
   const [flairs, setFlairs] = useState<string[]>([]);
   const [bio, setBio] = useState("");
@@ -706,6 +716,15 @@ export function ProfileEditor({
         year: "numeric",
       })
     : "";
+
+  useEffect(() => {
+    setDashPrefs(readDashboardPrefs());
+    setDashPrefsReady(true);
+  }, [syncedKeys]);
+  const updateDashPrefs = (next: DashboardPrefs) => {
+    setDashPrefs(next);
+    writeDashboardPrefs(next);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -1031,6 +1050,7 @@ export function ProfileEditor({
                   email={session.user.email ?? ""}
                   role={role}
                   studentStage={studentStage}
+                  accent={dashPrefs.accent ?? undefined}
                   flairIds={flairs.slice(0, MAX_FLAIRS)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
@@ -1043,11 +1063,19 @@ export function ProfileEditor({
                 />
 
                 <div className="min-w-0 space-y-5">
-                  <FlatStatCards
-                    data={member}
-                    paths={paths}
-                    badgeTotal={badgeSources.length}
-                  />
+                  {!dashPrefs.hiddenCards.includes("stats") && (
+                    <FlatStatCards
+                      data={member}
+                      paths={paths}
+                      badgeTotal={badgeSources.length}
+                    />
+                  )}
+                  {dashPrefsReady && member.mounted && (
+                    <DashboardExtras
+                      prefs={dashPrefs}
+                      onChange={updateDashPrefs}
+                    />
+                  )}
 
                   <div
                     id="account-settings"
@@ -1111,6 +1139,7 @@ export function ProfileEditor({
           )}
           {tab === "overview" && (
             <FlatOverview
+                        hidden={dashPrefs.hiddenCards}
               data={member}
               paths={paths}
               badgeTotal={badgeSources.length}
@@ -1562,6 +1591,7 @@ function FlatIdentityCard({
   email,
   role,
   studentStage = "",
+  accent,
   flairIds,
   goalsCount,
   memberSince,
@@ -1576,6 +1606,8 @@ function FlatIdentityCard({
   email: string;
   role: ProfileRole;
   studentStage?: StudentStage;
+  /** Member-picked avatar color (lib/dashboardPrefs); amber default. */
+  accent?: string;
   flairIds: string[];
   goalsCount: number;
   memberSince: string;
@@ -1602,7 +1634,12 @@ function FlatIdentityCard({
         Edit
       </button>
       <div className="flex flex-col items-center px-6 pb-1 pt-7 text-center">
-        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber text-3xl font-bold text-ink">
+        <span
+          className={`flex h-20 w-20 items-center justify-center rounded-full text-3xl font-bold ${
+            accent ? "text-cream" : "bg-amber text-ink"
+          }`}
+          style={accent ? { background: accent } : undefined}
+        >
           {(name.trim() || email).charAt(0).toUpperCase()}
         </span>
         <p className="mt-3 font-display text-2xl font-semibold">

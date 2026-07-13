@@ -15,6 +15,14 @@ import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { stageLabel } from "@/lib/profile";
 import { readStudentStage } from "@/lib/studentStage";
 import { STAGE_PLANS, rotatedRecs } from "@/lib/studentRecs";
+import {
+  ACCENT_OPTIONS,
+  DASHBOARD_CARDS,
+  MAX_PINNED_TOOLS,
+  type DashboardPrefs,
+} from "@/lib/dashboardPrefs";
+import { loadTracker, summarize, summarizeApps } from "@/lib/studentTracker";
+import { toolCategories } from "@/lib/toolsRegistry";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -227,6 +235,306 @@ export function useMemberData(
   return data;
 }
 
+/* --------------------- personalization + insight cards ------------------ */
+
+// Every live calculator, flattened for the pin picker.
+const TOOL_INDEX = toolCategories.flatMap((cat) =>
+  cat.items
+    .filter((t) => t.status === "live")
+    .map((t) => ({
+      slug: t.slug,
+      title: t.title,
+      href: t.main ? cat.base : `${cat.base}/${t.slug}`,
+    }))
+);
+
+const HEAT_DAYS = 84; // 12 weeks
+const HEAT_COLORS = ["#f2ecdf", "#d8e4dc", "#8fb4a3", "#33705c", "#0c4a39"];
+
+/** GitHub-style reading heatmap: one cell per day, last 12 weeks, counted
+ *  from the read map's timestamps. Derived only — nothing new is stored. */
+function ActivityHeatmap() {
+  const [days, setDays] = useState<{ key: string; count: number }[]>([]);
+  useEffect(() => {
+    const counts = new Map<string, number>();
+    for (const ts of Object.values(getReadMap())) {
+      if (typeof ts !== "number") continue;
+      const key = new Date(ts).toDateString();
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    const out: { key: string; count: number }[] = [];
+    const today = new Date();
+    for (let i = HEAT_DAYS - 1; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const key = d.toDateString();
+      out.push({ key, count: counts.get(key) ?? 0 });
+    }
+    setDays(out);
+  }, []);
+  if (days.length === 0) return null;
+  const total = days.reduce((s, d) => s + d.count, 0);
+  const level = (n: number) => (n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n <= 4 ? 3 : 4);
+  // Columns of 7 (weeks), oldest left.
+  const weeks: { key: string; count: number }[][] = [];
+  for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">
+          Your reading, day by day
+        </h3>
+        <span className="whitespace-nowrap text-xs font-medium" style={{ color: DASH.muted }}>
+          {total} {total === 1 ? "guide" : "guides"} in 12 weeks
+        </span>
+      </div>
+      <div className="mt-4 flex gap-[3px] overflow-x-auto pb-1">
+        {weeks.map((week, wi) => (
+          <div key={wi} className="flex flex-col gap-[3px]">
+            {week.map((d) => (
+              <span
+                key={d.key}
+                title={`${d.key}: ${d.count} read`}
+                className="h-3 w-3 rounded-[3px]"
+                style={{ background: HEAT_COLORS[level(d.count)] }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 flex items-center gap-1.5 text-xs" style={{ color: DASH.muted }}>
+        Less
+        {HEAT_COLORS.map((c) => (
+          <span key={c} className="h-2.5 w-2.5 rounded-[3px]" style={{ background: c }} />
+        ))}
+        more — every cell is a real day.
+      </p>
+    </div>
+  );
+}
+
+/** The tracker + scholarship pipeline, surfaced on the dashboard. Renders
+ *  a start nudge when the tracker is empty rather than hiding. */
+function PipelineCard() {
+  const [snapshot, setSnapshot] = useState<ReturnType<typeof loadTracker> | null>(null);
+  useEffect(() => setSnapshot(loadTracker()), []);
+  if (!snapshot) return null;
+  const hasAnything =
+    snapshot.courses.length > 0 || snapshot.apps.length > 0 || snapshot.todos.length > 0;
+  const apps = summarizeApps(snapshot.apps);
+  const s = summarize(snapshot);
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">
+          Tracker &amp; scholarship pipeline
+        </h3>
+        <Link href="/students/tracker" className="text-xs font-semibold text-forest hover:underline">
+          Open the tracker →
+        </Link>
+      </div>
+      {hasAnything ? (
+        <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4">
+          {(
+            [
+              [`${s.unitsDone}`, "units done"],
+              [`${snapshot.apps.filter((a) => a.status !== "planning").length}`, "applications sent"],
+              [apps.dollarsInPlay > 0 ? `$${apps.dollarsInPlay.toLocaleString()}` : "$0", "in play"],
+              [apps.dollarsWon > 0 ? `$${apps.dollarsWon.toLocaleString()}` : "$0", "won"],
+            ] as const
+          ).map(([n, label]) => (
+            <div key={label}>
+              <p className="font-display text-2xl font-bold text-forest">{n}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: DASH.muted }}>
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="mt-2 text-sm leading-6 text-stone">
+          Nothing tracked yet. Log your classes and scholarship applications
+          once, and this card keeps the running score — units, GPA, dollars
+          in play, dollars won.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** Quick-launch tools the member picked. Edit mode lists every live
+ *  calculator as a toggle chip, capped at MAX_PINNED_TOOLS. */
+function PinnedToolsCard({
+  prefs,
+  onChange,
+}: {
+  prefs: DashboardPrefs;
+  onChange: (next: DashboardPrefs) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const pinned = TOOL_INDEX.filter((t) => prefs.pinnedTools.includes(t.slug));
+  const toggle = (slug: string) => {
+    const has = prefs.pinnedTools.includes(slug);
+    if (!has && prefs.pinnedTools.length >= MAX_PINNED_TOOLS) return;
+    onChange({
+      ...prefs,
+      pinnedTools: has
+        ? prefs.pinnedTools.filter((s) => s !== slug)
+        : [...prefs.pinnedTools, slug],
+    });
+  };
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">Your tools</h3>
+        <button
+          type="button"
+          onClick={() => setEditing((v) => !v)}
+          className="text-xs font-semibold text-forest hover:underline"
+        >
+          {editing ? "Done" : "Choose tools"}
+        </button>
+      </div>
+      {editing ? (
+        <>
+          <p className="mt-2 text-xs" style={{ color: DASH.muted }}>
+            Pick up to {MAX_PINNED_TOOLS} — they open with your saved numbers.
+          </p>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {TOOL_INDEX.map((t) => {
+              const on = prefs.pinnedTools.includes(t.slug);
+              return (
+                <button
+                  key={t.slug}
+                  type="button"
+                  onClick={() => toggle(t.slug)}
+                  aria-pressed={on}
+                  className={`rounded-md border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                    on
+                      ? "border-forest bg-forest text-cream"
+                      : "border-sand bg-paper text-stone hover:text-ink"
+                  }`}
+                >
+                  {t.title}
+                </button>
+              );
+            })}
+          </div>
+        </>
+      ) : pinned.length > 0 ? (
+        <div className="mt-3 grid grid-cols-2 gap-2.5">
+          {pinned.map((t) => (
+            <Link
+              key={t.slug}
+              href={t.href}
+              className="rounded-lg border border-sand bg-paper px-3.5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-forest/40 hover:text-forest"
+            >
+              {t.title}
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className="mt-2 text-sm text-stone">
+          No tools pinned — hit &ldquo;Choose tools&rdquo; and put your
+          favorites one click away.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** The personalization panel: avatar accent + which cards show. */
+export function CustomizeCard({
+  prefs,
+  onChange,
+}: {
+  prefs: DashboardPrefs;
+  onChange: (next: DashboardPrefs) => void;
+}) {
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <h3 className="font-display text-base font-bold text-ink">Make it yours</h3>
+      <p className="mt-1 text-xs" style={{ color: DASH.muted }}>
+        Your color, your cards. Saved to your account; hiding a card never
+        deletes anything.
+      </p>
+      <p className="mt-3 text-[11px] font-bold uppercase tracking-wide" style={{ color: DASH.muted }}>
+        Avatar color
+      </p>
+      <div className="mt-1.5 flex flex-wrap gap-2">
+        {ACCENT_OPTIONS.map((a) => {
+          const active = (prefs.accent ?? "#e7a33c") === a.color;
+          return (
+            <button
+              key={a.id}
+              type="button"
+              title={a.label}
+              aria-label={a.label}
+              aria-pressed={active}
+              onClick={() =>
+                onChange({ ...prefs, accent: a.id === "amber" ? null : a.color })
+              }
+              className={`h-7 w-7 rounded-full border-2 transition-transform hover:scale-110 ${
+                active ? "border-ink" : "border-ink/15"
+              }`}
+              style={{ background: a.color }}
+            />
+          );
+        })}
+      </div>
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-wide" style={{ color: DASH.muted }}>
+        Cards on your overview
+      </p>
+      <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1.5">
+        {DASHBOARD_CARDS.map((c) => {
+          const shown = !prefs.hiddenCards.includes(c.id);
+          return (
+            <label
+              key={c.id}
+              className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-ink"
+            >
+              <input
+                type="checkbox"
+                checked={shown}
+                onChange={() =>
+                  onChange({
+                    ...prefs,
+                    hiddenCards: shown
+                      ? [...prefs.hiddenCards, c.id]
+                      : prefs.hiddenCards.filter((id) => id !== c.id),
+                  })
+                }
+                className="h-3.5 w-3.5 accent-forest"
+              />
+              {c.label}
+            </label>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/** The new insight/personalization row rendered between the stat cards and
+ *  the tabbed panel. Card visibility follows prefs.hiddenCards. */
+export function DashboardExtras({
+  prefs,
+  onChange,
+}: {
+  prefs: DashboardPrefs;
+  onChange: (next: DashboardPrefs) => void;
+}) {
+  const hidden = new Set(prefs.hiddenCards);
+  return (
+    <div className="grid gap-4 xl:grid-cols-2">
+      {!hidden.has("heatmap") && <ActivityHeatmap />}
+      {!hidden.has("pipeline") && <PipelineCard />}
+      {!hidden.has("tools") && <PinnedToolsCard prefs={prefs} onChange={onChange} />}
+      <CustomizeCard prefs={prefs} onChange={onChange} />
+    </div>
+  );
+}
+
 /* ------------------------------ flat pieces ----------------------------- */
 
 function FlatLegend({
@@ -384,13 +692,17 @@ export function FlatOverview({
   data,
   paths,
   badgeTotal,
+  hidden = [],
 }: {
   data: MemberData;
   paths: TopicPath[];
   badgeTotal: number;
+  /** DASHBOARD_CARDS ids switched off in the member's prefs. */
+  hidden?: string[];
 }) {
   if (!data.mounted) return null;
   const { next, recent, earned, progress } = data;
+  const off = new Set(hidden);
 
   // Student-stage shortcuts (July 2026): when this member said which
   // student they are — on the profile or the /students picker — lead the
@@ -401,7 +713,7 @@ export function FlatOverview({
 
   return (
     <div>
-      {stagePlan && stage && (
+      {stagePlan && stage && !off.has("student") && (
         <div className="mb-5 border-b pb-5" style={{ borderColor: DASH.divider }}>
           <div className="flex items-center justify-between gap-3">
             <p
@@ -434,6 +746,8 @@ export function FlatOverview({
       )}
 
       {/* recent reading */}
+      {!off.has("recent") && (
+      <>
       <div className="flex items-center justify-between gap-3">
         <p
           className="text-xs font-semibold uppercase tracking-wide"
@@ -508,8 +822,11 @@ export function FlatOverview({
           </p>
         )}
       </div>
+      </>
+      )}
 
       {/* badge case */}
+      {!off.has("badges") && (
       <div
         className="mt-5 border-t pt-5"
         style={{ borderColor: DASH.divider }}
@@ -553,9 +870,10 @@ export function FlatOverview({
           </p>
         )}
       </div>
+      )}
 
       {/* reading by topic */}
-      {progress.length > 0 && (
+      {progress.length > 0 && !off.has("topics") && (
         <div
           className="mt-5 border-t pt-5"
           style={{ borderColor: DASH.divider }}
