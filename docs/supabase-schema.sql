@@ -238,3 +238,16 @@ alter table public.reminder_sends enable row level security;
 -- ============================================================
 alter table public.reminder_subscribers
   add column if not exists wants_college_advice boolean not null default false;
+
+
+-- ============================================================
+-- STUDENT STAGE (July 13, 2026) — run this block once.
+-- "Which student are you" on the profile (high school /
+-- community college / university) so the site can recommend
+-- stage-right scholarships, guides, and deadlines. Empty string
+-- means unset or not a student. The app tolerates this column
+-- being absent (saves retry without it), so run whenever.
+-- ============================================================
+alter table public.profiles
+  add column if not exists student_stage text not null default ''
+  check (student_stage in ('', 'hs', 'cc', 'uni'));

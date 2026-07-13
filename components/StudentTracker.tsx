@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Check, Plus, Trash2 } from "lucide-react";
 import { frameHref } from "@/lib/frame";
+import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 import {
   loadTracker,
@@ -80,7 +81,14 @@ export default function StudentTracker() {
   const [data, setData] = useState<TrackerData | null>(null);
 
   useEffect(() => {
-    setData(loadTracker());
+    const t = loadTracker();
+    // A fresh tracker (no saved courses/todos/apps) opens on the track the
+    // visitor already told us about — profile stage or the homepage picker.
+    if (t.courses.length === 0 && t.todos.length === 0 && t.apps.length === 0) {
+      const stage = readStudentStage();
+      if (stage) t.mode = stage;
+    }
+    setData(t);
   }, []);
 
   const update = (next: TrackerData) => {

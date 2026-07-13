@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import StudentStageDash from "@/components/StudentStageDash";
 import TopicMark from "@/components/TopicMark";
 import { ReadBadge } from "@/components/ReadBadge";
 import { getArticleBySlug, getTopicArticles } from "@/lib/articles";
@@ -137,6 +138,9 @@ export default function StudentsPage() {
           </div>
         </div>
       </section>
+
+      {/* Made for you — stage picker that becomes six stage-right doors */}
+      <StudentStageDash />
 
       {/* The four doors — each opens its own hub page */}
       <section className="bg-paper">

@@ -34,7 +34,10 @@ import { ensureSynced, stopMirror } from "@/lib/accountSync";
 import {
   type Profile,
   type ProfileRole,
+  type StudentStage,
   ROLE_LABELS,
+  STUDENT_STAGE_OPTIONS,
+  stageLabel,
   GOAL_OPTIONS,
   FLAIR_OPTIONS,
   MAX_FLAIRS,
@@ -636,6 +639,7 @@ export function ProfileEditor({
 }) {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<ProfileRole>("");
+  const [studentStage, setStudentStage] = useState<StudentStage>("");
   const [showTag, setShowTag] = useState(false);
   const [goals, setGoals] = useState<string[]>([]);
   const [flairs, setFlairs] = useState<string[]>([]);
@@ -711,6 +715,8 @@ export function ProfileEditor({
         const p: Profile = {
           displayName: (data.display_name as string) ?? "",
           role: ((data.role as ProfileRole) ?? "") as ProfileRole,
+          studentStage: ((data.student_stage as StudentStage) ??
+            "") as StudentStage,
           showTag: Boolean(data.show_tag),
           goals: Array.isArray(data.goals) ? (data.goals as string[]) : [],
           flairs: Array.isArray(data.flairs) ? (data.flairs as string[]) : [],
@@ -719,6 +725,7 @@ export function ProfileEditor({
         };
         setDisplayName(p.displayName);
         setRole(p.role);
+        setStudentStage(p.studentStage ?? "");
         setShowTag(p.showTag);
         setGoals(p.goals);
         setFlairs(p.flairs);
@@ -730,18 +737,32 @@ export function ProfileEditor({
     };
     supabase
       .from("profiles")
-      .select("display_name, role, show_tag, goals, flairs, bio, public_profile")
+      .select(
+        "display_name, role, student_stage, show_tag, goals, flairs, bio, public_profile"
+      )
       .eq("id", userId)
       .maybeSingle()
       .then(({ data, error }) => {
         if (!error) return apply(data);
-        // newer columns not migrated yet — fall back so the page still works.
+        // student_stage not migrated yet — retry without it so the rest of
+        // the editor keeps working.
         supabase
           .from("profiles")
-          .select("display_name, role, show_tag")
+          .select(
+            "display_name, role, show_tag, goals, flairs, bio, public_profile"
+          )
           .eq("id", userId)
           .maybeSingle()
-          .then(({ data: d2 }) => apply(d2));
+          .then(({ data: d2, error: e2 }) => {
+            if (!e2) return apply(d2);
+            // older columns not migrated either — the legacy minimum.
+            supabase
+              .from("profiles")
+              .select("display_name, role, show_tag")
+              .eq("id", userId)
+              .maybeSingle()
+              .then(({ data: d3 }) => apply(d3));
+          });
       });
     return () => {
       cancelled = true;
@@ -755,22 +776,33 @@ export function ProfileEditor({
     const profile: Profile = {
       displayName: displayName.trim(),
       role,
+      // Stage only means something for students — clear it with the role
+      // so a switch to "working" doesn't leave a stale answer behind.
+      studentStage: role === "student" ? studentStage : "",
       showTag,
       goals,
       flairs,
       bio: bio.trim(),
       publicProfile,
     };
-    const { error } = await supabase.from("profiles").upsert({
+    const row = {
       id: userId,
       display_name: profile.displayName,
       role: profile.role,
+      student_stage: profile.studentStage ?? "",
       show_tag: profile.showTag,
       goals: profile.goals,
       flairs: profile.flairs,
       bio: profile.bio,
       public_profile: profile.publicProfile,
-    });
+    };
+    let { error } = await supabase.from("profiles").upsert(row);
+    if (error && /student_stage/.test(error.message)) {
+      // Column not migrated yet — save everything else; the stage still
+      // works locally via the profile mirror.
+      const { student_stage: _omit, ...legacyRow } = row;
+      ({ error } = await supabase.from("profiles").upsert(legacyRow));
+    }
     setSaving(false);
     if (!error) {
       writeLocalProfile(profile);
@@ -783,7 +815,7 @@ export function ProfileEditor({
           : "Couldn't save just now — try again in a moment."
       );
     }
-  }, [supabase, userId, displayName, role, showTag, goals, flairs, bio, publicProfile]);
+  }, [supabase, userId, displayName, role, studentStage, showTag, goals, flairs, bio, publicProfile]);
 
   async function changeEmail(e: React.FormEvent) {
     e.preventDefault();
@@ -998,6 +1030,7 @@ export function ProfileEditor({
                   name={displayName}
                   email={session.user.email ?? ""}
                   role={role}
+                  studentStage={studentStage}
                   flairIds={flairs.slice(0, MAX_FLAIRS)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
@@ -1155,6 +1188,38 @@ export function ProfileEditor({
                     </label>
                   ))}
                 </div>
+                {role === "student" && (
+                  <div className="mt-3 rounded-lg border border-sand bg-cream p-4">
+                    <p className="text-sm font-semibold text-ink">
+                      Which kind of student?{" "}
+                      <span className="font-normal text-stone">
+                        (we use this to recommend the right scholarships,
+                        guides, and deadlines)
+                      </span>
+                    </p>
+                    <div className="mt-2.5 grid gap-2 sm:grid-cols-3">
+                      {STUDENT_STAGE_OPTIONS.map((s) => (
+                        <label
+                          key={s.id}
+                          className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                            studentStage === s.id
+                              ? "border-forest bg-forest/[0.06] text-ink"
+                              : "border-sand bg-paper text-stone hover:border-forest/40"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="profile-student-stage"
+                            checked={studentStage === s.id}
+                            onChange={() => setStudentStage(s.id)}
+                            className="h-4 w-4 accent-forest"
+                          />
+                          {s.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </fieldset>
 
               <fieldset>
@@ -1496,6 +1561,7 @@ function FlatIdentityCard({
   name,
   email,
   role,
+  studentStage = "",
   flairIds,
   goalsCount,
   memberSince,
@@ -1509,6 +1575,7 @@ function FlatIdentityCard({
   name: string;
   email: string;
   role: ProfileRole;
+  studentStage?: StudentStage;
   flairIds: string[];
   goalsCount: number;
   memberSince: string;
@@ -1546,7 +1613,9 @@ function FlatIdentityCard({
         </p>
         {role && (
           <span className="mt-2.5 rounded-md bg-white/15 px-2.5 py-1 text-xs font-bold">
-            {ROLE_LABELS[role]}
+            {role === "student" && studentStage
+              ? `${stageLabel(studentStage)} student`
+              : ROLE_LABELS[role]}
           </span>
         )}
         {flairIds.length > 0 && (

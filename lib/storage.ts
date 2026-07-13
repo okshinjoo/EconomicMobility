@@ -34,6 +34,9 @@ export const STORAGE_KEYS = {
   jars: "empower:jars:v1",
   visitedTools: "empower:visited-tools:v1",
   flashcards: "empower:flashcards:v1",
+  // "hs" | "cc" | "uni" — the signed-out student-stage answer (the signed-in
+  // copy lives on the profile). Whole-snapshot synced like everything else.
+  studentStage: "empower:student-stage:v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {

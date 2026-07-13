@@ -9,9 +9,29 @@ export const PROFILE_KEY = "empower:profile:v1";
 
 export type ProfileRole = "" | "student" | "working" | "retired";
 
+/** Which student (July 2026, owner ask: personalized recommendations).
+ *  Same three tracks as the student tracker's TrackerMode — keep in sync. */
+export type StudentStage = "" | "hs" | "cc" | "uni";
+
+export const STUDENT_STAGE_OPTIONS: {
+  id: Exclude<StudentStage, "">;
+  label: string;
+}[] = [
+  { id: "hs", label: "High school" },
+  { id: "cc", label: "Community college" },
+  { id: "uni", label: "University" },
+];
+
+export function stageLabel(stage: StudentStage): string {
+  return STUDENT_STAGE_OPTIONS.find((s) => s.id === stage)?.label ?? "";
+}
+
 export interface Profile {
   displayName: string;
   role: ProfileRole;
+  /** Set when role is "student" — drives student-stage personalization.
+   *  Optional: profiles saved before July 2026 don't carry it. */
+  studentStage?: StudentStage;
   /** Show "Name · Student" style tag on community posts/questions. */
   showTag: boolean;
   /** Goal ids from GOAL_OPTIONS — what the member is working toward. */

@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
+import { stageLabel } from "@/lib/profile";
+import { readStudentStage } from "@/lib/studentStage";
+import { STAGE_PLANS } from "@/lib/studentRecs";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -389,8 +392,46 @@ export function FlatOverview({
   if (!data.mounted) return null;
   const { next, recent, earned, progress } = data;
 
+  // Student-stage shortcuts (July 2026): when this member said which
+  // student they are — on the profile or the /students picker — lead the
+  // overview with the four doors that matter most at that stage. Only
+  // renders post-mount (data.mounted), so localStorage reads are safe.
+  const stage = readStudentStage();
+  const stagePlan = stage ? STAGE_PLANS[stage] : null;
+
   return (
     <div>
+      {stagePlan && stage && (
+        <div className="mb-5 border-b pb-5" style={{ borderColor: DASH.divider }}>
+          <div className="flex items-center justify-between gap-3">
+            <p
+              className="text-xs font-semibold uppercase tracking-wide"
+              style={{ color: DASH.muted }}
+            >
+              For {stageLabel(stage).toLowerCase()} students
+            </p>
+            <Link
+              href="/students"
+              className="text-xs font-semibold text-forest hover:underline"
+            >
+              Everything for students →
+            </Link>
+          </div>
+          <div className="mt-2.5 flex flex-wrap gap-2">
+            {stagePlan.recs.slice(0, 4).map((r) => (
+              <Link
+                key={r.href}
+                href={r.href}
+                title={r.desc}
+                className="rounded-lg border border-sand bg-cream px-3.5 py-2 text-sm font-semibold text-ink transition-colors hover:border-forest/40 hover:text-forest"
+              >
+                {r.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* recent reading */}
       <div className="flex items-center justify-between gap-3">
         <p
