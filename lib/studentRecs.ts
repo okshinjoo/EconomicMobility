@@ -18,7 +18,25 @@ export interface StagePlan {
   headline: string;
   /** One sentence on what this stage's money game actually is. */
   blurb: string;
+  /** The stage's POOL of doors. Surfaces show `REC_SLOTS` at a time via
+   *  rotatedRecs(); pools at or under the slot count always show whole. */
   recs: StageRec[];
+}
+
+/** How many doors a surface shows at once (the band's "these six"). */
+export const REC_SLOTS = 6;
+
+/** The stage's doors for today: pools bigger than `count` rotate daily so
+ *  every door gets shelf time (hs carries 8 as of July 2026). Date-based,
+ *  so CLIENT-ONLY after mount — both consumers (StudentStageDash, the
+ *  account overview) already render nothing until mounted, which is what
+ *  keeps this hydration-safe. Don't call it during server render. */
+export function rotatedRecs(stage: KnownStage, count = REC_SLOTS): StageRec[] {
+  const pool = STAGE_PLANS[stage].recs;
+  if (pool.length <= count) return pool;
+  const day = Math.floor(Date.now() / 86_400_000);
+  const start = day % pool.length;
+  return Array.from({ length: count }, (_, i) => pool[(start + i) % pool.length]);
 }
 
 export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
@@ -38,9 +56,9 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         href: "/students/learn/college/fafsa-step-by-step",
       },
       {
-        label: "Early decision, explained",
-        desc: "What binding really means for aid before you apply.",
-        href: "/students/learn/college/early-decision-explained",
+        label: "What colleges actually look for",
+        desc: "Formulas, holistic reads, and the free cheat sheet schools publish.",
+        href: "/students/learn/college/how-colleges-read-applications",
       },
       {
         label: "Programs that pay high schoolers",
@@ -51,6 +69,16 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         label: "The deadlines that sneak up",
         desc: "CSS Profile, early decision, FAFSA — with reminders.",
         href: "/students/deadlines",
+      },
+      {
+        label: "Early decision, explained",
+        desc: "What binding really means for aid before you apply.",
+        href: "/students/learn/college/early-decision-explained",
+      },
+      {
+        label: "Religious colleges, decoded",
+        desc: "Heritage name or signed covenant — and what each means for aid.",
+        href: "/students/learn/college/religious-colleges-and-money",
       },
       {
         label: "Bank your AP and IB credits",

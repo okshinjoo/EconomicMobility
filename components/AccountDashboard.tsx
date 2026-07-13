@@ -14,7 +14,7 @@ import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { stageLabel } from "@/lib/profile";
 import { readStudentStage } from "@/lib/studentStage";
-import { STAGE_PLANS } from "@/lib/studentRecs";
+import { STAGE_PLANS, rotatedRecs } from "@/lib/studentRecs";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -418,7 +418,8 @@ export function FlatOverview({
             </Link>
           </div>
           <div className="mt-2.5 flex flex-wrap gap-2">
-            {stagePlan.recs.slice(0, 4).map((r) => (
+            {/* Same daily rotation as the /students band (mounted-only). */}
+            {rotatedRecs(stage, 4).map((r) => (
               <Link
                 key={r.href}
                 href={r.href}
