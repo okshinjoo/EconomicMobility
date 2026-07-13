@@ -878,7 +878,7 @@ export function ProfileEditor({
         >
           {/* in-frame top bar */}
           <div
-            className="flex items-center justify-between border-b bg-cream px-5 py-4 sm:px-7"
+            className="flex items-center justify-between border-b px-5 py-4 sm:px-7"
             style={{ borderColor: DASH.divider }}
           >
             <p className="font-display text-xl font-semibold text-ink">
@@ -899,7 +899,7 @@ export function ProfileEditor({
           <div className="flex">
             {/* flat sidebar */}
             <aside
-              className="hidden w-56 flex-shrink-0 border-r bg-cream px-4 pb-8 pt-6 lg:block"
+              className="hidden w-56 flex-shrink-0 border-r px-4 pb-8 pt-6 lg:block"
               style={{ borderColor: DASH.divider }}
             >
               <Link

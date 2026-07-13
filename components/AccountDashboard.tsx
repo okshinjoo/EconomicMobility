@@ -21,7 +21,7 @@ import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 export const DASH = {
   divider: "#e4d8c1",
   muted: "#5f6f66",
-  surface: "#f7f2e8",
+  surface: "#efe6d4",
   sand: "#e8dfcf",
 };
 
