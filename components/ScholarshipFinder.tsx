@@ -6,8 +6,9 @@
 // application season actually unfolds — no Date() involved, so the server
 // render and every client agree.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ExternalLink } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
@@ -30,11 +31,31 @@ function seasonKey(s: Scholarship): number {
   return (s.deadlineMonth - 8 + 12) % 12;
 }
 
+const STAGE_VALUES: (StudentStage | "all")[] = [
+  "all",
+  "high-school",
+  "college",
+  "transfer",
+];
+
 export default function ScholarshipFinder() {
   const frame = useFrame();
+  const searchParams = useSearchParams();
   const [stage, setStage] = useState<StudentStage | "all">("all");
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
+
+  // Audience doors (hero links + subnav) deep-link with ?stage / ?undoc / ?q
+  // — applied on mount and on every client-side param change.
+  useEffect(() => {
+    const s = searchParams.get("stage");
+    if (s && STAGE_VALUES.includes(s as StudentStage | "all")) {
+      setStage(s as StudentStage | "all");
+    }
+    if (searchParams.get("undoc") === "1") setUndocOnly(true);
+    const q = searchParams.get("q");
+    if (q) setQuery(q);
+  }, [searchParams]);
 
   const results = useMemo(() => {
     let list = [...scholarships].sort((a, b) => seasonKey(a) - seasonKey(b));
@@ -168,8 +189,8 @@ export default function ScholarshipFinder() {
       )}
 
       <p className="mt-8 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
-        Every entry verified {VERIFIED_AS_OF} against the program&apos;s
-        official site. Exact dates and amounts shift a little each year, so
+        Every entry checked by hand against the program&apos;s official
+        site by Shinjoo, Empower&apos;s founder — verified {VERIFIED_AS_OF}. Exact dates and amounts shift a little each year, so
         always confirm on the official page before you plan around one —
         that&apos;s where the link on each card goes. We never list
         scholarships that charge fees or exist to harvest your data. Run a

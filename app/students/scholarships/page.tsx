@@ -1,10 +1,22 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { frameHref } from "@/lib/frame";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ScholarshipFinder from "@/components/ScholarshipFinder";
 import ScholarshipDbSearch from "@/components/ScholarshipDbSearch";
+import StateResources from "@/components/StateResources";
 import { scholarships } from "@/lib/scholarships";
+
+// Audience doors (July 2026, borrowed from the one good idea on the
+// lead-gen scholarship sites: sliced entry points — minus their data toll).
+// Each pre-sets the finder's filters via query params.
+const AUDIENCE_DOORS = [
+  { label: "I'm in high school", href: "/students/scholarships?stage=high-school" },
+  { label: "I'm in college now", href: "/students/scholarships?stage=college" },
+  { label: "I'm transferring", href: "/students/scholarships?stage=transfer" },
+  { label: "I don't have citizenship", href: "/students/scholarships?undoc=1" },
+];
 
 export const metadata: Metadata = {
   title: "Scholarship Finder | Empower — Economic Mobility Project",
@@ -54,6 +66,27 @@ export default function ScholarshipsPage() {
             it falls in the school year. No fees, no data harvesting, no
             sweepstakes dressed up as scholarships.
           </p>
+          <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-ink">
+            And no forms about you: other sites make you hand over your
+            ethnicity, citizenship, and GPA before showing you a single
+            award. Here you just look.
+          </p>
+
+          {/* Start from who you are — pre-sets the filters below */}
+          <div className="mt-6 flex flex-wrap items-center gap-2.5">
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-stone">
+              Start from who you are
+            </span>
+            {AUDIENCE_DOORS.map((d) => (
+              <Link
+                key={d.href}
+                href={d.href}
+                className="rounded-lg border-2 border-ink bg-cream px-3.5 py-1.5 text-sm font-bold text-ink shadow-[2px_2px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                {d.label}
+              </Link>
+            ))}
+          </div>
           <p className="mt-4 text-sm font-semibold text-forest">
             First time scholarship hunting?{" "}
             <Link
@@ -69,7 +102,38 @@ export default function ScholarshipsPage() {
 
       <section className="bg-paper">
         <div className="mx-auto max-w-5xl px-6 py-10">
-          <ScholarshipFinder />
+          <Suspense>
+            <ScholarshipFinder />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Your state's own money — the finder above is national; states run
+          their own grants, promise programs, and aid nobody's database
+          shows. Same live state finder as /resources. */}
+      <section id="states" className="scroll-mt-20 border-t-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-5xl px-6 py-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            Closer to home
+          </span>
+          <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+            Your state has its own money
+          </h2>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
+            Beyond the national awards above, most states run their own grant
+            and promise programs — some cover community college entirely, and
+            many award first-come, first-served with{" "}
+            <Link
+              href="/students/deadlines"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              deadlines as early as February
+            </Link>
+            . Pick your state to see what it offers.
+          </p>
+          <div className="mt-6">
+            <StateResources />
+          </div>
         </div>
       </section>
 

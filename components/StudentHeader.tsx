@@ -129,6 +129,9 @@ const NAV: StudentNavEntry[] = [
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Briefcase, color: "#0c4a39" },
     ],
     footer: [
+      { label: "In high school?", href: "/students/scholarships?stage=high-school" },
+      { label: "Transferring?", href: "/students/scholarships?stage=transfer" },
+      { label: "No citizenship?", href: "/students/scholarships?undoc=1" },
       { label: "Reading an award letter", href: "/students/learn/college/reading-aid-award-letter" },
       { label: "Appealing your aid", href: "/students/learn/college/appealing-financial-aid" },
     ],
