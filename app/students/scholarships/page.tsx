@@ -106,6 +106,89 @@ export default function ScholarshipsPage() {
           </section>
         )}
 
+      {/* More places to search — launcher tier (link the respected free
+          searchers; their databases are theirs, our trust tier is ours) */}
+      <section className="border-t-2 border-ink bg-paper">
+        <div className="mx-auto max-w-5xl px-6 py-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            Go even wider
+          </span>
+          <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+            More places to search
+          </h2>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
+            Free, reputable searchers worth your time — no fees, and no
+            handing your data to a marketing machine.
+          </p>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <a
+              href="https://bigfuture.collegeboard.org/scholarship-search"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                BigFuture
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                The College Board&apos;s search — the largest reputable free
+                database, searchable without an account.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Search BigFuture
+              </span>
+            </a>
+            <a
+              href="https://immigrantsrising.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                Immigrants Rising
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                Keeps the gold-standard list of scholarships and fellowships
+                that don&apos;t require citizenship or residency — look for
+                their scholarship list under Resources.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Visit Immigrants Rising
+              </span>
+            </a>
+            <a
+              href="https://uncf.org/scholarships"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                UNCF
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                The country&apos;s largest scholarship provider for Black
+                students — one portal, many awards on rolling deadlines.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Browse UNCF awards
+              </span>
+            </a>
+          </div>
+          <p className="mt-6 text-sm leading-6 text-stone">
+            And the source no database has: local money. Community
+            foundations, employers, and your counselor&apos;s list have the
+            best odds in the whole game —{" "}
+            <Link
+              href="/learn/college/finding-scholarships"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              here&apos;s how to work them
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
