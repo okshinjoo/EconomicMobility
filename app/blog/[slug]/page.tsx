@@ -130,7 +130,15 @@ export default async function BlogPostPage({
             </p>
             <NextPost
               current={post.slug}
-              posts={sortedBlogPosts().map(({ slug, title }) => ({ slug, title }))}
+              posts={sortedBlogPosts().map(
+                ({ slug, title, dek, readMinutes, image }) => ({
+                  slug,
+                  title,
+                  dek,
+                  readMinutes,
+                  image,
+                })
+              )}
             />
           </div>
         </div>
