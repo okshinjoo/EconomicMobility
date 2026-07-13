@@ -10,25 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges, BadgeMedal, type BadgeMap } from "@/components/CourseQuiz";
-import TopicMark from "@/components/TopicMark";
-import type { TopicId } from "@/lib/topics";
-
-// Ghost mark per course (owner call July 2026, her spin on the Base44
-// courses page's image headers): the closest topic's hand-drawn mark,
-// cream and semi-transparent, bleeding off the poster band's corner —
-// texture, not illustration.
-const COURSE_MARK: Record<string, TopicId> = {
-  "first-paycheck": "budgeting",
-  "credit-from-zero": "credit",
-  "paying-for-college": "college",
-  "first-apartment": "home-ownership",
-  "start-investing": "investing",
-  "scam-proof": "money-safety",
-  "invest-smarter": "taxes",
-  "debt-comeback": "government-aid",
-  "retirement-started": "investing",
-  "taxes-handled": "taxes",
-};
+import CourseDoodle from "@/components/CourseDoodle";
 
 export interface CourseCardData {
   id: string;
@@ -72,10 +54,9 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
               className="relative flex items-start justify-between gap-3 overflow-hidden p-5 pb-4"
               style={{ background: course.color }}
             >
-              <TopicMark
-                id={COURSE_MARK[course.id] ?? "budgeting"}
-                color="#fbf8f1"
-                className="pointer-events-none absolute -right-5 -top-5 h-28 w-28 opacity-[0.16] transition-transform duration-300 group-hover:rotate-6"
+              <CourseDoodle
+                id={course.id}
+                className="pointer-events-none absolute -bottom-4 -right-3 h-24 w-24 -rotate-6 text-cream opacity-30 transition-transform duration-300 group-hover:rotate-0"
               />
               <h2 className="relative font-display text-2xl font-semibold leading-tight text-cream">
                 {course.title}
