@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StudentTracker from "@/components/StudentTracker";
 
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 export default function StudentTrackerPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
 
       {/* Hero — compact, light */}
       <section className="border-b-2 border-ink bg-paper-deep">

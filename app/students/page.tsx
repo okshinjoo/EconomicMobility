@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import TopicMark from "@/components/TopicMark";
@@ -66,7 +65,6 @@ export default function StudentsPage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
 
       {/* Hero — C voice on the forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
@@ -102,7 +100,7 @@ export default function StudentsPage() {
       </section>
 
       {/* The student money calendar — amber color field */}
-      <section className="border-y-2 border-ink bg-amber">
+      <section id="calendar" className="scroll-mt-20 border-y-2 border-ink bg-amber">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
             The student money calendar
