@@ -9,6 +9,7 @@ import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
+import { STUDENT_LIFE_SLUGS } from "@/lib/studentShelf";
 import Image from "next/image";
 import { deadlines } from "@/lib/deadlines";
 import { scholarships } from "@/lib/scholarships";
@@ -38,19 +39,6 @@ const STUDENT_TOOLS = [
   { title: "Rent Affordability", href: "/students/tools/rent", note: "What rent fits your income, before you sign." },
   { title: "Emergency Fund", href: "/students/tools/emergency-fund", note: "How big yours should be, and how long it takes." },
   { title: "Reality Check", href: "/students/tools/reality-check", note: "Pick the life you want; see the salary it takes." },
-];
-
-// The student money essentials that live OUTSIDE the college topic — the
-// campus-job, first-tax-season, first-lease side of student life.
-const STUDENT_LIFE_SLUGS = [
-  "how-to-fill-out-w4",
-  "how-to-read-a-pay-stub",
-  "opening-first-bank-account",
-  "choosing-first-credit-card",
-  "building-a-savings-habit",
-  "need-cash-fast",
-  "turning-18-money",
-  "your-first-benefits-enrollment",
 ];
 
 export default function StudentsPage() {

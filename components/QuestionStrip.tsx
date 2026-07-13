@@ -8,6 +8,8 @@ export interface StripQuestion {
   q: string;
   href: string;
   slug: string;
+  /** Set server-side (lib/studentShelf) — student rows nudge to /students. */
+  student?: boolean;
 }
 
 /**
@@ -62,7 +64,9 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
         <li key={item.slug}>
           <Link
             href={item.href}
-            className="group flex items-baseline justify-between gap-6 py-5"
+            className={`group flex items-baseline justify-between gap-6 pt-5 ${
+              item.student ? "pb-2" : "pb-5"
+            }`}
           >
             <span className="font-display text-lg font-medium leading-snug text-cream transition-colors group-hover:text-amber sm:text-xl">
               {item.q}
@@ -71,6 +75,18 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
               Read the guide
             </span>
           </Link>
+          {item.student && (
+            <p className="pb-5 text-sm leading-6 text-cream/70">
+              A student question — the whole hub is at{" "}
+              <Link
+                href="/students"
+                className="font-semibold text-amber underline decoration-amber/40 underline-offset-4 hover:text-cream"
+              >
+                For Students
+              </Link>
+              , with deadlines and scholarships beside it.
+            </p>
+          )}
         </li>
       ))}
     </ul>

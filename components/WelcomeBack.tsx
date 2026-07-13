@@ -38,6 +38,8 @@ interface Recommendation {
   readCount: number;
   topicTotal: number;
   roadmapHref?: string;
+  /** College-topic recs also point at the For Students hub. */
+  studentHub?: boolean;
 }
 
 /**
@@ -91,6 +93,7 @@ export default function WelcomeBack({
         readCount: topic.articles.filter((a) => read[a.slug]).length,
         topicTotal: topic.articles.length,
         roadmapHref: roadmap ? `${topic.href}/${roadmap.slug}` : undefined,
+        studentHub: topic.id === "college",
       };
     };
 
@@ -174,6 +177,18 @@ export default function WelcomeBack({
                   >
                     the {rec.topicShort.toLowerCase()} roadmap
                   </Link>
+                </span>
+              )}
+              {rec.studentHub && (
+                <span className="text-stone">
+                  {" "}&middot; this one lives in{" "}
+                  <Link
+                    href="/students"
+                    className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+                  >
+                    For Students
+                  </Link>{" "}
+                  too
                 </span>
               )}
             </p>

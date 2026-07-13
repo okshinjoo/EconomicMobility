@@ -30,6 +30,7 @@ import Reveal from "@/components/Reveal";
 import Ticker from "@/components/Ticker";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
+import { isStudentArticle } from "@/lib/studentShelf";
 
 // Real questions, real guides — the honest front door to the library.
 // The first four render for everyone; once a reader finishes one of these
@@ -266,7 +267,12 @@ export default function Home() {
                 with yours.
               </p>
             </div>
-            <QuestionStrip pool={startingQuestions} />
+            <QuestionStrip
+              pool={startingQuestions.map((q) => ({
+                ...q,
+                student: isStudentArticle(q.slug),
+              }))}
+            />
           </div>
         </div>
       </section>
@@ -489,6 +495,19 @@ export default function Home() {
               roadmap that puts its guides in order
             </Link>
             , from your first bank account to your first home.
+          </p>
+          {/* Student-hub pointer (owner directive, July 2026: student content
+              on the homepage always points at the microsite) */}
+          <p className="mt-2 text-base text-stone">
+            In school? The college guides above have a hub of their own —{" "}
+            <Link
+              href="/students"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+            >
+              For Students
+            </Link>
+            , with the money calendar, scholarships, and your tracker in one
+            place.
           </p>
         </div>
       </section>
