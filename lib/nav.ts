@@ -34,6 +34,7 @@ export const nav: NavEntry[] = [
     })),
     footer: [
       { label: "Browse all topics", href: "/learn" },
+      { label: "Courses", href: "/courses" },
       { label: "For students", href: "/students" },
       { label: "Life moments", href: "/life" },
       { label: "Glossary", href: "/glossary" },
@@ -48,8 +49,6 @@ export const nav: NavEntry[] = [
       { label: "Guided paths", href: "/journey", desc: "Nine money goals, walked milestone by milestone." },
     ],
   },
-  { label: "Courses", href: "/courses" },
-  { label: "For Students", href: "/students" },
   {
     label: "Tools",
     href: "/tools",
@@ -64,6 +63,7 @@ export const nav: NavEntry[] = [
       { label: "Free templates", href: "/tools/templates" },
     ],
   },
+  { label: "For Students", href: "/students" },
   {
     label: "Resources",
     href: "/resources",
