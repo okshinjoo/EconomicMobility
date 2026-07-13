@@ -44,6 +44,7 @@ export default function ScholarshipFinder() {
   const [stage, setStage] = useState<StudentStage | "all">("all");
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
+  const [visible, setVisible] = useState(30);
 
   // Audience doors (hero links + subnav) deep-link with ?stage / ?undoc / ?q
   // — applied on mount and on every client-side param change.
@@ -57,6 +58,10 @@ export default function ScholarshipFinder() {
     if (q) setQuery(q);
   }, [searchParams]);
 
+  useEffect(() => {
+    setVisible(30);
+  }, [stage, undocOnly, query]);
+
   const results = useMemo(() => {
     let list = [...scholarships].sort((a, b) => seasonKey(a) - seasonKey(b));
     if (stage !== "all") list = list.filter((s) => s.stages.includes(stage));
@@ -66,7 +71,7 @@ export default function ScholarshipFinder() {
       list = list
         .map((s) => ({
           s,
-          score: fuzzyScore(q, `${s.name} ${s.who} ${s.amount}`),
+          score: fuzzyScore(q, `${s.name} ${s.who} ${s.amount} ${(s.tags ?? []).join(" ")}`),
         }))
         .filter((r) => r.score > 0)
         .sort((a, b) => b.score - a.score)
@@ -129,7 +134,7 @@ export default function ScholarshipFinder() {
 
       {/* Cards */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {results.map((s) => (
+        {results.slice(0, visible).map((s) => (
           <a
             key={s.id}
             href={s.officialUrl}
@@ -173,6 +178,18 @@ export default function ScholarshipFinder() {
           </a>
         ))}
       </div>
+
+      {results.length > visible && (
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={() => setVisible((v) => v + 30)}
+            className="btn-ink inline-flex items-center rounded-md bg-cream px-6 py-2.5 text-sm font-bold text-ink"
+          >
+            Show {Math.min(30, results.length - visible)} more
+          </button>
+        </div>
+      )}
 
       {results.length === 0 && (
         <p className="mt-6 text-base leading-7 text-stone">

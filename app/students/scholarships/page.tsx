@@ -4,6 +4,7 @@ import { frameHref } from "@/lib/frame";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ScholarshipFinder from "@/components/ScholarshipFinder";
+import SuggestScholarship from "@/components/SuggestScholarship";
 import StateResources from "@/components/StateResources";
 import { scholarships } from "@/lib/scholarships";
 
@@ -104,6 +105,9 @@ export default function ScholarshipsPage() {
           <Suspense>
             <ScholarshipFinder />
           </Suspense>
+          <div className="mt-6">
+            <SuggestScholarship />
+          </div>
         </div>
       </section>
 

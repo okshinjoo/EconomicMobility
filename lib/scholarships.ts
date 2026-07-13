@@ -29,6 +29,9 @@ export interface Scholarship {
   /** True when the program is explicitly open to undocumented/DACA/TPS
    *  students (no citizenship or green card required). */
   openToUndocumented?: boolean;
+  /** Optional search keywords (majors, identities, states) — folded into
+   *  the finder's fuzzy haystack, never displayed. */
+  tags?: string[];
   officialUrl: string;
 }
 
@@ -134,7 +137,7 @@ export const scholarships: Scholarship[] = [
     who: "Undocumented students, with special focus on career-track degrees.",
     stages: ["high-school", "college", "transfer"],
     openToUndocumented: true,
-    officialUrl: "https://www.goldendoorscholars.org/",
+    officialUrl: "https://www.roadtohire.org/golden-door-scholars",
   },
   {
     id: "hsf",
