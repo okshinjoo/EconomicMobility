@@ -20,13 +20,16 @@ import { UserRound, LayoutDashboard, LogOut } from "lucide-react";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { ensureSynced, stopMirror } from "@/lib/accountSync";
 import { readLocalProfile, clearLocalProfile } from "@/lib/profile";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 const CTA_CLASSES =
   "hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block";
 
 function QuizCta() {
+  const frame = useFrame();
   return (
-    <Link href="/quiz" className={CTA_CLASSES}>
+    <Link href={frameHref("/quiz", frame)} className={CTA_CLASSES}>
       Take the Quiz
     </Link>
   );

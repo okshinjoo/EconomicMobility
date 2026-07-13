@@ -229,12 +229,12 @@ export default function StudentDeadlinesPage() {
           <p className="mt-8 text-sm leading-6 text-stone">
             State grant deadlines vary — some land as early as February.{" "}
             <Link
-              href="/resources"
+              href={frameHref("/resources", "student")}
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               Find your state&apos;s programs
             </Link>{" "}
-            on the main site.
+            — state grants and programs, by state.
           </p>
         </div>
       </section>

@@ -37,6 +37,8 @@ import {
 } from "lucide-react";
 import { topics } from "@/lib/topics";
 import AccountButton from "@/components/AccountButton";
+import SearchDialog from "@/components/SearchDialog";
+import type { SearchItem } from "@/lib/search";
 
 interface StudentDropItem {
   label: string;
@@ -95,7 +97,7 @@ const NAV: StudentNavEntry[] = [
       { label: "All courses", href: "/students/courses", desc: "Ten modules: reading path, flashcards, final.", icon: Library, color: "#15624b" },
       { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, transfer progress, to-dos.", icon: ClipboardList, color: "#c9842a" },
     ],
-    footer: [{ label: "Take the 2-minute quiz", href: "/quiz" }],
+    footer: [{ label: "Take the 2-minute quiz", href: "/students/quiz" }],
   },
   {
     label: "Deadlines",
@@ -228,7 +230,11 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
   );
 }
 
-export default function StudentHeader() {
+export default function StudentHeader({
+  searchItems,
+}: {
+  searchItems: SearchItem[];
+}) {
   const pathname = usePathname();
 
   return (
@@ -247,7 +253,7 @@ export default function StudentHeader() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
             E
           </span>
-          <span className="hidden font-display text-xl font-semibold tracking-tight xl:block">
+          <span className="hidden font-display text-xl font-semibold tracking-tight 2xl:block">
             <span className="text-amber">EMP</span>ower
           </span>
           <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
@@ -278,6 +284,7 @@ export default function StudentHeader() {
         </div>
 
         <div className="flex shrink-0 items-center gap-3">
+          <SearchDialog items={searchItems} />
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-cream/80 underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"

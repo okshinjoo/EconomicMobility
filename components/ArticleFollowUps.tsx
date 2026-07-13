@@ -8,6 +8,8 @@ import type { TopicId } from "@/lib/topics";
 import { ArrowLeft, ArrowRight, Check, Map, Sparkles, Wrench } from "lucide-react";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 /**
  * End-of-article prompts that know when to shut up (owner directive, July
@@ -18,6 +20,7 @@ import { getReadMap } from "@/lib/readTracking";
  */
 
 export function QuizPromo() {
+  const frame = useFrame();
   const [taken, setTaken] = useState(false);
   useEffect(() => {
     if (loadJSON<object>(STORAGE_KEYS.quizResult)) setTaken(true);
@@ -41,7 +44,7 @@ export function QuizPromo() {
           </p>
         </div>
         <Link
-          href="/quiz"
+          href={frameHref("/quiz", frame)}
           className="btn-ink inline-flex flex-shrink-0 items-center gap-2 rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
         >
           Take the quiz

@@ -98,7 +98,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
           <p className="mt-4 text-sm text-cream/60">
             Not sure which goal?{" "}
             <Link
-              href="/quiz"
+              href={href("/quiz")}
               className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
             >
               Take the 3-minute quiz
@@ -112,7 +112,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
           {/* The personal layer on top of the paths */}
           <Link
-            href="/plan"
+            href={href("/plan")}
             className="card-ink mb-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-amber p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7"
           >
             <div className="max-w-xl">
@@ -144,7 +144,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
             </Link>{" "}
             or{" "}
             <Link
-              href="/life"
+              href={href("/life")}
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               start from a life moment

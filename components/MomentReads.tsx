@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { getReadMap } from "@/lib/readTracking";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 /**
  * The three guide links inside a Life Moment card, read-aware: guides this
@@ -17,6 +19,7 @@ export default function MomentReads({
   reads: { label: string; href: string }[];
   color: string;
 }) {
+  const frame = useFrame();
   const [readSlugs, setReadSlugs] = useState<Set<string>>(new Set());
   useEffect(() => {
     setReadSlugs(new Set(Object.keys(getReadMap())));
@@ -36,7 +39,7 @@ export default function MomentReads({
         return (
           <li key={r.href} className="flex items-center gap-2">
             <Link
-              href={r.href}
+              href={frameHref(r.href, frame)}
               className={`text-sm font-semibold underline decoration-2 underline-offset-4 transition-colors hover:text-ink ${
                 wasRead ? "text-ink/50" : "text-ink/85"
               }`}

@@ -6,17 +6,16 @@
 //
 // Rules of the map:
 // - main frame is always identity; unknown/anchor/external hrefs pass through
-// - /learn, /glossary, /journey, /courses map by prefix (mirrors exist for
-//   every page under them — articles, topic hubs, topic quizzes, goals)
+// - /learn, /glossary, /journey, /courses, /quiz, /plan, /life, /resources
+//   map by prefix (mirrors exist for every page under them)
 // - /community maps only the feed root and post pages (member pages have
 //   no mirror and deliberately exit)
 // - /tools maps through TOOL_FRAME_MAP (each calculator's student mirror
 //   is a flat slug under /students/tools — keep this map in sync when a
 //   calculator is added)
-// - everything else (quiz, start-here, about, resources, blog, challenges,
-//   plan, ask, contact, account, privacy, life) is a deliberate exit —
-//   site-level features with no student variant; the return chip covers
-//   the road back
+// - everything else (start-here, about, blog, challenges, ask, contact,
+//   account, privacy) is a deliberate exit — site-level features with no
+//   student variant; the return chip covers the road back
 export type Frame = "main" | "student";
 
 export const TOOL_FRAME_MAP: Record<string, string> = {
@@ -45,7 +44,16 @@ export const TOOL_FRAME_MAP: Record<string, string> = {
   "/tools/templates": "/students/tools/templates",
 };
 
-const PREFIXES = ["/learn", "/glossary", "/journey", "/courses"];
+const PREFIXES = [
+  "/learn",
+  "/glossary",
+  "/journey",
+  "/courses",
+  "/quiz",
+  "/plan",
+  "/life",
+  "/resources",
+];
 
 /** Rewrite an internal href for the given frame. Identity for "main". */
 export function frameHref(href: string, frame: Frame = "main"): string {

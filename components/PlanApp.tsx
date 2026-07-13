@@ -24,6 +24,8 @@ import { getReadMap } from "@/lib/readTracking";
 import { readBudgetSummary } from "@/lib/calcImports";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -357,6 +359,7 @@ function usd(n: number): string {
  *  Client-only by construction: PlanApp renders nothing until mounted, so
  *  the Date use here never touches hydration. */
 function ProjectionCard({ target }: { target: string }) {
+  const frame = useFrame();
   const summary = readBudgetSummary();
 
   if (!summary) {
@@ -368,7 +371,7 @@ function ProjectionCard({ target }: { target: string }) {
         <p className="mt-1.5 text-sm leading-6 text-stone">
           Run the{" "}
           <Link
-            href="/tools/budget"
+            href={frameHref("/tools/budget", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Budget Planner
@@ -392,7 +395,7 @@ function ProjectionCard({ target }: { target: string }) {
           which makes the budgeting steps below the real first move. Update
           the{" "}
           <Link
-            href="/tools/budget"
+            href={frameHref("/tools/budget", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Budget Planner
@@ -431,7 +434,7 @@ function ProjectionCard({ target }: { target: string }) {
         An estimate, not a promise — it&apos;s your own Budget Planner
         numbers, recomputed every time you visit.{" "}
         <Link
-          href="/tools/budget"
+          href={frameHref("/tools/budget", frame)}
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
         >
           Update them
@@ -453,6 +456,7 @@ function PlanView({
   onUpdate: (p: MyPlan) => void;
   onReset: () => void;
 }) {
+  const frame = useFrame();
   const isDone = useDoneChecker();
   const done = plan.items.filter(isDone).length;
 
@@ -540,7 +544,7 @@ function PlanView({
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                   <Link
-                    href={item.href}
+                    href={frameHref(item.href, frame)}
                     className={`font-display text-base font-bold leading-snug underline-offset-4 hover:underline ${
                       checked ? "text-ink/55" : "text-ink"
                     }`}

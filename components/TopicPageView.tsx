@@ -365,7 +365,7 @@ export default function TopicPageView({
               </p>
             </div>
             <Link
-              href="/quiz"
+              href={href("/quiz")}
               className="inline-flex flex-shrink-0 items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink transition-colors hover:bg-cream"
             >
               Take the quiz

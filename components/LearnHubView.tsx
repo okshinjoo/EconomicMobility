@@ -92,7 +92,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
           <p className="mt-4 text-sm font-semibold text-cream">
             Not sure where to start?{" "}
             <Link
-              href="/quiz"
+              href={href("/quiz")}
               className="underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
             >
               Take the 2-minute quiz

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 import { useEffect, useState } from "react";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON } from "@/lib/storage";
@@ -71,6 +73,7 @@ export default function QuizResults({
   onRetake,
   roadmapsByTopic,
 }: QuizResultsProps) {
+  const frame = useFrame();
   const profile = getFinancialProfile(answers.q1, answers.q2, tier);
   const doneState = useDoneState();
 
@@ -230,7 +233,7 @@ export default function QuizResults({
                     ) && (
                     <p className="mt-2 text-sm">
                       <Link
-                        href={roadmapsByTopic[step.topicId]!.href}
+                        href={frameHref(roadmapsByTopic[step.topicId]!.href, frame)}
                         className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
                       >
                         Follow the roadmap: {roadmapsByTopic[step.topicId]!.title}
@@ -240,7 +243,7 @@ export default function QuizResults({
                   {journeyByTopic[step.topicId] && (
                     <p className="mt-2 text-sm">
                       <Link
-                        href={`/journey/${journeyByTopic[step.topicId]}`}
+                        href={frameHref(`/journey/${journeyByTopic[step.topicId]}`, frame)}
                         className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
                       >
                         Or let us walk you through it: the{" "}
@@ -259,7 +262,7 @@ export default function QuizResults({
       {/* Handoff: turn these results into a living plan */}
       <section className="mt-10">
         <Link
-          href="/plan"
+          href={frameHref("/plan", frame)}
           className="card-ink flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
         >
           <div className="max-w-xl">
@@ -289,7 +292,7 @@ export default function QuizResults({
           {allCards.map((card, i) => (
             <Link
               key={card.title}
-              href={card.href}
+              href={frameHref(card.href, frame)}
               className={`card-ink group flex flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 ${
                 i === 1 ? "sm:rotate-[0.5deg]" : ""
               }`}
@@ -349,7 +352,7 @@ export default function QuizResults({
                 </p>
               </div>
               <Link
-                href={rec.href}
+                href={frameHref(rec.href, frame)}
                 className="inline-flex items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink transition-colors hover:bg-cream"
               >
                 {rec.kind === "course" ? "Start the module" : "Join the challenge"}
