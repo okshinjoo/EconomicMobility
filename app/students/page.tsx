@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import TopicMark from "@/components/TopicMark";
 import { ReadBadge } from "@/components/ReadBadge";
-import { getArticleBySlug } from "@/lib/articles";
+import { getArticleBySlug, getTopicArticles } from "@/lib/articles";
+import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
@@ -29,6 +30,23 @@ const STUDENT_TOOLS = [
   { title: "Compare Aid Offers", href: "/tools/college/compare-offers", note: "Two award letters, side by side." },
   { title: "Student Loan", href: "/tools/college/student-loan", note: "The real monthly cost of borrowing." },
   { title: "Paycheck", href: "/tools/budget/paycheck", note: "What your campus job actually pays after taxes." },
+  { title: "Budget Planner", href: "/tools/budget", note: "Take-home pay against real expenses, in one screen." },
+  { title: "Rent Affordability", href: "/tools/budget/rent", note: "What rent fits your income, before you sign." },
+  { title: "Emergency Fund", href: "/tools/budget/emergency-fund", note: "How big yours should be, and how long it takes." },
+  { title: "Reality Check", href: "/tools/budget/reality-check", note: "Pick the life you want; see the salary it takes." },
+];
+
+// The student money essentials that live OUTSIDE the college topic — the
+// campus-job, first-tax-season, first-lease side of student life.
+const STUDENT_LIFE_SLUGS = [
+  "how-to-fill-out-w4",
+  "how-to-read-a-pay-stub",
+  "opening-first-bank-account",
+  "choosing-first-credit-card",
+  "building-a-savings-habit",
+  "need-cash-fast",
+  "turning-18-money",
+  "your-first-benefits-enrollment",
 ];
 
 export default function StudentsPage() {
@@ -37,6 +55,12 @@ export default function StudentsPage() {
   );
   const roadmap = getArticleBySlug("college-money-roadmap");
   const course = getCourse("paying-for-college");
+  const collegeGuides = getTopicArticles("college");
+  const studentLife = STUDENT_LIFE_SLUGS.map((slug) =>
+    getArticleBySlug(slug)
+  ).filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> =>
+    Boolean(a)
+  );
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -234,6 +258,79 @@ export default function StudentsPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* The whole student shelf — every college guide + the cross-topic
+          student-life essentials. Read ones sink, never hide. */}
+      <section className="border-t-2 border-ink bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            The whole student shelf
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
+            Every guide that earns a student money
+          </h2>
+
+          <h3 className="mt-8 font-display text-xl font-bold text-ink">
+            College &amp; financial aid — all {collegeGuides.length} guides
+          </h3>
+          <ReadOrderedGrid
+            className="mt-4 grid gap-3 sm:grid-cols-2"
+            items={collegeGuides.map((a, i) => ({
+              slug: a.slug,
+              node: (
+                <Reveal key={a.slug} delay={(i % 2) * 50} className="h-full">
+                  <Link
+                    href={`/learn/${a.topicId}/${a.slug}`}
+                    className="card-ink flex h-full items-center gap-3 rounded-xl bg-cream px-4 py-3 transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <span className="flex-1 text-sm font-bold leading-snug text-ink">
+                      {a.title}
+                    </span>
+                    <span className="shrink-0 text-xs font-medium text-stone">
+                      {a.readMinutes} min
+                    </span>
+                    <ReadBadge slug={a.slug} accent="#11211c" />
+                  </Link>
+                </Reveal>
+              ),
+            }))}
+          />
+
+          <h3 className="mt-10 font-display text-xl font-bold text-ink">
+            Student life, beyond tuition
+          </h3>
+          <p className="mt-1.5 text-sm leading-6 text-stone">
+            The campus-job, first-tax-season, first-lease side of being a
+            student — pulled from across the library.
+          </p>
+          <ReadOrderedGrid
+            className="mt-4 grid gap-3 sm:grid-cols-2"
+            items={studentLife.map((a, i) => ({
+              slug: a.slug,
+              node: (
+                <Reveal key={a.slug} delay={(i % 2) * 50} className="h-full">
+                  <Link
+                    href={`/learn/${a.topicId}/${a.slug}`}
+                    className="card-ink flex h-full items-center gap-3 rounded-xl px-4 py-3 transition-transform duration-200 hover:-translate-y-0.5"
+                    style={{
+                      background: `color-mix(in srgb, ${getTopic(a.topicId).color} 10%, #fbf8f1)`,
+                    }}
+                  >
+                    <TopicMark id={a.topicId} className="h-5 w-5 shrink-0" />
+                    <span className="flex-1 text-sm font-bold leading-snug text-ink">
+                      {a.title}
+                    </span>
+                    <span className="shrink-0 text-xs font-medium text-stone">
+                      {a.readMinutes} min
+                    </span>
+                    <ReadBadge slug={a.slug} accent="#11211c" />
+                  </Link>
+                </Reveal>
+              ),
+            }))}
+          />
         </div>
       </section>
 
