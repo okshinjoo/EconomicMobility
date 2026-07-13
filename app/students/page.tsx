@@ -210,7 +210,7 @@ export default function StudentsPage() {
             The student money calendar
           </span>
           <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
-            Six dates decide your money year
+            The dates that decide your money year
           </h2>
           <ul className="mt-6 divide-y divide-ink/15 border-y border-ink/15">
             {studentCalendar.map((d) => (

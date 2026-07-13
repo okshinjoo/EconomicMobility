@@ -17,6 +17,14 @@ export interface GlossaryTerm {
 // Keep definitions jargon-free and concrete. The article renderer auto-links
 // the first occurrence of any term/alias below (see components/ArticleBody.tsx).
 export const glossary: GlossaryTerm[] = [
+  {
+    term: "CSS Profile",
+    slug: "css-profile",
+    definition:
+      "A second financial aid form (run by the College Board) that about 200 mostly private colleges require to award their own institutional aid. Free for families making up to $100,000.",
+    related: "college",
+    article: "/learn/college/css-profile-explained",
+  },
   // --- Credit ---
   {
     slug: "credit-score",

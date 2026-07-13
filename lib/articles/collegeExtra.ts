@@ -2,6 +2,95 @@ import type { Article } from "./types";
 
 export const collegeExtraArticles: Article[] = [
   {
+    slug: "css-profile-explained",
+    order: 22,
+    topicId: "college",
+    title: "The CSS Profile, Explained",
+    dek: "About 200 colleges want a second aid form beyond the FAFSA. Here's what it asks, what it costs, and why low-income families usually pay nothing.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "The CSS Profile unlocks a school's own institutional aid, separate from federal aid.",
+      "It's free for families making up to $100,000; otherwise $25 for the first school and $16 per additional school.",
+      "It opens October 1, the same day as the FAFSA, and early-decision applicants need it earliest.",
+      "It asks deeper questions than the FAFSA, including home equity and a noncustodial parent's finances.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Filing the [FAFSA](/learn/college/fafsa-step-by-step) unlocks federal money: Pell Grants, work-study, federal loans. But at a couple hundred colleges, mostly private ones with big aid budgets, there's a second form standing between you and the school's own money: the CSS Profile, run by the College Board. Schools like these often give out far more of their own institutional aid than the government does, so at the places that ask for it, this form can matter even more than the FAFSA.",
+      },
+      {
+        type: "h2",
+        text: "Who actually needs it",
+      },
+      {
+        type: "p",
+        text: "Only students applying to schools that require it, and each school's financial aid page says plainly whether it does. The list runs around 200 colleges and scholarship programs, heavy on private universities and small liberal-arts colleges. State schools mostly don't use it. Check every school on your list, because filing it for a school that doesn't want it is wasted effort, and skipping it at a school that does can cost you the biggest aid package you'd have gotten anywhere.",
+      },
+      {
+        type: "h2",
+        text: "What it costs, and who pays nothing",
+      },
+      {
+        type: "p",
+        text: "For 2026-27 the Profile costs $25 for the first school and $16 for each additional one. But here's the part too many families never learn: it's automatically free if your family income is up to $100,000. No separate waiver application, no extra form; the fee simply doesn't appear when your answers show you qualify. If you're a first-gen or low-income student staring at that fee, odds are good you won't pay it.",
+      },
+      {
+        type: "h2",
+        text: "How it digs deeper than the FAFSA",
+      },
+      {
+        type: "p",
+        text: "The Profile exists because schools giving out their own millions want a fuller picture than the federal formula. Expect questions the FAFSA never asks:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Home equity** on the house you live in, which the FAFSA ignores.",
+          "**Small-business and farm finances**, even ones the FAFSA skips.",
+          "**Medical expenses and private-school tuition** for siblings, which can work in your favor.",
+          "**Both parents' finances when they're divorced or separated**: many Profile schools also want the noncustodial parent's information on a separate form.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "No contact with a noncustodial parent? Schools grant waivers for that form when there's no relationship or there's a safety issue. Email each school's aid office and ask for their noncustodial waiver process; a counselor, teacher, or social worker letter usually supports it.",
+      },
+      {
+        type: "h2",
+        text: "Timing: October 1, earlier if you apply early",
+      },
+      {
+        type: "p",
+        text: "The Profile opens October 1 each year, the same day as the FAFSA. Deadlines belong to each school, not to the College Board, and they arrive in waves: early-decision and early-action applicants often need it by early to mid November, while regular-decision deadlines usually land January through February. File both forms in the fall and you never have to think about which wave you're in.",
+      },
+      {
+        type: "p",
+        text: "After you submit, some schools also ask for tax documents through the College Board's IDOC upload system. Treat any IDOC email as real homework with a due date; aid offices won't finalize your package without it.",
+      },
+      {
+        type: "h2",
+        text: "The play, start to finish",
+      },
+      {
+        type: "steps",
+        items: [
+          "List your schools and mark which ones require the Profile; their aid pages say so.",
+          "Create a College Board account (the same one used for the SAT and AP works).",
+          "Gather the same documents as for the FAFSA, plus mortgage and business records if they apply.",
+          "File in October alongside your FAFSA, earliest deadlines first.",
+          "Watch for IDOC or school follow-ups, and compare the [award letters](/learn/college/reading-aid-award-letter) when they arrive.",
+        ],
+      },
+      {
+        type: "key",
+        text: "The FAFSA opens the government's wallet. The Profile opens the school's, and at the schools that ask for it, that wallet is usually bigger.",
+      },
+    ],
+    related: ["fafsa-step-by-step", "reading-aid-award-letter", "appealing-financial-aid"],
+  },
+  {
     slug: "federal-vs-private-loans",
     order: 40,
     topicId: "college",

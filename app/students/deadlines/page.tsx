@@ -80,7 +80,7 @@ export default function StudentDeadlinesPage() {
             </span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
-            Six dates decide most of a student&apos;s money year. Miss one and
+            Eleven dates decide most of a student&apos;s money year. Miss one and
             it can cost thousands; hit them and school gets cheaper. They roll
             every year — these are current for 2026–27, and you can hand them
             to your calendar or your inbox below.
@@ -121,7 +121,7 @@ export default function StudentDeadlinesPage() {
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <AddAllToCalendar />
             <p className="max-w-md text-sm font-medium leading-6 text-ink/75">
-              One file, six yearly-repeating events — your own calendar app
+              One file, every date as a yearly-repeating event — your own calendar app
               reminds you a week ahead, every year, no sign-up.
             </p>
           </div>

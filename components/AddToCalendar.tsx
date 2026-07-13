@@ -49,7 +49,7 @@ export function AddAllToCalendar() {
       className="btn-ink inline-flex items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-bold text-ink"
     >
       <CalendarPlus className="h-4 w-4" />
-      Add all six to your calendar
+      Add all {deadlines.length} to your calendar
     </button>
   );
 }

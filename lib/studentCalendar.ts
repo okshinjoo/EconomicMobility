@@ -70,4 +70,49 @@ export const studentCalendar: StudentDate[] = [
     href: "/learn/college/student-loans-before-you-sign",
     linkLabel: "Student Loans, Before You Sign",
   },
+  {
+    when: "January 31",
+    deadlineId: "w2-tax-season",
+    title: "W-2s arrive — file early",
+    detail:
+      "Employers must send W-2s by January 31. For working students, filing early means the refund (often the year's biggest cash moment) lands months sooner.",
+    href: "/learn/taxes/filing-taxes-first-time",
+    linkLabel: "Filing Taxes for the First Time",
+  },
+  {
+    when: "May 1",
+    deadlineId: "decision-day",
+    title: "College Decision Day",
+    detail:
+      "Enrollment deposits are due and your choice locks in. Compare every award letter first — committing before comparing costs people thousands.",
+    href: "/learn/college/reading-aid-award-letter",
+    linkLabel: "Reading an Aid Award Letter",
+  },
+  {
+    when: "October 1",
+    deadlineId: "css-profile-opens",
+    title: "CSS Profile opens",
+    detail:
+      "The second aid form, required by about 200 mostly private colleges for their own money. Free for families making up to $100,000.",
+    href: "/learn/college/css-profile-explained",
+    linkLabel: "The CSS Profile, Explained",
+  },
+  {
+    when: "November 1",
+    deadlineId: "early-decision",
+    title: "Early decision deadlines (typically)",
+    detail:
+      "Early decision binds you to one school before you can compare aid offers. Great for a clear first choice; risky if the money matters.",
+    href: "/learn/college/css-profile-explained",
+    linkLabel: "The CSS Profile, Explained",
+  },
+  {
+    when: "November 1",
+    deadlineId: "health-open-enrollment",
+    title: "Health insurance open enrollment",
+    detail:
+      "The yearly window to pick or switch marketplace coverage opens. If you're about to age off a parent's plan at 26, this is your date.",
+    href: "/learn/insurance/health-insurance-explained",
+    linkLabel: "Health Insurance, Explained",
+  },
 ];
