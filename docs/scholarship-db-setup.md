@@ -1,5 +1,7 @@
 # Scholarship database go-live (CareerOneStop) — STATUS July 13, 2026
 
+> **CLOSED — July 13, 2026.** Kelly Tenner (DEED) confirmed CareerOneStop's scholarship data is licensed from a third party: no download, no API, ever. The inert proxy route and ScholarshipDbSearch were removed (git history has them); CareerOneStop is now a launcher card on /students/scholarships instead. Do NOT set CAREERONESTOP_* env vars for scholarships. The API credentials remain valid for their OTHER services (agreement expires 7/13/2029) if a different feature ever wants them.
+
 **Approved.** Credentials received (stored in the owner's passwords doc).
 Agreement expires **7/13/2029** (renewal required; put it in the calendar).
 Terms to honor when any of their services ship: public, free, no login
