@@ -117,6 +117,24 @@ if we want them. Yearly-update burden, same as article figures.
   own calculator snapshots or the deadlines registry.
 - Accounts stay optional: plan lives on-device until they sign in.
 
+## Status
+
+**Session 1 SHIPPED (July 13, 2026):** lib/deadlines.ts, lib/plan.ts
+(PLAN_KEY snapshot — account sync needs no changes), app/api/plan/route.ts
+(keyed-catalog composition: the model only echoes catalog keys, so invented
+links are impossible; deterministic journey fallback on missing key or any
+AI failure, aiComposed flag), components/PlanApp.tsx (five-question intake
+prefilled from profile + plan checklist with derived auto-checks and manual
+deadline/habit checkboxes), /plan page. Verified end to end with the $20k
+transfer scenario (fallback path locally; AI path engages in production
+where ANTHROPIC_API_KEY exists). Page is deliberately UNLINKED from nav
+until session 2.
+
+**Session 2 next:** Now/Next/Done grouping, nav wiring ("Your Path"
+dropdown or top-level decision for the owner), start-here/quiz-results
+handoffs, search + sitemap entries, re-plan pre-filled with last answers
+(currently starts blank).
+
 ## Build order (one session each)
 
 1. **Intake + route:** intake UI, lib/deadlines.ts, /api/plan with
