@@ -2,17 +2,17 @@
 
 // The way home (July 2026): once a tab has seen the For Students microsite,
 // shared pages (guides, courses, the glossary) float a small chip back to
-// it. Two moods (owner note, July 13: "Back" reads wrong if you started on
-// the homepage): stepping OUT of /students mid-browse says "Back to
-// Students"; any other arrival — landing on the homepage fresh, a reload —
-// invites instead ("Check out For Students"). The distinction lives in the
-// sessionStorage value: "seen" (been to the hub) upgrades to "exit" only on
-// a client-side navigation out of /students, and a fresh page load decays
-// "exit" back to "seen" so "Back" never outlives the browsing flow that
-// earned it. Dismiss clears everything for the tab. Mounted as a direct
-// child of <body>, so position/z-index are INLINE (the unlayered body>*
-// grain rule would pin utility classes). z 52: under the chat (55); chip
-// floats bottom-left, chat bottom-right.
+// it. Two moods (owner notes, July 13: "Back" reads wrong if you started on
+// the homepage — and it must not linger once you're browsing the main site):
+// "Back to Students" appears ONLY on the very first page after a client-side
+// navigation out of /students; every other case — homepage click-throughs,
+// searches, reloads, the second hop after an exit — gets the "Check out For
+// Students" invite instead. sessionStorage just remembers the tab has seen
+// the hub; the back/invite call comes from the immediately-previous pathname
+// alone. Dismiss clears everything for the tab. Mounted as a direct child
+// of <body>, so position/z-index are INLINE (the unlayered body>* grain
+// rule would pin utility classes). z 52: under the chat (55); chip floats
+// bottom-left, chat bottom-right.
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -37,22 +37,13 @@ export default function StudentReturnChip() {
         setMode("hidden");
         return;
       }
-      const stored = window.sessionStorage.getItem(KEY);
-      if (!stored) {
+      if (!window.sessionStorage.getItem(KEY)) {
         setMode("hidden");
         return;
       }
-      if (prev?.startsWith("/students")) {
-        // Just walked out of the microsite — the road back matters.
-        window.sessionStorage.setItem(KEY, "exit");
-        setMode("back");
-      } else if (prev === null && stored === "exit") {
-        // Fresh page load: the old exit is a different browsing flow now.
-        window.sessionStorage.setItem(KEY, "seen");
-        setMode("invite");
-      } else {
-        setMode(stored === "exit" ? "back" : "invite");
-      }
+      // "Back" only on the single hop out of the hub; anything after is
+      // a main-site flow and gets the invite.
+      setMode(prev?.startsWith("/students") ? "back" : "invite");
     } catch {
       setMode("hidden");
     }
