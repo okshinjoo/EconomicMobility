@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Lora, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import ChatLauncher from "@/components/ChatLauncher";
+import StudentReturnChip from "@/components/StudentReturnChip";
 import VisitTracker from "@/components/VisitTracker";
 import ScrollProgress from "@/components/ScrollProgress";
 import { getSearchItems } from "@/lib/search";
@@ -79,6 +80,7 @@ export default function RootLayout({
         {children}
         {modal ?? null}
         <ChatLauncher items={getSearchItems()} />
+        <StudentReturnChip />
         <VisitTracker />
         <ScrollProgress />
         <Analytics />
