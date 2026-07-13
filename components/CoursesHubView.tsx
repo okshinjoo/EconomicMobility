@@ -20,6 +20,7 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
     articleSlugs: c.articleSlugs,
     cardCount: getCourseFlashcards(c).length,
     quizCount: c.finalQuiz.length,
+    draft: c.draft,
   }));
 
   return (

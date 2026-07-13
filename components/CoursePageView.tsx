@@ -52,9 +52,14 @@ export default function CoursePageView({
             <span className="font-medium text-cream">{found.title}</span>
           </nav>
           <span
-            className={`mt-8 block text-sm font-bold uppercase tracking-[0.25em] ${kickerClass}`}
+            className={`mt-8 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.25em] ${kickerClass}`}
           >
             Learning module
+            {found.draft && (
+              <span className="-rotate-2 rounded-md border-2 border-cream/80 px-2.5 py-1 text-[11px] tracking-wide text-cream">
+                In progress
+              </span>
+            )}
           </span>
           <h1 className="mt-4 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[1.02] tracking-tight sm:text-6xl">
             {found.title}
@@ -67,8 +72,10 @@ export default function CoursePageView({
           </p>
           <p className="mt-6 text-sm font-medium text-cream/70">
             {articles.length} guides · about {totalMinutes} minutes of reading
-            · {cards.length} flashcards · {found.finalQuiz.length}-question
-            final
+            · {cards.length} flashcards ·{" "}
+            {found.draft
+              ? "final still being written"
+              : `${found.finalQuiz.length}-question final`}
           </p>
         </div>
       </section>
@@ -145,24 +152,49 @@ export default function CoursePageView({
         </div>
       </section>
 
-      {/* Final quiz */}
+      {/* Final quiz — drafts show an honest in-progress card instead */}
       <section className="bg-paper">
         <div className="mx-auto max-w-3xl px-6 py-12 lg:py-14">
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
             The final
           </h2>
-          <p className="mt-1.5 mb-6 text-sm text-stone">
-            Pass it and the {found.title} badge is yours.
-          </p>
-          <div className="card-ink-lg overflow-hidden rounded-2xl empty:hidden">
-            <CourseQuiz
-              courseId={found.id}
-              courseTitle={found.title}
-              questions={found.finalQuiz}
-              accent={accent}
-              articles={articleRefs}
-            />
-          </div>
+          {found.draft || found.finalQuiz.length === 0 ? (
+            <>
+              <p className="mt-1.5 mb-6 text-sm text-stone">
+                Still being written.
+              </p>
+              <div className="card-ink-lg rounded-2xl bg-cream p-7 sm:p-8">
+                <span
+                  className="inline-block -rotate-2 rounded-md border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream shadow-[3px_3px_0_#11211c]"
+                  style={{ background: accent }}
+                >
+                  In progress
+                </span>
+                <p className="mt-4 text-base leading-7 text-ink">
+                  This module is still being built. The reading path and
+                  flashcards above are real and ready now — the final exam
+                  (and the badge that comes with it) is being written. Read
+                  the guides in the meantime; everything you finish counts
+                  the moment the final lands.
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="mt-1.5 mb-6 text-sm text-stone">
+                Pass it and the {found.title} badge is yours.
+              </p>
+              <div className="card-ink-lg overflow-hidden rounded-2xl empty:hidden">
+                <CourseQuiz
+                  courseId={found.id}
+                  courseTitle={found.title}
+                  questions={found.finalQuiz}
+                  accent={accent}
+                  articles={articleRefs}
+                />
+              </div>
+            </>
+          )}
         </div>
       </section>
 

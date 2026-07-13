@@ -32,8 +32,14 @@ export interface Course {
   color: string;
   /** Article slugs in reading order (any topic; that's the point). */
   articleSlugs: string[];
-  /** Written to be passed after reading; every question names its source. */
+  /** Written to be passed after reading; every question names its source.
+   *  Draft courses ship with [] until their final is written. */
   finalQuiz: CourseQuizQuestion[];
+  /** Still being built (owner ask, July 2026): the reading path and
+   *  flashcards are live, but the final + badge aren't written yet. Cards
+   *  and the course page show an honest "in progress" state instead of a
+   *  quiz. Flip to false (and write the final) to launch it for real. */
+  draft?: boolean;
 }
 
 export const PASS_PERCENT = 80;
@@ -1119,6 +1125,25 @@ export const courses: Course[] = [
         sourceSlug: "repaying-student-loans",
       },
     ],
+  },
+  {
+    id: "transfer-ready",
+    title: "Transfer Ready",
+    goal: "Land at a four-year school with your credits and your aid intact.",
+    description:
+      "The community-college-to-university move, end to end: what the route saves, protecting your aid while you're there, choosing target schools by how they'll actually treat you, and comparing offers when the letters land. This module is still being built — the reading path below is live now, and the final (with its badge) is on the way.",
+    color: "#4b5f8a",
+    draft: true,
+    articleSlugs: [
+      "community-college-path",
+      "keep-your-aid-sap",
+      "how-colleges-read-applications",
+      "schools-with-generous-aid",
+      "in-state-vs-out-of-state",
+      "community-college-transfer-money",
+      "reading-aid-award-letter",
+    ],
+    finalQuiz: [],
   },
 ];
 

@@ -22,6 +22,8 @@ export interface CourseCardData {
   articleSlugs: string[];
   cardCount: number;
   quizCount: number;
+  /** Still being built — reading path live, final + badge not yet. */
+  draft?: boolean;
 }
 
 export default function CourseGrid({ items, frame = "main" }: { items: CourseCardData[]; frame?: Frame }) {
@@ -62,12 +64,18 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
               <h2 className="relative font-display text-2xl font-semibold leading-tight text-cream">
                 {course.title}
               </h2>
-              <BadgeMedal
-                color="#fbf8f1"
-                className={`h-11 w-11 shrink-0 transition-opacity ${
-                  badge ? "" : "opacity-30 group-hover:opacity-50"
-                }`}
-              />
+              {course.draft ? (
+                <span className="relative shrink-0 -rotate-2 rounded-md border-2 border-cream/80 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-cream">
+                  In progress
+                </span>
+              ) : (
+                <BadgeMedal
+                  color="#fbf8f1"
+                  className={`h-11 w-11 shrink-0 transition-opacity ${
+                    badge ? "" : "opacity-30 group-hover:opacity-50"
+                  }`}
+                />
+              )}
             </div>
 
             <div className="flex flex-1 flex-col border-t-2 border-ink p-5">
@@ -78,7 +86,8 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
                 {course.goal}
               </p>
               <p className="mt-3 text-xs font-semibold text-ink/60">
-                {total} guides · {course.cardCount} flashcards · final + badge
+                {total} guides · {course.cardCount} flashcards ·{" "}
+                {course.draft ? "final still being written" : "final + badge"}
               </p>
 
               <div className="mt-auto pt-4">
@@ -104,7 +113,9 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
                       {started
                         ? `${done} of ${total} read — keep going`
                         : done === total && total > 0
-                          ? "All read — take the final"
+                          ? course.draft
+                            ? "All read — the final is coming"
+                            : "All read — take the final"
                           : "About an evening of reading"}
                     </p>
                   </>

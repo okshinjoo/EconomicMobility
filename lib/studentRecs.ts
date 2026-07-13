@@ -122,6 +122,11 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         desc: "A short course on getting every aid dollar you qualify for.",
         href: "/students/courses/aid-season-playbook",
       },
+      {
+        label: "Transfer Ready — the course",
+        desc: "Our transfer module, still in progress: the reading path is live now.",
+        href: "/students/courses/transfer-ready",
+      },
     ],
   },
   uni: {
