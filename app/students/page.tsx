@@ -416,7 +416,14 @@ export default function StudentsPage() {
                 >
                   Our transfer money guide
                 </Link>{" "}
-                walks the whole play.
+                walks the whole play — and as you confirm each course,{" "}
+                <Link
+                  href="/students/tracker"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  log it in your tracker
+                </Link>{" "}
+                so the units add up where you can see them.
               </p>
             </div>
             <a

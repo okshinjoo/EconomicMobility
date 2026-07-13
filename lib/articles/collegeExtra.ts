@@ -966,6 +966,10 @@ export const collegeExtraArticles: Article[] = [
         ],
       },
       {
+        type: "tip",
+        text: "Keep score while you do this. The [student tracker](/students/tracker) counts your units toward the 60-unit transfer mark, flags the courses you haven't confirmed yet, and shows the dollars every transferable course protects.",
+      },
+      {
         type: "h2",
         text: "Outside California",
       },
