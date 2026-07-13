@@ -28,7 +28,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 text-sm font-medium lg:flex">
+        <div className="hidden items-center gap-1 text-sm font-medium xl:flex">
           {nav.map((entry) =>
             entry.items ? (
               <NavMenu key={entry.href} entry={entry} />
@@ -36,7 +36,7 @@ export default function Header() {
               <Link
                 key={entry.href}
                 href={entry.href}
-                className="rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber"
+                className="whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber"
               >
                 {entry.label}
               </Link>

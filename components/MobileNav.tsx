@@ -40,7 +40,7 @@ export default function MobileNav() {
     });
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -55,7 +55,7 @@ export default function MobileNav() {
         createPortal(
           <div
             style={{ position: "fixed", zIndex: 60 }}
-            className={`inset-0 flex flex-col bg-ink text-cream transition-opacity duration-200 lg:hidden ${
+            className={`inset-0 flex flex-col bg-ink text-cream transition-opacity duration-200 xl:hidden ${
               open ? "opacity-100" : "pointer-events-none opacity-0"
             }`}
             aria-hidden={!open}
