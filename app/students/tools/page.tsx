@@ -25,24 +25,49 @@ const EXTRAS = [
 export default function StudentToolsHub() {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      {/* Hero — B-voice: light field, sticker, and a tilted pastel cluster */}
       <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 pb-8 pt-10">
-          <nav className="text-sm font-medium text-stone">
-            <Link
-              href="/students"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-            >
-              For Students
-            </Link>{" "}
-            / Tools
-          </nav>
-          <h1 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Every calculator, in-house.
-          </h1>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-stone">
-            The same free tools as the main site, right here in the student
-            hub — and your numbers follow you between the two.
-          </p>
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-6 pb-10 pt-12 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <nav className="text-sm font-medium text-stone">
+              <Link
+                href="/students"
+                className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                For Students
+              </Link>{" "}
+              / Tools
+            </nav>
+            <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+              Free · no sign-up · numbers follow you
+            </span>
+            <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
+              Every calculator,{" "}
+              <span className="italic text-forest">in-house.</span>
+            </h1>
+            <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
+              The same free tools as the main site, right here in the student
+              hub — and your numbers follow you between the two.
+            </p>
+          </div>
+          <div className="hidden grid-cols-2 gap-3 lg:grid" aria-hidden>
+            {(
+              [
+                ["College Cost", "#c9842a", "rotate-[1deg]"],
+                ["Budget Planner", "#15624b", "-rotate-[1deg]"],
+                ["Paycheck", "#2f6d80", "-rotate-[0.6deg]"],
+                ["Reality Check", "#d26a4c", "rotate-[0.8deg]"],
+              ] as const
+            ).map(([label, tint, tilt]) => (
+              <div
+                key={label}
+                className={`card-ink rounded-xl px-4 py-6 text-center font-display text-base font-bold text-ink ${tilt}`}
+                style={{ background: `color-mix(in srgb, ${tint} 16%, #fbf8f1)` }}
+              >
+                {label}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

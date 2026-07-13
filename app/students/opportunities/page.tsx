@@ -5,6 +5,7 @@
 // twin, like /students/scholarships).
 
 import Link from "next/link";
+import { Briefcase } from "lucide-react";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
@@ -30,26 +31,34 @@ export default function OpportunitiesPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
 
-      {/* Hero — compact, light */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-5xl px-6 pb-10 pt-12">
-          <nav className="text-sm font-medium text-stone">
+      {/* Hero — A-voice amber field: getting paid deserves the loud color */}
+      <section className="relative overflow-hidden border-y-2 border-ink bg-amber text-ink">
+        <Briefcase
+          aria-hidden
+          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 text-ink opacity-[0.07]"
+          strokeWidth={1}
+        />
+        <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-12">
+          <nav className="text-sm font-medium text-ink/70">
             <Link
               href="/students"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              className="underline decoration-ink/40 decoration-2 underline-offset-4 hover:text-ink"
             >
               For Students
             </Link>{" "}
             / Opportunities
           </nav>
-          <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
+          <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+            {opportunities.length} programs · verified · free to apply
+          </span>
+          <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight text-ink sm:text-6xl">
             Get paid to{" "}
             <span className="relative whitespace-nowrap text-forest">
               get ahead.
               <svg
                 aria-hidden="true"
                 viewBox="0 0 300 18"
-                className="absolute -bottom-1.5 left-0 h-3 w-full text-amber"
+                className="absolute -bottom-1.5 left-0 h-3 w-full text-cream"
                 preserveAspectRatio="none"
               >
                 <path
@@ -62,7 +71,7 @@ export default function OpportunitiesPage() {
               </svg>
             </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/80">
             {opportunities.length} real internships, fellowships, research
             programs, and college-access programs — each one verified by us,
             free to apply, and linked straight to its official page. Many pay
@@ -76,7 +85,7 @@ export default function OpportunitiesPage() {
 
           {/* Start from who you are — pre-sets the filters below */}
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-stone">
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink/70">
               Start from who you are
             </span>
             {AUDIENCE_DOORS.map((d) => (

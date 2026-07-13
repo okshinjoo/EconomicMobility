@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Award } from "lucide-react";
 import { Suspense } from "react";
 import { frameHref } from "@/lib/frame";
 import type { Metadata } from "next";
@@ -28,45 +29,37 @@ export default function ScholarshipsPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
 
-      {/* Hero — compact, light */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-5xl px-6 pb-10 pt-12">
-          <nav className="text-sm font-medium text-stone">
+      {/* Hero — C-voice forest field: the flagship gets the brand color */}
+      <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
+        <Award
+          aria-hidden
+          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 opacity-[0.08]"
+          strokeWidth={1}
+        />
+        <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-12">
+          <nav className="text-sm font-medium text-cream/70">
             <Link
               href="/students"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-cream"
             >
               For Students
             </Link>{" "}
             / Scholarships
           </nav>
-          <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
+          <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+            {scholarships.length} awards · hand-verified · zero fees
+          </span>
+          <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight sm:text-6xl">
             The scholarship{" "}
-            <span className="relative whitespace-nowrap text-forest">
-              starting lineup.
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 300 18"
-                className="absolute -bottom-1.5 left-0 h-3 w-full text-amber"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M3,13 C60,4 120,4 160,9 C210,15 260,8 297,5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
+            <span className="italic text-amber">starting lineup.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/80">
             {scholarships.length} real, established awards — each one verified
             by us, linked straight to its official site, and ordered by where
             it falls in the school year. No fees, no data harvesting, no
             sweepstakes dressed up as scholarships.
           </p>
-          <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-ink">
+          <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-cream">
             And no forms about you: other sites make you hand over your
             ethnicity, citizenship, and GPA before showing you a single
             award. Here you just look.
@@ -74,14 +67,14 @@ export default function ScholarshipsPage() {
 
           {/* Start from who you are — pre-sets the filters below */}
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-stone">
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-amber">
               Start from who you are
             </span>
             {AUDIENCE_DOORS.map((d) => (
               <Link
                 key={d.href}
                 href={d.href}
-                className="rounded-lg border-2 border-ink bg-cream px-3.5 py-1.5 text-sm font-bold text-ink shadow-[2px_2px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+                className="rounded-lg border-2 border-ink bg-cream px-3.5 py-1.5 text-sm font-bold text-ink shadow-[2px_2px_0_#e7a33c] transition-transform duration-150 hover:-translate-y-0.5"
               >
                 {d.label}
               </Link>

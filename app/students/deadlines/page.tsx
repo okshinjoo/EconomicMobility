@@ -6,6 +6,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import ReminderSignup from "@/components/ReminderSignup";
@@ -47,39 +48,30 @@ export default function StudentDeadlinesPage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      {/* Hero */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 pb-10 pt-12">
-          <nav className="text-sm font-medium text-stone">
+      {/* Hero — A-voice terracotta field: deadlines wear the urgent color */}
+      <section className="relative overflow-hidden border-b-2 border-ink bg-terracotta text-cream">
+        <CalendarDays
+          aria-hidden
+          className="pointer-events-none absolute -bottom-16 -right-10 h-80 w-80 opacity-[0.09]"
+          strokeWidth={1}
+        />
+        <div className="relative mx-auto max-w-6xl px-6 pb-12 pt-12">
+          <nav className="text-sm font-medium text-cream/70">
             <Link
               href="/students"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-cream"
             >
               For Students
             </Link>{" "}
             / Deadlines
           </nav>
-          <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
-            The dates that{" "}
-            <span className="relative whitespace-nowrap text-forest">
-              move money.
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 300 18"
-                className="absolute -bottom-1.5 left-0 h-3 w-full text-amber"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M3,13 C60,4 120,4 160,9 C210,15 260,8 297,5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
+          <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+            The 2026–27 money calendar
+          </span>
+          <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight sm:text-6xl">
+            The dates that <span className="italic">move money.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/85">
             Eleven dates decide most of a student&apos;s money year. Miss one and
             it can cost thousands; hit them and school gets cheaper. They roll
             every year — these are current for 2026–27, and you can hand them
