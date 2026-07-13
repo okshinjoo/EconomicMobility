@@ -237,6 +237,45 @@ export default function StudentsPage() {
         </div>
       </section>
 
+      {/* Transferring — point at the official agreement map, don't copy it */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 pb-12">
+          <div className="card-ink-lg flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-cream p-7 sm:p-8 lg:-rotate-[0.3deg]">
+            <div className="max-w-xl">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+                Transferring from community college?
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
+                The course-by-course transfer map already exists.
+              </h2>
+              <p className="mt-2 text-base leading-7 text-stone">
+                In California, ASSIST.org is the official record of exactly
+                which community college courses count at each UC and CSU, by
+                major. Check it <em>before</em>{" "}you register each term — every
+                course that transfers is a course you don&apos;t pay for
+                twice. Outside California, your college&apos;s transfer center
+                keeps the equivalent agreements; our{" "}
+                <Link
+                  href="/resources"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  state finder
+                </Link>{" "}
+                points to your state&apos;s programs.
+              </p>
+            </div>
+            <a
+              href="https://assist.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ink inline-flex items-center rounded-md bg-forest px-7 py-3.5 text-base font-bold text-cream"
+            >
+              Open ASSIST.org
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Tools row */}
       <section className="border-t-2 border-ink bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 py-12">
