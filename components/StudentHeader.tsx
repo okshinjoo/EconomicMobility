@@ -14,23 +14,28 @@ import {
   ChevronDown,
   BookOpen,
   Library,
-  ArrowRightLeft,
   Wallet,
-  GraduationCap,
   Map,
+  Compass,
   CalendarDays,
   Mail,
   FileText,
   Award,
   Search,
   Landmark,
+  HeartHandshake,
+  Briefcase,
   Wrench,
   ClipboardList,
   Calculator,
   Scale,
   Banknote,
+  Users,
+  MessageCircle,
+  HelpCircle,
   type LucideIcon,
 } from "lucide-react";
+import { topics } from "@/lib/topics";
 import AccountButton from "@/components/AccountButton";
 
 interface StudentDropItem {
@@ -52,51 +57,89 @@ interface StudentNavEntry {
   columns?: 2;
 }
 
+// Guides panel: every topic in the library, college first — the student
+// frame carries the WHOLE site, so the subnav says so (owner call July 13:
+// "should feel like a comprehensive site like the regular one").
+const GUIDE_TOPICS = [
+  ...topics.filter((t) => t.id === "college"),
+  ...topics.filter((t) => t.id !== "college"),
+];
+
 const NAV: StudentNavEntry[] = [
   { label: "Overview", href: "/students", exact: true },
   {
     label: "Guides",
     href: "/students/learn/college",
     columns: 2,
-    items: [
-      { label: "College & aid guides", href: "/students/learn/college", desc: "Every FAFSA, loan, and aid guide in one library.", icon: GraduationCap, color: "#c9842a" },
-      { label: "The whole library", href: "/students/learn", desc: "All nine topics — credit, taxes, investing, more.", icon: Library, color: "#0c4a39" },
-      { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
-      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
-      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c9842a" },
-      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day.", icon: Map, color: "#0c4a39" },
-    ],
+    items: GUIDE_TOPICS.map((t) => ({
+      label: t.title,
+      href: `/students/learn/${t.id}`,
+      desc: t.description,
+      icon: t.icon,
+      color: t.color,
+    })),
     footer: [
+      { label: "The whole library", href: "/students/learn" },
+      { label: "Transfer money guide", href: "/students/learn/college/community-college-transfer-money" },
+      { label: "Student life essentials", href: "/students#shelf" },
       { label: "Glossary", href: "/students/glossary" },
-      { label: "All courses", href: "/students/courses" },
-      { label: "All guided paths", href: "/students/journey" },
     ],
+  },
+  {
+    label: "Your Path",
+    href: "/students/journey/college",
+    items: [
+      { label: "Pay for college — the path", href: "/students/journey/college", desc: "Ordered milestones, FAFSA to signing day.", icon: Map, color: "#c9842a" },
+      { label: "All guided paths", href: "/students/journey", desc: "Nine goals — credit, debt, investing, and more.", icon: Compass, color: "#0c4a39" },
+      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
+      { label: "All courses", href: "/students/courses", desc: "Ten modules: reading path, flashcards, final.", icon: Library, color: "#15624b" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, transfer progress, to-dos.", icon: ClipboardList, color: "#c9842a" },
+    ],
+    footer: [{ label: "Take the 2-minute quiz", href: "/quiz" }],
   },
   {
     label: "Deadlines",
     href: "/students/deadlines",
+    columns: 2,
     items: [
       { label: "The money calendar", href: "/students/deadlines", desc: "Six dates that move real money, every year.", icon: CalendarDays, color: "#c4573b" },
       { label: "Email reminders", href: "/students/deadlines#reminders", desc: "A nudge a few weeks ahead — pick your dates.", icon: Mail, color: "#0c4a39" },
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest.", icon: FileText, color: "#c9842a" },
       { label: "FAFSA mistakes to avoid", href: "/students/learn/college/fafsa-mistakes", desc: "The errors that delay aid, and their fixes.", icon: FileText, color: "#15624b" },
+      { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time", desc: "April 15, minus the fear — where to start.", icon: Landmark, color: "#0c4a39" },
+      { label: "Repaying student loans", href: "/students/learn/college/repaying-student-loans", desc: "Plans, forgiveness, and the July 1 rate reset.", icon: Banknote, color: "#c4573b" },
     ],
     footer: [
-      { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time" },
       { label: "Scholarship season", href: "/students/learn/college/finding-scholarships" },
+      { label: "Before you sign a loan", href: "/students/learn/college/student-loans-before-you-sign" },
     ],
   },
   {
     label: "Scholarships",
     href: "/students/scholarships",
+    columns: 2,
     items: [
       { label: "The Scholarship Finder", href: "/students/scholarships", desc: "25 vetted national awards, filters for your stage.", icon: Award, color: "#c9842a" },
       { label: "Big national databases", href: "/students/scholarships#more", desc: "BigFuture, Immigrants Rising, UNCF — the deep wells.", icon: Search, color: "#0c4a39" },
       { label: "Winning scholarships", href: "/students/learn/college/finding-scholarships", desc: "Where to look and how to actually win.", icon: FileText, color: "#c4573b" },
       { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first — know the difference.", icon: Landmark, color: "#15624b" },
+      { label: "Undocumented & DACA aid", href: "/students/learn/college/undocumented-daca-aid", desc: "Real aid paths that don't require citizenship.", icon: HeartHandshake, color: "#c9842a" },
+      { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Briefcase, color: "#0c4a39" },
+    ],
+    footer: [
+      { label: "Reading an award letter", href: "/students/learn/college/reading-aid-award-letter" },
+      { label: "Appealing your aid", href: "/students/learn/college/appealing-financial-aid" },
     ],
   },
-  { label: "Community", href: "/students/community" },
+  {
+    label: "Community",
+    href: "/students/community",
+    items: [
+      { label: "The Students channel", href: "/students/community", desc: "Aid, loans, first paychecks — people in your semester.", icon: Users, color: "#0c4a39" },
+      { label: "Introduce yourself", href: "/students/community/post/say-hello", desc: "The start-here thread — say hi, no stakes.", icon: MessageCircle, color: "#c9842a" },
+      { label: "Ask a question anonymously", href: "/ask", desc: "No account, no name — we answer the good ones.", icon: HelpCircle, color: "#c4573b" },
+    ],
+  },
   {
     label: "Tools",
     href: "/students/tools",
@@ -108,10 +151,12 @@ const NAV: StudentNavEntry[] = [
       { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side.", icon: Scale, color: "#15624b" },
       { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing.", icon: Banknote, color: "#0c4a39" },
       { label: "Paycheck", href: "/students/tools/paycheck", desc: "What a campus job pays after taxes.", icon: Wallet, color: "#c9842a" },
+      { label: "Budget Planner", href: "/students/tools/budget", desc: "Take-home pay against real expenses.", icon: Calculator, color: "#c4573b" },
+      { label: "Reality Check", href: "/students/tools/reality-check", desc: "Pick the life you want; see the salary it takes.", icon: Compass, color: "#15624b" },
     ],
     footer: [
-      { label: "Budget Planner", href: "/students/tools/budget" },
-      { label: "Reality Check", href: "/students/tools/reality-check" },
+      { label: "Rent", href: "/students/tools/rent" },
+      { label: "Emergency Fund", href: "/students/tools/emergency-fund" },
       { label: "Templates", href: "/students/tools/templates" },
       { label: "Letter Generator", href: "/students/tools/letters" },
     ],
@@ -196,7 +241,7 @@ export default function StudentHeader() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
             E
           </span>
-          <span className="hidden font-display text-xl font-semibold tracking-tight lg:block">
+          <span className="hidden font-display text-xl font-semibold tracking-tight xl:block">
             <span className="text-amber">EMP</span>ower
           </span>
           <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
