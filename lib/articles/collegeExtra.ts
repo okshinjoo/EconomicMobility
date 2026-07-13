@@ -288,7 +288,7 @@ export const collegeExtraArticles: Article[] = [
         text: "A transfer advisor at either school can map this out with you for free. Lean on them. And when you choose the four-year school, [in-state tuition](/learn/college/in-state-vs-out-of-state) usually keeps the second half of the degree affordable too.",
       },
     ],
-    related: ["in-state-vs-out-of-state", "minimizing-college-debt", "grants-loans-scholarships"],
+    related: ["community-college-transfer-money", "in-state-vs-out-of-state", "minimizing-college-debt"],
   },
 
   {
@@ -907,5 +907,110 @@ export const collegeExtraArticles: Article[] = [
       },
     ],
     related: ["repaying-student-loans", "community-college-path", "appealing-financial-aid"],
+  },
+  {
+    slug: "community-college-transfer-money",
+    order: 61,
+    topicId: "college",
+    title: "Transferring from Community College: The Money Side",
+    dek: "The discount only pays out if your credits land. How to protect the math with transfer agreements, keep your aid moving, and grab the money that exists only for transfer students.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "Every course that transfers is a course you never pay for twice.",
+      "Official agreements (like ASSIST.org in California) tell you exactly which courses count, before you register.",
+      "Your aid doesn't follow you automatically: file the FAFSA every year and compare the new school's offer.",
+      "Some sizable scholarships are open only to transfer students.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "If you started at a community college with a plan to transfer, you picked one of the smartest money routes in higher education. [The Community College Path](/learn/college/community-college-path) covers why the math works. This guide is about protecting that math, because the savings aren't automatic. They depend on your credits actually counting when you arrive.",
+      },
+      {
+        type: "key",
+        text: "A federal study found that transfer students lose about 40% of their credits on average. A lost credit is a course you paid for once at the community college and will pay for again at the university, in tuition and in time. The whole money game of transferring is keeping that number near zero.",
+      },
+      {
+        type: "h2",
+        text: "The math you're protecting",
+      },
+      {
+        type: "p",
+        text: "In California, community college tuition is $46 per unit in 2026, about $1,380 for a full-time year, and the California College Promise Grant waives those fees entirely for many low-income students. Compare that to roughly $6,800 a year in tuition at a Cal State or about $15,000 at a UC for 2026\u201327. Two years at the low price plus two at the high price is the discount. Two years at the low price that *don't count* is the trap.",
+      },
+      {
+        type: "h2",
+        text: "Make every course count: the California map",
+      },
+      {
+        type: "p",
+        text: "California writes the deal down. An articulation agreement is the official record of which courses at your community college satisfy which requirements at a specific university, and the whole set is public and searchable.",
+      },
+      {
+        type: "list",
+        items: [
+          "**ASSIST.org** is the official course-by-course database for transfers to UC and CSU (free, no account needed). Pick your college, your target campus, and your major, and it shows exactly what to take.",
+          "**Cal-GETC** is the single general-education pattern for students who started fall 2025 or later (it replaced the old IGETC pattern). Finish it and your general-ed requirements travel with you.",
+          "**An ADT (Associate Degree for Transfer)** comes with a guarantee: earn it and a Cal State must admit you with junior standing, so nothing gets re-litigated on arrival.",
+          "**UC TAG (Transfer Admission Guarantee)** offers guaranteed admission at six UC campuses if you hit the course and GPA marks. The exceptions are Berkeley, UCLA, and San Diego, which you can still apply to normally.",
+        ],
+      },
+      {
+        type: "steps",
+        items: [
+          "Before registering each term, check ASSIST for your major and target campus, and take only courses that appear there.",
+          "Confirm your Cal-GETC progress with a counselor every term, in writing (email counts).",
+          "Keep a folder with the syllabus for every course you take. If a credit is ever questioned, the syllabus is your evidence for the appeal.",
+          "If your target school changes, re-run the ASSIST check that week, not at application time.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Outside California",
+      },
+      {
+        type: "p",
+        text: "Every state has some version of this, just less centralized. Your community college's transfer center keeps the articulation agreements it holds with nearby universities, and many states publish statewide guaranteed-transfer course lists. Ask the transfer center two questions: which agreements exist with your target schools, and which courses on your plan are covered. Get the answer in writing and keep the syllabus folder anyway.",
+      },
+      {
+        type: "h2",
+        text: "Your aid moves with you (mostly)",
+      },
+      {
+        type: "p",
+        text: "Federal aid works at community colleges, so [file the FAFSA every year](/learn/college/fafsa-step-by-step), including the years you think you're too cheap to qualify for anything. When you transfer, your aid doesn't transfer with you; the new school builds a fresh package from that year's FAFSA. Packages differ wildly between campuses, so when offers arrive, [compare them side by side](/tools/college/compare-offers) on net price, not sticker price. California students without citizenship paperwork use the CADAA instead of the FAFSA; [aid without papers](/learn/college/undocumented-daca-aid) walks through it.",
+      },
+      {
+        type: "h2",
+        text: "Money that exists only for transfer students",
+      },
+      {
+        type: "p",
+        text: "Transferring puts you in a smaller applicant pool for certain awards, and some are large. The Jack Kent Cooke Undergraduate Transfer Scholarship awards up to $55,000 a year (2026) specifically to high-achieving community college students heading to four-year schools. Phi Theta Kappa, the community college honor society, runs its own scholarship pipeline. And many universities post transfer-specific merit awards that first-year applicants can't touch. [Finding Scholarships You'll Actually Win](/learn/college/finding-scholarships) covers how to run the search; just add the word 'transfer' to it.",
+      },
+      {
+        type: "h2",
+        text: "Budget for the transfer season itself",
+      },
+      {
+        type: "list",
+        items: [
+          "**Application fees.** UC charges $80 per campus (2026), but its fee waiver covers up to four campuses for low- and middle-income applicants. CSU charges $70 per campus with its own waiver. Both waivers live inside the application itself; you don't hunt for them separately.",
+          "**The enrollment deposit** at your new school, typically due in spring before you attend.",
+          "**The move.** Housing deposits and first-month costs land before your new aid disburses, so they come out of savings. [A savings plan](/tools/savings) started two terms early takes the panic out of it.",
+          "**Work hours.** If your job doesn't move with you, budget for a gap between the old paycheck and a new one on campus.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Book a counselor appointment the same week each term, and bring the ASSIST printout. Fifteen minutes a term is the cheapest insurance in higher education.",
+      },
+      {
+        type: "p",
+        text: "None of this requires genius. It requires checking the map before you register, keeping receipts, and asking for the money that's already set aside for people making exactly your move. You did the hard part when you chose the route.",
+      },
+    ],
+    related: ["community-college-path", "fafsa-step-by-step", "finding-scholarships"],
   },
 ];

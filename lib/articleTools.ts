@@ -165,6 +165,10 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Student Loan Calculator",
     href: "/tools/college/student-loan",
   },
+  "community-college-transfer-money": {
+    label: "Compare Aid Offers",
+    href: "/tools/college/compare-offers",
+  },
 
   // Home ownership
   "renting-vs-buying": {

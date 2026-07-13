@@ -261,7 +261,14 @@ export default function StudentsPage() {
                 >
                   state finder
                 </Link>{" "}
-                points to your state&apos;s programs.
+                points to your state&apos;s programs. New to all of this?{" "}
+                <Link
+                  href="/learn/college/community-college-transfer-money"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Our transfer money guide
+                </Link>{" "}
+                walks the whole play.
               </p>
             </div>
             <a

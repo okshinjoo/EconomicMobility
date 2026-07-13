@@ -833,6 +833,15 @@ export const glossary: GlossaryTerm[] = [
     related: "credit",
   },
   {
+    slug: "articulation-agreement",
+    term: "articulation agreement",
+    aliases: ["articulation agreements"],
+    definition:
+      "An official record of which courses at one school count for credit at another, most often between a community college and a university. Checking it before you register is how transfer students avoid paying for the same course twice.",
+    related: "college",
+    article: "/learn/college/community-college-transfer-money",
+  },
+  {
     slug: "balance-transfer",
     term: "balance transfer",
     definition:
