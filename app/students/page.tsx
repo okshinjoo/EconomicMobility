@@ -203,6 +203,32 @@ export default function StudentsPage() {
         </div>
       </section>
 
+      {/* Opportunities door — the experience half of the money story */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 pb-12">
+          <Link
+            href="/students/opportunities"
+            className="card-ink-lg flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-forest p-7 text-cream shadow-[6px_6px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+          >
+            <div className="max-w-2xl">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+                New · Internships &amp; opportunities
+              </span>
+              <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
+                Scholarships pay for school. These pay you.
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-cream/75">
+                Verified internships, fellowships, and research programs —
+                free to apply, many with stipends attached.
+              </p>
+            </div>
+            <span className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
+              Browse opportunities
+            </span>
+          </Link>
+        </div>
+      </section>
+
       {/* Calendar teaser — the dates as one glance; the page has the rest */}
       <section id="calendar" className="scroll-mt-20 border-y-2 border-ink bg-amber">
         <div className="mx-auto max-w-6xl px-6 py-12">

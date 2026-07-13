@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/students",
     "/plan",
     "/students/scholarships",
+    "/students/opportunities",
     "/students/tracker", "/tools/letters", "/tools/templates", "/account",
     "/privacy",
   ].map((p) => ({ url: `${BASE}${p}`, changeFrequency: "weekly" as const }));
