@@ -256,23 +256,28 @@ export default function StudentsPage() {
           <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
             The dates that decide your money year
           </h2>
-          <ul className="mt-6 divide-y divide-ink/15 border-y border-ink/15">
+          {/* QuestionBoxes card language (the saved Base44 template — owner
+              asked for it here so the dates read clearly on the amber):
+              light boxed rows, date in the numeral-chip position, arrow is
+              the template's owner-excepted detail. */}
+          <ul className="mt-6 grid gap-3.5 lg:grid-cols-2">
             {studentCalendar.map((d) => (
               <li key={d.title}>
                 <Link
                   href="/students/deadlines"
-                  className="group flex items-baseline justify-between gap-6 py-3.5"
+                  className="group flex h-full items-center gap-4 rounded-lg border-2 border-ink bg-cream px-5 py-3.5 text-ink transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <span className="flex min-w-0 flex-wrap items-baseline gap-x-3">
-                    <span className="whitespace-nowrap font-display text-base font-bold text-terracotta">
-                      {d.when}
-                    </span>
-                    <span className="font-display text-base font-semibold text-ink transition-colors group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
-                      {d.title}
-                    </span>
+                  <span
+                    aria-hidden
+                    className="flex h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-md bg-amber/15 px-3 font-display text-sm font-bold leading-none text-terracotta transition-colors group-hover:bg-amber group-hover:text-ink"
+                  >
+                    {d.when}
                   </span>
-                  <span className="hidden shrink-0 text-sm font-semibold text-ink/60 sm:block">
-                    Details
+                  <span className="min-w-0 flex-1 font-display text-base font-semibold leading-snug">
+                    {d.title}
+                  </span>
+                  <span className="hidden shrink-0 text-sm text-stone transition-colors group-hover:text-terracotta sm:block">
+                    Details &rarr;
                   </span>
                 </Link>
               </li>
@@ -336,7 +341,7 @@ export default function StudentsPage() {
                   href={frameHref("/learn/college", "student")}
                   className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                 >
-                  all {collegeGuides.length} college &amp; aid guides
+                  {`all ${collegeGuides.length} college & aid guides`}
                 </Link>
                 .
               </p>
@@ -407,7 +412,7 @@ export default function StudentsPage() {
                 The college shelf
               </span>
               <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
-                All {collegeGuides.length} college &amp; aid guides
+                {`All ${collegeGuides.length} college & aid guides`}
               </h2>
               <p className="mt-2 flex-1 text-base leading-7 text-stone">
                 FAFSA to award letters to repayment, in reading order — basics
