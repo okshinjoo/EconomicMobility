@@ -19,6 +19,11 @@ export interface Profile {
   /** Flair ids from FLAIR_OPTIONS, in pick order. Any number may be
    *  picked; only the first MAX_FLAIRS display anywhere. */
   flairs: string[];
+  /** Short "about me" for the public member page (280 chars max). */
+  bio: string;
+  /** Opt-in: show bio/role/flairs/member-since on the public member page.
+   *  Default OFF — private-first, same stance as showTag. */
+  publicProfile: boolean;
 }
 
 export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {

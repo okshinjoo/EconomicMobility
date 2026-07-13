@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FollowButton from "@/components/FollowButton";
+import PublicProfileCard from "@/components/PublicProfileCard";
 import {
   getMember,
   getMemberIndex,
@@ -46,12 +46,60 @@ export default async function MemberPage({
 }) {
   const { member } = await params;
   const m = getMember(member);
-  if (!m) notFound();
+
+  // A slug with no curated contributions is a LIVE member (signed up, maybe
+  // commented) — render the shell and let their opt-in public profile fill
+  // it client-side instead of 404ing on real people.
+  if (!m) {
+    const guessName = member
+      .split("-")
+      .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+      .join(" ")
+      .trim();
+    return (
+      <div className="min-h-screen bg-paper text-ink">
+        <Header />
+        <section className="bg-paper-deep">
+          <div className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
+            <Link
+              href="/community"
+              className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              ← Back to the community
+            </Link>
+            <PublicProfileCard
+              slug={member}
+              standalone
+              guessName={guessName || "Member"}
+            />
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <FollowButton slug={member} name={guessName || "Member"} />
+              <Link
+                href="/community/post/say-hello"
+                className="btn-ink inline-flex items-center rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink"
+              >
+                Say hi in the community
+              </Link>
+            </div>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    );
+  }
 
   const posts = m.contributions.filter((c) => c.kind === "post");
   const commentsAndReplies = m.contributions.filter(
     (c) => c.kind !== "post"
   );
+  // "Say hi" jumps into their most recent thread — replies stay public
+  // (owner call July 2026: no private DMs on a site with minors).
+  const latest = [...m.contributions].sort((a, b) =>
+    b.date.localeCompare(a.date)
+  )[0];
+  const sayHiHref = latest
+    ? `/community/post/${latest.postId}`
+    : "/community/post/say-hello";
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -120,7 +168,15 @@ export default async function MemberPage({
                   </p>
                 </div>
               </div>
-              <FollowButton slug={m.slug} name={m.name} />
+              <div className="flex flex-col items-stretch gap-2">
+                <FollowButton slug={m.slug} name={m.name} />
+                <Link
+                  href={sayHiHref}
+                  className="btn-ink inline-flex items-center justify-center rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink"
+                >
+                  Say hi in the community
+                </Link>
+              </div>
             </div>
 
             {/* cred */}
@@ -166,6 +222,10 @@ export default async function MemberPage({
               </div>
             </div>
           </div>
+
+          {/* Their opt-in public profile (bio, life stage) — renders only
+              if this member turned it on */}
+          <PublicProfileCard slug={m.slug} />
 
           {/* posts */}
           {posts.length > 0 && (

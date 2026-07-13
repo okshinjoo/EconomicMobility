@@ -158,3 +158,21 @@ wait for manual approval (nothing breaks). To turn on:
 
 The same ANTHROPIC_API_KEY later powers the smart "Ask" chatbot
 (docs/ai-chat-setup.md) — one key, both features.
+
+
+## Member profiles go-live (July 2026)
+
+1. Run the MEMBER PROFILES FEATURE block at the end of `docs/supabase-schema.sql`
+   in the Supabase SQL Editor (adds `bio` + `public_profile` to profiles, a
+   280-char bio cap, and the anon-read policy for opted-in rows).
+2. Deploy. That's it — everything defaults to private:
+   - Members get a Bio field + "Make my profile page public" toggle on the
+     account page (About tab).
+   - Member pages show bio/life-stage/flairs/member-since ONLY for members
+     who flipped the toggle.
+   - Clicking a live member's name no longer 404s — private members get a
+     "keeps their profile private" shell.
+   - "Say hi in the community" buttons link to the member's latest public
+     thread (owner call: no private DMs — public replies only).
+Until step 1 runs, the site degrades gracefully: the profile save shows a
+"columns haven't been added" notice and member pages just skip the bio card.

@@ -182,3 +182,21 @@ create policy "likes: insert own" on public.likes
 drop policy if exists "likes: delete own" on public.likes;
 create policy "likes: delete own" on public.likes
   for delete using (auth.uid() = user_id);
+
+-- ------------------------------------------------------------------
+-- MEMBER PROFILES FEATURE (July 2026): bio + opt-in public profile.
+-- Run this whole block once in the SQL Editor.
+-- Default is PRIVATE: nothing new is shown for anyone until they flip
+-- "Make my profile public" on their account page.
+alter table public.profiles add column if not exists bio text not null default '';
+alter table public.profiles add column if not exists public_profile boolean not null default false;
+
+-- Keep bios short (the UI caps at 280 too).
+do $$ begin
+  alter table public.profiles add constraint profiles_bio_len check (char_length(bio) <= 280);
+exception when duplicate_object then null; end $$;
+
+-- Anyone may read a profile its owner chose to publish (RLS policies OR
+-- together with "read own profile", so members still see their own either way).
+create policy "read public profiles" on public.profiles
+  for select using (public_profile = true);

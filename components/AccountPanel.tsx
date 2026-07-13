@@ -639,6 +639,8 @@ export function ProfileEditor({
   const [showTag, setShowTag] = useState(false);
   const [goals, setGoals] = useState<string[]>([]);
   const [flairs, setFlairs] = useState<string[]>([]);
+  const [bio, setBio] = useState("");
+  const [publicProfile, setPublicProfile] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -712,24 +714,28 @@ export function ProfileEditor({
           showTag: Boolean(data.show_tag),
           goals: Array.isArray(data.goals) ? (data.goals as string[]) : [],
           flairs: Array.isArray(data.flairs) ? (data.flairs as string[]) : [],
+          bio: (data.bio as string) ?? "",
+          publicProfile: Boolean(data.public_profile),
         };
         setDisplayName(p.displayName);
         setRole(p.role);
         setShowTag(p.showTag);
         setGoals(p.goals);
         setFlairs(p.flairs);
+        setBio(p.bio);
+        setPublicProfile(p.publicProfile);
         writeLocalProfile(p);
       }
       setLoading(false);
     };
     supabase
       .from("profiles")
-      .select("display_name, role, show_tag, goals, flairs")
+      .select("display_name, role, show_tag, goals, flairs, bio, public_profile")
       .eq("id", userId)
       .maybeSingle()
       .then(({ data, error }) => {
         if (!error) return apply(data);
-        // goals column not migrated yet — fall back so the page still works.
+        // newer columns not migrated yet — fall back so the page still works.
         supabase
           .from("profiles")
           .select("display_name, role, show_tag")
@@ -752,6 +758,8 @@ export function ProfileEditor({
       showTag,
       goals,
       flairs,
+      bio: bio.trim(),
+      publicProfile,
     };
     const { error } = await supabase.from("profiles").upsert({
       id: userId,
@@ -760,6 +768,8 @@ export function ProfileEditor({
       show_tag: profile.showTag,
       goals: profile.goals,
       flairs: profile.flairs,
+      bio: profile.bio,
+      public_profile: profile.publicProfile,
     });
     setSaving(false);
     if (!error) {
@@ -768,12 +778,12 @@ export function ProfileEditor({
       setTimeout(() => setSaved(false), 2500);
     } else {
       setSaveError(
-        /goals|flairs/.test(error.message)
-          ? "The goals/flairs columns haven't been added to the database yet."
+        /goals|flairs|bio|public_profile/.test(error.message)
+          ? "The newest profile columns haven't been added to the database yet (see docs/supabase-schema.sql)."
           : "Couldn't save just now — try again in a moment."
       );
     }
-  }, [supabase, userId, displayName, role, showTag, goals]);
+  }, [supabase, userId, displayName, role, showTag, goals, flairs, bio, publicProfile]);
 
   async function changeEmail(e: React.FormEvent) {
     e.preventDefault();
@@ -1091,6 +1101,27 @@ export function ProfileEditor({
                 />
               </div>
 
+              <div>
+                <label htmlFor="profile-bio" className={labelCls}>
+                  Bio{" "}
+                  <span className="font-normal text-stone">
+                    (shows on your public profile, if you turn that on below)
+                  </span>
+                </label>
+                <textarea
+                  id="profile-bio"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                  placeholder="A line or two — what you're working toward, what you're good at, what brought you here."
+                  maxLength={280}
+                  rows={3}
+                  className={inputCls}
+                />
+                <p className="mt-1 text-right text-xs text-stone">
+                  {bio.length}/280
+                </p>
+              </div>
+
               <fieldset>
                 <legend className={labelCls}>Where are you in life?</legend>
                 <div className="grid gap-2 sm:grid-cols-2">
@@ -1225,6 +1256,26 @@ export function ProfileEditor({
                       ? `"${[displayName.trim(), role ? ROLE_LABELS[role as Exclude<ProfileRole, "">] : ""].filter(Boolean).join(" · ")}"`
                       : "your name and tag"}
                     . Leave it off to stay anonymous.
+                  </span>
+                </span>
+              </label>
+
+              <label className="flex items-start gap-2.5 rounded-lg border border-[#eee7d9] bg-white p-4 text-sm leading-6 text-ink">
+                <input
+                  type="checkbox"
+                  checked={publicProfile}
+                  onChange={(e) => setPublicProfile(e.target.checked)}
+                  className="mt-1 h-4 w-4 accent-forest"
+                />
+                <span>
+                  <span className="font-semibold">
+                    Make my profile page public.
+                  </span>{" "}
+                  <span className="text-stone">
+                    Your member page shows your bio, life stage, flairs, and
+                    member-since date to anyone who clicks your name. Off (the
+                    default), visitors see only your name and anything
+                    you&apos;ve posted publicly.
                   </span>
                 </span>
               </label>
