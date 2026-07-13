@@ -41,6 +41,30 @@ export const glossary: GlossaryTerm[] = [
     related: "college",
     article: "/learn/college/css-profile-explained",
   },
+  {
+    term: "holistic review",
+    slug: "holistic-review",
+    definition:
+      "An admissions approach where humans read your whole file — grades, essays, recommendations, and your circumstances — instead of admitting by a numbers formula. Your context (work hours, family duties, what your school offered) counts, but only if it's on the page.",
+    related: "college",
+    article: "/learn/college/how-colleges-read-applications",
+  },
+  {
+    term: "demonstrated interest",
+    slug: "demonstrated-interest",
+    definition:
+      "Signals that you're likely to enroll if admitted — campus visits, opened emails, optional interviews, a 'why us' essay. Some colleges track and count it; most highly selective ones say they don't. Each school's Common Data Set tells you which kind you're dealing with.",
+    related: "college",
+    article: "/learn/college/how-colleges-read-applications",
+  },
+  {
+    term: "Common Data Set",
+    slug: "common-data-set",
+    definition:
+      "A standardized report almost every college publishes, with a table (section C7) marking exactly which admissions factors it considers, from course rigor to demonstrated interest to religious affiliation. Search '<college name> common data set' to read it free.",
+    related: "college",
+    article: "/learn/college/how-colleges-read-applications",
+  },
   // --- Credit ---
   {
     slug: "credit-score",

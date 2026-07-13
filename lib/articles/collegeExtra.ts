@@ -1697,4 +1697,159 @@ export const collegeExtraArticles: Article[] = [
     ],
     related: ["community-college-path", "fafsa-step-by-step", "finding-scholarships"],
   },
+  {
+    slug: "how-colleges-read-applications",
+    order: 30,
+    topicId: "college",
+    title: "What Colleges Actually Look For (and How to Find Out)",
+    dek: "Some schools admit by formula, some read your whole story, and some track whether you opened their emails. The differences are public, and they're worth money.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "Colleges evaluate applicants differently: some use pure formulas, most privates read holistically.",
+      "Every college publishes exactly what it considers, in a free document called the Common Data Set.",
+      "Demonstrated interest, test scores, legacy, and your finances count at some schools and not at all at others.",
+      "Matching how a school evaluates to what you bring is an aid strategy, not just an admissions one.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The same application gets read completely differently depending on where you send it. One school runs your GPA through a formula and admits you before a human reads a word. Another has two people read your essays and debate your context. A third quietly notes whether you ever opened their emails. None of this is secret, and once you see the differences, you can pick schools where the way you'll be judged matches what you've got.",
+      },
+      {
+        type: "h2",
+        text: "The cheat sheet colleges publish about themselves",
+      },
+      {
+        type: "p",
+        text: "Almost every college fills out a standardized report called the Common Data Set, and section C7 is a literal table of what they weigh: course rigor, GPA, essays, recommendations, interview, first-generation status, work experience, volunteer work, applicant's interest, even religious affiliation, each marked from \"very important\" down to \"not considered.\" Search \"<college name> common data set,\" open the newest PDF, and read C7. Five minutes per school replaces a lot of guessing.",
+      },
+      {
+        type: "h2",
+        text: "Schools that admit by formula",
+      },
+      {
+        type: "p",
+        text: "Many public universities put numbers first, and some remove judgment entirely. Texas guarantees state-university admission to top-ranked students under its top 10% law (UT Austin caps its version tighter, recently around the top 5–6% of a class). Iowa's three public universities admit anyone clearing a published score on their Regent Admission Index formula. California flags the top 9% of each high school class for the UC system with a promise of a spot somewhere in the system. If your GPA is strong, formula schools are the closest thing to a sure bet in this whole process, and many publish merit-scholarship grids that pay out on the same numbers automatically.",
+      },
+      {
+        type: "h2",
+        text: "Schools that read the whole file",
+      },
+      {
+        type: "p",
+        text: "Holistic review means humans read everything and weigh your numbers against your circumstances. Your transcript gets read next to your school's course catalog, so nobody penalizes you for AP classes your school never offered. Working twenty hours a week, translating for your parents, or caring for siblings counts as context, but only if it's on the page, in your activities list or your essay. First-generation status is a plus factor at many holistic schools; the C7 table tells you which ones. If your story is stronger than your stats, holistic schools are where that story gets a vote.",
+      },
+      {
+        type: "h2",
+        text: "The factors that only count some places",
+      },
+      {
+        type: "list",
+        items: [
+          "**Demonstrated interest:** some schools track visits, email opens, and optional interviews as a signal you'll actually enroll; schools like American and Tulane have long told the Common Data Set they consider it, while most highly selective schools say they don't. Where it counts, it's free points: open the emails, join a virtual session, write the optional \"why us\" essay.",
+          "**Test scores:** as of the 2026 cycle, MIT, Harvard, Stanford, Caltech, Georgetown, and UT Austin are among the schools requiring SAT or ACT scores again (Yale requires a score but lets AP or IB results count), hundreds of colleges remain test-optional, and the University of California doesn't look at scores at all. One list, three different games.",
+          "**Legacy:** a shrinking factor. California now bans legacy and donor preferences at public and private nonprofit colleges alike (the private-college ban took effect in fall 2025), Maryland's ban covers private colleges too, and Colorado, Virginia, and Illinois ban it at their publics.",
+          "**Religious affiliation:** a real criterion at a small set of faith-centered schools and irrelevant almost everywhere else; the [religious colleges guide](/learn/college/religious-colleges-and-money) sorts out which is which.",
+          "**Your family's finances:** [need-blind schools](/learn/college/need-blind-colleges) decide without looking; need-aware schools may consider ability to pay at the margins. The label matters less than the aid policy attached to it.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Why this is a money page",
+      },
+      {
+        type: "p",
+        text: "Where you sit in an applicant pool decides what they'll pay to get you. The same stats that barely squeak you into a reach school can trigger automatic merit money at a formula school and put you in the top quarter at a [generous-aid school](/learn/college/schools-with-generous-aid), where discounts get offered without negotiation. Build a list where at least a few schools will read you as a catch, because catches get paid.",
+      },
+      {
+        type: "tip",
+        text: "For every school on your list, pull the Common Data Set and note two C7 rows: \"level of applicant's interest\" and anything marked very important that you can still strengthen. If interest is considered, spend the free effort. If it isn't, spend that hour on the essay instead.",
+      },
+      {
+        type: "key",
+        text: "Colleges tell you in writing how they'll judge you before you apply. Read the rules of each game, then enter the games you can win.",
+      },
+    ],
+    related: ["need-blind-colleges", "schools-with-generous-aid", "early-decision-explained"],
+  },
+  {
+    slug: "religious-colleges-and-money",
+    order: 31,
+    topicId: "college",
+    title: "Religious Colleges: Faith, Fit, and What They Mean for Aid",
+    dek: "A church name on the gate can mean anything from a heritage plaque to a signed covenant. What it means for your admission and your money varies just as much.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "Most religiously affiliated colleges admit students of any faith or none; a smaller group requires shared belief or practice.",
+      "The Common Data Set shows whether a college considers religious affiliation at all.",
+      "Affiliation can unlock real money: denominational awards, heritage discounts, and deep aid at small privates.",
+      "Federal aid works the same at any accredited college, religious or not; unaccredited institutes are a different story.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Hundreds of American colleges have a religious affiliation, and the label covers three very different kinds of school. Knowing which kind you're looking at tells you whether faith will matter for your admission, your daily life, and your bill. This guide is neutral on the faith part; that choice is yours. The money part has facts, and they're below.",
+      },
+      {
+        type: "h2",
+        text: "The three kinds of religious college",
+      },
+      {
+        type: "list",
+        items: [
+          "**Heritage schools:** founded by a church, effectively secular today. The affiliation lives in the name and the history page, not in admissions or campus rules. Many well-known private universities are this kind.",
+          "**Mission-forward schools:** faith is visibly present, maybe a required theology course or two and a chapel program, but admission is open to everyone and a large share of students aren't members of the founding tradition. Many Catholic, Baptist, and Methodist universities work this way.",
+          "**Covenant schools:** the community is built on shared practice. Expect a statement of faith, a conduct code covering daily life, sometimes a pastor's recommendation or annual religious endorsement. Belief isn't a vibe here; it's an admission requirement, which is legal for private religious colleges.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "How to tell which one you're looking at",
+      },
+      {
+        type: "steps",
+        items: [
+          "Pull the school's Common Data Set (search \"<name> common data set\") and find the \"religious affiliation/commitment\" row in section C7: not considered, considered, or required tells you most of the story — the [how colleges evaluate you guide](/learn/college/how-colleges-read-applications) covers the rest of that table.",
+          "Read the application itself. A faith statement, a covenant signature, or a clergy recommendation means covenant school, whatever the brochure's tone.",
+          "Skim the student handbook for chapel requirements and the conduct code. That's the daily life you're signing up for, and at covenant schools breaking it can cost you enrollment or institutional aid mid-degree.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What affiliation does to your money",
+      },
+      {
+        type: "list",
+        items: [
+          "**Member discounts are real.** The clearest example: BYU charges members of its sponsoring church roughly half what non-members pay (about $6,500 versus $13,000 a year as of 2026), and requires an annual ecclesiastical endorsement from everyone. Smaller versions exist across denominations as member grants and heritage awards.",
+          "**Denominational scholarships stack.** Parish and congregation awards, Catholic-high-school grants, Lutheran congregation matching programs, and discounts for children of clergy or church workers all exist at the college or through your own congregation. Ask both ends; see [finding real scholarships](/learn/college/finding-scholarships) for vetting.",
+          "**Small religious privates discount hard.** Most are tuition-dependent private colleges, which means sticker price is fiction and merit and need aid go deep — the [private versus public guide](/learn/college/private-vs-public-aid) explains how to read that game.",
+          "**Federal aid doesn't care about the cross on the gate.** [FAFSA](/learn/college/fafsa-step-by-step), Pell, and federal loans work identically at any accredited college, religious or not.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Fine print worth reading before you commit",
+      },
+      {
+        type: "p",
+        text: "Two checks protect you. First, accreditation: an unaccredited Bible institute can't award federal aid and its credits rarely transfer anywhere, so verify regional accreditation before a dollar moves. Second, exit costs: a required theology core often transfers as elective credit at best, so leaving a covenant school mid-degree can cost you semesters, not just paperwork. If there's any chance you'll transfer, favor schools whose general-education credits travel.",
+      },
+      {
+        type: "p",
+        text: "Religious colleges also aren't the only mission schools. HBCUs, women's colleges, and tribal colleges each carry their own identity, community, and scholarship ecosystems, and the same advice applies: understand the mission, then find the money attached to it.",
+      },
+      {
+        type: "tip",
+        text: "If you belong to the denomination, ask the aid office AND your own congregation what exists for members; the second pool is the one most students never tap. If you don't belong, ask the admissions office directly what daily life looks like for students outside the tradition, and expect a straight answer.",
+      },
+      {
+        type: "key",
+        text: "The label on the gate tells you little. The covenant, the C7 row, and the net price tell you everything: match the community you actually want to the money that comes with it.",
+      },
+    ],
+    related: ["private-vs-public-aid", "finding-scholarships", "how-colleges-read-applications"],
+  },
 ];
