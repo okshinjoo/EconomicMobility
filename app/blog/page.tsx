@@ -69,7 +69,7 @@ export default function BlogPage() {
       </section>
 
       <section className="bg-paper">
-        <div className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
+        <div className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
           <BlogList
             posts={posts}
             articleTopics={articleTopics}

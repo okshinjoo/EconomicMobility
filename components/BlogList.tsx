@@ -44,6 +44,7 @@ export default function BlogList({
   const [readBlog, setReadBlog] = useState<Set<string>>(new Set());
   const [affinity, setAffinity] = useState<Map<TopicId, number>>(new Map());
   const [personal, setPersonal] = useState(false);
+  const [shown, setShown] = useState(9);
 
   useEffect(() => {
     const read = getReadMap();
@@ -109,104 +110,118 @@ export default function BlogList({
 
   return (
     <div>
-      {/* Featured pick */}
-      <article className="card-ink-lg rounded-2xl bg-cream p-7 sm:p-9 lg:-rotate-[0.35deg]">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
-            {personal ? "Picked for you" : "The latest"}
-          </span>
-          {becauseOf && (
-            <span className="text-sm font-medium text-stone">
-              Because you&apos;ve been reading about{" "}
-              {becauseOf.join(" and ").toLowerCase()}.
-            </span>
-          )}
-        </div>
-        <Link href={`/blog/${featured.slug}`} className="group mt-5 block">
-          <div className="relative mb-6 aspect-[16/9] overflow-hidden rounded-xl border-2 border-ink sm:aspect-[21/9]">
+      {/* Featured pick — horizontal poster (Base44 blog structure, our skin) */}
+      <article className="card-ink-lg overflow-hidden rounded-2xl bg-cream lg:-rotate-[0.35deg]">
+        <Link
+          href={`/blog/${featured.slug}`}
+          className="group grid lg:grid-cols-[1fr_1.15fr]"
+        >
+          <div className="relative aspect-[16/9] border-b-2 border-ink lg:aspect-auto lg:border-b-0 lg:border-r-2">
             <Image
               src={featured.image.src}
               alt={featured.image.alt}
               fill
-              sizes="(min-width: 1024px) 56rem, 100vw"
+              sizes="(min-width: 1024px) 34rem, 100vw"
               className="object-cover"
             />
           </div>
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
-            <span className="text-terracotta">{featured.tag}</span>
-            <span className="font-medium normal-case tracking-normal text-stone">
+          <div className="p-7 sm:p-9">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
+                {personal ? "Picked for you" : "The latest"}
+              </span>
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-terracotta">
+                {featured.tag}
+              </span>
+            </div>
+            <h2 className="mt-5 font-display text-3xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-4xl">
+              {featured.title}
+            </h2>
+            <p className="mt-3 text-base leading-7 text-stone sm:text-lg sm:leading-8">
+              {featured.dek}
+            </p>
+            <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-stone">
               {formatDate(featured.date)}
-            </span>
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-5xl">
-            {featured.title}
-          </h2>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-stone sm:text-lg sm:leading-8">
-            {featured.dek}
-          </p>
-          <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
-            <Clock className="h-3.5 w-3.5" />
-            {featured.readMinutes} min read
-          </p>
+              <span className="inline-flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" />
+                {featured.readMinutes} min read
+              </span>
+            </p>
+            {becauseOf && (
+              <p className="mt-3 text-sm font-medium text-stone">
+                Because you&apos;ve been reading about{" "}
+                {becauseOf.join(" and ").toLowerCase()}.
+              </p>
+            )}
+          </div>
         </Link>
       </article>
 
-      {/* Everything else */}
-      <div className="mt-12 divide-y-2 divide-ink border-y-2 border-ink">
-        {rest.map((post) => {
+      {/* All posts — photo-card grid */}
+      <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {rest.slice(0, shown).map((post) => {
           const wasRead = readBlog.has(post.slug);
           return (
-            <article key={post.slug}>
+            <article key={post.slug} className="h-full">
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex items-start gap-6 py-9 sm:gap-8"
+                className="card-ink group flex h-full flex-col overflow-hidden rounded-xl bg-cream transition-transform duration-200 hover:-translate-y-1"
               >
-                <div className="min-w-0 flex-1">
-                  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.16em]">
-                    <span className="text-terracotta">{post.tag}</span>
-                    <span className="font-medium normal-case tracking-normal text-stone">
-                      {formatDate(post.date)}
+                <div className="relative aspect-[16/10] overflow-hidden border-b-2 border-ink">
+                  <Image
+                    src={post.image.src}
+                    alt={post.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
+                    className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+                      wasRead ? "opacity-60" : ""
+                    }`}
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-4">
+                  <p className="flex items-center justify-between gap-2 text-xs">
+                    <span className="font-bold uppercase tracking-[0.14em] text-terracotta">
+                      {post.tag}
                     </span>
-                    {wasRead && (
-                      <span className="inline-flex items-center gap-1 font-semibold normal-case tracking-normal text-forest">
-                        <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                        You read this
-                      </span>
-                    )}
+                    <span className="inline-flex shrink-0 items-center gap-1 font-medium text-stone">
+                      <Clock className="h-3.5 w-3.5" />
+                      {post.readMinutes} min
+                    </span>
                   </p>
                   <h2
-                    className={`mt-3 font-display text-2xl font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl ${
+                    className={`mt-2 flex-1 font-display text-lg font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4 ${
                       wasRead ? "text-ink/60" : "text-ink"
                     }`}
                   >
                     {post.title}
                   </h2>
-                  <p className="mt-2 max-w-3xl text-base leading-7 text-stone">
-                    {post.dek}
+                  <p className="mt-3 flex items-center justify-between gap-2 text-xs font-medium text-stone">
+                    {formatDate(post.date)}
+                    {wasRead && (
+                      <span className="inline-flex items-center gap-1 font-semibold text-forest">
+                        <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                        You read this
+                      </span>
+                    )}
                   </p>
-                  <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-stone">
-                    <Clock className="h-3.5 w-3.5" />
-                    {post.readMinutes} min read
-                  </p>
-                </div>
-                <div
-                  className={`relative mt-1 hidden h-24 w-36 shrink-0 overflow-hidden rounded-xl border border-sand sm:block sm:h-28 sm:w-44 ${
-                    wasRead ? "opacity-60" : ""
-                  }`}
-                >
-                  <Image
-                    src={post.image.src}
-                    alt={post.image.alt}
-                    fill
-                    sizes="11rem"
-                    className="object-cover"
-                  />
                 </div>
               </Link>
             </article>
           );
         })}
       </div>
+
+      {rest.length > shown && (
+        <div className="mt-10 text-center">
+          <button
+            type="button"
+            onClick={() => setShown((s) => s + 9)}
+            className="btn-ink inline-flex items-center rounded-md bg-cream px-7 py-3 text-sm font-bold text-ink"
+          >
+            Load more posts
+          </button>
+        </div>
+      )}
     </div>
   );
 }
