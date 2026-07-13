@@ -17,6 +17,8 @@ import { getReadMap } from "@/lib/readTracking";
 import { Donut, Legend } from "@/components/Charts";
 import { MoneyInput, num } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 const usd = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -535,6 +537,7 @@ function NextStep({
   grossSalary: number;
   monthlyTotal: number;
 }) {
+  const frame = useFrame();
   const budget = readBudgetSummary();
 
   if (!budget) {
@@ -547,7 +550,7 @@ function NextStep({
           {usd(grossSalary)} is the sticker, not what hits your account. Put
           it into the{" "}
           <Link
-            href="/tools/budget"
+            href={frameHref("/tools/budget", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Budget Planner
@@ -581,7 +584,7 @@ function NextStep({
         These numbers are national ballparks; your city writes its own. A
         good next read:{" "}
         <Link
-          href={`/learn/budgeting/${nextRead.slug}`}
+          href={frameHref(`/learn/budgeting/${nextRead.slug}`, frame)}
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
         >
           {nextRead.title}

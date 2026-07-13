@@ -12,6 +12,8 @@ import {
   ClearBar,
 } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 interface Offer {
   school: string;
@@ -87,6 +89,7 @@ function OfferColumn({
 }
 
 export default function CompareOffersCalculator() {
+  const frame = useFrame();
   const [a, setA] = useState<Offer>(EMPTY);
   const [b, setB] = useState<Offer>(EMPTY);
 
@@ -195,11 +198,11 @@ export default function CompareOffersCalculator() {
 
       <div className="rounded-2xl border border-sand bg-cream p-5 text-sm leading-6 text-stone">
         Reading the letters themselves:{" "}
-        <Link href="/learn/college/reading-aid-award-letter" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
+        <Link href={frameHref("/learn/college/reading-aid-award-letter", frame)} className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
           Reading a Financial Aid Award Letter
         </Link>{" "}
         · If neither offer works:{" "}
-        <Link href="/learn/college/appealing-financial-aid" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
+        <Link href={frameHref("/learn/college/appealing-financial-aid", frame)} className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
           How to Appeal Your Financial Aid
         </Link>
       </div>

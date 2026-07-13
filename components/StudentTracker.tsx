@@ -8,6 +8,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Check, Plus, Trash2 } from "lucide-react";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 import {
   loadTracker,
   saveTracker,
@@ -35,6 +37,7 @@ const selectCls =
   "rounded-md border-2 border-ink/15 bg-cream px-2 py-1.5 text-sm font-semibold text-ink focus:border-ink focus:outline-none";
 
 export default function StudentTracker() {
+  const frame = useFrame();
   const [data, setData] = useState<TrackerData | null>(null);
 
   useEffect(() => {
@@ -321,7 +324,7 @@ export default function StudentTracker() {
         scale — your transcript is the real record. And transferability
         always belongs to the agreement, not this page:{" "}
         <Link
-          href="/learn/college/community-college-transfer-money"
+          href={frameHref("/learn/college/community-college-transfer-money", frame)}
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
         >
           the transfer money guide

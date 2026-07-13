@@ -14,6 +14,8 @@ import {
   ClearBar,
 } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 interface Snapshot {
   assets: Record<string, string>;
@@ -40,6 +42,7 @@ const empty = (fields: { id: string }[]) =>
   Object.fromEntries(fields.map((f) => [f.id, ""]));
 
 export default function NetWorthCalculator() {
+  const frame = useFrame();
   const [assets, setAssets] = useState<Record<string, string>>(() => empty(ASSET_FIELDS));
   const [debts, setDebts] = useState<Record<string, string>>(() => empty(DEBT_FIELDS));
 
@@ -175,14 +178,14 @@ export default function NetWorthCalculator() {
           Net worth is a snapshot, not a report card. Two guides pair well with
           it:{" "}
           <Link
-            href="/learn/investing/building-generational-wealth"
+            href={frameHref("/learn/investing/building-generational-wealth", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Building Wealth When You&apos;re Starting From Zero
           </Link>{" "}
           and{" "}
           <Link
-            href="/learn/budgeting/building-a-savings-habit"
+            href={frameHref("/learn/budgeting/building-a-savings-habit", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Building a Savings Habit That Sticks

@@ -9,6 +9,8 @@
 import { useMemo, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { fuzzyScore } from "@/lib/fuzzy";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 import {
   scholarships,
   VERIFIED_AS_OF,
@@ -29,6 +31,7 @@ function seasonKey(s: Scholarship): number {
 }
 
 export default function ScholarshipFinder() {
+  const frame = useFrame();
   const [stage, setStage] = useState<StudentStage | "all">("all");
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
@@ -155,7 +158,7 @@ export default function ScholarshipFinder() {
           Nothing matches those filters. Widen the search — and remember this
           list is a curated starting lineup, not the whole universe:{" "}
           <a
-            href="/learn/college/finding-scholarships"
+            href={frameHref("/learn/college/finding-scholarships", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Finding Scholarships You&apos;ll Actually Win

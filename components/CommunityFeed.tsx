@@ -53,6 +53,8 @@ import {
 } from "@/lib/communityFeed";
 import { getFollows } from "@/components/FollowButton";
 import { fuzzyScore } from "@/lib/fuzzy";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 import { loadJSON, saveJSON } from "@/lib/storage";
 import { communityTag, communityFlairs, flairColorByLabel, readLocalProfile } from "@/lib/profile";
 
@@ -957,6 +959,7 @@ function PostCard({
   saved?: boolean;
   onToggleSave?: () => void;
 }) {
+  const frame = useFrame();
   const { hub, tag } = usePostChips(post);
   const pendingComments = pendingMap[post.id] ?? [];
   const commentTotal = commentTotalFor(post, pendingMap);
@@ -1041,7 +1044,7 @@ function PostCard({
       {post.link && (
         <p className="mt-4">
           <Link
-            href={post.link.href}
+            href={frameHref(post.link.href, frame)}
             className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
           >
             {post.link.label}
@@ -1290,6 +1293,7 @@ export default function CommunityFeed({
   initialChannel?: "all" | ChannelId;
   postBase?: string;
 }) {
+  const frame = useFrame();
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
@@ -1610,7 +1614,7 @@ export default function CommunityFeed({
         ).map(([href, label, Icon]) => (
           <Link
             key={href}
-            href={href}
+            href={frameHref(href, frame)}
             className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-stone transition-colors hover:bg-paper hover:text-ink"
           >
             <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />

@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Copy, Download, Check } from "lucide-react";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 // Letter templates follow the CFPB's sample-letter structure. Everything runs
 // in the browser: nothing typed here is sent or stored anywhere.
@@ -125,6 +127,7 @@ ${f.name || "[your name]"}`;
 }
 
 export default function LetterGenerator() {
+  const frame = useFrame();
   const [kind, setKind] = useState<LetterKind>("dispute");
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [copied, setCopied] = useState(false);
@@ -264,14 +267,14 @@ export default function LetterGenerator() {
         <p className="mt-3 text-sm leading-6 text-stone">
           How the process works, step by step:{" "}
           <Link
-            href="/learn/credit/disputing-credit-errors"
+            href={frameHref("/learn/credit/disputing-credit-errors", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Disputing an Error on Your Credit Report
           </Link>{" "}
           and{" "}
           <Link
-            href="/learn/government-aid/debt-collector-rights"
+            href={frameHref("/learn/government-aid/debt-collector-rights", frame)}
             className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
           >
             Your Rights When a Debt Collector Calls

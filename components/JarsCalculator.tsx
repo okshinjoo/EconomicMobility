@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Plus, Trash2 } from "lucide-react";
 import { num, usd, Label, MoneyInput, PlainInput } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
+import { frameHref } from "@/lib/frame";
+import { useFrame } from "@/components/useFrame";
 
 interface Jar {
   id: number;
@@ -20,6 +22,7 @@ const STARTER: Jar[] = [
 ];
 
 export default function JarsCalculator() {
+  const frame = useFrame();
   const [jars, setJars] = useState<Jar[]>(STARTER);
   const [loaded, setLoaded] = useState(false);
 
@@ -140,7 +143,7 @@ export default function JarsCalculator() {
 
       <p className="rounded-2xl border border-sand bg-cream p-5 text-sm leading-6 text-stone">
         Jars are the {""}
-        <Link href="/learn/budgeting/sinking-funds" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
+        <Link href={frameHref("/learn/budgeting/sinking-funds", frame)} className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
           sinking funds
         </Link>{" "}
         idea made visible: every predictable &ldquo;surprise&rdquo; gets its own

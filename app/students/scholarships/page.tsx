@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { frameHref } from "@/lib/frame";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ScholarshipFinder from "@/components/ScholarshipFinder";
@@ -56,7 +57,7 @@ export default function ScholarshipsPage() {
           <p className="mt-4 text-sm font-semibold text-forest">
             First time scholarship hunting?{" "}
             <Link
-              href="/learn/college/finding-scholarships"
+              href={frameHref("/learn/college/finding-scholarships", "student")}
               className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               Read how to actually win these
@@ -177,7 +178,7 @@ export default function ScholarshipsPage() {
             foundations, employers, and your counselor&apos;s list have the
             best odds in the whole game —{" "}
             <Link
-              href="/learn/college/finding-scholarships"
+              href={frameHref("/learn/college/finding-scholarships", "student")}
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               here&apos;s how to work them

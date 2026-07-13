@@ -38,6 +38,9 @@ export const TOOL_FRAME_MAP: Record<string, string> = {
   "/tools/savings/compound": "/students/tools/compound",
   "/tools/savings/retirement": "/students/tools/retirement",
   "/tools/savings/roth-ira": "/students/tools/roth-ira",
+  "/tools/debt/credit-card": "/students/tools/credit-card",
+  "/tools/debt/dti": "/students/tools/dti",
+  "/tools/savings/investment": "/students/tools/investment",
   "/tools/letters": "/students/tools/letters",
   "/tools/templates": "/students/tools/templates",
 };
