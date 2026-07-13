@@ -66,8 +66,10 @@ type PanelTab = "overview" | "about" | "goals" | "security";
 
 const PANEL_LABELS: Record<PanelTab, string> = {
   overview: "Overview",
-  about: "About you",
-  goals: "Goals",
+  // Owner rename July 13, 2026: the editor tab is "Profile", the goals
+  // tab wears "About you" (ids stay stable — they're plumbing).
+  about: "Profile",
+  goals: "About you",
   security: "Security",
 };
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
