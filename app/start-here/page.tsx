@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
+import QuestionBoxes from "@/components/QuestionBoxes";
 import Footer from "@/components/Footer";
 import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
@@ -95,6 +96,30 @@ export default function StartHerePage() {
         </section>
 
         {/* The path — editorial numbered walkthrough with giant numerals */}
+        {/* Base44 question-box template's first real home (owner pick from
+            the July 2026 mockups) — the skip-ahead list for people who
+            arrive with a question already burning. */}
+        <section className="bg-paper">
+          <div className="mx-auto max-w-3xl px-6 pt-12">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+              Already have a question?
+            </span>
+            <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
+              Skip ahead — start with what&apos;s bugging you.
+            </h2>
+            <div className="mt-6">
+              <QuestionBoxes
+                items={[
+                  { q: "Why is my first paycheck smaller than I expected?", href: "/learn/budgeting/your-first-paycheck" },
+                  { q: "How do I build credit when I have none at all?", href: "/learn/credit/build-credit-from-zero" },
+                  { q: "What is the FAFSA, and how do I actually fill it out?", href: "/learn/college/fafsa-step-by-step" },
+                  { q: "It's my first time filing taxes. Where do I start?", href: "/learn/taxes/filing-taxes-first-time" },
+                ]}
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="bg-paper">
           <div className="mx-auto max-w-5xl px-6 py-14 lg:py-16">
             <span className="-rotate-2 inline-block rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]">
