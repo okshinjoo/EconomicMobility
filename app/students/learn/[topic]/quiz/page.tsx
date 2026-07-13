@@ -39,7 +39,7 @@ export default async function StudentTopicQuizPage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <TopicQuizPageView topic={topic as TopicId} frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

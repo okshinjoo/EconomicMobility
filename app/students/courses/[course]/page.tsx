@@ -39,7 +39,7 @@ export default async function StudentCoursePage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <CoursePageView courseId={course} frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

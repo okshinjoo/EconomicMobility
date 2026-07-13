@@ -16,7 +16,7 @@ export default function StudentLearnHub() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <LearnHubView frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

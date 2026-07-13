@@ -120,7 +120,7 @@ export default function StudentToolsHub() {
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

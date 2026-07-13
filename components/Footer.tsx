@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { frameHref, type Frame } from "@/lib/frame";
 
 const columns = [
   {
@@ -33,7 +34,7 @@ const columns = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ frame = "main" }: { frame?: Frame }) {
   return (
     <footer className="bg-forest text-cream">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -62,7 +63,7 @@ export default function Footer() {
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={link.href}
+                      href={frameHref(link.href, frame)}
                       className="transition-colors hover:text-cream"
                     >
                       {link.label}

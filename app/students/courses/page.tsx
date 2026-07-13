@@ -17,7 +17,7 @@ export default function StudentCoursesPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <CoursesHubView frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

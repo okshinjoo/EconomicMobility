@@ -29,13 +29,14 @@ const NAV: StudentNavEntry[] = [
   { label: "Overview", href: "/students", exact: true },
   {
     label: "Guides",
-    href: "/learn/college",
+    href: "/students/learn/college",
     items: [
-      { label: "All college & aid guides", href: "/learn/college", desc: "Every FAFSA, loan, and aid guide in one library." },
-      { label: "The transfer money guide", href: "/learn/college/community-college-transfer-money", desc: "Protect the community-college discount." },
+      { label: "All college & aid guides", href: "/students/learn/college", desc: "Every FAFSA, loan, and aid guide in one library." },
+      { label: "The whole library", href: "/students/learn", desc: "All nine topics — credit, taxes, investing, and more." },
+      { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount." },
       { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition." },
-      { label: "Paying for College (course)", href: "/courses/paying-for-college", desc: "The focused module, badge at the end." },
-      { label: "The pay-for-college path", href: "/journey/college", desc: "Milestone by milestone, FAFSA to signing day." },
+      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end." },
+      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day." },
     ],
   },
   {
@@ -44,15 +45,16 @@ const NAV: StudentNavEntry[] = [
     items: [
       { label: "The money calendar", href: "/students#calendar", desc: "Six dates that move real money, every year." },
       { label: "Email reminders", href: "/students#reminders", desc: "A nudge a few weeks ahead — pick your dates." },
-      { label: "FAFSA, Step by Step", href: "/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest." },
+      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest." },
     ],
   },
   { label: "Scholarships", href: "/students/scholarships" },
   { label: "Community", href: "/students/community" },
   {
     label: "Tools",
-    href: "/students/tracker",
+    href: "/students/tools",
     items: [
+      { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you." },
       { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place." },
       { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs." },
       { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side." },

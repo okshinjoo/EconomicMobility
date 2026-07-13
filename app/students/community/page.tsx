@@ -46,7 +46,7 @@ export default function StudentsCommunityPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

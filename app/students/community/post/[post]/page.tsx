@@ -126,7 +126,7 @@ export default async function StudentCommunityPostPage({
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

@@ -187,7 +187,7 @@ export default function ScholarshipsPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

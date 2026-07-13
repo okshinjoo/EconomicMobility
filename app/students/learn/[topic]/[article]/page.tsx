@@ -46,7 +46,7 @@ export default async function StudentArticlePage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <ArticlePageView topic={topic} articleSlug={article} frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

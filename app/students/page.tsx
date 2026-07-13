@@ -10,6 +10,7 @@ import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
 import { STUDENT_LIFE_SLUGS } from "@/lib/studentShelf";
+import { frameHref } from "@/lib/frame";
 import Image from "next/image";
 import { deadlines } from "@/lib/deadlines";
 import { scholarships } from "@/lib/scholarships";
@@ -112,7 +113,7 @@ export default function StudentsPage() {
             <p className="mt-5 text-sm text-cream/60">
               Not a student anymore?{" "}
               <Link
-                href="/learn"
+                href={frameHref("/learn", "student")}
                 className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
               >
                 The whole library
@@ -227,7 +228,7 @@ export default function StudentsPage() {
                     {d.detail}
                   </p>
                   <Link
-                    href={d.href}
+                    href={frameHref(d.href, "student")}
                     className="mt-3 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                   >
                     {d.linkLabel}
@@ -290,7 +291,7 @@ export default function StudentsPage() {
                     >
                       <TopicMark id={a.topicId} className="h-6 w-6 shrink-0" />
                       <Link
-                        href={`/learn/${a.topicId}/${a.slug}`}
+                        href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
                         className="min-w-0 flex-1 text-sm font-bold leading-snug text-ink after:absolute after:inset-0 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
                         style={{ textDecorationColor: topic.color }}
                       >
@@ -307,7 +308,7 @@ export default function StudentsPage() {
               <p className="mt-5 text-sm leading-6 text-stone">
                 Then keep going:{" "}
                 <Link
-                  href="/learn/college"
+                  href={frameHref("/learn/college", "student")}
                   className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                 >
                   all the college &amp; student loan guides
@@ -317,7 +318,7 @@ export default function StudentsPage() {
                     {" "}
                     — or take{" "}
                     <Link
-                      href={`/learn/${roadmap.topicId}/${roadmap.slug}`}
+                      href={frameHref(`/learn/${roadmap.topicId}/${roadmap.slug}`, "student")}
                       className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                     >
                       the whole path on one page
@@ -338,7 +339,7 @@ export default function StudentsPage() {
               </h2>
               <div className="mt-6 space-y-4">
                 <Link
-                  href="/journey/college"
+                  href={frameHref("/journey/college", "student")}
                   className="card-ink block rounded-xl border-2 border-ink bg-forest p-5 text-cream shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
                 >
                   <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
@@ -354,7 +355,7 @@ export default function StudentsPage() {
                 </Link>
                 {course && (
                   <Link
-                    href={`/courses/${course.id}`}
+                    href={frameHref(`/courses/${course.id}`, "student")}
                     className="card-ink block rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
                   >
                     <span className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
@@ -441,7 +442,7 @@ export default function StudentsPage() {
               node: (
                 <Reveal key={a.slug} delay={(i % 2) * 50} className="h-full">
                   <Link
-                    href={`/learn/${a.topicId}/${a.slug}`}
+                    href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
                     className="card-ink flex h-full items-center gap-3 rounded-xl bg-cream px-4 py-3 transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <span className="flex-1 text-sm font-bold leading-snug text-ink">
@@ -471,7 +472,7 @@ export default function StudentsPage() {
               node: (
                 <Reveal key={a.slug} delay={(i % 2) * 50} className="h-full">
                   <Link
-                    href={`/learn/${a.topicId}/${a.slug}`}
+                    href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
                     className="card-ink flex h-full items-center gap-3 rounded-xl px-4 py-3 transition-transform duration-200 hover:-translate-y-0.5"
                     style={{
                       background: `color-mix(in srgb, ${getTopic(a.topicId).color} 10%, #fbf8f1)`,
@@ -519,7 +520,7 @@ export default function StudentsPage() {
                 </Link>{" "}
                 points to your state&apos;s programs. New to all of this?{" "}
                 <Link
-                  href="/learn/college/community-college-transfer-money"
+                  href={frameHref("/learn/college/community-college-transfer-money", "student")}
                   className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                 >
                   Our transfer money guide
@@ -614,7 +615,7 @@ export default function StudentsPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

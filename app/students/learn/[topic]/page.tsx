@@ -43,7 +43,7 @@ export default async function StudentTopicPage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <TopicPageView topic={topic} frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

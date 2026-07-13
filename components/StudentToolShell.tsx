@@ -38,7 +38,7 @@ export default function StudentToolShell({
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-10">{children}</div>
       </section>
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

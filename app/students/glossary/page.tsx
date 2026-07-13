@@ -18,7 +18,7 @@ export default function StudentGlossaryPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <GlossaryPageView frame="student" />
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }

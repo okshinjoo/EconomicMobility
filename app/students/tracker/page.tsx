@@ -60,7 +60,7 @@ export default function StudentTrackerPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer frame="student" />
     </div>
   );
 }
