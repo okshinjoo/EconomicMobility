@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Reveal from "@/components/Reveal";
 import { getReadMap } from "@/lib/readTracking";
 
 export interface StripQuestion {
@@ -58,28 +57,20 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
   }
 
   return (
-    <ul className="space-y-4">
-      {items.map((item, i) => (
+    <ul className="divide-y divide-white/10 border-y border-white/10">
+      {items.map((item) => (
         <li key={item.slug}>
-          <Reveal delay={i * 80}>
-            <Link
-              href={item.href}
-              className="group flex items-center gap-4 rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] px-5 py-3.5 text-[#1A1A1A] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <span
-                aria-hidden
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[#E69A37]/10 font-display text-xl font-bold leading-none text-[#E69A37] transition-colors group-hover:bg-[#E69A37] group-hover:text-[#1A1A1A]"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="flex-1 font-display text-base font-medium leading-snug sm:text-lg">
-                {item.q}
-              </span>
-              <span className="hidden shrink-0 text-sm text-[#616161] transition-colors group-hover:text-[#E69A37] sm:block">
-                Read the guide &rarr;
-              </span>
-            </Link>
-          </Reveal>
+          <Link
+            href={item.href}
+            className="group flex items-baseline justify-between gap-6 py-5"
+          >
+            <span className="font-display text-lg font-medium leading-snug text-cream transition-colors group-hover:text-amber sm:text-xl">
+              {item.q}
+            </span>
+            <span className="hidden shrink-0 text-sm font-semibold text-amber underline decoration-amber/40 underline-offset-4 sm:block">
+              Read the guide
+            </span>
+          </Link>
         </li>
       ))}
     </ul>
