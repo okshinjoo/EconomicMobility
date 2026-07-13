@@ -99,9 +99,20 @@ economicmobilityproject.org
 
 # Scholarship database partnerships (July 13, 2026)
 
-Send from **partnerships@economicmobilityproject.org**. Recipients: use the
-contact form or partnerships/media address listed on each org's own site
-(checking their contact page takes a minute and avoids a bounced guess).
+Send from **partnerships@economicmobilityproject.org**. NOT YET SENT as of
+July 13 (Claude's browser access to Gmail is blocked by the Chrome
+extension's domain policy — flip its site access or paste these by hand).
+
+VERIFIED RECIPIENTS (read off each org's own contact page, July 13):
+- TheDream.US: michael.earls@thedream.us (listed staff contact; program
+  support is TheDream.US@applyISTS.com)
+- Native Forward: scholarships@nativeforward.org
+- Scholarship America: studentsupport@scholarshipamerica.org (partnership
+  form also on scholarshipamerica.org/about/contact)
+- APIA Scholars: info@apiascholars.org
+- Ascend Educational Fund: info@ascendfundny.org
+FORM-ONLY OR JS-WALLED (use the contact form on their site): UNCF, HSF,
+QuestBridge, Point Foundation, mikeroweWORKS.
 The goal in every email is the same: permission to FEATURE their awards in
 our verified finder, with credit and links back. We never copy anyone's
 database; we list awards with the owner's blessing.
@@ -167,9 +178,11 @@ work from?
 
 **7. Ascend Educational Fund (ascendfundny.org)** — Subject: Featuring your scholarship for immigrant students
 Our finder highlights awards open to students regardless of immigration
-status. We'd like to list the Ascend scholarship with credit and a link to
-your application page. (Note to self: Ascend is NYC-metro only; the listing
-must say so plainly.)
+status. We list the Ascend scholarship in our finder (clearly marked as
+NYC-only, so nobody outside the five boroughs wastes an application),
+credited and linked to your application page. I wanted to make sure
+you're comfortable with that, and to ask if there's anything we should
+correct.
 
 **8. Point Foundation (pointfoundation.org)** — Subject: Listing your community college program too
 We feature the Flagship scholarship today. We'd also like to list Point's
