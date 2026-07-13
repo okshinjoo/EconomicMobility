@@ -141,7 +141,7 @@ export default function StudentsPage() {
         <div className="mx-auto max-w-7xl px-6 py-12">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
-              href="#calendar"
+              href="/students/deadlines"
               className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
             >
               <p className="font-display text-2xl font-bold text-terracotta">
@@ -244,6 +244,12 @@ export default function StudentsPage() {
               One file, six yearly-repeating events — your own calendar app
               reminds you a week ahead, every year, no sign-up.
             </p>
+            <Link
+              href="/students/deadlines"
+              className="text-sm font-bold text-ink underline decoration-ink/40 decoration-2 underline-offset-4 hover:decoration-ink"
+            >
+              The full deadlines page
+            </Link>
           </div>
         </div>
       </section>

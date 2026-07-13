@@ -9,13 +9,36 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, ChevronDown } from "lucide-react";
+import {
+  ArrowLeft,
+  ChevronDown,
+  BookOpen,
+  Library,
+  ArrowRightLeft,
+  Wallet,
+  GraduationCap,
+  Map,
+  CalendarDays,
+  Mail,
+  FileText,
+  Award,
+  Search,
+  Landmark,
+  Wrench,
+  ClipboardList,
+  Calculator,
+  Scale,
+  Banknote,
+  type LucideIcon,
+} from "lucide-react";
 import AccountButton from "@/components/AccountButton";
 
 interface StudentDropItem {
   label: string;
   href: string;
   desc: string;
+  icon?: LucideIcon;
+  color?: string;
 }
 
 interface StudentNavEntry {
@@ -23,6 +46,10 @@ interface StudentNavEntry {
   href: string;
   exact?: boolean;
   items?: StudentDropItem[];
+  /** Small link row under the items, main-Header style. */
+  footer?: { label: string; href: string }[];
+  /** Two-column panel for long lists. */
+  columns?: 2;
 }
 
 const NAV: StudentNavEntry[] = [
@@ -30,36 +57,63 @@ const NAV: StudentNavEntry[] = [
   {
     label: "Guides",
     href: "/students/learn/college",
+    columns: 2,
     items: [
-      { label: "All college & aid guides", href: "/students/learn/college", desc: "Every FAFSA, loan, and aid guide in one library." },
-      { label: "The whole library", href: "/students/learn", desc: "All nine topics — credit, taxes, investing, and more." },
-      { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount." },
-      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition." },
-      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end." },
-      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day." },
+      { label: "College & aid guides", href: "/students/learn/college", desc: "Every FAFSA, loan, and aid guide in one library.", icon: GraduationCap, color: "#c9842a" },
+      { label: "The whole library", href: "/students/learn", desc: "All nine topics — credit, taxes, investing, more.", icon: Library, color: "#0c4a39" },
+      { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
+      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
+      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c9842a" },
+      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day.", icon: Map, color: "#0c4a39" },
+    ],
+    footer: [
+      { label: "Glossary", href: "/students/glossary" },
+      { label: "All courses", href: "/students/courses" },
+      { label: "All guided paths", href: "/students/journey" },
     ],
   },
   {
     label: "Deadlines",
-    href: "/students#calendar",
+    href: "/students/deadlines",
     items: [
-      { label: "The money calendar", href: "/students#calendar", desc: "Six dates that move real money, every year." },
-      { label: "Email reminders", href: "/students#reminders", desc: "A nudge a few weeks ahead — pick your dates." },
-      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest." },
+      { label: "The money calendar", href: "/students/deadlines", desc: "Six dates that move real money, every year.", icon: CalendarDays, color: "#c4573b" },
+      { label: "Email reminders", href: "/students/deadlines#reminders", desc: "A nudge a few weeks ahead — pick your dates.", icon: Mail, color: "#0c4a39" },
+      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest.", icon: FileText, color: "#c9842a" },
+      { label: "FAFSA mistakes to avoid", href: "/students/learn/college/fafsa-mistakes", desc: "The errors that delay aid, and their fixes.", icon: FileText, color: "#15624b" },
+    ],
+    footer: [
+      { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time" },
+      { label: "Scholarship season", href: "/students/learn/college/finding-scholarships" },
     ],
   },
-  { label: "Scholarships", href: "/students/scholarships" },
+  {
+    label: "Scholarships",
+    href: "/students/scholarships",
+    items: [
+      { label: "The Scholarship Finder", href: "/students/scholarships", desc: "25 vetted national awards, filters for your stage.", icon: Award, color: "#c9842a" },
+      { label: "Big national databases", href: "/students/scholarships#more", desc: "BigFuture, Immigrants Rising, UNCF — the deep wells.", icon: Search, color: "#0c4a39" },
+      { label: "Winning scholarships", href: "/students/learn/college/finding-scholarships", desc: "Where to look and how to actually win.", icon: FileText, color: "#c4573b" },
+      { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first — know the difference.", icon: Landmark, color: "#15624b" },
+    ],
+  },
   { label: "Community", href: "/students/community" },
   {
     label: "Tools",
     href: "/students/tools",
+    columns: 2,
     items: [
-      { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you." },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place." },
-      { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs." },
-      { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side." },
-      { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing." },
-      { label: "Paycheck", href: "/students/tools/paycheck", desc: "What a campus job pays after taxes." },
+      { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you.", icon: Wrench, color: "#0c4a39" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place.", icon: ClipboardList, color: "#c4573b" },
+      { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs.", icon: Calculator, color: "#c9842a" },
+      { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side.", icon: Scale, color: "#15624b" },
+      { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing.", icon: Banknote, color: "#0c4a39" },
+      { label: "Paycheck", href: "/students/tools/paycheck", desc: "What a campus job pays after taxes.", icon: Wallet, color: "#c9842a" },
+    ],
+    footer: [
+      { label: "Budget Planner", href: "/students/tools/budget" },
+      { label: "Reality Check", href: "/students/tools/reality-check" },
+      { label: "Templates", href: "/students/tools/templates" },
+      { label: "Letter Generator", href: "/students/tools/letters" },
     ],
   },
 ];
@@ -76,23 +130,53 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
         <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
       <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-        <div className="w-80 rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl">
-          <div className="space-y-0.5">
+        <div
+          className={`rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl ${
+            entry.columns === 2 ? "w-[31rem]" : "w-80"
+          }`}
+        >
+          <div
+            className={entry.columns === 2 ? "grid grid-cols-2 gap-1" : "space-y-0.5"}
+          >
             {entry.items!.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-ink-700"
+                className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-ink-700"
               >
-                <span className="block text-sm font-semibold text-cream">
-                  {item.label}
-                </span>
-                <span className="mt-0.5 block text-xs leading-snug text-cream/55">
-                  {item.desc}
+                {item.icon && (
+                  <span
+                    className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg"
+                    style={{ background: `${item.color}1f`, color: item.color ?? "#e7a33c" }}
+                  >
+                    <item.icon className="h-4 w-4" strokeWidth={1.75} />
+                  </span>
+                )}
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-cream">
+                    {item.label}
+                  </span>
+                  <span className="mt-0.5 block text-xs leading-snug text-cream/55">
+                    {item.desc}
+                  </span>
                 </span>
               </Link>
             ))}
           </div>
+
+          {entry.footer && (
+            <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 border-t border-ink-600 px-3 pb-1 pt-2">
+              {entry.footer.map((f) => (
+                <Link
+                  key={f.href}
+                  href={f.href}
+                  className="text-xs font-semibold text-amber transition-colors hover:text-cream"
+                >
+                  {f.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

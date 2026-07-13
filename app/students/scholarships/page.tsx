@@ -107,7 +107,7 @@ export default function ScholarshipsPage() {
 
       {/* More places to search — launcher tier (link the respected free
           searchers; their databases are theirs, our trust tier is ours) */}
-      <section className="border-t-2 border-ink bg-paper">
+      <section id="more" className="scroll-mt-20 border-t-2 border-ink bg-paper">
         <div className="mx-auto max-w-5xl px-6 py-12">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             Go even wider
