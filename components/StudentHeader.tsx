@@ -232,7 +232,13 @@ export default function StudentHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-forest/95 text-cream backdrop-blur">
+    <header
+      // Direct child of <body> (students layout renders a fragment), so the
+      // unlayered body>* grain rule would pin position/z-index — sticky and
+      // z-50 MUST be inline here (same gotcha as MobileNav/SearchDialog).
+      style={{ position: "sticky", top: 0, zIndex: 50 }}
+      className="border-b border-white/10 bg-forest/95 text-cream backdrop-blur"
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5">
         <Link
           href="/students"
