@@ -35,15 +35,17 @@ const STARTER_SLUGS = [
   "filing-taxes-first-time",
 ];
 
+// Pastel tints per tile (the tools-hub tile language): category-ish hues,
+// dark enough for ink text on top.
 const TOOL_TEASERS = [
-  { title: "College Cost", href: "/students/tools/college-cost" },
-  { title: "Compare Aid Offers", href: "/students/tools/compare-offers" },
-  { title: "Student Loan", href: "/students/tools/student-loan" },
-  { title: "Paycheck", href: "/students/tools/paycheck" },
-  { title: "Budget Planner", href: "/students/tools/budget" },
-  { title: "Rent Affordability", href: "/students/tools/rent" },
-  { title: "Emergency Fund", href: "/students/tools/emergency-fund" },
-  { title: "Reality Check", href: "/students/tools/reality-check" },
+  { title: "College Cost", href: "/students/tools/college-cost", tint: "#c9842a" },
+  { title: "Compare Aid Offers", href: "/students/tools/compare-offers", tint: "#b3762f" },
+  { title: "Student Loan", href: "/students/tools/student-loan", tint: "#c4573b" },
+  { title: "Paycheck", href: "/students/tools/paycheck", tint: "#15624b" },
+  { title: "Budget Planner", href: "/students/tools/budget", tint: "#0c4a39" },
+  { title: "Rent Affordability", href: "/students/tools/rent", tint: "#7a5230" },
+  { title: "Emergency Fund", href: "/students/tools/emergency-fund", tint: "#2f6d80" },
+  { title: "Reality Check", href: "/students/tools/reality-check", tint: "#d26a4c" },
 ];
 
 export default function StudentsPage() {
@@ -82,22 +84,24 @@ export default function StudentsPage() {
               first, a tracker that keeps score, and calculators for your
               real numbers. No jargon, no sign-up, no paywall.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-cream/70">
-              <span className="whitespace-nowrap">
-                {collegeGuides.length} college guides
-              </span>
-              <span className="whitespace-nowrap">
-                <span className="text-cream/30">·</span>{" "}
-                {scholarships.length} vetted scholarships
-              </span>
-              <span className="whitespace-nowrap">
-                <span className="text-cream/30">·</span>{" "}
-                {TOOL_TEASERS.length}+ calculators
-              </span>
-              <span className="whitespace-nowrap">
-                <span className="text-cream/30">·</span>{" "}
-                {deadlines.length} deadlines tracked
-              </span>
+            <div className="mt-7 grid max-w-xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-cream/20 bg-cream/20 sm:grid-cols-4">
+              {(
+                [
+                  [String(scholarships.length), "verified awards"],
+                  [String(collegeGuides.length), "college guides"],
+                  [`${TOOL_TEASERS.length}+`, "calculators"],
+                  [String(deadlines.length), "deadlines"],
+                ] as const
+              ).map(([n, label]) => (
+                <div key={label} className="bg-forest px-4 py-3">
+                  <p className="font-display text-2xl font-bold text-amber">
+                    {n}
+                  </p>
+                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream/70">
+                    {label}
+                  </p>
+                </div>
+              ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -142,67 +146,77 @@ export default function StudentsPage() {
       {/* Made for you — stage picker that becomes six stage-right doors */}
       <StudentStageDash />
 
-      {/* The four doors — each opens its own hub page */}
+      {/* The four doors — poster cards (CourseGrid language): a solid color
+          band carries the live number huge, the cream body sells the door */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Link
-              href="/students/deadlines"
-              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="font-display text-2xl font-bold text-terracotta">
-                {deadlines.length}
-              </p>
-              <h2 className="mt-1 font-display text-lg font-bold text-ink">
-                Deadlines
-              </h2>
-              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
-                The dates that move real money, with reminders if you want
-                them.
-              </p>
-            </Link>
-            <Link
-              href="/students/scholarships"
-              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 lg:rotate-[0.4deg]"
-            >
-              <p className="font-display text-2xl font-bold text-terracotta">
-                {scholarships.length}
-              </p>
-              <h2 className="mt-1 font-display text-lg font-bold text-ink">
-                Scholarships
-              </h2>
-              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
-                Real, verified awards — filter by where you are in school.
-              </p>
-            </Link>
-            <Link
-              href="/students/tracker"
-              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="font-display text-2xl font-bold text-terracotta">
-                60
-              </p>
-              <h2 className="mt-1 font-display text-lg font-bold text-ink">
-                Tracker
-              </h2>
-              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
-                Units, grades, GPA — with tracks for high school, community college, and university.
-              </p>
-            </Link>
-            <Link
-              href={frameHref("/learn/college", "student")}
-              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1 lg:-rotate-[0.4deg]"
-            >
-              <p className="font-display text-2xl font-bold text-terracotta">
-                {collegeGuides.length}+
-              </p>
-              <h2 className="mt-1 font-display text-lg font-bold text-ink">
-                Guides
-              </h2>
-              <p className="mt-1 flex-1 text-sm leading-6 text-stone">
-                The whole student shelf, from FAFSA to your first paycheck.
-              </p>
-            </Link>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {(
+              [
+                {
+                  href: "/students/deadlines",
+                  stat: String(deadlines.length),
+                  statLabel: "dates tracked",
+                  title: "Deadlines",
+                  desc: "The dates that move real money, with reminders if you want them.",
+                  color: "#c4573b",
+                  tilt: "",
+                },
+                {
+                  href: "/students/scholarships",
+                  stat: String(scholarships.length),
+                  statLabel: "verified awards",
+                  title: "Scholarships",
+                  desc: "Real, hand-checked awards — filter by where you are in school.",
+                  color: "#c9842a",
+                  tilt: "lg:rotate-[0.5deg]",
+                },
+                {
+                  href: "/students/tracker",
+                  stat: "3",
+                  statLabel: "tracks: HS, CC, uni",
+                  title: "Tracker",
+                  desc: "Units, grades, GPA, and your scholarship pipeline — kept score for you.",
+                  color: "#15624b",
+                  tilt: "",
+                },
+                {
+                  href: frameHref("/learn/college", "student"),
+                  stat: `${collegeGuides.length}`,
+                  statLabel: "college guides",
+                  title: "Guides",
+                  desc: "The whole student shelf, from FAFSA to your first paycheck.",
+                  color: "#b3762f",
+                  tilt: "lg:-rotate-[0.5deg]",
+                },
+              ] as const
+            ).map((door) => (
+              <Link
+                key={door.href}
+                href={door.href}
+                className={`card-ink group flex h-full flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${door.tilt}`}
+              >
+                <div
+                  className="relative overflow-hidden p-5 pb-4 text-cream"
+                  style={{ background: door.color }}
+                >
+                  <p className="font-display text-5xl font-bold leading-none">
+                    {door.stat}
+                  </p>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-cream/80">
+                    {door.statLabel}
+                  </p>
+                </div>
+                <div className="flex flex-1 flex-col border-t-2 border-ink p-5">
+                  <h2 className="font-display text-xl font-bold text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">
+                    {door.title}
+                  </h2>
+                  <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                    {door.desc}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -482,24 +496,33 @@ export default function StudentsPage() {
               All tools
             </Link>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2.5">
-            {TOOL_TEASERS.map((t) => (
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {TOOL_TEASERS.map((t, i) => (
               <Link
                 key={t.href}
                 href={t.href}
-                className="rounded-lg border-2 border-ink bg-cream px-4 py-2 text-sm font-bold text-ink shadow-[2px_2px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+                className={`card-ink flex items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-sm font-bold text-ink transition-transform duration-150 hover:-translate-y-1 ${
+                  i === 2 || i === 5 ? "lg:rotate-[0.6deg]" : ""
+                }`}
+                style={{
+                  background: `color-mix(in srgb, ${t.tint} 14%, #fbf8f1)`,
+                }}
               >
-                {t.title}
+                <span className="min-w-0">{t.title}</span>
+                <span
+                  className="h-2.5 w-2.5 shrink-0 rounded-full"
+                  style={{ background: t.tint }}
+                />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Community band */}
+      {/* Community band — split panel: solid forest text + ink-framed photo */}
       <section className="bg-forest text-cream">
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber">
                 You&apos;re not doing this alone
@@ -513,20 +536,31 @@ export default function StudentsPage() {
                 paychecks, transfer plans — asked and answered by people in
                 the same semester you&apos;re in.
               </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href="/students/community"
+                  className="btn-ink inline-flex items-center justify-center rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
+                >
+                  Visit the Students channel
+                </Link>
+                <Link
+                  href="/students/community/post/say-hello"
+                  className="inline-flex items-center justify-center rounded-md border border-cream/30 px-6 py-3 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
+                >
+                  Introduce yourself
+                </Link>
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <Link
-                href="/students/community"
-                className="btn-ink inline-flex items-center justify-center rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
-              >
-                Visit the Students channel
-              </Link>
-              <Link
-                href="/students/community/post/say-hello"
-                className="inline-flex items-center justify-center rounded-md border border-cream/30 px-6 py-3 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
-              >
-                Introduce yourself
-              </Link>
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+              <div className="relative aspect-[5/4] -rotate-1 overflow-hidden rounded-2xl border-2 border-ink shadow-[8px_8px_0_#e7a33c]">
+                <Image
+                  src="/images/students-collab.jpg"
+                  alt="Students working together"
+                  fill
+                  sizes="(min-width: 1024px) 32rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
