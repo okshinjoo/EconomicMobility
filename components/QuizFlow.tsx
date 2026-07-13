@@ -16,6 +16,7 @@ import {
   confidenceTier,
   knowledgeCheckBank,
   KC_QUESTIONS_PER_TOPIC,
+  MAX_KC_TOPICS,
   GENERAL_KC_PICKS,
   TOPIC_NOT_SURE,
   type QuizAnswers,
@@ -103,11 +104,18 @@ export default function QuizFlow({
     [answers.q3]
   );
 
+  // Only the first MAX_KC_TOPICS picks get quizzed — keeps the check at
+  // four questions no matter how many topics were selected.
+  const kcTopicIds = useMemo(
+    () => selectedTopicIds.slice(0, MAX_KC_TOPICS),
+    [selectedTopicIds]
+  );
+
   const kcQuestions: KCQuestionInstance[] = useMemo(() => {
     // If the user chose specific topics, quiz them on those (even if they also
     // picked "I'm not sure").
-    if (selectedTopicIds.length > 0) {
-      return selectedTopicIds.flatMap((topicId) =>
+    if (kcTopicIds.length > 0) {
+      return kcTopicIds.flatMap((topicId) =>
         knowledgeCheckBank[topicId][tier]
           .slice(0, KC_QUESTIONS_PER_TOPIC)
           .map((q, i) => ({
@@ -133,7 +141,7 @@ export default function QuizFlow({
       });
     }
     return [];
-  }, [selectedTopicIds, tier, isNotSure]);
+  }, [kcTopicIds, tier, isNotSure]);
 
   const isLastBeforeResults =
     (step === "q5" && kcQuestions.length === 0) ||
@@ -295,7 +303,7 @@ export default function QuizFlow({
 
   const progressLabel =
     step === "kc"
-      ? `Knowledge Check: Question ${kcIndex + 1} of ${kcQuestions.length}`
+      ? `Knowledge Check (optional): Question ${kcIndex + 1} of ${kcQuestions.length}`
       : QUESTION_STEPS.includes(step as (typeof QUESTION_STEPS)[number])
         ? `Question ${QUESTION_STEPS.indexOf(step as (typeof QUESTION_STEPS)[number]) + 1} of 5`
         : "";
@@ -442,6 +450,17 @@ export default function QuizFlow({
             </div>
 
             <div className="px-6 py-8 sm:px-10 sm:py-10">
+              {step === "kc" && (
+                <div className="mb-6 flex flex-wrap items-center gap-2.5 rounded-lg border border-amber/40 bg-amber/10 px-4 py-2.5 text-sm">
+                  <span className="rounded-full bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink">
+                    Optional
+                  </span>
+                  <span className="font-medium text-ink/80">
+                    A quick gut-check to fine-tune your results — nothing is
+                    graded, and you can skip it.
+                  </span>
+                </div>
+              )}
               {renderQuestion()}
 
               <div className="mt-10 flex items-center justify-between">
@@ -481,7 +500,7 @@ export default function QuizFlow({
                   <button
                     type="button"
                     onClick={skipKnowledgeCheck}
-                    className="text-forest underline-offset-4 transition-colors hover:text-ink hover:underline"
+                    className="rounded-md border-2 border-forest px-4 py-2 font-bold text-forest transition-colors hover:bg-forest hover:text-cream"
                   >
                     Skip to my results
                   </button>
@@ -500,6 +519,7 @@ export default function QuizFlow({
             tier={tier}
             isNotSure={isNotSure}
             skippedKc={skippedKc}
+            quizzedTopicIds={kcTopicIds}
             selectedTopicIds={selectedTopicIds}
             kcAnswers={kcAnswers}
             onRetake={handleRetake}

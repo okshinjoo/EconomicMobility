@@ -29,6 +29,9 @@ interface QuizResultsProps {
   tier: Tier;
   isNotSure: boolean;
   skippedKc?: boolean;
+  /** Topics that actually got knowledge-check questions (first MAX_KC_TOPICS
+   *  of the selection). Older snapshots omit it — fall back to all. */
+  quizzedTopicIds?: TopicId[];
   selectedTopicIds: TopicId[];
   kcAnswers: KCAnswers;
   onRetake: () => void;
@@ -62,6 +65,7 @@ export default function QuizResults({
   tier,
   isNotSure,
   skippedKc = false,
+  quizzedTopicIds,
   selectedTopicIds,
   kcAnswers,
   onRetake,
@@ -151,7 +155,7 @@ export default function QuizResults({
           </div>
         ) : (
           <div className="mt-4 space-y-4">
-            {selectedTopicIds.map((topicId) => {
+            {(quizzedTopicIds ?? selectedTopicIds).map((topicId) => {
               const topic = getTopic(topicId);
               const score = scoreKnowledgeCheck(
                 topicId,
@@ -181,6 +185,14 @@ export default function QuizResults({
                 </div>
               );
             })}
+            {quizzedTopicIds &&
+              quizzedTopicIds.length < selectedTopicIds.length && (
+                <p className="text-sm leading-6 text-stone">
+                  To keep the quiz short, we only spot-checked your first{" "}
+                  {quizzedTopicIds.length === 1 ? "topic" : "two topics"} —
+                  the plan below still covers everything you picked.
+                </p>
+              )}
           </div>
         )}
       </section>

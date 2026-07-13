@@ -172,6 +172,9 @@ export interface KnowledgeCheckQuestion {
 
 // How many knowledge-check questions to ask per selected topic.
 export const KC_QUESTIONS_PER_TOPIC = 2;
+/** Cap on how many selected topics get quizzed (owner call July 2026: the
+ *  check felt too long) — the first N picks, 2 questions each, 4 max. */
+export const MAX_KC_TOPICS = 2;
 
 export const knowledgeCheckBank: Record<
   TopicId,
