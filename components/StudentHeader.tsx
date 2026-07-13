@@ -34,6 +34,8 @@ import {
   Users,
   MessageCircle,
   HelpCircle,
+  Telescope,
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 import { topics } from "@/lib/topics";
@@ -67,12 +69,13 @@ const NAV: StudentNavEntry[] = [
     label: "Guides",
     href: "/students/learn/college",
     items: [
-      { label: "College & aid guides", href: "/students/learn/college", desc: "All 20 — FAFSA, aid letters, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
+      { label: "College & aid guides", href: "/students/learn/college", desc: "All 33 — aid, admissions, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one form that unlocks most college aid.", icon: FileText, color: "#0c4a39" },
       { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
       { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c9842a" },
       { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day.", icon: Map, color: "#0c4a39" },
+      { label: "Compare Colleges", href: "/students/compare-colleges", desc: "In progress — a preview of what's coming.", icon: Building2, color: "#4b5f8a" },
     ],
     footer: [
       { label: "All nine money topics", href: "/students/learn" },
@@ -139,6 +142,7 @@ const NAV: StudentNavEntry[] = [
       { label: "Paid internships", href: "/students/opportunities?type=internship", desc: "Programs that pay you while you learn the field.", icon: Banknote, color: "#0c4a39" },
       { label: "Research programs", href: "/students/opportunities?type=research", desc: "Summer research with stipends, high school and college.", icon: Search, color: "#c4573b" },
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Wallet, color: "#15624b" },
+      { label: "Career Explorer", href: "/students/career-explorer", desc: "In progress — a preview of what's coming.", icon: Telescope, color: "#4b5f8a" },
     ],
   },
   {
