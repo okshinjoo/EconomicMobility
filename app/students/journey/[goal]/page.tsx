@@ -1,6 +1,10 @@
+// Student-frame mirror of every guided path (July 2026 full-containment
+// pass): stage items (guides, tools, courses, quizzes) stay inside the
+// microsite; challenges deliberately exit. Canonical points at the main
+// journey page; the students layout provides StudentHeader.
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JourneyPageView from "@/components/JourneyPageView";
 import { journeys, getJourney } from "@/lib/journeys";
@@ -20,10 +24,11 @@ export async function generateMetadata({
   return {
     title: `${j.title} — a guided path | Empower`,
     description: j.promise,
+    alternates: { canonical: `/journey/${goal}` },
   };
 }
 
-export default async function JourneyPage({
+export default async function StudentJourneyPage({
   params,
 }: {
   params: Promise<{ goal: string }>;
@@ -33,8 +38,7 @@ export default async function JourneyPage({
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
-      <JourneyPageView goal={goal} frame="main" />
+      <JourneyPageView goal={goal} frame="student" />
       <Footer />
     </div>
   );

@@ -8,6 +8,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { frameHref, type Frame } from "@/lib/frame";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges, BadgeMedal, type BadgeMap } from "@/components/CourseQuiz";
 import CourseDoodle from "@/components/CourseDoodle";
@@ -23,7 +24,7 @@ export interface CourseCardData {
   quizCount: number;
 }
 
-export default function CourseGrid({ items }: { items: CourseCardData[] }) {
+export default function CourseGrid({ items, frame = "main" }: { items: CourseCardData[]; frame?: Frame }) {
   const [read, setRead] = useState<Record<string, number>>({});
   const [badges, setBadges] = useState<BadgeMap>({});
 
@@ -45,7 +46,7 @@ export default function CourseGrid({ items }: { items: CourseCardData[] }) {
         return (
           <Link
             key={course.id}
-            href={`/courses/${course.id}`}
+            href={frameHref(`/courses/${course.id}`, frame)}
             className={`card-ink group flex flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
           >
             {/* Poster band: the course's own color does the differentiating,

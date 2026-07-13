@@ -9,6 +9,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { frameHref, type Frame } from "@/lib/frame";
 import { ArrowRight, Check } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import type { TopicId } from "@/lib/topics";
@@ -123,7 +124,7 @@ function TrailMini({
   );
 }
 
-export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
+export default function JourneyIndex({ items, frame = "main" }: { items: JourneyCardData[]; frame?: Frame }) {
   const [ready, setReady] = useState(false);
   const [goalIds, setGoalIds] = useState<Set<string>>(new Set());
   const [quizTopics, setQuizTopics] = useState<Set<string>>(new Set());
@@ -227,7 +228,7 @@ export default function JourneyIndex({ items }: { items: JourneyCardData[] }) {
         return (
           <Link
             key={j.id}
-            href={`/journey/${j.id}`}
+            href={frameHref(`/journey/${j.id}`, frame)}
             className={`card-ink group flex flex-col rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1 ${tilt}`}
             style={{ background: `color-mix(in srgb, ${j.color} 10%, #fbf8f1)` }}
           >
