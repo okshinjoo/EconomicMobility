@@ -71,6 +71,31 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
               Find your path
             </Link>
           </div>
+          {frame === "student" && (() => {
+            const pfc = items.find((c) => c.id === "paying-for-college");
+            if (!pfc) return null;
+            return (
+              <Link
+                href="/students/courses/paying-for-college"
+                className="card-ink-lg mb-8 block rounded-2xl border-2 border-ink bg-forest p-7 text-cream shadow-[6px_6px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+              >
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+                  The student course
+                </span>
+                <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
+                  {pfc.title}
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-cream/75">
+                  {pfc.goal}
+                </p>
+              </Link>
+            );
+          })()}
+          {frame === "student" && (
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-stone">
+              Every other goal, when you want it
+            </p>
+          )}
           <CourseGrid items={items} frame={frame} />
         </div>
       </section>

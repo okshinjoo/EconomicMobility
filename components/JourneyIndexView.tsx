@@ -132,6 +132,28 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
               Build my plan
             </span>
           </Link>
+          {frame === "student" && (
+            <Link
+              href="/students/journey/college"
+              className="card-ink-lg mb-8 block rounded-2xl border-2 border-ink bg-forest p-7 text-cream shadow-[6px_6px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+            >
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+                The student path
+              </span>
+              <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
+                Pay for college
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-cream/75">
+                Ordered milestones from FAFSA to signing day — your progress
+                fills the trail as you go.
+              </p>
+            </Link>
+          )}
+          {frame === "student" && (
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-stone">
+              Every other goal, when you want it
+            </p>
+          )}
           <JourneyIndex items={items} frame={frame} />
           <p className="mt-10 text-sm text-stone">
             Every path is built from the same free library — a path just puts

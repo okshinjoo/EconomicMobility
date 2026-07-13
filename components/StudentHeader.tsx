@@ -13,7 +13,6 @@ import {
   ArrowLeft,
   ChevronDown,
   BookOpen,
-  Library,
   GraduationCap,
   ArrowRightLeft,
   Wallet,
@@ -85,12 +84,15 @@ const NAV: StudentNavEntry[] = [
     href: "/students/journey/college",
     items: [
       { label: "Pay for college — the path", href: "/students/journey/college", desc: "Ordered milestones, FAFSA to signing day.", icon: Map, color: "#c9842a" },
-      { label: "All guided paths", href: "/students/journey", desc: "Nine goals — credit, debt, investing, and more.", icon: Compass, color: "#0c4a39" },
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
-      { label: "All courses", href: "/students/courses", desc: "Ten modules: reading path, flashcards, final.", icon: Library, color: "#15624b" },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#c9842a" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#0c4a39" },
+      { label: "My Plan", href: "/students/plan", desc: "Five questions, one personal plan that checks itself off.", icon: Compass, color: "#15624b" },
     ],
-    footer: [{ label: "Take the 2-minute quiz", href: "/students/quiz" }],
+    footer: [
+      { label: "All guided paths", href: "/students/journey" },
+      { label: "All courses", href: "/students/courses" },
+      { label: "The 2-minute quiz", href: "/students/quiz" },
+    ],
   },
   {
     label: "Deadlines",
