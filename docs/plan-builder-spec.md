@@ -174,6 +174,16 @@ you should be able to leave feedback"):**
   and validation. Revise NEVER falls back to a fresh deterministic plan
   (that would clobber theirs) — on no-key/AI-failure it returns
   `{unavailable}` and the client keeps the plan with a try-later note.
+- **Knowns (July 13 addendum)**: the client sends standing answers with
+  every interview turn — About-you signals (income/family from
+  lib/aboutYou), the profile's student stage (hs/cc/uni mapped to the
+  intake's stage ids), and profile goals as a confirm-don't-re-ask hint.
+  The route validates them against the same enums (sanitizeKnowns) and
+  appends an ALREADY-KNOWN block to the interview system prompt: skip
+  those questions, fold the facts into the played-back summary (so the
+  person can still correct them at the confirm step), and trust the
+  conversation over the profile on any conflict. The opener tells the
+  person their profile answers are being skipped.
 - **Degradation**: no key → interview returns `{unavailable}` and the
   client silently switches to the classic five-question form (which
   stays as the re-plan path and the "Prefer the quick form?" escape).

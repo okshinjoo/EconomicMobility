@@ -26,6 +26,7 @@ import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { frameHref } from "@/lib/frame";
 import { readAboutYou } from "@/lib/aboutYou";
+import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
@@ -211,6 +212,22 @@ interface ChatMsg {
 const OPENER =
   "Hey — I'll build your money plan with you. It takes a couple of minutes and nothing you say leaves this plan. First up: what's the one money thing you want to get done right now?";
 
+/** Standing answers the interview can skip re-asking: About-you signals,
+ *  the profile's student stage (mapped to the intake's stage ids), and
+ *  profile goals as a confirm-don't-ask hint. Client-only (mounted). */
+function gatherKnowns() {
+  const about = readAboutYou();
+  const stage = readStudentStage();
+  const profile = readLocalProfile();
+  const stageMap = { hs: "high-school", cc: "community-college", uni: "four-year" } as const;
+  return {
+    stage: stage ? stageMap[stage] : undefined,
+    income: about.income || undefined,
+    family: about.family || undefined,
+    goals: profile?.goals?.length ? profile.goals : undefined,
+  };
+}
+
 function ChatIntake({
   building,
   onConfirmed,
@@ -220,8 +237,17 @@ function ChatIntake({
   onConfirmed: (intake: IntakeAnswers, summary: string) => void;
   onUseForm: () => void;
 }) {
-  const [msgs, setMsgs] = useState<ChatMsg[]>([
-    { role: "assistant", content: OPENER },
+  // Computed once on mount (ChatIntake only renders client-side).
+  const [knowns] = useState(gatherKnowns);
+  const [msgs, setMsgs] = useState<ChatMsg[]>(() => [
+    {
+      role: "assistant",
+      content:
+        Object.values(knowns).some(Boolean)
+          ? OPENER +
+            " (I already know a bit from your profile, so I'll skip what you've told us.)"
+          : OPENER,
+    },
   ]);
   const [input, setInput] = useState("");
   const [waiting, setWaiting] = useState(false);
@@ -242,7 +268,7 @@ function ChatIntake({
       const res = await fetch("/api/plan", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ phase: "interview", messages: next }),
+        body: JSON.stringify({ phase: "interview", messages: next, knowns }),
       });
       if (!res.ok) throw new Error(String(res.status));
       const data = (await res.json()) as {

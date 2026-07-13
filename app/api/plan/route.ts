@@ -271,9 +271,45 @@ async function callClaude(
     .join("");
 }
 
+interface Knowns {
+  stage?: string;
+  income?: string;
+  family?: string;
+  goals?: string[];
+}
+
+/** Standing answers from the profile/About-you tab: the interview skips
+ *  what these already cover and folds them into the confirm-back summary
+ *  (the person still gets to say "not quite"). */
+function sanitizeKnowns(raw: unknown): Knowns {
+  const r = (raw ?? {}) as Record<string, unknown>;
+  const out: Knowns = {};
+  if (STAGE_IDS.includes(String(r.stage))) out.stage = String(r.stage);
+  if (INCOME_IDS.includes(String(r.income))) out.income = String(r.income);
+  if (FAMILY_IDS.includes(String(r.family))) out.family = String(r.family);
+  if (Array.isArray(r.goals)) {
+    const g = r.goals.map(String).filter((id) => GOAL_IDS.includes(id));
+    if (g.length > 0) out.goals = g.slice(0, 3);
+  }
+  return out;
+}
+
+function knownsBlock(k: Knowns): string {
+  const lines: string[] = [];
+  if (k.stage) lines.push(`- Where they are: ${k.stage}`);
+  if (k.income) lines.push(`- Money month to month: ${k.income}`);
+  if (k.family) lines.push(`- Family situation: ${k.family}`);
+  if (k.goals) lines.push(`- Goals already on their profile: ${k.goals.join(", ")} (confirm which one is TODAY'S focus rather than asking from scratch)`);
+  if (lines.length === 0) return "";
+  return `
+
+ALREADY KNOWN from their profile (do NOT ask about these again — fold them into your played-back summary so they can correct them; if the conversation contradicts one, trust the conversation):
+${lines.join("\n")}`;
+}
+
 /** Interview turn: next guided question, or the confirm-back summary. */
-async function handleInterview(key: string, messages: ChatMsg[]) {
-  const text = await callClaude(key, INTERVIEW_SYSTEM, messages, 700);
+async function handleInterview(key: string, messages: ChatMsg[], knowns: Knowns) {
+  const text = await callClaude(key, INTERVIEW_SYSTEM + knownsBlock(knowns), messages, 700);
   const jsonStart = text.indexOf("{");
   if (jsonStart !== -1) {
     try {
@@ -335,7 +371,11 @@ export async function POST(req: NextRequest) {
     const key = process.env.ANTHROPIC_API_KEY;
     if (!key) return Response.json({ unavailable: true });
     try {
-      return await handleInterview(key, sanitizeMessages(body.messages));
+      return await handleInterview(
+        key,
+        sanitizeMessages(body.messages),
+        sanitizeKnowns((body as { knowns?: unknown }).knowns)
+      );
     } catch {
       return Response.json({ unavailable: true });
     }
