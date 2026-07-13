@@ -610,13 +610,13 @@ export default function StudentsPage() {
             </div>
             <div className="flex flex-col gap-3">
               <Link
-                href="/community"
+                href="/students/community"
                 className="btn-ink inline-flex items-center justify-center rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
               >
                 Visit the Students channel
               </Link>
               <Link
-                href="/community/post/say-hello"
+                href="/students/community/post/say-hello"
                 className="inline-flex items-center justify-center rounded-md border border-cream/30 px-6 py-3 text-base font-semibold text-cream transition-colors hover:border-amber hover:text-amber"
               >
                 Introduce yourself

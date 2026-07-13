@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+
+const PostBaseContext = createContext("/community/post");
 import Link from "next/link";
 import type { Session } from "@supabase/supabase-js";
 import { getSupabase } from "@/lib/supabase";
@@ -793,10 +795,11 @@ function MiniCard({
   post: CommunityPost;
   commentTotal: number;
 }) {
+  const postBase = useContext(PostBaseContext);
   return (
     <Link
       id={`post-${post.id}`}
-      href={`/community/post/${post.id}`}
+      href={`${postBase}/${post.id}`}
       className="group block w-full scroll-mt-24 rounded-2xl border-2 border-ink bg-cream p-5 text-left shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
     >
       <div className="flex flex-wrap items-center gap-2">
@@ -858,10 +861,11 @@ function CompactRow({
   onTag: (id: ChannelId) => void;
 }) {
   const { hub, tag } = usePostChips(post);
+  const postBase = useContext(PostBaseContext);
   return (
     <Link
       id={`post-${post.id}`}
-      href={`/community/post/${post.id}`}
+      href={`${postBase}/${post.id}`}
       className="group block w-full scroll-mt-24 rounded-xl border border-sand bg-cream px-4 py-3 text-left transition-colors hover:border-ink/25"
     >
       <div className="flex flex-wrap items-center gap-2">
@@ -959,9 +963,10 @@ function PostCard({
   const [open, setOpen] = useState(full && post.comments.length > 0);
   const [copied, setCopied] = useState(false);
   const liked = Boolean(likes[post.id]);
+  const postBase = useContext(PostBaseContext);
 
   const share = async () => {
-    const url = `${window.location.origin}/community/post/${post.id}`;
+    const url = `${window.location.origin}${postBase}/${post.id}`;
     try {
       await navigator.clipboard.writeText(url);
     } catch {
@@ -1079,7 +1084,7 @@ function PostCard({
           </button>
         ) : (
           <Link
-            href={`/community/post/${post.id}`}
+            href={`${postBase}/${post.id}`}
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold text-stone transition-colors hover:bg-paper hover:text-ink"
           >
             <MessageCircle className="h-4 w-4" />
@@ -1277,14 +1282,18 @@ export function SinglePost({
 export default function CommunityFeed({
   posts,
   authorMeta = {},
+  initialChannel = "all",
+  postBase = "/community/post",
 }: {
   posts: CommunityPost[];
   authorMeta?: Record<string, { cred: number; earned: string[] }>;
+  initialChannel?: "all" | ChannelId;
+  postBase?: string;
 }) {
   const [likes, setLikes] = useState<Record<string, boolean>>({});
   const [pendingComments, setPendingComments] = useState<PendingCommentMap>({});
   const [pendingPosts, setPendingPosts] = useState<PendingPost[]>([]);
-  const [active, setActive] = useState<"all" | ChannelId>("all");
+  const [active, setActive] = useState<"all" | ChannelId>(initialChannel);
   const [pinnedChannels, setPinnedChannels] = useState<ChannelId[]>([]);
   // Reddit-style sorting. No public vote counts exist here (honesty rule),
   // so ranking runs on the real signals: approved comments + age.
@@ -1308,7 +1317,7 @@ export default function CommunityFeed({
     const hash = window.location.hash;
     if (hash.startsWith("#post-")) {
       window.location.replace(
-        `/community/post/${hash.slice("#post-".length)}`
+        `${postBase}/${hash.slice("#post-".length)}`
       );
     }
   }, []);
@@ -1626,6 +1635,7 @@ export default function CommunityFeed({
   );
 
   return (
+    <PostBaseContext.Provider value={postBase}>
     <div className="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-start lg:gap-8">
       {/* left rail, CGF-style (desktop) */}
       <aside className="card-ink hidden rounded-2xl bg-cream px-2 py-4 lg:sticky lg:top-24 lg:block">
@@ -1956,5 +1966,6 @@ export default function CommunityFeed({
       )}
       </div>
     </div>
+    </PostBaseContext.Provider>
   );
 }

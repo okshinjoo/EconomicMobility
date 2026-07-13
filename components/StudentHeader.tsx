@@ -48,6 +48,7 @@ const NAV: StudentNavEntry[] = [
     ],
   },
   { label: "Scholarships", href: "/students/scholarships" },
+  { label: "Community", href: "/students/community" },
   {
     label: "Tools",
     href: "/students/tracker",
