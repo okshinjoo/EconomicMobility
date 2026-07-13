@@ -103,8 +103,8 @@ export const studentCalendar: StudentDate[] = [
     title: "Early decision deadlines (typically)",
     detail:
       "Early decision binds you to one school before you can compare aid offers. Great for a clear first choice; risky if the money matters.",
-    href: "/learn/college/css-profile-explained",
-    linkLabel: "The CSS Profile, Explained",
+    href: "/learn/college/early-decision-explained",
+    linkLabel: "Early Decision: The Binding Fine Print",
   },
   {
     when: "November 1",

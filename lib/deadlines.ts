@@ -121,7 +121,7 @@ export const deadlines: Deadline[] = [
     month: 11,
     title: "Early decision & early action deadlines",
     why: "Early decision is binding before you can compare aid offers — know what you're signing up for.",
-    href: "/learn/college/css-profile-explained",
+    href: "/learn/college/early-decision-explained",
     appliesTo: ["student"],
   },
   {

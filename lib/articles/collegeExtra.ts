@@ -2,6 +2,257 @@ import type { Article } from "./types";
 
 export const collegeExtraArticles: Article[] = [
   {
+    slug: "schools-with-generous-aid",
+    order: 28,
+    topicId: "college",
+    title: "Some Schools Just Pay Better: How to Find Them",
+    dek: "Aid generosity varies more between schools than almost anything else about them. Build your list around the ones that actually pay.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Two schools that would both admit you can differ by $20,000 a year in what you'd pay.",
+      "Every college is required to post a net price calculator; it's the most underused tool in admissions.",
+      "Average net price by income bracket tells you more than any ranking.",
+      "Apply to a list built around generosity and you graduate with choices instead of regrets.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Families compare schools on rankings, campus tours, and dining halls, then treat the aid offer as weather: whatever arrives, arrives. Flip that. Generosity is measurable before you apply anywhere, and the spread is enormous. The same student, same grades, same FAFSA, can owe wildly different amounts at schools of similar quality, purely because of how each one funds aid.",
+      },
+      {
+        type: "h2",
+        text: "Why some schools pay better",
+      },
+      {
+        type: "p",
+        text: "Aid money comes from somewhere: endowment earnings, state funding, tuition revenue shuffled into discounts. Schools with big endowments per student can afford grant-heavy packages and promises like meeting [full need](/learn/college/need-blind-colleges). Schools without that cushion lean on loans and gapping, admitting you with a package that quietly doesn't cover the [gap](/learn/college/understanding-unmet-need). Neither is villainy; it's budget math. Your job is knowing which kind of school you're applying to before you fall in love.",
+      },
+      {
+        type: "h2",
+        text: "The fifteen-minute check, per school",
+      },
+      {
+        type: "steps",
+        items: [
+          "Run the school's **net price calculator** with honest family numbers. Every college is required to have one; search the school name plus \"net price calculator.\" The estimate is the closest thing to an early award letter you'll get.",
+          "Look up the school's **average net price by income bracket** on the federal College Scorecard site (collegescorecard.ed.gov). The number for YOUR bracket is the real sticker.",
+          "Find the aid page's own claims: what share of need do they meet, and do packages lean grants or loans?",
+          "Note whether merit scholarships exist and what earns them; at many schools, strong-but-not-top applicants collect merit money a reach school would never offer.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Building the list around money",
+      },
+      {
+        type: "p",
+        text: "A money-smart application list usually has three layers: a generous reach or two (the meets-full-need tier, where getting in solves the money), a core of schools whose calculators produced numbers your family can survive, and an in-state option whose price you've verified rather than assumed. What it shouldn't include: any school whose calculator output was a fantasy for your family, unless you'd genuinely accept the debt.",
+      },
+      {
+        type: "tip",
+        text: "Calculators assume simple finances. Divorced parents, a small business, or unusual income can throw estimates off, at exactly the schools that ask for the [CSS Profile](/learn/college/css-profile-explained). Treat those estimates as rough and email the aid office your questions; how they answer tells you plenty.",
+      },
+      {
+        type: "key",
+        text: "You can't negotiate your way out of applying to the wrong schools. Generosity is public information; use it while your list is still a draft.",
+      },
+    ],
+    related: ["need-blind-colleges", "private-vs-public-aid", "reading-aid-award-letter"],
+  },
+  {
+    slug: "private-vs-public-aid",
+    order: 29,
+    topicId: "college",
+    title: "Private vs. Public: Who Actually Charges You Less?",
+    dek: "The $85,000 private college and the $30,000 state school are both lying to you a little. Sticker price is where the story starts, not ends.",
+    level: "Beginner",
+    readMinutes: 6,
+    takeaways: [
+      "Publics run on state subsidy and low-ish stickers; privates run on high stickers with steep discounts.",
+      "For low-income students, a wealthy private school is often the cheapest option on the list.",
+      "For middle incomes and thin-endowment privates, the public flagship usually wins.",
+      "Compare net price per school, never category versus category.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Ask most families and they'll tell you public means affordable and private means expensive. The truth is stranger: the two run on completely different pricing systems, and which one costs YOU less depends mostly on your family's income and the specific schools involved.",
+      },
+      {
+        type: "h2",
+        text: "How each machine works",
+      },
+      {
+        type: "list",
+        items: [
+          "**Public colleges** are subsidized by state taxes, which is why in-state stickers are lower and why [residency rules](/learn/college/in-state-vs-out-of-state) matter so much. Their aid leans on federal grants and state programs; their own institutional grants are usually modest.",
+          "**Private colleges** post high stickers almost nobody pays. The real system is discounting: institutional grants funded by endowments and tuition itself. At wealthy privates the discounts are enormous and need-based; at less wealthy ones they're merit bait spread thin.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Who wins, by situation",
+      },
+      {
+        type: "list",
+        items: [
+          "**Low income, strong record:** wealthy privates that meet [full need](/learn/college/need-blind-colleges) often beat every public option, sometimes costing near zero. This is the most under-applied-to path in American admissions.",
+          "**Middle income:** the squeeze zone. Privates may calculate more \"ability to pay\" than feels real; the in-state flagship's sticker is often the honest floor. Run both calculators before assuming either.",
+          "**Any income, ordinary private:** a thin-endowment private at $60,000 sticker with a $20,000 merit scholarship still costs double the state school. A discount is not a deal if the remainder is unaffordable.",
+          "**Starting at community college:** beats both on price for the first two years; the [transfer play](/learn/college/community-college-transfer-money) is its own well-marked path.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The only comparison that counts",
+      },
+      {
+        type: "p",
+        text: "Category thinking fails because the spread inside each category dwarfs the gap between them. The comparison that works is one you've already met: [net price](/glossary#net-price), this school, your numbers. Run the calculators, check the Scorecard brackets, and let each school compete as itself, not as a category.",
+      },
+      {
+        type: "tip",
+        text: "Don't cross a private school off for its sticker before running its calculator, and don't trust a public school's sticker until you've added housing, fees, and books. Both categories hide the real number, in opposite directions.",
+      },
+      {
+        type: "key",
+        text: "Public vs. private is a pricing-system difference, not a price difference. Your income bracket and the specific school decide the winner, every time.",
+      },
+    ],
+    related: ["schools-with-generous-aid", "in-state-vs-out-of-state", "community-college-path"],
+  },
+  {
+    slug: "early-decision-explained",
+    order: 26,
+    topicId: "college",
+    title: "Early Decision: The Binding Fine Print",
+    dek: "ED can genuinely boost your admission odds. It can also lock you into a school before you've seen a single competing aid offer. Both are true.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Early decision is binding: admitted means attending, before other offers exist.",
+      "Early action gives most of the timing benefit with none of the lock-in.",
+      "ED's real cost is losing the power to compare and negotiate aid offers.",
+      "There's one accepted exit: if the aid truly doesn't work, you can be released.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Applying early comes in two flavors that sound alike and could not be more different. Early action (EA) means you apply by November, hear back early, and stay free to choose any school by May. Early decision (ED) means you apply by November, hear back early, and if they say yes, you're going. You sign that commitment before you apply. For families where money decides things, that difference is everything.",
+      },
+      {
+        type: "h2",
+        text: "Why people do it anyway",
+      },
+      {
+        type: "p",
+        text: "Admission rates for ED applicants often run meaningfully higher than regular-decision rates at the same school. Some of that is the applicant pool, but some is real: colleges love a guaranteed yes, and they fill a large share of their classes early. If one school is truly your first choice and the numbers work, ED is a legitimate edge. The catch lives in that second condition.",
+      },
+      {
+        type: "h2",
+        text: "What ED costs you",
+      },
+      {
+        type: "list",
+        items: [
+          "**Comparison power.** You'll never see the [award letters](/learn/college/reading-aid-award-letter) other schools would have sent, so you can't spot a better deal or use one offer to [appeal](/learn/college/appealing-financial-aid) another.",
+          "**Time.** The whole decision compresses into fall of senior year, before some families have even run the numbers.",
+          "**Leverage.** A school that already has your commitment has less reason to stretch its offer.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The escape hatch, honestly described",
+      },
+      {
+        type: "p",
+        text: "ED agreements have one recognized exit: if the aid package genuinely doesn't make attendance possible, you can ask to be released, and schools grant it. But you're the one deciding against their aid office's math, the timing is tight, and walking away means starting over in regular decision season. It's a parachute, not a plan.",
+      },
+      {
+        type: "h2",
+        text: "A decision rule that holds up",
+      },
+      {
+        type: "steps",
+        items: [
+          "Run the school's net price calculator with real family numbers before applying ED, not after admission.",
+          "If the calculator's estimate would work for your family, ED to a clear first choice is reasonable.",
+          "If the estimate is shaky, or your family's finances are complicated (a business, divorce, variable income), apply early action instead and keep your options.",
+          "Never ED to a school whose aid you're hoping will surprise you. Hope is not a financial plan.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Applying ED usually means filing the [CSS Profile](/learn/college/css-profile-explained) and FAFSA by early November. If you're considering it, aid season starts in October of senior year, not spring.",
+      },
+      {
+        type: "key",
+        text: "ED trades your negotiating power for an admissions edge. Make that trade only when the calculator says you can afford the school without negotiating.",
+      },
+    ],
+    related: ["need-blind-colleges", "reading-aid-award-letter", "css-profile-explained"],
+  },
+  {
+    slug: "need-blind-colleges",
+    order: 27,
+    topicId: "college",
+    title: "Need-Blind, Meets Full Need: What the Labels Really Promise",
+    dek: "These two phrases get used like synonyms. They aren't, and the difference decides whether a school's promise means anything for your bill.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Need-blind describes admissions: your finances don't affect the decision to admit you.",
+      "Meets-full-need describes aid: the school covers the gap its own formula finds.",
+      "The powerful combination is both at once, and only a short list of schools offers it.",
+      "Many of these policies exclude international and sometimes undocumented students; check the exact wording.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "College marketing loves the phrase need-blind. It sounds like a promise about money. It isn't. It's a promise about the admissions committee: they decide whether to admit you without looking at your family's finances. A school can be perfectly need-blind and still hand you an aid package with a canyon of [unmet need](/learn/college/understanding-unmet-need) in it.",
+      },
+      {
+        type: "h2",
+        text: "The two labels, untangled",
+      },
+      {
+        type: "list",
+        items: [
+          "**Need-blind:** finances don't influence the admit decision. Says nothing about what they'll give you.",
+          "**Need-aware (or need-sensitive):** finances can influence some admit decisions, usually at the margins. Less scary than it sounds, and often paired with strong aid for those admitted.",
+          "**Meets full demonstrated need:** whatever need the school's formula calculates, the aid package covers, with grants, work-study, and sometimes loans. Says nothing about how they admit.",
+          "**No-loan pledge:** a subset of generous schools packages aid without loans at all, or below an income threshold. The strongest version of the promise.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The combination that changes lives",
+      },
+      {
+        type: "p",
+        text: "A school that is need-blind AND meets full need is saying: we'll admit you without caring that you're broke, then cover what our formula says you can't pay. As of 2026 that combination exists at a short list of wealthy schools, places like Harvard, Yale, Princeton, MIT, and Amherst, with a few dozen more meeting full need while admitting need-aware. For a low-income student with the grades, these schools routinely cost less than a state flagship. That sentence surprises almost every family who hears it, which is exactly why it's worth knowing.",
+      },
+      {
+        type: "h2",
+        text: "Read the fine print your situation requires",
+      },
+      {
+        type: "p",
+        text: "Need-blind policies often apply only to U.S. citizens and permanent residents; a smaller list extends it to international students, and policies for [undocumented students](/learn/college/undocumented-daca-aid) vary school by school. \"Full need\" also means need as the school calculates it, usually via the [CSS Profile](/learn/college/css-profile-explained), which can see your family differently than the FAFSA does. The label is where you start reading, not where you stop.",
+      },
+      {
+        type: "tip",
+        text: "On any aid page, hunt for two sentences: the one starting \"Admission is need-blind for...\" and the one starting \"We meet 100% of demonstrated need for...\" Whoever appears after \"for\" is who the promise covers.",
+      },
+      {
+        type: "key",
+        text: "Need-blind gets you in the door without your wallet voting. Meets-full-need pays the bill. Only together do they mean what people think either one means alone.",
+      },
+    ],
+    related: ["schools-with-generous-aid", "understanding-unmet-need", "early-decision-explained"],
+  },
+  {
     slug: "scholarship-displacement",
     order: 24,
     topicId: "college",

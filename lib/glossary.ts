@@ -18,6 +18,22 @@ export interface GlossaryTerm {
 // the first occurrence of any term/alias below (see components/ArticleBody.tsx).
 export const glossary: GlossaryTerm[] = [
   {
+    term: "early decision",
+    slug: "early-decision",
+    definition:
+      "An early college application round where being admitted commits you to attend — before you can compare other schools' aid offers. Early action is the non-binding cousin.",
+    related: "college",
+    article: "/learn/college/early-decision-explained",
+  },
+  {
+    term: "need-blind",
+    slug: "need-blind",
+    definition:
+      "An admissions policy where your family's finances don't affect the decision to admit you. It promises nothing about how much aid you'll get — that's a separate 'meets full need' policy.",
+    related: "college",
+    article: "/learn/college/need-blind-colleges",
+  },
+  {
     term: "CSS Profile",
     slug: "css-profile",
     definition:
