@@ -86,7 +86,7 @@ export async function GET(req: NextRequest) {
     const { data: subs, error } = await admin
       .from("reminder_subscribers")
       .select("email, token")
-      .eq("wants_deadlines", true);
+      .contains("deadline_ids", JSON.stringify([d.id]));
     if (error || !subs || subs.length === 0) {
       report[d.id] = error ? "subscriber query failed" : "no subscribers";
       continue;

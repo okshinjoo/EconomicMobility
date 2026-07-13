@@ -209,11 +209,16 @@ create policy "read public profiles" on public.profiles
 create table if not exists public.reminder_subscribers (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,
-  wants_deadlines boolean not null default true,
+  -- The exact deadline ids (lib/deadlines) this person wants. The signup
+  -- form defaults to all of them ticked; empty list = deadline emails off.
+  deadline_ids jsonb not null default '[]'::jsonb,
   wants_tips boolean not null default false,
   token text not null unique,
   created_at timestamptz not null default now()
 );
+-- Safety for tables created before per-deadline customization:
+alter table public.reminder_subscribers
+  add column if not exists deadline_ids jsonb not null default '[]'::jsonb;
 alter table public.reminder_subscribers enable row level security;
 
 -- One row per deadline per year, so a reminder can never send twice.

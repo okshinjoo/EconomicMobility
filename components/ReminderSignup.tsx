@@ -7,12 +7,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { deadlines as allDeadlines } from "@/lib/deadlines";
 
 type Status = "idle" | "sending" | "done" | "error";
 
 export default function ReminderSignup() {
   const [email, setEmail] = useState("");
-  const [deadlines, setDeadlines] = useState(true);
+  const [picked, setPicked] = useState<Set<string>>(
+    () => new Set(allDeadlines.map((d) => d.id))
+  );
   const [tips, setTips] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -26,7 +29,7 @@ export default function ReminderSignup() {
       const res = await fetch("/api/reminders", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, deadlines, tips }),
+        body: JSON.stringify({ email, deadlineIds: [...picked], tips }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -76,26 +79,51 @@ export default function ReminderSignup() {
           {status === "sending" ? "Signing you up…" : "Remind me"}
         </button>
       </div>
-      <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-        <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink">
-          <input
-            type="checkbox"
-            checked={deadlines}
-            onChange={(e) => setDeadlines(e.target.checked)}
-            className="h-4 w-4 accent-forest"
-          />
-          Deadline reminders
-        </label>
-        <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink">
-          <input
-            type="checkbox"
-            checked={tips}
-            onChange={(e) => setTips(e.target.checked)}
-            className="h-4 w-4 accent-forest"
-          />
-          Occasional money tips
-        </label>
-      </div>
+      <fieldset className="mt-4">
+        <legend className="text-xs font-bold uppercase tracking-[0.16em] text-stone">
+          Nudge me about
+        </legend>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+          {allDeadlines.map((d) => (
+            <label
+              key={d.id}
+              className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-ink"
+            >
+              <input
+                type="checkbox"
+                checked={picked.has(d.id)}
+                onChange={(e) =>
+                  setPicked((prev) => {
+                    const next = new Set(prev);
+                    if (e.target.checked) next.add(d.id);
+                    else next.delete(d.id);
+                    return next;
+                  })
+                }
+                className="mt-0.5 h-4 w-4 accent-forest"
+              />
+              <span>
+                {d.title}{" "}
+                <span className="font-normal text-stone">({d.when})</span>
+              </span>
+            </label>
+          ))}
+          <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-ink">
+            <input
+              type="checkbox"
+              checked={tips}
+              onChange={(e) => setTips(e.target.checked)}
+              className="mt-0.5 h-4 w-4 accent-forest"
+            />
+            <span>
+              Occasional money tips{" "}
+              <span className="font-normal text-stone">
+                (rare, and written by a human)
+              </span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
       {status === "error" && (
         <p className="mt-2 text-sm font-semibold text-terracotta">{message}</p>
       )}

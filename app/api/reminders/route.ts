@@ -8,6 +8,7 @@
 import type { NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { randomUUID } from "crypto";
+import { deadlines } from "@/lib/deadlines";
 
 export const runtime = "nodejs";
 
@@ -21,13 +22,18 @@ export async function POST(req: NextRequest) {
     return Response.json({ error: "Not configured" }, { status: 503 });
   }
 
+  const validIds = new Set(deadlines.map((d) => d.id));
   let email = "";
-  let wantsDeadlines = true;
+  let deadlineIds: string[] = [];
   let wantsTips = false;
   try {
     const body = await req.json();
     email = String(body?.email ?? "").trim().toLowerCase().slice(0, 200);
-    wantsDeadlines = Boolean(body?.deadlines);
+    deadlineIds = Array.isArray(body?.deadlineIds)
+      ? (body.deadlineIds as unknown[])
+          .filter((x): x is string => typeof x === "string" && validIds.has(x))
+          .slice(0, deadlines.length)
+      : [];
     wantsTips = Boolean(body?.tips);
   } catch {
     return Response.json({ error: "Invalid request" }, { status: 400 });
@@ -36,8 +42,8 @@ export async function POST(req: NextRequest) {
   if (!EMAIL_RE.test(email)) {
     return Response.json({ error: "That email doesn't look right." }, { status: 400 });
   }
-  if (!wantsDeadlines && !wantsTips) {
-    return Response.json({ error: "Pick at least one kind of email." }, { status: 400 });
+  if (deadlineIds.length === 0 && !wantsTips) {
+    return Response.json({ error: "Pick at least one thing to hear about." }, { status: 400 });
   }
 
   const admin = createClient(SUPABASE_URL, SERVICE_KEY, {
@@ -54,11 +60,11 @@ export async function POST(req: NextRequest) {
   const { error } = existing
     ? await admin
         .from("reminder_subscribers")
-        .update({ wants_deadlines: wantsDeadlines, wants_tips: wantsTips })
+        .update({ deadline_ids: deadlineIds, wants_tips: wantsTips })
         .eq("email", email)
     : await admin.from("reminder_subscribers").insert({
         email,
-        wants_deadlines: wantsDeadlines,
+        deadline_ids: deadlineIds,
         wants_tips: wantsTips,
         token: randomUUID(),
       });

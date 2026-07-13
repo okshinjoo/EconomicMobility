@@ -47,6 +47,10 @@ Redeploy. The signup band appears on /students on its own.
   twice.
 - Every email: one deadline, its date, its why, a Read-the-guide button,
   and a one-click unsubscribe link. Content comes only from lib/deadlines.
+- CUSTOMIZATION (July 2026): subscribers pick exactly which deadlines they
+  want (per-deadline checkboxes, all ticked by default; stored as
+  deadline_ids jsonb). The sender only mails people whose list contains
+  that deadline. Re-subscribing with the same email updates the picks.
 - "Occasional money tips" is a stored preference only for now — no
   automated tips sender exists. When there's something worth saying, we
   write it deliberately (a future manual-send script or dashboard).
