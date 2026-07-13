@@ -1070,12 +1070,18 @@ export function ProfileEditor({
                       badgeTotal={badgeSources.length}
                     />
                   )}
-                  {dashPrefsReady && member.mounted && (
-                    <DashboardExtras
-                      prefs={dashPrefs}
-                      onChange={updateDashPrefs}
-                    />
-                  )}
+                  {/* Overview-only: these are the overview's cards — on any
+                      other tab they'd read as page debris (owner bug report,
+                      July 13: "dashboard seems broken"). */}
+                  {tab === "overview" &&
+                    !showWelcome &&
+                    dashPrefsReady &&
+                    member.mounted && (
+                      <DashboardExtras
+                        prefs={dashPrefs}
+                        onChange={updateDashPrefs}
+                      />
+                    )}
 
                   <div
                     id="account-settings"

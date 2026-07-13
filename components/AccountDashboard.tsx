@@ -526,7 +526,7 @@ export function DashboardExtras({
 }) {
   const hidden = new Set(prefs.hiddenCards);
   return (
-    <div className="grid gap-4 xl:grid-cols-2">
+    <div className="grid items-start gap-4 xl:grid-cols-2">
       {!hidden.has("heatmap") && <ActivityHeatmap />}
       {!hidden.has("pipeline") && <PipelineCard />}
       {!hidden.has("tools") && <PinnedToolsCard prefs={prefs} onChange={onChange} />}
