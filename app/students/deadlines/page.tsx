@@ -139,8 +139,9 @@ export default function StudentDeadlinesPage() {
               Get a nudge before each deadline
             </h2>
             <p className="mt-2 text-base leading-7 text-stone">
-              Pick the dates you care about; we email a few weeks ahead, and
-              that&apos;s all we ever send.
+              Pick the dates you care about and we email a few weeks ahead.
+              Want more than dates? Opt into college advice — aid-season
+              heads-ups written by a human, never a bot.
             </p>
             <div className="mt-5">
               <ReminderSignup />

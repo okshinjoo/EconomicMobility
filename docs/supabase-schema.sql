@@ -229,3 +229,12 @@ create table if not exists public.reminder_sends (
   primary key (deadline_id, year)
 );
 alter table public.reminder_sends enable row level security;
+
+
+-- ============================================================
+-- COLLEGE ADVICE OPT-IN (July 13, 2026) — run this block once.
+-- Adds a second content preference to reminder signups: college
+-- advice / aid-season heads-ups, human-sent like tips.
+-- ============================================================
+alter table public.reminder_subscribers
+  add column if not exists wants_college_advice boolean not null default false;

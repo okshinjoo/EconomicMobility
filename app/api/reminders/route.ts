@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
   let email = "";
   let deadlineIds: string[] = [];
   let wantsTips = false;
+  let wantsCollegeAdvice = false;
   try {
     const body = await req.json();
     email = String(body?.email ?? "").trim().toLowerCase().slice(0, 200);
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
           .slice(0, deadlines.length)
       : [];
     wantsTips = Boolean(body?.tips);
+    wantsCollegeAdvice = Boolean(body?.collegeAdvice);
   } catch {
     return Response.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -42,7 +44,7 @@ export async function POST(req: NextRequest) {
   if (!EMAIL_RE.test(email)) {
     return Response.json({ error: "That email doesn't look right." }, { status: 400 });
   }
-  if (deadlineIds.length === 0 && !wantsTips) {
+  if (deadlineIds.length === 0 && !wantsTips && !wantsCollegeAdvice) {
     return Response.json({ error: "Pick at least one thing to hear about." }, { status: 400 });
   }
 
@@ -57,17 +59,28 @@ export async function POST(req: NextRequest) {
     .eq("email", email)
     .maybeSingle();
 
-  const { error } = existing
-    ? await admin
-        .from("reminder_subscribers")
-        .update({ deadline_ids: deadlineIds, wants_tips: wantsTips })
-        .eq("email", email)
-    : await admin.from("reminder_subscribers").insert({
-        email,
-        deadline_ids: deadlineIds,
-        wants_tips: wantsTips,
-        token: randomUUID(),
-      });
+  const writeRow = async (includeAdvice: boolean) => {
+    const advice = includeAdvice ? { wants_college_advice: wantsCollegeAdvice } : {};
+    return existing
+      ? admin
+          .from("reminder_subscribers")
+          .update({ deadline_ids: deadlineIds, wants_tips: wantsTips, ...advice })
+          .eq("email", email)
+      : admin.from("reminder_subscribers").insert({
+          email,
+          deadline_ids: deadlineIds,
+          wants_tips: wantsTips,
+          ...advice,
+          token: randomUUID(),
+        });
+  };
+
+  // Until the wants_college_advice migration runs, fall back to the
+  // legacy row shape so signups never fail on a missing column.
+  let { error } = await writeRow(true);
+  if (error && /wants_college_advice/.test(error.message)) {
+    ({ error } = await writeRow(false));
+  }
 
   if (error) {
     return Response.json(

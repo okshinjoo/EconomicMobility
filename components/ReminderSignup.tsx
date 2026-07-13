@@ -17,6 +17,7 @@ export default function ReminderSignup() {
     () => new Set(allDeadlines.map((d) => d.id))
   );
   const [tips, setTips] = useState(false);
+  const [collegeAdvice, setCollegeAdvice] = useState(true);
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -29,7 +30,7 @@ export default function ReminderSignup() {
       const res = await fetch("/api/reminders", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, deadlineIds: [...picked], tips }),
+        body: JSON.stringify({ email, deadlineIds: [...picked], tips, collegeAdvice }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -108,6 +109,20 @@ export default function ReminderSignup() {
               </span>
             </label>
           ))}
+          <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-ink">
+            <input
+              type="checkbox"
+              checked={collegeAdvice}
+              onChange={(e) => setCollegeAdvice(e.target.checked)}
+              className="mt-0.5 h-4 w-4 accent-forest"
+            />
+            <span>
+              College advice{" "}
+              <span className="font-normal text-stone">
+                (aid-season heads-ups and what-to-do-now notes, written by a human)
+              </span>
+            </span>
+          </label>
           <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold text-ink">
             <input
               type="checkbox"

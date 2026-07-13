@@ -100,7 +100,7 @@ const NAV: StudentNavEntry[] = [
     columns: 2,
     items: [
       { label: "The money calendar", href: "/students/deadlines", desc: "Six dates that move real money, every year.", icon: CalendarDays, color: "#c4573b" },
-      { label: "Email reminders", href: "/students/deadlines#reminders", desc: "A nudge a few weeks ahead — pick your dates.", icon: Mail, color: "#0c4a39" },
+      { label: "Email reminders", href: "/students/deadlines#reminders", desc: "Deadline nudges + college advice — pick what you want.", icon: Mail, color: "#0c4a39" },
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest.", icon: FileText, color: "#c9842a" },
       { label: "FAFSA mistakes to avoid", href: "/students/learn/college/fafsa-mistakes", desc: "The errors that delay aid, and their fixes.", icon: FileText, color: "#15624b" },
       { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time", desc: "April 15, minus the fear — where to start.", icon: Landmark, color: "#0c4a39" },
