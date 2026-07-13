@@ -3,12 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { frameHref, type Frame } from "@/lib/frame";
 
 export default function GlossaryTerm({
   slug,
   term,
   definition,
   articleHref,
+  frame = "main",
 }: {
   slug: string;
   term: string;
@@ -16,10 +18,15 @@ export default function GlossaryTerm({
   /** The term's dedicated guide, when one exists. Hidden when it's the
    *  page you're already on. */
   articleHref?: string;
+  /** Which frame the popover's links should stay in. */
+  frame?: Frame;
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const guide = articleHref && articleHref !== pathname ? articleHref : undefined;
+  // Compare the FRAMED href against the pathname — on a student mirror
+  // the current page is /students/learn/..., not the main-site path.
+  const framedGuide = articleHref ? frameHref(articleHref, frame) : undefined;
+  const guide = framedGuide && framedGuide !== pathname ? framedGuide : undefined;
 
   return (
     <span className="relative inline-block">
@@ -56,7 +63,7 @@ export default function GlossaryTerm({
               </Link>
             )}
             <Link
-              href={`/glossary#${slug}`}
+              href={frameHref(`/glossary#${slug}`, frame)}
               className="inline-block text-xs font-semibold text-forest hover:text-amber-deep"
             >
               Open in glossary

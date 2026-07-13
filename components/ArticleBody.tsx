@@ -9,15 +9,18 @@ import {
 import { makeHeadingIder } from "@/lib/articles/headings";
 import type { ArticleBlock } from "@/lib/articles/types";
 import GlossaryTerm from "@/components/GlossaryTerm";
+import { frameHref, type Frame } from "@/lib/frame";
 
 // Inline parse: [text](/internal-path) links and **bold**/*italic* first,
 // then auto-link the FIRST occurrence of each glossary term in the remaining
 // text (tracked via the shared `used` set so a term links once per article,
-// not once per paragraph).
+// not once per paragraph). In-body hrefs route through frameHref so the
+// same content stays in-frame on the student mirrors.
 function renderInline(
   text: string,
   used: Set<string>,
-  keyPrefix: string
+  keyPrefix: string,
+  frame: Frame
 ): ReactNode[] {
   const nodes: ReactNode[] = [];
   // [label](/path) (internal links only) | **bold** | *italic*;
@@ -29,14 +32,14 @@ function renderInline(
   while ((m = tokenRe.exec(text)) !== null) {
     if (m.index > last) {
       nodes.push(
-        ...linkTerms(text.slice(last, m.index), used, `${keyPrefix}-t${i}`)
+        ...linkTerms(text.slice(last, m.index), used, `${keyPrefix}-t${i}`, frame)
       );
     }
     if (m[1] !== undefined) {
       nodes.push(
         <Link
           key={`${keyPrefix}-a${i}`}
-          href={m[2]}
+          href={frameHref(m[2], frame)}
           className="font-medium text-forest underline decoration-2 underline-offset-[3px] transition-colors hover:text-ink"
           style={{ textDecorationColor: "var(--article-accent, var(--color-amber))" }}
         >
@@ -52,7 +55,7 @@ function renderInline(
     i++;
   }
   if (last < text.length) {
-    nodes.push(...linkTerms(text.slice(last), used, `${keyPrefix}-t${i}`));
+    nodes.push(...linkTerms(text.slice(last), used, `${keyPrefix}-t${i}`, frame));
   }
   return nodes;
 }
@@ -60,7 +63,8 @@ function renderInline(
 function linkTerms(
   text: string,
   used: Set<string>,
-  keyPrefix: string
+  keyPrefix: string,
+  frame: Frame
 ): ReactNode[] {
   const re = new RegExp(GLOSSARY_PATTERN, "gi");
   const nodes: ReactNode[] = [];
@@ -80,6 +84,7 @@ function linkTerms(
         term={surface}
         definition={getGlossaryTerm(slug)?.definition ?? ""}
         articleHref={getGlossaryTerm(slug)?.article}
+        frame={frame}
       />
     );
     last = m.index + surface.length;
@@ -123,9 +128,11 @@ function PullQuote({
 export default function ArticleBody({
   blocks,
   accent = "var(--color-forest)",
+  frame = "main",
 }: {
   blocks: ArticleBlock[];
   accent?: string;
+  frame?: Frame;
 }) {
   const used = new Set<string>();
   const ider = makeHeadingIder();
@@ -147,7 +154,7 @@ export default function ArticleBody({
                   id={ider(block.text ?? "")}
                   className="mt-4 scroll-mt-28 font-display text-[1.7rem] font-bold tracking-tight text-ink sm:text-[2rem]"
                 >
-                  {renderInline(block.text ?? "", used, key)}
+                  {renderInline(block.text ?? "", used, key, frame)}
                 </h2>
               </div>
             );
@@ -157,7 +164,7 @@ export default function ArticleBody({
                 key={key}
                 className="mt-9 font-display text-xl font-bold text-ink"
               >
-                {renderInline(block.text ?? "", used, key)}
+                {renderInline(block.text ?? "", used, key, frame)}
               </h3>
             );
           case "p":
@@ -168,7 +175,7 @@ export default function ArticleBody({
                   i === firstParagraph ? "article-dropcap" : ""
                 }`}
               >
-                {renderInline(block.text ?? "", used, key)}
+                {renderInline(block.text ?? "", used, key, frame)}
               </p>
             );
           case "list":
@@ -183,7 +190,7 @@ export default function ArticleBody({
                       className="mt-[0.7rem] h-1.5 w-1.5 flex-shrink-0 rounded-full"
                       style={{ background: accent }}
                     />
-                    <span>{renderInline(item, used, `${key}-${j}`)}</span>
+                    <span>{renderInline(item, used, `${key}-${j}`, frame)}</span>
                   </li>
                 ))}
               </ul>
@@ -202,19 +209,19 @@ export default function ArticleBody({
                     >
                       {j + 1}
                     </span>
-                    <span>{renderInline(item, used, `${key}-${j}`)}</span>
+                    <span>{renderInline(item, used, `${key}-${j}`, frame)}</span>
                   </li>
                 ))}
               </ol>
             );
           case "tip":
             return (
-              <Tip key={key}>{renderInline(block.text ?? "", used, key)}</Tip>
+              <Tip key={key}>{renderInline(block.text ?? "", used, key, frame)}</Tip>
             );
           case "key":
             return (
               <PullQuote key={key} accent={accent}>
-                {renderInline(block.text ?? "", used, key)}
+                {renderInline(block.text ?? "", used, key, frame)}
               </PullQuote>
             );
           default:

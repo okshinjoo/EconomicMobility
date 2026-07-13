@@ -1,6 +1,9 @@
+// Student-frame mirror of every topic hub (July 2026 full-containment
+// pass): TopicPageView with frame="student". Canonical points at the main
+// hub; the students layout provides StudentHeader.
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicPageView from "@/components/TopicPageView";
 import { topics, getTopic, type TopicId } from "@/lib/topics";
@@ -25,10 +28,11 @@ export async function generateMetadata({
   return {
     title: `${getTopic(topic).title} | Empower — Economic Mobility Project`,
     description: content.subhead,
+    alternates: { canonical: `/learn/${topic}` },
   };
 }
 
-export default async function TopicPage({
+export default async function StudentTopicPage({
   params,
 }: {
   params: Promise<{ topic: string }>;
@@ -38,8 +42,7 @@ export default async function TopicPage({
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
-      <TopicPageView topic={topic} frame="main" />
+      <TopicPageView topic={topic} frame="student" />
       <Footer />
     </div>
   );

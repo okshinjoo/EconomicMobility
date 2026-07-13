@@ -1,6 +1,11 @@
+// Student-frame mirror of every guide (July 2026 full-containment pass):
+// the same ArticlePageView with frame="student", so in-body links, the
+// glossary popovers, breadcrumbs, and follow-up cards all stay inside the
+// microsite. Canonical points at the main article — mirrors never compete
+// in search. The students layout provides StudentHeader.
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ArticlePageView from "@/components/ArticlePageView";
 import { topics, type TopicId } from "@/lib/topics";
@@ -26,10 +31,11 @@ export async function generateMetadata({
   return {
     title: `${found.title} | Empower — Economic Mobility Project`,
     description: found.dek,
+    alternates: { canonical: `/learn/${topic}/${article}` },
   };
 }
 
-export default async function ArticlePage({
+export default async function StudentArticlePage({
   params,
 }: {
   params: Promise<{ topic: string; article: string }>;
@@ -39,8 +45,7 @@ export default async function ArticlePage({
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
-      <ArticlePageView topic={topic} articleSlug={article} frame="main" />
+      <ArticlePageView topic={topic} articleSlug={article} frame="student" />
       <Footer />
     </div>
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ListChecks } from "lucide-react";
 import { loadJSON } from "@/lib/storage";
+import { frameHref, type Frame } from "@/lib/frame";
 
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
 type QuizScoreMap = Record<string, { score: number; total: number; at: number }>;
@@ -18,10 +19,12 @@ export default function TopicQuizCard({
   topicId,
   topicShort,
   accent,
+  frame = "main",
 }: {
   topicId: string;
   topicShort: string;
   accent: string;
+  frame?: Frame;
 }) {
   const [taken, setTaken] = useState(false);
 
@@ -34,7 +37,7 @@ export default function TopicQuizCard({
 
   return (
     <Link
-      href={`/learn/${topicId}/quiz`}
+      href={frameHref(`/learn/${topicId}/quiz`, frame)}
       className="group flex items-center gap-4 rounded-2xl border-2 border-ink p-6 shadow-[4px_4px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
       style={{ background: `${accent}14` }}
     >

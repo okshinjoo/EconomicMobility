@@ -1,6 +1,9 @@
+// Student-frame mirror of the topic mini quizzes (July 2026 full-
+// containment pass). Canonical points at the main quiz page; the students
+// layout provides StudentHeader.
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicQuizPageView from "@/components/TopicQuizPageView";
 import { TOPIC_QUIZ_IDS } from "@/lib/topicQuizzes";
@@ -21,10 +24,11 @@ export async function generateMetadata({
   return {
     title: `${t.short} Mini Quiz | Empower — Economic Mobility Project`,
     description: `Five quick questions to test what you know about ${t.short.toLowerCase()}. Instant feedback, links back to the guide for anything you miss.`,
+    alternates: { canonical: `/learn/${topic}/quiz` },
   };
 }
 
-export default async function TopicQuizPage({
+export default async function StudentTopicQuizPage({
   params,
 }: {
   params: Promise<{ topic: string }>;
@@ -34,8 +38,7 @@ export default async function TopicQuizPage({
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header />
-      <TopicQuizPageView topic={topic as TopicId} frame="main" />
+      <TopicQuizPageView topic={topic as TopicId} frame="student" />
       <Footer />
     </div>
   );

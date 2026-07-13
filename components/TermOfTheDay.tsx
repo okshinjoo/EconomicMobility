@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { glossary } from "@/lib/glossary";
+import { frameHref, type Frame } from "@/lib/frame";
 
 /**
  * Investopedia-style "term of the day": deterministic by calendar date, so
@@ -10,7 +11,7 @@ import { glossary } from "@/lib/glossary";
  * midnight. Client-only (renders nothing until mounted) because the pick
  * depends on the visitor's local date.
  */
-export default function TermOfTheDay() {
+export default function TermOfTheDay({ frame = "main" }: { frame?: Frame }) {
   const [index, setIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function TermOfTheDay() {
       </p>
       <p className="mt-2 text-sm leading-6 text-stone">{term.definition}</p>
       <Link
-        href={`/glossary#${term.slug}`}
+        href={frameHref(`/glossary#${term.slug}`, frame)}
         className="mt-3 inline-block text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
       >
         See it in the glossary
