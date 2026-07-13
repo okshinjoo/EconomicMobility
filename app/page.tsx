@@ -31,6 +31,9 @@ import Ticker from "@/components/Ticker";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { isStudentArticle } from "@/lib/studentShelf";
+import { scholarships } from "@/lib/scholarships";
+import { opportunities } from "@/lib/opportunities";
+import { deadlines } from "@/lib/deadlines";
 
 // Real questions, real guides — the honest front door to the library.
 // The first four render for everyone; once a reader finishes one of these
@@ -194,9 +197,10 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-8 text-stone">
-              Free, jargon-free financial education built to break the cycle
-              of economic disadvantage — for first-generation, low-income, and
-              immigrant students, and anyone ready to take control.
+              Free, jargon-free money help built to break the cycle of
+              economic disadvantage: hundreds of plain-English guides,
+              hand-verified scholarships and paid opportunities, and
+              calculators for your real numbers — no account, ever.
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -207,16 +211,17 @@ export default function Home() {
                 Find your starting point
               </Link>
               <Link
-                href="#topics"
+                href="/students"
                 className="inline-flex items-center justify-center rounded-md border border-ink/15 px-7 py-4 text-base font-semibold text-ink transition-colors hover:border-ink/40 hover:bg-cream"
               >
-                Explore the topics
+                In school? Start here
               </Link>
             </div>
 
             <p className="mt-10 text-sm font-medium text-stone">
-              {guideTotal} plain-English guides · {calculatorTotal} free
-              calculators · No account required
+              {guideTotal} guides · {scholarships.length} verified
+              scholarships · {opportunities.length} paid opportunities ·{" "}
+              {calculatorTotal} calculators
             </p>
           </div>
 
@@ -246,8 +251,9 @@ export default function Home() {
         items={[
           { label: "No sign-up required", href: "/start-here" },
           { label: `${guideTotal} plain-English guides`, href: "/learn" },
+          { label: `${scholarships.length} verified scholarships`, href: "/students/scholarships" },
+          { label: `${opportunities.length} paid opportunities`, href: "/students/opportunities" },
           { label: `${calculatorTotal} free calculators`, href: "/tools" },
-          { label: "Built for real people", href: "/about" },
           { label: "Free forever", href: "/about" },
           { label: "No paywall", href: "/start-here" },
         ]}
@@ -282,13 +288,15 @@ export default function Home() {
           (honesty rule), counting up on first scroll into view. */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
             {(
               [
                 [guideTotal, "Plain-English guides, all free"],
+                [scholarships.length, "Scholarships, each one hand-verified"],
+                [opportunities.length, "Paid internships and programs, vetted"],
                 [calculatorTotal, "Calculators that run in your browser"],
                 [glossary.length, "Jargon terms, translated"],
-                [topics.length, "Core topics, credit to insurance"],
+                [courses.length, "Focused courses with badges at the end"],
               ] as const
             ).map(([value, label], i) => (
               <Reveal key={label} delay={i * 90}>
@@ -303,6 +311,80 @@ export default function Home() {
                   </p>
                 </div>
               </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* For Students — the microsite is the biggest thing built this year;
+          advertise it like it (owner directive, July 2026). A-voice amber
+          field, three ink-poster doors with live counts. */}
+      <section className="border-y-2 border-ink bg-amber">
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="inline-block -rotate-1 rounded-md border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+                For Students
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                Paying for school?{" "}
+                <span className="italic">We built your own corner.</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-base leading-7 text-ink/75">
+                A whole site inside the site: scholarships we verified by
+                hand, programs that pay you, every deadline that moves money,
+                and a tracker that keeps score — from high school through
+                university.
+              </p>
+            </div>
+            <Link
+              href="/students"
+              className="btn-ink inline-flex items-center rounded-md bg-forest px-7 py-3.5 text-base font-bold text-cream"
+            >
+              Enter For Students
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {(
+              [
+                {
+                  href: "/students/scholarships",
+                  n: scholarships.length,
+                  title: "The Scholarship Finder",
+                  desc: "Real awards, hand-checked against official pages — filter by your stage. No forms about you.",
+                  tilt: "",
+                },
+                {
+                  href: "/students/opportunities",
+                  n: opportunities.length,
+                  title: "Get paid to get ahead",
+                  desc: "Verified internships, fellowships, and research programs — free to apply, many with stipends.",
+                  tilt: "lg:rotate-[0.5deg]",
+                },
+                {
+                  href: "/students/deadlines",
+                  n: deadlines.length,
+                  title: "The money calendar",
+                  desc: "FAFSA to decision day — with calendar downloads and email reminders if you want them.",
+                  tilt: "lg:-rotate-[0.4deg]",
+                },
+              ] as const
+            ).map((door) => (
+              <Link
+                key={door.href}
+                href={door.href}
+                className={`card-ink group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1 ${door.tilt}`}
+              >
+                <p className="font-display text-5xl font-bold leading-none text-forest">
+                  {door.n}
+                </p>
+                <h3 className="mt-3 font-display text-lg font-bold text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                  {door.title}
+                </h3>
+                <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                  {door.desc}
+                </p>
+              </Link>
             ))}
           </div>
         </div>
