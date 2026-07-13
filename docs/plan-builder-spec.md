@@ -148,6 +148,38 @@ over/short comparison when a target amount parsed. Always labeled an
 estimate. Verified with a seeded $38k/CA snapshot: "$717/month leftover ->
 about $3,585 by December — past your $1,200 target."
 
+**Session 4 SHIPPED (July 13, 2026) — the conversational layer (owner ask:
+"talk to an AI... it summarizes what you told it and repeats it back...
+you should be able to leave feedback"):**
+
+- **Interview phase** (`POST /api/plan {phase:"interview", messages}`):
+  Claude (same haiku model) runs a guided intake — ONE question per turn,
+  listening only, never advising (system prompt forbids advice/numbers;
+  crisis nudge to /resources). When it has goal/stage/income/family (+ an
+  optional target), it stops and returns `{done, summary, intake}` — the
+  summary is the played-back "here's what I heard" and the intake is
+  validated server-side (goal must be a real journey id; bad enums coerce
+  to safe defaults — the human-readable summary is what the person
+  actually confirms).
+- **Confirm-back**: the client (ChatIntake in PlanApp) renders the summary
+  with "Did I get that right?" — *That's right → build* passes the
+  confirmed summary into the build prompt ("their confirmed story");
+  *Not quite* reopens the chat and the model re-summarizes with fixes.
+- **Review loop**: after ANY build the plan opens in review mode — an
+  amber bar asks "Does this plan look right?" *Looks right* dismisses.
+  *Something's off* opens a feedback box, and every item grows a
+  "Doesn't fit?" flag toggle. `{phase:"revise"}` sends intake + the
+  current plan (as hrefs mapped back to catalog keys, flags marked) +
+  the feedback; the model reworks it under the SAME catalog-only rules
+  and validation. Revise NEVER falls back to a fresh deterministic plan
+  (that would clobber theirs) — on no-key/AI-failure it returns
+  `{unavailable}` and the client keeps the plan with a try-later note.
+- **Degradation**: no key → interview returns `{unavailable}` and the
+  client silently switches to the classic five-question form (which
+  stays as the re-plan path and the "Prefer the quick form?" escape).
+  Verified headless locally: chat → form fallback → build → review bar →
+  flag + feedback → unavailable note with plan intact → dismiss.
+
 **GO-LIVE: nothing left to configure.** ANTHROPIC_API_KEY already lives in
 Vercel (shared with chat + comment review), the route falls back safely
 without it, and no schema changes were needed. After the next push, run

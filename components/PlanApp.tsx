@@ -9,7 +9,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, Flag, RotateCcw } from "lucide-react";
 import { GOAL_OPTIONS, readLocalProfile } from "@/lib/profile";
 import {
   loadPlan,
@@ -98,55 +98,398 @@ export default function PlanApp() {
   const [mounted, setMounted] = useState(false);
   const [building, setBuilding] = useState(false);
   const [lastIntake, setLastIntake] = useState<IntakeAnswers | null>(null);
+  // Conversational intake (owner ask, July 2026): chat first, classic form
+  // as the fallback and the re-plan path. After a build, review mode asks
+  // "does this look right?" and flagged items + feedback drive a revision.
+  const [mode, setMode] = useState<"chat" | "form">("chat");
+  const [confirmedSummary, setConfirmedSummary] = useState("");
+  const [reviewing, setReviewing] = useState(false);
+  const [flagged, setFlagged] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setPlan(loadPlan());
     setMounted(true);
   }, []);
 
+  const buildPlan = async (intake: IntakeAnswers, summary?: string) => {
+    setBuilding(true);
+    try {
+      const res = await fetch("/api/plan", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          intake,
+          confirmedSummary: summary ?? "",
+        }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = (await res.json()) as { plan: MyPlan };
+      savePlan(data.plan);
+      setPlan(data.plan);
+      setConfirmedSummary(summary ?? "");
+      setReviewing(true);
+    } catch {
+      // Route already falls back internally; reaching here means the
+      // network itself failed. Stay on the intake with a note.
+      alert(
+        "Couldn't reach the plan builder just now — check your connection and try again."
+      );
+    } finally {
+      setBuilding(false);
+    }
+  };
+
   if (!mounted) return null;
 
   if (!plan) {
+    if (mode === "chat") {
+      return (
+        <ChatIntake
+          building={building}
+          onConfirmed={(intake, summary) => void buildPlan(intake, summary)}
+          onUseForm={() => setMode("form")}
+        />
+      );
+    }
     return (
       <Intake
         building={building}
         initial={lastIntake}
-        onSubmit={async (intake) => {
-          setBuilding(true);
-          try {
-            const res = await fetch("/api/plan", {
-              method: "POST",
-              headers: { "content-type": "application/json" },
-              body: JSON.stringify({ intake }),
-            });
-            if (!res.ok) throw new Error(String(res.status));
-            const data = (await res.json()) as { plan: MyPlan };
-            savePlan(data.plan);
-            setPlan(data.plan);
-          } catch {
-            // Route already falls back internally; reaching here means the
-            // network itself failed. Stay on the intake with a note.
-            alert(
-              "Couldn't reach the plan builder just now — check your connection and try again."
-            );
-          } finally {
-            setBuilding(false);
-          }
-        }}
+        onSubmit={(intake) => void buildPlan(intake)}
       />
     );
   }
 
   return (
-    <PlanView
-      plan={plan}
-      onUpdate={setPlan}
-      onReset={() => {
-        setLastIntake(plan.intake);
-        clearPlan();
-        setPlan(null);
-      }}
-    />
+    <>
+      {reviewing && (
+        <ReviewBar
+          plan={plan}
+          confirmedSummary={confirmedSummary}
+          flagged={flagged}
+          onFlagsUsed={() => setFlagged(new Set())}
+          onDone={() => {
+            setReviewing(false);
+            setFlagged(new Set());
+          }}
+          onRevised={(p) => setPlan(p)}
+        />
+      )}
+      <PlanView
+        plan={plan}
+        reviewing={reviewing}
+        flagged={flagged}
+        onToggleFlag={(id) =>
+          setFlagged((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+          })
+        }
+        onUpdate={setPlan}
+        onReset={() => {
+          setLastIntake(plan.intake);
+          clearPlan();
+          setPlan(null);
+          setReviewing(false);
+          setMode("form");
+        }}
+      />
+    </>
+  );
+}
+
+/* --- Conversational intake ----------------------------------------------- */
+
+interface ChatMsg {
+  role: "user" | "assistant";
+  content: string;
+}
+
+const OPENER =
+  "Hey — I'll build your money plan with you. It takes a couple of minutes and nothing you say leaves this plan. First up: what's the one money thing you want to get done right now?";
+
+function ChatIntake({
+  building,
+  onConfirmed,
+  onUseForm,
+}: {
+  building: boolean;
+  onConfirmed: (intake: IntakeAnswers, summary: string) => void;
+  onUseForm: () => void;
+}) {
+  const [msgs, setMsgs] = useState<ChatMsg[]>([
+    { role: "assistant", content: OPENER },
+  ]);
+  const [input, setInput] = useState("");
+  const [waiting, setWaiting] = useState(false);
+  const [draft, setDraft] = useState<{
+    summary: string;
+    intake: IntakeAnswers;
+  } | null>(null);
+
+  const send = async (text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed || waiting) return;
+    const next = [...msgs, { role: "user" as const, content: trimmed }];
+    setMsgs(next);
+    setInput("");
+    setWaiting(true);
+    setDraft(null);
+    try {
+      const res = await fetch("/api/plan", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ phase: "interview", messages: next }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = (await res.json()) as {
+        reply?: string;
+        done?: boolean;
+        summary?: string;
+        intake?: IntakeAnswers;
+        unavailable?: boolean;
+      };
+      if (data.unavailable) {
+        onUseForm();
+        return;
+      }
+      if (data.done && data.summary && data.intake) {
+        setMsgs([...next, { role: "assistant", content: data.summary }]);
+        setDraft({ summary: data.summary, intake: data.intake });
+      } else {
+        setMsgs([
+          ...next,
+          { role: "assistant", content: data.reply ?? "Go on…" },
+        ]);
+      }
+    } catch {
+      onUseForm();
+    } finally {
+      setWaiting(false);
+    }
+  };
+
+  return (
+    <div className="card-ink-lg rounded-2xl bg-cream p-6 sm:p-8">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-display text-2xl font-bold text-ink">
+          Let&apos;s build your plan
+        </h2>
+        <button
+          type="button"
+          onClick={onUseForm}
+          className="text-sm font-semibold text-stone underline-offset-4 hover:text-ink hover:underline"
+        >
+          Prefer the quick form?
+        </button>
+      </div>
+
+      <div className="mt-5 max-h-[26rem] space-y-3 overflow-y-auto pr-1">
+        {msgs.map((m, i) => (
+          <div
+            key={i}
+            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-6 ${
+              m.role === "assistant"
+                ? "bg-forest/[0.07] text-ink"
+                : "ml-auto bg-amber/25 text-ink"
+            }`}
+          >
+            {m.content}
+          </div>
+        ))}
+        {(waiting || building) && (
+          <div className="max-w-[85%] rounded-2xl bg-forest/[0.07] px-4 py-2.5 text-sm text-stone">
+            {building ? "Building your plan…" : "…"}
+          </div>
+        )}
+      </div>
+
+      {draft ? (
+        <div className="mt-5 rounded-xl border-2 border-ink bg-paper p-4">
+          <p className="text-sm font-bold text-ink">Did I get that right?</p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            <button
+              type="button"
+              disabled={building}
+              onClick={() => onConfirmed(draft.intake, draft.summary)}
+              className="btn-ink inline-flex items-center rounded-md bg-forest px-5 py-2.5 text-sm font-bold text-cream disabled:opacity-60"
+            >
+              That&apos;s right — build my plan
+            </button>
+            <button
+              type="button"
+              disabled={building}
+              onClick={() => {
+                setDraft(null);
+                setMsgs((m) => [
+                  ...m,
+                  {
+                    role: "assistant",
+                    content: "No problem — what did I get wrong?",
+                  },
+                ]);
+              }}
+              className="inline-flex items-center rounded-md border-2 border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink hover:border-ink"
+            >
+              Not quite
+            </button>
+          </div>
+        </div>
+      ) : (
+        <form
+          className="mt-5 flex gap-2.5"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void send(input);
+          }}
+        >
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your answer…"
+            disabled={waiting || building}
+            className="min-w-0 flex-1 rounded-lg border-2 border-ink/15 bg-paper px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+          />
+          <button
+            type="submit"
+            disabled={waiting || building || !input.trim()}
+            className="btn-ink inline-flex items-center rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink disabled:opacity-60"
+          >
+            Send
+          </button>
+        </form>
+      )}
+      <p className="mt-4 text-xs leading-5 text-stone">
+        The guide only listens and builds from real pages on this site — it
+        never gives personal financial advice. Anonymous until you save;
+        nothing here is sold, ever.
+      </p>
+    </div>
+  );
+}
+
+/* --- Review: "does this look right?" -------------------------------------- */
+
+function ReviewBar({
+  plan,
+  confirmedSummary,
+  flagged,
+  onFlagsUsed,
+  onDone,
+  onRevised,
+}: {
+  plan: MyPlan;
+  confirmedSummary: string;
+  flagged: Set<string>;
+  onFlagsUsed: () => void;
+  onDone: () => void;
+  onRevised: (p: MyPlan) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
+
+  const revise = async () => {
+    if (busy) return;
+    setBusy(true);
+    setNote(null);
+    try {
+      const res = await fetch("/api/plan", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          phase: "revise",
+          intake: plan.intake,
+          confirmedSummary,
+          feedback,
+          currentPlan: {
+            headline: plan.headline,
+            items: plan.items.map((it) => ({
+              href: it.href,
+              title: it.title,
+              flagged: flagged.has(it.id),
+            })),
+          },
+        }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = (await res.json()) as {
+        plan?: MyPlan;
+        unavailable?: boolean;
+      };
+      if (data.plan) {
+        savePlan(data.plan);
+        onRevised(data.plan);
+        onFlagsUsed();
+        setFeedback("");
+        setOpen(false);
+        setNote("Reworked — how about now?");
+      } else {
+        setNote(
+          "Couldn't rework it just now — your plan is unchanged. Try again in a minute."
+        );
+      }
+    } catch {
+      setNote(
+        "Couldn't rework it just now — your plan is unchanged. Try again in a minute."
+      );
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="card-ink mb-6 rounded-2xl bg-amber/15 p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="font-display text-lg font-bold text-ink">
+          {note ?? "Does this plan look right?"}
+        </p>
+        <div className="flex flex-wrap gap-2.5">
+          <button
+            type="button"
+            onClick={onDone}
+            className="btn-ink inline-flex items-center rounded-md bg-forest px-4 py-2 text-sm font-bold text-cream"
+          >
+            Looks right
+          </button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex items-center rounded-md border-2 border-ink/25 bg-cream px-4 py-2 text-sm font-semibold text-ink hover:border-ink"
+          >
+            Something&apos;s off
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="mt-4">
+          <p className="text-sm leading-6 text-stone">
+            Tell the guide what doesn&apos;t fit (and use the{" "}
+            <span className="font-semibold text-ink">flag</span> on any step
+            below that isn&apos;t right for you) — it&apos;ll rework the plan
+            from the same real guides and tools.
+          </p>
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            rows={2}
+            placeholder="e.g. I already filed the FAFSA, and the investing steps feel too early for me…"
+            className="mt-2.5 w-full rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+          />
+          <button
+            type="button"
+            disabled={busy || (!feedback.trim() && flagged.size === 0)}
+            onClick={() => void revise()}
+            className="btn-ink mt-2.5 inline-flex items-center rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink disabled:opacity-60"
+          >
+            {busy ? "Reworking…" : "Rework my plan"}
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -451,10 +794,17 @@ function PlanView({
   plan,
   onUpdate,
   onReset,
+  reviewing = false,
+  flagged,
+  onToggleFlag,
 }: {
   plan: MyPlan;
   onUpdate: (p: MyPlan) => void;
   onReset: () => void;
+  /** Post-build review mode: rows grow a "doesn't fit" flag toggle. */
+  reviewing?: boolean;
+  flagged?: Set<string>;
+  onToggleFlag?: (id: string) => void;
 }) {
   const frame = useFrame();
   const isDone = useDoneChecker();
@@ -561,6 +911,22 @@ function PlanView({
                   {item.why}
                 </p>
               </div>
+              {reviewing && onToggleFlag && (
+                <button
+                  type="button"
+                  onClick={() => onToggleFlag(item.id)}
+                  aria-pressed={flagged?.has(item.id) ?? false}
+                  title="Flag this step as not right for you"
+                  className={`mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-md border px-2 py-1 text-[11px] font-bold uppercase tracking-wide transition-colors ${
+                    flagged?.has(item.id)
+                      ? "border-terracotta bg-terracotta text-cream"
+                      : "border-ink/20 bg-paper text-stone hover:border-terracotta hover:text-terracotta"
+                  }`}
+                >
+                  <Flag className="h-3 w-3" />
+                  {flagged?.has(item.id) ? "Flagged" : "Doesn't fit?"}
+                </button>
+              )}
             </li>
                   );
                 })}

@@ -203,10 +203,146 @@ function clip(s: unknown, max: number): string {
   return typeof s === "string" ? s.trim().slice(0, max) : "";
 }
 
+/* ------------------------- conversational intake ------------------------ */
+
+const GOAL_IDS = ["credit", "debt", "budget", "emergency", "invest", "college", "transfer", "home", "retirement", "safety"];
+const STAGE_IDS = ["high-school", "community-college", "four-year", "transferring", "working", "between"];
+const INCOME_IDS = ["steady", "irregular", "none", "supported"];
+const FAMILY_IDS = ["on-my-own", "family-helps", "i-help-family"];
+
+const INTERVIEW_SYSTEM = `You are the plan-builder guide on Empower, a free financial-education site for first-generation, low-income, and immigrant students. Some readers are teenagers. Warm older-sibling voice, plain words, never salesy.
+
+You are interviewing ONE person to build their money plan. You need to learn, in this order, only what you don't know yet:
+1. Their one money goal (must map to one of: credit=build credit, debt=pay off debt, budget=get better at budgeting, emergency=build an emergency fund, invest=start investing, college=pay for college, transfer=transfer from community college without losing money, home=buy a home someday, retirement=plan for retirement, safety=protect money from scams) — plus their specific version of it, in their words.
+2. Where they are in life: high school / community college / four-year college / transferring / working / between things.
+3. What money looks like month to month (steady paycheck / irregular / none yet / supported by family) and whether anyone depends on them or helps them.
+4. Any date or dollar target attached (optional — don't push).
+
+RULES:
+- Ask exactly ONE short question per turn. React briefly (one clause) to what they said, then ask. Never a list of questions.
+- NEVER give financial advice, numbers, or recommendations during the interview. You are only listening.
+- If they mention scams-in-progress or crisis, gently point to /resources and keep going.
+- After you know 1-3 (and have asked about 4), STOP asking and output ONLY this JSON (no other text):
+{"done": true, "summary": "<2-4 sentences in second person replaying what you heard, e.g. 'You're a community college student aiming to transfer...'>", "intake": {"goal": "<id>", "detail": "<their specifics, their words>", "stage": "<id>", "income": "<id>", "family": "<id>", "target": "<their target or empty string>"}}
+- If the person corrects your summary, fix it and output the JSON again with the corrections.
+- Keep every reply under 60 words unless it's the JSON.`;
+
+interface ChatMsg {
+  role: "user" | "assistant";
+  content: string;
+}
+
+function sanitizeMessages(raw: unknown): ChatMsg[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .slice(-24)
+    .map((m) => ({
+      role: m?.role === "assistant" ? ("assistant" as const) : ("user" as const),
+      content: clip(m?.content, 600),
+    }))
+    .filter((m) => m.content.length > 0);
+}
+
+async function callClaude(
+  key: string,
+  system: string,
+  messages: ChatMsg[],
+  maxTokens: number
+): Promise<string> {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": key,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ model: MODEL, max_tokens: maxTokens, system, messages }),
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!res.ok) throw new Error(String(res.status));
+  const data = (await res.json()) as {
+    content?: Array<{ type?: string; text?: string }>;
+    stop_reason?: string;
+  };
+  if (data.stop_reason === "refusal") throw new Error("refusal");
+  return (data.content ?? [])
+    .filter((b) => b.type === "text")
+    .map((b) => b.text ?? "")
+    .join("");
+}
+
+/** Interview turn: next guided question, or the confirm-back summary. */
+async function handleInterview(key: string, messages: ChatMsg[]) {
+  const text = await callClaude(key, INTERVIEW_SYSTEM, messages, 700);
+  const jsonStart = text.indexOf("{");
+  if (jsonStart !== -1) {
+    try {
+      const parsed = JSON.parse(text.slice(jsonStart, text.lastIndexOf("}") + 1)) as {
+        done?: boolean;
+        summary?: unknown;
+        intake?: Record<string, unknown>;
+      };
+      if (parsed.done && parsed.intake && typeof parsed.summary === "string") {
+        const i = parsed.intake;
+        const goal = GOAL_IDS.includes(String(i.goal)) ? String(i.goal) : "";
+        if (goal) {
+          const intake: IntakeAnswers = {
+            goal,
+            detail: clip(i.detail, 200),
+            stage: (STAGE_IDS.includes(String(i.stage))
+              ? String(i.stage)
+              : "between") as IntakeAnswers["stage"],
+            income: (INCOME_IDS.includes(String(i.income))
+              ? String(i.income)
+              : "irregular") as IntakeAnswers["income"],
+            family: (FAMILY_IDS.includes(String(i.family))
+              ? String(i.family)
+              : "on-my-own") as IntakeAnswers["family"],
+            target: clip(i.target, 100),
+          };
+          return Response.json({
+            done: true,
+            summary: clip(parsed.summary, 600),
+            intake,
+          });
+        }
+      }
+    } catch {
+      // fall through to plain reply
+    }
+  }
+  return Response.json({ reply: clip(text, 800) || "Tell me a little more?" });
+}
+
 export async function POST(req: NextRequest) {
+  let body: {
+    phase?: unknown;
+    messages?: unknown;
+    intake?: Record<string, unknown>;
+    feedback?: unknown;
+    confirmedSummary?: unknown;
+    currentPlan?: { headline?: unknown; items?: Array<{ href?: unknown; title?: unknown; flagged?: unknown }> };
+  };
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json({ error: "Invalid request" }, { status: 400 });
+  }
+
+  // Conversational intake (owner ask, July 2026): guided questions, then a
+  // played-back summary the person confirms before anything is built.
+  if (body.phase === "interview") {
+    const key = process.env.ANTHROPIC_API_KEY;
+    if (!key) return Response.json({ unavailable: true });
+    try {
+      return await handleInterview(key, sanitizeMessages(body.messages));
+    } catch {
+      return Response.json({ unavailable: true });
+    }
+  }
+
   let intake: IntakeAnswers;
   try {
-    const body = await req.json();
     const i = body?.intake ?? {};
     intake = {
       goal: clip(i.goal, 20),
@@ -226,6 +362,9 @@ export async function POST(req: NextRequest) {
   const catalog = buildCatalog(intake);
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
+    // Revising without AI would clobber their plan with a generic fallback —
+    // refuse instead; the client keeps the plan and says try again later.
+    if (body.phase === "revise") return Response.json({ unavailable: true });
     return Response.json({ plan: fallbackPlan(intake, catalog) });
   }
 
@@ -246,42 +385,55 @@ HARD RULES:
 - NEVER individualized financial advice (no "borrow at most $X", no "you should invest in Y"). Teach-the-rule phrasing only; the calculators show them their own numbers.
 - No dollar figures or dates that aren't in the catalog notes.`;
 
+  const isRevise = body.phase === "revise";
+  const confirmedSummary = clip(body.confirmedSummary, 600);
+
+  // Revise (owner ask, July 2026): the person flagged parts of the plan
+  // that don't fit and said why — rework it, same catalog-only rules.
+  const byHref = new Map(catalog.map((e) => [e.href, e]));
+  const currentPlanText = isRevise
+    ? (body.currentPlan?.items ?? [])
+        .map((it) => {
+          const e = typeof it.href === "string" ? byHref.get(it.href) : undefined;
+          if (!e) return null;
+          return `${e.key} "${clip(it.title, 90)}"${it.flagged ? "  <-- FLAGGED: doesn't fit" : ""}`;
+        })
+        .filter(Boolean)
+        .join("\n")
+    : "";
+  const feedback = clip(body.feedback, 400);
+  if (isRevise && !feedback && !currentPlanText.includes("FLAGGED")) {
+    return Response.json({ unavailable: true });
+  }
+
   const userMsg = `INTAKE:
 - Goal: ${intake.goal}${intake.detail ? ` — in their words: "${intake.detail}"` : ""}
 - Where they are: ${intake.stage}
 - Money month to month: ${intake.income}
 - Family: ${intake.family}
 ${intake.target ? `- Their target: "${intake.target}"` : ""}
+${confirmedSummary ? `- Their confirmed story, in the guide's words they agreed to: "${confirmedSummary}"` : ""}
+${
+  isRevise
+    ? `
+THEIR CURRENT PLAN (refs, flagged lines are the ones they said don't fit):
+${currentPlanText}
 
+THEIR FEEDBACK: "${feedback || "the flagged items don't fit me"}"
+
+Rework the plan: keep what worked, replace or reorder what they flagged, and honor the feedback. Same output format, same catalog-only rule.`
+    : ""
+}
 CATALOG (compose only from these):
 ${catalogText}`;
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": key,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1500,
-        system,
-        messages: [{ role: "user", content: userMsg }],
-      }),
-      signal: AbortSignal.timeout(20000),
-    });
-    if (!res.ok) throw new Error(String(res.status));
-    const data = (await res.json()) as {
-      content?: Array<{ type?: string; text?: string }>;
-      stop_reason?: string;
-    };
-    if (data.stop_reason === "refusal") throw new Error("refusal");
-    const text = (data.content ?? [])
-      .filter((b) => b.type === "text")
-      .map((b) => b.text ?? "")
-      .join("");
+    const text = await callClaude(
+      key,
+      system,
+      [{ role: "user", content: userMsg }],
+      1500
+    );
     const jsonStart = text.indexOf("{");
     const jsonEnd = text.lastIndexOf("}");
     const parsed = JSON.parse(text.slice(jsonStart, jsonEnd + 1)) as {
@@ -319,6 +471,9 @@ ${catalogText}`;
     return Response.json({ plan });
   } catch {
     // Any AI trouble at all -> the deterministic plan. Never an error page.
+    // EXCEPT on revise: never clobber their existing plan with a fresh
+    // fallback — tell the client revision isn't available right now.
+    if (isRevise) return Response.json({ unavailable: true });
     return Response.json({ plan: fallbackPlan(intake, catalog) });
   }
 }
