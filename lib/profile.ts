@@ -100,6 +100,7 @@ export const GOAL_OPTIONS: { id: string; label: string }[] = [
   { id: "emergency", label: "Build an emergency fund" },
   { id: "invest", label: "Start investing" },
   { id: "college", label: "Pay for college" },
+  { id: "transfer", label: "Transfer without losing money" },
   { id: "home", label: "Buy a home someday" },
   { id: "retirement", label: "Plan for retirement" },
   { id: "safety", label: "Protect my money from scams" },

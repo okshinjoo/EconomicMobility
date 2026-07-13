@@ -2,6 +2,346 @@ import type { Article } from "./types";
 
 export const collegeExtraArticles: Article[] = [
   {
+    slug: "scholarship-displacement",
+    order: 24,
+    topicId: "college",
+    title: "When Winning a Scholarship Shrinks Your Aid",
+    dek: "Some schools reduce your aid package when outside money arrives. Know the rule before award season so no win goes to waste.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "You must report outside scholarships to your school; hiding them can cost you your aid.",
+      "The good schools trim loans and work-study first, so your scholarship replaces debt.",
+      "The bad version, displacement, trims grants instead, leaving you no better off.",
+      "One email to the aid office tells you which kind of school you're dealing with.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "You grind through applications, you win $3,000 from a [real scholarship](/learn/college/finding-scholarships), and then the fine print bites: your school adjusts your aid package because outside money changed your numbers. Whether that adjustment helps you or erases your win depends entirely on your school's policy, and you can learn it in advance.",
+      },
+      {
+        type: "h2",
+        text: "Why packages get adjusted at all",
+      },
+      {
+        type: "p",
+        text: "Federal rules cap your total aid at your cost of attendance, and at your calculated need for need-based programs. When an outside scholarship arrives, the school has to make room for it. The only question is what they remove to do it.",
+      },
+      {
+        type: "h2",
+        text: "The two versions",
+      },
+      {
+        type: "list",
+        items: [
+          "**Loans and work-study go first (the good version):** your scholarship replaces money you'd have had to borrow or earn. You graduate with less debt. This is the policy at many schools.",
+          "**Grants go first (displacement):** the school pulls its own grant back dollar for dollar, your bill doesn't move, and your scholarship effectively paid the school instead of you.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The one email worth sending",
+      },
+      {
+        type: "p",
+        text: "Before you accept an offer, or the moment you win outside money, ask the aid office plainly: \"If I bring in an outside scholarship, what gets reduced first?\" Put it in writing so the answer is on record. If the policy is displacement, ask whether the scholarship can apply to a summer term, next year, or a computer purchase inside your cost of attendance; providers and schools can often shift the timing so the money still helps you.",
+      },
+      {
+        type: "tip",
+        text: "Always report every outside award. It feels tempting not to, but unreported scholarships surface eventually, and the clawback hits harder than any adjustment would have.",
+      },
+      {
+        type: "key",
+        text: "A scholarship should shrink your debt, not your grant. One written question tells you whether it will.",
+      },
+    ],
+    related: ["finding-scholarships", "reading-aid-award-letter", "understanding-unmet-need"],
+  },
+  {
+    slug: "dropping-a-class-money",
+    order: 46,
+    topicId: "college",
+    title: "Before You Drop That Class: The Money Math",
+    dek: "Dropping a class can be free, or it can cost you a refund, your aid pace, even your loan grace period. The calendar decides.",
+    level: "Intermediate",
+    readMinutes: 5,
+    takeaways: [
+      "Drop before the add/drop deadline and it's usually free and invisible.",
+      "After that, a W doesn't touch your GPA but still counts against your aid pace.",
+      "Falling below half-time can start your loan clock and stop parts of your aid.",
+      "Five minutes with the academic calendar beats a semester of consequences.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Sometimes dropping a class is the right call: a schedule that isn't working, a professor mismatch, a life that got heavier than the syllabus. The decision itself isn't the trap. The timing is, because the same click costs nothing in week one and real money in week ten.",
+      },
+      {
+        type: "h2",
+        text: "The three windows",
+      },
+      {
+        type: "steps",
+        items: [
+          "**Add/drop period (usually the first week or two):** the class vanishes from your record and your bill. This is the free window; use it aggressively.",
+          "**After add/drop, before the withdrawal deadline:** you get a W on the transcript. No GPA damage, usually no tuition back, and the credits still count as attempted for your [aid pace](/learn/college/keep-your-aid-sap).",
+          "**After the withdrawal deadline:** you're taking the grade. At this point, finishing usually beats failing strategically.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The half-time cliff",
+      },
+      {
+        type: "p",
+        text: "Aid assumes an enrollment level. Drop below half-time (typically 6 credits) and federal loans begin their grace-period countdown, some grants recalculate, and if you're on a parent's insurance or other student-status benefits, those can wobble too. Dropping from 15 credits to 12 is a very different move than dropping from 9 to 6; count where you'll land before you click.",
+      },
+      {
+        type: "p",
+        text: "Withdrawing from everything mid-term is its own bigger event, with rules about returning aid you've only partly earned; if that's where your semester is heading, read [taking a break from college](/learn/college/taking-a-break-from-college) first and talk to the aid office before the registrar.",
+      },
+      {
+        type: "tip",
+        text: "Ask two offices, not one: the registrar tells you the transcript consequence, but only financial aid can tell you the money consequence. The second call is the one students skip.",
+      },
+      {
+        type: "key",
+        text: "The class you drop in week one costs nothing. The same class in week ten can cost a refund, your pace, and your loan clock. Check the calendar first.",
+      },
+    ],
+    related: ["keep-your-aid-sap", "taking-a-break-from-college", "repaying-student-loans"],
+  },
+  {
+    slug: "emergency-aid-on-campus",
+    order: 47,
+    topicId: "college",
+    title: "Broke Mid-Semester? Your Campus Has Emergency Money",
+    dek: "Most colleges keep quiet funds for exactly this moment: emergency grants, food pantries, and completion money. Here's where to knock.",
+    level: "Beginner",
+    readMinutes: 5,
+    takeaways: [
+      "Many campuses run emergency grant funds for one-time crises, often a few hundred dollars paid fast.",
+      "Campus food pantries and basic-needs centers exist for students, not just 'other people.'",
+      "The financial aid office can re-evaluate your aid mid-year when your situation changes.",
+      "Asking early beats dropping out; these funds exist to keep you enrolled.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "A car dies, hours get cut, a family emergency eats the rent money. For students living close to the edge, a $400 surprise can genuinely end a semester. What almost nobody tells you at orientation: your campus probably has money and food set aside for exactly this, and using it is what it's for.",
+      },
+      {
+        type: "h2",
+        text: "Emergency grants",
+      },
+      {
+        type: "p",
+        text: "Many colleges run small emergency or completion funds: one-time grants for a crisis that threatens your enrollment. Amounts are usually a few hundred dollars, decisions come fast, and it's aid, not a loan. Search your school's site for \"emergency grant\" or \"student emergency fund,\" or ask the dean of students office directly. Community colleges often route this through the foundation office.",
+      },
+      {
+        type: "h2",
+        text: "Food and basic needs",
+      },
+      {
+        type: "p",
+        text: "Campus food pantries are now common, and a growing number of schools run basic-needs centers that bundle the pantry with help applying for [SNAP](/learn/government-aid/snap-explained), transit passes, and emergency housing contacts. No shame calculation belongs here: the pantry exists because students like you funded the need, and using it protects the money that keeps you enrolled.",
+      },
+      {
+        type: "h2",
+        text: "When the change is bigger than one bad month",
+      },
+      {
+        type: "p",
+        text: "If a parent lost a job or your family's income dropped since you filed the FAFSA, that's not an emergency-fund problem; that's grounds for a [professional judgment appeal](/learn/college/appealing-financial-aid) that can raise your aid for the whole year. The emergency grant buys you the month; the appeal fixes the year.",
+      },
+      {
+        type: "steps",
+        items: [
+          "Name the exact dollar gap and what it threatens (rent, a bill, staying enrolled).",
+          "Hit the dean of students or basic-needs office and ask what emergency funds exist.",
+          "Apply the same day; these funds move on speed.",
+          "If income changed, book the aid office for an appeal in the same week.",
+          "Off campus, dial 211 for local rent and utility help.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Colleges lose students over $400 problems all the time, and they know it. The money to stop it exists; it just waits for you to ask.",
+      },
+    ],
+    related: ["appealing-financial-aid", "keep-your-aid-sap", "taking-a-break-from-college"],
+  },
+  {
+    slug: "cutting-textbook-costs",
+    order: 25,
+    topicId: "college",
+    title: "Textbooks Without the $400 Semester",
+    dek: "Course materials are the most negotiable bill in college. Rent, borrow, go open-source, and dodge the access-code trap.",
+    level: "Beginner",
+    readMinutes: 5,
+    takeaways: [
+      "Never buy anything before the first class meeting; syllabi change and 'required' often isn't.",
+      "Library course reserves, rentals, and older editions cover most classes for a fraction of retail.",
+      "Free open educational resources (OER) are real textbooks, increasingly assigned on purpose.",
+      "Access codes are the one true trap; sometimes the code is the assignment portal and you need it.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The bookstore list for one semester can run hundreds of dollars, and it's priced for people who don't ask questions. Course materials are the most flexible line in your whole college budget: with a week of patience you can usually cut the bill by more than half.",
+      },
+      {
+        type: "h2",
+        text: "The order to try, cheapest first",
+      },
+      {
+        type: "steps",
+        items: [
+          "Wait for the first class. Professors regularly say which books are truly required and which are shelf decoration.",
+          "Check the library: many put required texts on course reserve for free borrowing.",
+          "Search for the book as an open educational resource; OER textbooks are free and legal, and some departments assign them deliberately.",
+          "Rent (bookstore or online) or buy used; compare with the ISBN, not the title.",
+          "Consider one edition back, but ask the professor first; page numbers and problem sets sometimes shift.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The access-code trap",
+      },
+      {
+        type: "p",
+        text: "Some courses grade homework through a publisher's online platform, and the access code is the product. A used book won't include a working code, so for those classes, the cheapest legal route is usually buying the code alone, sometimes bundled with a digital text. Confirm with the professor before spending anything.",
+      },
+      {
+        type: "tip",
+        text: "If a required code or book is genuinely out of reach, say so to the professor in week one. Loaner copies, library links, and quiet workarounds exist far more often than anyone advertises, and asking early reads as serious, not needy.",
+      },
+      {
+        type: "key",
+        text: "Sticker price is the price for people who buy everything, new, before day one. Be none of those things.",
+      },
+    ],
+    related: ["minimizing-college-debt", "emergency-aid-on-campus", "work-study-explained"],
+  },
+  {
+    slug: "fafsa-verification",
+    order: 12,
+    topicId: "college",
+    title: "Picked for FAFSA Verification? Here's the Play",
+    dek: "Verification isn't an accusation and it isn't optional. It's paperwork with a clock on it, and your aid is frozen until you finish.",
+    level: "Beginner",
+    readMinutes: 5,
+    takeaways: [
+      "Verification is a routine audit of your FAFSA answers, not a sign you did something wrong.",
+      "Your aid doesn't pay out until verification is complete.",
+      "Respond to every request fast; slow paperwork quietly becomes lost aid.",
+      "Low-income students get selected often, so expect it and don't panic.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "You filed the [FAFSA](/learn/college/fafsa-step-by-step), you got your aid offer, and then an email arrives: you've been selected for verification. It reads like you're in trouble. You're not. Verification is the aid system double-checking a sample of applications, and applications from low-income families get pulled into that sample all the time. The danger isn't the audit; it's ignoring it.",
+      },
+      {
+        type: "h2",
+        text: "What verification actually is",
+      },
+      {
+        type: "p",
+        text: "The school compares what you entered on the FAFSA against documents: tax information, household size, sometimes proof of high school completion or identity. Since the FAFSA now pulls most tax data straight from the IRS, many verifications are just confirming the pieces the transfer couldn't cover, like who actually lives in your household.",
+      },
+      {
+        type: "h2",
+        text: "The part that costs people money",
+      },
+      {
+        type: "p",
+        text: "Until verification is done, your aid is provisional. Grants don't disburse, loans don't pay out, and at some schools your classes can be dropped for nonpayment while you wait. Every week you sit on the request is a week your money sits behind glass. Some students never finish the paperwork at all and silently lose aid they had already been offered.",
+      },
+      {
+        type: "steps",
+        items: [
+          "Read the request carefully; schools list exactly which documents they want in your student portal.",
+          "Send precisely what's asked, through the school's own upload system, not email attachments.",
+          "Screenshot or save confirmation of every submission with the date.",
+          "Check the portal weekly until the status flips to complete.",
+          "If a document is impossible to get, call the aid office and say so; they have alternatives for real situations.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Household size trips up more verifications than taxes do. Count everyone your parent supports, not just who's on a lease or a tax return, and answer consistently with what the FAFSA says.",
+      },
+      {
+        type: "key",
+        text: "Verification is a gate, not a wall. The students who lose money are the ones who never walk through it.",
+      },
+    ],
+    related: ["fafsa-step-by-step", "fafsa-mistakes", "appealing-financial-aid"],
+  },
+  {
+    slug: "keep-your-aid-sap",
+    order: 45,
+    topicId: "college",
+    title: "Keeping Your Aid: The GPA and Pace Rules Nobody Mentions",
+    dek: "Financial aid isn't a one-time prize. Schools re-check your grades and completed credits every year, and falling short can end it.",
+    level: "Intermediate",
+    readMinutes: 6,
+    takeaways: [
+      "Satisfactory Academic Progress (SAP) decides whether your aid continues.",
+      "Most schools require around a 2.0 GPA and completing about two-thirds of attempted credits.",
+      "Withdrawn and failed classes still count as attempted, which drags your pace down.",
+      "A failed SAP check can be appealed, and real-life reasons often win.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Every award letter comes with an invisible condition: keep making progress or the money stops. Schools call it Satisfactory Academic Progress, and they check it at least once a year. Nobody frames it this way at orientation, but a rough semester isn't just a GPA problem. It can be a losing-your-Pell-Grant problem.",
+      },
+      {
+        type: "h2",
+        text: "The two numbers that matter",
+      },
+      {
+        type: "list",
+        items: [
+          "**A GPA floor**, most often around 2.0 for undergraduates.",
+          "**A pace rule**: completing roughly two-thirds of the credits you attempt. Sign up for 12, finish at least 8, or the math starts working against you.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The pace rule is the quiet one. A W from [dropping a class](/learn/college/dropping-a-class-money) doesn't touch your GPA, but it still counts as attempted and unfinished, and enough of them will fail your pace check even with good grades. Your school's exact numbers live in its SAP policy; read yours once so you know your floor.",
+      },
+      {
+        type: "h2",
+        text: "What happens when you fall short",
+      },
+      {
+        type: "p",
+        text: "Usually a warning term first, with aid intact. Fall short again and aid stops until you're back above the line. That's the moment students drop out over money when they didn't have to, because the next step exists and works:",
+      },
+      {
+        type: "h2",
+        text: "The SAP appeal",
+      },
+      {
+        type: "p",
+        text: "If something real knocked your semester sideways, illness, a family crisis, a job you couldn't refuse, you can appeal. Write plainly what happened, attach what proof you have, and include a realistic plan for getting back on track. Schools approve honest appeals regularly; the process resembles an [aid appeal](/learn/college/appealing-financial-aid) and the same directness wins.",
+      },
+      {
+        type: "tip",
+        text: "If a term is going badly, talk to the aid office before grades post. Fixing a schedule in week eight beats appealing a suspension in week eighteen.",
+      },
+      {
+        type: "key",
+        text: "Aid is renewed, not owned. Know your GPA floor and your pace number the way you know your rent.",
+      },
+    ],
+    related: ["dropping-a-class-money", "appealing-financial-aid", "taking-a-break-from-college"],
+  },
+  {
     slug: "css-profile-explained",
     order: 22,
     topicId: "college",

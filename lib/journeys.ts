@@ -22,6 +22,7 @@ export type JourneyId =
   | "emergency"
   | "invest"
   | "college"
+  | "transfer"
   | "home"
   | "retirement"
   | "safety";
@@ -468,6 +469,43 @@ export const journeys: Journey[] = [
         why: "Fast, right-order action is the difference between a scare and a loss.",
         articleSlugs: ["if-youve-been-scammed", "credit-freeze"],
         topicQuiz: "money-safety",
+      },
+    ],
+  },
+  {
+    id: "transfer",
+    title: "Transfer without losing money",
+    promise: "Community college to a four-year degree, with every unit and every dollar making the trip with you.",
+    color: "#9c4a2e",
+    topic: "college",
+    stages: [
+      {
+        id: "map-the-route",
+        milestone: "Know your transfer route and what it saves",
+        why: "The community-college discount only pays off if your courses actually transfer — so the route comes before the schedule.",
+        articleSlugs: ["community-college-path", "community-college-transfer-money"],
+        tool: { label: "College Cost Calculator", href: "/tools/college" },
+      },
+      {
+        id: "confirm-every-unit",
+        milestone: "Confirm every course against the agreement",
+        why: "Transferability belongs to the articulation agreement, not to hope. Check before you register, every term.",
+        articleSlugs: ["dropping-a-class-money", "keep-your-aid-sap"],
+        tool: { label: "Student Tracker", href: "/students/tracker" },
+      },
+      {
+        id: "aid-at-the-four-year",
+        milestone: "Run aid season for your target schools",
+        why: "Transfer students file the same forms, and the aid can differ wildly between schools that would all take you.",
+        articleSlugs: ["fafsa-step-by-step", "css-profile-explained", "scholarship-displacement"],
+        courseId: "aid-season-playbook",
+      },
+      {
+        id: "compare-and-commit",
+        milestone: "Compare offers and commit with eyes open",
+        why: "The decision is a money decision: net price after grants, not sticker, and not loyalty to a name.",
+        articleSlugs: ["reading-aid-award-letter", "appealing-financial-aid", "in-state-vs-out-of-state"],
+        tool: { label: "Compare Aid Offers", href: "/tools/college/compare-offers" },
       },
     ],
   },

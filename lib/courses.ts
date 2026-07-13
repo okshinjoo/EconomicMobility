@@ -944,6 +944,182 @@ export const courses: Course[] = [
       },
     ],
   },
+  {
+    id: "aid-season-playbook",
+    title: "The Aid Season Playbook",
+    goal: "Run October to May like someone who knows the aid game.",
+    description:
+      "Financial aid is a season with a schedule, and the students who treat it that way get more money. This module runs the whole calendar: the FAFSA, the CSS Profile at the schools that want it, surviving verification, reading award letters side by side, and pushing back when the offer isn't enough.",
+    color: "#a3541c",
+    articleSlugs: [
+      "fafsa-step-by-step",
+      "css-profile-explained",
+      "fafsa-mistakes",
+      "fafsa-verification",
+      "reading-aid-award-letter",
+      "appealing-financial-aid",
+    ],
+    finalQuiz: [
+      {
+        question: "When does the FAFSA open each year?",
+        options: ["January 1", "October 1", "The same day classes start"],
+        answer: 1,
+        explain:
+          "October 1. Filing in the fall matters because some aid runs out, and early filers get first crack at it.",
+        sourceSlug: "fafsa-step-by-step",
+      },
+      {
+        question: "Who files the CSS Profile?",
+        options: [
+          "Every college applicant in the country",
+          "Only students applying to the roughly 200 schools that require it",
+          "Only international students",
+        ],
+        answer: 1,
+        explain:
+          "The Profile is required by about 200 mostly private colleges to award their own institutional aid. Each school's aid page says whether it wants one.",
+        sourceSlug: "css-profile-explained",
+      },
+      {
+        question: "You're selected for verification. What's the smart read of the situation?",
+        options: [
+          "You're suspected of fraud and should get a lawyer",
+          "It's routine paperwork, but your aid is frozen until you finish it",
+          "You can safely ignore it; the aid already showed up in your portal",
+        ],
+        answer: 1,
+        explain:
+          "Verification is a routine cross-check that hits low-income applicants often. The only real danger is responding slowly, because nothing pays out until it's done.",
+        sourceSlug: "fafsa-verification",
+      },
+      {
+        question: "Two award letters show the same 'total aid.' What can still make one offer thousands better?",
+        options: [
+          "The mix — how much is grant money versus loans you repay",
+          "Which letter arrived first",
+          "The font and letterhead quality",
+        ],
+        answer: 0,
+        explain:
+          "A package heavy on grants beats one heavy on loans at the same total. The mix is the offer.",
+        sourceSlug: "reading-aid-award-letter",
+      },
+      {
+        question: "Your family's income dropped after you filed the FAFSA. What's your move?",
+        options: [
+          "Nothing — the numbers are locked for the year",
+          "Ask the aid office for a professional judgment review with proof of the change",
+          "Refile the FAFSA under a different name",
+        ],
+        answer: 1,
+        explain:
+          "Aid offices can legally re-run your numbers when real life changes them. It's called professional judgment, and a plain letter with documentation is how you start it.",
+        sourceSlug: "appealing-financial-aid",
+      },
+      {
+        question: "Which FAFSA mistake costs families the most aid?",
+        options: [
+          "Using blue ink instead of black",
+          "Assuming they earn too much to qualify and never filing at all",
+          "Filing twice in the same year",
+        ],
+        answer: 1,
+        explain:
+          "The biggest error is self-rejection. Plenty of aid, including some scholarships and loans, requires a FAFSA on file regardless of income.",
+        sourceSlug: "fafsa-mistakes",
+      },
+    ],
+  },
+  {
+    id: "borrow-smart",
+    title: "Borrow Smart",
+    goal: "If you have to borrow for school, borrow like you've read the fine print.",
+    description:
+      "Most students borrow something. This module is the difference between borrowing on purpose and borrowing by default: what to sign and what to refuse, federal versus private, subsidized versus not, how to keep the total down while enrolled, and what repayment actually looks like on the other side.",
+    color: "#7c4a12",
+    articleSlugs: [
+      "student-loans-before-you-sign",
+      "federal-vs-private-loans",
+      "subsidized-vs-unsubsidized",
+      "minimizing-college-debt",
+      "dropping-a-class-money",
+      "repaying-student-loans",
+    ],
+    finalQuiz: [
+      {
+        question: "What's the recommended order for college money?",
+        options: [
+          "Private loans first, they're fastest",
+          "Grants and scholarships, then federal loans, then private only if a gap remains",
+          "Whatever the school's preferred lender list suggests",
+        ],
+        answer: 1,
+        explain:
+          "Free money first, protected money second, private debt last and smallest. The order is the strategy.",
+        sourceSlug: "federal-vs-private-loans",
+      },
+      {
+        question: "What makes a subsidized federal loan the better deal?",
+        options: [
+          "The government pays the interest while you're in school",
+          "It never has to be repaid",
+          "It comes with a lower tuition rate",
+        ],
+        answer: 0,
+        explain:
+          "Subsidized loans don't grow while you're enrolled at least half-time, because the government covers the interest. Unsubsidized loans quietly compound the whole time.",
+        sourceSlug: "subsidized-vs-unsubsidized",
+      },
+      {
+        question: "Before signing any student loan, the number to know is:",
+        options: [
+          "The monthly payment your total borrowing will demand after graduation",
+          "Your school's ranking",
+          "The lender's stock price",
+        ],
+        answer: 0,
+        explain:
+          "A loan is a claim on your future paychecks. Translating the total into a realistic monthly payment is how you decide if the claim is survivable.",
+        sourceSlug: "student-loans-before-you-sign",
+      },
+      {
+        question: "Dropping below half-time enrollment does what to your federal loans?",
+        options: [
+          "Nothing until graduation",
+          "Starts your grace-period clock ticking",
+          "Converts them to grants",
+        ],
+        answer: 1,
+        explain:
+          "Half-time enrollment is what keeps loans dormant. Slip under it and the countdown to repayment begins, whether or not you meant to start it.",
+        sourceSlug: "dropping-a-class-money",
+      },
+      {
+        question: "The cheapest dollar of college debt is:",
+        options: [
+          "The one you refinance later",
+          "The one you never borrow",
+          "The one on a rewards credit card",
+        ],
+        answer: 1,
+        explain:
+          "Every borrowing decision starts with shrinking the amount: cheaper credits, textbook strategy, working the aid season. Repayment plans manage debt; not borrowing avoids it.",
+        sourceSlug: "minimizing-college-debt",
+      },
+      {
+        question: "Six months after you graduate, what happens?",
+        options: [
+          "Nothing; loans wait until you feel ready",
+          "Your federal loan grace period ends and payments begin",
+          "Interest is forgiven if you found a job",
+        ],
+        answer: 1,
+        explain:
+          "The grace period is six months, then bills arrive. Picking a repayment plan before that first bill, instead of after a missed one, is the whole game.",
+        sourceSlug: "repaying-student-loans",
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {
