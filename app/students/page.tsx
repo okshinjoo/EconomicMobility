@@ -182,7 +182,7 @@ export default function StudentsPage() {
                 Tracker
               </h2>
               <p className="mt-1 flex-1 text-sm leading-6 text-stone">
-                Units, grades, and GPA — watch your transfer progress add up.
+                Units, grades, GPA — with tracks for high school, community college, and university.
               </p>
             </Link>
             <Link

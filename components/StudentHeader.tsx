@@ -95,7 +95,7 @@ const NAV: StudentNavEntry[] = [
       { label: "All guided paths", href: "/students/journey", desc: "Nine goals — credit, debt, investing, and more.", icon: Compass, color: "#0c4a39" },
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
       { label: "All courses", href: "/students/courses", desc: "Ten modules: reading path, flashcards, final.", icon: Library, color: "#15624b" },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, transfer progress, to-dos.", icon: ClipboardList, color: "#c9842a" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#c9842a" },
     ],
     footer: [{ label: "Take the 2-minute quiz", href: "/students/quiz" }],
   },
@@ -151,7 +151,7 @@ const NAV: StudentNavEntry[] = [
     columns: 2,
     items: [
       { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you.", icon: Wrench, color: "#0c4a39" },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, and to-dos in one place.", icon: ClipboardList, color: "#c4573b" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#c4573b" },
       { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs.", icon: Calculator, color: "#c9842a" },
       { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side.", icon: Scale, color: "#15624b" },
       { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing.", icon: Banknote, color: "#0c4a39" },

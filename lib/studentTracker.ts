@@ -1,12 +1,18 @@
 // The student tracker (July 2026, owner ask): courses, units, grades, and
-// a freeform to-do list — the money-native "class tracker." Everything
-// derived client-side from what the student enters: units banked toward
-// the 60-unit transfer threshold, transferable vs at-risk units, dollars
-// protected (transferable units x their per-unit cost), and an unofficial
-// GPA from graded courses. One whole-snapshot key, so account sync carries
-// it like the plan. No dates, no schedule fields (calendars do that job);
-// transferability is the student's own checkbox, confirmed against ASSIST
-// — we never guess it for them.
+// a freeform to-do list — the money-native "class tracker." July 13 owner
+// pass: THREE TRACKS in one tracker, picked by the student and stored in
+// the snapshot:
+//   hs  — high school: the course flag means "earns college credit" (AP/
+//         IB/dual enrollment); banked credit units x cost-per-unit = the
+//         tuition those classes may save, priced at community-college rates
+//   cc  — community college (the original): units toward the 60-unit
+//         transfer threshold, transferable-vs-at-risk, dollars protected
+//   uni — university: units toward an editable degree target (default
+//         120), with terms-to-go estimated at a full-time pace
+// Everything derived client-side from what the student enters. One
+// whole-snapshot key, so account sync carries it like the plan. No dates,
+// no schedule fields (calendars do that job); transferability is the
+// student's own checkbox, confirmed against ASSIST — we never guess.
 
 import { loadJSON, saveJSON } from "./storage";
 
@@ -14,6 +20,11 @@ export const TRACKER_KEY = "empower:student-tracker:v1";
 
 /** 60 semester units = the standard California transfer threshold. */
 export const TRANSFER_UNITS = 60;
+
+/** Full-time pace used for the university terms-to-go estimate. */
+export const UNITS_PER_TERM = 15;
+
+export type TrackerMode = "hs" | "cc" | "uni";
 
 export type CourseStatus = "planned" | "taking" | "done";
 
@@ -36,7 +47,9 @@ export interface Course {
   /** Free text: "Fall 2026". */
   term: string;
   status: CourseStatus;
-  /** The student's own check against ASSIST (or their transfer center). */
+  /** cc: the student's own check against ASSIST (or their transfer
+   *  center). hs: this class earns college credit (AP/IB/dual
+   *  enrollment). uni: unused. */
   transferable: boolean;
   grade: Grade;
 }
@@ -48,14 +61,21 @@ export interface Todo {
 }
 
 export interface TrackerData {
-  /** Editable; defaults to California's $46/unit. */
+  /** Which track the student is on; existing snapshots default to cc. */
+  mode: TrackerMode;
+  /** Editable; defaults to California's $46/unit (also the honest rate
+   *  for pricing what a high schooler's credits could save). */
   costPerUnit: string;
+  /** uni: editable degree target; defaults to the common 120. */
+  targetUnits: string;
   courses: Course[];
   todos: Todo[];
 }
 
 export const EMPTY_TRACKER: TrackerData = {
+  mode: "cc",
   costPerUnit: "46",
+  targetUnits: "120",
   courses: [],
   todos: [],
 };
@@ -80,9 +100,20 @@ export function unitsOf(c: Course): number {
 export interface TrackerSummary {
   unitsDone: number;
   unitsTaking: number;
+  /** Flagged (transferable / college-credit) units, done + taking. */
   unitsTransferable: number;
+  /** Flagged units already finished — what's actually banked. */
+  unitsFlaggedDone: number;
   unitsAtRisk: number;
+  /** cc: flagged units x cost. hs: same math — tuition those classes
+   *  may save at community-college rates. */
   dollarsProtected: number;
+  /** uni: parsed degree target (falls back to 120). */
+  targetUnits: number;
+  /** uni: units still needed after done ones. */
+  unitsToGo: number;
+  /** uni: unitsToGo at the full-time pace, rounded up. */
+  termsToGo: number;
   /** Null until at least one letter-graded done course exists. */
   gpa: number | null;
   gradedUnits: number;
@@ -92,6 +123,7 @@ export function summarize(t: TrackerData): TrackerSummary {
   let unitsDone = 0;
   let unitsTaking = 0;
   let unitsTransferable = 0;
+  let unitsFlaggedDone = 0;
   let unitsAtRisk = 0;
   let qualityPoints = 0;
   let gradedUnits = 0;
@@ -104,6 +136,7 @@ export function summarize(t: TrackerData): TrackerSummary {
       if (c.transferable) unitsTransferable += u;
       else unitsAtRisk += u;
     }
+    if (c.status === "done" && c.transferable) unitsFlaggedDone += u;
     if (c.status === "done" && c.grade && c.grade !== "P") {
       qualityPoints += GRADE_POINTS[c.grade as Exclude<Grade, "" | "P">] * u;
       gradedUnits += u;
@@ -111,13 +144,22 @@ export function summarize(t: TrackerData): TrackerSummary {
   }
 
   const cost = parseFloat(t.costPerUnit);
+  const target = parseFloat(t.targetUnits);
+  const targetUnits =
+    Number.isFinite(target) && target > 0 ? target : 120;
+  const unitsToGo = Math.max(0, targetUnits - unitsDone);
+
   return {
     unitsDone,
     unitsTaking,
     unitsTransferable,
+    unitsFlaggedDone,
     unitsAtRisk,
     dollarsProtected:
       Number.isFinite(cost) && cost > 0 ? unitsTransferable * cost : 0,
+    targetUnits,
+    unitsToGo,
+    termsToGo: Math.ceil(unitsToGo / UNITS_PER_TERM),
     gpa: gradedUnits > 0 ? qualityPoints / gradedUnits : null,
     gradedUnits,
   };
