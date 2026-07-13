@@ -128,21 +128,24 @@ function Avatar({
   name,
   team,
   cred,
+  mine,
 }: {
   name: string;
   team?: boolean;
   cred?: number;
+  /** The signed-in visitor's own avatar reads "me", not an initial. */
+  mine?: boolean;
 }) {
   const ring = credRingColor(cred ?? 0);
   return (
     <span
       title={ring ? `Community Cred: ${cred}` : undefined}
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-base font-bold ${
-        team ? "bg-forest text-cream" : "bg-amber/25 text-amber-deep"
-      }`}
+      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display font-bold ${
+        mine ? "text-sm italic" : "text-base"
+      } ${team ? "bg-forest text-cream" : "bg-amber/25 text-amber-deep"}`}
       style={ring ? { boxShadow: `0 0 0 2px ${ring}` } : undefined}
     >
-      {name.trim().charAt(0).toUpperCase() || "A"}
+      {mine ? "me" : name.trim().charAt(0).toUpperCase() || "A"}
     </span>
   );
 }
@@ -557,7 +560,7 @@ function CommentForm({
   return (
     <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2">
       <div className="flex items-start gap-3">
-        <Avatar name={name || "A"} />
+        <Avatar name={name || "A"} mine />
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -640,6 +643,7 @@ function CommentItem({
           name={comment.author}
           team={comment.author === "Empower Team"}
           cred={authorMeta[comment.author]?.cred}
+          mine={comment.mine}
         />
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
@@ -697,6 +701,7 @@ function CommentItem({
                 name={r.author}
                 team={r.author === "Empower Team"}
                 cred={authorMeta[r.author]?.cred}
+                mine={r.mine}
               />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink">
@@ -725,7 +730,7 @@ function CommentItem({
           {/* the visitor's own pending replies */}
           {pendingReplies.map((r) => (
             <div key={r.at} className="mt-3 flex items-start gap-2.5 border-l-2 border-amber/50 pl-3">
-              <Avatar name={r.author} />
+              <Avatar name={r.author} mine />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
                   You
@@ -1109,7 +1114,7 @@ function PostCard({
           ))}
           {pendingComments.map((c) => (
             <div key={c.at} className="mt-4 flex items-start gap-3">
-              <Avatar name={c.author} />
+              <Avatar name={c.author} mine />
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
                   You
