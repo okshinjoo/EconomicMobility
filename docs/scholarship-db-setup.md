@@ -1,47 +1,31 @@
-# Scholarship database go-live (CareerOneStop)
+# Scholarship database go-live (CareerOneStop) — STATUS July 13, 2026
 
-The Scholarship Finder's "Search the full national database" section is
-BUILT and inert. It appears on /students/scholarships automatically once
-two environment variables exist in Vercel. Three steps:
+**Approved.** Credentials received (stored in the owner's passwords doc).
+Agreement expires **7/13/2029** (renewal required; put it in the calendar).
+Terms to honor when any of their services ship: public, free, no login
+required, and their logo displayed on pages using their Web API tools.
 
-## 1. Register (free, one time)
+**Blocker found by direct testing:** the token authenticates fine (verified
+against their techtool service), but the CURRENT Web API catalog (all 41
+services enumerated from api.careeronestop.org/api-explorer) contains NO
+scholarship service — every plausible /v1/scholarship* path 404s. Their
+Scholarship Finder exists only as a website tool today.
 
-1. Go to careeronestop.org → scroll to the footer → **Web API** (or visit
-   `/Developers/WebAPI/registration.aspx`).
-2. Fill in the request form: your name, `Help@economicmobilityproject.org`,
-   organization "Empower — Economic Mobility Project", and for intended use
-   say something honest and simple: "Free financial-education site for
-   first-generation and low-income students; we want to offer scholarship
-   search on our students page."
-3. Submit. Approval usually arrives by EMAIL within a couple of business
-   days, containing your **User ID** and **API Token**. Save both in the
-   password doc with the other keys.
-4. The welcome email lists which API services your account can call. Find
-   the scholarship service and note its exact path shape. If it is NOT
-   `/v1/scholarshipfinder/{userId}/{keyword}/...`, that's fine — step 2
-   has an override for it.
+**Next step (in flight):** owner replied to Kelly Tenner (Outreach Manager,
+their approval email thread) asking whether scholarship data is available
+via API or bulk download. Outcomes:
+- They provide an endpoint/bulk file -> set CAREERONESTOP_USER_ID,
+  CAREERONESTOP_TOKEN (+ CAREERONESTOP_SCHOLARSHIP_PATH if a nonstandard
+  path) in Vercel (Production+Preview, Sensitive), adjust the route's field
+  mapping to the real response shape, add their logo to the DB section,
+  redeploy.
+- No API access -> add CareerOneStop's scholarship search as a launcher
+  card next to BigFuture and retire the /api/scholarships route.
 
-## 2. Add the keys to Vercel
+**Do NOT set the Vercel env vars until an endpoint is confirmed** — the
+page section gates on their presence and would render a search box that
+can only error.
 
-Vercel → the site project → Settings → Environment Variables. Add, exactly
-like the Anthropic key (Production + Preview, Sensitive: yes, NOT
-NEXT_PUBLIC, skip Development):
-
-- `CAREERONESTOP_USER_ID` — the User ID from the email
-- `CAREERONESTOP_TOKEN` — the API Token from the email
-- `CAREERONESTOP_SCHOLARSHIP_PATH` — ONLY if the welcome email shows a
-  different path for scholarships. Use `{userId}`, `{keyword}`, `{limit}`
-  placeholders, e.g. `/v1/scholarshipfinder/{userId}/{keyword}/0/{limit}`.
-
-## 3. Redeploy and test
-
-1. Deployments → ⋯ on the latest → Redeploy (env changes need a fresh
-   deploy — same as always).
-2. Open /students/scholarships on the live site. The "Search the full
-   national database" section should now exist below the curated list.
-3. Search something broad ("nursing"). Results = done. An error message =
-   check the two env names for typos first, then whether the welcome email
-   named a different path (set the override, redeploy).
-
-Until step 2 happens, the site is unchanged: the curated list stands alone
-and nothing broken is visible anywhere.
+The keys DO work for their other services (training, certifications,
+salaries, occupations — jobs data goes through NLx separately per their
+email). Potential future use: real salary data in Reality Check.
