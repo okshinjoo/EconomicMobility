@@ -119,10 +119,10 @@ export default function PrivacyPage() {
           <p className="mt-3">
             Email{" "}
             <a
-              href="mailto:Help@economicmobilityproject.org"
+              href="mailto:privacy@economicmobilityproject.org"
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
             >
-              Help@economicmobilityproject.org
+              privacy@economicmobilityproject.org
             </a>{" "}
             from your account&apos;s email address and we&apos;ll permanently
             delete your account and every piece of data attached to it,

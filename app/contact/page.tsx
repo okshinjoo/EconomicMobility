@@ -58,6 +58,27 @@ export default function ContactPage() {
               </h2>
               <div className="mt-6">
                 <ContactForm />
+
+                {/* Direct lines for specific kinds of mail (July 2026) */}
+                <div className="mt-8 rounded-xl border border-sand bg-cream p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-terracotta">
+                    Writing about something specific?
+                  </p>
+                  <ul className="mt-3 space-y-1.5 text-sm leading-6 text-stone">
+                    <li>
+                      <span className="font-semibold text-ink">Press &amp; media:</span>{" "}
+                      <a href="mailto:press@economicmobilityproject.org" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">press@economicmobilityproject.org</a>
+                    </li>
+                    <li>
+                      <span className="font-semibold text-ink">Schools, nonprofits &amp; partnerships:</span>{" "}
+                      <a href="mailto:partnerships@economicmobilityproject.org" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">partnerships@economicmobilityproject.org</a>
+                    </li>
+                    <li>
+                      <span className="font-semibold text-ink">Privacy &amp; data requests:</span>{" "}
+                      <a href="mailto:privacy@economicmobilityproject.org" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">privacy@economicmobilityproject.org</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 

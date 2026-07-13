@@ -169,7 +169,15 @@ export default function ScholarshipFinder() {
         official site. Exact dates and amounts shift a little each year, so
         always confirm on the official page before you plan around one —
         that&apos;s where the link on each card goes. We never list
-        scholarships that charge fees or exist to harvest your data.
+        scholarships that charge fees or exist to harvest your data. Run a
+        real scholarship we should include? Email{" "}
+        <a
+          href="mailto:scholarships@economicmobilityproject.org"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          scholarships@economicmobilityproject.org
+        </a>
+        .
       </p>
     </div>
   );
