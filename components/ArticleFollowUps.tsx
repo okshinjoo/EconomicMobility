@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import TopicMark from "@/components/TopicMark";
+import type { TopicId } from "@/lib/topics";
 import { ArrowLeft, ArrowRight, Check, Map, Sparkles, Wrench } from "lucide-react";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
@@ -137,6 +140,10 @@ export interface RelatedItem {
   kicker: string;
   color: string;
   title: string;
+  /** For the elongated top pick: dek + topic mark + topic photo. */
+  dek?: string;
+  topicId?: TopicId;
+  image?: string;
 }
 
 export function RelatedArticles({
@@ -166,8 +173,55 @@ export function RelatedArticles({
         <h2 className="font-display text-2xl font-bold text-ink">
           Keep reading
         </h2>
-        <div className="mt-6 space-y-3">
-          {ordered.map((rel) => {
+
+        {/* Top pick: the elongated library-row look (photo, tint, mark) */}
+        <Link
+          href={ordered[0].href}
+          className="card-ink group relative mt-6 flex items-stretch gap-4 overflow-hidden rounded-xl p-4 transition-transform duration-200 hover:-translate-y-0.5"
+          style={{
+            background: `color-mix(in srgb, ${ordered[0].color} 12%, #fbf8f1)`,
+          }}
+        >
+          {ordered[0].image && (
+            <div className="relative hidden w-28 shrink-0 overflow-hidden rounded-lg bg-sand sm:block">
+              <Image
+                src={ordered[0].image}
+                alt=""
+                fill
+                unoptimized
+                sizes="112px"
+                className="object-cover"
+              />
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <p
+              className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide"
+              style={{ color: ordered[0].color }}
+            >
+              {ordered[0].topicId && (
+                <TopicMark
+                  id={ordered[0].topicId}
+                  className="h-5 w-5 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                />
+              )}
+              Read this next
+            </p>
+            <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+              style={{ textDecorationColor: ordered[0].color }}
+            >
+              {ordered[0].title}
+            </h3>
+            {ordered[0].dek && (
+              <p className="mt-1 text-sm leading-6 text-stone">
+                {ordered[0].dek}
+              </p>
+            )}
+          </div>
+        </Link>
+
+        <div className="mt-3 space-y-3">
+          {ordered.slice(1).map((rel) => {
             const wasRead = readSlugs.has(rel.slug);
             return (
             <Link

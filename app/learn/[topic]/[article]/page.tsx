@@ -275,6 +275,9 @@ export default async function ArticlePage({
               kicker: relTopic.title,
               color: relTopic.color,
               title: rel.title,
+              dek: rel.dek,
+              topicId: rel.topicId,
+              image: relTopic.image,
             };
           })}
           backHref={meta.href}
