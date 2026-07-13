@@ -11,7 +11,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   ArrowLeft,
-  ChevronDown,
   BookOpen,
   GraduationCap,
   ArrowRightLeft,
@@ -119,7 +118,7 @@ const NAV: StudentNavEntry[] = [
     href: "/students/scholarships",
     columns: 2,
     items: [
-      { label: "The Scholarship Finder", href: "/students/scholarships", desc: "25 vetted national awards, filters for your stage.", icon: Award, color: "#c9842a" },
+      { label: "The Scholarship Finder", href: "/students/scholarships", desc: "Verified awards, hand-checked — filters for your stage.", icon: Award, color: "#c9842a" },
       { label: "Big national databases", href: "/students/scholarships#more", desc: "BigFuture, Immigrants Rising, UNCF — the deep wells.", icon: Search, color: "#0c4a39" },
       { label: "Winning scholarships", href: "/students/learn/college/finding-scholarships", desc: "Where to look and how to actually win.", icon: FileText, color: "#c4573b" },
       { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first — know the difference.", icon: Landmark, color: "#15624b" },
@@ -179,16 +178,15 @@ const NAV: StudentNavEntry[] = [
 
 function DropMenu({ entry }: { entry: StudentNavEntry }) {
   return (
-    <div className="group relative">
+    <div className="group relative shrink-0">
       <Link
         href={entry.href}
         aria-haspopup="true"
-        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
+        className="inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
       >
         {entry.label}
-        <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
-      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div className="invisible absolute left-1/2 top-full z-50 hidden -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 xl:block">
         <div
           className={`rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl ${
             entry.columns === 2 ? "w-[31rem]" : "w-80"
@@ -257,7 +255,11 @@ export default function StudentHeader({
       style={{ position: "sticky", top: 0, zIndex: 50 }}
       className="border-b border-white/10 bg-forest/95 text-cream backdrop-blur"
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5">
+      {/* max-w + 13px nav text are FIT-CRITICAL: the row must hold 8 items
+          beside search + the exit door at a 1280 viewport (measured July 13
+          after the row overlapped at every desktop width). No wordmark here
+          on purpose — the E tile + Students sticker is the identity. */}
+      <nav className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-5 py-3.5">
         <Link
           href="/students"
           className="flex shrink-0 items-center gap-3 transition-opacity hover:opacity-90"
@@ -265,15 +267,16 @@ export default function StudentHeader({
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
             E
           </span>
-          <span className="hidden font-display text-xl font-semibold tracking-tight 2xl:block">
-            <span className="text-amber">EMP</span>ower
-          </span>
           <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
             Students
           </span>
         </Link>
 
-        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-sm font-medium sm:overflow-visible">
+        {/* Below xl the full row can't fit beside search + the exit door, so
+            it horizontal-scrolls (dropdown panels off, triggers = links);
+            xl+ must genuinely fit — that's what the compact search and the
+            tightened paddings buy. Don't re-widen without re-measuring. */}
+        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-[13px] font-medium xl:overflow-visible">
           {NAV.map((entry) => {
             if (entry.items) return <DropMenu key={entry.label} entry={entry} />;
             const active = entry.exact
@@ -283,7 +286,7 @@ export default function StudentHeader({
               <Link
                 key={entry.label}
                 href={entry.href}
-                className={`whitespace-nowrap rounded-full px-3 py-2 transition-colors ${
+                className={`shrink-0 whitespace-nowrap rounded-full px-2 py-2 transition-colors ${
                   active
                     ? "font-bold text-amber"
                     : "text-cream/80 hover:text-amber"
@@ -295,8 +298,8 @@ export default function StudentHeader({
           })}
         </div>
 
-        <div className="flex shrink-0 items-center gap-3">
-          <SearchDialog items={searchItems} />
+        <div className="flex shrink-0 items-center gap-2.5">
+          <SearchDialog items={searchItems} compact />
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-cream/80 underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"

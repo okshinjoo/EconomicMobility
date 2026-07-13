@@ -69,7 +69,15 @@ interface Section {
   items: { item: SearchItem; idx: number }[];
 }
 
-export default function SearchDialog({ items }: { items: SearchItem[] }) {
+export default function SearchDialog({
+  items,
+  compact = false,
+}: {
+  items: SearchItem[];
+  /** Icon-only trigger until 2xl (StudentHeader's crowded row); the main
+   *  header keeps the labeled pill. */
+  compact?: boolean;
+}) {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -209,10 +217,14 @@ export default function SearchDialog({ items }: { items: SearchItem[] }) {
         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-2 text-sm font-medium text-cream/90 transition-colors hover:bg-white/10"
       >
         <Search className="h-4 w-4" strokeWidth={2} />
-        <span className="hidden sm:inline">Search</span>
-        <kbd className="ml-1 hidden rounded border border-white/20 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-cream/70 lg:inline">
-          ⌘K
-        </kbd>
+        {!compact && (
+          <>
+            <span className="hidden sm:inline">Search</span>
+            <kbd className="ml-1 hidden rounded border border-white/20 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-cream/70 lg:inline">
+              ⌘K
+            </kbd>
+          </>
+        )}
       </button>
 
       {mounted &&
