@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/structuredData";
 import { topics } from "@/lib/topics";
 import {
   allArticles,
@@ -162,6 +164,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <Header />
 
       {/* Hero */}

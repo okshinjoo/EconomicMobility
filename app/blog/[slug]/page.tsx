@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 import Header from "@/components/Header";
+import JsonLd from "@/components/JsonLd";
+import { blogPostingSchema } from "@/lib/structuredData";
 import Footer from "@/components/Footer";
 import ArticleBody from "@/components/ArticleBody";
 import ReadingProgress from "@/components/ReadingProgress";
@@ -50,6 +52,15 @@ export default async function BlogPostPage({
 
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <JsonLd
+        data={blogPostingSchema({
+          slug: post.slug,
+          title: post.title,
+          dek: post.dek,
+          date: post.date,
+          image: post.image.src,
+        })}
+      />
       <ReadingProgress />
       {/* Namespaced so blog reads share the read map without colliding
           with Learn article slugs (consumers look up bare slugs only). */}

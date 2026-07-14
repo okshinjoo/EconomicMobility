@@ -5,6 +5,8 @@ import CourseQuiz from "@/components/CourseQuiz";
 import { ReadBadge } from "@/components/ReadBadge";
 import { getCourse, getCourseArticles, getCourseFlashcards } from "@/lib/courses";
 import { frameHref, type Frame } from "@/lib/frame";
+import JsonLd from "@/components/JsonLd";
+import { courseSchema } from "@/lib/structuredData";
 
 /**
  * The whole course page below the header, shared by /courses/[course] and
@@ -37,6 +39,9 @@ export default function CoursePageView({
 
   return (
     <>
+      <JsonLd
+        data={courseSchema({ id: found.id, title: found.title, goal: found.goal })}
+      />
 
       {/* Hero — A: a solid field of the course's own color */}
       <section className="text-cream" style={{ backgroundColor: accent }}>

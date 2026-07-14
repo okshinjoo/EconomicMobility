@@ -21,6 +21,8 @@ import { extractHeadings } from "@/lib/articles/headings";
 import { articleTools } from "@/lib/articleTools";
 import { getTopicQuiz } from "@/lib/topicQuizzes";
 import { frameHref, type Frame } from "@/lib/frame";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/structuredData";
 
 /**
  * The whole article page below the header, shared by /learn/[topic]/[article]
@@ -57,6 +59,24 @@ export default function ArticlePageView({
 
   return (
     <>
+      {/* Structured data — same canonical URLs in both frames (the /students
+          mirror's canonical already points at the main URL). */}
+      <JsonLd
+        data={[
+          articleSchema({
+            title: found.title,
+            dek: found.dek,
+            topicId: topic,
+            slug: found.slug,
+            sectionTitle: meta.title,
+          }),
+          breadcrumbSchema([
+            { name: "Learn", path: "/learn" },
+            { name: meta.title, path: meta.href },
+            { name: found.title, path: `/learn/${topic}/${found.slug}` },
+          ]),
+        ]}
+      />
       {/* Amber, not the topic accent — green topics would vanish on the green header. */}
       <ReadingProgress />
       <MarkAsRead slug={found.slug} />

@@ -7,6 +7,8 @@ import AskQuestion from "@/components/AskQuestion";
 import AskAnswers from "@/components/AskAnswers";
 import { communityQuestions } from "@/lib/communityQuestions";
 import ScrollDrift from "@/components/ScrollDrift";
+import JsonLd from "@/components/JsonLd";
+import { faqSchema } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   title: "Ask Empower: Real Money Questions, Answered",
@@ -17,6 +19,14 @@ export const metadata: Metadata = {
 export default function AskPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <JsonLd
+        data={faqSchema(
+          communityQuestions.map((qa) => ({
+            question: qa.question,
+            answer: qa.answer,
+          }))
+        )}
+      />
       <Header />
 
       <main>
