@@ -316,6 +316,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* My Plan — the AI guide, advertised honestly as beta (owner call,
+          July 14: "mention it's in beta so it may not be as good"). */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-7xl px-6 pb-14">
+          <div className="card-ink-lg relative overflow-hidden rounded-2xl bg-forest p-8 text-cream shadow-[7px_7px_0_#e7a33c] sm:p-10">
+            <div className="flex flex-wrap items-center justify-between gap-6">
+              <div className="max-w-2xl">
+                <span className="inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+                  New · In beta
+                </span>
+                <h2 className="mt-4 font-display text-3xl font-semibold leading-tight sm:text-4xl">
+                  Tell the guide your goal.{" "}
+                  <span className="italic text-amber">
+                    Get a plan built just for you.
+                  </span>
+                </h2>
+                <p className="mt-3 text-base leading-7 text-cream/75">
+                  A short conversation — it plays back what it heard, then
+                  lines up real guides, calculators, and deadlines into your
+                  own step-by-step path that checks itself off as you go.
+                </p>
+                <p className="mt-2 text-sm leading-6 text-cream/60">
+                  It&apos;s brand new and still learning, so a step might miss
+                  — flag anything that doesn&apos;t fit and it reworks the
+                  plan on the spot.
+                </p>
+              </div>
+              <Link
+                href="/plan"
+                className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
+              >
+                Try the plan builder
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* For Students — the microsite is the biggest thing built this year;
           advertise it like it (owner directive, July 2026). A-voice amber
           field, three ink-poster doors with live counts. */}
