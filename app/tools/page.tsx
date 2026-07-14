@@ -63,6 +63,53 @@ export default function ToolsHub() {
         </div>
       </section>
 
+      {/* Featured tool spotlight (owner ask July 14: "promote the reality
+          checker more — it's a neat tool"). The one calculator that isn't
+          answering a form's question but a life one, so it earns a band of
+          its own between the hero and the category grid. */}
+      <section className="border-b-2 border-ink bg-forest text-cream">
+        <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
+          <Reveal>
+            <div className="grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber">
+                  Start with the fun one
+                </span>
+                <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.05] sm:text-4xl">
+                  Pick the life you want.{" "}
+                  <span className="italic text-amber">
+                    See the salary it takes.
+                  </span>
+                </h2>
+                <p className="mt-4 max-w-xl text-lg leading-8 text-cream/80">
+                  The Reality Check plays the game backward: choose your
+                  apartment, your car, your groceries, a little fun, and it
+                  works out the real paycheck that covers it all, taxed for
+                  your state. It&apos;s the fastest way to make &ldquo;how much
+                  is enough?&rdquo; feel concrete.
+                </p>
+                <Link
+                  href="/tools/budget/reality-check"
+                  className="btn-ink mt-7 inline-flex items-center gap-2 rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
+                >
+                  Try the Reality Check
+                  <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                </Link>
+              </div>
+              <div className="hidden justify-self-center md:block">
+                <span className="card-ink flex h-40 w-40 rotate-2 items-center justify-center rounded-3xl bg-cream">
+                  <ToolMark
+                    slug="reality-check"
+                    color="#c9842a"
+                    className="h-24 w-24"
+                  />
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* By category — jump tiles as their own section (Base44 structure,
           our tiles) */}
       <section className="bg-paper">

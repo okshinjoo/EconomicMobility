@@ -144,6 +144,10 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         label: "Bank your AP and IB credits",
         desc: "Track credits you're earning and what they could save.",
         href: "/students/tracker",
+      {
+        label: "Reality Check: the life you want",
+        desc: "Pick the apartment, car, and life; see the salary it takes.",
+        href: "/students/tools/reality-check",
       },
     ],
   },
@@ -193,6 +197,10 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         label: "ASSIST.org, the transfer map",
         desc: "California's official course-by-course check, before you enroll.",
         href: "https://assist.org",
+      {
+        label: "Reality Check: the life you want",
+        desc: "Pick the apartment, car, and life; see the salary it takes.",
+        href: "/students/tools/reality-check",
       },
     ],
   },
@@ -230,6 +238,10 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         label: "Borrow Smart",
         desc: "A short course on loans: what to take, what to skip.",
         href: "/students/courses/borrow-smart",
+      {
+        label: "Reality Check: the life you want",
+        desc: "Pick the apartment, car, and life; see the salary it takes.",
+        href: "/students/tools/reality-check",
       },
     ],
   },
