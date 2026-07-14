@@ -34,13 +34,6 @@ const DEADLINE_GUIDE_SLUGS = [
   "repaying-student-loans",
 ];
 
-const DEADLINE_TOOLS = [
-  { title: "College Cost", href: "/students/tools/college-cost", note: "Know your gap before aid season starts." },
-  { title: "Compare Aid Offers", href: "/students/tools/compare-offers", note: "Two award letters, side by side, before you commit." },
-  { title: "Student Loan", href: "/students/tools/student-loan", note: "The real monthly cost, before you sign anything." },
-  { title: "Student Tracker", href: "/students/tracker", note: "Put each deadline on your to-do list next to your units." },
-];
-
 export default function StudentDeadlinesPage() {
   const guides = DEADLINE_GUIDE_SLUGS.map((slug) => getArticleBySlug(slug)).filter(
     (a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a)
@@ -194,31 +187,25 @@ export default function StudentDeadlinesPage() {
         </div>
       </section>
 
-      {/* When a date lands, run your numbers */}
+      {/* When a date lands, run your numbers — one All-tools line (the
+          old four-card band was this page's second cross-sell; nav-audit
+          §4c cut it to a single door, the tools hub owns the inventory). */}
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
             When a date lands, run your numbers
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {DEADLINE_TOOLS.map((t) => (
-              <Link
-                key={t.href}
-                href={t.href}
-                className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-              >
-                <h3 className="font-display text-base font-bold text-ink">
-                  {t.title}
-                </h3>
-                <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
-                  {t.note}
-                </p>
-                <span className="mt-3 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
-                  Open
-                </span>
-              </Link>
-            ))}
-          </div>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-stone">
+            Cost gaps, award letters, loan payments: every student calculator
+            lives on one page.{" "}
+            <Link
+              href="/students/tools"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              All tools
+            </Link>
+            .
+          </p>
           <p className="mt-8 text-sm leading-6 text-stone">
             State grant deadlines vary; some land as early as February.{" "}
             <Link

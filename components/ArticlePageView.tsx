@@ -6,12 +6,10 @@ import ArticleBody from "@/components/ArticleBody";
 import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
-import TopicQuizCard from "@/components/TopicQuizCard";
 import CompoundStory from "@/components/CompoundStory";
 import {
   QuizPromo,
-  ToolCard,
-  RoadmapPathCard,
+  FirstUndonePrompt,
   RelatedArticles,
   type RelatedItem,
 } from "@/components/ArticleFollowUps";
@@ -215,37 +213,41 @@ export default function ArticlePageView({
                 </p>
               </div>
 
-              {/* Follow-ups: each hides itself once done/visited. The
-                  container spacing keeps the glossary note clear of them
-                  no matter which cards survive. */}
+              {/* Follow-ups: the site-quiz band hides itself once taken,
+                  and the three prompt cards show ONE at a time — the first
+                  undone in topic-quiz → tool → roadmap order (nav-audit
+                  §4c). The container spacing keeps the glossary note clear
+                  of them no matter which cards survive. */}
               <div className="mt-10 space-y-4">
                 <QuizPromo />
 
-                {hasTopicQuiz && (
-                  <TopicQuizCard
-                    topicId={topic}
-                    topicShort={meta.short}
-                    accent={accent}
-                    frame={frame}
-                  />
-                )}
-
-                {tool && (
-                  <ToolCard
-                    href={href(tool.href)}
-                    label={tool.label}
-                    accent={accent}
-                  />
-                )}
-
-                {roadmapRef && (
-                  <RoadmapPathCard
-                    href={href(roadmapRef.href)}
-                    title={roadmapRef.title}
-                    slug={roadmapRef.slug}
-                    accent={accent}
-                  />
-                )}
+                <FirstUndonePrompt
+                  topicQuiz={
+                    hasTopicQuiz
+                      ? {
+                          topicId: topic,
+                          topicShort: meta.short,
+                          accent,
+                          frame,
+                        }
+                      : undefined
+                  }
+                  tool={
+                    tool
+                      ? { href: href(tool.href), label: tool.label, accent }
+                      : undefined
+                  }
+                  roadmap={
+                    roadmapRef
+                      ? {
+                          href: href(roadmapRef.href),
+                          title: roadmapRef.title,
+                          slug: roadmapRef.slug,
+                          accent,
+                        }
+                      : undefined
+                  }
+                />
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export interface StagePlan {
 export const REC_SLOTS = 6;
 
 /** The stage's doors for today: pools bigger than `count` rotate daily so
- *  every door gets shelf time (hs carries 8 as of July 2026). Date-based,
+ *  every door gets shelf time (hs and cc carry 8 as of July 2026). Date-based,
  *  so CLIENT-ONLY after mount — both consumers (StudentStageDash, the
  *  account overview) already render nothing until mounted, which is what
  *  keeps this hydration-safe. Don't call it during server render. */
@@ -126,6 +126,13 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         label: "Transfer Ready, the course",
         desc: "Our transfer module, still in progress: the reading path is live now.",
         href: "/students/courses/transfer-ready",
+      },
+      {
+        // The old homepage ASSIST card, re-homed as a cc-stage door
+        // (nav-audit §4b: personalization replaces the band everyone saw).
+        label: "ASSIST.org, the transfer map",
+        desc: "California's official course-by-course check, before you enroll.",
+        href: "https://assist.org",
       },
     ],
   },

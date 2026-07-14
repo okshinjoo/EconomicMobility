@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { topics, getTopic } from "@/lib/topics";
+import { topics } from "@/lib/topics";
 import {
   allArticles,
   getTopicArticles,
@@ -11,7 +11,6 @@ import {
 import { toolCategories } from "@/lib/toolsRegistry";
 import { glossary } from "@/lib/glossary";
 import CountUp from "@/components/CountUp";
-import { communityQuestions } from "@/lib/communityQuestions";
 import QuestionStrip, { type StripQuestion } from "@/components/QuestionStrip";
 import TopicMark from "@/components/TopicMark";
 import WelcomeBack, {
@@ -594,7 +593,9 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Roadmaps pointer (owner-approved homepage addition, July 2026) */}
+          {/* One pointer line (nav-audit §4c consolidated the two): the
+              owner-approved roadmaps pointer + the student-hub nudge share
+              a sentence — both links stay, one line does it. */}
           <p className="mt-8 text-base text-stone">
             Rather follow a route than browse? Every topic has a{" "}
             <Link
@@ -603,20 +604,14 @@ export default function Home() {
             >
               roadmap that puts its guides in order
             </Link>
-            , from your first bank account to your first home.
-          </p>
-          {/* Student-hub pointer (owner directive, July 2026: student content
-              on the homepage always points at the microsite) */}
-          <p className="mt-2 text-base text-stone">
-            In school? The college guides above have a hub of their own:{" "}
+            . In school? The college guides have a hub of their own:{" "}
             <Link
               href="/students"
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
             >
               For Students
             </Link>
-            , with the money calendar, scholarships, and your tracker in one
-            place.
+            .
           </p>
         </div>
       </section>
@@ -698,132 +693,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Asked and answered */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-terracotta">
-                Ask Empower
-              </span>
-              <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-                Questions people were embarrassed to ask
-              </h2>
-            </div>
-            <Link
-              href="/ask"
-              className="text-base font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
-            >
-              See all the answers
-            </Link>
-          </div>
-
-          {/* Advice-column layout: one featured letter, two compact ones, and
-              a "your turn" card. */}
-          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-            {(() => {
-              const [featured, ...rest] = communityQuestions.slice(0, 3);
-              const featuredTopic = featured.topic
-                ? getTopic(featured.topic)
-                : null;
-              return (
-                <>
-                  {/* Featured letter */}
-                  <div className="flex flex-col rounded-2xl border border-sand bg-cream p-6 sm:p-10">
-                    {featuredTopic && (
-                      <span
-                        className="text-xs font-semibold uppercase tracking-[0.18em]"
-                        style={{ color: featuredTopic.color }}
-                      >
-                        {featuredTopic.short}
-                      </span>
-                    )}
-                    <div className="mt-4 flex gap-3 sm:gap-4">
-                      <span className="font-display text-2xl font-bold italic leading-none text-terracotta sm:text-3xl">
-                        Q.
-                      </span>
-                      <h3 className="font-display text-xl font-semibold leading-snug text-ink sm:text-[1.75rem]">
-                        {featured.question}
-                      </h3>
-                    </div>
-                    <div className="mt-6 flex gap-3 sm:gap-4">
-                      <span className="font-display text-2xl font-bold italic leading-none text-forest sm:text-3xl">
-                        A.
-                      </span>
-                      <div className="space-y-4 text-base leading-7 text-stone">
-                        {featured.answer.map((para) => (
-                          <p key={para.slice(0, 24)}>{para}</p>
-                        ))}
-                        <p>
-                          <Link
-                            href={`/ask#ask-${featured.id}`}
-                            className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
-                          >
-                            Keep reading on the Ask page
-                          </Link>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Compact letters + your turn */}
-                  <div className="flex flex-col gap-5">
-                    {rest.map((qa) => {
-                      const topic = qa.topic ? getTopic(qa.topic) : null;
-                      return (
-                        <Link
-                          key={qa.id}
-                          href={`/ask#ask-${qa.id}`}
-                          className="group flex flex-col rounded-2xl border border-sand bg-cream p-6 transition-all duration-200 hover:border-ink/20 hover:shadow-lg"
-                        >
-                          {topic && (
-                            <span
-                              className="text-xs font-semibold uppercase tracking-[0.18em]"
-                              style={{ color: topic.color }}
-                            >
-                              {topic.short}
-                            </span>
-                          )}
-                          <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-ink">
-                            {qa.question}
-                          </h3>
-                          <p className="mt-2 text-sm leading-6 text-stone line-clamp-2">
-                            {qa.answer[0]}
-                          </p>
-                          <span className="mt-3 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors group-hover:text-ink">
-                            Read the full answer
-                          </span>
-                        </Link>
-                      );
-                    })}
-
-                    <div className="flex flex-1 flex-col justify-between gap-4 rounded-2xl bg-forest p-6 text-cream">
-                      <div>
-                        <h3 className="font-display text-xl font-semibold">
-                          Your turn.
-                        </h3>
-                        <p className="mt-2 text-sm leading-6 text-cream/75">
-                          Ask anything anonymously: no name, no email. Good
-                          questions become answers on the site.
-                        </p>
-                      </div>
-                      <Link
-                        href="/ask#ask"
-                        className="inline-flex w-fit items-center rounded-md bg-amber px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream"
-                      >
-                        Ask a question
-                      </Link>
-                    </div>
-                  </div>
-                </>
-              );
-            })()}
-          </div>
-        </div>
-      </section>
-
       {/* Community band — owner-tuned: original photo layout, amber
-          "Community", and the two live destination buttons */}
+          "Community", and the two live destination buttons. The old
+          "Asked and answered" band's five /ask doors shrank to the one
+          link below (nav-audit §4c) — the letters live on /ask itself. */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
           {/* The photo is a fill background and the copy is in normal flow,
@@ -868,6 +741,16 @@ export default function Home() {
                     Join a challenge
                   </Link>
                 </div>
+                <p className="mt-5 text-sm leading-6 text-cream/75">
+                  Rather not post publicly?{" "}
+                  <Link
+                    href="/ask"
+                    className="font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"
+                  >
+                    Ask Empower anonymously
+                  </Link>{" "}
+                  and good questions become answers on the site.
+                </p>
               </div>
             </div>
           </div>

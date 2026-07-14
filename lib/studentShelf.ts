@@ -20,7 +20,8 @@ export const STUDENT_LIFE_SLUGS = [
 ] as const;
 
 /** Main-site homes of the eight student tools (the /students/tools/*
- *  mirrors' canonicals — keep in sync with STUDENT_TOOLS on /students). */
+ *  mirrors' canonicals — keep in sync with the /students/tools hub +
+ *  TOOL_FRAME_MAP in lib/frame.ts). */
 export const STUDENT_TOOL_PATHS = [
   "/tools/college",
   "/tools/college/compare-offers",
@@ -47,9 +48,11 @@ export function isStudentArticle(slug: string): boolean {
 
 /**
  * Every main-site pathname that counts as student-relevant — the college
- * hub + its guides, the student-life guides (wherever their topic lives),
- * and the student tools. Computed server-side (root layout) and handed to
- * the return chip, so the client never imports the article registry.
+ * guides, the student-life guides (wherever their topic lives), and the
+ * student tools. Computed server-side (root layout) and handed to the
+ * return chip, so the client never imports the article registry.
+ * The /learn/college HUB was dropped July 14 (nav-audit §4c): the invite
+ * chip stays on college/student-life PAGES but not on hubs.
  */
 export function getStudentPagePaths(): string[] {
   const life = STUDENT_LIFE_SLUGS.map((slug) => {
@@ -57,7 +60,6 @@ export function getStudentPagePaths(): string[] {
     return a ? `/learn/${a.topicId}/${a.slug}` : null;
   }).filter((p): p is string => Boolean(p));
   return [
-    "/learn/college",
     ...getTopicArticles("college").map((a) => `/learn/college/${a.slug}`),
     ...life,
     ...STUDENT_TOOL_PATHS,

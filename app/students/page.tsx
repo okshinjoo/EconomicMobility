@@ -8,11 +8,12 @@ import { getArticleBySlug, getTopicArticles } from "@/lib/articles";
 import { getTopic } from "@/lib/topics";
 import { getCourse } from "@/lib/courses";
 import { studentCalendar } from "@/lib/studentCalendar";
-import { STUDENT_LIFE_SLUGS } from "@/lib/studentShelf";
+import { STUDENT_TOOL_PATHS } from "@/lib/studentShelf";
 import { frameHref } from "@/lib/frame";
 import Image from "next/image";
 import { deadlines } from "@/lib/deadlines";
 import { scholarships } from "@/lib/scholarships";
+import { opportunities } from "@/lib/opportunities";
 
 // The microsite HOMEPAGE (July 13 owner pass: "it's too wordy" — adopt the
 // main homepage's style: introduce, tease, and link to the hubs). The full
@@ -20,6 +21,16 @@ import { scholarships } from "@/lib/scholarships";
 // /students/learn/college, /students/scholarships, /students/tools — so
 // every band here is a door, not a warehouse. Don't re-inline content the
 // hubs own.
+//
+// SIX BANDS (July 14, nav-audit §4b — 10 → 6, owner directive "prioritize
+// clarity"): hero · StageDash · five pillar posters (Opportunities joined
+// the grid with a New chip; the Deadlines poster carries the first-two-dates
+// line, so #calendar lands here) · the starter-guides + stay-on-track
+// editorial band · community · one compact everything-else band (#shelf:
+// shelf / tools / ASSIST as one-line doors). The old calendar rows, shelf
+// cards, tools chips, and ASSIST card all live on their hub pages; the
+// ASSIST launcher also rotates through the cc StageDash pool. Don't re-add
+// bands — a cut here means the hub owns it.
 
 export const metadata: Metadata = {
   title: "For Students | Empower — Economic Mobility Project",
@@ -35,30 +46,12 @@ const STARTER_SLUGS = [
   "filing-taxes-first-time",
 ];
 
-// Pastel tints per tile (the tools-hub tile language): category-ish hues,
-// dark enough for ink text on top.
-const TOOL_TEASERS = [
-  { title: "College Cost", href: "/students/tools/college-cost", tint: "#c9842a" },
-  { title: "Compare Aid Offers", href: "/students/tools/compare-offers", tint: "#b3762f" },
-  { title: "Student Loan", href: "/students/tools/student-loan", tint: "#c4573b" },
-  { title: "Paycheck", href: "/students/tools/paycheck", tint: "#15624b" },
-  { title: "Budget Planner", href: "/students/tools/budget", tint: "#0c4a39" },
-  { title: "Rent Affordability", href: "/students/tools/rent", tint: "#7a5230" },
-  { title: "Emergency Fund", href: "/students/tools/emergency-fund", tint: "#2f6d80" },
-  { title: "Reality Check", href: "/students/tools/reality-check", tint: "#d26a4c" },
-];
-
 export default function StudentsPage() {
   const starters = STARTER_SLUGS.map((slug) => getArticleBySlug(slug)).filter(
     (a): a is NonNullable<ReturnType<typeof getArticleBySlug>> => Boolean(a)
   );
   const course = getCourse("paying-for-college");
   const collegeGuides = getTopicArticles("college");
-  const studentLife = STUDENT_LIFE_SLUGS.map((slug) =>
-    getArticleBySlug(slug)
-  ).filter((a): a is NonNullable<ReturnType<typeof getArticleBySlug>> =>
-    Boolean(a)
-  );
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -89,7 +82,7 @@ export default function StudentsPage() {
                 [
                   [String(scholarships.length), "verified awards"],
                   [String(collegeGuides.length), "college guides"],
-                  [`${TOOL_TEASERS.length}+`, "calculators"],
+                  [`${STUDENT_TOOL_PATHS.length}+`, "calculators"],
                   [String(deadlines.length), "deadlines"],
                 ] as const
               ).map(([n, label]) => (
@@ -146,11 +139,14 @@ export default function StudentsPage() {
       {/* Made for you — stage picker that becomes six stage-right doors */}
       <StudentStageDash />
 
-      {/* The four doors — poster cards (CourseGrid language): a solid color
-          band carries the live number huge, the cream body sells the door */}
-      <section className="bg-paper">
+      {/* The five doors — poster cards (CourseGrid language): a solid color
+          band carries the live number huge, the cream body sells the door.
+          §4b absorbed two bands here: Opportunities is the fifth poster
+          (New chip), and the calendar band collapsed to the first-two-dates
+          line inside the Deadlines poster — #calendar lands on this grid. */}
+      <section id="calendar" className="scroll-mt-20 bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {(
               [
                 {
@@ -161,6 +157,8 @@ export default function StudentsPage() {
                   desc: "The dates that move real money, with reminders if you want them.",
                   color: "#c4573b",
                   tilt: "",
+                  isNew: false,
+                  dates: true,
                 },
                 {
                   href: "/students/scholarships",
@@ -170,6 +168,19 @@ export default function StudentsPage() {
                   desc: "Real, hand-checked awards. Filter by where you are in school.",
                   color: "#c9842a",
                   tilt: "lg:rotate-[0.5deg]",
+                  isNew: false,
+                  dates: false,
+                },
+                {
+                  href: "/students/opportunities",
+                  stat: String(opportunities.length),
+                  statLabel: "paid opportunities",
+                  title: "Opportunities",
+                  desc: "Scholarships pay for school. These internships and programs pay you.",
+                  color: "#0c4a39",
+                  tilt: "",
+                  isNew: true,
+                  dates: false,
                 },
                 {
                   href: "/students/tracker",
@@ -178,7 +189,9 @@ export default function StudentsPage() {
                   title: "Tracker",
                   desc: "Units, grades, GPA, and your scholarship pipeline, kept score for you.",
                   color: "#15624b",
-                  tilt: "",
+                  tilt: "lg:-rotate-[0.5deg]",
+                  isNew: false,
+                  dates: false,
                 },
                 {
                   href: frameHref("/learn/college", "student"),
@@ -187,7 +200,9 @@ export default function StudentsPage() {
                   title: "Guides",
                   desc: "The whole student shelf, from FAFSA to your first paycheck.",
                   color: "#b3762f",
-                  tilt: "lg:-rotate-[0.5deg]",
+                  tilt: "",
+                  isNew: false,
+                  dates: false,
                 },
               ] as const
             ).map((door) => (
@@ -200,6 +215,11 @@ export default function StudentsPage() {
                   className="relative overflow-hidden p-5 pb-4 text-cream"
                   style={{ background: door.color }}
                 >
+                  {door.isNew && (
+                    <span className="absolute right-3 top-3 -rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
+                      New
+                    </span>
+                  )}
                   <p className="font-display text-5xl font-bold leading-none">
                     {door.stat}
                   </p>
@@ -214,86 +234,16 @@ export default function StudentsPage() {
                   <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
                     {door.desc}
                   </p>
+                  {door.dates && (
+                    <p className="mt-3 border-t border-sand pt-2.5 text-xs font-semibold leading-5 text-terracotta">
+                      First up: FAFSA opens {studentCalendar[0].when} ·
+                      scholarship season runs {studentCalendar[1].when}
+                    </p>
+                  )}
                 </div>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Opportunities door — the experience half of the money story */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 pb-12">
-          <Link
-            href="/students/opportunities"
-            className="card-ink-lg flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-forest p-7 text-cream shadow-[6px_6px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:p-8"
-          >
-            <div className="max-w-2xl">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
-                New · Internships &amp; opportunities
-              </span>
-              <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
-                Scholarships pay for school. These pay you.
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-cream/75">
-                Verified internships, fellowships, and research programs.
-                Free to apply, many with stipends attached.
-              </p>
-            </div>
-            <span className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
-              Browse opportunities
-            </span>
-          </Link>
-        </div>
-      </section>
-
-      {/* Calendar teaser — the dates as one glance; the page has the rest */}
-      <section id="calendar" className="scroll-mt-20 border-y-2 border-ink bg-amber">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-            The student money calendar
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
-            The dates that decide your money year
-          </h2>
-          {/* QuestionBoxes card language (the saved Base44 template — owner
-              asked for it here so the dates read clearly on the amber):
-              light boxed rows, date in the numeral-chip position, arrow is
-              the template's owner-excepted detail. */}
-          <ul className="mt-6 grid gap-3.5 lg:grid-cols-2">
-            {studentCalendar.map((d) => (
-              <li key={d.title}>
-                <Link
-                  href="/students/deadlines"
-                  className="group flex h-full items-center gap-4 rounded-lg border-2 border-ink bg-cream px-5 py-3.5 text-ink transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <span
-                    aria-hidden
-                    className="flex h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-md bg-amber/15 px-3 font-display text-sm font-bold leading-none text-terracotta transition-colors group-hover:bg-amber group-hover:text-ink"
-                  >
-                    {d.when}
-                  </span>
-                  <span className="min-w-0 flex-1 font-display text-base font-semibold leading-snug">
-                    {d.title}
-                  </span>
-                  <span className="hidden shrink-0 text-sm text-stone transition-colors group-hover:text-terracotta sm:block">
-                    Details &rarr;
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-base font-medium text-ink/80">
-            Reminders, calendar downloads, and the guide behind each date live
-            on{" "}
-            <Link
-              href="/students/deadlines"
-              className="font-bold text-ink underline decoration-ink/40 decoration-2 underline-offset-4 hover:decoration-ink"
-            >
-              the deadlines page
-            </Link>
-            .
-          </p>
         </div>
       </section>
 
@@ -347,7 +297,7 @@ export default function StudentsPage() {
               </p>
             </div>
 
-            {/* Stay on track — three doors */}
+            {/* Stay on track — the page's only course/journey doors (§4b) */}
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
                 Stay on track
@@ -383,143 +333,8 @@ export default function StudentsPage() {
                     </h3>
                   </Link>
                 )}
-                <Link
-                  href="/students/tracker"
-                  className="card-ink block rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-                >
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
-                    Your tracker
-                  </span>
-                  <h3 className="mt-1.5 font-display text-xl font-bold text-ink">
-                    Every unit, counted
-                  </h3>
-                </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The shelf, as doors — the guides live on their hub pages */}
-      <section id="shelf" className="scroll-mt-20 border-t-2 border-ink bg-paper">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="grid gap-5 lg:grid-cols-2">
-            <Link
-              href={frameHref("/learn/college", "student")}
-              className="card-ink-lg group flex flex-col rounded-2xl bg-cream p-7 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                The college shelf
-              </span>
-              <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
-                {`All ${collegeGuides.length} college & aid guides`}
-              </h2>
-              <p className="mt-2 flex-1 text-base leading-7 text-stone">
-                FAFSA to award letters to repayment, in reading order: basics
-                first, read ones sink to the bottom.
-              </p>
-              <span className="mt-4 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 group-hover:text-ink">
-                Browse the shelf
-              </span>
-            </Link>
-            <div className="card-ink-lg rounded-2xl bg-cream p-7 lg:rotate-[0.3deg]">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                Student life, beyond tuition
-              </span>
-              <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
-                The first-time essentials
-              </h2>
-              <div className="mt-4 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
-                {studentLife.map((a) => (
-                  <Link
-                    key={a.slug}
-                    href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
-                    className="group flex items-center gap-2 border-b border-sand py-2 text-sm font-semibold text-ink hover:text-forest"
-                  >
-                    <TopicMark id={a.topicId} className="h-4 w-4 shrink-0" />
-                    <span className="min-w-0 flex-1 truncate">{a.title}</span>
-                    <ReadBadge slug={a.slug} accent="#11211c" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Transferring — one sentence, two doors */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pb-12 pt-2">
-          <div className="card-ink flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-cream px-7 py-6 lg:-rotate-[0.3deg]">
-            <div className="max-w-xl">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                Transferring from community college?
-              </span>
-              <p className="mt-2 font-display text-xl font-bold text-ink">
-                Every course that transfers is a course you don&apos;t pay for
-                twice.
-              </p>
-              <p className="mt-1.5 text-sm leading-6 text-stone">
-                <Link
-                  href={frameHref("/learn/college/community-college-transfer-money", "student")}
-                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-                >
-                  The transfer money guide
-                </Link>{" "}
-                walks the whole play; ASSIST.org is California&apos;s official
-                course-by-course map.
-              </p>
-            </div>
-            <a
-              href="https://assist.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ink inline-flex items-center rounded-md bg-forest px-6 py-3 text-sm font-bold text-cream"
-            >
-              Open ASSIST.org
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools teaser — names only; the hub has the descriptions */}
-      <section className="border-t-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                Run your numbers
-              </span>
-              <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
-                Every calculator, in-house
-              </h2>
-            </div>
-            <Link
-              href="/students/tools"
-              className="btn-ink inline-flex items-center rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink"
-            >
-              All tools
-            </Link>
-          </div>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {TOOL_TEASERS.map((t, i) => (
-              <Link
-                key={t.href}
-                href={t.href}
-                className={`card-ink flex items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-sm font-bold text-ink transition-transform duration-150 hover:-translate-y-1 ${
-                  i === 2 || i === 5 ? "lg:rotate-[0.6deg]" : ""
-                }`}
-                style={{
-                  background: `color-mix(in srgb, ${t.tint} 14%, #fbf8f1)`,
-                }}
-              >
-                <span className="min-w-0">{t.title}</span>
-                <span
-                  className="h-2.5 w-2.5 shrink-0 rounded-full"
-                  style={{ background: t.tint }}
-                />
-              </Link>
-            ))}
           </div>
         </div>
       </section>
@@ -566,6 +381,85 @@ export default function StudentsPage() {
                   className="object-cover"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Everything else — the shelf, tools, and ASSIST bands' survivors as
+          one-line doors (§4b band 6). The inventories live on the hubs;
+          #shelf lands here (Guides ▾ "Student life essentials" points at it). */}
+      <section id="shelf" className="scroll-mt-20 border-t-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            Everything else, one click
+          </span>
+          <div className="mt-4 space-y-3">
+            <div className="card-ink flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-xl bg-cream px-5 py-4">
+              <p className="font-display text-base font-bold text-ink">
+                The student shelf
+                <span className="ml-2 font-sans text-sm font-medium text-stone">
+                  {`All ${collegeGuides.length} college & aid guides, plus the first-time life essentials.`}
+                </span>
+              </p>
+              <p className="text-sm font-semibold">
+                <Link
+                  href={frameHref("/learn/college", "student")}
+                  className="text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  College shelf
+                </Link>
+                <span className="mx-2 text-stone/50">·</span>
+                <Link
+                  href={frameHref("/learn", "student")}
+                  className="text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  All nine topics
+                </Link>
+              </p>
+            </div>
+            <div className="card-ink flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-xl bg-cream px-5 py-4 lg:rotate-[0.3deg]">
+              <p className="font-display text-base font-bold text-ink">
+                Run your numbers
+                <span className="ml-2 font-sans text-sm font-medium text-stone">
+                  {`${STUDENT_TOOL_PATHS.length} student calculators, in-house, no sign-up.`}
+                </span>
+              </p>
+              <Link
+                href="/students/tools"
+                className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                All tools
+              </Link>
+            </div>
+            <div className="card-ink flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-xl bg-cream px-5 py-4">
+              <p className="font-display text-base font-bold text-ink">
+                Transferring from community college?
+                <span className="ml-2 font-sans text-sm font-medium text-stone">
+                  Every course that transfers is a course you don&apos;t pay
+                  for twice.
+                </span>
+              </p>
+              <p className="text-sm font-semibold">
+                <Link
+                  href={frameHref(
+                    "/learn/college/community-college-transfer-money",
+                    "student"
+                  )}
+                  className="text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  The transfer money guide
+                </Link>
+                <span className="mx-2 text-stone/50">·</span>
+                <a
+                  href="https://assist.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  ASSIST.org
+                </a>
+              </p>
             </div>
           </div>
         </div>

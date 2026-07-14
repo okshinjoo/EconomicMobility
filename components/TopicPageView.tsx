@@ -345,13 +345,16 @@ export default function TopicPageView({
         </section>
       )}
 
-      {/* Related tool */}
-      {content.tool && (
-        <section className="bg-paper pb-4">
-          <div className="mx-auto max-w-5xl px-6">
+      {/* Put it into practice — the hub's ONE cross-sell band (nav-audit
+          §4c): the related tool + the quiz share a section. The old
+          "Keep going" related-topics grid was cut — /learn owns the topic
+          index, and the back link below is the door to it. */}
+      <section className="bg-paper py-14">
+        <div className="mx-auto max-w-5xl px-6">
+          {content.tool && (
             <Link
               href={href(content.tool.href)}
-              className="card-ink group flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-0.5"
+              className="card-ink group mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-0.5"
             >
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-stone">
@@ -368,13 +371,8 @@ export default function TopicPageView({
                 Open the tool
               </span>
             </Link>
-          </div>
-        </section>
-      )}
+          )}
 
-      {/* Test your knowledge */}
-      <section className="bg-paper py-14">
-        <div className="mx-auto max-w-5xl px-6">
           <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border-2 border-ink bg-forest p-8 text-cream shadow-[7px_7px_0_#e7a33c] sm:flex-row sm:items-center sm:p-10">
             <div className="max-w-lg">
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
@@ -395,54 +393,6 @@ export default function TopicPageView({
             >
               Take the quiz
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Related topics — B-voice cards, one tilted */}
-      <section className="bg-paper-deep">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-            Keep going
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {content.related.map((relId, i) => {
-              const rel = getTopic(relId);
-              return (
-                <Link
-                  key={relId}
-                  href={href(rel.href)}
-                  className={`card-ink group flex flex-col overflow-hidden rounded-2xl bg-cream transition-transform duration-200 hover:-translate-y-1 ${
-                    i === 1 ? "lg:rotate-[0.5deg]" : ""
-                  }`}
-                >
-                  <div className="relative aspect-[5/3] overflow-hidden bg-sand">
-                    <Image
-                      src={rel.image}
-                      alt=""
-                      fill
-                      unoptimized
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <span className="absolute bottom-3 left-3 flex h-12 w-12 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
-                      <TopicMark id={rel.id} className="h-7 w-7" />
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display text-base font-semibold text-ink">
-                      {rel.title}
-                    </h3>
-                    <span
-                      className="mt-2 inline-block text-sm font-semibold underline decoration-2 underline-offset-4"
-                      style={{ color: rel.color, textDecorationColor: `${rel.color}55` }}
-                    >
-                      Explore
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
           </div>
 
           <div className="mt-10">

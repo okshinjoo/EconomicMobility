@@ -8,8 +8,9 @@ import type { TopicId } from "@/lib/topics";
 import { ArrowLeft, ArrowRight, Check, Map, Sparkles, Wrench } from "lucide-react";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
-import { frameHref } from "@/lib/frame";
+import { frameHref, type Frame } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
+import TopicQuizCard from "@/components/TopicQuizCard";
 
 /**
  * End-of-article prompts that know when to shut up (owner directive, July
@@ -17,6 +18,13 @@ import { useFrame } from "@/components/useFrame";
  * the visitor has already done the thing. Taken the site quiz -> no quiz
  * band. Read the roadmap -> no roadmap card. Read a related guide -> it
  * drops out of "Keep reading". People can always find these on their own.
+ *
+ * ONE AT A TIME (July 14, nav-audit §4c): the three prompt cards (topic
+ * quiz / tool / roadmap) no longer stack — FirstUndonePrompt shows only the
+ * first UNDONE one in that priority order, extending the memory contract
+ * from "done things stop prompting" to "one prompt at a time". The
+ * read-filtered RelatedArticles list below is content, not a prompt, and
+ * keeps its sink-never-hide behavior.
  */
 
 export function QuizPromo() {
@@ -135,6 +143,74 @@ export function RoadmapPathCard({
       <ArrowRight className="h-5 w-5 text-stone transition-transform group-hover:translate-x-1" />
     </Link>
   );
+}
+
+const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
+
+/**
+ * Shows the FIRST undone prompt card — topic quiz, then tool, then roadmap
+ * — instead of stacking all three (nav-audit §4c). Server render shows the
+ * first card that exists (deterministic, no hydration mismatch); after
+ * mount the pick recomputes against the same trackers the cards themselves
+ * read, so the chosen card never self-hides into a blank slot. All done →
+ * nothing renders (each prompt stays reachable on its own page).
+ */
+export function FirstUndonePrompt({
+  topicQuiz,
+  tool,
+  roadmap,
+}: {
+  topicQuiz?: {
+    topicId: string;
+    topicShort: string;
+    accent: string;
+    frame: Frame;
+  };
+  tool?: { href: string; label: string; accent: string };
+  roadmap?: { href: string; title: string; slug: string; accent: string };
+}) {
+  type Pick = "topicQuiz" | "tool" | "roadmap" | "none";
+  const [pick, setPick] = useState<Pick | null>(null);
+
+  useEffect(() => {
+    const scores =
+      loadJSON<Record<string, unknown>>(QUIZ_SCORES_KEY) ?? {};
+    const visited =
+      loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
+    const readMap = getReadMap();
+    if (topicQuiz && !scores[`topic-quiz:${topicQuiz.topicId}`])
+      setPick("topicQuiz");
+    else if (tool && !visited[tool.href]) setPick("tool");
+    else if (roadmap && !readMap[roadmap.slug]) setPick("roadmap");
+    else setPick("none");
+  }, [topicQuiz, tool, roadmap]);
+
+  // Pre-mount: the first prompt that exists, matching a fresh visitor.
+  const shown: Pick =
+    pick ??
+    (topicQuiz ? "topicQuiz" : tool ? "tool" : roadmap ? "roadmap" : "none");
+
+  if (shown === "topicQuiz" && topicQuiz)
+    return (
+      <TopicQuizCard
+        topicId={topicQuiz.topicId}
+        topicShort={topicQuiz.topicShort}
+        accent={topicQuiz.accent}
+        frame={topicQuiz.frame}
+      />
+    );
+  if (shown === "tool" && tool)
+    return <ToolCard href={tool.href} label={tool.label} accent={tool.accent} />;
+  if (shown === "roadmap" && roadmap)
+    return (
+      <RoadmapPathCard
+        href={roadmap.href}
+        title={roadmap.title}
+        slug={roadmap.slug}
+        accent={roadmap.accent}
+      />
+    );
+  return null;
 }
 
 export interface RelatedItem {
