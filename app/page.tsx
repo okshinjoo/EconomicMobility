@@ -397,8 +397,8 @@ export default function Home() {
           <Reveal className="relative order-last lg:order-first">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-[2rem] border border-sand shadow-xl">
               <Image
-                src="/images/graduate.jpg"
-                alt="A graduate celebrating"
+                src="/images/portrait-2.jpg"
+                alt="A young woman looking into the camera"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"

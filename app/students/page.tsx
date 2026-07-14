@@ -559,8 +559,8 @@ export default function StudentsPage() {
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <div className="relative aspect-[5/4] -rotate-1 overflow-hidden rounded-2xl border-2 border-ink shadow-[8px_8px_0_#e7a33c]">
                 <Image
-                  src="/images/students-collab.jpg"
-                  alt="Students working together"
+                  src="/images/mentor.jpg"
+                  alt="Two people working through a problem together"
                   fill
                   sizes="(min-width: 1024px) 32rem, 100vw"
                   className="object-cover"

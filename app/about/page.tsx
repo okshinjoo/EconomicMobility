@@ -324,8 +324,8 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:rotate-1">
             <Image
-              src="/images/community.jpg"
-              alt="A community of students together"
+              src="/images/classroom.jpg"
+              alt="Students together in a classroom"
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"
