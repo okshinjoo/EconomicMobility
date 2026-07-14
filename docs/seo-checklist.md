@@ -18,18 +18,32 @@ Search Google for exactly: `site:economicmobilityproject.org`
 
 ## Tell search engines to crawl — do today **[you]**
 
+Verification is pre-wired: the site reads two env vars and emits the
+verification meta tags automatically (`app/layout.tsx`). So the flow is
+**copy token → set env var in Vercel → redeploy → click Verify** — no DNS,
+no file upload, no code change.
+
 1. **Google Search Console** (search.google.com/search-console) — free.
-   - Add the property (Domain type is best; needs one DNS TXT record).
-   - Submit `https://economicmobilityproject.org/sitemap.xml`.
+   - Add a **URL-prefix** property for `https://economicmobilityproject.org`.
+   - Choose the **HTML tag** verification method. It shows a tag like
+     `<meta name="google-site-verification" content="ABC123…">`. Copy just
+     the `content` value.
+   - In Vercel → Project → Settings → Environment Variables, add
+     `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` = that value. Redeploy.
+   - Back in Search Console, click **Verify**.
+   - Submit `https://economicmobilityproject.org/sitemap.xml` under Sitemaps.
    - Use **URL Inspection → Request indexing** on the homepage and your top
      ~10 pages (the topic hubs, /students, /students/scholarships, the
      highest-value guides). Rate-limited to a handful a day.
    - Check **Pages** (coverage) after a few days: how many of the 500+ URLs
      are indexed, and why any are excluded.
-2. **Bing Webmaster Tools** (bing.com/webmasters) — free, 10 minutes. You can
-   import straight from Search Console. Submit the sitemap. Bing's index also
-   feeds DuckDuckGo and some AI search, and its URL-submission quota is more
-   generous than Google's.
+2. **Bing Webmaster Tools** (bing.com/webmasters) — free, 10 minutes.
+   - Fastest path: **Import from Google Search Console** (one click once
+     Google is verified). Otherwise add the site and pick the **meta tag**
+     method — it gives an `<meta name="msvalidate.01" content="…">`; put the
+     value in `NEXT_PUBLIC_BING_SITE_VERIFICATION` in Vercel, redeploy, Verify.
+   - Submit the sitemap. Bing's index also feeds DuckDuckGo and some AI
+     search, and its URL-submission quota is more generous than Google's.
 
 What these do: they *accelerate crawling/indexing* (the "Google hasn't
 looked yet" delay). They do **not** improve ranking — no button does.

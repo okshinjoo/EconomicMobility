@@ -39,6 +39,14 @@ const newsreader = Newsreader({
 const SITE_DESCRIPTION =
   "Free, jargon-free financial education built to break the cycle of economic disadvantage for first-generation, low-income, and immigrant youth, and anyone ready to take control of their financial future.";
 
+// Search-engine ownership verification (July 2026 SEO pass). Tokens come
+// from env vars so the owner can paste them into Vercel and redeploy with
+// no code change: Search Console "HTML tag" method -> google meta tag; Bing
+// Webmaster "meta tag" method -> msvalidate.01. Each tag renders only when
+// its token is set, so nothing junk appears before setup.
+const GOOGLE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
   // Resolves relative OG/Twitter URLs to absolute and sets the canonical
   // origin for shared links. (Inner pages already self-brand their titles,
@@ -47,6 +55,12 @@ export const metadata: Metadata = {
   title: "Empower | Economic Mobility Project",
   description: SITE_DESCRIPTION,
   applicationName: "Empower",
+  verification: {
+    ...(GOOGLE_VERIFICATION ? { google: GOOGLE_VERIFICATION } : {}),
+    ...(BING_VERIFICATION
+      ? { other: { "msvalidate.01": BING_VERIFICATION } }
+      : {}),
+  },
   openGraph: {
     type: "website",
     siteName: "Empower — Economic Mobility Project",
