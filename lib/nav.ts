@@ -35,7 +35,6 @@ export const nav: NavEntry[] = [
     footer: [
       { label: "Browse all topics", href: "/learn" },
       { label: "Courses", href: "/courses" },
-      { label: "For students", href: "/students" },
       { label: "Life moments", href: "/life" },
       { label: "Glossary", href: "/glossary" },
     ],
@@ -48,6 +47,7 @@ export const nav: NavEntry[] = [
       { label: "My Plan", href: "/plan", desc: "Five questions, one personal plan that checks itself off." },
       { label: "Guided paths", href: "/journey", desc: "Nine money goals, walked milestone by milestone." },
     ],
+    footer: [{ label: "The 2-minute quiz", href: "/quiz" }],
   },
   {
     label: "Tools",

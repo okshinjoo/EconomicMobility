@@ -184,7 +184,7 @@ One **addition**, not a cut: give `/quiz` a persistent door (Your Path ▾ alrea
 
 ## 5. Implementation plan (3 sessions, by impact)
 
-**Session 1 — menus (biggest win, smallest risk; ~2–3 h).**
+**Session 1 — menus (biggest win, smallest risk; ~2–3 h).** ✅ **DONE July 13, 2026** — student header 56 → **44** declared destinations (Overview 1 · Guides 4+3 · Your Path 4+3 · Deadlines 2+2 · Scholarships 5+3 · Opportunities 5 · Community 3 · Tools 5+4; §4a's kept-item lists followed exactly — they sum to 44, not the ~38 estimate); main nav: Learn ▾ For-students footer dupe cut, "The 2-minute quiz" added to Your Path ▾ footer (/quiz's first header door); fit clean 1024–1728 (no xl+ scroll, 244px+ slack at 1280), leak crawl 0 leaks / 0 broken over 308 pages.
 Trim `StudentHeader.tsx` NAV per §4a (56 → ~38); dedupe course/path/tracker/work-study/FAFSA items; add "(main site)" hint on the Ask item; main nav: drop Learn ▾ "For students" footer duplicate, add quiz to Your Path ▾ footer. Files: `components/StudentHeader.tsx`, `lib/nav.ts`. Verify: leak-hunt crawler + this audit's crawler rerun; check the 1280px fit rule (fewer items only helps). No content moves needed — every re-homed item already exists in its hub.
 
 **Session 2 — students homepage 10 → 6 bands (~half day).**

@@ -34,10 +34,8 @@ import {
   MessageCircle,
   HelpCircle,
   Telescope,
-  Building2,
   type LucideIcon,
 } from "lucide-react";
-import { topics } from "@/lib/topics";
 import AccountButton from "@/components/AccountButton";
 import SearchDialog from "@/components/SearchDialog";
 import type { SearchItem } from "@/lib/search";
@@ -72,13 +70,11 @@ const NAV: StudentNavEntry[] = [
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one form that unlocks most college aid.", icon: FileText, color: "#0c4a39" },
       { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
       { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
-      { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c9842a" },
-      { label: "The pay-for-college path", href: "/students/journey/college", desc: "Milestone by milestone, FAFSA to signing day.", icon: Map, color: "#0c4a39" },
-      { label: "Compare Colleges", href: "/students/compare-colleges", desc: "In progress — a preview of what's coming.", icon: Building2, color: "#4b5f8a" },
     ],
     footer: [
       { label: "All nine money topics", href: "/students/learn" },
       { label: "Glossary", href: "/students/glossary" },
+      { label: "Compare Colleges (preview)", href: "/students/compare-colleges" },
     ],
   },
   {
@@ -99,18 +95,13 @@ const NAV: StudentNavEntry[] = [
   {
     label: "Deadlines",
     href: "/students/deadlines",
-    columns: 2,
     items: [
-      { label: "The money calendar", href: "/students/deadlines", desc: "Six dates that move real money, every year.", icon: CalendarDays, color: "#c4573b" },
+      { label: "The money calendar", href: "/students/deadlines", desc: "Every date that moves real money — plus the deadline guides.", icon: CalendarDays, color: "#c4573b" },
       { label: "Email reminders", href: "/students/deadlines#reminders", desc: "Deadline nudges + college advice — pick what you want.", icon: Mail, color: "#0c4a39" },
-      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one deadline that outranks the rest.", icon: FileText, color: "#c9842a" },
-      { label: "FAFSA mistakes to avoid", href: "/students/learn/college/fafsa-mistakes", desc: "The errors that delay aid, and their fixes.", icon: FileText, color: "#15624b" },
-      { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time", desc: "April 15, minus the fear — where to start.", icon: Landmark, color: "#0c4a39" },
-      { label: "Repaying student loans", href: "/students/learn/college/repaying-student-loans", desc: "Plans, forgiveness, and the July 1 rate reset.", icon: Banknote, color: "#c4573b" },
     ],
     footer: [
-      { label: "Scholarship season", href: "/students/learn/college/finding-scholarships" },
-      { label: "Before you sign a loan", href: "/students/learn/college/student-loans-before-you-sign" },
+      { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step" },
+      { label: "First-time taxes", href: "/students/learn/taxes/filing-taxes-first-time" },
     ],
   },
   {
@@ -123,14 +114,11 @@ const NAV: StudentNavEntry[] = [
       { label: "Winning scholarships", href: "/students/learn/college/finding-scholarships", desc: "Where to look and how to actually win.", icon: FileText, color: "#c4573b" },
       { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first — know the difference.", icon: Landmark, color: "#15624b" },
       { label: "Undocumented & DACA aid", href: "/students/learn/college/undocumented-daca-aid", desc: "Real aid paths that don't require citizenship.", icon: HeartHandshake, color: "#c9842a" },
-      { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Briefcase, color: "#0c4a39" },
     ],
     footer: [
       { label: "In high school?", href: "/students/scholarships?stage=high-school" },
       { label: "Transferring?", href: "/students/scholarships?stage=transfer" },
       { label: "No citizenship?", href: "/students/scholarships?undoc=1" },
-      { label: "Reading an award letter", href: "/students/learn/college/reading-aid-award-letter" },
-      { label: "Appealing your aid", href: "/students/learn/college/appealing-financial-aid" },
     ],
   },
   {
@@ -150,7 +138,7 @@ const NAV: StudentNavEntry[] = [
     items: [
       { label: "The Students channel", href: "/students/community", desc: "Aid, loans, first paychecks — people in your semester.", icon: Users, color: "#0c4a39" },
       { label: "Introduce yourself", href: "/students/community/post/say-hello", desc: "The start-here thread — say hi, no stakes.", icon: MessageCircle, color: "#c9842a" },
-      { label: "Ask a question anonymously", href: "/ask", desc: "No account, no name — we answer the good ones.", icon: HelpCircle, color: "#c4573b" },
+      { label: "Ask a question anonymously", href: "/ask", desc: "No account, no name — we answer the good ones. (main site)", icon: HelpCircle, color: "#c4573b" },
     ],
   },
   {
@@ -159,17 +147,14 @@ const NAV: StudentNavEntry[] = [
     columns: 2,
     items: [
       { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you.", icon: Wrench, color: "#0c4a39" },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#c4573b" },
       { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs.", icon: Calculator, color: "#c9842a" },
       { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side.", icon: Scale, color: "#15624b" },
       { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing.", icon: Banknote, color: "#0c4a39" },
       { label: "Paycheck", href: "/students/tools/paycheck", desc: "What a campus job pays after taxes.", icon: Wallet, color: "#c9842a" },
-      { label: "Budget Planner", href: "/students/tools/budget", desc: "Take-home pay against real expenses.", icon: Calculator, color: "#c4573b" },
-      { label: "Reality Check", href: "/students/tools/reality-check", desc: "Pick the life you want; see the salary it takes.", icon: Compass, color: "#15624b" },
     ],
     footer: [
-      { label: "Rent", href: "/students/tools/rent" },
-      { label: "Emergency Fund", href: "/students/tools/emergency-fund" },
+      { label: "Budget Planner", href: "/students/tools/budget" },
+      { label: "Reality Check", href: "/students/tools/reality-check" },
       { label: "Templates", href: "/students/tools/templates" },
       { label: "Letter Generator", href: "/students/tools/letters" },
     ],
