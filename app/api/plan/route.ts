@@ -211,7 +211,26 @@ function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
       }
       for (const slug of stage.articleSlugs.slice(0, 2)) {
         const e = byKey.get(`g:${slug}`);
-        if (e) itemIds.push(push(e, stage.why));
+        if (!e) continue;
+        itemIds.push(push(e, stage.why));
+        // Pair each guide with its own calculator (owner rule: filling out a
+        // tool is one of the best ways to understand it). Deduped by href, so
+        // a category tool shared by several guides lands once, not per guide.
+        const a = getArticleBySlug(slug);
+        const tool =
+          articleTools[slug] ??
+          (a ? learnContent[a.topicId]?.tool : undefined);
+        if (tool) {
+          const te = byKey.get(`t:${tool.href}`);
+          if (te && !items.some((i) => i.href === te.href)) {
+            itemIds.push(
+              push(
+                te,
+                "Fill this one out with your own numbers — it makes the guide above concrete."
+              )
+            );
+          }
+        }
       }
       if (stage.courseId) {
         const e = byKey.get(`c:${stage.courseId}`);

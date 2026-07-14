@@ -371,3 +371,15 @@ there' goal changes what the plan recommends."
   readingLevelLine).
 - Hero reword: "One plan that's yours" -> "Plans that are yours" + subcopy
   notes building one per goal and saving up to three (session 9 shelf).
+
+## Session 12 — tools in the FALLBACK plan too (July 14, 2026)
+
+Owner: "when the AI builds a path, it still doesn't recommend tools to fill
+out." Root cause: session 10 added paired calculators to the AI *catalog*,
+but the deterministic fallbackPlan (the no-ANTHROPIC_API_KEY path, which is
+what runs in an unconfigured deploy) only pulled `stage.tool` — the one tool
+a journey stage attaches, often absent. Fix: the fallback now pairs each
+guide it lists with that guide's calculator (articleTools[slug] ??
+learnContent[topic].tool), deduped by href so a shared category tool lands
+once. So even with no AI key, a built plan weaves in 2-4 calculators to fill
+out, right after the guides they make concrete.
