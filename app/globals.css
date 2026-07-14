@@ -103,6 +103,61 @@ body {
   animation: ticker-scroll 55s linear infinite;
 }
 
+/* Account dashboard motion (July 2026, Base44-audit easing): staggered
+   card entrances, growing bars, cascading heatmap cells. All neutralized
+   by the reduced-motion block above. */
+@keyframes dash-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.dash-stagger > * {
+  animation: dash-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.dash-stagger > *:nth-child(2) {
+  animation-delay: 0.07s;
+}
+.dash-stagger > *:nth-child(3) {
+  animation-delay: 0.14s;
+}
+.dash-stagger > *:nth-child(4) {
+  animation-delay: 0.21s;
+}
+.dash-stagger > *:nth-child(5) {
+  animation-delay: 0.28s;
+}
+.dash-stagger > *:nth-child(n + 6) {
+  animation-delay: 0.35s;
+}
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.bar-grow {
+  animation: bar-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  transform-origin: left;
+}
+@keyframes cell-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.cell-in {
+  animation: cell-in 0.5s ease-out both;
+}
+
 /* Pulsing "you are here" ring on the journey roadmap visual. */
 @keyframes roadmap-pulse {
   0%,

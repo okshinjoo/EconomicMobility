@@ -286,7 +286,7 @@ function ActivityHeatmap() {
   const weeks: { key: string; count: number }[][] = [];
   for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           Your reading, day by day
@@ -302,8 +302,11 @@ function ActivityHeatmap() {
               <span
                 key={d.key}
                 title={`${d.key}: ${d.count} read`}
-                className="h-3 w-3 rounded-[3px]"
-                style={{ background: HEAT_COLORS[level(d.count)] }}
+                className="cell-in h-3 w-3 rounded-[3px]"
+                style={{
+                  background: HEAT_COLORS[level(d.count)],
+                  animationDelay: `${wi * 40}ms`,
+                }}
               />
             ))}
           </div>
@@ -331,7 +334,7 @@ function PipelineCard() {
   const apps = summarizeApps(snapshot.apps);
   const s = summarize(snapshot);
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           Tracker &amp; scholarship pipeline
@@ -391,7 +394,7 @@ function PinnedToolsCard({
     });
   };
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">Your tools</h3>
         <button
@@ -477,7 +480,7 @@ function PlanCard() {
     );
   }, []);
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">Your plan</h3>
         <Link href="/plan" className="text-xs font-semibold text-forest hover:underline">
@@ -489,7 +492,7 @@ function PlanCard() {
           <p className="mt-2 text-sm font-semibold text-ink">{plan.headline}</p>
           <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full" style={{ background: "#f2ecdf" }}>
             <div
-              className="h-full rounded-full bg-forest transition-[width]"
+              className="bar-grow h-full rounded-full bg-forest"
               style={{ width: `${plan.items.length ? Math.max(4, Math.round((done / plan.items.length) * 100)) : 0}%` }}
             />
           </div>
@@ -527,7 +530,7 @@ function MomentsCard() {
   const slugOf = (href: string) =>
     href.split(/[?#]/)[0].split("/").filter(Boolean).pop() ?? "";
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           For what&apos;s coming up
@@ -593,7 +596,7 @@ export function CustomizeCard({
   onChange: (next: DashboardPrefs) => void;
 }) {
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <h3 className="font-display text-base font-bold text-ink">Make it yours</h3>
       <p className="mt-1 text-xs" style={{ color: DASH.muted }}>
         Your color, your cards. Saved to your account; hiding a card never
@@ -672,7 +675,7 @@ export function DashboardExtras({
 }) {
   const hidden = new Set(prefs.hiddenCards);
   return (
-    <div className="grid items-start gap-4 xl:grid-cols-2">
+    <div className="dash-stagger grid items-start gap-4 xl:grid-cols-2">
       {group === "overview" ? (
         <>
           {!hidden.has("plan") && <PlanCard />}
@@ -754,8 +757,8 @@ export function FlatStatCards({
   ];
 
   return (
-    <div className="grid gap-4 xl:grid-cols-2">
-      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+    <div className="dash-stagger grid gap-4 xl:grid-cols-2">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-base font-bold text-ink">Reading Stats</h3>
           <span
@@ -779,7 +782,7 @@ export function FlatStatCards({
         </div>
       </div>
 
-      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-base font-bold text-ink">Total Progress</h3>
           <span
@@ -1076,7 +1079,7 @@ export function FlatOverview({
                   style={{ background: "#f2ecdf" }}
                 >
                   <div
-                    className="h-full rounded-full"
+                    className="bar-grow h-full rounded-full"
                     style={{
                       width: `${Math.max(4, Math.round((t.read / t.total) * 100))}%`,
                       background: t.color,
