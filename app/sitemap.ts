@@ -6,6 +6,8 @@ import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { blogPosts } from "@/lib/blog";
 import { journeys } from "@/lib/journeys";
+import { TOPIC_QUIZ_IDS } from "@/lib/topicQuizzes";
+import { communityPosts } from "@/lib/communityFeed";
 
 const BASE = "https://economicmobilityproject.org";
 
@@ -18,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/plan",
     "/students/scholarships",
     "/students/opportunities",
+    "/students/deadlines",
     "/students/tracker", "/tools/letters", "/tools/templates", "/account",
     "/privacy",
   ].map((p) => ({ url: `${BASE}${p}`, changeFrequency: "weekly" as const }));
@@ -61,6 +64,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
+  // Topic mini-quizzes (only the topics that have one) and community post
+  // pages — real indexable content the route list was missing (July 2026
+  // SEO pass). Both regenerate from their libs, so new ones auto-appear.
+  const topicQuizRoutes = TOPIC_QUIZ_IDS().map((id) => ({
+    url: `${BASE}/learn/${id}/quiz`,
+    changeFrequency: "monthly" as const,
+  }));
+
+  const communityPostRoutes = communityPosts.map((p) => ({
+    url: `${BASE}/community/post/${p.id}`,
+    changeFrequency: "monthly" as const,
+  }));
+
   return [
     ...staticRoutes,
     ...topicRoutes,
@@ -70,5 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...challengeRoutes,
     ...blogRoutes,
     ...journeyRoutes,
+    ...topicQuizRoutes,
+    ...communityPostRoutes,
   ];
 }
