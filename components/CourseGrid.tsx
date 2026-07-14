@@ -71,6 +71,7 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
               ) : (
                 <BadgeMedal
                   color="#fbf8f1"
+                  variant="course"
                   center={badge ? course.color : "#fbf8f1"}
                   className={`h-11 w-11 shrink-0 transition-opacity ${
                     badge ? "" : "opacity-30 group-hover:opacity-50"

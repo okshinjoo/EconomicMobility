@@ -26,6 +26,7 @@ export function getBadges(): BadgeMap {
 export function BadgeMedal({
   color,
   center = "#fbf8f1",
+  variant = "challenge",
   className = "h-16 w-16",
 }: {
   color: string;
@@ -33,36 +34,77 @@ export function BadgeMedal({
    *  on a colored band (CourseGrid earned state) — a cream disc inside a
    *  cream rosette reads as a blank white blob. */
   center?: string;
+  /** "challenge" = the original check rosette; "course" = the academic
+   *  medal (layered notched ribbon, rim ring, star). Owner call July 14:
+   *  the two badge kinds must read differently at a glance. */
+  variant?: "challenge" | "course";
   className?: string;
 }) {
+  const isCourse = variant === "course";
+  // Five-point star for the course medal, point-up, centered on the disc.
+  const starPoints = Array.from({ length: 10 }, (_, i) => {
+    const r = i % 2 === 0 ? 7 : 2.9;
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    return `${(32 + Math.cos(a) * r).toFixed(2)},${(26 + Math.sin(a) * r).toFixed(2)}`;
+  }).join(" ");
   return (
     <svg viewBox="0 0 64 64" aria-hidden className={className}>
-      {/* ribbon tails */}
-      <path d="M22 38 16 60l8-6 6 8 4-22Z" fill={color} opacity="0.55" />
-      <path d="M42 38l6 22-8-6-6 8-4-22Z" fill={color} opacity="0.55" />
-      {/* scalloped rosette */}
+      {isCourse ? (
+        <>
+          {/* layered, notched ribbon tails (back pair darker, splayed) */}
+          <path d="M20 36 12 59l7-4 4 8 6-23Z" fill={color} opacity="0.35" />
+          <path d="M44 36l8 23-7-4-4 8-6-23Z" fill={color} opacity="0.35" />
+          <path d="M24 38 19 60l6-5 5 8 4-22Z" fill={color} opacity="0.6" />
+          <path d="M40 38l5 22-6-5-5 8-4-22Z" fill={color} opacity="0.6" />
+        </>
+      ) : (
+        <>
+          {/* ribbon tails */}
+          <path d="M22 38 16 60l8-6 6 8 4-22Z" fill={color} opacity="0.55" />
+          <path d="M42 38l6 22-8-6-6 8-4-22Z" fill={color} opacity="0.55" />
+        </>
+      )}
+      {/* scalloped rosette (courses alternate scallop depth for a maltese
+          edge; challenges keep the even rosette) */}
       {Array.from({ length: 12 }, (_, i) => {
         const a = (i / 12) * Math.PI * 2;
+        const rr = isCourse && i % 2 === 1 ? 4.6 : 6;
         return (
           <circle
             key={i}
             cx={32 + Math.cos(a) * 15}
             cy={26 + Math.sin(a) * 15}
-            r="6"
+            r={rr}
             fill={color}
           />
         );
       })}
       <circle cx="32" cy="26" r="15.5" fill={color} />
       <circle cx="32" cy="26" r="11" fill={center} />
-      <path
-        d="m26.5 26.5 3.5 3.5 7.5-8"
-        fill="none"
-        stroke={color}
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      {isCourse ? (
+        <>
+          {/* thin rim ring + star */}
+          <circle
+            cx="32"
+            cy="26"
+            r="12.9"
+            fill="none"
+            stroke={center}
+            strokeWidth="1.1"
+            opacity="0.55"
+          />
+          <polygon points={starPoints} fill={color} />
+        </>
+      ) : (
+        <path
+          d="m26.5 26.5 3.5 3.5 7.5-8"
+          fill="none"
+          stroke={color}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      )}
     </svg>
   );
 }
@@ -283,7 +325,7 @@ export default function CourseQuiz({
           {passed ? (
             <div className="flex flex-wrap items-center gap-5">
               <BadgeBurst fire={celebrate}>
-                <BadgeMedal color={accent} />
+                <BadgeMedal color={accent} variant="course" />
               </BadgeBurst>
               <div>
                 <p className="font-display text-xl font-semibold text-ink">
