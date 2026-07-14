@@ -124,6 +124,37 @@ body {
   animation-play-state: paused;
 }
 
+/* Plan-guide chat (July 2026): typing dots + bubble entrances. Reduced
+   motion is neutralized by the global block above. */
+@keyframes chat-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+.chat-dot {
+  animation: chat-dot 1.2s ease-in-out infinite;
+}
+@keyframes chat-pop {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.chat-pop {
+  animation: chat-pop 0.25s ease-out both;
+}
+
 /* Badge celebration (BadgeBurst.tsx): one-shot pop + confetti.
    Kept above the article-dropcap block — see the Turbopack gotcha. */
 @keyframes badge-pop {

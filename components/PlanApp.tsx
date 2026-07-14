@@ -9,7 +9,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Flag, List, Map as MapIcon, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, Compass, Flag, List, Map as MapIcon, RotateCcw } from "lucide-react";
 import { GOAL_OPTIONS, readLocalProfile } from "@/lib/profile";
 import {
   loadPlan,
@@ -256,6 +256,7 @@ function ChatIntake({
   // Computed once on mount (ChatIntake only renders client-side).
   const [knowns] = useState(gatherKnowns);
   const [doneSignals] = useState(gatherDone);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [msgs, setMsgs] = useState<ChatMsg[]>(() => [
     {
       role: "assistant",
@@ -272,6 +273,14 @@ function ChatIntake({
     summary: string;
     intake: IntakeAnswers;
   } | null>(null);
+
+  // Keep the newest bubble in view as the conversation grows.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollTo({ top: el.scrollHeight, behavior: reduced ? "auto" : "smooth" });
+  });
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -335,22 +344,51 @@ function ChatIntake({
         </button>
       </div>
 
-      <div className="mt-5 max-h-[26rem] space-y-3 overflow-y-auto pr-1">
-        {msgs.map((m, i) => (
-          <div
-            key={i}
-            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-6 ${
-              m.role === "assistant"
-                ? "bg-forest/[0.07] text-ink"
-                : "ml-auto bg-amber/25 text-ink"
-            }`}
-          >
-            {m.content}
-          </div>
-        ))}
+      <div ref={scrollRef} className="mt-5 max-h-[26rem] space-y-3 overflow-y-auto pr-1">
+        {msgs.map((m, i) =>
+          m.role === "assistant" ? (
+            <div key={i} className="chat-pop flex items-end gap-2.5">
+              <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-cream">
+                <Compass className="h-3.5 w-3.5" strokeWidth={2} />
+              </span>
+              <div className="max-w-[80%] rounded-2xl rounded-bl-md border border-forest/10 bg-forest/[0.07] px-4 py-2.5 text-sm leading-6 text-ink">
+                {m.content}
+              </div>
+            </div>
+          ) : (
+            <div
+              key={i}
+              className="chat-pop ml-auto max-w-[80%] rounded-2xl rounded-br-md border border-amber/40 bg-amber/25 px-4 py-2.5 text-sm leading-6 text-ink"
+            >
+              {m.content}
+            </div>
+          )
+        )}
         {(waiting || building) && (
-          <div className="max-w-[85%] rounded-2xl bg-forest/[0.07] px-4 py-2.5 text-sm text-stone">
-            {building ? "Building your plan…" : "…"}
+          <div className="chat-pop flex items-end gap-2.5">
+            <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-cream">
+              <Compass className="h-3.5 w-3.5" strokeWidth={2} />
+            </span>
+            <div className="flex items-center gap-2 rounded-2xl rounded-bl-md border border-forest/10 bg-forest/[0.07] px-4 py-3">
+              {building && (
+                <span className="text-sm font-medium text-stone">
+                  Building your plan
+                </span>
+              )}
+              <span
+                className="flex items-center gap-1"
+                role="status"
+                aria-label={building ? "Building your plan" : "The guide is typing"}
+              >
+                {[0, 1, 2].map((d) => (
+                  <span
+                    key={d}
+                    className="chat-dot h-1.5 w-1.5 rounded-full bg-forest"
+                    style={{ animationDelay: `${d * 0.16}s` }}
+                  />
+                ))}
+              </span>
+            </div>
           </div>
         )}
       </div>
