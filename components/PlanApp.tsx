@@ -32,6 +32,7 @@ import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 import { frameHref, type Frame } from "@/lib/frame";
 import { readAboutYou } from "@/lib/aboutYou";
+import { readGoalCheckins } from "@/lib/goalCheckins";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 import SaveToProfile from "@/components/SaveToProfile";
@@ -148,6 +149,7 @@ export default function PlanApp() {
           intake,
           confirmedSummary: summary ?? "",
           done: gatherDone(),
+          knowns: gatherKnowns(),
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
@@ -256,6 +258,13 @@ function gatherKnowns() {
   const stage = readStudentStage();
   const profile = readLocalProfile();
   const stageMap = { hs: "high-school", cc: "community-college", uni: "four-year" } as const;
+  // Self-reported goal progress (Progress tab) -> goal id : status. The
+  // route uses today's-goal status to open the plan past the basics when
+  // they say they've already made a start.
+  const checkinMap = readGoalCheckins();
+  const checkins = Object.fromEntries(
+    Object.entries(checkinMap).map(([goal, c]) => [goal, c.status])
+  );
   return {
     stage: stage ? stageMap[stage] : undefined,
     income: about.income || undefined,
@@ -264,6 +273,7 @@ function gatherKnowns() {
     // Self-described comfort level from About-you — the route folds it
     // into the interview's ALREADY KNOWN block as a tone signal.
     confidence: about.confidence || undefined,
+    checkins: Object.keys(checkins).length ? checkins : undefined,
   };
 }
 
@@ -516,6 +526,7 @@ function ReviewBar({
           confirmedSummary,
           feedback,
           done: gatherDone(),
+          knowns: gatherKnowns(),
           currentPlan: {
             headline: plan.headline,
             items: plan.items.map((it) => ({

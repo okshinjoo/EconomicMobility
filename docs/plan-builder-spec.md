@@ -352,3 +352,22 @@ tools is one of the best ways to gain understanding."
   weave 2-4 tools through the plan, each placed where its numbers unblock
   the next step; a read + its paired tool beats two reads. The existing
   doing-step-first rule stands.
+
+## Session 11 — goal check-ins feed the plan (July 14, 2026)
+
+Owner: "feed those check-ins into the plan AI's knowns so a 'getting
+there' goal changes what the plan recommends."
+
+- gatherKnowns (PlanApp) now includes `checkins` (goal id -> status from
+  lib/goalCheckins). Knowns rides BOTH the interview POST (already did) and
+  now the build + revise POSTs.
+- Route: Knowns.checkins sanitized (valid GOAL_IDS + CHECKIN_LABELS
+  statuses). Interview knownsBlock gains a "self-reported progress" line so
+  the played-back summary can acknowledge momentum. Build/revise gain
+  `checkinLine(goal, checkins)` — a SOFT line for TODAY'S goal only:
+  started/halfway -> "lead with the next moves, not square-one basics";
+  done -> "keep-it-going / next-level pass, open past the basics";
+  not-started/absent -> no line. A lean, never a filter (mirrors
+  readingLevelLine).
+- Hero reword: "One plan that's yours" -> "Plans that are yours" + subcopy
+  notes building one per goal and saving up to three (session 9 shelf).

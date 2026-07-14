@@ -263,6 +263,14 @@ const CONFIDENCE_LABELS: Record<string, string> = {
   some: "knows some things",
   confident: "pretty confident",
 };
+// lib/goalCheckins status enum -> phrasing + how the plan should react. A
+// person's self-reported progress on the goal shifts where the plan starts.
+const CHECKIN_LABELS: Record<string, string> = {
+  "not-started": "hasn't started yet",
+  started: "has started",
+  halfway: "is partway there",
+  done: "considers it basically done",
+};
 
 const INTERVIEW_SYSTEM = `You are the plan-builder guide on Empower, a free financial-education site for first-generation, low-income, and immigrant students. Some readers are teenagers. Warm older-sibling voice, plain words, never salesy.
 
@@ -340,6 +348,8 @@ interface Knowns {
   goals?: string[];
   /** About-you self-described comfort level (collected on the account tab). */
   confidence?: string;
+  /** Self-reported progress per goal (lib/goalCheckins): goal id -> status. */
+  checkins?: Record<string, string>;
 }
 
 /* ------------------------------ done-awareness --------------------------- */
@@ -421,6 +431,20 @@ function readingLevelLine(done: DoneSignals): string {
   } unless a foundational gap genuinely matters.`;
 }
 
+/** One SOFT build-prompt line reflecting how far the person says they've
+ *  gotten on TODAY'S goal (their goal check-ins). "Getting there" or
+ *  "started" shifts the plan toward the next moves instead of square one;
+ *  a lean, never a filter — the model still covers a real gap. */
+function checkinLine(goal: string, checkins?: Record<string, string>): string {
+  const status = checkins?.[goal];
+  if (!status || status === "not-started") return "";
+  if (status === "done") {
+    return `\n- Their own progress: they marked this goal basically DONE — treat the plan as a keep-it-going / next-level pass (verify, maintain, or advance), not a from-scratch walkthrough; open past the basics.`;
+  }
+  const where = status === "halfway" ? "partway through this goal" : "already started on this goal";
+  return `\n- Their own progress: they say they're ${where} — lead with the next moves rather than square-one basics, unless a foundational gap genuinely matters. A brief "since you've already made a start" framing fits.`;
+}
+
 /** Standing answers from the profile/About-you tab: the interview skips
  *  what these already cover and folds them into the confirm-back summary
  *  (the person still gets to say "not quite"). */
@@ -435,6 +459,15 @@ function sanitizeKnowns(raw: unknown): Knowns {
     if (g.length > 0) out.goals = g.slice(0, 3);
   }
   if (CONFIDENCE_LABELS[String(r.confidence)]) out.confidence = String(r.confidence);
+  if (r.checkins && typeof r.checkins === "object") {
+    const raw = r.checkins as Record<string, unknown>;
+    const clean: Record<string, string> = {};
+    for (const [goal, status] of Object.entries(raw)) {
+      if (GOAL_IDS.includes(goal) && CHECKIN_LABELS[String(status)])
+        clean[goal] = String(status);
+    }
+    if (Object.keys(clean).length > 0) out.checkins = clean;
+  }
   return out;
 }
 
@@ -448,6 +481,14 @@ function knownsBlock(k: Knowns): string {
     lines.push(
       `- Comfort with money, self-described: ${CONFIDENCE_LABELS[k.confidence]} (a tone signal — don't over-explain basics to someone confident, don't assume knowledge from someone new)`
     );
+  if (k.checkins) {
+    const progress = Object.entries(k.checkins)
+      .map(([goal, status]) => `${goal} — ${CHECKIN_LABELS[status]}`)
+      .join("; ");
+    lines.push(
+      `- Self-reported progress on their goals: ${progress} (if today's goal is one they say they've started or are partway through, your summary can acknowledge it — "sounds like you've already made a start on this")`
+    );
+  }
   if (lines.length === 0) return "";
   return `
 
@@ -560,6 +601,7 @@ export async function POST(req: NextRequest) {
 
   const catalog = buildCatalog(intake);
   const done = sanitizeDone((body as { done?: unknown }).done);
+  const knowns = sanitizeKnowns((body as { knowns?: unknown }).knowns);
   markAlreadyDone(catalog, done);
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
@@ -617,7 +659,7 @@ HARD RULES:
 - Goal: ${intake.goal}${intake.detail ? ` — in their words: "${intake.detail}"` : ""}
 - Where they are: ${intake.stage}
 - Money month to month: ${intake.income}
-- Family: ${intake.family}${readingLevelLine(done)}
+- Family: ${intake.family}${readingLevelLine(done)}${checkinLine(intake.goal, knowns.checkins)}
 ${intake.target ? `- Their target: "${intake.target}"` : ""}
 ${confirmedSummary ? `- Their confirmed story, in the guide's words they agreed to: "${confirmedSummary}"` : ""}
 ${

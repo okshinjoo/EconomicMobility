@@ -29,14 +29,15 @@ export default function PlanPageView({ frame }: { frame: Frame }) {
           </span>
           <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight sm:text-6xl">
             A short conversation.{" "}
-            <span className="italic text-amber">One plan that&apos;s yours.</span>
+            <span className="italic text-amber">Plans that are yours.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
             Talk it out with the guide (or take the quick form) and
             we&apos;ll line up the right guides, calculators, and deadlines
             in the order that makes sense for you. It plays back what it
             heard before building, and you can flag anything that
-            doesn&apos;t fit after.
+            doesn&apos;t fit after. Build one for each goal you&apos;re
+            working on, and save up to three to your profile.
           </p>
           <p className="mt-3 text-sm text-cream/60">
             Prefer to browse?{" "}
