@@ -15,6 +15,8 @@ import { getCourse } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { deadlines, type Deadline } from "@/lib/deadlines";
 import { getSearchItems } from "@/lib/search";
+import { articleTools } from "@/lib/articleTools";
+import { learnContent } from "@/lib/learnContent";
 import { rankItems } from "@/lib/guide";
 import { ADVANCED_SIGNAL_MIN } from "@/lib/readingLevel";
 import type { IntakeAnswers, MyPlan, PlanItem, PlanStage } from "@/lib/plan";
@@ -133,6 +135,29 @@ function buildCatalog(intake: IntakeAnswers): CatalogEntry[] {
         href: `/learn/${a.topicId}/${a.slug}`,
         doneKey: a.slug,
         note: a.dek,
+      });
+  }
+
+  // Every catalog guide's own "try it" calculator joins the catalog too
+  // (July 14 owner rule: "don't be afraid to recommend more tools — filling
+  // out tools is one of the best ways to gain understanding"). Guides are
+  // already goal-relevant, so their paired tools are by construction; the
+  // journeys' one-tool-per-stage cap no longer limits the model's options.
+  for (const e of [...out]) {
+    if (e.kind !== "guide") continue;
+    const m = e.href.match(/^\/learn\/([a-z-]+)\/([a-z0-9-]+)$/);
+    if (!m) continue;
+    const tool =
+      articleTools[m[2]] ??
+      learnContent[m[1] as keyof typeof learnContent]?.tool;
+    if (tool)
+      add({
+        key: `t:${tool.href}`,
+        kind: "tool",
+        title: tool.label,
+        href: tool.href,
+        doneKey: tool.href,
+        note: `Calculator on our site; pairs with "${e.title}".`,
       });
   }
 
@@ -554,6 +579,7 @@ You will receive a person's intake answers and a CATALOG of real site content. B
 
 HARD RULES:
 - START WITH A DOING STEP, not homework (owner rule): whenever the catalog has a tool matching the goal, step 1 is that tool with an imperative, concrete title — for budgeting goals, open with the Budget Planner as "Track what's coming in and what's going out" (it saves their numbers automatically and the rest of the plan can reference them). Reading steps come after the first win.
+- TOOLS ARE FIRST-CLASS, not garnish (owner rule): filling out a calculator with your own numbers teaches faster than reading about the concept. When the catalog offers relevant tools, weave 2-4 of them through the plan — each placed where its numbers unblock the next step (payoff calculator right after the what-is-interest read, not bunched at the start). A stage with a read and its paired tool beats two reads.
 - Output ONLY a JSON object: {"headline": string, "stages": [{"title": string, "why": string, "items": [{"ref": string, "title": string, "why": string}]}]}
 - 3-4 stages, ordered as the person should walk them. A stage is a small milestone phrased as an outcome ("Know what the score measures", "File the forms"), finishable in one sitting or one errand. Its "why" is ONE plain sentence on why this stage comes now for THIS person.
 - Every item's "ref" MUST be a key copied exactly from the catalog. Never invent refs.

@@ -336,3 +336,19 @@ save on your profile."
   remove ×), full-shelf nudge. Opening a saved plan swaps it in as active;
   switching away from an UNSAVED active plan asks first. Removing the
   current plan keeps it open, just no longer saved.
+
+## Session 10 — tools are first-class (July 14, 2026)
+
+Owner: "don't be afraid to recommend more tools in your plan — filling out
+tools is one of the best ways to gain understanding."
+
+- buildCatalog now adds every catalog guide's paired calculator
+  (lib/articleTools by slug, falling back to learnContent[topic].tool), so
+  the model sees 2-5 goal-relevant tools per catalog instead of only the
+  journeys' one-per-stage attachments. Verified per goal: budget 4,
+  credit 2, debt 3, emergency 4, invest 3, college 3, transfer 3, home 3,
+  retirement 5.
+- Build prompt gained the "TOOLS ARE FIRST-CLASS, not garnish" rule:
+  weave 2-4 tools through the plan, each placed where its numbers unblock
+  the next step; a read + its paired tool beats two reads. The existing
+  doing-step-first rule stands.
