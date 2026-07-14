@@ -302,3 +302,17 @@ logs for /api/plan).
    re-plan flow, nav wiring.
 3. **Living layer:** projection widget from calculator snapshots, polish,
    CLAUDE.md + this doc updated, go-live checklist.
+
+## Session 8 — the way back to the chat (July 14, 2026)
+
+Owner: "if you choose 'prefer the quick form?' there's no way back to the AI."
+
+- `Intake` takes optional `onUseChat`; when present it renders a
+  "Rather talk it through? Back to the guide" link at the top of the form.
+- `ChatIntake.onUseForm` now carries a reason: `"choice"` (the visitor
+  clicked the quick-form link) vs `"unavailable"` (interview API returned
+  {unavailable} or the network failed). PlanApp sets `chatDown` on
+  "unavailable" and withholds `onUseChat` — no bouncing into a chat that
+  instantly degrades back to the form.
+- Re-plan still lands on the prefilled form (unchanged), now with the same
+  way back when the chat is up.

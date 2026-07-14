@@ -120,6 +120,10 @@ export default function PlanApp() {
   // as the fallback and the re-plan path. After a build, review mode asks
   // "does this look right?" and flagged items + feedback drive a revision.
   const [mode, setMode] = useState<"chat" | "form">("chat");
+  // True once the chat API said it's unavailable (no key / network) — the
+  // form then hides its "talk it through instead" way back, so nobody can
+  // bounce into a chat that instantly degrades again.
+  const [chatDown, setChatDown] = useState(false);
   const [confirmedSummary, setConfirmedSummary] = useState("");
   const [reviewing, setReviewing] = useState(false);
   const [flagged, setFlagged] = useState<Set<string>>(new Set());
@@ -166,7 +170,10 @@ export default function PlanApp() {
         <ChatIntake
           building={building}
           onConfirmed={(intake, summary) => void buildPlan(intake, summary)}
-          onUseForm={() => setMode("form")}
+          onUseForm={(reason) => {
+            if (reason === "unavailable") setChatDown(true);
+            setMode("form");
+          }}
         />
       );
     }
@@ -175,6 +182,7 @@ export default function PlanApp() {
         building={building}
         initial={lastIntake}
         onSubmit={(intake) => void buildPlan(intake)}
+        onUseChat={chatDown ? undefined : () => setMode("chat")}
       />
     );
   }
@@ -255,7 +263,7 @@ function ChatIntake({
 }: {
   building: boolean;
   onConfirmed: (intake: IntakeAnswers, summary: string) => void;
-  onUseForm: () => void;
+  onUseForm: (reason: "choice" | "unavailable") => void;
 }) {
   // Computed once on mount (ChatIntake only renders client-side).
   const [knowns] = useState(gatherKnowns);
@@ -314,7 +322,7 @@ function ChatIntake({
         unavailable?: boolean;
       };
       if (data.unavailable) {
-        onUseForm();
+        onUseForm("unavailable");
         return;
       }
       if (data.done && data.summary && data.intake) {
@@ -327,7 +335,7 @@ function ChatIntake({
         ]);
       }
     } catch {
-      onUseForm();
+      onUseForm("unavailable");
     } finally {
       setWaiting(false);
     }
@@ -341,7 +349,7 @@ function ChatIntake({
         </h2>
         <button
           type="button"
-          onClick={onUseForm}
+          onClick={() => onUseForm("choice")}
           className="text-sm font-semibold text-stone underline-offset-4 hover:text-ink hover:underline"
         >
           Prefer the quick form?
@@ -616,11 +624,14 @@ function Intake({
   building,
   initial,
   onSubmit,
+  onUseChat,
 }: {
   building: boolean;
   /** Re-plan passes the previous answers so nobody types twice. */
   initial: IntakeAnswers | null;
   onSubmit: (intake: IntakeAnswers) => void;
+  /** Way back into the chat intake (absent when the chat is unavailable). */
+  onUseChat?: () => void;
 }) {
   const profile = readLocalProfile();
   const [goal, setGoal] = useState(initial?.goal ?? profile?.goals?.[0] ?? "");
@@ -641,6 +652,17 @@ function Intake({
 
   return (
     <div className="card-ink rounded-2xl bg-cream p-6 sm:p-8">
+      {onUseChat && (
+        <div className="mb-5 flex justify-end">
+          <button
+            type="button"
+            onClick={onUseChat}
+            className="text-sm font-semibold text-stone underline-offset-4 hover:text-ink hover:underline"
+          >
+            Rather talk it through? Back to the guide
+          </button>
+        </div>
+      )}
       <div className="space-y-7">
         <fieldset>
           <legend className="font-display text-lg font-bold text-ink">
