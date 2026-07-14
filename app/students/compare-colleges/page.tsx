@@ -34,11 +34,11 @@ const SAMPLE_COLLEGES = [
   {
     name: "Amherst College",
     place: "Amherst, MA · Private · ~1,900 undergrads",
-    coa: "≈ $92,000/yr sticker — but meets 100% of need, no loans",
+    coa: "≈ $92,000/yr sticker, but meets 100% of need, no loans",
     accept: "≈ 9% admitted",
     gpa: "3.9+ unweighted (middle of admits)",
     values: ["Rigor + essays: very important", "Need-blind", "First-gen: a plus", "Interest: not considered"],
-    aid: "Need-blind and meets full need — often cheaper than a state school for low-income families",
+    aid: "Need-blind and meets full need; often cheaper than a state school for low-income families",
   },
   {
     name: "UT Austin",
@@ -76,11 +76,11 @@ export default function CompareCollegesPreview() {
             </h1>
           </div>
           <p className="mt-3 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-            In progress — design preview, nothing live yet
+            In progress: design preview, nothing live yet
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
             We&apos;re building a comparer that works both directions: sort
-            schools by cost, location, and selectivity on one side — and by
+            schools by cost, location, and selectivity on one side, and by
             the student profile they actually look for on the other, pulled
             from each college&apos;s published{" "}
             <Link
@@ -100,7 +100,7 @@ export default function CompareCollegesPreview() {
         <div className="mx-auto max-w-6xl px-6 py-12">
           <div className="relative">
             <span className="absolute -top-3 left-6 z-10 -rotate-2 rounded-md border-2 border-ink bg-terracotta px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream shadow-[3px_3px_0_#11211c]">
-              Mockup — sample data
+              Mockup: sample data
             </span>
             <div
               aria-hidden
@@ -205,7 +205,7 @@ export default function CompareCollegesPreview() {
                 What the real page will do
               </h2>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
-                <li>— A hand-verified profile for each college: selectivity, typical admit GPA, cost, and the &quot;what they consider&quot; table straight from its Common Data Set — checked the same way we verify every scholarship.</li>
+                <li>— A hand-verified profile for each college: selectivity, typical admit GPA, cost, and the &quot;what they consider&quot; table straight from its Common Data Set, checked the same way we verify every scholarship.</li>
                 <li>— Sorting that works both directions: the school&apos;s numbers on one side, the student they&apos;re looking for on the other.</li>
                 <li>— Aid policy front and center: need-blind, meets-full-need, and no-loan pledges beside every sticker price.</li>
                 <li>— A handoff to{" "}
@@ -221,7 +221,7 @@ export default function CompareCollegesPreview() {
                 What it deliberately won&apos;t do
               </h2>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
-                <li>— Republish paywalled magazine rankings. You&apos;ll sort by facts — cost, selectivity, graduation rates, aid promises — not by someone&apos;s editorial list.</li>
+                <li>— Republish paywalled magazine rankings. You&apos;ll sort by facts (cost, selectivity, graduation rates, aid promises), not by someone&apos;s editorial list.</li>
                 <li>— Show numbers we haven&apos;t verified. Every profile ships with a verified-as-of date, like the scholarship and opportunity finders.</li>
                 <li>— Ask for anything about you. Filters are for exploring, not for building a profile of you to sell.</li>
               </ul>

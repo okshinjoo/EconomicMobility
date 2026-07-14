@@ -42,7 +42,7 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">
             Each module is a short, ordered reading path built around one real
-            goal — sharper focus than the nine big topics. Read the guides,
+            goal, with sharper focus than the nine big topics. Read the guides,
             drill the flashcards, pass the final, earn the badge. Your progress
             saves on this device, no account needed.
           </p>

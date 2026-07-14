@@ -84,7 +84,7 @@ export default function BlogPage() {
             >
               Ask it anonymously
             </Link>{" "}
-            — the best ones become posts and answers.
+            and the best ones become posts and answers.
           </p>
         </div>
       </section>

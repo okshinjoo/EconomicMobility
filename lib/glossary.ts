@@ -21,7 +21,7 @@ export const glossary: GlossaryTerm[] = [
     term: "early decision",
     slug: "early-decision",
     definition:
-      "An early college application round where being admitted commits you to attend — before you can compare other schools' aid offers. Early action is the non-binding cousin.",
+      "An early college application round where being admitted commits you to attend, before you can compare other schools' aid offers. Early action is the non-binding cousin.",
     related: "college",
     article: "/learn/college/early-decision-explained",
   },
@@ -29,7 +29,7 @@ export const glossary: GlossaryTerm[] = [
     term: "need-blind",
     slug: "need-blind",
     definition:
-      "An admissions policy where your family's finances don't affect the decision to admit you. It promises nothing about how much aid you'll get — that's a separate 'meets full need' policy.",
+      "An admissions policy where your family's finances don't affect the decision to admit you. It promises nothing about how much aid you'll get; that's a separate 'meets full need' policy.",
     related: "college",
     article: "/learn/college/need-blind-colleges",
   },
@@ -45,7 +45,7 @@ export const glossary: GlossaryTerm[] = [
     term: "holistic review",
     slug: "holistic-review",
     definition:
-      "An admissions approach where humans read your whole file — grades, essays, recommendations, and your circumstances — instead of admitting by a numbers formula. Your context (work hours, family duties, what your school offered) counts, but only if it's on the page.",
+      "An admissions approach where humans read your whole file (grades, essays, recommendations, and your circumstances) instead of admitting by a numbers formula. Your context (work hours, family duties, what your school offered) counts, but only if it's on the page.",
     related: "college",
     article: "/learn/college/how-colleges-read-applications",
   },
@@ -53,7 +53,7 @@ export const glossary: GlossaryTerm[] = [
     term: "demonstrated interest",
     slug: "demonstrated-interest",
     definition:
-      "Signals that you're likely to enroll if admitted — campus visits, opened emails, optional interviews, a 'why us' essay. Some colleges track and count it; most highly selective ones say they don't. Each school's Common Data Set tells you which kind you're dealing with.",
+      "Signals that you're likely to enroll if admitted: campus visits, opened emails, optional interviews, a 'why us' essay. Some colleges track and count it; most highly selective ones say they don't. Each school's Common Data Set tells you which kind you're dealing with.",
     related: "college",
     article: "/learn/college/how-colleges-read-applications",
   },

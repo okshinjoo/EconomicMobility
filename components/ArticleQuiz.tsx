@@ -107,7 +107,7 @@ export default function ArticleQuiz({
         <>
           {current === 0 && !isAnswered && (
             <p className="mt-1 text-sm leading-6 text-stone">
-              Feel like testing what stuck? Skip it freely — nothing is graded
+              Feel like testing what stuck? Skip it freely; nothing is graded
               or sent anywhere.
               {previous && (
                 <span className="ml-1">

@@ -519,7 +519,7 @@ export const homeOwnershipExtraArticles: Article[] = [
     slug: "pmi-explained",
     order: 130,
     topicId: "home-ownership",
-    title: "PMI, Explained — and How to Drop It",
+    title: "PMI, Explained (and How to Drop It)",
     dek: "That extra line on your mortgage isn't a scam. Here's what it is, and how to make it go away.",
     level: "Intermediate",
     readMinutes: 5,

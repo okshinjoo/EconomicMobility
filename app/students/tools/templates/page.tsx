@@ -13,7 +13,7 @@ import { frameHref } from "@/lib/frame";
 export const metadata: Metadata = {
   title: "Free Templates | Empower Students",
   description:
-    "Free downloadable spreadsheet templates — a monthly budget, a debt payoff tracker, and a savings goal worksheet. They total themselves up.",
+    "Free downloadable spreadsheet templates: a monthly budget, a debt payoff tracker, and a savings goal worksheet. They total themselves up.",
   alternates: { canonical: "/tools/templates" },
 };
 
@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <StudentToolShell
       title="Free Templates"
-      dek="Downloadable spreadsheets that total themselves up — a monthly budget, a debt payoff tracker, and a savings goal worksheet. No sign-up."
+      dek="Downloadable spreadsheets that total themselves up: a monthly budget, a debt payoff tracker, and a savings goal worksheet. No sign-up."
     >
       <div className="grid gap-5 lg:grid-cols-3">
         {templates.map((t) => (

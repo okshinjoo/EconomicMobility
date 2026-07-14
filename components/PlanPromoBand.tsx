@@ -32,7 +32,7 @@ export default function PlanPromoBand({ frame }: { frame: Frame }) {
         </p>
         <p className="mt-1 text-sm leading-6 text-ink/75">
           The paths below, personalized: your goal, your situation, your
-          deadlines — in the order that fits you, checking itself off as
+          deadlines, in the order that fits you, checking itself off as
           you go.
         </p>
       </div>

@@ -9,13 +9,13 @@ import NetWorthCalculator from "@/components/NetWorthCalculator";
 
 export const metadata: Metadata = {
   title: "Net Worth | Empower Students",
-  description: "What you own minus what you owe — one honest number to retake every month.",
+  description: "What you own minus what you owe: one honest number to retake every month.",
   alternates: { canonical: "/tools/budget/net-worth" },
 };
 
 export default function Page() {
   return (
-    <StudentToolShell title="Net Worth" dek="What you own minus what you owe — one honest number to retake every month.">
+    <StudentToolShell title="Net Worth" dek="What you own minus what you owe: one honest number to retake every month.">
       <NetWorthCalculator />
     </StudentToolShell>
   );

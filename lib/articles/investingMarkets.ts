@@ -509,7 +509,7 @@ export const investingMarketsArticles: Article[] = [
       },
       {
         type: "p",
-        text: "You can take dividends as cash, but the powerful move for a long-term investor is reinvesting them: using each payment to buy more shares automatically. Brokerages call this a DRIP (dividend reinvestment plan), and it's usually a single toggle in your account settings. Each reinvested dividend buys shares that pay their own dividends, which buy more shares, and so on. It's [compound interest](/learn/investing/magic-of-compound-interest) wearing a different outfit, and over decades it does a surprising share of the work. Fractional shares make it seamless: a $12 dividend buys $12 of the fund, down to the penny, with nothing left sitting idle.",
+        text: "You can take dividends as cash, but the powerful move for a long-term investor is reinvesting them: using each payment to buy more shares automatically. Brokerages call this a DRIP (dividend reinvestment plan), and it's usually a single toggle in your account settings. Each reinvested dividend buys shares that pay their own dividends, which buy more shares, and so on. It's [compound interest](/learn/investing/magic-of-compound-interest) wearing a different outfit, and over decades it does a surprising share of the work. Fractional shares make it exact: a $12 dividend buys $12 of the fund, down to the penny, with nothing left sitting idle.",
       },
       {
         type: "h2",

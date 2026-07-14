@@ -301,7 +301,7 @@ export const investingRetirementArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Retirement advice tends to arrive as a pile: 401(k)s, IRAs, Roth-versus-traditional, HSAs, target-date funds, each explained well somewhere and none of them telling you which door to walk through first. This page is the order. Whether you're 19 with a campus job or 45 with nothing saved yet, the stops are the same; only the urgency changes. Each one links the full guide, so this walk takes four minutes and the whole path maybe two evenings.",
+        text: "Retirement advice tends to arrive as a pile: 401(k)s, IRAs, Roth-versus-traditional, HSAs, target-date funds, each explained well somewhere and none of them telling you which door to walk through first. This page is the order. The stops are the same at 19 with a campus job and at 45 with nothing saved yet; only the urgency changes. Each one links the full guide, so this walk takes four minutes and the whole path maybe two evenings.",
       },
       {
         type: "h2",

@@ -27,7 +27,7 @@ const PAGE = `<!doctype html>
 <body><div class="card">
 <h1>You're unsubscribed.</h1>
 <p>No more reminder emails from Empower. If it was something we said, we'd genuinely like to know: Help@economicmobilityproject.org.</p>
-<p><a href="https://economicmobilityproject.org">Back to the site</a> — everything there stays free, no email required.</p>
+<p><a href="https://economicmobilityproject.org">Back to the site</a>. Everything there stays free, no email required.</p>
 </div></body></html>`;
 
 export async function GET(req: NextRequest) {

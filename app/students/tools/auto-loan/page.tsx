@@ -8,7 +8,7 @@ import LoanCalculator, { type LoanConfig } from "@/components/LoanCalculator";
 
 export const metadata: Metadata = {
   title: "Auto Loan Calculator | Empower Students",
-  description: "The real monthly cost of a car loan — price, down payment, trade-in, rate.",
+  description: "The real monthly cost of a car loan: price, down payment, trade-in, rate.",
   alternates: { canonical: "/tools/debt/auto-loan" },
 };
 
@@ -30,7 +30,7 @@ const config: LoanConfig = {
 
 export default function Page() {
   return (
-    <StudentToolShell title="Auto Loan Calculator" dek="The real monthly cost of a car loan — price, down payment, trade-in, rate.">
+    <StudentToolShell title="Auto Loan Calculator" dek="The real monthly cost of a car loan: price, down payment, trade-in, rate.">
       <LoanCalculator config={config} />
     </StudentToolShell>
   );

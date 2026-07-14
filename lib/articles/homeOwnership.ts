@@ -407,7 +407,7 @@ export const homeOwnershipArticles: Article[] = [
     slug: "underwater-mortgage",
     order: 160,
     topicId: "home-ownership",
-    title: "What 'Underwater' Means — and How to Avoid It",
+    title: "What 'Underwater' Means, and How to Avoid It",
     dek: "Being underwater means owing more than your home is worth. It's uncomfortable but understandable, and a few habits make it far less likely.",
     level: "Advanced",
     readMinutes: 6,

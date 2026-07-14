@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 
   if (error) {
     return Response.json(
-      { error: "Couldn't save that just now — try again in a minute." },
+      { error: "Couldn't save that just now. Try again in a minute." },
       { status: 500 }
     );
   }

@@ -79,7 +79,7 @@ export const journeys: Journey[] = [
       },
       {
         id: "protect",
-        milestone: "Learn what moves the score — and what doesn't",
+        milestone: "Learn what moves the score and what doesn't",
         why: "Two habits (pay on time, keep balances low) do almost all the work.",
         articleSlugs: [
           "credit-utilization",
@@ -112,7 +112,7 @@ export const journeys: Journey[] = [
       {
         id: "picture",
         milestone: "See the whole picture without panic",
-        why: "You can't plan around debts you haven't listed — and order matters when money is tight.",
+        why: "You can't plan around debts you haven't listed, and order matters when money is tight.",
         articleSlugs: [
           "debt-payoff-roadmap",
           "prioritizing-bills-when-money-is-tight",
@@ -122,7 +122,7 @@ export const journeys: Journey[] = [
       {
         id: "method",
         milestone: "Pick your payoff method and run the numbers",
-        why: "Avalanche or snowball — a method you'll stick with beats a perfect one you won't.",
+        why: "Avalanche or snowball: a method you'll stick with beats a perfect one you won't.",
         articleSlugs: [
           "paying-off-credit-cards",
           "balance-transfers-and-consolidation-loans",
@@ -156,7 +156,7 @@ export const journeys: Journey[] = [
   {
     id: "budget",
     title: "Get better at budgeting",
-    promise: "A budget that survives real life — not a spreadsheet you abandon by March.",
+    promise: "A budget that survives real life, not a spreadsheet you abandon by March.",
     color: "#15624b",
     topic: "budgeting",
     stages: [
@@ -250,7 +250,7 @@ export const journeys: Journey[] = [
       {
         id: "foundations",
         milestone: "Get the three ideas everything rests on",
-        why: "Saving vs. investing, compounding, and what a stock is — that's the whole foundation.",
+        why: "Saving vs. investing, compounding, and what a stock is: that's the whole foundation.",
         articleSlugs: [
           "saving-vs-investing",
           "magic-of-compound-interest",
@@ -303,7 +303,7 @@ export const journeys: Journey[] = [
       {
         id: "free-money",
         milestone: "File the FAFSA and chase the gift money",
-        why: "Grants and scholarships never get repaid — they're the money to fight for first.",
+        why: "Grants and scholarships never get repaid, so they're the money to fight for first.",
         articleSlugs: ["fafsa-step-by-step", "fafsa-mistakes", "finding-scholarships"],
       },
       {
@@ -347,7 +347,7 @@ export const journeys: Journey[] = [
       {
         id: "rent-smart",
         milestone: "Win at renting first",
-        why: "Renting well — rights, deposits, insurance — funds and protects the someday.",
+        why: "Renting well (rights, deposits, insurance) funds and protects the someday.",
         articleSlugs: [
           "renting-vs-buying",
           "renting-101-tenant-rights",
@@ -399,7 +399,7 @@ export const journeys: Journey[] = [
       {
         id: "see-path",
         milestone: "See the path from your age",
-        why: "The plan differs at 18, 30, and 50 — but every version leans on compounding.",
+        why: "The plan differs at 18, 30, and 50, but every version leans on compounding.",
         articleSlugs: [
           "retirement-basics",
           "retirement-path",
@@ -409,7 +409,7 @@ export const journeys: Journey[] = [
       {
         id: "accounts",
         milestone: "Know the accounts and their superpowers",
-        why: "401(k), IRA, Roth — the tax breaks are the whole reason these accounts exist.",
+        why: "401(k), IRA, Roth: the tax breaks are the whole reason these accounts exist.",
         articleSlugs: ["what-is-a-401k", "what-is-an-ira", "roth-vs-traditional-ira"],
         courseId: "retirement-started",
         tool: { label: "Retirement Calculator", href: "/tools/savings/retirement" },
@@ -417,7 +417,7 @@ export const journeys: Journey[] = [
       {
         id: "set-up",
         milestone: "Set yours up and pick the fund",
-        why: "Match first, then IRA — and a target-date fund makes the picking painless.",
+        why: "Match first, then IRA, and a target-date fund makes the picking painless.",
         articleSlugs: [
           "401k-vs-ira",
           "retirement-accounts-explained",
@@ -443,7 +443,7 @@ export const journeys: Journey[] = [
       {
         id: "playbook",
         milestone: "Learn the universal red flags",
-        why: "Every scam runs on the same few tricks — urgency, secrecy, weird payment methods.",
+        why: "Every scam runs on the same few tricks: urgency, secrecy, weird payment methods.",
         articleSlugs: ["how-to-spot-a-scam", "phishing-scams", "payment-app-safety"],
       },
       {
@@ -460,7 +460,7 @@ export const journeys: Journey[] = [
       {
         id: "big-cons",
         milestone: "Recognize the big cons by name",
-        why: "Fake checks, fake jobs, fake romance — seen once in an article, spotted forever.",
+        why: "Fake checks, fake jobs, fake romance: seen once in an article, spotted forever.",
         articleSlugs: ["fake-check-scams", "job-scams", "romance-scams"],
       },
       {
@@ -482,7 +482,7 @@ export const journeys: Journey[] = [
       {
         id: "map-the-route",
         milestone: "Know your transfer route and what it saves",
-        why: "The community-college discount only pays off if your courses actually transfer — so the route comes before the schedule.",
+        why: "The community-college discount only pays off if your courses actually transfer, so the route comes before the schedule.",
         articleSlugs: ["community-college-path", "community-college-transfer-money"],
         tool: { label: "College Cost Calculator", href: "/tools/college" },
       },

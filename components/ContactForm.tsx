@@ -37,7 +37,7 @@ export default function ContactForm() {
       const payload: Record<string, string> = {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: `New message from ${name.trim() || "the website"}`,
-        from_name: "Empower — Contact Form",
+        from_name: "Empower Contact Form",
         name: name.trim() || "Not given",
         message: message.trim(),
         // The `email` field must always be a VALID address or Web3Forms
@@ -155,7 +155,7 @@ export default function ContactForm() {
       </button>
       <p className="text-xs leading-5 text-stone">
         Your message goes straight to our inbox and nowhere else. We never
-        sell your data —{" "}
+        sell your data.{" "}
         <a
           href="/privacy"
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"

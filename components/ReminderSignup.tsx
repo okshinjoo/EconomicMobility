@@ -35,13 +35,13 @@ export default function ReminderSignup() {
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) {
         setStatus("error");
-        setMessage(data.error ?? "Something hiccuped — try again in a minute.");
+        setMessage(data.error ?? "Something hiccuped. Try again in a minute.");
         return;
       }
       setStatus("done");
     } catch {
       setStatus("error");
-      setMessage("Couldn't reach the server — check your connection.");
+      setMessage("Couldn't reach the server. Check your connection.");
     }
   }
 
@@ -53,7 +53,7 @@ export default function ReminderSignup() {
         </p>
         <p className="mt-2 text-sm leading-6 text-stone">
           We&apos;ll nudge you a few weeks before each deadline that moves
-          real money — FAFSA opening, tax day, scholarship season. Every
+          real money: FAFSA opening, tax day, scholarship season. Every
           email has a one-click unsubscribe, and your address is never
           shared or sold.
         </p>
@@ -145,12 +145,12 @@ export default function ReminderSignup() {
       <p className="mt-3 text-xs leading-5 text-stone">
         A handful of emails a year, each one about a date that moves real
         money. One-click unsubscribe on every email, and we never sell your
-        data —{" "}
+        data.{" "}
         <Link
           href="/privacy"
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
         >
-          privacy
+          Privacy
         </Link>
         .
       </p>

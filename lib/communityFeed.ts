@@ -100,7 +100,7 @@ export const CHANNELS: Channel[] = [
     id: "say-hello",
     icon: Hand,
     name: "Say Hello",
-    tagline: "New here? Introduce yourself — everyone starts in this room.",
+    tagline: "New here? Introduce yourself. Everyone starts in this room.",
     color: "#c9842a",
   },
   {
@@ -114,7 +114,7 @@ export const CHANNELS: Channel[] = [
     id: "students",
     icon: GraduationCap,
     name: "Students",
-    tagline: "Money while you're in school — aid, loans, part-time paychecks.",
+    tagline: "Money while you're in school: aid, loans, part-time paychecks.",
     color: "#b3762f",
   },
   {
@@ -158,7 +158,7 @@ export const CHANNELS: Channel[] = [
     id: "internships",
     icon: Briefcase,
     name: "Internships & Campus Jobs",
-    tagline: "Getting paid while you study — applications, offers, work-study.",
+    tagline: "Getting paid while you study: applications, offers, work-study.",
     color: "#b3762f",
     parent: "students",
   },
@@ -174,7 +174,7 @@ export const CHANNELS: Channel[] = [
     id: "campus-living",
     icon: Backpack,
     name: "Campus Living",
-    tagline: "Dorms, meal plans, textbooks — the costs between classes.",
+    tagline: "Dorms, meal plans, textbooks: the costs between classes.",
     color: "#b3762f",
     parent: "students",
   },
@@ -414,9 +414,9 @@ export const communityPosts: CommunityPost[] = [
     channel: "say-hello",
     pinned: true,
     body: [
-      "This is the front porch. Before anything else, drop a comment and tell everyone a little about you — whatever you're comfortable sharing.",
+      "This is the front porch. Before anything else, drop a comment and tell everyone a little about you, whatever you're comfortable sharing.",
       "An easy template: your first name, where you're at in life (student? working? somewhere in between?), the one money thing you're working toward this year, and one thing you've already figured out that the rest of us could learn from.",
-      "First names are plenty, no account needed, and intros are reviewed before they appear — so if yours doesn't show up instantly, it's on the way.",
+      "First names are plenty, no account needed, and intros are reviewed before they appear, so if yours doesn't show up instantly, it's on the way.",
     ],
     link: { label: "Want a member tag next to your name? Set one up", href: "/account" },
     comments: [
@@ -570,7 +570,7 @@ export const communityPosts: CommunityPost[] = [
     title: "The student corner: what goes where",
     channel: "students",
     body: [
-      "Home base for money-while-in-school: aid packages, loans, part-time paychecks, textbook math, all of it. Two focused rooms live under this one — Financial Aid & Offers for FAFSA and comparing packages, and Student Loans for everything borrowing.",
+      "Home base for money-while-in-school: aid packages, loans, part-time paychecks, textbook math, all of it. Two focused rooms live under this one: Financial Aid & Offers for FAFSA and comparing packages, and Student Loans for everything borrowing.",
       "Not sure where something fits? Post it right here and we'll point you the right way.",
     ],
     link: { label: "The college money guides", href: "/learn/college" },
@@ -584,7 +584,7 @@ export const communityPosts: CommunityPost[] = [
     title: "Comparing aid offers? Bring the confusing line items here",
     channel: "financial-aid",
     body: [
-      "Award letters are weirdly hard to compare on purpose: one school buries loans inside the \"aid,\" another leaves out costs entirely. If you're weighing offers, this is the room. Ask about any line you don't recognize — school names and dollar amounts optional.",
+      "Award letters are weirdly hard to compare on purpose: one school buries loans inside the \"aid,\" another leaves out costs entirely. If you're weighing offers, this is the room. Ask about any line you don't recognize; school names and dollar amounts optional.",
       "A good place to start: run both letters through the side-by-side tool below, then post whatever still doesn't add up.",
     ],
     link: { label: "Compare two aid offers side by side", href: "/tools/college/compare-offers" },
@@ -613,7 +613,7 @@ export const communityPosts: CommunityPost[] = [
     channel: "investing",
     body: [
       "No gatekeeping in this room: index funds, Roth IRAs, the thing your coworker keeps saying about crypto. If you've been nodding along to a term you don't actually understand, this is where you stop nodding and start asking.",
-      "One house reminder: experiences and questions are always welcome, but nobody here can tell you what to buy — and anyone who tries is breaking the rules.",
+      "One house reminder: experiences and questions are always welcome, but nobody here can tell you what to buy, and anyone who tries is breaking the rules.",
     ],
     link: { label: "Getting started with investing", href: "/learn/investing" },
     comments: [],
@@ -640,7 +640,7 @@ export const communityPosts: CommunityPost[] = [
     title: "Money and family: the conversations nobody preps you for",
     channel: "family-firstgen",
     body: [
-      "Helping parents with bills, sending money home, being the first in the family to navigate any of this — it's money and love at the same time, which makes it the hardest kind. This room is for those questions, judgment-free.",
+      "Helping parents with bills, sending money home, being the first in the family to navigate any of this: it's money and love at the same time, which makes it the hardest kind. This room is for those questions, judgment-free.",
       "Share what worked, ask what you're stuck on, or just say the thing out loud. Plenty of us are the family's unofficial CFO.",
     ],
     link: { label: "Sending money abroad without losing a cut", href: "/learn/budgeting/sending-money-abroad" },
@@ -655,7 +655,7 @@ export const communityPosts: CommunityPost[] = [
     channel: "scams-safety",
     body: [
       "The fastest scam alarm is each other. A text about a job you never applied for, a \"bank\" asking you to verify anything, an investing guru in your DMs: describe it here so the next person scrolls right past it.",
-      "And zero shame if one got you — posting it is the win that protects everyone else.",
+      "And zero shame if one got you. Posting it is the win that protects everyone else.",
     ],
     link: { label: "How to spot a scam", href: "/learn/money-safety/how-to-spot-a-scam" },
     comments: [],
@@ -668,7 +668,7 @@ export const communityPosts: CommunityPost[] = [
     title: "Which bank, which card, is this app legit? Ask before you sign up",
     channel: "banking",
     body: [
-      "The most expensive account is the one you picked because the ad was everywhere. Before you open anything — a checking account, a first credit card, a money app your friend swears by — ask here. Someone has probably already read the fine print.",
+      "The most expensive account is the one you picked because the ad was everywhere. Before you open anything (a checking account, a first credit card, a money app your friend swears by), ask here. Someone has probably already read the fine print.",
       "Good posts for this room: fee surprises, switching-banks stories, and 'is this legit?' screenshots described in words (no personal details).",
     ],
     link: { label: "The bank fees that quietly add up", href: "/learn/budgeting/avoiding-bank-fees" },
@@ -710,7 +710,7 @@ export const communityPosts: CommunityPost[] = [
     title: "The month math: making it stretch",
     channel: "budgeting-saving",
     body: [
-      "This room is for the real version of budgeting: when the numbers barely reach, which bill to pay first, the grocery strategies that actually work. No judgment about starting points — that's a house rule.",
+      "This room is for the real version of budgeting: when the numbers barely reach, which bill to pay first, the grocery strategies that actually work. No judgment about starting points. That's a house rule.",
       "Small systems welcome. The person who figured out how to make the last week of the month not terrible has something to teach all of us.",
     ],
     link: { label: "Where does the money keep going?", href: "/learn/budgeting/tracking-your-spending" },

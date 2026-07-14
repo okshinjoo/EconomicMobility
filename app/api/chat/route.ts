@@ -170,7 +170,7 @@ export async function POST(req: NextRequest) {
   if (data.stop_reason === "refusal") {
     return Response.json({
       reply:
-        "That's not something I can help with here — but if it's about your money, try the topics below or the Resources page.",
+        "That's not something I can help with here, but if it's about your money, try the topics below or the Resources page.",
       sourceHrefs: ranked.slice(0, 3).map((c) => c.href),
     });
   }
@@ -189,7 +189,7 @@ export async function POST(req: NextRequest) {
   return Response.json({
     reply:
       reply ||
-      "I'm not sure about that one — try browsing the topics or the Resources page.",
+      "I'm not sure about that one. Try browsing the topics or the Resources page.",
     sourceHrefs,
   });
 }

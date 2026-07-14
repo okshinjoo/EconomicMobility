@@ -9,13 +9,13 @@ import RothIraCalculator from "@/components/RothIraCalculator";
 
 export const metadata: Metadata = {
   title: "Roth IRA Calculator | Empower Students",
-  description: "See what steady contributions could become — tax-free — and how much a Roth beats a taxable account.",
+  description: "See what steady contributions could become, all tax-free, and how much a Roth beats a taxable account.",
   alternates: { canonical: "/tools/savings/roth-ira" },
 };
 
 export default function Page() {
   return (
-    <StudentToolShell title="Roth IRA Calculator" dek="See what steady contributions could become — tax-free — and how much a Roth beats a taxable account.">
+    <StudentToolShell title="Roth IRA Calculator" dek="See what steady contributions could become, all tax-free, and how much a Roth beats a taxable account.">
       <RothIraCalculator />
     </StudentToolShell>
   );

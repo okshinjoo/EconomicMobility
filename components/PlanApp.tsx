@@ -151,7 +151,7 @@ export default function PlanApp() {
       // Route already falls back internally; reaching here means the
       // network itself failed. Stay on the intake with a note.
       alert(
-        "Couldn't reach the plan builder just now — check your connection and try again."
+        "Couldn't reach the plan builder just now. Check your connection and try again."
       );
     } finally {
       setBuilding(false);
@@ -227,7 +227,7 @@ interface ChatMsg {
 }
 
 const OPENER =
-  "Hey — I'll build your money plan with you. It takes a couple of minutes and nothing you say leaves this plan. First up: what's the one money thing you want to get done right now?";
+  "Hey! I'll build your money plan with you. It takes a couple of minutes and nothing you say leaves this plan. First up: what's the one money thing you want to get done right now?";
 
 /** Standing answers the interview can skip re-asking: About-you signals,
  *  the profile's student stage (mapped to the intake's stage ids), and
@@ -404,7 +404,7 @@ function ChatIntake({
               onClick={() => onConfirmed(draft.intake, draft.summary)}
               className="btn-ink inline-flex items-center rounded-md bg-forest px-5 py-2.5 text-sm font-bold text-cream disabled:opacity-60"
             >
-              That&apos;s right — build my plan
+              That&apos;s right, build my plan
             </button>
             <button
               type="button"
@@ -415,7 +415,7 @@ function ChatIntake({
                   ...m,
                   {
                     role: "assistant",
-                    content: "No problem — what did I get wrong?",
+                    content: "No problem. What did I get wrong?",
                   },
                 ]);
               }}
@@ -450,7 +450,7 @@ function ChatIntake({
         </form>
       )}
       <p className="mt-4 text-xs leading-5 text-stone">
-        The guide only listens and builds from real pages on this site — it
+        The guide only listens and builds from real pages on this site; it
         never gives personal financial advice. Anonymous until you save;
         nothing here is sold, ever.
       </p>
@@ -515,15 +515,15 @@ function ReviewBar({
         onFlagsUsed();
         setFeedback("");
         setOpen(false);
-        setNote("Reworked — how about now?");
+        setNote("Reworked. How about now?");
       } else {
         setNote(
-          "Couldn't rework it just now — your plan is unchanged. Try again in a minute."
+          "Couldn't rework it just now; your plan is unchanged. Try again in a minute."
         );
       }
     } catch {
       setNote(
-        "Couldn't rework it just now — your plan is unchanged. Try again in a minute."
+        "Couldn't rework it just now; your plan is unchanged. Try again in a minute."
       );
     } finally {
       setBusy(false);
@@ -558,7 +558,7 @@ function ReviewBar({
           <p className="text-sm leading-6 text-stone">
             Tell the guide what doesn&apos;t fit (and use the{" "}
             <span className="font-semibold text-ink">flag</span> on any step
-            below that isn&apos;t right for you) — it&apos;ll rework the plan
+            below that isn&apos;t right for you) and it&apos;ll rework the plan
             from the same real guides and tools.
           </p>
           <textarea
@@ -657,7 +657,7 @@ function Intake({
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
             maxLength={200}
-            placeholder="Optional: say it in your own words — “transfer with under $20k of debt”"
+            placeholder="Optional: say it in your own words, like “transfer with under $20k of debt”"
             className="mt-3 w-full rounded-lg border-2 border-ink/15 bg-paper px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
           />
         </fieldset>
@@ -729,9 +729,9 @@ function Intake({
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-sand pt-5">
           <p className="max-w-sm text-xs leading-5 text-stone">
             Your answers stay on this device (and sync to your account if you
-            have one). Nothing is sold, ever —{" "}
+            have one). Nothing is sold, ever.{" "}
             <Link href="/privacy" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
-              privacy
+              Privacy
             </Link>
             .
           </p>
@@ -808,7 +808,7 @@ function ProjectionCard({ target }: { target: string }) {
           >
             Budget Planner
           </Link>{" "}
-          once and this plan starts projecting with your real numbers — how
+          once and this plan starts projecting with your real numbers: how
           much you&apos;re on track to set aside, by when.
         </p>
       </div>
@@ -849,8 +849,8 @@ function ProjectionCard({ target }: { target: string }) {
     line =
       amount !== null
         ? projected >= amount
-          ? `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName} — past your ${usd(amount)} target.`
-          : `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName} — about ${usd(amount - projected)} short of your ${usd(amount)} target, so a step below may be worth moving up.`
+          ? `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName}, past your ${usd(amount)} target.`
+          : `At your current ${usd(leftover)}/month leftover, you're on track for about ${usd(projected)} by ${monthName}, about ${usd(amount - projected)} short of your ${usd(amount)} target, so a step below may be worth moving up.`
         : `At your current ${usd(leftover)}/month leftover, you're on track to set aside about ${usd(projected)} by ${monthName}.`;
   } else {
     line = `At your current ${usd(leftover)}/month leftover, that's about ${usd(leftover * 6)} set aside in six months.`;
@@ -863,7 +863,7 @@ function ProjectionCard({ target }: { target: string }) {
       </p>
       <p className="mt-1.5 text-sm leading-6 text-ink">{line}</p>
       <p className="mt-2 text-xs leading-5 text-stone">
-        An estimate, not a promise — it&apos;s your own Budget Planner
+        An estimate, not a promise: it&apos;s your own Budget Planner
         numbers, recomputed every time you visit.{" "}
         <Link
           href={frameHref("/tools/budget", frame)}
@@ -990,7 +990,7 @@ function PlanView({
 
       <p className="mt-6 text-sm leading-6 text-stone">
         Steps check themselves off as you read and use the site, wherever you
-        do it. Deadlines and habits have real checkboxes — those are yours to
+        do it. Deadlines and habits have real checkboxes; those are yours to
         tick.
       </p>
     </div>

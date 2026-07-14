@@ -98,7 +98,7 @@ export default function StudentStageDash() {
               </h2>
               <p className="mt-1.5 max-w-xl text-base leading-7 text-stone">
                 One answer, and this page starts recommending the right
-                scholarships, guides, and deadlines. Saved on this device —
+                scholarships, guides, and deadlines. Saved on this device,
                 no account needed.
               </p>
             </div>

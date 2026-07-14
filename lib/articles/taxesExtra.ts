@@ -536,7 +536,7 @@ export const taxesExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Read that 0% again. A student or early-career investor with modest income can sell a long-held investment at a profit and owe no federal tax on the gain at all. Patience isn't just an investing strategy; it's a tax strategy.",
+        text: "Read that 0% again. A student or early-career investor with modest income can sell a long-held investment at a profit and owe no federal tax on the gain at all. Patience turns out to be a tax strategy too.",
       },
       {
         type: "h2",

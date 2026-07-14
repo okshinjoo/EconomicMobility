@@ -197,7 +197,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Starting small isn't just okay; it's smart. Open the account, get one dollar invested, and you've already done the part most people put off for years. You can always add more once it feels familiar.",
+        text: "Starting small is smart. Open the account, get one dollar invested, and you've already done the part most people put off for years. You can always add more once it feels familiar.",
       },
     ],
     related: ["saving-vs-investing", "how-to-pick-a-brokerage", "index-funds-explained", "start-investing-with-50"],

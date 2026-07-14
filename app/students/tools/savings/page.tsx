@@ -9,13 +9,13 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 
 export const metadata: Metadata = {
   title: "Savings Goal Calculator | Empower Students",
-  description: "Set a goal and see exactly what it takes — by deadline or by monthly amount.",
+  description: "Set a goal and see exactly what it takes, by deadline or by monthly amount.",
   alternates: { canonical: "/tools/savings" },
 };
 
 export default function Page() {
   return (
-    <StudentToolShell title="Savings Goal Calculator" dek="Set a goal and see exactly what it takes — by deadline or by monthly amount.">
+    <StudentToolShell title="Savings Goal Calculator" dek="Set a goal and see exactly what it takes, by deadline or by monthly amount.">
       <SavingsCalculator />
     </StudentToolShell>
   );

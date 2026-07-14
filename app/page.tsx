@@ -200,7 +200,7 @@ export default function Home() {
               Free, jargon-free money help built to break the cycle of
               economic disadvantage: hundreds of plain-English guides,
               hand-verified scholarships and paid opportunities, and
-              calculators for your real numbers — no account, ever.
+              calculators for your real numbers. No account, ever.
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -252,7 +252,7 @@ export default function Home() {
               New · In beta
             </span>
             <span className="font-display text-lg font-semibold">
-              Tell the guide your goal —{" "}
+              Tell the guide your goal, and{" "}
               <span className="italic text-amber">it builds your plan.</span>
             </span>
             <span className="text-sm text-cream/65">
@@ -360,7 +360,7 @@ export default function Home() {
               <p className="mt-3 max-w-xl text-base leading-7 text-ink/75">
                 A whole site inside the site: scholarships we verified by
                 hand, programs that pay you, every deadline that moves money,
-                and a tracker that keeps score — from high school through
+                and a tracker that keeps score, from high school through
                 university.
               </p>
             </div>
@@ -378,21 +378,21 @@ export default function Home() {
                   href: "/students/scholarships",
                   n: scholarships.length,
                   title: "The Scholarship Finder",
-                  desc: "Real awards, hand-checked against official pages — filter by your stage. No forms about you.",
+                  desc: "Real awards, hand-checked against official pages. Filter by your stage; no forms about you.",
                   tilt: "",
                 },
                 {
                   href: "/students/opportunities",
                   n: opportunities.length,
                   title: "Get paid to get ahead",
-                  desc: "Verified internships, fellowships, and research programs — free to apply, many with stipends.",
+                  desc: "Verified internships, fellowships, and research programs. Free to apply, many with stipends.",
                   tilt: "lg:rotate-[0.5deg]",
                 },
                 {
                   href: "/students/deadlines",
                   n: deadlines.length,
                   title: "The money calendar",
-                  desc: "FAFSA to decision day — with calendar downloads and email reminders if you want them.",
+                  desc: "FAFSA to decision day, with calendar downloads and email reminders if you want them.",
                   tilt: "lg:-rotate-[0.4deg]",
                 },
               ] as const
@@ -435,7 +435,7 @@ export default function Home() {
                 student's face on small screens); overlay card from lg up. */}
             <div className="mt-5 max-w-md rounded-2xl bg-forest p-6 text-cream shadow-xl lg:absolute lg:-right-8 lg:bottom-8 lg:mt-0 lg:max-w-[15rem]">
               <p className="text-base font-medium italic leading-snug">
-                &ldquo;Empower stands for the Economic Mobility Project — and
+                &ldquo;Empower stands for the Economic Mobility Project, and
                 for empowering people to take control of their financial
                 freedom.&rdquo;
               </p>
@@ -608,7 +608,7 @@ export default function Home() {
           {/* Student-hub pointer (owner directive, July 2026: student content
               on the homepage always points at the microsite) */}
           <p className="mt-2 text-base text-stone">
-            In school? The college guides above have a hub of their own —{" "}
+            In school? The college guides above have a hub of their own:{" "}
             <Link
               href="/students"
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
@@ -653,7 +653,7 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-lg leading-8 text-cream/75">
                 $200 a month, invested in a broad index fund, over 30 years.
-                The line doesn&apos;t bend because you&apos;re clever — it
+                The line doesn&apos;t bend because you&apos;re clever. It
                 bends because compounding is patient.
               </p>
               <p className="mt-4 text-sm text-cream/50">
@@ -803,7 +803,7 @@ export default function Home() {
                           Your turn.
                         </h3>
                         <p className="mt-2 text-sm leading-6 text-cream/75">
-                          Ask anything anonymously — no name, no email. Good
+                          Ask anything anonymously: no name, no email. Good
                           questions become answers on the site.
                         </p>
                       </div>
@@ -851,7 +851,7 @@ export default function Home() {
                 </h2>
                 <p className="mt-4 text-lg leading-8 text-cream/80">
                   We&apos;re building support networks and research alongside
-                  these guides — so progress isn&apos;t something you have to
+                  these guides, so progress isn&apos;t something you have to
                   figure out alone.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-4">

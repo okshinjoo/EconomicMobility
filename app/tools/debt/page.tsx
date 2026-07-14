@@ -37,7 +37,7 @@ export default function DebtToolPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-ink/75">
             List what you owe, add whatever extra you can spare each month, and
-            see your debt-free date — plus how much interest you&apos;ll save.
+            see your debt-free date, plus how much interest you&apos;ll save.
             Nothing is saved or sent anywhere.
           </p>
           <div className="mt-6">

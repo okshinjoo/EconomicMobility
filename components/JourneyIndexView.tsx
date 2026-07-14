@@ -94,7 +94,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
             Pick the goal, and we&apos;ll walk you there: ordered milestones,
             the right guide at the right moment, a calculator when it&apos;s
             time to run your numbers, and a clear next step every time you come
-            back. Progress saves on this device — no account needed.
+            back. Progress saves on this device, no account needed.
           </p>
           <p className="mt-4 text-sm text-cream/60">
             Not sure which goal?{" "}
@@ -127,7 +127,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
                 Pay for college
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-cream/75">
-                Ordered milestones from FAFSA to signing day — your progress
+                Ordered milestones from FAFSA to signing day. Your progress
                 fills the trail as you go.
               </p>
             </Link>
@@ -139,7 +139,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
           )}
           <JourneyIndex items={items} frame={frame} />
           <p className="mt-10 text-sm text-stone">
-            Every path is built from the same free library — a path just puts
+            Every path is built from the same free library; a path just puts
             it in the right order. Prefer to wander? Head to{" "}
             <Link
               href={href("/learn")}

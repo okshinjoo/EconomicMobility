@@ -7,7 +7,7 @@ import GrowthCalculator, {
 export const metadata: Metadata = {
   title: "Compound Interest Calculator | Empower — Economic Mobility Project",
   description:
-    "See how small, steady investing grows over decades — and how much of your future balance comes from compound growth.",
+    "See how small, steady investing grows over decades, and how much of your future balance comes from compound growth.",
 };
 
 const config: GrowthConfig = {
@@ -29,7 +29,7 @@ export default function CompoundPage() {
       categoryLabel="Saving & Investing"
       eyebrow="Compound Interest Calculator"
       title="Watch your money grow."
-      dek="Compound growth is money earning money on itself. See what a small amount, invested steadily, can become over time — and why starting early matters most."
+      dek="Compound growth is money earning money on itself. See what a small amount, invested steadily, can become over time, and why starting early matters most."
     >
       <GrowthCalculator config={config} />
     </CalcPageShell>

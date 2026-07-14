@@ -12,7 +12,7 @@ import { toolCategories } from "@/lib/toolsRegistry";
 export const metadata: Metadata = {
   title: "Tools | Empower Students",
   description:
-    "Every free Empower calculator, inside the student hub — college costs, aid offers, loans, budgets, savings, and more.",
+    "Every free Empower calculator, inside the student hub: college costs, aid offers, loans, budgets, savings, and more.",
   alternates: { canonical: "/tools" },
 };
 
@@ -47,7 +47,7 @@ export default function StudentToolsHub() {
             </h1>
             <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
               The same free tools as the main site, right here in the student
-              hub — and your numbers follow you between the two.
+              hub, and your numbers follow you between the two.
             </p>
           </div>
           <div className="hidden grid-cols-2 gap-3 lg:grid" aria-hidden>

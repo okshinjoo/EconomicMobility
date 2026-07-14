@@ -43,9 +43,9 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Blog", subtitle: "Fun, honest reads on day-to-day money.", href: "/blog", group: "Pages", keywords: "posts articles editorial" },
   { kind: "Page", title: "Life Moments", subtitle: "First job, moving out, graduating: start from your moment.", href: "/life", group: "Pages", keywords: "first job apartment college graduate scammed tight" },
   { kind: "Page", title: "For Students", subtitle: "FAFSA and scholarship deadlines, the college money path, student tools.", href: "/students", group: "Pages", keywords: "student college fafsa scholarship deadline internship transfer campus" },
-  { kind: "Page", title: "Scholarship Finder", subtitle: "Curated, verified national scholarships — filter by stage, sorted by season.", href: "/students/scholarships", group: "Pages", keywords: "scholarship money for college award grant free money daca undocumented transfer" },
-  { kind: "Page", title: "Internships & Opportunities", subtitle: "Verified internships, fellowships, and research programs — many paid.", href: "/students/opportunities", group: "Pages", keywords: "internship fellowship research program paid summer opportunity experience resume" },
-  { kind: "Page", title: "Student Tracker", subtitle: "Courses, units, grades, and to-dos — progress toward the 60-unit transfer mark.", href: "/students/tracker", group: "Pages", keywords: "class tracker credits units gpa grades transfer schedule todo" },
+  { kind: "Page", title: "Scholarship Finder", subtitle: "Curated, verified national scholarships. Filter by stage, sorted by season.", href: "/students/scholarships", group: "Pages", keywords: "scholarship money for college award grant free money daca undocumented transfer" },
+  { kind: "Page", title: "Internships & Opportunities", subtitle: "Verified internships, fellowships, and research programs, many paid.", href: "/students/opportunities", group: "Pages", keywords: "internship fellowship research program paid summer opportunity experience resume" },
+  { kind: "Page", title: "Student Tracker", subtitle: "Courses, units, grades, and to-dos: progress toward the 60-unit transfer mark.", href: "/students/tracker", group: "Pages", keywords: "class tracker credits units gpa grades transfer schedule todo" },
   { kind: "Page", title: "Letter Generator", subtitle: "Credit dispute and debt validation letters, free.", href: "/tools/letters", group: "Pages", keywords: "dispute letter debt validation collector template" },
 ];
 

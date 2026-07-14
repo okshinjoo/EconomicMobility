@@ -37,7 +37,7 @@ const newsreader = Newsreader({
 });
 
 const SITE_DESCRIPTION =
-  "Free, jargon-free financial education built to break the cycle of economic disadvantage for first-generation, low-income, and immigrant youth — and anyone ready to take control of their financial future.";
+  "Free, jargon-free financial education built to break the cycle of economic disadvantage for first-generation, low-income, and immigrant youth, and anyone ready to take control of their financial future.";
 
 export const metadata: Metadata = {
   // Resolves relative OG/Twitter URLs to absolute and sets the canonical

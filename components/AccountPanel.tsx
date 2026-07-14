@@ -172,7 +172,7 @@ export default function AccountPanel({
         <p className="mx-auto mt-2 max-w-md text-base leading-7 text-stone">
           Very soon you&apos;ll be able to create a free account to sync your
           progress across devices. Until then, everything you do here is saved
-          on this device automatically — no account needed.
+          on this device automatically, no account needed.
         </p>
       </div>
       </section>
@@ -226,7 +226,7 @@ export default function AccountPanel({
             <span className="italic text-amber">wherever you are.</span>
           </h1>
           <p className="mt-5 text-base leading-7 text-cream/75">
-            An account is never required here — it just makes the site
+            An account is never required here. It just makes the site
             remember you.
           </p>
           <ul className="mt-7 space-y-3.5">
@@ -234,7 +234,7 @@ export default function AccountPanel({
               "Your reading, quiz results, calculators, and badges follow you to any device",
               "Pick up exactly where you left off",
               "A member tag you control when you post in the community",
-              "Free forever — no spam, and your data is never sold",
+              "Free forever, no spam, and your data is never sold",
             ].map((line) => (
               <li key={line} className="flex items-start gap-2.5">
                 <Check
@@ -321,7 +321,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
       setBusy(false);
       setError(
         /provider is not enabled/i.test(err.message)
-          ? "Google sign-in isn't switched on yet — use email and password for now."
+          ? "Google sign-in isn't switched on yet. Use email and password for now."
           : err.message
       );
     }
@@ -353,7 +353,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
         return;
       }
       setNotice(
-        "Almost there — check your inbox. We sent a link to verify your email; your account activates when you click it."
+        "Almost there: check your inbox. We sent a link to verify your email; your account activates when you click it."
       );
       return;
     }
@@ -384,7 +384,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
     if (err) {
       setError(
         /confirm/i.test(err.message)
-          ? "That email hasn't been verified yet — find our message in your inbox and click the link first."
+          ? "That email hasn't been verified yet. Find our message in your inbox and click the link first."
           : "That email and password don't match. Try again, or reset your password below."
       );
     }
@@ -424,7 +424,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
       </h2>
       <p className="mt-2 text-base leading-7 text-stone">
         {mode === "signup" &&
-          "Free, like everything here. Your reading, quiz results, badges, and calculators sync across devices — and nothing on this site ever requires an account."}
+          "Free, like everything here. Your reading, quiz results, badges, and calculators sync across devices, and nothing on this site ever requires an account."}
         {mode === "signin" &&
           "Sign in and this device's progress merges into your account."}
         {mode === "forgot" &&
@@ -440,7 +440,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
               Nothing after a few minutes? Check spam, or{" "}
               {resendWait > 0 ? (
                 <span className="font-semibold">
-                  {resent ? "sent again ✓ — " : ""}resend available in{" "}
+                  {resent ? "sent again ✓ · " : ""}resend available in{" "}
                   {resendWait}s
                 </span>
               ) : (
@@ -601,7 +601,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
                   onClick={() => switchMode("signup")}
                   className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
                 >
-                  Create an account — it&apos;s free
+                  Create a free account
                 </button>
               </>
             )}
@@ -856,7 +856,7 @@ export function ProfileEditor({
       setSaveError(
         /goals|flairs|bio|public_profile/.test(error.message)
           ? "The newest profile columns haven't been added to the database yet (see docs/supabase-schema.sql)."
-          : "Couldn't save just now — try again in a moment."
+          : "Couldn't save just now. Try again in a moment."
       );
     }
   }, [supabase, userId, displayName, role, studentStage, showTag, goals, flairs, bio, publicProfile]);
@@ -872,7 +872,7 @@ export function ProfileEditor({
     setEmailNotice(
       error
         ? `Couldn't start the change: ${error.message}`
-        : "Confirmation sent — check the NEW address (and possibly your current one) and click the link to finish the switch."
+        : "Confirmation sent. Check the NEW address (and possibly your current one) and click the link to finish the switch."
     );
     if (!error) setNewEmail("");
   }
@@ -1020,7 +1020,7 @@ export function ProfileEditor({
                     />
                     <div>
                       <p className="font-display text-lg font-bold text-ink">
-                        You&apos;re in — welcome to Empower.
+                        You&apos;re in. Welcome to Empower.
                       </p>
                       <p className="mt-0.5 text-sm leading-6 text-stone">
                         Your account is live, and everything you&apos;ve done
@@ -1154,9 +1154,9 @@ export function ProfileEditor({
                 />
                 <p className="text-sm leading-6" style={{ color: DASH.muted }}>
                   <span className="font-semibold text-ink">
-                    Finish setting up your profile
+                    Finish setting up your profile.
                   </span>{" "}
-                  — add what you&apos;re up to and pick a goal or two.
+                  Add what you&apos;re up to and pick a goal or two.
                 </p>
               </div>
               <button
@@ -1208,7 +1208,7 @@ export function ProfileEditor({
                   id="profile-bio"
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                  placeholder="A line or two — what you're working toward, what you're good at, what brought you here."
+                  placeholder="A line or two: what you're working toward, what you're good at, what brought you here."
                   maxLength={280}
                   rows={3}
                   className={inputCls}
@@ -1286,7 +1286,7 @@ export function ProfileEditor({
                 <legend className={labelCls}>
                   Flairs{" "}
                   <span className="font-normal text-stone">
-                    (pick as many as you like — the first {MAX_FLAIRS} you
+                    (pick as many as you like; the first {MAX_FLAIRS} you
                     picked are the ones everyone sees)
                   </span>
                 </legend>
@@ -1359,7 +1359,7 @@ export function ProfileEditor({
                     ? "Nothing picked yet."
                     : flairs.length <= MAX_FLAIRS
                       ? `Showing: ${flairs.map(flairLabel).filter(Boolean).join(" · ")}`
-                      : `${flairs.length} picked — showing ${flairs
+                      : `${flairs.length} picked, showing ${flairs
                           .slice(0, MAX_FLAIRS)
                           .map(flairLabel)
                           .filter(Boolean)
@@ -1419,7 +1419,7 @@ export function ProfileEditor({
           {tab === "goals" && (
             <div className="space-y-5">
               <p className="text-base leading-7 text-stone">
-                What are you working toward? Pick as many as you like — we use
+                What are you working toward? Pick as many as you like. We use
                 them to steer recommendations toward what actually matters to
                 you.
               </p>
@@ -1463,7 +1463,7 @@ export function ProfileEditor({
               <div className="space-y-6 border-t pt-6" style={{ borderColor: DASH.divider }}>
                 <p className="text-sm leading-6 text-stone">
                   The more of this you answer, the sharper the
-                  recommendations get — your plan, your dashboard, and the
+                  recommendations get: your plan, your dashboard, and the
                   guides we surface first. Answers save instantly, sync with
                   your account, and never show on any public page.
                 </p>
@@ -1592,7 +1592,7 @@ export function ProfileEditor({
 
                 <p className="text-xs text-stone">
                   These answers pre-fill your plan builder and shape the
-                  &ldquo;up next&rdquo; picks — change or clear them any time.
+                  &ldquo;up next&rdquo; picks. Change or clear them any time.
                 </p>
               </div>
             </div>
@@ -1609,7 +1609,7 @@ export function ProfileEditor({
                   <span className="font-semibold text-ink">
                     {session.user.email}
                   </span>
-                  . To change it, enter the new address — we&apos;ll email a
+                  . To change it, enter the new address; we&apos;ll email a
                   confirmation link before anything switches.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row">

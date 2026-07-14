@@ -225,7 +225,7 @@ export const knowledgeCheckBank: Record<
         question:
           "You co-signed a loan for a friend two years ago. They've been paying on time, but they just told you they can no longer afford the payments. What is your risk?",
         options: [
-          "None — it's their loan, not yours",
+          "None: it's their loan, not yours",
           "You may be responsible for the full remaining balance and any missed payments will appear on your credit report",
           "You'll only owe half since you co-signed",
           "Your credit is protected because you didn't take out the loan yourself",
@@ -537,7 +537,7 @@ export const knowledgeCheckBank: Record<
         question:
           "A buyer for something you sold online sends a check for $500 more than the price and asks you to refund the extra. Why is this dangerous?",
         options: [
-          "It isn't — the bank already showed the money in your account",
+          "It isn't; the bank already showed the money in your account",
           "The check can bounce days after the funds appear available, leaving you owing the bank the full amount",
           "You'll just have to pay a small fee to keep the extra",
           "Checks always clear instantly, so there's no risk",

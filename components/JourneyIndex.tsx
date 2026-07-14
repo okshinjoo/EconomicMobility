@@ -230,7 +230,7 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
                 {planCard.headline}
               </p>
               <p className="mt-1.5 text-sm font-semibold text-cream/70">
-                {planCard.done} of {planCard.total} steps done — your own path,
+                {planCard.done} of {planCard.total} steps done. Your own path,
                 built from your answers. The paths below stay open too.
               </p>
             </div>

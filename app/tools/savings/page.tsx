@@ -9,7 +9,7 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 export const metadata: Metadata = {
   title: "Savings Goal Calculator | Empower — Economic Mobility Project",
   description:
-    "Set a savings goal and see exactly what it takes — how much to set aside each month, or how long it'll take at the amount you can save.",
+    "Set a savings goal and see exactly what it takes: how much to set aside each month, or how long it'll take at the amount you can save.",
 };
 
 export default function SavingsToolPage() {
@@ -37,7 +37,7 @@ export default function SavingsToolPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-ink/75">
             Whether you have a deadline or a monthly amount in mind, see exactly
-            what it takes to get there — with interest working for you. Nothing
+            what it takes to get there, with interest working for you. Nothing
             is saved or sent anywhere.
           </p>
           <div className="mt-6">

@@ -310,7 +310,7 @@ function ActivityHeatmap() {
         {HEAT_COLORS.map((c) => (
           <span key={c} className="h-2.5 w-2.5 rounded-[3px]" style={{ background: c }} />
         ))}
-        more — every cell is a real day.
+        more; every cell is a real day.
       </p>
     </div>
   );
@@ -357,7 +357,7 @@ function PipelineCard() {
       ) : (
         <p className="mt-2 text-sm leading-6 text-stone">
           Nothing tracked yet. Log your classes and scholarship applications
-          once, and this card keeps the running score — units, GPA, dollars
+          once, and this card keeps the running score: units, GPA, dollars
           in play, dollars won.
         </p>
       )}
@@ -401,7 +401,7 @@ function PinnedToolsCard({
       {editing ? (
         <>
           <p className="mt-2 text-xs" style={{ color: DASH.muted }}>
-            Pick up to {MAX_PINNED_TOOLS} — they open with your saved numbers.
+            Pick up to {MAX_PINNED_TOOLS}. They open with your saved numbers.
           </p>
           <div className="mt-2.5 flex flex-wrap gap-1.5">
             {TOOL_INDEX.map((t) => {
@@ -438,7 +438,7 @@ function PinnedToolsCard({
         </div>
       ) : (
         <p className="mt-2 text-sm text-stone">
-          No tools pinned — hit &ldquo;Choose tools&rdquo; and put your
+          No tools pinned yet. Hit &ldquo;Choose tools&rdquo; and put your
           favorites one click away.
         </p>
       )}
@@ -490,14 +490,14 @@ function PlanCard() {
             />
           </div>
           <p className="mt-2 text-xs font-semibold" style={{ color: DASH.muted }}>
-            {done} of {plan.items.length} steps done — it checks itself off as
+            {done} of {plan.items.length} steps done. It checks itself off as
             you read and use the site.
           </p>
         </>
       ) : (
         <p className="mt-2 text-sm leading-6 text-stone">
           No plan yet. A short conversation with the guide builds one from
-          real guides, tools, and deadlines — and it lives here once it
+          real guides, tools, and deadlines, and it lives here once it
           exists.
         </p>
       )}
@@ -916,7 +916,7 @@ export function FlatOverview({
         ))}
         {!next && recent.length === 0 && (
           <p className="py-4 text-sm text-stone">
-            Nothing read yet — the{" "}
+            Nothing read yet. The{" "}
             <Link href="/quiz" className="font-semibold text-forest">
               2-minute quiz
             </Link>{" "}
@@ -964,7 +964,7 @@ export function FlatOverview({
           </div>
         ) : (
           <p className="mt-2 text-sm text-stone">
-            Empty so far — finish a{" "}
+            Empty so far. Finish a{" "}
             <Link href="/courses" className="font-semibold text-forest">
               course
             </Link>{" "}
@@ -1021,9 +1021,9 @@ export function FlatOverview({
           </div>
           {progress.length < paths.length && (
             <p className="mt-3 text-xs" style={{ color: DASH.muted }}>
-              {paths.length - progress.length} topics untouched —{" "}
+              {paths.length - progress.length} topics untouched.{" "}
               <Link href="/learn" className="font-semibold text-forest">
-                explore the library
+                Explore the library
               </Link>
               .
             </p>

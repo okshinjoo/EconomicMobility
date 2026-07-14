@@ -45,7 +45,7 @@ export default function SaveToProfile({
         className={`flex items-center gap-2 text-sm font-medium text-forest ${className}`}
       >
         <CheckCircle2 className="h-4 w-4 shrink-0" strokeWidth={2} />
-        Saved to your profile — this follows you to any device you sign in on.
+        Saved to your profile. This follows you to any device you sign in on.
       </p>
     );
   }

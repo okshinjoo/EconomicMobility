@@ -9,7 +9,7 @@ import JourneyIndexView from "@/components/JourneyIndexView";
 export const metadata: Metadata = {
   title: "Your Path | Empower — Economic Mobility Project",
   description:
-    "Pick a money goal and follow a guided path: ordered milestones, the right guides at the right time, and a clear next step — no account needed.",
+    "Pick a money goal and follow a guided path: ordered milestones, the right guides at the right time, and a clear next step. No account needed.",
   alternates: { canonical: "/journey" },
 };
 

@@ -59,7 +59,7 @@ const SUGGESTIONS = [
 
 const GREETING: Msg = {
   role: "guide",
-  text: "Hi, I'm your money guide. Ask me anything about money — I'll explain it in plain English and hand you the exact guide or calculator for it.",
+  text: "Hi, I'm your money guide. Ask me anything about money. I'll explain it in plain English and hand you the exact guide or calculator for it.",
 };
 
 export default function ChatLauncher({ items }: { items: SearchItem[] }) {
@@ -237,7 +237,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
           </form>
 
           <p className="bg-cream px-4 pb-2.5 text-center text-[10px] leading-tight text-stone">
-            AI answers from our guides — can make mistakes. General education,
+            AI answers from our guides; it can make mistakes. General education,
             not personal financial or legal advice.
           </p>
         </div>

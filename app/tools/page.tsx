@@ -12,7 +12,7 @@ import { templates } from "@/lib/templates";
 export const metadata: Metadata = {
   title: "Calculators | Empower — Economic Mobility Project",
   description:
-    "Free, no-sign-up calculators for budgeting, debt and loans, saving and investing, and college — each a focused tool that updates as you type.",
+    "Free, no-sign-up calculators for budgeting, debt and loans, saving and investing, and college. Each is a focused tool that updates as you type.",
 };
 
 export default function ToolsHub() {
@@ -51,7 +51,7 @@ export default function ToolsHub() {
             sign-up, nothing saved to our servers, no catch.
           </p>
           <p className="mt-4 text-sm font-semibold text-forest">
-            Not sure which tool? The Budget Planner does the most —{" "}
+            Not sure which tool? The Budget Planner does the most.{" "}
             <Link
               href="/tools/budget"
               className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
@@ -293,7 +293,7 @@ export default function ToolsHub() {
               </h2>
               <p className="mt-4 max-w-md text-lg leading-8 text-cream/75">
                 Rather work in your own spreadsheet? Download a budget, debt
-                tracker, or savings worksheet — they total themselves up. Open in
+                tracker, or savings worksheet; they total themselves up. Open in
                 Excel, Google Sheets, or Numbers.
               </p>
               <Link

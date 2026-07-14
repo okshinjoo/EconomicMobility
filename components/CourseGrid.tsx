@@ -111,11 +111,11 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
                     </div>
                     <p className="mt-2 text-xs font-semibold text-ink/70">
                       {started
-                        ? `${done} of ${total} read — keep going`
+                        ? `${done} of ${total} read. Keep going`
                         : done === total && total > 0
                           ? course.draft
-                            ? "All read — the final is coming"
-                            : "All read — take the final"
+                            ? "All read. The final is coming"
+                            : "All read. Take the final"
                           : "About an evening of reading"}
                     </p>
                   </>

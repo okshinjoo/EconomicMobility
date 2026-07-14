@@ -196,7 +196,7 @@ export default function QuizResults({
               quizzedTopicIds.length < selectedTopicIds.length && (
                 <p className="text-sm leading-6 text-stone">
                   To keep the quiz short, we only spot-checked your first{" "}
-                  {quizzedTopicIds.length === 1 ? "topic" : "two topics"} —
+                  {quizzedTopicIds.length === 1 ? "topic" : "two topics"};
                   the plan below still covers everything you picked.
                 </p>
               )}
@@ -277,7 +277,7 @@ export default function QuizResults({
               Five more questions and it&apos;s a living checklist.
             </p>
             <p className="mt-1 text-sm leading-6 text-cream/75">
-              Your goal, your deadlines, your next step — saved, and checking
+              Your goal, your deadlines, your next step: saved, and checking
               itself off as you read and use the site.
             </p>
           </div>

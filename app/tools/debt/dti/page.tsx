@@ -5,7 +5,7 @@ import DtiCalculator from "@/components/DtiCalculator";
 export const metadata: Metadata = {
   title: "Debt-to-Income Calculator | Empower — Economic Mobility Project",
   description:
-    "Calculate your debt-to-income ratio — the number lenders use — and see where you land.",
+    "Calculate your debt-to-income ratio, the number lenders use, and see where you land.",
 };
 
 export default function DtiPage() {

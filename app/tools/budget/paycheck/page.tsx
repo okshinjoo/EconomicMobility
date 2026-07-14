@@ -9,7 +9,7 @@ import PaycheckCalculator from "@/components/PaycheckCalculator";
 export const metadata: Metadata = {
   title: "Paycheck Calculator | Empower — Economic Mobility Project",
   description:
-    "Turn a salary or hourly wage into your real take-home pay after federal, FICA, and state taxes — by month, paycheck, and year.",
+    "Turn a salary or hourly wage into your real take-home pay after federal, FICA, and state taxes, by month, paycheck, and year.",
 };
 
 export default function PaycheckPage() {
@@ -39,7 +39,7 @@ export default function PaycheckPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-ink/75">
             Your salary isn&apos;t your paycheck. See what lands in your account
-            after taxes — by month, by paycheck, and by year.
+            after taxes: by month, by paycheck, and by year.
           </p>
           <div className="mt-6">
             <CalcSwitcher base="/tools/budget" current="paycheck" />

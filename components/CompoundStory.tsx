@@ -105,7 +105,7 @@ const STEPS: {
     caption: (
       <>
         <strong>Leo starts at 35</strong> and never misses a month for thirty
-        straight years. He puts in {usd0(72000)} — three times what Maya did.
+        straight years. He puts in {usd0(72000)}, three times what Maya did.
       </>
     ),
   },
@@ -117,7 +117,7 @@ const STEPS: {
       <>
         <strong>At 65, Maya has more.</strong> Ten early years beat thirty
         later ones, on a third of the money. That gap is what this whole
-        article is about — and it&apos;s why the best time to start is the
+        article is about, and it&apos;s why the best time to start is the
         year you&apos;re in.
       </>
     ),

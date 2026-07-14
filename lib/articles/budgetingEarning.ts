@@ -414,7 +414,7 @@ export const budgetingEarningArticles: Article[] = [
       },
       {
         type: "h2",
-        text: "On a tight budget, the answer is used",
+        text: "On a tight budget, buy used",
       },
       {
         type: "p",

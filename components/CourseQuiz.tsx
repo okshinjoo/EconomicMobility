@@ -282,11 +282,11 @@ export default function CourseQuiz({
               </BadgeBurst>
               <div>
                 <p className="font-display text-xl font-semibold text-ink">
-                  {score}/{questions.length} — you&apos;ve mastered {courseTitle}.
+                  {score}/{questions.length}. You&apos;ve mastered {courseTitle}.
                 </p>
                 <p className="mt-1 text-sm leading-6 text-stone">
                   Badge earned. It lives on the Courses page (and only on this
-                  device — it&apos;s just for fun).
+                  device; it&apos;s just for fun).
                 </p>
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function CourseQuiz({
             <p className="font-semibold text-ink">
               {score}/{questions.length}.
               <span className="ml-2 font-normal text-stone">
-                No sweat — the review links above point exactly where to look.
+                No sweat: the review links above point exactly where to look.
                 Pass is {PASS_PERCENT}%.
               </span>
             </p>

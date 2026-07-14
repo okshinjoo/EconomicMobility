@@ -195,7 +195,7 @@ export const budgetingArticles: Article[] = [
     slug: "needs-vs-wants",
     order: 20,
     topicId: "budgeting",
-    title: "Needs vs. Wants — Without the Guilt",
+    title: "Needs vs. Wants, Without the Guilt",
     dek: "Sorting your spending isn't about cutting all the joy out of your life. Promise.",
     level: "Beginner",
     readMinutes: 5,

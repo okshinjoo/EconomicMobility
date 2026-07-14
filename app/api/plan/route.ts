@@ -181,7 +181,7 @@ function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
       // Doing step first (owner rule): the stage's tool leads, reading follows.
       if (stage.tool) {
         const e = byKey.get(`t:${stage.tool.href}`);
-        if (e) itemIds.push(push(e, "Run your own numbers first — the rest of this stage builds on them."));
+        if (e) itemIds.push(push(e, "Run your own numbers first; the rest of this stage builds on them."));
       }
       for (const slug of stage.articleSlugs.slice(0, 2)) {
         const e = byKey.get(`g:${slug}`);
@@ -207,7 +207,7 @@ function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
   if (deadlineIds.length > 0)
     stages.push({
       title: "Mark the dates",
-      why: "Real dates that move real money — get them on your calendar early.",
+      why: "Real dates that move real money. Get them on your calendar early.",
       itemIds: deadlineIds,
     });
 

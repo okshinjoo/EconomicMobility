@@ -9,7 +9,7 @@ import { templates } from "@/lib/templates";
 export const metadata: Metadata = {
   title: "Free Templates | Empower — Economic Mobility Project",
   description:
-    "Free downloadable spreadsheet templates — a monthly budget, a debt payoff tracker, and a savings goal worksheet. They total themselves up. No sign-up.",
+    "Free downloadable spreadsheet templates: a monthly budget, a debt payoff tracker, and a savings goal worksheet. They total themselves up. No sign-up.",
 };
 
 export default function TemplatesPage() {
@@ -47,7 +47,7 @@ export default function TemplatesPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
             Download, open in Excel, Google Sheets, or Numbers, and start
-            filling in. The totals update on their own — no formulas to set up,
+            filling in. The totals update on their own: no formulas to set up,
             no sign-up, nothing saved to our servers.
           </p>
         </div>

@@ -22,7 +22,7 @@ export async function generateMetadata({
   const j = getJourney(goal);
   if (!j) return { title: "Not Found | Empower" };
   return {
-    title: `${j.title} — a guided path | Empower`,
+    title: `${j.title}: a guided path | Empower`,
     description: j.promise,
     alternates: { canonical: `/journey/${goal}` },
   };

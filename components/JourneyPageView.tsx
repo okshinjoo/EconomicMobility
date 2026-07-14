@@ -138,7 +138,7 @@ export default function JourneyPageView({
               >
                 {topic.title}
               </Link>
-              . The full library is always there when you want to wander — and
+              . The full library is always there when you want to wander, and
               if this isn&apos;t the right goal,{" "}
               <Link
                 href={href("/journey")}

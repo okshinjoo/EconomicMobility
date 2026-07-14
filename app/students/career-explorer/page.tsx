@@ -24,15 +24,15 @@ const SAMPLE_CAREERS = [
     name: "Registered Nurse",
     pay: "≈ $94,000/yr median",
     training: "Bachelor's (BSN) or associate + bridge",
-    outlook: "Growing ~6% — steady everywhere",
+    outlook: "Growing ~6%, steady everywhere",
     note: "Hospital tuition-repayment deals are common; SHPEP-style pipelines exist for the pre-health years.",
     tags: ["Health", "License", "Every city"],
   },
   {
     name: "Electrician",
     pay: "≈ $62,000/yr median",
-    training: "Paid apprenticeship — earn while you train, no degree",
-    outlook: "Growing ~11% — faster than average",
+    training: "Paid apprenticeship: earn while you train, no degree",
+    outlook: "Growing ~11%, faster than average",
     note: "Union apprenticeships pay from day one and end with zero student debt.",
     tags: ["Trades", "No degree", "Paid training"],
   },
@@ -40,7 +40,7 @@ const SAMPLE_CAREERS = [
     name: "Software Developer",
     pay: "≈ $133,000/yr median",
     training: "Bachelor's typical; strong portfolio routes exist",
-    outlook: "Growing ~17% — much faster than average",
+    outlook: "Growing ~17%, much faster than average",
     note: "Free training pipelines (CodePath, NPower) and early-ID internships lead straight in.",
     tags: ["Tech", "Remote-friendly", "Portfolio counts"],
   },
@@ -68,7 +68,7 @@ export default function CareerExplorerPreview() {
             Know what the job pays before you pick the path.
           </h1>
           <p className="mt-3 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-            In progress — design preview, nothing live yet
+            In progress: design preview, nothing live yet
           </p>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
             We&apos;re building an explorer that answers the three questions
@@ -92,7 +92,7 @@ export default function CareerExplorerPreview() {
         <div className="mx-auto max-w-6xl px-6 py-12">
           <div className="relative">
             <span className="absolute -top-3 left-6 z-10 -rotate-2 rounded-md border-2 border-ink bg-terracotta px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream shadow-[3px_3px_0_#11211c]">
-              Mockup — sample data
+              Mockup: sample data
             </span>
             <div
               aria-hidden
@@ -171,7 +171,7 @@ export default function CareerExplorerPreview() {
               </h2>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
                 <li>— Around a hundred careers curated from public BLS data: median pay, training required, growth outlook, and what the work actually looks like day to day.</li>
-                <li>— Filters that respect every route: degree paths, paid apprenticeships, and certificate programs side by side — &quot;earn while you train&quot; is a first-class filter, not a footnote.</li>
+                <li>— Filters that respect every route: degree paths, paid apprenticeships, and certificate programs side by side. &quot;Earn while you train&quot; is a first-class filter, not a footnote.</li>
                 <li>— Every career wired to the real doors: matching programs in the Opportunity Finder and awards in the Scholarship Finder.</li>
                 <li>— Typo-tolerant search, like everything else on the site.</li>
               </ul>
@@ -185,7 +185,7 @@ export default function CareerExplorerPreview() {
                 <Link href="/students/opportunities" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
                   Opportunity Finder
                 </Link>{" "}
-                (paid internships, research, and training programs — many
+                (paid internships, research, and training programs, many
                 open in high school), the{" "}
                 <Link href="/students/tools/paycheck" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
                   Paycheck calculator

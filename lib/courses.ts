@@ -696,12 +696,12 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "That's the avalanche method: highest APR first saves the most money. The snowball (smallest first) costs a bit more but buys quick wins — the best method is the one you'll keep running.",
+          "That's the avalanche method: highest APR first saves the most money. The snowball (smallest first) costs a bit more but buys quick wins. The best method is the one you'll keep running.",
         sourceSlug: "paying-off-credit-cards",
       },
       {
         question:
-          "A company says it can cut your debt in half — just stop paying your cards and pay them instead. What are they selling?",
+          "A company says it can cut your debt in half: just stop paying your cards and pay them instead. What are they selling?",
         options: [
           "Debt settlement, which tanks your credit and offers no guarantee creditors will deal",
           "Debt consolidation, a standard banking product",
@@ -722,7 +722,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "A verbal deal can evaporate after you pay. Get the settlement terms in writing first — amount, that it settles the debt in full, and how it will be reported.",
+          "A verbal deal can evaporate after you pay. Get the settlement terms in writing first: amount, that it settles the debt in full, and how it will be reported.",
         sourceSlug: "negotiating-debt",
       },
       {
@@ -730,7 +730,7 @@ export const courses: Course[] = [
           "A debt collector threatens to have you arrested tomorrow if you don't pay tonight. What do you know?",
         options: [
           "You should pay something small to show good faith",
-          "They're breaking the law — collectors can't threaten arrest, and you can demand written validation of the debt",
+          "They're breaking the law. Collectors can't threaten arrest, and you can demand written validation of the debt",
           "You have 24 hours to respond before it goes to court",
         ],
         answer: 1,
@@ -747,7 +747,7 @@ export const courses: Course[] = [
         ],
         answer: 0,
         explain:
-          "The two-week fee looks small, but most borrowers can't repay the full amount plus the fee, so it rolls over — and the fee lands again. That loop is the product.",
+          "The two-week fee looks small, but most borrowers can't repay the full amount plus the fee, so it rolls over, and the fee lands again. That loop is the product.",
         sourceSlug: "payday-loans-and-predatory-lending",
       },
       {
@@ -755,7 +755,7 @@ export const courses: Course[] = [
           "A 'credit repair' service wants $200 up front to remove accurate negative marks. What's the truth?",
         options: [
           "It's worth it for the time saved",
-          "Accurate information can't be removed by anyone — and everything legitimate they'd do, you can do yourself for free",
+          "Accurate information can't be removed by anyone, and everything legitimate they'd do, you can do yourself for free",
           "Only lawyers can remove negative marks",
         ],
         answer: 1,
@@ -797,7 +797,7 @@ export const courses: Course[] = [
         question:
           "Your employer matches 401(k) contributions up to 4% of your salary. What is that match, honestly stated?",
         options: [
-          "A 100% instant return on those dollars — the best deal in personal finance",
+          "A 100% instant return on those dollars, the best deal in personal finance",
           "A loan you repay when you leave the company",
           "A perk that mostly benefits high earners",
         ],
@@ -811,7 +811,7 @@ export const courses: Course[] = [
         options: [
           "An IRA is only for self-employed people",
           "An IRA pays a government-guaranteed return",
-          "You open an IRA yourself at any brokerage — no employer involved, and you pick the investments",
+          "You open an IRA yourself at any brokerage. No employer involved, and you pick the investments",
         ],
         answer: 2,
         explain:
@@ -823,7 +823,7 @@ export const courses: Course[] = [
           "You're early in your career and expect to earn (and be taxed) more later. Which IRA flavor usually wins?",
         options: [
           "Traditional, because the deduction is worth more now",
-          "Roth — pay today's low tax rate, then withdrawals in retirement are tax-free",
+          "Roth: pay today's low tax rate, then withdrawals in retirement are tax-free",
           "They always come out exactly equal",
         ],
         answer: 1,
@@ -841,7 +841,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "The match is free money, so it comes first. After that, an IRA usually offers more fund choices and lower costs — then any remainder goes back into the 401(k).",
+          "The match is free money, so it comes first. After that, an IRA usually offers more fund choices and lower costs. Any remainder goes back into the 401(k).",
         sourceSlug: "401k-vs-ira",
       },
       {
@@ -853,7 +853,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "Every dollar you contributed is yours, period (employer-match dollars may vest on a schedule). A rollover moves it without taxes or penalties — losing track of old accounts is the real risk.",
+          "Every dollar you contributed is yours, period (employer-match dollars may vest on a schedule). A rollover moves it without taxes or penalties; losing track of old accounts is the real risk.",
         sourceSlug: "what-is-a-401k",
       },
     ],
@@ -861,7 +861,7 @@ export const courses: Course[] = [
   {
     id: "taxes-handled",
     title: "Taxes, Handled",
-    goal: "File for the first time without fear — or fees.",
+    goal: "File for the first time without fear, or fees.",
     description:
       "Whether you even need to file, what the forms mean, the free ways to do it, why a refund isn't a bonus, and the credit low-income workers leave on the table.",
     color: "#8a6d1f",
@@ -876,7 +876,7 @@ export const courses: Course[] = [
     finalQuiz: [
       {
         question:
-          "You earned $9,000 at a part-time job — below the filing threshold. Why might you file anyway?",
+          "You earned $9,000 at a part-time job, below the filing threshold. Why might you file anyway?",
         options: [
           "Filing is legally required at any income",
           "Your employer likely withheld tax from each check, and filing is the only way to get that money back",
@@ -884,7 +884,7 @@ export const courses: Course[] = [
         ],
         answer: 1,
         explain:
-          "Below the threshold, filing is optional — but any withheld tax stays with the IRS unless you file to claim it. For low earners, that's often hundreds of dollars.",
+          "Below the threshold, filing is optional, but any withheld tax stays with the IRS unless you file to claim it. For low earners, that's often hundreds of dollars.",
         sourceSlug: "do-you-need-to-file",
       },
       {
@@ -896,7 +896,7 @@ export const courses: Course[] = [
         ],
         answer: 0,
         explain:
-          "The W-2 is your year in one page: what you earned and what was already withheld. If it hasn't arrived by early February, ask your employer — don't guess the numbers.",
+          "The W-2 is your year in one page: what you earned and what was already withheld. If it hasn't arrived by early February, ask your employer. Don't guess the numbers.",
         sourceSlug: "filing-taxes-first-time",
       },
       {
@@ -915,12 +915,12 @@ export const courses: Course[] = [
         question: "What should filing a simple tax return cost you?",
         options: [
           "Around $100 at a preparer, as a necessary safety measure",
-          "Nothing — IRS Direct File, Free File, and VITA volunteer sites all file simple returns for $0",
+          "Nothing: IRS Direct File, Free File, and VITA volunteer sites all file simple returns for $0",
           "A percentage of your refund",
         ],
         answer: 1,
         explain:
-          "Most people with straightforward returns qualify to file completely free. Paid storefronts count on you not knowing that — and 'refund advance' products are loans with fees.",
+          "Most people with straightforward returns qualify to file completely free. Paid storefronts count on you not knowing that, and 'refund advance' products are loans with fees.",
         sourceSlug: "free-ways-to-file",
       },
       {
@@ -928,19 +928,19 @@ export const courses: Course[] = [
         options: [
           "A reward from the government for filing on time",
           "Interest the IRS pays on your withholding",
-          "Your own overpaid tax coming back — an interest-free loan you gave the government all year",
+          "Your own overpaid tax coming back: an interest-free loan you gave the government all year",
         ],
         answer: 2,
         explain:
-          "A big refund means too much was withheld from each check. It feels great, but it was your money all along — adjusting your W-4 puts it in your paychecks instead.",
+          "A big refund means too much was withheld from each check. It feels great, but it was your money all along. Adjusting your W-4 puts it in your paychecks instead.",
         sourceSlug: "tax-refund-explained",
       },
       {
         question:
           "You worked all year at a low wage and owe $0 in tax. What can the Earned Income Tax Credit still do?",
         options: [
-          "Nothing — credits only reduce tax you owe",
-          "Pay you a refund anyway, because the EITC is refundable — up to $8,231 for 2026",
+          "Nothing: credits only reduce tax you owe",
+          "Pay you a refund anyway, because the EITC is refundable (up to $8,231 for 2026)",
           "Roll over to reduce next year's taxes",
         ],
         answer: 1,
@@ -1001,7 +1001,7 @@ export const courses: Course[] = [
       {
         question: "Two award letters show the same 'total aid.' What can still make one offer thousands better?",
         options: [
-          "The mix — how much is grant money versus loans you repay",
+          "The mix: how much is grant money versus loans you repay",
           "Which letter arrived first",
           "The font and letterhead quality",
         ],
@@ -1013,7 +1013,7 @@ export const courses: Course[] = [
       {
         question: "Your family's income dropped after you filed the FAFSA. What's your move?",
         options: [
-          "Nothing — the numbers are locked for the year",
+          "Nothing; the numbers are locked for the year",
           "Ask the aid office for a professional judgment review with proof of the change",
           "Refile the FAFSA under a different name",
         ],
@@ -1131,7 +1131,7 @@ export const courses: Course[] = [
     title: "Transfer Ready",
     goal: "Land at a four-year school with your credits and your aid intact.",
     description:
-      "The community-college-to-university move, end to end: what the route saves, protecting your aid while you're there, choosing target schools by how they'll actually treat you, and comparing offers when the letters land. This module is still being built — the reading path below is live now, and the final (with its badge) is on the way.",
+      "The community-college-to-university move, end to end: what the route saves, protecting your aid while you're there, choosing target schools by how they'll actually treat you, and comparing offers when the letters land. This module is still being built: the reading path below is live now, and the final (with its badge) is on the way.",
     color: "#4b5f8a",
     draft: true,
     articleSlugs: [

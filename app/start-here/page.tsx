@@ -97,7 +97,7 @@ export default function StartHerePage() {
 
         {/* The path — editorial numbered walkthrough with giant numerals */}
         {/* Base44 question-box template's first real home (owner pick from
-            the July 2026 mockups) — the skip-ahead list for people who
+            the July 2026 mockups), the skip-ahead list for people who
             arrive with a question already burning. */}
         <section className="bg-paper">
           <div className="mx-auto max-w-3xl px-6 pt-12">
@@ -105,7 +105,7 @@ export default function StartHerePage() {
               Already have a question?
             </span>
             <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
-              Skip ahead — start with what&apos;s bugging you.
+              Skip ahead. Start with what&apos;s bugging you.
             </h2>
             <div className="mt-6">
               <QuestionBoxes

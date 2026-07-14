@@ -29,7 +29,7 @@ const NEXT_READS = [
   { slug: "cost-of-living", title: "What It Really Costs to Live" },
   { slug: "50-30-20-rule", title: "The 50/30/20 Rule, Explained" },
   { slug: "building-your-first-budget", title: "Building Your First Budget" },
-  { slug: "needs-vs-wants", title: "Needs vs. Wants — Without the Guilt" },
+  { slug: "needs-vs-wants", title: "Needs vs. Wants, Without the Guilt" },
 ];
 
 /** Jump$tart-style grouped slides: a few related questions per screen

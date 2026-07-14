@@ -38,7 +38,7 @@ export default function BudgetToolPage() {
           <p className="mt-4 max-w-2xl text-lg leading-8 text-stone">
             Start with what you earn, see what you actually take home after
             taxes, then map it against what you spend. Everything updates as you
-            type — nothing is saved or sent anywhere.
+            type; nothing is saved or sent anywhere.
           </p>
           <div className="mt-6">
             <CalcSwitcher base="/tools/budget" current="budget" />

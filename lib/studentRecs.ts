@@ -47,7 +47,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
     recs: [
       {
         label: "Scholarships you can win now",
-        desc: "Awards open to high schoolers — some from 9th grade up.",
+        desc: "Awards open to high schoolers, some from 9th grade up.",
         href: "/students/scholarships?stage=high-school",
       },
       {
@@ -67,7 +67,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
       },
       {
         label: "The deadlines that sneak up",
-        desc: "CSS Profile, early decision, FAFSA — with reminders.",
+        desc: "CSS Profile, early decision, FAFSA, with reminders.",
         href: "/students/deadlines",
       },
       {
@@ -77,7 +77,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
       },
       {
         label: "Religious colleges, decoded",
-        desc: "Heritage name or signed covenant — and what each means for aid.",
+        desc: "Heritage name or signed covenant, and what each means for aid.",
         href: "/students/learn/college/religious-colleges-and-money",
       },
       {
@@ -90,7 +90,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
   cc: {
     headline: "In community college",
     blurb:
-      "Your edge is the transfer play: same degree, a fraction of the debt — if every credit moves with you.",
+      "Your edge is the transfer play: same degree, a fraction of the debt, if every credit moves with you.",
     recs: [
       {
         label: "Transfer without losing money",
@@ -104,7 +104,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
       },
       {
         label: "Protect your credits",
-        desc: "Track which units transfer — and which are at risk.",
+        desc: "Track which units transfer and which are at risk.",
         href: "/students/tracker",
       },
       {
@@ -123,7 +123,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
         href: "/students/courses/aid-season-playbook",
       },
       {
-        label: "Transfer Ready — the course",
+        label: "Transfer Ready, the course",
         desc: "Our transfer module, still in progress: the reading path is live now.",
         href: "/students/courses/transfer-ready",
       },
@@ -146,7 +146,7 @@ export const STAGE_PLANS: Record<KnownStage, StagePlan> = {
       },
       {
         label: "Scholarships for current students",
-        desc: "Yes, they exist after freshman year — verified list.",
+        desc: "Yes, they exist after freshman year. Verified list.",
         href: "/students/scholarships?stage=college",
       },
       {

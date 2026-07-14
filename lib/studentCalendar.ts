@@ -48,7 +48,7 @@ export const studentCalendar: StudentDate[] = [
     deadlineId: "tax-day",
     title: "Federal tax deadline",
     detail:
-      "Worked at all during 2026? Filing in spring 2027 is often how students get withheld money BACK — for many, it's a refund, not a bill.",
+      "Worked at all during 2026? Filing in spring 2027 is often how students get withheld money BACK. For many, it's a refund, not a bill.",
     href: "/learn/taxes/filing-taxes-first-time",
     linkLabel: "Filing Taxes for the First Time",
   },
@@ -57,7 +57,7 @@ export const studentCalendar: StudentDate[] = [
     deadlineId: "fafsa-final",
     title: "FAFSA final federal deadline",
     detail:
-      "The absolute last day to file the 2026–27 FAFSA is June 30, 2027 — but by then most school and state money is gone. This date is the backstop, not the plan.",
+      "The absolute last day to file the 2026–27 FAFSA is June 30, 2027, but by then most school and state money is gone. This date is the backstop, not the plan.",
     href: "/learn/college/fafsa-mistakes",
     linkLabel: "The FAFSA Mistakes That Cost Aid",
   },
@@ -73,7 +73,7 @@ export const studentCalendar: StudentDate[] = [
   {
     when: "January 31",
     deadlineId: "w2-tax-season",
-    title: "W-2s arrive — file early",
+    title: "W-2s arrive: file early",
     detail:
       "Employers must send W-2s by January 31. For working students, filing early means the refund (often the year's biggest cash moment) lands months sooner.",
     href: "/learn/taxes/filing-taxes-first-time",
@@ -84,7 +84,7 @@ export const studentCalendar: StudentDate[] = [
     deadlineId: "decision-day",
     title: "College Decision Day",
     detail:
-      "Enrollment deposits are due and your choice locks in. Compare every award letter first — committing before comparing costs people thousands.",
+      "Enrollment deposits are due and your choice locks in. Compare every award letter first; committing before comparing costs people thousands.",
     href: "/learn/college/reading-aid-award-letter",
     linkLabel: "Reading an Aid Award Letter",
   },

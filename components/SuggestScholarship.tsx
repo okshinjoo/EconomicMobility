@@ -48,7 +48,7 @@ export default function SuggestScholarship() {
   if (status === "done") {
     return (
       <p className="rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
-        Thank you — we&apos;ll check it against the official page, and if it
+        Thank you! We&apos;ll check it against the official page, and if it
         clears the bar (free, real, no data harvesting) it joins the list.
       </p>
     );
@@ -60,7 +60,7 @@ export default function SuggestScholarship() {
         Know a real scholarship we&apos;re missing?
       </p>
       <p className="mt-1 text-xs leading-5 text-stone">
-        Every suggestion gets checked by hand before it appears — free to
+        Every suggestion gets checked by hand before it appears: free to
         apply, official page live, no strings.
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
@@ -76,7 +76,7 @@ export default function SuggestScholarship() {
           onChange={(e) => setUrl(e.target.value)}
           required
           type="url"
-          placeholder="Official page — https://…"
+          placeholder="Official page, https://…"
           className="min-w-0 flex-1 basis-56 rounded-lg border-2 border-ink/15 bg-paper px-3 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
         />
       </div>
@@ -97,7 +97,7 @@ export default function SuggestScholarship() {
       </div>
       {status === "error" && (
         <p className="mt-2 text-xs font-semibold text-terracotta">
-          Couldn&apos;t send just now — or email{" "}
+          Couldn&apos;t send just now. You can also email{" "}
           <a href="mailto:scholarships@economicmobilityproject.org" className="underline">
             scholarships@economicmobilityproject.org
           </a>

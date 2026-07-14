@@ -110,7 +110,7 @@ export default function PrivacyPage() {
           <p className="mt-3">
             The guides and tools are for everyone. Creating an account
             requires being <strong className="text-ink">13 or older</strong>.
-            If you&apos;re under 13, keep using the site logged out — you
+            If you&apos;re under 13, keep using the site logged out; you
             lose nothing except cross-device sync. If we learn an account
             belongs to someone under 13, we&apos;ll delete it.
           </p>

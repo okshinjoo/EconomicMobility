@@ -210,8 +210,8 @@ export default function TopicPageView({
               <p className="mt-1.5 text-sm text-stone">
                 {allInOrder.length} guides,{" "}
                 {sections
-                  ? "grouped by what you're working on — read in any order."
-                  : "building from the basics up — read in any order."}
+                  ? "grouped by what you're working on. Read in any order."
+                  : "building from the basics up. Read in any order."}
                 <TopicProgress
                   slugs={allInOrder.map((a) => a.slug)}
                   accent={accent}

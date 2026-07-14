@@ -272,7 +272,7 @@ export const budgetingMoneyArticles: Article[] = [
     slug: "avoiding-bank-fees",
     order: 70,
     topicId: "budgeting",
-    title: "Bank Fees and Overdrafts — and How to Dodge Them",
+    title: "Bank Fees and Overdrafts, and How to Dodge Them",
     dek: "Banks can quietly drain a tight account a few dollars at a time. Here's how to keep your money yours.",
     level: "Beginner",
     readMinutes: 4,

@@ -8,7 +8,7 @@ import { communityQuestions } from "@/lib/communityQuestions";
 import { getTopic } from "@/lib/topics";
 
 export const metadata: Metadata = {
-  title: "Ask Empower — Real Money Questions, Answered",
+  title: "Ask Empower: Real Money Questions, Answered",
   description:
     "Ask any money question anonymously, with no account and no judgment. We answer the most useful ones here, in plain English.",
 };

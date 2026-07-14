@@ -433,13 +433,13 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
         </button>
       </div>
       <p className="mt-2 text-xs leading-5 text-stone">
-        Reviewed by a real person before it appears. We never sell your data
-        {" — "}
+        Reviewed by a real person before it appears. We never sell your data.
+        {" "}
         <Link
           href="/privacy"
           className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
         >
-          privacy policy
+          Privacy policy
         </Link>
         .
       </p>
@@ -614,7 +614,7 @@ function CommentForm({
           </button>
           <span className="text-xs text-stone">
             {session
-              ? "Checked automatically — most comments publish right away."
+              ? "Checked automatically; most comments publish right away."
               : "Reviewed before it appears for everyone."}
           </span>
           {status === "error" && (
@@ -1863,8 +1863,8 @@ export default function CommunityFeed({
           <div className="flex overflow-hidden rounded-lg border border-sand">
             {(
               [
-                ["compact", List, "Compact view — titles only"],
-                ["card", LayoutGrid, "Card view — full posts"],
+                ["compact", List, "Compact view: titles only"],
+                ["card", LayoutGrid, "Card view: full posts"],
               ] as const
             ).map(([v, Icon, tip]) => (
               <button
@@ -1970,7 +1970,7 @@ export default function CommunityFeed({
         sort !== "top" &&
         active !== "all" && (
           <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
-            Nothing in {getChannel(active).name} yet — hit{" "}
+            Nothing in {getChannel(active).name} yet. Hit{" "}
             <button
               type="button"
               onClick={openComposer}
@@ -1983,7 +1983,7 @@ export default function CommunityFeed({
         )}
       {visiblePosts.length === 0 && savedOnly && !pq && (
         <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
-          Nothing saved yet — hit Save on any post and it lands here.
+          Nothing saved yet. Hit Save on any post and it lands here.
         </p>
       )}
       {visiblePosts.length === 0 && followingOnly && !savedOnly && (
@@ -1994,7 +1994,7 @@ export default function CommunityFeed({
       )}
       {visiblePosts.length === 0 && !followingOnly && sort === "top" && (
         <p className="rounded-2xl border border-sand bg-cream p-6 text-sm text-stone">
-          Nothing posted in this window yet — try a longer range.
+          Nothing posted in this window yet. Try a longer range.
         </p>
       )}
       {visiblePosts.map((post) =>

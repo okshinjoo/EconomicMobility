@@ -16,7 +16,7 @@ export default function RentPage() {
       categoryLabel="Budgeting & Income"
       eyebrow="Rent Affordability"
       title="How much rent can you afford?"
-      dek="A simple, honest read on what fits your income — so rent leaves room for everything else."
+      dek="A simple, honest read on what fits your income, so rent leaves room for everything else."
     >
       <RentCalculator />
     </CalcPageShell>

@@ -82,7 +82,7 @@ export default function ResetPasswordForm() {
         <Loader2 className="mx-auto h-6 w-6 animate-spin text-stone" />
         <p className="mt-3 text-sm leading-6 text-stone">
           Checking your reset link… If this never loads, the link may have
-          expired — request a fresh one from the{" "}
+          expired. Request a fresh one from the{" "}
           <a href="/account" className="font-semibold text-forest">
             sign-in page
           </a>

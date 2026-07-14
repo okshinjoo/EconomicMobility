@@ -32,7 +32,7 @@ export default function PlanPageView({ frame }: { frame: Frame }) {
             <span className="italic text-amber">One plan that&apos;s yours.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            Talk it out with the guide — or take the quick form — and
+            Talk it out with the guide (or take the quick form) and
             we&apos;ll line up the right guides, calculators, and deadlines
             in the order that makes sense for you. It plays back what it
             heard before building, and you can flag anything that

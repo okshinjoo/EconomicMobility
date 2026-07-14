@@ -52,7 +52,7 @@ function emailHtml(d: Deadline, token: string): string {
     <p style="margin:14px 0;font-size:15px;line-height:1.6;color:#44514a">${d.why}</p>
     <a href="${SITE}${d.href}" style="display:inline-block;background:#e7a33c;color:#11211c;font-weight:700;font-size:14px;text-decoration:none;padding:11px 20px;border:2px solid #11211c;border-radius:8px">Read the guide</a>
     <p style="margin:22px 0 0;font-size:12px;line-height:1.6;color:#44514a">You asked for deadline reminders from Empower (economicmobilityproject.org). Everything on the site is free, and we never sell your data.
-    <a href="${SITE}/api/reminders/unsubscribe?t=${token}" style="color:#0c4a39">Unsubscribe</a> anytime — one click, no questions.</p>
+    <a href="${SITE}/api/reminders/unsubscribe?t=${token}" style="color:#0c4a39">Unsubscribe</a> anytime: one click, no questions.</p>
   </div></body></html>`;
 }
 

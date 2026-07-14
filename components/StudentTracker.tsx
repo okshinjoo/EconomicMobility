@@ -42,7 +42,7 @@ const MODES: { id: TrackerMode; label: string; blurb: string }[] = [
     id: "hs",
     label: "High school",
     blurb:
-      "Track your classes and GPA — and flag the AP, IB, and dual-enrollment ones, because those bank real college units before you've paid a tuition bill.",
+      "Track your classes and GPA, and flag the AP, IB, and dual-enrollment ones, because those bank real college units before you've paid a tuition bill.",
   },
   {
     id: "cc",
@@ -210,7 +210,7 @@ export default function StudentTracker() {
               <p className={tileLabelCls}>Transferable units</p>
               {summary.unitsAtRisk > 0 && (
                 <p className="mt-1.5 text-xs font-semibold text-terracotta">
-                  {summary.unitsAtRisk} units not confirmed — check ASSIST
+                  {summary.unitsAtRisk} units not confirmed. Check ASSIST
                 </p>
               )}
             </div>
@@ -263,7 +263,7 @@ export default function StudentTracker() {
               <p className={tileLabelCls}>Units to go</p>
               <p className="mt-1.5 text-xs leading-4 text-stone">
                 {summary.unitsToGo === 0
-                  ? "Target reached — check your degree audit."
+                  ? "Target reached. Check your degree audit."
                   : `≈ ${summary.termsToGo} full-time term${
                       summary.termsToGo === 1 ? "" : "s"
                     } at ${UNITS_PER_TERM}/term`}
@@ -281,7 +281,7 @@ export default function StudentTracker() {
         <p className="mt-1.5 text-sm leading-6 text-stone">
           {mode === "hs" && (
             <>
-              Flag the classes that earn college credit — AP and IB (via the
+              Flag the classes that earn college credit: AP and IB (via the
               exams) and dual enrollment (units the moment you pass). Those
               flags are what the savings number counts.
             </>
@@ -289,7 +289,7 @@ export default function StudentTracker() {
           {mode === "cc" && (
             <>
               Mark a course transferable only after you&apos;ve seen it in a
-              current agreement —{" "}
+              current agreement.{" "}
               <a
                 href="https://assist.org"
                 target="_blank"
@@ -528,7 +528,7 @@ export default function StudentTracker() {
         />
         {data.apps.some((a) => a.status === "lost") && (
           <p className="mt-3 text-xs leading-5 text-stone">
-            A no isn&apos;t wasted — the essay you wrote is a draft for the
+            A no isn&apos;t wasted: the essay you wrote is a draft for the
             next one. Most winners lost plenty first.
           </p>
         )}
@@ -604,7 +604,7 @@ export default function StudentTracker() {
       <p className="mt-3 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
         Everything here stays on your device (and syncs to your account if
         you have one). The GPA is an unofficial estimate on the standard 4.0
-        scale — your transcript is the real record.{" "}
+        scale; your transcript is the real record.{" "}
         {mode === "hs" && (
           <>
             AP and IB credit depends on your exam score and where you enroll;
@@ -708,8 +708,8 @@ function AddCourse({
         onChange={(e) => setName(e.target.value)}
         placeholder={
           mode === "hs"
-            ? "Class name — “AP Biology”"
-            : "Course name — “English 1A”"
+            ? "Class name, like “AP Biology”"
+            : "Course name, like “English 1A”"
         }
         className="min-w-0 flex-1 basis-52 rounded-lg border-2 border-ink/15 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
       />
@@ -764,7 +764,7 @@ function AddApp({ onAdd }: { onAdd: (a: ScholarshipApp) => void }) {
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Scholarship name — “Dell Scholars”"
+        placeholder="Scholarship name, like “Dell Scholars”"
         className="min-w-0 flex-1 basis-52 rounded-lg border-2 border-ink/15 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
       />
       <input
@@ -778,7 +778,7 @@ function AddApp({ onAdd }: { onAdd: (a: ScholarshipApp) => void }) {
       <input
         value={due}
         onChange={(e) => setDue(e.target.value)}
-        placeholder="Due — “March 1”"
+        placeholder="Due date, like “March 1”"
         aria-label="Deadline"
         className="w-32 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
       />

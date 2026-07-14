@@ -9,7 +9,7 @@ import CollegeCalculator from "@/components/CollegeCalculator";
 export const metadata: Metadata = {
   title: "College Cost Estimator | Empower — Economic Mobility Project",
   description:
-    "Estimate the real cost of college after aid — your yearly gap, the loans it might take to fill it, and roughly what you'd repay each month.",
+    "Estimate the real cost of college after aid: your yearly gap, the loans it might take to fill it, and roughly what you'd repay each month.",
 };
 
 export default function CollegeToolPage() {

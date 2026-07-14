@@ -16,7 +16,7 @@ import { opportunities } from "@/lib/opportunities";
 export const metadata: Metadata = {
   title: "Internships & Opportunities | Empower — Economic Mobility Project",
   description:
-    "Hand-verified internships, fellowships, research programs, and college-access programs for first-gen, low-income, and immigrant students — free to apply, many of them paid.",
+    "Hand-verified internships, fellowships, research programs, and college-access programs for first-gen, low-income, and immigrant students. Free to apply, many of them paid.",
 };
 
 const AUDIENCE_DOORS = [
@@ -73,13 +73,13 @@ export default function OpportunitiesPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/80">
             {opportunities.length} real internships, fellowships, research
-            programs, and college-access programs — each one verified by us,
+            programs, and college-access programs, each one verified by us,
             free to apply, and linked straight to its official page. Many pay
             you; none charge you.
           </p>
           <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-ink">
             These are the doors scholarships don&apos;t open: work
-            experience, a research line on your resume, and a network —
+            experience, a research line on your resume, and a network,
             often with a stipend attached.
           </p>
 
@@ -121,7 +121,7 @@ export default function OpportunitiesPage() {
                 Scholarships pay for school. Opportunities pay you.
               </p>
               <p className="mt-1.5 text-sm leading-6 text-stone">
-                Work both lists each season — the{" "}
+                Work both lists each season. The{" "}
                 <Link
                   href="/students/scholarships"
                   className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"

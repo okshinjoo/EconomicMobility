@@ -77,7 +77,7 @@ export default function QuestionStrip({ pool }: { pool: StripQuestion[] }) {
           </Link>
           {item.student && (
             <p className="pb-5 text-sm leading-6 text-cream/70">
-              A student question — the whole hub is at{" "}
+              A student question; the whole hub is at{" "}
               <Link
                 href="/students"
                 className="font-semibold text-amber underline decoration-amber/40 underline-offset-4 hover:text-cream"

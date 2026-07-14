@@ -8,7 +8,7 @@ import LoanCalculator, { type LoanConfig } from "@/components/LoanCalculator";
 
 export const metadata: Metadata = {
   title: "Mortgage Calculator | Empower Students",
-  description: "What a home really costs each month — loan, taxes, and insurance together.",
+  description: "What a home really costs each month: loan, taxes, and insurance together.",
   alternates: { canonical: "/tools/debt/mortgage" },
 };
 
@@ -33,7 +33,7 @@ const config: LoanConfig = {
 
 export default function Page() {
   return (
-    <StudentToolShell title="Mortgage Calculator" dek="What a home really costs each month — loan, taxes, and insurance together.">
+    <StudentToolShell title="Mortgage Calculator" dek="What a home really costs each month: loan, taxes, and insurance together.">
       <LoanCalculator config={config} />
     </StudentToolShell>
   );

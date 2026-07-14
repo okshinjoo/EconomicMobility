@@ -29,7 +29,7 @@ export default function InvestmentPage() {
       categoryLabel="Saving & Investing"
       eyebrow="Investment Growth"
       title="Put a lump sum to work."
-      dek="Got a tax refund, a gift, or some savings to invest? See what it could become over time — and how much extra adding a little each month makes."
+      dek="Got a tax refund, a gift, or some savings to invest? See what it could become over time, and how much extra adding a little each month makes."
     >
       <GrowthCalculator config={config} />
     </CalcPageShell>

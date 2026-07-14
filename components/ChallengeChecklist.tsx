@@ -96,7 +96,7 @@ export default function ChallengeChecklist({
             Ready? It&apos;s {total} steps, at your own pace.
           </p>
           <p className="mt-2 text-sm leading-6 text-stone">
-            Joining just starts your checklist on this device — no account, no
+            Joining just starts your checklist on this device: no account, no
             email. Share how it goes in the challenge thread.
           </p>
           <button
@@ -197,7 +197,7 @@ export default function ChallengeChecklist({
               You finished {challenge.title}.
             </p>
             <p className="mt-1 text-sm leading-6 text-stone">
-              Badge earned{badge ? "" : " (already on your shelf)"} — it lives
+              Badge earned{badge ? "" : " (already on your shelf)"}. It lives
               on the Challenges page and the homepage. Tell the thread how it
               went; your version helps the next person.
             </p>

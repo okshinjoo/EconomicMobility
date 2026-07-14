@@ -128,7 +128,7 @@ export default function ScholarshipFinder() {
       <p className="mt-3 text-sm font-medium text-stone">
         {results.length} of {scholarships.length} scholarships
         {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
-        {undocOnly && " · no citizenship requirement"} — ordered by where
+        {undocOnly && " · no citizenship requirement"}, ordered by where
         they fall in the school year.
       </p>
 
@@ -193,7 +193,7 @@ export default function ScholarshipFinder() {
 
       {results.length === 0 && (
         <p className="mt-6 text-base leading-7 text-stone">
-          Nothing matches those filters. Widen the search — and remember this
+          Nothing matches those filters. Widen the search, and remember this
           list is a curated starting lineup, not the whole universe:{" "}
           <a
             href={frameHref("/learn/college/finding-scholarships", frame)}
@@ -207,8 +207,8 @@ export default function ScholarshipFinder() {
 
       <p className="mt-8 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
         Every entry checked by hand against the program&apos;s official
-        site by Shinjoo, Empower&apos;s founder — verified {VERIFIED_AS_OF}. Exact dates and amounts shift a little each year, so
-        always confirm on the official page before you plan around one —
+        site by Shinjoo, Empower&apos;s founder, and verified {VERIFIED_AS_OF}. Exact dates and amounts shift a little each year, so
+        always confirm on the official page before you plan around one;
         that&apos;s where the link on each card goes. We never list
         scholarships that charge fees or exist to harvest your data. Run a
         real scholarship we should include? Email{" "}

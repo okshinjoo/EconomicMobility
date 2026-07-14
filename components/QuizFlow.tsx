@@ -456,7 +456,7 @@ export default function QuizFlow({
                     Optional
                   </span>
                   <span className="font-medium text-ink/80">
-                    A quick gut-check to fine-tune your results — nothing is
+                    A quick gut-check to fine-tune your results; nothing is
                     graded, and you can skip it.
                   </span>
                 </div>

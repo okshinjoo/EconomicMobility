@@ -87,7 +87,7 @@ export default function CoursePageView({
             The reading path
           </h2>
           <p className="mt-1.5 text-sm text-stone">
-            In order — each guide builds on the one before it.
+            In order; each guide builds on the one before it.
           </p>
           <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((a, i) => (
@@ -143,7 +143,7 @@ export default function CoursePageView({
                 >
                   glossary
                 </Link>
-                . Flip through before the final — if a term feels fuzzy, the
+                . Flip through before the final: if a term feels fuzzy, the
                 guide it came from is one click back up the page.
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function CoursePageView({
                 </span>
                 <p className="mt-4 text-base leading-7 text-ink">
                   This module is still being built. The reading path and
-                  flashcards above are real and ready now — the final exam
+                  flashcards above are real and ready now; the final exam
                   (and the badge that comes with it) is being written. Read
                   the guides in the meantime; everything you finish counts
                   the moment the final lands.

@@ -66,10 +66,10 @@ const NAV: StudentNavEntry[] = [
     label: "Guides",
     href: "/students/learn/college",
     items: [
-      { label: "College & aid guides", href: "/students/learn/college", desc: "All 33 — aid, admissions, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
+      { label: "College & aid guides", href: "/students/learn/college", desc: "All 33: aid, admissions, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one form that unlocks most college aid.", icon: FileText, color: "#0c4a39" },
       { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
-      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards — beyond tuition.", icon: Wallet, color: "#15624b" },
+      { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards. Beyond tuition.", icon: Wallet, color: "#15624b" },
     ],
     footer: [
       { label: "All nine money topics", href: "/students/learn" },
@@ -81,9 +81,9 @@ const NAV: StudentNavEntry[] = [
     label: "Your Path",
     href: "/students/journey/college",
     items: [
-      { label: "Pay for college — the path", href: "/students/journey/college", desc: "Ordered milestones, FAFSA to signing day.", icon: Map, color: "#c9842a" },
+      { label: "Pay for college: the path", href: "/students/journey/college", desc: "Ordered milestones, FAFSA to signing day.", icon: Map, color: "#c9842a" },
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
-      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA — for HS, CC, and university.", icon: ClipboardList, color: "#0c4a39" },
+      { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, for HS, CC, and university.", icon: ClipboardList, color: "#0c4a39" },
       { label: "My Plan", href: "/students/plan", desc: "Five questions, one personal plan that checks itself off.", icon: Compass, color: "#15624b" },
     ],
     footer: [
@@ -96,8 +96,8 @@ const NAV: StudentNavEntry[] = [
     label: "Deadlines",
     href: "/students/deadlines",
     items: [
-      { label: "The money calendar", href: "/students/deadlines", desc: "Every date that moves real money — plus the deadline guides.", icon: CalendarDays, color: "#c4573b" },
-      { label: "Email reminders", href: "/students/deadlines#reminders", desc: "Deadline nudges + college advice — pick what you want.", icon: Mail, color: "#0c4a39" },
+      { label: "The money calendar", href: "/students/deadlines", desc: "Every date that moves real money, plus the deadline guides.", icon: CalendarDays, color: "#c4573b" },
+      { label: "Email reminders", href: "/students/deadlines#reminders", desc: "Deadline nudges + college advice. Pick what you want.", icon: Mail, color: "#0c4a39" },
     ],
     footer: [
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step" },
@@ -109,10 +109,10 @@ const NAV: StudentNavEntry[] = [
     href: "/students/scholarships",
     columns: 2,
     items: [
-      { label: "The Scholarship Finder", href: "/students/scholarships", desc: "Verified awards, hand-checked — filters for your stage.", icon: Award, color: "#c9842a" },
-      { label: "Big national databases", href: "/students/scholarships#more", desc: "BigFuture, Immigrants Rising, UNCF — the deep wells.", icon: Search, color: "#0c4a39" },
+      { label: "The Scholarship Finder", href: "/students/scholarships", desc: "Verified awards, hand-checked, with filters for your stage.", icon: Award, color: "#c9842a" },
+      { label: "Big national databases", href: "/students/scholarships#more", desc: "BigFuture, Immigrants Rising, UNCF: the deep wells.", icon: Search, color: "#0c4a39" },
       { label: "Winning scholarships", href: "/students/learn/college/finding-scholarships", desc: "Where to look and how to actually win.", icon: FileText, color: "#c4573b" },
-      { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first — know the difference.", icon: Landmark, color: "#15624b" },
+      { label: "Grants vs. loans vs. scholarships", href: "/students/learn/college/grants-loans-scholarships", desc: "Free money first. Know the difference.", icon: Landmark, color: "#15624b" },
       { label: "Undocumented & DACA aid", href: "/students/learn/college/undocumented-daca-aid", desc: "Real aid paths that don't require citizenship.", icon: HeartHandshake, color: "#c9842a" },
     ],
     footer: [
@@ -125,20 +125,20 @@ const NAV: StudentNavEntry[] = [
     label: "Opportunities",
     href: "/students/opportunities",
     items: [
-      { label: "The opportunity finder", href: "/students/opportunities", desc: "Internships, fellowships, research — verified, many paid.", icon: Briefcase, color: "#c9842a" },
+      { label: "The opportunity finder", href: "/students/opportunities", desc: "Internships, fellowships, research. Verified, many paid.", icon: Briefcase, color: "#c9842a" },
       { label: "Paid internships", href: "/students/opportunities?type=internship", desc: "Programs that pay you while you learn the field.", icon: Banknote, color: "#0c4a39" },
       { label: "Research programs", href: "/students/opportunities?type=research", desc: "Summer research with stipends, high school and college.", icon: Search, color: "#c4573b" },
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Wallet, color: "#15624b" },
-      { label: "Career Explorer", href: "/students/career-explorer", desc: "In progress — a preview of what's coming.", icon: Telescope, color: "#4b5f8a" },
+      { label: "Career Explorer", href: "/students/career-explorer", desc: "In progress: a preview of what's coming.", icon: Telescope, color: "#4b5f8a" },
     ],
   },
   {
     label: "Community",
     href: "/students/community",
     items: [
-      { label: "The Students channel", href: "/students/community", desc: "Aid, loans, first paychecks — people in your semester.", icon: Users, color: "#0c4a39" },
-      { label: "Introduce yourself", href: "/students/community/post/say-hello", desc: "The start-here thread — say hi, no stakes.", icon: MessageCircle, color: "#c9842a" },
-      { label: "Ask a question anonymously", href: "/ask", desc: "No account, no name — we answer the good ones. (main site)", icon: HelpCircle, color: "#c4573b" },
+      { label: "The Students channel", href: "/students/community", desc: "Aid, loans, first paychecks, with people in your semester.", icon: Users, color: "#0c4a39" },
+      { label: "Introduce yourself", href: "/students/community/post/say-hello", desc: "The start-here thread. Say hi, no stakes.", icon: MessageCircle, color: "#c9842a" },
+      { label: "Ask a question anonymously", href: "/ask", desc: "No account, no name. We answer the good ones. (main site)", icon: HelpCircle, color: "#c4573b" },
     ],
   },
   {
@@ -146,7 +146,7 @@ const NAV: StudentNavEntry[] = [
     href: "/students/tools",
     columns: 2,
     items: [
-      { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house — numbers follow you.", icon: Wrench, color: "#0c4a39" },
+      { label: "All tools", href: "/students/tools", desc: "Every calculator, in-house. Your numbers follow you.", icon: Wrench, color: "#0c4a39" },
       { label: "College Cost", href: "/students/tools/college-cost", desc: "The gap after aid, and what filling it costs.", icon: Calculator, color: "#c9842a" },
       { label: "Compare Aid Offers", href: "/students/tools/compare-offers", desc: "Two award letters, side by side.", icon: Scale, color: "#15624b" },
       { label: "Student Loan", href: "/students/tools/student-loan", desc: "The real monthly cost of borrowing.", icon: Banknote, color: "#0c4a39" },

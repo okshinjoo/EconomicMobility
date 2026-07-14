@@ -30,7 +30,7 @@ const TOPIC_SECTIONS: Partial<Record<TopicId, TopicSectionDef[]>> = {
       id: "aid",
       title: "Paying for it",
       blurb:
-        "FAFSA to award letter to appeal — the forms and plays that decide your price.",
+        "FAFSA to award letter to appeal: the forms and plays that decide your price.",
       slugs: [
         "fafsa-step-by-step",
         "college-money-roadmap",
@@ -91,7 +91,7 @@ const TOPIC_SECTIONS: Partial<Record<TopicId, TopicSectionDef[]>> = {
       id: "big-moves",
       title: "Big moves",
       blurb:
-        "Transferring, taking a break, graduating — the checkpoints where the money shifts.",
+        "Transferring, taking a break, graduating: the checkpoints where the money shifts.",
       slugs: [
         "community-college-transfer-money",
         "taking-a-break-from-college",

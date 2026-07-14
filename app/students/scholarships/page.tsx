@@ -22,7 +22,7 @@ const AUDIENCE_DOORS = [
 export const metadata: Metadata = {
   title: "Scholarship Finder | Empower — Economic Mobility Project",
   description:
-    "A curated, verified list of real national scholarships for first-gen, low-income, immigrant, and transfer students — filterable by where you are in school, ordered by application season.",
+    "A curated, verified list of real national scholarships for first-gen, low-income, immigrant, and transfer students, filterable by where you are in school, ordered by application season.",
 };
 
 export default function ScholarshipsPage() {
@@ -54,7 +54,7 @@ export default function ScholarshipsPage() {
             <span className="italic text-amber">starting lineup.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/80">
-            {scholarships.length} real, established awards — each one verified
+            {scholarships.length} real, established awards, each one verified
             by us, linked straight to its official site, and ordered by where
             it falls in the school year. No fees, no data harvesting, no
             sweepstakes dressed up as scholarships.
@@ -117,7 +117,7 @@ export default function ScholarshipsPage() {
           </h2>
           <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
             Beyond the national awards above, most states run their own grant
-            and promise programs — some cover community college entirely, and
+            and promise programs; some cover community college entirely, and
             many award first-come, first-served with{" "}
             <Link
               href="/students/deadlines"
@@ -145,7 +145,7 @@ export default function ScholarshipsPage() {
             More places to search
           </h2>
           <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
-            Free, reputable searchers worth your time — no fees, and no
+            Free, reputable searchers worth your time: no fees, and no
             handing your data to a marketing machine.
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -159,7 +159,7 @@ export default function ScholarshipsPage() {
                 BigFuture
               </h3>
               <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
-                The College Board&apos;s search — the largest reputable free
+                The College Board&apos;s search, the largest reputable free
                 database, searchable without an account.
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
@@ -177,7 +177,7 @@ export default function ScholarshipsPage() {
               </h3>
               <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
                 Keeps the gold-standard list of scholarships and fellowships
-                that don&apos;t require citizenship or residency — look for
+                that don&apos;t require citizenship or residency. Look for
                 their scholarship list under Resources.
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
@@ -194,7 +194,7 @@ export default function ScholarshipsPage() {
                 CareerOneStop
               </h3>
               <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
-                The U.S. Department of Labor&apos;s free scholarship finder —
+                The U.S. Department of Labor&apos;s free scholarship finder,
                 thousands of awards, no account needed.
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
@@ -212,7 +212,7 @@ export default function ScholarshipsPage() {
               </h3>
               <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
                 The country&apos;s largest scholarship provider for Black
-                students — one portal, many awards on rolling deadlines.
+                students: one portal, many awards on rolling deadlines.
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
                 Browse UNCF awards
@@ -222,12 +222,12 @@ export default function ScholarshipsPage() {
           <p className="mt-6 text-sm leading-6 text-stone">
             And the source no database has: local money. Community
             foundations, employers, and your counselor&apos;s list have the
-            best odds in the whole game —{" "}
+            best odds in the whole game.{" "}
             <Link
               href={frameHref("/learn/college/finding-scholarships", "student")}
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
-              here&apos;s how to work them
+              Here&apos;s how to work them
             </Link>
             .
           </p>

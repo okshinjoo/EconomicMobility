@@ -82,7 +82,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
             Nine core topics, each built as a clear path from the absolute
-            basics to the stuff that takes you further. Start anywhere — or
+            basics to the stuff that takes you further. Start anywhere, or
             let the quiz pick for you.
           </p>
           <p className="mt-4 text-sm font-semibold text-cream/70">
@@ -348,7 +348,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
               <span className="italic text-amber">zero jargon.</span>
             </h2>
             <p className="mt-4 max-w-lg text-base leading-7 text-cream/75">
-              Every term the guides use is defined in plain English — and
+              Every term the guides use is defined in plain English, and
               inside any guide, the first mention of a term shows its
               definition right where you&apos;re reading. Hit a word you
               don&apos;t know anywhere else? Look it up in seconds.

@@ -29,7 +29,7 @@ export default function RetirementPage() {
       categoryLabel="Saving & Investing"
       eyebrow="Retirement Calculator"
       title="It's never too early to start."
-      dek="Retirement feels far off, but time is the biggest factor. See what steady saving could grow into by the time you retire — and how much is pure growth."
+      dek="Retirement feels far off, but time is the biggest factor. See what steady saving could grow into by the time you retire, and how much is pure growth."
     >
       <GrowthCalculator config={config} />
     </CalcPageShell>

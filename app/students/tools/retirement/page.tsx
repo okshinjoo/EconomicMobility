@@ -8,7 +8,7 @@ import GrowthCalculator, { type GrowthConfig } from "@/components/GrowthCalculat
 
 export const metadata: Metadata = {
   title: "Retirement Calculator | Empower Students",
-  description: "From your age now to retirement age — what your savings could become.",
+  description: "From your age now to retirement age: what your savings could become.",
   alternates: { canonical: "/tools/savings/retirement" },
 };
 
@@ -25,7 +25,7 @@ const config: GrowthConfig = {
 
 export default function Page() {
   return (
-    <StudentToolShell title="Retirement Calculator" dek="From your age now to retirement age — what your savings could become.">
+    <StudentToolShell title="Retirement Calculator" dek="From your age now to retirement age: what your savings could become.">
       <GrowthCalculator config={config} />
     </StudentToolShell>
   );

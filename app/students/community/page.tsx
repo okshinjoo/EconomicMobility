@@ -6,7 +6,7 @@ import { communityPosts, getMemberIndex } from "@/lib/communityFeed";
 export const metadata: Metadata = {
   title: "Students Community | Empower — Economic Mobility Project",
   description:
-    "The Students channel: financial aid questions, loan decisions, first paychecks, and transfer plans — asked and answered by people in the same semester you're in.",
+    "The Students channel: financial aid questions, loan decisions, first paychecks, and transfer plans, asked and answered by people in the same semester you're in.",
 };
 
 // The community, opened inside the student microsite: same feed, same
@@ -29,7 +29,7 @@ export default function StudentsCommunityPage() {
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-7 text-stone">
             Aid questions, loan decisions, first paychecks, transfer plans.
-            You&apos;re starting in the Students rooms — the rail on the left
+            You&apos;re starting in the Students rooms; the rail on the left
             has every other conversation when you want it.
           </p>
         </div>

@@ -5,7 +5,7 @@ import LoanCalculator, { type LoanConfig } from "@/components/LoanCalculator";
 export const metadata: Metadata = {
   title: "Mortgage Calculator | Empower — Economic Mobility Project",
   description:
-    "Estimate a monthly mortgage payment — principal, interest, and optional taxes and insurance — plus the total interest over the loan.",
+    "Estimate a monthly mortgage payment (principal, interest, and optional taxes and insurance) plus the total interest over the loan.",
 };
 
 const config: LoanConfig = {
@@ -35,7 +35,7 @@ export default function MortgagePage() {
       categoryLabel="Debt & Loans"
       eyebrow="Mortgage Calculator"
       title="What a home would cost each month."
-      dek="Even if buying is years away, see how price, down payment, rate, and term shape a monthly mortgage payment — and the interest over 15 or 30 years."
+      dek="Even if buying is years away, see how price, down payment, rate, and term shape a monthly mortgage payment, and the interest over 15 or 30 years."
     >
       <LoanCalculator config={config} />
     </CalcPageShell>

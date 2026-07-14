@@ -96,7 +96,7 @@ export const topics: Topic[] = [
     title: "Home Ownership",
     short: "Home Ownership",
     description:
-      "From renting to buying — understand mortgages, down payments, and what it really takes to own a home.",
+      "From renting to buying: understand mortgages, down payments, and what it really takes to own a home.",
     href: "/learn/home-ownership",
     color: "#b7593f",
     image: "/images/topics/home-ownership.jpg",
@@ -129,7 +129,7 @@ export const topics: Topic[] = [
     title: "Insurance Basics",
     short: "Insurance",
     description:
-      "Health, auto, renters, and life insurance — what the confusing words mean and how to pick coverage without overpaying.",
+      "Health, auto, renters, and life insurance: what the confusing words mean and how to pick coverage without overpaying.",
     href: "/learn/insurance",
     color: "#3f6478",
     image: "/images/topics/insurance.jpg",

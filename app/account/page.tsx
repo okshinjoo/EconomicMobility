@@ -11,7 +11,7 @@ import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 export const metadata: Metadata = {
   title: "Your Account | Empower — Economic Mobility Project",
   description:
-    "Create a free account to sync your reading, quiz results, calculators, and badges across devices. Optional, always — nothing on Empower requires signing up.",
+    "Create a free account to sync your reading, quiz results, calculators, and badges across devices. Optional, always; nothing on Empower requires signing up.",
 };
 
 export default function AccountPage() {

@@ -97,7 +97,7 @@ export async function addLiveComment(opts: {
   if (!body) return { error: "Write something first.", published: false };
   if (body.length > 4000)
     return {
-      error: "That's a bit long — 4,000 characters max.",
+      error: "That's a bit long: 4,000 characters max.",
       published: false,
     };
   const profile = readLocalProfile();

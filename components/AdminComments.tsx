@@ -120,7 +120,7 @@ export default function AdminComments() {
           ? "Loading the queue…"
           : rows.length === 0
             ? done > 0
-              ? "Queue clear — nice work."
+              ? "Queue clear. Nice work."
               : "Nothing waiting. New comments land here the moment members post them."
             : `${rows.length} waiting for review. Approve publishes instantly; reject hides it forever.`}
       </p>

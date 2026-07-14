@@ -167,7 +167,7 @@ export default function StudentsPage() {
                   stat: String(scholarships.length),
                   statLabel: "verified awards",
                   title: "Scholarships",
-                  desc: "Real, hand-checked awards — filter by where you are in school.",
+                  desc: "Real, hand-checked awards. Filter by where you are in school.",
                   color: "#c9842a",
                   tilt: "lg:rotate-[0.5deg]",
                 },
@@ -176,7 +176,7 @@ export default function StudentsPage() {
                   stat: "3",
                   statLabel: "tracks: HS, CC, uni",
                   title: "Tracker",
-                  desc: "Units, grades, GPA, and your scholarship pipeline — kept score for you.",
+                  desc: "Units, grades, GPA, and your scholarship pipeline, kept score for you.",
                   color: "#15624b",
                   tilt: "",
                 },
@@ -236,8 +236,8 @@ export default function StudentsPage() {
                 Scholarships pay for school. These pay you.
               </h2>
               <p className="mt-2 text-sm leading-6 text-cream/75">
-                Verified internships, fellowships, and research programs —
-                free to apply, many with stipends attached.
+                Verified internships, fellowships, and research programs.
+                Free to apply, many with stipends attached.
               </p>
             </div>
             <span className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
@@ -415,7 +415,7 @@ export default function StudentsPage() {
                 {`All ${collegeGuides.length} college & aid guides`}
               </h2>
               <p className="mt-2 flex-1 text-base leading-7 text-stone">
-                FAFSA to award letters to repayment, in reading order — basics
+                FAFSA to award letters to repayment, in reading order: basics
                 first, read ones sink to the bottom.
               </p>
               <span className="mt-4 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 group-hover:text-ink">
@@ -538,7 +538,7 @@ export default function StudentsPage() {
               </h2>
               <p className="mt-4 max-w-lg text-base leading-7 text-cream/75">
                 Financial aid questions, student loan decisions, first
-                paychecks, transfer plans — asked and answered by people in
+                paychecks, transfer plans, asked and answered by people in
                 the same semester you&apos;re in.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">

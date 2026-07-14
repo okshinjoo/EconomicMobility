@@ -40,7 +40,7 @@ export default function ChallengesPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/75">
             Guides teach; challenges make you actually do the thing. Join with
-            one click (no account — progress saves on this device), work through
+            one click (no account; progress saves on this device), work through
             real steps at your own pace, swap notes with everyone else in the
             challenge thread, and earn the badge at the end.
           </p>
@@ -52,7 +52,7 @@ export default function ChallengesPage() {
             >
               community feed
             </Link>{" "}
-            — that&apos;s where the group part happens.
+            is where the group part happens.
           </p>
         </div>
       </section>

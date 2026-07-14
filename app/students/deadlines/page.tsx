@@ -20,7 +20,7 @@ import { frameHref } from "@/lib/frame";
 export const metadata: Metadata = {
   title: "Deadlines | Empower Students",
   description:
-    "The student money calendar: FAFSA, scholarship season, state aid, tax day — every date that moves real money, with reminders and the guides behind each one.",
+    "The student money calendar: FAFSA, scholarship season, state aid, tax day: every date that moves real money, with reminders and the guides behind each one.",
 };
 
 // The guides that make each date on the calendar survivable — read BEFORE
@@ -74,7 +74,7 @@ export default function StudentDeadlinesPage() {
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/85">
             Eleven dates decide most of a student&apos;s money year. Miss one and
             it can cost thousands; hit them and school gets cheaper. They roll
-            every year — these are current for 2026–27, and you can hand them
+            every year. These are current for 2026–27, and you can hand them
             to your calendar or your inbox below.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function StudentDeadlinesPage() {
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <AddAllToCalendar />
             <p className="max-w-md text-sm font-medium leading-6 text-ink/75">
-              One file, every date as a yearly-repeating event — your own calendar app
+              One file, every date as a yearly-repeating event. Your own calendar app
               reminds you a week ahead, every year, no sign-up.
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function StudentDeadlinesPage() {
             </h2>
             <p className="mt-2 text-base leading-7 text-stone">
               Pick the dates you care about and we email a few weeks ahead.
-              Want more than dates? Opt into college advice — aid-season
+              Want more than dates? Opt into college advice: aid-season
               heads-ups written by a human, never a bot.
             </p>
             <div className="mt-5">
@@ -149,7 +149,7 @@ export default function StudentDeadlinesPage() {
             Read before the date, not the night of
           </h2>
           <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
-            Each deadline has a guide that walks you through it — what to
+            Each deadline has a guide that walks you through it: what to
             gather, what trips people up, and what happens after you file.
           </p>
           <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -220,14 +220,14 @@ export default function StudentDeadlinesPage() {
             ))}
           </div>
           <p className="mt-8 text-sm leading-6 text-stone">
-            State grant deadlines vary — some land as early as February.{" "}
+            State grant deadlines vary; some land as early as February.{" "}
             <Link
               href={frameHref("/resources", "student")}
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               Find your state&apos;s programs
             </Link>{" "}
-            — state grants and programs, by state.
+            for state grants and programs, by state.
           </p>
         </div>
       </section>

@@ -5,7 +5,7 @@ import CreditCardCalculator from "@/components/CreditCardCalculator";
 export const metadata: Metadata = {
   title: "Credit Card Payoff Calculator | Empower — Economic Mobility Project",
   description:
-    "See how long it'll take to pay off a credit card — or what to pay each month to be done by a date — and the interest it costs.",
+    "See how long it'll take to pay off a credit card (or what to pay each month to be done by a date) and the interest it costs.",
 };
 
 export default function CreditCardPage() {

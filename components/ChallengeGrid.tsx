@@ -63,7 +63,7 @@ export default function ChallengeGrid({ items }: { items: ChallengeCardData[] })
             <div className="mt-5">
               {badge ? (
                 <p className="text-sm font-semibold" style={{ color: ch.color }}>
-                  Completed — badge earned
+                  Completed: badge earned
                 </p>
               ) : p ? (
                 <>
@@ -77,7 +77,7 @@ export default function ChallengeGrid({ items }: { items: ChallengeCardData[] })
                     />
                   </div>
                   <p className="mt-2 text-xs font-medium text-stone">
-                    {done} of {ch.stepCount} steps — keep going
+                    {done} of {ch.stepCount} steps. Keep going
                   </p>
                 </>
               ) : (

@@ -548,7 +548,7 @@ export const collegeExtraArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Every award letter comes with an invisible condition: keep making progress or the money stops. Schools call it Satisfactory Academic Progress, and they check it at least once a year. Nobody frames it this way at orientation, but a rough semester isn't just a GPA problem. It can be a losing-your-Pell-Grant problem.",
+        text: "Every award letter comes with an invisible condition: keep making progress or the money stops. Schools call it Satisfactory Academic Progress, and they check it at least once a year. Nobody frames it this way at orientation, but a rough semester is more than a GPA problem. It can be a losing-your-Pell-Grant problem.",
       },
       {
         type: "h2",

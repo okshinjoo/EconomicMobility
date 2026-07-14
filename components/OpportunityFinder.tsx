@@ -159,7 +159,7 @@ export default function OpportunityFinder() {
         {results.length} of {opportunities.length} opportunities
         {type !== "all" && ` · ${type === "research" ? "Research" : TYPE_LABELS[type as OpportunityType] + "s"}`}
         {stage !== "all" && ` · ${STAGE_LABELS[stage as OppStage]}`}
-        {undocOnly && " · no citizenship requirement"} — ordered by where
+        {undocOnly && " · no citizenship requirement"}, ordered by where
         they fall in the school year.
       </p>
 
@@ -229,7 +229,7 @@ export default function OpportunityFinder() {
 
       {results.length === 0 && (
         <p className="mt-6 text-base leading-7 text-stone">
-          Nothing matches those filters — widen the search. And remember your
+          Nothing matches those filters. Widen the search, and remember your
           campus has its own layer nobody's database lists: career centers,
           department research openings, and professors who say yes to a good
           email.
@@ -238,7 +238,7 @@ export default function OpportunityFinder() {
 
       <p className="mt-8 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
         Every entry checked by hand against the program&apos;s official site
-        by Shinjoo, Empower&apos;s founder — verified {OPPS_VERIFIED_AS_OF}.
+        by Shinjoo, Empower&apos;s founder, and verified {OPPS_VERIFIED_AS_OF}.
         Cycles and stipends shift a little each year, so confirm on the
         official page before you plan around one. We never list programs
         that charge to attend or exist to harvest your resume. Know a real

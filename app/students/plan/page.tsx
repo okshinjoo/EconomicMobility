@@ -7,7 +7,7 @@ import PlanPageView from "@/components/PlanPageView";
 
 export const metadata: Metadata = {
   title: "My Plan | Empower Students",
-  description: "Answer five questions and get a personal money plan built from real guides, tools, and deadlines — with steps that check themselves off as you go.",
+  description: "Answer five questions and get a personal money plan built from real guides, tools, and deadlines, with steps that check themselves off as you go.",
   alternates: { canonical: "/plan" },
 };
 
