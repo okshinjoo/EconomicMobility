@@ -316,3 +316,23 @@ Owner: "if you choose 'prefer the quick form?' there's no way back to the AI."
   instantly degrades back to the form.
 - Re-plan still lands on the prefilled form (unchanged), now with the same
   way back when the chat is up.
+
+## Session 9 — the plan shelf (July 14, 2026)
+
+Owner: "make it so you can make multiple plans and import up to three to
+save on your profile."
+
+- `lib/plan.ts`: `PLAN_SHELF_KEY` = `empower:my-plans:v1` (auto-synced like
+  every empower:* key), `MAX_SAVED_PLANS` = 3, `SavedPlan` {id, savedAt,
+  plan} where id = plan.createdAt (every build mints a fresh stamp).
+  `saveToShelf` re-saves in place for a known id and returns "full" only
+  for a NEW plan when 3 slots are taken. `savePlan` (the active-plan write
+  path) also syncs the shelf copy, so manual checks/revisions never leave
+  a stale profile snapshot.
+- The ACTIVE plan stays at PLAN_KEY — PlanCard, JourneyIndex made-for-you,
+  and the student mirror keep reading it unchanged.
+- `PlanShelf` strip renders under the PlanView header: save button with
+  live count, per-plan rows (headline + goal label, Current chip, Open,
+  remove ×), full-shelf nudge. Opening a saved plan swaps it in as active;
+  switching away from an UNSAVED active plan asks first. Removing the
+  current plan keeps it open, just no longer saved.

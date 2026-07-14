@@ -84,6 +84,67 @@ export function loadPlan(): MyPlan | null {
 
 export function savePlan(plan: MyPlan): void {
   saveJSON(PLAN_KEY, plan);
+  // Keep the shelf copy in step: manual checks and revisions on the active
+  // plan must not leave a stale snapshot behind on the profile.
+  syncShelfCopy(plan);
+}
+
+// ---------------------------------------------------------------------------
+// The plan SHELF (July 14, 2026 owner ask: "make multiple plans and import
+// up to three to save on your profile"). The ACTIVE plan stays at PLAN_KEY —
+// every existing consumer (dashboard PlanCard, JourneyIndex made-for-you,
+// student mirror) keeps reading it unchanged. The shelf is a second
+// whole-snapshot key holding up to MAX_SAVED_PLANS saved plans; like every
+// empower:* key it rides the account mirror, so saved plans follow the
+// member across devices. Plans are identified by their createdAt stamp
+// (every build mints a fresh one).
+
+export const PLAN_SHELF_KEY = "empower:my-plans:v1";
+export const MAX_SAVED_PLANS = 3;
+
+export interface SavedPlan {
+  /** The plan's createdAt — stable identity across saves. */
+  id: string;
+  savedAt: string;
+  plan: MyPlan;
+}
+
+export function loadShelf(): SavedPlan[] {
+  const s = loadJSON<SavedPlan[]>(PLAN_SHELF_KEY);
+  return Array.isArray(s)
+    ? s.filter((e) => e && e.plan && Array.isArray(e.plan.items))
+    : [];
+}
+
+/** Save (or re-save) a plan to the shelf. Returns "full" when the plan is
+ *  new and all slots are taken — the caller shows the remove-one nudge. */
+export function saveToShelf(plan: MyPlan): "saved" | "full" {
+  const shelf = loadShelf();
+  const at = new Date().toISOString();
+  const existing = shelf.findIndex((e) => e.id === plan.createdAt);
+  if (existing >= 0) {
+    shelf[existing] = { id: plan.createdAt, savedAt: at, plan };
+  } else {
+    if (shelf.length >= MAX_SAVED_PLANS) return "full";
+    shelf.unshift({ id: plan.createdAt, savedAt: at, plan });
+  }
+  saveJSON(PLAN_SHELF_KEY, shelf);
+  return "saved";
+}
+
+export function removeFromShelf(id: string): SavedPlan[] {
+  const shelf = loadShelf().filter((e) => e.id !== id);
+  saveJSON(PLAN_SHELF_KEY, shelf);
+  return shelf;
+}
+
+/** Update the shelf copy of a plan that's already saved; no-op otherwise. */
+function syncShelfCopy(plan: MyPlan): void {
+  const shelf = loadShelf();
+  const i = shelf.findIndex((e) => e.id === plan.createdAt);
+  if (i < 0) return;
+  shelf[i] = { ...shelf[i], plan };
+  saveJSON(PLAN_SHELF_KEY, shelf);
 }
 
 export function clearPlan(): void {

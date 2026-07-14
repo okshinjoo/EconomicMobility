@@ -9,12 +9,17 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Compass, Flag, List, Map as MapIcon, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, Compass, Flag, List, Map as MapIcon, RotateCcw, X } from "lucide-react";
 import { GOAL_OPTIONS, readLocalProfile } from "@/lib/profile";
 import {
   loadPlan,
   savePlan,
   clearPlan,
+  loadShelf,
+  saveToShelf,
+  removeFromShelf,
+  MAX_SAVED_PLANS,
+  type SavedPlan,
   toggleItem,
   type IntakeAnswers,
   type MyPlan,
@@ -206,6 +211,12 @@ export default function PlanApp() {
         plan={plan}
         reviewing={reviewing}
         flagged={flagged}
+        onSwitch={(p) => {
+          savePlan(p);
+          setPlan(p);
+          setReviewing(false);
+          setFlagged(new Set());
+        }}
         onToggleFlag={(id) =>
           setFlagged((prev) => {
             const next = new Set(prev);
@@ -920,10 +931,138 @@ function usableStages(plan: MyPlan): PlanStage[] {
   return out.length >= 2 ? out : [];
 }
 
+/** Up to three plans saved on the profile (July 14 owner ask: "make
+ *  multiple plans and import up to three"). The shelf is a second
+ *  auto-synced snapshot; the ACTIVE plan stays at PLAN_KEY so every other
+ *  consumer keeps working. Saving is per-plan (identity = createdAt);
+ *  opening a saved plan swaps it in as active. */
+function PlanShelf({
+  plan,
+  onSwitch,
+}: {
+  plan: MyPlan;
+  onSwitch: (p: MyPlan) => void;
+}) {
+  const [shelf, setShelf] = useState<SavedPlan[]>([]);
+  const [note, setNote] = useState("");
+  useEffect(() => {
+    setShelf(loadShelf());
+    setNote("");
+  }, [plan]);
+
+  const inShelf = shelf.some((e) => e.id === plan.createdAt);
+  const goalLabel = (p: MyPlan) =>
+    GOAL_OPTIONS.find((g) => g.id === p.intake.goal)?.label ?? p.intake.goal;
+
+  return (
+    <div className="mt-6 rounded-xl border border-sand bg-paper p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone">
+          Saved plans · {shelf.length} of {MAX_SAVED_PLANS}
+        </p>
+        {inShelf ? (
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-forest">
+            <Check className="h-3.5 w-3.5" />
+            This plan is saved to your profile
+          </span>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              const r = saveToShelf(plan);
+              setShelf(loadShelf());
+              setNote(
+                r === "full"
+                  ? `All ${MAX_SAVED_PLANS} slots are taken — remove a saved plan below to make room.`
+                  : ""
+              );
+            }}
+            className="rounded-md bg-forest px-3 py-1.5 text-xs font-bold text-cream transition-colors hover:bg-forest-700"
+          >
+            Save this plan ({shelf.length}/{MAX_SAVED_PLANS})
+          </button>
+        )}
+      </div>
+      {note && (
+        <p className="mt-2 text-xs font-medium text-terracotta">{note}</p>
+      )}
+      {shelf.length > 0 && (
+        <ul className="mt-3 space-y-1.5">
+          {shelf.map((e) => {
+            const current = e.id === plan.createdAt;
+            return (
+              <li
+                key={e.id}
+                className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-cream px-3 py-2"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-ink">
+                    {e.plan.headline}
+                  </span>
+                  <span className="text-[11px] font-medium text-stone">
+                    {goalLabel(e.plan)}
+                  </span>
+                </span>
+                {current ? (
+                  <span className="text-[11px] font-bold uppercase tracking-wide text-forest">
+                    Current
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (
+                        inShelf ||
+                        window.confirm(
+                          "Open that plan? Your current plan isn't saved to your profile and will be replaced."
+                        )
+                      )
+                        onSwitch(e.plan);
+                    }}
+                    className="text-xs font-bold text-forest underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+                  >
+                    Open
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        current
+                          ? "Remove this plan from your profile? It stays open here until you replace it."
+                          : "Remove this saved plan? This can't be undone."
+                      )
+                    ) {
+                      setShelf(removeFromShelf(e.id));
+                      setNote("");
+                    }
+                  }}
+                  aria-label={`Remove saved plan: ${e.plan.headline}`}
+                  className="rounded p-1 text-stone transition-colors hover:text-terracotta"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {shelf.length === 0 && (
+        <p className="mt-2 text-xs leading-5 text-stone">
+          Keep up to {MAX_SAVED_PLANS} plans — one per goal — and switch
+          between them anytime. Saved plans follow your account.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function PlanView({
   plan,
   onUpdate,
   onReset,
+  onSwitch,
   reviewing = false,
   flagged,
   onToggleFlag,
@@ -931,6 +1070,8 @@ function PlanView({
   plan: MyPlan;
   onUpdate: (p: MyPlan) => void;
   onReset: () => void;
+  /** Load a saved plan from the shelf as the active plan. */
+  onSwitch?: (p: MyPlan) => void;
   /** Post-build review mode: rows grow a "doesn't fit" flag toggle. */
   reviewing?: boolean;
   flagged?: Set<string>;
@@ -995,7 +1136,7 @@ function PlanView({
           <button
             type="button"
             onClick={() => {
-              if (window.confirm("Start over with new answers? Your current plan will be replaced.")) onReset();
+              if (window.confirm("Start over with new answers? Your current plan will be replaced (plans saved to your profile stay).")) onReset();
             }}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone underline-offset-4 transition-colors hover:text-ink hover:underline"
           >
@@ -1004,6 +1145,8 @@ function PlanView({
           </button>
         </div>
       </div>
+
+      {onSwitch && <PlanShelf plan={plan} onSwitch={onSwitch} />}
 
       <ProjectionCard target={plan.intake.target} />
 
