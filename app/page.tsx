@@ -242,6 +242,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* My Plan beta strip — front-and-center by owner call (July 14:
+          "I want it on the front"); the honest still-learning caveat rides
+          in the same breath. ONE door site-wide for the beta pitch. */}
+      <section className="border-y-2 border-ink bg-forest text-cream">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-5">
+          <p className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 text-base leading-7">
+            <span className="inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
+              New · In beta
+            </span>
+            <span className="font-display text-lg font-semibold">
+              Tell the guide your goal —{" "}
+              <span className="italic text-amber">it builds your plan.</span>
+            </span>
+            <span className="text-sm text-cream/65">
+              Still learning: flag any step that doesn&apos;t fit and it
+              reworks it.
+            </span>
+          </p>
+          <Link
+            href="/plan"
+            className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink"
+          >
+            Try the plan builder
+          </Link>
+        </div>
+      </section>
+
       {/* Personalized "pick up where you left off" (renders only with history) */}
       <WelcomeBack paths={topicPaths} badgeSources={badgeSources} />
 
@@ -312,44 +339,6 @@ export default function Home() {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* My Plan — the AI guide, advertised honestly as beta (owner call,
-          July 14: "mention it's in beta so it may not be as good"). */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 pb-14">
-          <div className="card-ink-lg relative overflow-hidden rounded-2xl bg-forest p-8 text-cream shadow-[7px_7px_0_#e7a33c] sm:p-10">
-            <div className="flex flex-wrap items-center justify-between gap-6">
-              <div className="max-w-2xl">
-                <span className="inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-                  New · In beta
-                </span>
-                <h2 className="mt-4 font-display text-3xl font-semibold leading-tight sm:text-4xl">
-                  Tell the guide your goal.{" "}
-                  <span className="italic text-amber">
-                    Get a plan built just for you.
-                  </span>
-                </h2>
-                <p className="mt-3 text-base leading-7 text-cream/75">
-                  A short conversation — it plays back what it heard, then
-                  lines up real guides, calculators, and deadlines into your
-                  own step-by-step path that checks itself off as you go.
-                </p>
-                <p className="mt-2 text-sm leading-6 text-cream/60">
-                  It&apos;s brand new and still learning, so a step might miss
-                  — flag anything that doesn&apos;t fit and it reworks the
-                  plan on the spot.
-                </p>
-              </div>
-              <Link
-                href="/plan"
-                className="btn-ink inline-flex shrink-0 items-center rounded-md bg-amber px-7 py-3.5 text-base font-bold text-ink"
-              >
-                Try the plan builder
-              </Link>
-            </div>
           </div>
         </div>
       </section>
