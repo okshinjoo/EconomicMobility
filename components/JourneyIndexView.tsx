@@ -5,6 +5,7 @@ import JourneyIndex, {
 } from "@/components/JourneyIndex";
 import { journeys, journeyByTopic } from "@/lib/journeys";
 import { frameHref, type Frame } from "@/lib/frame";
+import PlanPromoBand from "@/components/PlanPromoBand";
 
 
 /**
@@ -110,28 +111,10 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
 
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-          {/* The personal layer on top of the paths */}
-          <Link
-            href={href("/plan")}
-            className="card-ink mb-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-amber p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7"
-          >
-            <div className="max-w-xl">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink/70">
-                New · My Plan
-              </span>
-              <p className="mt-1.5 font-display text-xl font-bold text-ink sm:text-2xl">
-                Answer five questions, get one plan that&apos;s yours.
-              </p>
-              <p className="mt-1 text-sm leading-6 text-ink/75">
-                The paths below, personalized: your goal, your situation, your
-                deadlines — in the order that fits you, checking itself off as
-                you go.
-              </p>
-            </div>
-            <span className="btn-ink inline-flex shrink-0 items-center rounded-md bg-forest px-6 py-3 text-sm font-bold text-cream">
-              Build my plan
-            </span>
-          </Link>
+          {/* The personal layer on top of the paths: the generic promo
+              band steps aside once a plan exists — JourneyIndex then leads
+              with the "Made for you" card instead. */}
+          <PlanPromoBand frame={frame} />
           {frame === "student" && (
             <Link
               href="/students/journey/college"

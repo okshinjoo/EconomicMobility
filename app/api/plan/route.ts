@@ -16,7 +16,7 @@ import { challenges } from "@/lib/challenges";
 import { deadlines, type Deadline } from "@/lib/deadlines";
 import { getSearchItems } from "@/lib/search";
 import { rankItems } from "@/lib/guide";
-import type { IntakeAnswers, MyPlan, PlanItem } from "@/lib/plan";
+import type { IntakeAnswers, MyPlan, PlanItem, PlanStage } from "@/lib/plan";
 
 export const runtime = "nodejs";
 
@@ -152,14 +152,18 @@ function buildCatalog(intake: IntakeAnswers): CatalogEntry[] {
   return out;
 }
 
-/** Deterministic fallback: the journey, flattened, plus deadlines. */
+/** Deterministic fallback: the journey, flattened, plus deadlines. Since
+ *  session 6 it also carries the journey's stage titles/whys into
+ *  plan.stages so the roadmap-trail view works with no AI at all. */
 function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
   const journey = getJourney(intake.goal);
   const items: PlanItem[] = [];
+  const stages: PlanStage[] = [];
   let n = 0;
-  const push = (e: CatalogEntry, why: string) => {
+  const push = (e: CatalogEntry, why: string): string => {
+    const id = `p${++n}`;
     items.push({
-      id: `p${++n}`,
+      id,
       kind: e.kind,
       title: e.kind === "guide" ? `Read: ${e.title}` : e.title,
       why,
@@ -167,34 +171,51 @@ function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
       due: e.due,
       doneKey: e.doneKey,
     });
+    return id;
   };
 
   const byKey = new Map(catalog.map((e) => [e.key, e]));
   if (journey) {
     for (const stage of journey.stages) {
+      const itemIds: string[] = [];
       for (const slug of stage.articleSlugs.slice(0, 2)) {
         const e = byKey.get(`g:${slug}`);
-        if (e) push(e, stage.why);
+        if (e) itemIds.push(push(e, stage.why));
       }
       if (stage.tool) {
         const e = byKey.get(`t:${stage.tool.href}`);
-        if (e) push(e, "Run your own numbers for this step.");
+        if (e) itemIds.push(push(e, "Run your own numbers for this step."));
       }
       if (stage.courseId) {
         const e = byKey.get(`c:${stage.courseId}`);
-        if (e) push(e, "The focused version of this whole stage, with a badge at the end.");
+        if (e)
+          itemIds.push(
+            push(e, "The focused version of this whole stage, with a badge at the end.")
+          );
       }
+      if (itemIds.length > 0)
+        stages.push({ title: stage.milestone, why: stage.why, itemIds });
     }
   }
+  const deadlineIds: string[] = [];
   for (const e of catalog.filter((c) => c.kind === "deadline").slice(0, 3)) {
-    push(e, e.note.split("—")[1]?.trim() ?? "A date that moves real money.");
+    deadlineIds.push(
+      push(e, e.note.split("—")[1]?.trim() ?? "A date that moves real money.")
+    );
   }
+  if (deadlineIds.length > 0)
+    stages.push({
+      title: "Mark the dates",
+      why: "Real dates that move real money — get them on your calendar early.",
+      itemIds: deadlineIds,
+    });
 
   return {
     createdAt: new Date().toISOString(),
     intake,
     headline: journey ? `Your "${journey.title.toLowerCase()}" plan` : "Your money plan",
     items,
+    ...(stages.length > 0 ? { stages } : {}),
     aiComposed: false,
   };
 }
@@ -492,9 +513,10 @@ export async function POST(req: NextRequest) {
 You will receive a person's intake answers and a CATALOG of real site content. Build their plan as JSON only — no prose before or after.
 
 HARD RULES:
-- Output ONLY a JSON object: {"headline": string, "items": [{"ref": string, "title": string, "why": string}]}
+- Output ONLY a JSON object: {"headline": string, "stages": [{"title": string, "why": string, "items": [{"ref": string, "title": string, "why": string}]}]}
+- 3-4 stages, ordered as the person should walk them. A stage is a small milestone phrased as an outcome ("Know what the score measures", "File the forms"), finishable in one sitting or one errand. Its "why" is ONE plain sentence on why this stage comes now for THIS person.
 - Every item's "ref" MUST be a key copied exactly from the catalog. Never invent refs.
-- Up to 12 items, ordered as the person should do them. 8-12 ONLY if each is genuinely distinct and worth their time — a shorter plan of strong steps beats padding. Never include an item just to hit a count.
+- Up to 12 items total across all stages, ordered as the person should do them. 8-12 ONLY if each is genuinely distinct and worth their time — a shorter plan of strong steps beats padding. Never include an item just to hit a count.
 - Catalog entries marked "ALREADY DONE by this person": NEVER assign them as steps. You MAY reference one inside another item's "why" ("since you've already read X, ...") to build on their momentum.
 - Deadlines (d: refs): their notes carry the actual dates — place each one by real calendar proximity from today's date given in the intake, not by theme. A deadline months away doesn't belong before this week's moves.
 - "title": short and imperative ("File the FAFSA", "Read: What Is a Credit Score?"). "why": ONE sentence in plain words that quotes or closely paraphrases the person's OWN words wherever they gave any (their goal detail, their target, their confirmed story) — "you said you want to transfer with under $20k of debt" beats generic reasons.
@@ -554,20 +576,25 @@ ${catalogText}`;
     );
     const jsonStart = text.indexOf("{");
     const jsonEnd = text.lastIndexOf("}");
+    type RawItem = { ref?: unknown; title?: unknown; why?: unknown };
     const parsed = JSON.parse(text.slice(jsonStart, jsonEnd + 1)) as {
       headline?: unknown;
-      items?: Array<{ ref?: unknown; title?: unknown; why?: unknown }>;
+      items?: RawItem[];
+      stages?: Array<{ title?: unknown; why?: unknown; items?: RawItem[] }>;
     };
 
     // Validate: refs must resolve to catalog entries; drop everything else.
+    // Stages that end up with zero surviving items are dropped; if the model
+    // skipped stages entirely (or they're malformed), the plan flattens to
+    // the pre-session-6 single-list shape.
     const byKey = new Map(catalog.map((e) => [e.key, e]));
     const items: PlanItem[] = [];
     let n = 0;
-    for (const raw of parsed.items ?? []) {
-      const e = typeof raw.ref === "string" ? byKey.get(raw.ref) : undefined;
-      if (!e) continue;
-      if (items.some((i) => i.href === e.href)) continue;
-      items.push({
+    const validateItem = (raw: RawItem): PlanItem | null => {
+      const e = typeof raw?.ref === "string" ? byKey.get(raw.ref) : undefined;
+      if (!e) return null;
+      if (items.some((i) => i.href === e.href)) return null;
+      const item: PlanItem = {
         id: `p${++n}`,
         kind: e.kind,
         title: clip(raw.title, 90) || e.title,
@@ -575,7 +602,35 @@ ${catalogText}`;
         href: e.href,
         due: e.due,
         doneKey: e.doneKey,
-      });
+      };
+      items.push(item);
+      return item;
+    };
+
+    const stages: PlanStage[] = [];
+    if (Array.isArray(parsed.stages)) {
+      for (const rawStage of parsed.stages.slice(0, 6)) {
+        if (items.length >= 12) break;
+        const itemIds: string[] = [];
+        for (const raw of Array.isArray(rawStage?.items) ? rawStage.items : []) {
+          if (items.length >= 12) break;
+          const item = validateItem(raw);
+          if (item) itemIds.push(item.id);
+        }
+        if (itemIds.length > 0)
+          stages.push({
+            title: clip(rawStage.title, 80) || `Stage ${stages.length + 1}`,
+            why: clip(rawStage.why, 200),
+            itemIds,
+          });
+      }
+    }
+    if (items.length === 0) {
+      // Old-shape (or malformed-stage) output: flat item list, no stages.
+      for (const raw of parsed.items ?? []) {
+        if (items.length >= 12) break;
+        validateItem(raw);
+      }
     }
     if (items.length < 3) throw new Error("too few validated items");
 
@@ -583,7 +638,8 @@ ${catalogText}`;
       createdAt: new Date().toISOString(),
       intake,
       headline: clip(parsed.headline, 70) || "Your money plan",
-      items: items.slice(0, 12),
+      items,
+      ...(stages.length > 0 ? { stages } : {}),
       aiComposed: true,
     };
     return Response.json({ plan });

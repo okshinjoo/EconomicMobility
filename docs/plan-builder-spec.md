@@ -220,6 +220,51 @@ you should be able to leave feedback"):**
   when genuinely distinct, fewer strong steps beat padding. Server-side
   validation minimum lowered 4 → 3 to match.
 
+**Session 6 SHIPPED (July 13, 2026) — the personalized path (owner-approved:
+My Plan gets journey-style stages + the roadmap-trail presentation):**
+
+- **Stages in generation**: the build/revise output schema is now
+  `{"headline", "stages": [{"title", "why", "items": [{"ref","title","why"}]}]}`
+  (3-4 stages, each a small milestone with its own one-sentence why).
+  Server validation is unchanged per item (catalog refs only, unknown refs
+  dropped, dedupe by href, 12-item cap enforced during collection so stage
+  itemIds stay consistent); stages with zero surviving items are dropped;
+  if stages are missing/malformed the parser falls back to the old flat
+  `items` shape — a plan without stages is always legal. `MyPlan` gained
+  optional `stages?: PlanStage[]` (`{title, why, itemIds}`) — BACKWARD
+  COMPATIBLE: plans saved before session 6 keep working untouched and
+  render the checklist.
+- **Fallback gets stages free**: fallbackPlan already walked the journey's
+  stages — it now carries each stage's milestone/why into plan.stages, plus
+  a final "Mark the dates" stage for the appended deadline items. The
+  no-key plan renders the full trail.
+- **Presentation**: /plan (and /students/plan via the shared view) renders
+  the plan as a ROADMAP TRAIL by default — JourneyPath's visual language
+  (winding START→FINISH SVG, glowing progress stroke, milestone nodes with
+  checks, pulsing amber current ring, stage cards with "You are here")
+  driven by plan.stages + the same isDone checker. Node positions are
+  measured off the path at runtime (getPointAtLength) so 3-5 stages all
+  sit on the curve (journeys are always 4; plans vary). A Path/List toggle
+  (persisted at `empower:plan-view:v1`) switches to the Now/Next/Done
+  checklist, which is unchanged. Plans without stages (old saves, flat AI
+  output) show the checklist only, no toggle. Review mode (flags + the
+  feedback bar) works in BOTH views; manual deadline/habit checkboxes work
+  in both; items a stage doesn't cover render in an "Also on your plan"
+  card (memory contract — nothing hides).
+- **Journey index**: when a saved plan exists, /journey leads with a
+  "Made for you" card (client-side, post-mount, no hydration mismatch)
+  linking /plan with the plan's headline + live progress, and the generic
+  amber "build my plan" promo band removes itself (`PlanPromoBand`, now
+  its own client component) — personalization replacing generic
+  prominence, per the nav-audit principle. No plan → band as before.
+- **Verified headless** (real Chrome CDP, no key): fallback plan renders
+  the 5-stage trail with "You are here" + Next up; toggle to list and back
+  persists across reloads; an old-shape plan seeded into localStorage
+  renders the checklist with no toggle and zero console errors; review
+  flags work in both views; /students/plan mirrors with zero main-frame
+  link leaks; /journey and /students/journey both swap band → card.
+  npm run build passes; leakhunt clean (308 pages, 0 leaks).
+
 **GO-LIVE: nothing left to configure.** ANTHROPIC_API_KEY already lives in
 Vercel (shared with chat + comment review), the route falls back safely
 without it, and no schema changes were needed. After the next push, run

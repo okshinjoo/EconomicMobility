@@ -57,11 +57,22 @@ export interface PlanItem {
   checked?: boolean;
 }
 
+/** A journey-style stage grouping plan items (session 6). Optional and
+ *  BACKWARD COMPATIBLE: plans saved before stages existed simply render
+ *  as the flat checklist. itemIds reference PlanItem.id. */
+export interface PlanStage {
+  title: string;
+  why: string;
+  itemIds: string[];
+}
+
 export interface MyPlan {
   createdAt: string;
   intake: IntakeAnswers;
   headline: string;
   items: PlanItem[];
+  /** Journey-style stages for the roadmap-trail view. Absent on old plans. */
+  stages?: PlanStage[];
   /** True when the AI wrote it; false = deterministic journey fallback. */
   aiComposed: boolean;
 }

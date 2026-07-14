@@ -17,6 +17,7 @@ import { getReadMap } from "@/lib/readTracking";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { readLocalProfile } from "@/lib/profile";
+import { loadPlan } from "@/lib/plan";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -129,6 +130,14 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
   const [goalIds, setGoalIds] = useState<Set<string>>(new Set());
   const [quizTopics, setQuizTopics] = useState<Set<string>>(new Set());
   const [doneKeys, setDoneKeys] = useState<Set<string>>(new Set());
+  // "Made for you" (session 6): when a saved plan exists, it leads the page
+  // — personalization replacing generic prominence. Client-side, post-mount,
+  // so the server render (no card) never mismatches.
+  const [planCard, setPlanCard] = useState<{
+    headline: string;
+    done: number;
+    total: number;
+  } | null>(null);
 
   useEffect(() => {
     const profile = readLocalProfile();
@@ -144,6 +153,32 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
     const challengeBadges =
       loadJSON<Record<string, unknown>>(CHALLENGE_BADGES_KEY) ?? {};
     const quizScores = loadJSON<Record<string, unknown>>(QUIZ_SCORES_KEY) ?? {};
+
+    const plan = loadPlan();
+    if (plan) {
+      const planDone = plan.items.filter((it) => {
+        if (it.checked) return true;
+        if (!it.doneKey) return false;
+        switch (it.kind) {
+          case "guide":
+            return Boolean(read[it.doneKey]);
+          case "tool":
+            return Boolean(tools[it.doneKey]);
+          case "course":
+            return Boolean(courseBadges[it.doneKey]);
+          case "challenge":
+            return Boolean(challengeBadges[it.doneKey]);
+          default:
+            return false;
+        }
+      }).length;
+      setPlanCard({
+        headline: plan.headline,
+        done: planDone,
+        total: plan.items.length,
+      });
+    }
+
     const done = new Set<string>();
     for (const item of items) {
       for (const s of item.steps) {
@@ -180,7 +215,33 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
   }, [items, ready, goalIds, quizTopics, doneKeys]);
 
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <>
+      {planCard && (
+        <Link
+          href={frameHref("/plan", frame)}
+          className="group mb-6 block rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[6px_6px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="min-w-0">
+              <span className="inline-block -rotate-2 rounded-md border-2 border-ink bg-amber px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">
+                Made for you
+              </span>
+              <p className="mt-2.5 font-display text-2xl font-semibold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                {planCard.headline}
+              </p>
+              <p className="mt-1.5 text-sm font-semibold text-cream/70">
+                {planCard.done} of {planCard.total} steps done — your own path,
+                built from your answers. The paths below stay open too.
+              </p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-1.5 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink">
+              Open My Plan
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </div>
+        </Link>
+      )}
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {ordered.map((j, i) => {
         const done = j.steps.filter((s) =>
           doneKeys.has(`${j.id}:${s.kind}:${s.key}`)
@@ -284,6 +345,7 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
           </Link>
         );
       })}
-    </div>
+      </div>
+    </>
   );
 }

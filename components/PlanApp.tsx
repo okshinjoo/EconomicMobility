@@ -7,9 +7,9 @@
 // the plan itself. The dashboard polish (Now/Next grouping, projections)
 // is session 2 — this ships the loop end to end.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Flag, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, Flag, List, Map as MapIcon, RotateCcw } from "lucide-react";
 import { GOAL_OPTIONS, readLocalProfile } from "@/lib/profile";
 import {
   loadPlan,
@@ -19,18 +19,21 @@ import {
   type IntakeAnswers,
   type MyPlan,
   type PlanItem,
+  type PlanStage,
 } from "@/lib/plan";
 import { getReadMap } from "@/lib/readTracking";
 import { readBudgetSummary } from "@/lib/calcImports";
 import { getBadges } from "@/components/CourseQuiz";
-import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
-import { frameHref } from "@/lib/frame";
+import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
+import { frameHref, type Frame } from "@/lib/frame";
 import { readAboutYou } from "@/lib/aboutYou";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
+/** Path-vs-list preference for the plan view (session 6). */
+const PLAN_VIEW_KEY = "empower:plan-view:v1";
 
 /** Done-awareness (July 13 addendum): what this device has already read,
  *  used, and earned — sent with every plan request so the AI never assigns
@@ -837,6 +840,22 @@ function ProjectionCard({ target }: { target: string }) {
 
 /* --- Plan view ------------------------------------------------------------ */
 
+/** The stages usable for the trail view: well-formed, with itemIds that
+ *  resolve to real items. Old plans (no stages) return [] and render the
+ *  checklist only. */
+function usableStages(plan: MyPlan): PlanStage[] {
+  if (!Array.isArray(plan.stages)) return [];
+  const ids = new Set(plan.items.map((i) => i.id));
+  const out: PlanStage[] = [];
+  for (const s of plan.stages) {
+    if (!s || typeof s.title !== "string" || !Array.isArray(s.itemIds)) continue;
+    const itemIds = s.itemIds.filter((id) => typeof id === "string" && ids.has(id));
+    if (itemIds.length > 0)
+      out.push({ title: s.title, why: typeof s.why === "string" ? s.why : "", itemIds });
+  }
+  return out.length >= 2 ? out : [];
+}
+
 function PlanView({
   plan,
   onUpdate,
@@ -856,6 +875,19 @@ function PlanView({
   const frame = useFrame();
   const isDone = useDoneChecker();
   const done = plan.items.filter(isDone).length;
+  const stages = useMemo(() => usableStages(plan), [plan]);
+  // Trail is the default; the preference persists per device. PlanView only
+  // renders after PlanApp mounts, so reading storage here is client-safe.
+  const [view, setView] = useState<"trail" | "list">(() =>
+    loadJSON<string>(PLAN_VIEW_KEY) === "list" ? "list" : "trail"
+  );
+  const pickView = (v: "trail" | "list") => {
+    setView(v);
+    saveJSON(PLAN_VIEW_KEY, v);
+  };
+  const showTrail = stages.length > 0 && view === "trail";
+
+  const rowProps = { plan, isDone, reviewing, flagged, onToggleFlag, onUpdate, frame };
 
   return (
     <div>
@@ -869,20 +901,85 @@ function PlanView({
             {!plan.aiComposed && " · built from your goal's guided path"}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            if (window.confirm("Start over with new answers? Your current plan will be replaced.")) onReset();
-          }}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone underline-offset-4 transition-colors hover:text-ink hover:underline"
-        >
-          <RotateCcw className="h-3.5 w-3.5" />
-          Re-plan
-        </button>
+        <div className="flex items-center gap-4">
+          {stages.length > 0 && (
+            <div className="flex rounded-md border-2 border-ink/15 bg-cream p-0.5">
+              {(
+                [
+                  ["trail", "Path", MapIcon],
+                  ["list", "List view", List],
+                ] as const
+              ).map(([v, label, Icon]) => (
+                <button
+                  key={v}
+                  type="button"
+                  aria-pressed={view === v}
+                  onClick={() => pickView(v)}
+                  className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-bold transition-colors ${
+                    view === v
+                      ? "bg-forest text-cream"
+                      : "text-stone hover:text-ink"
+                  }`}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              if (window.confirm("Start over with new answers? Your current plan will be replaced.")) onReset();
+            }}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone underline-offset-4 transition-colors hover:text-ink hover:underline"
+          >
+            <RotateCcw className="h-3.5 w-3.5" />
+            Re-plan
+          </button>
+        </div>
       </div>
 
       <ProjectionCard target={plan.intake.target} />
 
+      {showTrail ? (
+        <PlanTrailView stages={stages} {...rowProps} />
+      ) : (
+        <PlanChecklist {...rowProps} />
+      )}
+
+      <p className="mt-6 text-sm leading-6 text-stone">
+        Steps check themselves off as you read and use the site, wherever you
+        do it. Deadlines and habits have real checkboxes — those are yours to
+        tick.
+      </p>
+    </div>
+  );
+}
+
+/* --- The Now/Next/Done checklist (the original view) ---------------------- */
+
+interface RowProps {
+  plan: MyPlan;
+  isDone: (item: PlanItem) => boolean;
+  reviewing?: boolean;
+  flagged?: Set<string>;
+  onToggleFlag?: (id: string) => void;
+  onUpdate: (p: MyPlan) => void;
+  frame: Frame;
+}
+
+function PlanChecklist({
+  plan,
+  isDone,
+  reviewing,
+  flagged,
+  onToggleFlag,
+  onUpdate,
+  frame,
+}: RowProps) {
+  return (
+    <>
       {(() => {
         const undone = plan.items.filter((i) => !isDone(i));
         const groups: Array<[string, string, PlanItem[]]> = [
@@ -981,12 +1078,446 @@ function PlanView({
             </div>
           ));
       })()}
+    </>
+  );
+}
 
-      <p className="mt-6 text-sm leading-6 text-stone">
-        Steps check themselves off as you read and use the site, wherever you
-        do it. Deadlines and habits have real checkboxes — those are yours to
-        tick.
-      </p>
+/* --- The roadmap trail (session 6 — JourneyPath's language, plan-driven) --- */
+
+type StageStatus = "completed" | "current" | "upcoming";
+
+// Same winding trail geometry as components/JourneyPath.tsx, but milestone
+// nodes are measured off the path at runtime so 3-5 plan stages all sit
+// exactly on the curve (journeys are always 4; plans vary).
+const TRAIL =
+  "M 150 34 C 150 74, 292 92, 222 144 C 152 202, 128 242, 78 302 C 38 362, 182 412, 232 464 C 282 522, 118 582, 150 682";
+const TRAIL_LEN = 870;
+const DOTS = [
+  { x: 162, y: 58 },
+  { x: 228, y: 92 },
+  { x: 260, y: 122 },
+  { x: 196, y: 184 },
+  { x: 122, y: 234 },
+  { x: 90, y: 274 },
+  { x: 52, y: 340 },
+  { x: 170, y: 394 },
+  { x: 222, y: 438 },
+  { x: 270, y: 504 },
+  { x: 152, y: 566 },
+  { x: 146, y: 642 },
+];
+
+function PlanTrail({
+  fraction,
+  statuses,
+}: {
+  fraction: number;
+  statuses: StageStatus[];
+}) {
+  const pathRef = useRef<SVGPathElement>(null);
+  const [nodes, setNodes] = useState<Array<{ x: number; y: number }>>([]);
+  const n = statuses.length;
+  useEffect(() => {
+    const p = pathRef.current;
+    if (!p) return;
+    const L = p.getTotalLength();
+    setNodes(
+      Array.from({ length: n }, (_, i) => {
+        const pt = p.getPointAtLength((L * (i + 1)) / n);
+        return { x: pt.x, y: pt.y };
+      })
+    );
+  }, [n]);
+
+  // Arm the draw-in two frames after `fraction` lands (JourneyPath pattern)
+  // so the stroke visibly fills instead of snapping.
+  const [drawn, setDrawn] = useState(0);
+  useEffect(() => {
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setDrawn(fraction));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, [fraction]);
+  const litDots = Math.round(drawn * DOTS.length);
+
+  return (
+    <div className="relative w-full" aria-hidden>
+      <svg
+        viewBox="0 0 300 745"
+        className="h-auto w-full"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <linearGradient id="planTrailGreen" x1="0%" y1="0%" x2="30%" y2="100%">
+            <stop offset="0%" stopColor="#1f9069" />
+            <stop offset="50%" stopColor="#15624b" />
+            <stop offset="100%" stopColor="#0c4a39" />
+          </linearGradient>
+          <filter id="planTrailGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <radialGradient id="planStartGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(31,144,105,0.3)" />
+            <stop offset="100%" stopColor="rgba(31,144,105,0)" />
+          </radialGradient>
+        </defs>
+
+        <text
+          x="150"
+          y="18"
+          textAnchor="middle"
+          fontSize="9"
+          fontWeight="700"
+          fill="#44514a"
+          letterSpacing="3"
+        >
+          START
+        </text>
+        <circle cx="150" cy="34" r="20" fill="url(#planStartGlow)" />
+
+        {DOTS.map((d, i) => (
+          <circle
+            key={i}
+            cx={d.x}
+            cy={d.y}
+            r={i < litDots ? 3 : 2.5}
+            fill={i < litDots ? "#1f9069" : "#e4d8c1"}
+            style={{ transition: `fill 0.4s ease ${0.3 + i * 0.04}s` }}
+          />
+        ))}
+
+        <path
+          ref={pathRef}
+          d={TRAIL}
+          stroke="#e4d8c1"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeDasharray="2 12"
+          opacity="0.8"
+        />
+        <path
+          d={TRAIL}
+          stroke="url(#planTrailGreen)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          filter="url(#planTrailGlow)"
+          style={{
+            strokeDasharray: TRAIL_LEN,
+            strokeDashoffset: TRAIL_LEN * (1 - drawn),
+            transition: "stroke-dashoffset 1.5s cubic-bezier(0.22,1,0.36,1)",
+          }}
+        />
+
+        <circle cx="150" cy="34" r="7" fill="#0c4a39" />
+        <circle cx="150" cy="34" r="3.5" fill="#fbf8f1" />
+
+        {nodes.map((pt, i) => {
+          const status = statuses[i] ?? "upcoming";
+          const done = status === "completed";
+          const here = status === "current";
+          return (
+            <g key={i}>
+              {here && (
+                <circle
+                  className="roadmap-pulse"
+                  cx={pt.x}
+                  cy={pt.y}
+                  r="16"
+                  fill="none"
+                  stroke="#e7a33c"
+                  strokeWidth="2"
+                />
+              )}
+              {done && (
+                <circle cx={pt.x} cy={pt.y} r="20" fill="rgba(12,74,57,0.1)" />
+              )}
+              <circle
+                cx={pt.x}
+                cy={pt.y}
+                r="16"
+                fill={done ? "#0c4a39" : "#fbf8f1"}
+                stroke={done ? "#0c4a39" : here ? "#e7a33c" : "#e4d8c1"}
+                strokeWidth="2.5"
+                style={{ transition: "fill 0.4s ease, stroke 0.4s ease" }}
+              />
+              {done ? (
+                <path
+                  d={`M ${pt.x - 5} ${pt.y + 1} L ${pt.x - 1} ${pt.y + 5} L ${pt.x + 5} ${pt.y - 4}`}
+                  stroke="#fbf8f1"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+              ) : (
+                <text
+                  x={pt.x}
+                  y={pt.y + 4.5}
+                  textAnchor="middle"
+                  fontSize="13"
+                  fontWeight="700"
+                  fill={here ? "#e7a33c" : "#44514a"}
+                >
+                  {i + 1}
+                </text>
+              )}
+            </g>
+          );
+        })}
+
+        <text
+          x="150"
+          y="732"
+          textAnchor="middle"
+          fontSize="9"
+          fontWeight="700"
+          fill="#44514a"
+          letterSpacing="3"
+        >
+          FINISH
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+/** One plan step inside a trail stage card. Manual items keep their real
+ *  checkbox; derived items show read-only done state; review mode keeps
+ *  the "Doesn't fit?" flag in this view too. */
+function TrailItemRow({
+  item,
+  plan,
+  isDone,
+  reviewing,
+  flagged,
+  onToggleFlag,
+  onUpdate,
+  frame,
+}: RowProps & { item: PlanItem }) {
+  const checked = isDone(item);
+  const manual = !item.doneKey;
+  return (
+    <div
+      className={`flex items-start gap-3 rounded-lg border p-3 transition-colors ${
+        checked
+          ? "border-forest/15 bg-forest/5"
+          : "border-sand bg-paper hover:border-ink/20"
+      }`}
+    >
+      {manual ? (
+        <button
+          type="button"
+          aria-pressed={Boolean(item.checked)}
+          onClick={() => onUpdate(toggleItem(plan, item.id))}
+          aria-label={item.checked ? "Mark not done" : "Mark done"}
+          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors ${
+            item.checked
+              ? "border-forest bg-forest text-cream"
+              : "border-ink/25 bg-cream hover:border-forest"
+          }`}
+        >
+          {item.checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+        </button>
+      ) : (
+        <span
+          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 ${
+            checked
+              ? "border-forest bg-forest text-cream"
+              : "border-sand bg-cream text-stone"
+          }`}
+        >
+          {checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+        </span>
+      )}
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+          <Link
+            href={frameHref(item.href, frame)}
+            className={`text-sm font-semibold leading-snug underline-offset-4 transition-colors hover:text-amber-deep hover:underline ${
+              checked ? "text-stone line-through" : "text-ink"
+            }`}
+          >
+            {item.title}
+          </Link>
+          {item.due && (
+            <span className="text-[11px] font-bold uppercase tracking-wide text-terracotta">
+              {item.due}
+            </span>
+          )}
+        </div>
+        <p className={`mt-0.5 text-xs leading-5 ${checked ? "text-stone/70" : "text-stone"}`}>
+          {item.why}
+        </p>
+      </div>
+      {reviewing && onToggleFlag && (
+        <button
+          type="button"
+          onClick={() => onToggleFlag(item.id)}
+          aria-pressed={flagged?.has(item.id) ?? false}
+          title="Flag this step as not right for you"
+          className={`mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-md border px-2 py-1 text-[11px] font-bold uppercase tracking-wide transition-colors ${
+            flagged?.has(item.id)
+              ? "border-terracotta bg-terracotta text-cream"
+              : "border-ink/20 bg-paper text-stone hover:border-terracotta hover:text-terracotta"
+          }`}
+        >
+          <Flag className="h-3 w-3" />
+          {flagged?.has(item.id) ? "Flagged" : "Doesn't fit?"}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function PlanTrailView({ stages, ...rowProps }: RowProps & { stages: PlanStage[] }) {
+  const { plan, isDone, frame } = rowProps;
+  const byId = new Map(plan.items.map((i) => [i.id, i]));
+  const stageItems = stages.map(
+    (s) => s.itemIds.map((id) => byId.get(id)).filter(Boolean) as PlanItem[]
+  );
+  // Defensive: anything the stages don't cover still renders (memory
+  // contract — nothing on the plan ever hides).
+  const covered = new Set(stages.flatMap((s) => s.itemIds));
+  const extras = plan.items.filter((i) => !covered.has(i.id));
+
+  const doneCount = plan.items.filter(isDone).length;
+  const fraction = plan.items.length ? doneCount / plan.items.length : 0;
+  const orderedItems = [...stageItems.flat(), ...extras];
+  const nextItem = orderedItems.find((i) => !isDone(i)) ?? null;
+  const hereIndex = stageItems.findIndex((items) => items.some((i) => !isDone(i)));
+  const finished = hereIndex === -1 && extras.every(isDone);
+  const statuses: StageStatus[] = stageItems.map((items, i) =>
+    items.every(isDone) ? "completed" : i === hereIndex ? "current" : "upcoming"
+  );
+
+  return (
+    <div className="mt-7 grid items-start gap-8 md:grid-cols-2">
+      {/* Sticky trail card */}
+      <div className="md:sticky md:top-24">
+        <div
+          className="relative overflow-hidden rounded-3xl border-2 border-ink/10 p-5"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(31,144,105,0.14), #fbf8f1 45%)",
+          }}
+        >
+          <div className="mb-2 text-center">
+            <p className="font-display text-4xl font-bold text-forest">
+              {doneCount}
+              <span className="text-xl text-stone">/{plan.items.length}</span>
+            </p>
+            <p className="text-xs uppercase tracking-wider text-stone">
+              steps completed
+            </p>
+          </div>
+
+          <PlanTrail fraction={fraction} statuses={statuses} />
+
+          {nextItem ? (
+            <div className="mt-4 rounded-xl border border-amber/20 bg-amber/10 p-4">
+              <p className="mb-1 text-xs uppercase tracking-wider text-stone">
+                Next up
+              </p>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-medium leading-tight text-ink">
+                  {nextItem.title}
+                </p>
+                <Link
+                  href={frameHref(nextItem.href, frame)}
+                  className="flex shrink-0 items-center gap-1 text-xs font-bold text-amber-deep transition-colors hover:text-ink"
+                >
+                  {doneCount === 0 ? "Start" : "Continue"}
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-4 rounded-xl border border-forest/20 bg-forest/10 p-4 text-center">
+              <p className="font-display text-lg font-bold text-forest">
+                Plan complete!
+              </p>
+              <p className="text-xs text-stone">
+                You&apos;ve finished every step.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Stage cards */}
+      <div className="space-y-4">
+        {stages.map((stage, si) => {
+          const status = statuses[si];
+          const stageDone = status === "completed";
+          const isHere = status === "current" && !finished;
+          return (
+            <div
+              key={si}
+              className={`rounded-2xl border-2 bg-cream p-5 transition-all ${
+                isHere
+                  ? "border-amber shadow-lg"
+                  : stageDone
+                    ? "border-forest/30"
+                    : "border-ink/10"
+              }`}
+            >
+              <div className="mb-4 flex items-start gap-3">
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display font-bold ${
+                    stageDone
+                      ? "bg-forest text-cream"
+                      : isHere
+                        ? "bg-amber/15 text-amber-deep"
+                        : "bg-paper text-stone"
+                  }`}
+                >
+                  {stageDone ? <Check className="h-5 w-5" /> : si + 1}
+                </div>
+                <div className="min-w-0 flex-1">
+                  {isHere && (
+                    <span className="mb-1 inline-block rounded-full bg-amber px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink">
+                      You are here
+                    </span>
+                  )}
+                  <h3 className="font-display text-lg font-bold leading-tight text-ink">
+                    {stage.title}
+                  </h3>
+                  {stage.why && (
+                    <p className="mt-0.5 text-sm text-stone">{stage.why}</p>
+                  )}
+                </div>
+              </div>
+              <div className="space-y-2">
+                {stageItems[si].map((item) => (
+                  <TrailItemRow key={item.id} item={item} {...rowProps} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+
+        {extras.length > 0 && (
+          <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+            <h3 className="mb-4 font-display text-lg font-bold leading-tight text-ink">
+              Also on your plan
+            </h3>
+            <div className="space-y-2">
+              {extras.map((item) => (
+                <TrailItemRow key={item.id} item={item} {...rowProps} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
