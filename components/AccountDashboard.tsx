@@ -661,19 +661,32 @@ export function CustomizeCard({
 export function DashboardExtras({
   prefs,
   onChange,
+  group,
 }: {
   prefs: DashboardPrefs;
   onChange: (next: DashboardPrefs) => void;
+  /** Tab split (owner call, July 14: "overview has too much"): overview =
+   *  do-now cards; progress = how-far-I've-come cards. CustomizeCard
+   *  lives on the About-you tab now. */
+  group: "overview" | "progress";
 }) {
   const hidden = new Set(prefs.hiddenCards);
   return (
     <div className="grid items-start gap-4 xl:grid-cols-2">
-      {!hidden.has("plan") && <PlanCard />}
-      {!hidden.has("heatmap") && <ActivityHeatmap />}
-      {!hidden.has("pipeline") && <PipelineCard />}
-      {!hidden.has("tools") && <PinnedToolsCard prefs={prefs} onChange={onChange} />}
-      {!hidden.has("moments") && <MomentsCard />}
-      <CustomizeCard prefs={prefs} onChange={onChange} />
+      {group === "overview" ? (
+        <>
+          {!hidden.has("plan") && <PlanCard />}
+          {!hidden.has("tools") && (
+            <PinnedToolsCard prefs={prefs} onChange={onChange} />
+          )}
+          {!hidden.has("moments") && <MomentsCard />}
+        </>
+      ) : (
+        <>
+          {!hidden.has("heatmap") && <ActivityHeatmap />}
+          {!hidden.has("pipeline") && <PipelineCard />}
+        </>
+      )}
     </div>
   );
 }
@@ -836,12 +849,16 @@ export function FlatOverview({
   paths,
   badgeTotal,
   hidden = [],
+  include,
 }: {
   data: MemberData;
   paths: TopicPath[];
   badgeTotal: number;
   /** DASHBOARD_CARDS ids switched off in the member's prefs. */
   hidden?: string[];
+  /** Which sections this tab shows (owner tab split, July 14). Omit =
+   *  all sections (legacy behavior). */
+  include?: ("student" | "recent" | "badges" | "topics")[];
 }) {
   // Done doors drop out of the stage shortcuts while undone ones remain
   // (computed post-mount, same as everything else here).
@@ -850,7 +867,15 @@ export function FlatOverview({
 
   if (!data.mounted) return null;
   const { next, recent, earned, progress } = data;
-  const off = new Set(hidden);
+  const inc = include ? new Set(include) : null;
+  const off = new Set([
+    ...hidden,
+    ...(inc
+      ? (["student", "recent", "badges", "topics"] as const).filter(
+          (id) => !inc.has(id)
+        )
+      : []),
+  ]);
 
   // Student-stage shortcuts (July 2026): when this member said which
   // student they are — on the profile or the /students picker — lead the

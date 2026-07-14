@@ -21,6 +21,7 @@ import {
   Check,
   Pencil,
   LayoutDashboard,
+  TrendingUp,
   Target,
   ShieldCheck,
   BookOpen,
@@ -52,6 +53,7 @@ import {
   FlatStatCards,
   FlatOverview,
   DashboardExtras,
+  CustomizeCard,
   DASH,
 } from "@/components/AccountDashboard";
 import {
@@ -72,10 +74,11 @@ import {
 import { moments } from "@/lib/moments";
 
 /** The signed-in sections, navigated by the left rail. */
-type PanelTab = "overview" | "about" | "goals" | "security";
+type PanelTab = "overview" | "progress" | "about" | "goals" | "security";
 
 const PANEL_LABELS: Record<PanelTab, string> = {
   overview: "Overview",
+  progress: "Progress",
   // Owner rename July 13, 2026: the editor tab is "Profile", the goals
   // tab wears "About you" (ids stay stable — they're plumbing).
   about: "Profile",
@@ -934,6 +937,7 @@ export function ProfileEditor({
   const keepHref = member.next?.href ?? "/learn";
   const navItems = [
     ["overview", LayoutDashboard],
+    ["progress", TrendingUp],
     ["about", UserRound],
     ["goals", Target],
     ["security", ShieldCheck],
@@ -1088,12 +1092,23 @@ export function ProfileEditor({
                 />
 
                 <div className="min-w-0 space-y-5">
-                  {!dashPrefs.hiddenCards.includes("stats") && (
-                    <FlatStatCards
-                      data={member}
-                      paths={paths}
-                      badgeTotal={badgeSources.length}
-                    />
+                  {tab === "progress" && member.mounted && (
+                    <>
+                      {!dashPrefs.hiddenCards.includes("stats") && (
+                        <FlatStatCards
+                          data={member}
+                          paths={paths}
+                          badgeTotal={badgeSources.length}
+                        />
+                      )}
+                      {dashPrefsReady && (
+                        <DashboardExtras
+                          group="progress"
+                          prefs={dashPrefs}
+                          onChange={updateDashPrefs}
+                        />
+                      )}
+                    </>
                   )}
                   {/* Overview-only: these are the overview's cards — on any
                       other tab they'd read as page debris (owner bug report,
@@ -1103,6 +1118,7 @@ export function ProfileEditor({
                     dashPrefsReady &&
                     member.mounted && (
                       <DashboardExtras
+                        group="overview"
                         prefs={dashPrefs}
                         onChange={updateDashPrefs}
                       />
@@ -1170,7 +1186,17 @@ export function ProfileEditor({
           )}
           {tab === "overview" && (
             <FlatOverview
-                        hidden={dashPrefs.hiddenCards}
+              hidden={dashPrefs.hiddenCards}
+              include={["student", "recent"]}
+              data={member}
+              paths={paths}
+              badgeTotal={badgeSources.length}
+            />
+          )}
+          {tab === "progress" && (
+            <FlatOverview
+              hidden={dashPrefs.hiddenCards}
+              include={["badges", "topics"]}
               data={member}
               paths={paths}
               badgeTotal={badgeSources.length}
@@ -1594,6 +1620,10 @@ export function ProfileEditor({
                   These answers pre-fill your plan builder and shape the
                   &ldquo;up next&rdquo; picks. Change or clear them any time.
                 </p>
+
+                {dashPrefsReady && (
+                  <CustomizeCard prefs={dashPrefs} onChange={updateDashPrefs} />
+                )}
               </div>
             </div>
           )}
