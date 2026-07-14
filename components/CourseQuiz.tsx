@@ -25,9 +25,14 @@ export function getBadges(): BadgeMap {
 /** The just-for-fun rosette. Also used on the courses hub. */
 export function BadgeMedal({
   color,
+  center = "#fbf8f1",
   className = "h-16 w-16",
 }: {
   color: string;
+  /** Inner-disc color. Override when the medal itself is drawn in cream
+   *  on a colored band (CourseGrid earned state) — a cream disc inside a
+   *  cream rosette reads as a blank white blob. */
+  center?: string;
   className?: string;
 }) {
   return (
@@ -49,7 +54,7 @@ export function BadgeMedal({
         );
       })}
       <circle cx="32" cy="26" r="15.5" fill={color} />
-      <circle cx="32" cy="26" r="11" fill="#fbf8f1" />
+      <circle cx="32" cy="26" r="11" fill={center} />
       <path
         d="m26.5 26.5 3.5 3.5 7.5-8"
         fill="none"
