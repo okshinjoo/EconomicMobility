@@ -68,44 +68,48 @@ export default function ToolsHub() {
           answering a form's question but a life one, so it earns a band of
           its own between the hero and the category grid. */}
       <section className="border-b-2 border-ink bg-forest text-cream">
-        <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
+        <div className="mx-auto max-w-6xl px-6 py-7">
           <Reveal>
-            <div className="grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber">
+            <div className="flex items-center gap-5">
+              <span className="card-ink hidden h-20 w-20 shrink-0 rotate-2 items-center justify-center rounded-2xl bg-cream sm:flex">
+                <ToolMark
+                  slug="reality-check"
+                  color="#c9842a"
+                  className="h-11 w-11"
+                />
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber">
                   Start with the fun one
                 </span>
-                <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.05] sm:text-4xl">
+                <h2 className="mt-1 font-display text-xl font-semibold leading-tight sm:text-2xl">
                   Pick the life you want.{" "}
                   <span className="italic text-amber">
                     See the salary it takes.
                   </span>
                 </h2>
-                <p className="mt-4 max-w-xl text-lg leading-8 text-cream/80">
-                  The Reality Check plays the game backward: choose your
-                  apartment, your car, your groceries, a little fun, and it
-                  works out the real paycheck that covers it all, taxed for
-                  your state. It&apos;s the fastest way to make &ldquo;how much
-                  is enough?&rdquo; feel concrete.
+                <p className="mt-1.5 max-w-2xl text-sm leading-6 text-cream/80">
+                  Choose your apartment, car, groceries, and a little fun; the
+                  Reality Check works backward to the real paycheck that covers
+                  it, taxed for your state.
                 </p>
-                <Link
-                  href="/tools/budget/reality-check"
-                  className="btn-ink mt-7 inline-flex items-center gap-2 rounded-md bg-amber px-6 py-3 text-base font-bold text-ink"
-                >
-                  Try the Reality Check
-                  <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-                </Link>
               </div>
-              <div className="hidden justify-self-center md:block">
-                <span className="card-ink flex h-40 w-40 rotate-2 items-center justify-center rounded-3xl bg-cream">
-                  <ToolMark
-                    slug="reality-check"
-                    color="#c9842a"
-                    className="h-24 w-24"
-                  />
-                </span>
-              </div>
+              <Link
+                href="/tools/budget/reality-check"
+                className="btn-ink hidden shrink-0 items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink sm:inline-flex"
+              >
+                Try it
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+              </Link>
             </div>
+            {/* button drops below the row on the narrowest screens */}
+            <Link
+              href="/tools/budget/reality-check"
+              className="btn-ink mt-4 inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink sm:hidden"
+            >
+              Try the Reality Check
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -125,21 +129,26 @@ export default function ToolsHub() {
                 <Reveal key={cat.id} delay={i * 70}>
                   <a
                     href={`#${cat.id}`}
-                    className="card-ink group flex h-full flex-col rounded-xl p-6 text-ink transition-transform duration-200 hover:-translate-y-1"
+                    className="card-ink group flex h-full flex-col rounded-2xl p-6 text-ink transition-transform duration-200 hover:-translate-y-1"
                     style={{ backgroundColor: style.bg }}
                   >
-                    <ToolDoodle id={cat.id} color={style.accent} />
-                    <span className="mt-4 block font-display text-lg font-bold leading-tight">
+                    <div className="flex items-start justify-between gap-2">
+                      <ToolDoodle id={cat.id} color={style.accent} />
+                      <span
+                        className="rounded-full px-2.5 py-1 text-[11px] font-bold tabular-nums"
+                        style={{
+                          color: style.accent,
+                          background: "rgba(255,255,255,0.6)",
+                        }}
+                      >
+                        {liveCount} calculators
+                      </span>
+                    </div>
+                    <span className="mt-5 block font-display text-lg font-bold leading-tight">
                       {cat.label}
                     </span>
-                    <span className="mt-1 flex-1 text-xs leading-5 text-ink/65">
+                    <span className="mt-1.5 text-[13px] leading-5 text-ink/70">
                       {cat.blurb}
-                    </span>
-                    <span
-                      className="mt-4 border-t-2 pt-3 text-xs font-bold text-ink/60"
-                      style={{ borderColor: `${style.accent}55` }}
-                    >
-                      {liveCount} calculators
                     </span>
                   </a>
                 </Reveal>
