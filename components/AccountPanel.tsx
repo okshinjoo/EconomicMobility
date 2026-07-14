@@ -210,7 +210,7 @@ export default function AccountPanel({
     <section className={overlay ? "" : "bg-paper-deep"}>
     <div className={
       overlay
-        ? "relative mx-auto grid max-w-5xl items-stretch gap-6 rounded-3xl bg-paper-deep p-5 pt-14 shadow-2xl ring-1 ring-white/20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8 lg:pt-14"
+        ? "relative mx-auto grid max-w-5xl items-stretch gap-6 rounded-3xl bg-paper-deep p-5 pt-14 shadow-2xl lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8 lg:pt-14"
         : "mx-auto grid max-w-5xl items-stretch gap-6 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:py-16"
     }>
     {overlay && <CloseX className="absolute right-4 top-4 z-10" />}
@@ -951,10 +951,9 @@ export function ProfileEditor({
         }
       >
         <div
-          className={`overflow-hidden rounded-3xl border-2 border-ink ${
-            overlay ? "shadow-2xl" : "shadow-[6px_6px_0_rgba(17,33,28,0.9)]"
+          className={`overflow-hidden rounded-3xl ${
+            overlay ? "bg-paper-deep shadow-2xl" : ""
           }`}
-          style={{ background: DASH.surface }}
         >
           {/* in-frame top bar */}
           <div
