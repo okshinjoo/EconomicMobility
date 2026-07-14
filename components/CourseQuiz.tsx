@@ -22,7 +22,7 @@ export function getBadges(): BadgeMap {
   return loadJSON<BadgeMap>(BADGES_KEY) ?? {};
 }
 
-/** The just-for-fun rosette. Also used on the courses hub. */
+/** The just-for-fun badge art: challenge patch / course medal. */
 export function BadgeMedal({
   color,
   center = "#fbf8f1",
@@ -34,13 +34,46 @@ export function BadgeMedal({
    *  on a colored band (CourseGrid earned state) — a cream disc inside a
    *  cream rosette reads as a blank white blob. */
   center?: string;
-  /** "challenge" = the original check rosette; "course" = the academic
-   *  medal (layered notched ribbon, rim ring, star). Owner call July 14:
-   *  the two badge kinds must read differently at a glance. */
+  /** "challenge" = a solid hexagonal merit patch (stitched border, bold
+   *  cream check — you DID something); "course" = the round academic
+   *  medal (scalloped edge, layered ribbons, rim ring, star — you
+   *  LEARNED something). Owner calls July 14, twice: the two kinds must
+   *  read as different OBJECTS, not one rosette with two center glyphs —
+   *  keep the silhouettes apart. */
   variant?: "challenge" | "course";
   className?: string;
 }) {
   const isCourse = variant === "course";
+  if (!isCourse) {
+    // Point-up hexagon centered on the canvas.
+    const hexPoints = (r: number) =>
+      Array.from({ length: 6 }, (_, i) => {
+        const a = -Math.PI / 2 + (i * Math.PI) / 3;
+        return `${(32 + Math.cos(a) * r).toFixed(2)},${(32 + Math.sin(a) * r).toFixed(2)}`;
+      }).join(" ");
+    return (
+      <svg viewBox="0 0 64 64" aria-hidden className={className}>
+        <polygon points={hexPoints(23)} fill={color} />
+        {/* stitched inset, like a sewn-on patch */}
+        <polygon
+          points={hexPoints(18.5)}
+          fill="none"
+          stroke={center}
+          strokeWidth="1.6"
+          strokeDasharray="3.2 3.4"
+          opacity="0.75"
+        />
+        <path
+          d="m23.5 32.5 5.5 5.5 11.5-12.5"
+          fill="none"
+          stroke={center}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
   // Five-point star for the course medal, point-up, centered on the disc.
   const starPoints = Array.from({ length: 10 }, (_, i) => {
     const r = i % 2 === 0 ? 7 : 2.9;
@@ -49,26 +82,15 @@ export function BadgeMedal({
   }).join(" ");
   return (
     <svg viewBox="0 0 64 64" aria-hidden className={className}>
-      {isCourse ? (
-        <>
-          {/* layered, notched ribbon tails (back pair darker, splayed) */}
-          <path d="M20 36 12 59l7-4 4 8 6-23Z" fill={color} opacity="0.35" />
-          <path d="M44 36l8 23-7-4-4 8-6-23Z" fill={color} opacity="0.35" />
-          <path d="M24 38 19 60l6-5 5 8 4-22Z" fill={color} opacity="0.6" />
-          <path d="M40 38l5 22-6-5-5 8-4-22Z" fill={color} opacity="0.6" />
-        </>
-      ) : (
-        <>
-          {/* ribbon tails */}
-          <path d="M22 38 16 60l8-6 6 8 4-22Z" fill={color} opacity="0.55" />
-          <path d="M42 38l6 22-8-6-6 8-4-22Z" fill={color} opacity="0.55" />
-        </>
-      )}
-      {/* scalloped rosette (courses alternate scallop depth for a maltese
-          edge; challenges keep the even rosette) */}
+      {/* layered, notched ribbon tails (back pair darker, splayed) */}
+      <path d="M20 36 12 59l7-4 4 8 6-23Z" fill={color} opacity="0.35" />
+      <path d="M44 36l8 23-7-4-4 8-6-23Z" fill={color} opacity="0.35" />
+      <path d="M24 38 19 60l6-5 5 8 4-22Z" fill={color} opacity="0.6" />
+      <path d="M40 38l5 22-6-5-5 8-4-22Z" fill={color} opacity="0.6" />
+      {/* scalloped maltese edge */}
       {Array.from({ length: 12 }, (_, i) => {
         const a = (i / 12) * Math.PI * 2;
-        const rr = isCourse && i % 2 === 1 ? 4.6 : 6;
+        const rr = i % 2 === 1 ? 4.6 : 6;
         return (
           <circle
             key={i}
@@ -81,30 +103,17 @@ export function BadgeMedal({
       })}
       <circle cx="32" cy="26" r="15.5" fill={color} />
       <circle cx="32" cy="26" r="11" fill={center} />
-      {isCourse ? (
-        <>
-          {/* thin rim ring + star */}
-          <circle
-            cx="32"
-            cy="26"
-            r="12.9"
-            fill="none"
-            stroke={center}
-            strokeWidth="1.1"
-            opacity="0.55"
-          />
-          <polygon points={starPoints} fill={color} />
-        </>
-      ) : (
-        <path
-          d="m26.5 26.5 3.5 3.5 7.5-8"
-          fill="none"
-          stroke={color}
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      )}
+      {/* thin rim ring + star */}
+      <circle
+        cx="32"
+        cy="26"
+        r="12.9"
+        fill="none"
+        stroke={center}
+        strokeWidth="1.1"
+        opacity="0.55"
+      />
+      <polygon points={starPoints} fill={color} />
     </svg>
   );
 }
