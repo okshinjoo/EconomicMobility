@@ -1060,7 +1060,7 @@ export const governmentAidExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "[SNAP](/learn/government-aid/snap-explained) uses a gross income test, 130% of the federal poverty line in most states, a bit over $1,700 a month for a single person under the guidelines in effect for 2026. Some states use higher limits, which softens the edge.",
+          "[SNAP](/learn/government-aid/snap-explained) uses a gross income test, 130% of the federal poverty line in most states, about $1,700 a month for a single person under the guidelines in effect for 2026. Some states use higher limits, which softens the edge.",
           "[Medicaid](/learn/government-aid/medicaid-explained) in expansion states ends near 138% of the poverty line. Crossing it means moving to a marketplace plan, which subsidies can make affordable, but rarely free.",
           "Child care assistance and housing vouchers vary by state and often have the steepest cliffs of all, worth hundreds a month.",
           "Not everything is a cliff: the [Earned Income Tax Credit](/learn/taxes/earned-income-tax-credit) phases out gradually, so more earnings never wipe out more than they add.",

@@ -1617,7 +1617,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "key",
-        text: "A federal study found that transfer students lose about 40% of their credits on average. A lost credit is a course you paid for once at the community college and will pay for again at the university, in tuition and in time. The whole money game of transferring is keeping that number near zero.",
+        text: "A federal study found that transfer students lose about 43% of their credits on average. A lost credit is a course you paid for once at the community college and will pay for again at the university, in tuition and in time. The whole money game of transferring is keeping that number near zero.",
       },
       {
         type: "h2",
@@ -1831,7 +1831,7 @@ export const collegeExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Member discounts are real.** The clearest example: BYU charges members of its sponsoring church roughly half what non-members pay (about $6,500 versus $13,000 a year as of 2026), and requires an annual ecclesiastical endorsement from everyone. Smaller versions exist across denominations as member grants and heritage awards.",
+          "**Member discounts are real.** The clearest example: BYU charges members of its sponsoring church roughly half what non-members pay (about $7,000 versus $14,000 a year for 2026–27), and requires an annual ecclesiastical endorsement from everyone. Smaller versions exist across denominations as member grants and heritage awards.",
           "**Denominational scholarships stack.** Parish and congregation awards, Catholic-high-school grants, Lutheran congregation matching programs, and discounts for children of clergy or church workers all exist at the college or through your own congregation. Ask both ends; see [finding real scholarships](/learn/college/finding-scholarships) for vetting.",
           "**Small religious privates discount hard.** Most are tuition-dependent private colleges, which means sticker price is fiction and merit and need aid go deep — the [private versus public guide](/learn/college/private-vs-public-aid) explains how to read that game.",
           "**Federal aid doesn't care about the cross on the gate.** [FAFSA](/learn/college/fafsa-step-by-step), Pell, and federal loans work identically at any accredited college, religious or not.",

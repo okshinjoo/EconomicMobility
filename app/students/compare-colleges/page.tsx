@@ -44,7 +44,7 @@ const SAMPLE_COLLEGES = [
     name: "UT Austin",
     place: "Austin, TX · Public · ~42,000 undergrads",
     coa: "≈ $31,000/yr in-state",
-    accept: "≈ 22% admitted (auto-admit ~top 5–6% of Texas classes)",
+    accept: "≈ 22% admitted (auto-admit top 5% of Texas classes)",
     gpa: "Top-of-class rank matters most",
     values: ["Class rank: decisive (auto-admit)", "Test scores: required", "Essays: important", "Legacy: not considered"],
     aid: "Texas Advance: tuition covered under ~$100k income (2026)",
