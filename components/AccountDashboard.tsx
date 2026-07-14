@@ -14,7 +14,8 @@ import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { stageLabel } from "@/lib/profile";
 import { readStudentStage } from "@/lib/studentStage";
-import { STAGE_PLANS, rotatedRecs } from "@/lib/studentRecs";
+import { STAGE_PLANS, rotatedRecs, doneRecHrefs } from "@/lib/studentRecs";
+import { pickNextUnread } from "@/lib/readingLevel";
 import {
   ACCENT_OPTIONS,
   DASHBOARD_CARDS,
@@ -147,7 +148,10 @@ export function useMemberData(
     );
 
     const nextIn = (topic: TopicPath): NextStep | null => {
-      const unread = topic.articles.find((a) => !read[a.slug]);
+      // Level-aware soft re-sort (lib/readingLevel): someone reading
+      // Intermediate/Advanced in this topic isn't pointed at a primer
+      // while deeper unread guides exist. Beginner-first otherwise.
+      const unread = pickNextUnread(topic.id, topic.articles, read);
       return unread
         ? {
             title: unread.title,
@@ -506,12 +510,22 @@ function PlanCard() {
 }
 
 /** The picked life moments' bundles, straight from lib/moments — the
- *  About-you tab's "anything happening soon?" answers paying off. */
+ *  About-you tab's "anything happening soon?" answers paying off.
+ *  Done-aware (July 2026): reads already finished on this device drop out;
+ *  when all of a moment's reads are done, its tool takes the slot instead —
+ *  a picked moment never renders blank. */
 function MomentsCard() {
   const [picked, setPicked] = useState<string[]>([]);
-  useEffect(() => setPicked(readAboutYou().moments), []);
+  const [read, setRead] = useState<Record<string, number>>({});
+  useEffect(() => {
+    setPicked(readAboutYou().moments);
+    setRead(getReadMap());
+  }, []);
   const mine = moments.filter((m) => picked.includes(m.id));
   if (mine.length === 0) return null;
+  // Read-map keys are article slugs — the last path segment of a read href.
+  const slugOf = (href: string) =>
+    href.split(/[?#]/)[0].split("/").filter(Boolean).pop() ?? "";
   return (
     <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
       <div className="flex items-baseline justify-between gap-3">
@@ -523,25 +537,48 @@ function MomentsCard() {
         </Link>
       </div>
       <div className="mt-3 space-y-4">
-        {mine.map((m) => (
-          <div key={m.id}>
-            <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: m.color }}>
-              {m.title}
-            </p>
-            <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
-              {m.reads.slice(0, 3).map((r) => (
-                <Link
-                  key={r.href}
-                  href={r.href}
-                  className="text-sm font-semibold text-ink underline decoration-2 underline-offset-4 hover:text-forest"
-                  style={{ textDecorationColor: `${m.color}55` }}
-                >
-                  {r.label}
-                </Link>
-              ))}
+        {mine.map((m) => {
+          const unread = m.reads.filter((r) => !read[slugOf(r.href)]);
+          const doing = m.tool ?? m.course ?? m.challenge;
+          return (
+            <div key={m.id}>
+              <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: m.color }}>
+                {m.title}
+              </p>
+              <div className="mt-1.5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                {unread.length > 0 ? (
+                  unread.slice(0, 3).map((r) => (
+                    <Link
+                      key={r.href}
+                      href={r.href}
+                      className="text-sm font-semibold text-ink underline decoration-2 underline-offset-4 hover:text-forest"
+                      style={{ textDecorationColor: `${m.color}55` }}
+                    >
+                      {r.label}
+                    </Link>
+                  ))
+                ) : doing ? (
+                  <>
+                    <span className="text-xs font-medium" style={{ color: DASH.muted }}>
+                      Reads done — next:
+                    </span>
+                    <Link
+                      href={doing.href}
+                      className="text-sm font-semibold text-ink underline decoration-2 underline-offset-4 hover:text-forest"
+                      style={{ textDecorationColor: `${m.color}55` }}
+                    >
+                      {doing.label}
+                    </Link>
+                  </>
+                ) : (
+                  <span className="text-sm font-medium" style={{ color: DASH.muted }}>
+                    All three reads done.
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -806,6 +843,11 @@ export function FlatOverview({
   /** DASHBOARD_CARDS ids switched off in the member's prefs. */
   hidden?: string[];
 }) {
+  // Done doors drop out of the stage shortcuts while undone ones remain
+  // (computed post-mount, same as everything else here).
+  const [doneRecs, setDoneRecs] = useState<Set<string>>(() => new Set());
+  useEffect(() => setDoneRecs(doneRecHrefs()), []);
+
   if (!data.mounted) return null;
   const { next, recent, earned, progress } = data;
   const off = new Set(hidden);
@@ -837,7 +879,7 @@ export function FlatOverview({
           </div>
           <div className="mt-2.5 flex flex-wrap gap-2">
             {/* Same daily rotation as the /students band (mounted-only). */}
-            {rotatedRecs(stage, 4).map((r) => (
+            {rotatedRecs(stage, 4, doneRecs).map((r) => (
               <Link
                 key={r.href}
                 href={r.href}
@@ -955,7 +997,7 @@ export function FlatOverview({
           <div className="mt-3 flex flex-wrap gap-x-6 gap-y-4">
             {earned.map((b) => (
               <div key={`${b.kind}-${b.id}`} className="w-24 text-center">
-                <BadgeMedal color={b.color} className="mx-auto h-12 w-12" />
+                <BadgeMedal color={b.color} variant={b.kind === "course" ? "course" : "challenge"} className="mx-auto h-12 w-12" />
                 <p className="mt-1 text-xs font-semibold leading-tight text-ink">
                   {b.title}
                 </p>

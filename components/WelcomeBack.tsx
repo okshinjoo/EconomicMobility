@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap, lastReadSlug } from "@/lib/readTracking";
+import { pickNextUnread, type ReadingLevel } from "@/lib/readingLevel";
 import { ROADMAP_SET } from "@/lib/roadmaps";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
@@ -13,8 +14,10 @@ export interface TopicPath {
   short: string;
   href: string;
   color: string;
-  /** Slugs + titles in roadmap (reading) order. */
-  articles: { slug: string; title: string }[];
+  /** Slugs + titles in roadmap (reading) order. `level` powers the soft
+   *  reading-level re-sort (lib/readingLevel) — optional so older callers
+   *  keep working, but the server builders all thread it through. */
+  articles: { slug: string; title: string; level?: ReadingLevel }[];
 }
 
 /** Course + challenge metadata so earned badges can render with names/colors. */
@@ -79,7 +82,11 @@ export default function WelcomeBack({
     const read = getReadMap();
 
     const nextIn = (topic: TopicPath): Recommendation | null => {
-      const next = topic.articles.find((a) => !read[a.slug]);
+      // Level-aware soft re-sort: a reader with demonstrated Intermediate/
+      // Advanced momentum in this topic gets the first unread deeper guide
+      // instead of a primer (falls back to Beginner when nothing deeper is
+      // left). First-unread-in-path-order otherwise, exactly as before.
+      const next = pickNextUnread(topic.id, topic.articles, read);
       if (!next) return null;
       const roadmap = topic.articles.find(
         (a) => ROADMAP_SET.has(a.slug) && a.slug !== next.slug && !read[a.slug]
@@ -210,7 +217,7 @@ export default function WelcomeBack({
               <span className="flex -space-x-1.5">
                 {earned.slice(0, 5).map((b) => (
                   <span key={`${b.kind}-${b.id}`} title={b.title}>
-                    <BadgeMedal color={b.color} className="h-8 w-8 drop-shadow-sm" />
+                    <BadgeMedal color={b.color} variant={b.kind === "course" ? "course" : "challenge"} className="h-8 w-8 drop-shadow-sm" />
                   </span>
                 ))}
               </span>

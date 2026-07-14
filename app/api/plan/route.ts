@@ -16,6 +16,7 @@ import { challenges } from "@/lib/challenges";
 import { deadlines, type Deadline } from "@/lib/deadlines";
 import { getSearchItems } from "@/lib/search";
 import { rankItems } from "@/lib/guide";
+import { ADVANCED_SIGNAL_MIN } from "@/lib/readingLevel";
 import type { IntakeAnswers, MyPlan, PlanItem, PlanStage } from "@/lib/plan";
 
 export const runtime = "nodejs";
@@ -231,6 +232,12 @@ const GOAL_IDS = ["credit", "debt", "budget", "emergency", "invest", "college", 
 const STAGE_IDS = ["high-school", "community-college", "four-year", "transferring", "working", "between"];
 const INCOME_IDS = ["steady", "irregular", "none", "supported"];
 const FAMILY_IDS = ["on-my-own", "family-helps", "i-help-family"];
+// lib/aboutYou confidence enum -> the human phrasing the prompt uses.
+const CONFIDENCE_LABELS: Record<string, string> = {
+  new: "new to all of this",
+  some: "knows some things",
+  confident: "pretty confident",
+};
 
 const INTERVIEW_SYSTEM = `You are the plan-builder guide on Empower, a free financial-education site for first-generation, low-income, and immigrant students. Some readers are teenagers. Warm older-sibling voice, plain words, never salesy.
 
@@ -306,6 +313,8 @@ interface Knowns {
   income?: string;
   family?: string;
   goals?: string[];
+  /** About-you self-described comfort level (collected on the account tab). */
+  confidence?: string;
 }
 
 /* ------------------------------ done-awareness --------------------------- */
@@ -365,6 +374,28 @@ function doneBlock(done: DoneSignals): string {
 They've already read ${count} guide${count === 1 ? "" : "s"} on this site${topicList ? ` (topics: ${topicList})` : ""}. Keep the no-recommending-reading rule during the interview, but your played-back summary may briefly acknowledge that momentum if it fits naturally.`;
 }
 
+/** One SOFT build-prompt line when their reads show an intermediate/advanced
+ *  lean in a topic (>= ADVANCED_SIGNAL_MIN non-Beginner reads — same signal
+ *  as lib/readingLevel client-side). A lean, never a filter: the model may
+ *  still assign a primer when a foundational gap genuinely matters. */
+function readingLevelLine(done: DoneSignals): string {
+  const deepReads = new Map<string, number>();
+  for (const slug of done.reads) {
+    const a = getArticleBySlug(slug);
+    if (a && a.level !== "Beginner")
+      deepReads.set(a.topicId, (deepReads.get(a.topicId) ?? 0) + 1);
+  }
+  const advancedTopics = [...deepReads.entries()]
+    .filter(([, n]) => n >= ADVANCED_SIGNAL_MIN)
+    .map(([t]) => t);
+  if (advancedTopics.length === 0) return "";
+  return `\n- Reading level: they already read at an intermediate/advanced level in ${advancedTopics.join(
+    ", "
+  )} — lean away from basic primers in ${
+    advancedTopics.length === 1 ? "that topic" : "those topics"
+  } unless a foundational gap genuinely matters.`;
+}
+
 /** Standing answers from the profile/About-you tab: the interview skips
  *  what these already cover and folds them into the confirm-back summary
  *  (the person still gets to say "not quite"). */
@@ -378,6 +409,7 @@ function sanitizeKnowns(raw: unknown): Knowns {
     const g = r.goals.map(String).filter((id) => GOAL_IDS.includes(id));
     if (g.length > 0) out.goals = g.slice(0, 3);
   }
+  if (CONFIDENCE_LABELS[String(r.confidence)]) out.confidence = String(r.confidence);
   return out;
 }
 
@@ -387,6 +419,10 @@ function knownsBlock(k: Knowns): string {
   if (k.income) lines.push(`- Money month to month: ${k.income}`);
   if (k.family) lines.push(`- Family situation: ${k.family}`);
   if (k.goals) lines.push(`- Goals already on their profile: ${k.goals.join(", ")} (confirm which one is TODAY'S focus rather than asking from scratch)`);
+  if (k.confidence)
+    lines.push(
+      `- Comfort with money, self-described: ${CONFIDENCE_LABELS[k.confidence]} (a tone signal — don't over-explain basics to someone confident, don't assume knowledge from someone new)`
+    );
   if (lines.length === 0) return "";
   return `
 
@@ -498,7 +534,8 @@ export async function POST(req: NextRequest) {
   }
 
   const catalog = buildCatalog(intake);
-  markAlreadyDone(catalog, sanitizeDone((body as { done?: unknown }).done));
+  const done = sanitizeDone((body as { done?: unknown }).done);
+  markAlreadyDone(catalog, done);
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     // Revising without AI would clobber their plan with a generic fallback —
@@ -554,7 +591,7 @@ HARD RULES:
 - Goal: ${intake.goal}${intake.detail ? ` — in their words: "${intake.detail}"` : ""}
 - Where they are: ${intake.stage}
 - Money month to month: ${intake.income}
-- Family: ${intake.family}
+- Family: ${intake.family}${readingLevelLine(done)}
 ${intake.target ? `- Their target: "${intake.target}"` : ""}
 ${confirmedSummary ? `- Their confirmed story, in the guide's words they agreed to: "${confirmedSummary}"` : ""}
 ${

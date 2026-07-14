@@ -26,7 +26,7 @@ export default function DevAccountPreviewPage() {
     color: t.color,
     articles: getTopicRoadmap(t.id)
       .flatMap((group) => group.articles)
-      .map((a) => ({ slug: a.slug, title: a.title })),
+      .map((a) => ({ slug: a.slug, title: a.title, level: a.level })),
   }));
   const badgeSources: BadgeSource[] = [
     ...courses.map((c) => ({

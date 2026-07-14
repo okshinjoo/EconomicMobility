@@ -242,6 +242,9 @@ function gatherKnowns() {
     income: about.income || undefined,
     family: about.family || undefined,
     goals: profile?.goals?.length ? profile.goals : undefined,
+    // Self-described comfort level from About-you — the route folds it
+    // into the interview's ALREADY KNOWN block as a tone signal.
+    confidence: about.confidence || undefined,
   };
 }
 

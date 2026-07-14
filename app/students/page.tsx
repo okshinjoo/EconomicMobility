@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import StudentStageDash from "@/components/StudentStageDash";
 import TopicMark from "@/components/TopicMark";
+import ReadOrderedGrid from "@/components/ReadOrderedGrid";
 import { ReadBadge } from "@/components/ReadBadge";
 import { getArticleBySlug, getTopicArticles } from "@/lib/articles";
 import { getTopic } from "@/lib/topics";
@@ -258,33 +259,38 @@ export default function StudentsPage() {
               <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
                 Four guides that pay for themselves
               </h2>
-              <div className="mt-6 space-y-3">
-                {starters.map((a) => {
+              {/* Read rows sink to the bottom (memory contract: lists never
+                  hide read items — they demote them, ReadBadge stays). */}
+              <ReadOrderedGrid
+                className="mt-6 space-y-3"
+                items={starters.map((a) => {
                   const topic = getTopic(a.topicId);
-                  return (
-                    <div
-                      key={a.slug}
-                      className="card-ink group relative flex items-center gap-3 rounded-xl px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5"
-                      style={{
-                        background: `color-mix(in srgb, ${topic.color} 10%, #fbf8f1)`,
-                      }}
-                    >
-                      <TopicMark id={a.topicId} className="h-6 w-6 shrink-0" />
-                      <Link
-                        href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
-                        className="min-w-0 flex-1 text-sm font-bold leading-snug text-ink after:absolute after:inset-0 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-                        style={{ textDecorationColor: topic.color }}
+                  return {
+                    slug: a.slug,
+                    node: (
+                      <div
+                        className="card-ink group relative flex items-center gap-3 rounded-xl px-4 py-3.5 transition-transform duration-200 hover:-translate-y-0.5"
+                        style={{
+                          background: `color-mix(in srgb, ${topic.color} 10%, #fbf8f1)`,
+                        }}
                       >
-                        {a.title}
-                      </Link>
-                      <span className="shrink-0 text-xs font-medium text-stone">
-                        {a.readMinutes} min
-                      </span>
-                      <ReadBadge slug={a.slug} accent="#11211c" />
-                    </div>
-                  );
+                        <TopicMark id={a.topicId} className="h-6 w-6 shrink-0" />
+                        <Link
+                          href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
+                          className="min-w-0 flex-1 text-sm font-bold leading-snug text-ink after:absolute after:inset-0 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+                          style={{ textDecorationColor: topic.color }}
+                        >
+                          {a.title}
+                        </Link>
+                        <span className="shrink-0 text-xs font-medium text-stone">
+                          {a.readMinutes} min
+                        </span>
+                        <ReadBadge slug={a.slug} accent="#11211c" />
+                      </div>
+                    ),
+                  };
                 })}
-              </div>
+              />
               <p className="mt-5 text-sm leading-6 text-stone">
                 Then keep going:{" "}
                 <Link

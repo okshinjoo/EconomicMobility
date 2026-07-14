@@ -16,14 +16,18 @@ import {
   writeStudentStage,
   type KnownStage,
 } from "@/lib/studentStage";
-import { STAGE_PLANS, rotatedRecs } from "@/lib/studentRecs";
+import { STAGE_PLANS, rotatedRecs, doneRecHrefs } from "@/lib/studentRecs";
 
 export default function StudentStageDash() {
   const [stage, setStage] = useState<KnownStage | null>(null);
   const [mounted, setMounted] = useState(false);
+  // Doors this device already finished — undone ones get the slots first
+  // (done ones only backfill; the band itself never shrinks or hides).
+  const [done, setDone] = useState<Set<string>>(() => new Set());
 
   useEffect(() => {
     setStage(readStudentStage());
+    setDone(doneRecHrefs());
     setMounted(true);
   }, []);
 
@@ -73,7 +77,7 @@ export default function StudentStageDash() {
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {/* Pools bigger than six rotate daily — mounted-only, so the
                   Date read can't cause a hydration mismatch. */}
-              {rotatedRecs(stage!).map((r) => (
+              {rotatedRecs(stage!, undefined, done).map((r) => (
                 <Link
                   key={r.href}
                   href={r.href}

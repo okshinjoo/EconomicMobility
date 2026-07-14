@@ -6,6 +6,9 @@
 // point). Client-safe: plain data, no article registry.
 
 import type { KnownStage } from "./studentStage";
+import { getReadMap } from "./readTracking";
+import { STORAGE_KEYS, loadJSON } from "./storage";
+import { TOOL_FRAME_MAP } from "./frame";
 
 export interface StageRec {
   label: string;
@@ -30,13 +33,70 @@ export const REC_SLOTS = 6;
  *  every door gets shelf time (hs and cc carry 8 as of July 2026). Date-based,
  *  so CLIENT-ONLY after mount — both consumers (StudentStageDash, the
  *  account overview) already render nothing until mounted, which is what
- *  keeps this hydration-safe. Don't call it during server render. */
-export function rotatedRecs(stage: KnownStage, count = REC_SLOTS): StageRec[] {
+ *  keeps this hydration-safe. Don't call it during server render.
+ *
+ *  DONE-AWARE (July 2026, owner item 5 "don't recommend topics they've
+ *  already seen"): pass the client-computed `done` set (doneRecHrefs()) and
+ *  undone doors get the slots first; done ones only backfill when fewer
+ *  than `count` undone remain — the lane never hides or shrinks. */
+export function rotatedRecs(
+  stage: KnownStage,
+  count = REC_SLOTS,
+  done?: ReadonlySet<string>
+): StageRec[] {
   const pool = STAGE_PLANS[stage].recs;
-  if (pool.length <= count) return pool;
-  const day = Math.floor(Date.now() / 86_400_000);
-  const start = day % pool.length;
-  return Array.from({ length: count }, (_, i) => pool[(start + i) % pool.length]);
+  const rotate = (list: StageRec[], n: number): StageRec[] => {
+    if (list.length <= n) return list;
+    const day = Math.floor(Date.now() / 86_400_000);
+    const start = day % list.length;
+    return Array.from({ length: n }, (_, i) => list[(start + i) % list.length]);
+  };
+  if (!done || done.size === 0) return rotate(pool, count);
+  const undone = pool.filter((r) => !done.has(r.href));
+  if (undone.length >= count) return rotate(undone, count);
+  const finished = pool.filter((r) => done.has(r.href));
+  return [...undone, ...rotate(finished, count - undone.length)];
+}
+
+// Mirror-href -> canonical tool path, for done-detection against the
+// visited-tools map (which records main-site pathnames).
+const MIRROR_TO_MAIN: Record<string, string> = Object.fromEntries(
+  Object.entries(TOOL_FRAME_MAP).map(([main, mirror]) => [mirror, main])
+);
+
+// Same key CourseQuiz.getBadges() reads (kept local so this lib never
+// imports a component — the PlanApp CHALLENGE_BADGES_KEY precedent).
+const COURSE_BADGES_KEY = "empower:course-badges:v1";
+
+/** Which stage-plan doors this device has already finished, by href —
+ *  CLIENT-ONLY (localStorage), call post-mount and hand to rotatedRecs().
+ *  Guide mirrors check the read map, course mirrors check earned badges,
+ *  tool mirrors check visited tools via their canonical path. Everything
+ *  else (finders, deadlines, tracker, journeys, external links) has no
+ *  "done" state and deliberately never counts. */
+export function doneRecHrefs(): Set<string> {
+  const read = getReadMap();
+  const tools = loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
+  const badges = loadJSON<Record<string, unknown>>(COURSE_BADGES_KEY) ?? {};
+  const done = new Set<string>();
+  for (const plan of Object.values(STAGE_PLANS)) {
+    for (const r of plan.recs) {
+      const path = r.href.split(/[?#]/)[0];
+      const guide = path.match(/^\/students\/learn\/[a-z0-9-]+\/([a-z0-9-]+)$/);
+      if (guide) {
+        if (read[guide[1]]) done.add(r.href);
+        continue;
+      }
+      const course = path.match(/^\/students\/courses\/([a-z0-9-]+)$/);
+      if (course) {
+        if (badges[course[1]]) done.add(r.href);
+        continue;
+      }
+      const main = MIRROR_TO_MAIN[path];
+      if (main && (tools[main] || tools[path])) done.add(r.href);
+    }
+  }
+  return done;
 }
 
 export const STAGE_PLANS: Record<KnownStage, StagePlan> = {

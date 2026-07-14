@@ -155,7 +155,7 @@ export default function Home() {
     color: t.color,
     articles: getTopicRoadmap(t.id)
       .flatMap((group) => group.articles)
-      .map((a) => ({ slug: a.slug, title: a.title })),
+      .map((a) => ({ slug: a.slug, title: a.title, level: a.level })),
   }));
 
   return (
