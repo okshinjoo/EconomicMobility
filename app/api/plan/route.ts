@@ -178,13 +178,14 @@ function fallbackPlan(intake: IntakeAnswers, catalog: CatalogEntry[]): MyPlan {
   if (journey) {
     for (const stage of journey.stages) {
       const itemIds: string[] = [];
+      // Doing step first (owner rule): the stage's tool leads, reading follows.
+      if (stage.tool) {
+        const e = byKey.get(`t:${stage.tool.href}`);
+        if (e) itemIds.push(push(e, "Run your own numbers first — the rest of this stage builds on them."));
+      }
       for (const slug of stage.articleSlugs.slice(0, 2)) {
         const e = byKey.get(`g:${slug}`);
         if (e) itemIds.push(push(e, stage.why));
-      }
-      if (stage.tool) {
-        const e = byKey.get(`t:${stage.tool.href}`);
-        if (e) itemIds.push(push(e, "Run your own numbers for this step."));
       }
       if (stage.courseId) {
         const e = byKey.get(`c:${stage.courseId}`);
@@ -240,7 +241,9 @@ You are interviewing ONE person to build their money plan. You need to learn, in
 4. Any date or dollar target attached (optional — don't push).
 
 RULES:
-- Ask exactly ONE short question per turn. React briefly (one clause) to what they said, then ask. Never a list of questions.
+- BUILD FIRST, ASK LATER (owner rule): the interview must never feel like a form. When their first message already names a clear goal ("I want to build a budget"), do NOT walk the question list — jump straight to the summary JSON. Fill anything you don't know with safe defaults (stage "between", income "irregular", family "on-my-own", empty target) and let the summary state the assumption plainly ("I'll assume money comes in unevenly — correct me if not") so the confirm step catches it. Background detail belongs in the plan and its revision loop, not in questioning.
+- HARD CAP: at most TWO questions in an entire interview, and only when the goal itself is genuinely unclear or one fact would truly change the plan. Fewer is always better.
+- Ask exactly ONE short question per turn when you do ask. React briefly (one clause) to what they said, then ask. Never a list of questions.
 - NEVER give financial advice, numbers, or recommendations during the interview. You are only listening.
 - If they mention scams-in-progress or crisis, gently point to /resources and keep going.
 - After you know 1-3 (and have asked about 4), STOP asking and output ONLY this JSON (no other text):
@@ -513,6 +516,7 @@ export async function POST(req: NextRequest) {
 You will receive a person's intake answers and a CATALOG of real site content. Build their plan as JSON only — no prose before or after.
 
 HARD RULES:
+- START WITH A DOING STEP, not homework (owner rule): whenever the catalog has a tool matching the goal, step 1 is that tool with an imperative, concrete title — for budgeting goals, open with the Budget Planner as "Track what's coming in and what's going out" (it saves their numbers automatically and the rest of the plan can reference them). Reading steps come after the first win.
 - Output ONLY a JSON object: {"headline": string, "stages": [{"title": string, "why": string, "items": [{"ref": string, "title": string, "why": string}]}]}
 - 3-4 stages, ordered as the person should walk them. A stage is a small milestone phrased as an outcome ("Know what the score measures", "File the forms"), finishable in one sitting or one errand. Its "why" is ONE plain sentence on why this stage comes now for THIS person.
 - Every item's "ref" MUST be a key copied exactly from the catalog. Never invent refs.

@@ -265,6 +265,19 @@ My Plan gets journey-style stages + the roadmap-trail presentation):**
   link leaks; /journey and /students/journey both swap band → card.
   npm run build passes; leakhunt clean (308 pages, 0 leaks).
 
+**Session 7 (July 13, 2026, owner: "it asks too many questions"):**
+BUILD FIRST, ASK LATER. Interview rules now jump straight to the
+confirm-back summary when the first message names a clear goal, filling
+unknowns with safe stated defaults ("I will assume money comes in
+unevenly — correct me if not") — hard cap of TWO questions per
+interview, background detail belongs in the plan and its revision
+loop. Composition rule: START WITH A DOING STEP — when the catalog has
+a matching tool, step 1 is that tool with an imperative title (budget
+goals open with the Budget Planner as "Track what is coming in and
+what is going out"; it already persists + syncs, and auto-checks via
+visited-tools). The deterministic fallback now also orders each stage
+tool-first, so the no-AI plan leads with doing too.
+
 **GO-LIVE: nothing left to configure.** ANTHROPIC_API_KEY already lives in
 Vercel (shared with chat + comment review), the route falls back safely
 without it, and no schema changes were needed. After the next push, run
