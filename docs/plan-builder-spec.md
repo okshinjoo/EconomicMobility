@@ -84,10 +84,12 @@ fail-closed):
 1. Build the grounding context server-side: the matching journey's stages,
    top-ranked guides for the free-text goal (lib/fuzzy via rankItems), the
    relevant tools from toolsRegistry, and the DEADLINES registry (below).
-2. Ask Claude (claude-haiku-4-5 to start) for the plan as **structured JSON
-   only** — items may ONLY reference hrefs/slugs present in the context.
+2. Ask Claude (claude-opus-4-8 with adaptive thinking since session 5;
+   started on claude-haiku-4-5) for the plan as **structured JSON only** —
+   items may ONLY reference hrefs/slugs present in the context.
 3. **Validate every item server-side** (the journeys resolve-check pattern):
-   unknown slug → drop the item. Fewer than 4 surviving items → fall back.
+   unknown slug → drop the item. Fewer than 3 surviving items → fall back
+   (was 4; lowered in session 5 so honest short plans survive).
 4. Fallback (no key / API error / bad JSON): a deterministic plan built
    straight from the matching journey — the feature degrades to "journeys
    with a nicer intake," never breaks.
@@ -189,6 +191,34 @@ you should be able to leave feedback"):**
   stays as the re-plan path and the "Prefer the quick form?" escape).
   Verified headless locally: chat → form fallback → build → review bar →
   flag + feedback → unavailable note with plan intact → dismiss.
+
+**Session 5 SHIPPED (July 13, 2026) — plan-AI quality pass (owner verdict:
+"my plan AI kind of sucks"):**
+
+- **Model bump**: the route's MODEL is now claude-opus-4-8 with adaptive
+  thinking (`thinking: {type: "adaptive"}` on every call; anthropic-version
+  header unchanged). max_tokens raised to 3000 (build/revise) and 1000
+  (interview), timeout 20s → 30s for the bigger model. All refusal/
+  stop_reason handling and every fallback path unchanged: no key → fallback
+  plan for build, `{unavailable}` for interview/revise; revise still never
+  clobbers.
+- **Done-awareness (the big fix — plans were assigning guides the person
+  already read)**: the client (buildPlan, ChatIntake interview turns,
+  ReviewBar revise) now sends `done: {reads, tools, courses}` — read-map
+  slugs, visited tool hrefs, course badge ids, built post-mount and capped
+  at 100 each. The route sanitizes (strings only, length caps) and prefixes
+  matching catalog entries' note with "ALREADY DONE by this person". Build
+  prompt rule: never assign an already-done item as a step, but it MAY be
+  referenced in another item's why ("since you've already read X…"). The
+  interview prompt gets one line — they've read N guides on <topics>; keep
+  the no-recommending rule, but the summary may acknowledge momentum.
+- **Prompt sharpening (build)**: the "why" must quote or closely paraphrase
+  the person's own words where available (detail / target /
+  confirmedSummary); deadline items must be placed by actual calendar
+  proximity (the intake now carries today's date, ordering-only; the d:
+  notes carry the deadline dates); filler is forbidden — 8-12 items only
+  when genuinely distinct, fewer strong steps beat padding. Server-side
+  validation minimum lowered 4 → 3 to match.
 
 **GO-LIVE: nothing left to configure.** ANTHROPIC_API_KEY already lives in
 Vercel (shared with chat + comment review), the route falls back safely

@@ -20,7 +20,7 @@ import type { IntakeAnswers, MyPlan, PlanItem } from "@/lib/plan";
 
 export const runtime = "nodejs";
 
-const MODEL = "claude-haiku-4-5";
+const MODEL = "claude-opus-4-8";
 
 const STUDENT_STAGES = new Set([
   "high-school",
@@ -256,8 +256,14 @@ async function callClaude(
       "anthropic-version": "2023-06-01",
       "content-type": "application/json",
     },
-    body: JSON.stringify({ model: MODEL, max_tokens: maxTokens, system, messages }),
-    signal: AbortSignal.timeout(20000),
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: maxTokens,
+      thinking: { type: "adaptive" },
+      system,
+      messages,
+    }),
+    signal: AbortSignal.timeout(30000),
   });
   if (!res.ok) throw new Error(String(res.status));
   const data = (await res.json()) as {
@@ -276,6 +282,63 @@ interface Knowns {
   income?: string;
   family?: string;
   goals?: string[];
+}
+
+/* ------------------------------ done-awareness --------------------------- */
+
+/** What this person has already done on the site (client-derived: read map
+ *  slugs, visited tool hrefs, course badge ids). Used to keep the plan from
+ *  assigning steps they've already finished. */
+interface DoneSignals {
+  reads: string[];
+  tools: string[];
+  courses: string[];
+}
+
+function sanitizeDone(raw: unknown): DoneSignals {
+  const r = (raw ?? {}) as Record<string, unknown>;
+  const list = (v: unknown) =>
+    Array.isArray(v)
+      ? v
+          .filter((x): x is string => typeof x === "string" && x.length > 0)
+          .map((s) => s.slice(0, 120))
+          .slice(0, 100)
+      : [];
+  return { reads: list(r.reads), tools: list(r.tools), courses: list(r.courses) };
+}
+
+/** Mark catalog entries the person has already completed so the model can
+ *  skip them as steps (it may still cite them in a "why"). */
+function markAlreadyDone(catalog: CatalogEntry[], done: DoneSignals) {
+  const reads = new Set(done.reads);
+  const tools = new Set(done.tools);
+  const courses = new Set(done.courses);
+  for (const e of catalog) {
+    if (!e.doneKey) continue;
+    const hit =
+      (e.kind === "guide" && reads.has(e.doneKey)) ||
+      (e.kind === "tool" && tools.has(e.doneKey)) ||
+      (e.kind === "course" && courses.has(e.doneKey));
+    if (hit) e.note = `ALREADY DONE by this person — ${e.note}`;
+  }
+}
+
+/** One interview-prompt line about reading momentum (topic names only). */
+function doneBlock(done: DoneSignals): string {
+  const topics = new Set<string>();
+  let count = 0;
+  for (const slug of done.reads) {
+    const a = getArticleBySlug(slug);
+    if (a) {
+      count++;
+      topics.add(a.topicId);
+    }
+  }
+  if (count === 0) return "";
+  const topicList = [...topics].slice(0, 6).join(", ");
+  return `
+
+They've already read ${count} guide${count === 1 ? "" : "s"} on this site${topicList ? ` (topics: ${topicList})` : ""}. Keep the no-recommending-reading rule during the interview, but your played-back summary may briefly acknowledge that momentum if it fits naturally.`;
 }
 
 /** Standing answers from the profile/About-you tab: the interview skips
@@ -308,8 +371,18 @@ ${lines.join("\n")}`;
 }
 
 /** Interview turn: next guided question, or the confirm-back summary. */
-async function handleInterview(key: string, messages: ChatMsg[], knowns: Knowns) {
-  const text = await callClaude(key, INTERVIEW_SYSTEM + knownsBlock(knowns), messages, 700);
+async function handleInterview(
+  key: string,
+  messages: ChatMsg[],
+  knowns: Knowns,
+  done: DoneSignals
+) {
+  const text = await callClaude(
+    key,
+    INTERVIEW_SYSTEM + knownsBlock(knowns) + doneBlock(done),
+    messages,
+    1000
+  );
   const jsonStart = text.indexOf("{");
   if (jsonStart !== -1) {
     try {
@@ -374,7 +447,8 @@ export async function POST(req: NextRequest) {
       return await handleInterview(
         key,
         sanitizeMessages(body.messages),
-        sanitizeKnowns((body as { knowns?: unknown }).knowns)
+        sanitizeKnowns((body as { knowns?: unknown }).knowns),
+        sanitizeDone((body as { done?: unknown }).done)
       );
     } catch {
       return Response.json({ unavailable: true });
@@ -400,6 +474,7 @@ export async function POST(req: NextRequest) {
   }
 
   const catalog = buildCatalog(intake);
+  markAlreadyDone(catalog, sanitizeDone((body as { done?: unknown }).done));
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     // Revising without AI would clobber their plan with a generic fallback —
@@ -419,11 +494,13 @@ You will receive a person's intake answers and a CATALOG of real site content. B
 HARD RULES:
 - Output ONLY a JSON object: {"headline": string, "items": [{"ref": string, "title": string, "why": string}]}
 - Every item's "ref" MUST be a key copied exactly from the catalog. Never invent refs.
-- 8 to 12 items, ordered as the person should do them. Deadlines (d: refs) go where they fall in the person's next few months.
-- "title": short and imperative ("File the FAFSA", "Read: What Is a Credit Score?"). "why": ONE sentence tied to THEIR intake answers, plain words.
+- Up to 12 items, ordered as the person should do them. 8-12 ONLY if each is genuinely distinct and worth their time — a shorter plan of strong steps beats padding. Never include an item just to hit a count.
+- Catalog entries marked "ALREADY DONE by this person": NEVER assign them as steps. You MAY reference one inside another item's "why" ("since you've already read X, ...") to build on their momentum.
+- Deadlines (d: refs): their notes carry the actual dates — place each one by real calendar proximity from today's date given in the intake, not by theme. A deadline months away doesn't belong before this week's moves.
+- "title": short and imperative ("File the FAFSA", "Read: What Is a Credit Score?"). "why": ONE sentence in plain words that quotes or closely paraphrases the person's OWN words wherever they gave any (their goal detail, their target, their confirmed story) — "you said you want to transfer with under $20k of debt" beats generic reasons.
 - "headline": short and personal, e.g. "Your transfer-semester money plan".
 - NEVER individualized financial advice (no "borrow at most $X", no "you should invest in Y"). Teach-the-rule phrasing only; the calculators show them their own numbers.
-- No dollar figures or dates that aren't in the catalog notes.`;
+- No dollar figures or dates that aren't in the catalog notes or the person's own words.`;
 
   const isRevise = body.phase === "revise";
   const confirmedSummary = clip(body.confirmedSummary, 600);
@@ -447,6 +524,7 @@ HARD RULES:
   }
 
   const userMsg = `INTAKE:
+- Today's date: ${new Date().toISOString().slice(0, 10)} (for ordering deadlines only — never put it in the plan)
 - Goal: ${intake.goal}${intake.detail ? ` — in their words: "${intake.detail}"` : ""}
 - Where they are: ${intake.stage}
 - Money month to month: ${intake.income}
@@ -472,7 +550,7 @@ ${catalogText}`;
       key,
       system,
       [{ role: "user", content: userMsg }],
-      1500
+      3000
     );
     const jsonStart = text.indexOf("{");
     const jsonEnd = text.lastIndexOf("}");
@@ -499,7 +577,7 @@ ${catalogText}`;
         doneKey: e.doneKey,
       });
     }
-    if (items.length < 4) throw new Error("too few validated items");
+    if (items.length < 3) throw new Error("too few validated items");
 
     const plan: MyPlan = {
       createdAt: new Date().toISOString(),

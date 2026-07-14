@@ -32,6 +32,18 @@ import { useFrame } from "@/components/useFrame";
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
 
+/** Done-awareness (July 13 addendum): what this device has already read,
+ *  used, and earned — sent with every plan request so the AI never assigns
+ *  a step the person already finished. Client-only (call post-mount). */
+function gatherDone() {
+  const cap = (o: Record<string, unknown>) => Object.keys(o).slice(0, 100);
+  return {
+    reads: cap(getReadMap()),
+    tools: cap(loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {}),
+    courses: cap(getBadges()),
+  };
+}
+
 const STAGE_OPTIONS: Array<[IntakeAnswers["stage"], string]> = [
   ["high-school", "In high school"],
   ["community-college", "At a community college"],
@@ -122,6 +134,7 @@ export default function PlanApp() {
         body: JSON.stringify({
           intake,
           confirmedSummary: summary ?? "",
+          done: gatherDone(),
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
@@ -239,6 +252,7 @@ function ChatIntake({
 }) {
   // Computed once on mount (ChatIntake only renders client-side).
   const [knowns] = useState(gatherKnowns);
+  const [doneSignals] = useState(gatherDone);
   const [msgs, setMsgs] = useState<ChatMsg[]>(() => [
     {
       role: "assistant",
@@ -268,7 +282,12 @@ function ChatIntake({
       const res = await fetch("/api/plan", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ phase: "interview", messages: next, knowns }),
+        body: JSON.stringify({
+          phase: "interview",
+          messages: next,
+          knowns,
+          done: doneSignals,
+        }),
       });
       if (!res.ok) throw new Error(String(res.status));
       const data = (await res.json()) as {
@@ -432,6 +451,7 @@ function ReviewBar({
           intake: plan.intake,
           confirmedSummary,
           feedback,
+          done: gatherDone(),
           currentPlan: {
             headline: plan.headline,
             items: plan.items.map((it) => ({
