@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ParallaxPhoto from "@/components/ParallaxPhoto";
 import { ChevronRight } from "lucide-react";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
@@ -92,14 +92,12 @@ export default function TopicPageView({
               </div>
             </div>
             <div className="card-ink relative order-first aspect-[5/4] overflow-hidden rounded-2xl bg-sand lg:order-last lg:rotate-[0.5deg]">
-              <Image
+              <ParallaxPhoto
                 src={meta.image}
                 alt=""
-                fill
                 unoptimized
                 priority
                 sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
               />
               <span className="absolute bottom-4 left-4 flex h-16 w-16 items-center justify-center rounded-xl border-2 border-ink bg-cream">
                 <TopicMark id={meta.id} className="h-9 w-9" />

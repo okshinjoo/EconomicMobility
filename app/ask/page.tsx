@@ -6,6 +6,7 @@ import { allArticles } from "@/lib/articles";
 import AskQuestion from "@/components/AskQuestion";
 import { communityQuestions } from "@/lib/communityQuestions";
 import { getTopic } from "@/lib/topics";
+import ScrollDrift from "@/components/ScrollDrift";
 
 export const metadata: Metadata = {
   title: "Ask Empower: Real Money Questions, Answered",
@@ -21,12 +22,14 @@ export default function AskPage() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-32 -right-6 select-none font-display text-[22rem] font-bold italic leading-none text-cream opacity-[0.07]"
-          >
-            Q.
-          </span>
+          <ScrollDrift>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-32 -right-6 select-none font-display text-[22rem] font-bold italic leading-none text-cream opacity-[0.07]"
+            >
+              Q.
+            </span>
+          </ScrollDrift>
           <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-14 lg:pt-20">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Ask Empower

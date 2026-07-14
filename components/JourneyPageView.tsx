@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import TopicMark from "@/components/TopicMark";
+import ScrollDrift from "@/components/ScrollDrift";
 import JourneyPath, { type PathStage } from "@/components/JourneyPath";
 import { getJourney } from "@/lib/journeys";
 import { frameHref, type Frame } from "@/lib/frame";
@@ -93,11 +94,13 @@ export default function JourneyPageView({
 
       {/* Hero — C voice on the journey's field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id={journey.topic}
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-16 -top-10 h-[24rem] w-[24rem] opacity-[0.07]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id={journey.topic}
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-10 h-[24rem] w-[24rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-4xl px-6 py-14 lg:py-20">
           <Link
             href={href("/journey")}

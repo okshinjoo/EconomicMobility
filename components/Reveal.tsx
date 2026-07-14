@@ -54,8 +54,10 @@ export default function Reveal({
         armed
           ? {
               opacity: shown ? 1 : 0,
-              transform: shown ? "none" : "translateY(14px)",
-              transition: `opacity 550ms ease ${delay}ms, transform 550ms ease ${delay}ms`,
+              transform: shown ? "none" : "translateY(20px)",
+              // easeOutQuint (Base44-audit curve): fast launch, long soft
+              // landing. Offset bumped 14 → 20px so the curve has room.
+              transition: `opacity 550ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, transform 550ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
             }
           : undefined
       }

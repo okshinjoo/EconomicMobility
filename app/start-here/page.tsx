@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
+import ScrollDrift from "@/components/ScrollDrift";
 
 export const metadata: Metadata = {
   title: "Start Here | Empower — Economic Mobility Project",
@@ -76,11 +77,13 @@ export default function StartHerePage() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <TopicMark
-            id="money-safety"
-            color="#fbf8f1"
-            className="pointer-events-none absolute -bottom-24 -right-20 h-[26rem] w-[26rem] opacity-[0.07]"
-          />
+          <ScrollDrift>
+            <TopicMark
+              id="money-safety"
+              color="#fbf8f1"
+              className="pointer-events-none absolute -bottom-24 -right-20 h-[26rem] w-[26rem] opacity-[0.07]"
+            />
+          </ScrollDrift>
           <div className="relative mx-auto max-w-5xl px-6 py-16 lg:py-24">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Start here

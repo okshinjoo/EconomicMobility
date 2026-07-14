@@ -12,6 +12,9 @@ import { studentCalendar } from "@/lib/studentCalendar";
 import { STUDENT_TOOL_PATHS } from "@/lib/studentShelf";
 import { frameHref } from "@/lib/frame";
 import Image from "next/image";
+import ParallaxPhoto from "@/components/ParallaxPhoto";
+import ScrollDrift from "@/components/ScrollDrift";
+import HeadlineRise from "@/components/HeadlineRise";
 import { deadlines } from "@/lib/deadlines";
 import { scholarships } from "@/lib/scholarships";
 import { opportunities } from "@/lib/opportunities";
@@ -59,19 +62,23 @@ export default function StudentsPage() {
 
       {/* Hero — the microsite's homepage opening: field, photo, live stats */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="college"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.06]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id="college"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.06]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
           <div>
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               For students
             </span>
             <h1 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              The money side of school,{" "}
-              <span className="italic text-amber">in one place.</span>
+              <HeadlineRise>
+                The money side of school,{" "}
+                <span className="italic text-amber">in one place.</span>
+              </HeadlineRise>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-cream/75">
               Deadlines that actually move money, the guides worth reading
@@ -124,13 +131,11 @@ export default function StudentsPage() {
           </div>
           <div className="relative mx-auto w-full max-w-md lg:max-w-none">
             <div className="relative aspect-[4/3] rotate-1 overflow-hidden rounded-2xl border-2 border-ink shadow-[8px_8px_0_#11211c]">
-              <Image
+              <ParallaxPhoto
                 src="/images/graduate.jpg"
                 alt="A graduate celebrating"
-                fill
                 priority
                 sizes="(min-width: 1024px) 34rem, 100vw"
-                className="object-cover"
               />
             </div>
           </div>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import CourseGrid, { type CourseCardData } from "@/components/CourseGrid";
 import TopicMark from "@/components/TopicMark";
+import ScrollDrift from "@/components/ScrollDrift";
+import HeadlineRise from "@/components/HeadlineRise";
 import { courses, getCourseFlashcards } from "@/lib/courses";
 import { frameHref, type Frame } from "@/lib/frame";
 
@@ -28,17 +30,21 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="college"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id="college"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Courses
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            One goal <span className="italic text-amber">at a time.</span>
+            <HeadlineRise>
+              One goal <span className="italic text-amber">at a time.</span>
+            </HeadlineRise>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">
             Each module is a short, ordered reading path built around one real

@@ -116,13 +116,13 @@ export default function BlogList({
           href={`/blog/${featured.slug}`}
           className="group grid lg:grid-cols-[1fr_1.15fr]"
         >
-          <div className="relative aspect-[16/9] border-b-2 border-ink lg:aspect-auto lg:border-b-0 lg:border-r-2">
+          <div className="relative aspect-[16/9] overflow-hidden border-b-2 border-ink lg:aspect-auto lg:border-b-0 lg:border-r-2">
             <Image
               src={featured.image.src}
               alt={featured.image.alt}
               fill
               sizes="(min-width: 1024px) 34rem, 100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
             />
           </div>
           <div className="p-7 sm:p-9">
@@ -173,7 +173,7 @@ export default function BlogList({
                     alt={post.image.alt}
                     fill
                     sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
-                    className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+                    className={`object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04] ${
                       wasRead ? "opacity-60" : ""
                     }`}
                   />
@@ -203,6 +203,12 @@ export default function BlogList({
                         You read this
                       </span>
                     )}
+                  </p>
+                  <p
+                    aria-hidden
+                    className="mt-2 text-xs font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  >
+                    Read the post
                   </p>
                 </div>
               </Link>

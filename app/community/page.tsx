@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
+import ScrollDrift from "@/components/ScrollDrift";
+import HeadlineRise from "@/components/HeadlineRise";
 import CommunityFeed from "@/components/CommunityFeed";
 import { communityPosts, getMemberIndex } from "@/lib/communityFeed";
 
@@ -24,18 +26,22 @@ export default function CommunityPage() {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="money-safety"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.07]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id="money-safety"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             The community
           </span>
           <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            Learning out loud,{" "}
-            <span className="italic text-amber">together.</span>
+            <HeadlineRise>
+              Learning out loud,{" "}
+              <span className="italic text-amber">together.</span>
+            </HeadlineRise>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/80">
             Rooms for every conversation: say hello, share a win, ask the

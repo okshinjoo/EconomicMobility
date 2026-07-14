@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import ParallaxPhoto from "@/components/ParallaxPhoto";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
@@ -93,13 +93,11 @@ export default async function BlogPostPage({
           </p>
 
           <div className="relative mt-7 aspect-[16/9] overflow-hidden rounded-2xl border border-sand">
-            <Image
+            <ParallaxPhoto
               src={post.image.src}
               alt={post.image.alt}
-              fill
               priority
               sizes="(min-width: 768px) 48rem, 100vw"
-              className="object-cover"
             />
           </div>
 

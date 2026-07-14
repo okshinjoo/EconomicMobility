@@ -158,7 +158,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
                         fill
                         unoptimized
                         sizes="112px"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
                       />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -248,7 +248,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
                           fill
                           unoptimized
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
                         />
                         <span className="absolute bottom-2.5 left-2.5 flex h-11 w-11 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
                           <TopicMark id={a.topicId} className="h-6 w-6" />

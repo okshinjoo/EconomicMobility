@@ -2,6 +2,7 @@ import { ExternalLink } from "lucide-react";
 import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
+import ScrollDrift from "@/components/ScrollDrift";
 
 
 const groups = [
@@ -116,11 +117,13 @@ export default function ResourcesPageView() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <TopicMark
-            id="government-aid"
-            color="#fbf8f1"
-            className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.07]"
-          />
+          <ScrollDrift>
+            <TopicMark
+              id="government-aid"
+              color="#fbf8f1"
+              className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.07]"
+            />
+          </ScrollDrift>
           <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-14 lg:pt-20">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Resources

@@ -2,6 +2,7 @@ import MomentReads from "@/components/MomentReads";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import TopicMark from "@/components/TopicMark";
+import ScrollDrift from "@/components/ScrollDrift";
 import { moments } from "@/lib/moments";
 import { frameHref, type Frame } from "@/lib/frame";
 
@@ -17,11 +18,13 @@ export default function LifePageView({ frame }: { frame: Frame }) {
 
       {/* Hero — C voice */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="budgeting"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id="budgeting"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Life moments

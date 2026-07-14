@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
+import ScrollDrift from "@/components/ScrollDrift";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -71,11 +72,13 @@ export default function AboutPage() {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <TopicMark
-          id="investing"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.07]"
-        />
+        <ScrollDrift>
+          <TopicMark
+            id="investing"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Our Mission

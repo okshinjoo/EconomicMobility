@@ -18,6 +18,8 @@ import WelcomeBack, {
   type BadgeSource,
 } from "@/components/WelcomeBack";
 import CompoundChart from "@/components/CompoundChart";
+import ParallaxPhoto from "@/components/ParallaxPhoto";
+import TiltCard from "@/components/TiltCard";
 import {
   TrendingUp,
   CreditCard,
@@ -422,12 +424,10 @@ export default function Home() {
           {/* photo + pull quote */}
           <Reveal className="relative order-last lg:order-first">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-[2rem] border border-sand shadow-xl">
-              <Image
+              <ParallaxPhoto
                 src="/images/portrait-2.jpg"
                 alt="A young woman looking into the camera"
-                fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
               />
             </div>
             {/* Mobile: quote below the photo (the overlay covered the
@@ -562,7 +562,7 @@ export default function Home() {
                     fill
                     unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
                   />
                   <span className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center rounded-full border border-sand bg-cream shadow-md">
                     <TopicMark id={topic.id} className="h-8 w-8" />
@@ -657,9 +657,11 @@ export default function Home() {
               </p>
             </Reveal>
           </div>
-          <div className="rounded-lg border border-cream/10 bg-cream/5 p-6 md:col-span-5">
+          {/* The ONE 3D-tilt card sitewide (Base44-audit #9) — restraint
+              is the point; don't add a second. */}
+          <TiltCard className="rounded-lg border border-cream/10 bg-cream/5 p-6 md:col-span-5">
             <CompoundChart className="h-64" />
-          </div>
+          </TiltCard>
           <div className="flex flex-col gap-2 md:col-span-3">
             <p className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-amber">
               More calculators
@@ -704,12 +706,10 @@ export default function Home() {
               challenge" was clipped by the old fixed 420px height). Desktop
               keeps the same centered ~460px band via min-h. */}
           <div className="relative flex min-h-[420px] items-center overflow-hidden rounded-[2.5rem] sm:min-h-[460px]">
-            <Image
+            <ParallaxPhoto
               src="/images/community.jpg"
               alt="A community of students together"
-              fill
               sizes="(max-width: 1280px) 100vw, 1216px"
-              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/85 to-forest/30" />
             <div className="relative">

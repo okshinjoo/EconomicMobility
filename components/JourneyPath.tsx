@@ -453,7 +453,7 @@ export default function JourneyPath({
                   return (
                     <div
                       key={`${item.kind}-${item.key}`}
-                      className={`flex items-center gap-3 rounded-lg border p-3 transition-colors ${
+                      className={`group flex items-center gap-3 rounded-lg border p-3 transition-colors ${
                         done
                           ? "border-forest/15 bg-forest/5"
                           : "border-sand bg-paper hover:border-ink/20"
@@ -470,7 +470,10 @@ export default function JourneyPath({
                         {done ? (
                           <Check className="h-3.5 w-3.5" strokeWidth={3} />
                         ) : (
-                          <Icon className="h-3 w-3" strokeWidth={2} />
+                          <Icon
+                            className="h-3 w-3 transition-transform duration-200 motion-safe:group-hover:rotate-3 motion-safe:group-hover:scale-110"
+                            strokeWidth={2}
+                          />
                         )}
                       </span>
                       <Link href={item.href} className="min-w-0 flex-1">

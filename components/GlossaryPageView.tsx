@@ -4,6 +4,7 @@ import TermOfTheDay from "@/components/TermOfTheDay";
 import { glossary } from "@/lib/glossary";
 import { getTopic } from "@/lib/topics";
 import { frameHref, type Frame } from "@/lib/frame";
+import ScrollDrift from "@/components/ScrollDrift";
 
 
 /**
@@ -37,12 +38,14 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
 
       {/* Hero — A: solid amber field with a ghost glyph */}
       <section className="relative overflow-hidden bg-amber text-ink">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-8 -top-24 select-none font-display text-[24rem] font-bold italic leading-none text-ink opacity-[0.06]"
-        >
-          Aa
-        </span>
+        <ScrollDrift>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-8 -top-24 select-none font-display text-[24rem] font-bold italic leading-none text-ink opacity-[0.06]"
+          >
+            Aa
+          </span>
+        </ScrollDrift>
         <div className="relative mx-auto max-w-5xl px-6 pb-14 pt-14 lg:pt-16">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-ink/60">
             Glossary
@@ -65,7 +68,7 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
               <a
                 key={letter}
                 href={`#letter-${letter}`}
-                className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-ink bg-cream text-sm font-bold text-ink shadow-[3px_3px_0_#11211c] transition-transform duration-150 hover:-translate-y-0.5"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-ink bg-cream text-sm font-bold text-ink shadow-[3px_3px_0_#11211c] transition-[transform,background-color,color] duration-150 hover:-translate-y-0.5 hover:bg-forest hover:text-cream motion-safe:hover:scale-110"
               >
                 {letter}
               </a>
@@ -94,7 +97,7 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
                 <a
                   key={letter}
                   href={`#letter-${letter}`}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-sand bg-cream text-xs font-bold text-stone transition-colors hover:border-ink hover:bg-amber hover:text-ink"
+                  className="flex h-7 w-7 items-center justify-center rounded-md border border-sand bg-cream text-xs font-bold text-stone transition-[color,background-color,border-color,transform] hover:border-ink hover:bg-amber hover:text-ink motion-safe:hover:scale-110"
                 >
                   {letter}
                 </a>
@@ -109,12 +112,12 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
                 <div
                   key={letter}
                   id={`letter-${letter}`}
-                  className="grid scroll-mt-24 gap-x-10 gap-y-1 border-t-2 border-ink/10 pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[80px_1fr]"
+                  className="group grid scroll-mt-24 gap-x-10 gap-y-1 border-t-2 border-ink/10 pt-5 first:border-t-0 first:pt-0 lg:grid-cols-[80px_1fr]"
                 >
                   <div className="flex items-baseline gap-3 lg:block">
                     <span
                       aria-hidden="true"
-                      className="select-none font-display text-4xl font-bold leading-none text-sand sm:text-5xl"
+                      className="select-none font-display text-4xl font-bold leading-none text-sand transition-colors duration-300 group-hover:text-amber sm:text-5xl"
                     >
                       {letter}
                     </span>
