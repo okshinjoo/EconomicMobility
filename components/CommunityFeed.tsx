@@ -1924,6 +1924,18 @@ export default function CommunityFeed({
         })()}
       </div>
 
+      {/* channel ideas: tiny, deliberate — the rail stays a rail */}
+      <p className="mt-2 px-3 text-[11px] leading-4 text-stone/80">
+        Missing a room?{" "}
+        <a
+          href="mailto:Help@economicmobilityproject.org?subject=New%20channel%20idea"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+        >
+          Email us your channel idea
+        </a>
+        .
+      </p>
+
       {/* explore */}
       <p className="mt-6 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
         Explore
@@ -2010,6 +2022,13 @@ export default function CommunityFeed({
             </span>
           </button>
         ))}
+        {/* end-of-row idea chip (the rail carries this on lg+) */}
+        <a
+          href="mailto:Help@economicmobilityproject.org?subject=New%20channel%20idea"
+          className="whitespace-nowrap rounded-lg border border-dashed border-sand bg-cream px-3.5 py-2 text-sm font-semibold text-stone hover:text-ink"
+        >
+          + Suggest a channel
+        </a>
       </div>
 
       {/* the active channel's header card (Discourse category-header
