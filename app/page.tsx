@@ -431,10 +431,10 @@ export default function Home() {
                 <p>
                   This project exists to break the cycle of economic
                   disadvantage for first-generation, low-income, and immigrant
-                  youth. I&apos;m a first-generation student and the kid of
-                  immigrants myself. So much of what builds wealth is passed
-                  down quietly at kitchen tables some of us never had access
-                  to.
+                  youth. It was started by a first-generation student and kid
+                  of immigrants, because so much of what builds wealth gets
+                  passed down quietly at kitchen tables some families never
+                  had a seat at.
                 </p>
               </Reveal>
               <Reveal delay={200}>
