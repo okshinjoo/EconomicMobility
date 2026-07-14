@@ -1,8 +1,10 @@
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
 import ScrollDrift from "@/components/ScrollDrift";
+import { scholarships } from "@/lib/scholarships";
 
 
 const groups = [
@@ -178,6 +180,31 @@ export default function ResourcesPageView() {
                       {group.title}
                     </h3>
                   </div>
+
+                  {group.id === "college-scholarships" && (
+                    <div className="mt-6 rounded-xl border-2 border-ink bg-forest p-5 text-cream shadow-[3px_3px_0_#11211c] sm:p-6">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber">
+                        Start with ours
+                      </p>
+                      <p className="mt-2 font-display text-xl font-semibold leading-snug">
+                        We keep our own scholarship list —{" "}
+                        {Math.floor(scholarships.length / 10) * 10}+ awards,
+                        verified and filtered for students.
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-cream/80">
+                        No forms about you, nothing sold. Filter by where you
+                        are in school, undocumented-friendly awards, and more —
+                        over in the For Students section.
+                      </p>
+                      <Link
+                        href="/students/scholarships"
+                        className="btn-ink mt-4 inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink"
+                      >
+                        Browse the scholarship finder
+                        <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                      </Link>
+                    </div>
+                  )}
 
                   <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                     {group.links.map((link) => (
