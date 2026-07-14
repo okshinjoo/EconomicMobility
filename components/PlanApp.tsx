@@ -29,6 +29,7 @@ import { frameHref, type Frame } from "@/lib/frame";
 import { readAboutYou } from "@/lib/aboutYou";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
+import SaveToProfile from "@/components/SaveToProfile";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -938,6 +939,7 @@ function PlanView({
             {done} of {plan.items.length} steps done
             {!plan.aiComposed && " · built from your goal's guided path"}
           </p>
+          <SaveToProfile thing="plan" className="mt-2" />
         </div>
         <div className="flex items-center gap-4">
           {stages.length > 0 && (

@@ -7,6 +7,7 @@ import { loadJSON } from "@/lib/storage";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { journeyByTopic, getJourney } from "@/lib/journeys";
 import TopicMark from "@/components/TopicMark";
+import SaveToProfile from "@/components/SaveToProfile";
 import {
   ALL_TOPIC_IDS,
   CLOSING_LINE,
@@ -107,6 +108,9 @@ export default function QuizResults({
         <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           Here&apos;s Where to Start
         </h1>
+        <div className="mt-3 flex justify-center">
+          <SaveToProfile thing="quiz results" />
+        </div>
       </div>
 
       {/* Part 1: Financial Profile — celebratory B-voice card */}
