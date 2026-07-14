@@ -10,6 +10,8 @@ export interface CommunityQA {
   question: string;
   /** Answer as one or more short paragraphs. */
   answer: string[];
+  /** ISO date the answer was published; the column sorts newest first. */
+  date: string;
   topic?: TopicId;
   /** Optional "go deeper" link to a guide or tool. */
   link?: { label: string; href: string };
@@ -18,6 +20,7 @@ export interface CommunityQA {
 export const communityQuestions: CommunityQA[] = [
   {
     id: "no-credit-history",
+    date: "2026-07-09",
     question: "I have no credit history at all. What's the fastest honest way to start?",
     answer: [
       "Start with a tool built for exactly this: a secured credit card (you put down a small refundable deposit that becomes your limit) or a credit-builder loan from a credit union. Both report your on-time payments to the credit bureaus, which is what actually builds a score.",
@@ -28,6 +31,7 @@ export const communityQuestions: CommunityQA[] = [
   },
   {
     id: "debt-or-save-first",
+    date: "2026-06-30",
     question: "Should I pay off debt or build savings first?",
     answer: [
       "Do a little of both, in order. First, set aside a small starter cushion (even a few hundred dollars) so the next surprise doesn't go straight onto a credit card. That tiny buffer is what keeps you from sliding backward.",
@@ -38,6 +42,7 @@ export const communityQuestions: CommunityQA[] = [
   },
   {
     id: "benefits-shame",
+    date: "2026-06-21",
     question: "Is it bad to use government benefits like SNAP if I'm working?",
     answer: [
       "Not at all, and you don't have to be unemployed to qualify. Plenty of people who work full time do, especially with kids or high rent. These programs are funded by taxes, including ones taken out of your own paychecks, so using them is accepting help that was built for your situation.",
@@ -48,6 +53,7 @@ export const communityQuestions: CommunityQA[] = [
   },
   {
     id: "rent-share",
+    date: "2026-06-12",
     question: "How much of my paycheck should go to rent?",
     answer: [
       "A common rule of thumb is to keep rent around 30% of your take-home pay, but treat that as a guidepost, not a law. In expensive cities it's often higher, and a higher share can work as long as the rest of your budget still does.",
@@ -58,6 +64,7 @@ export const communityQuestions: CommunityQA[] = [
   },
   {
     id: "irs-gift-card-call",
+    date: "2026-06-04",
     question:
       "Someone called saying I owe the IRS and have to pay with gift cards right now or I'll be arrested. Is this real?",
     answer: [

@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { allArticles } from "@/lib/articles";
 import AskQuestion from "@/components/AskQuestion";
+import AskAnswers from "@/components/AskAnswers";
 import { communityQuestions } from "@/lib/communityQuestions";
-import { getTopic } from "@/lib/topics";
 import ScrollDrift from "@/components/ScrollDrift";
 
 export const metadata: Metadata = {
@@ -68,64 +68,7 @@ export default function AskPage() {
               </p>
             </div>
 
-            <div className="mt-8 space-y-6">
-              {communityQuestions.map((qa, qi) => {
-                const topic = qa.topic ? getTopic(qa.topic) : null;
-                return (
-                  <article
-                    key={qa.id}
-                    id={`ask-${qa.id}`}
-                    className={`card-ink scroll-mt-24 rounded-2xl bg-cream p-6 sm:p-8 ${
-                      qi % 3 === 1 ? "lg:rotate-[0.35deg]" : qi % 3 === 2 ? "lg:-rotate-[0.35deg]" : ""
-                    }`}
-                  >
-                    {topic && (
-                      <Link
-                        href={topic.href}
-                        className="inline-block -rotate-1 rounded-md border-2 border-ink px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-cream shadow-[2px_2px_0_#11211c] transition-transform hover:-translate-y-0.5"
-                        style={{ background: topic.color }}
-                      >
-                        {topic.title}
-                      </Link>
-                    )}
-                    <div className="mt-4 flex gap-4">
-                      <span
-                        aria-hidden="true"
-                        className="select-none font-display text-3xl font-bold italic leading-none text-terracotta"
-                      >
-                        Q.
-                      </span>
-                      <h3 className="font-display text-2xl font-semibold leading-snug text-ink">
-                        {qa.question}
-                      </h3>
-                    </div>
-                    <div className="mt-5 flex gap-4">
-                      <span
-                        aria-hidden="true"
-                        className="select-none font-display text-3xl font-bold italic leading-none text-forest"
-                      >
-                        A.
-                      </span>
-                      <div className="space-y-3 text-base leading-7 text-ink/85">
-                        {qa.answer.map((para, i) => (
-                          <p key={i}>{para}</p>
-                        ))}
-                        {qa.link && (
-                          <p>
-                            <Link
-                              href={qa.link.href}
-                              className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
-                            >
-                              {qa.link.label}
-                            </Link>
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+            <AskAnswers items={communityQuestions} />
           </div>
         </section>
 
