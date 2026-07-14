@@ -251,3 +251,22 @@ alter table public.reminder_subscribers
 alter table public.profiles
   add column if not exists student_stage text not null default ''
   check (student_stage in ('', 'hs', 'cc', 'uni'));
+
+-- COMMUNITY IMAGES (post pictures, July 2026) -------------------------------
+-- Members can attach a picture to a community post. Uploads are downscaled
+-- client-side and land under the uploader's user id; the bucket is public-
+-- read so curated posts can embed the URL directly. Run once.
+insert into storage.buckets (id, name, public)
+values ('community-images', 'community-images', true)
+on conflict (id) do nothing;
+
+create policy "community images readable by everyone"
+on storage.objects for select
+using (bucket_id = 'community-images');
+
+create policy "members upload own community images"
+on storage.objects for insert to authenticated
+with check (
+  bucket_id = 'community-images'
+  and (storage.foldername(name))[1] = auth.uid()::text
+);

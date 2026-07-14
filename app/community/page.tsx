@@ -10,7 +10,7 @@ import { communityPosts, getMemberIndex } from "@/lib/communityFeed";
 export const metadata: Metadata = {
   title: "Community | Empower — Economic Mobility Project",
   description:
-    "Wins, questions, and honest money conversations from Empower readers. No account needed, and posts and comments are reviewed before they appear.",
+    "Wins, questions, and honest money conversations from Empower readers. Reading is open to everyone; posting takes a free account, and everything is reviewed before it appears.",
 };
 
 export default function CommunityPage() {
@@ -45,9 +45,10 @@ export default function CommunityPage() {
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/80">
             Rooms for every conversation: say hello, share a win, ask the
-            question you&apos;ve been sitting on. No account, no real name
-            required, and everything is reviewed by a human before it appears
-            for everyone, so it stays kind and useful.
+            question you&apos;ve been sitting on. Read it all without an
+            account; posting takes a free one, so every post has a real name
+            behind it (a first name is plenty). Everything is reviewed by a
+            human before it appears for everyone, so it stays kind and useful.
           </p>
         </div>
       </section>

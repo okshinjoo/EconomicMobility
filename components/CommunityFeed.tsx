@@ -14,6 +14,7 @@ import {
   type LiveComment,
 } from "@/lib/liveComments";
 import { fetchLikes, setLike } from "@/lib/liveLikes";
+import { uploadCommunityImage } from "@/lib/communityImages";
 import {
   Heart,
   MessageCircle,
@@ -41,6 +42,7 @@ import {
   Check as CheckIcon,
   Trash2,
   ChevronDown,
+  ImagePlus,
 } from "lucide-react";
 import {
   CHANNELS,
@@ -102,6 +104,10 @@ interface PendingPost {
   channel?: ChannelId;
   /** Flair labels captured at submit time. */
   flairs?: string[];
+  /** Post title (July 2026 composer rework; older pendings may lack it). */
+  title?: string;
+  /** Public URL of an attached picture (Supabase Storage). */
+  image?: string;
 }
 
 type SendStatus = "idle" | "sending" | "error";
@@ -373,34 +379,98 @@ function PendingChip() {
   );
 }
 
-/** The "share something" composer at the top of the feed. */
+/** The "share something" composer at the top of the feed. July 2026 owner
+ *  rework: posting is a MEMBER thing (the post carries your account's
+ *  display name — no free-text name field), posts have a required title,
+ *  an optional picture, and the channel picker is two-step Reddit-style:
+ *  pick the hub, then optionally one of its tags (sub-channels). Reading
+ *  and the visitor's public profile page stay exactly as optional as
+ *  before. */
 function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
+  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [name, setName] = useState("");
-  const [channel, setChannel] = useState<ChannelId>("questions");
+  const [hub, setHub] = useState<ChannelId>("questions");
+  const [tagId, setTagId] = useState<ChannelId | "">("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [status, setStatus] = useState<SendStatus>("idle");
+  const [imageError, setImageError] = useState(false);
   const [sent, setSent] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [authReady, setAuthReady] = useState(!accountsEnabled);
 
-  // Follow the filter: browsing a channel preselects it in the picker.
+  // Follow the filter: browsing a hub preselects it; browsing a tag
+  // preselects the hub AND the tag.
   useEffect(() => {
-    if (activeChannel !== "all") setChannel(activeChannel);
+    if (activeChannel === "all") return;
+    const c = getChannel(activeChannel);
+    if (c.parent) {
+      setHub(c.parent);
+      setTagId(c.id);
+    } else {
+      setHub(c.id);
+      setTagId("");
+    }
   }, [activeChannel]);
 
-  // Signed-in members with a display name get it prefilled (still editable).
   useEffect(() => {
     const p = readLocalProfile();
     if (p?.displayName) setName(p.displayName);
+    if (!accountsEnabled) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setAuthReady(true);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) =>
+      setSession(s)
+    );
+    return () => sub.subscription.unsubscribe();
   }, []);
+
+  const hubChannel = getChannel(hub);
+  const tags = CHANNELS.filter((c) => c.parent === hub);
+  const channel: ChannelId = tagId || hub;
+  const author = name.trim() || "Member";
+
+  function pickImage(file: File | null) {
+    setImageError(false);
+    setImageFile(file);
+    setImagePreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return file ? URL.createObjectURL(file) : null;
+    });
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!text.trim()) return;
+    if (!title.trim()) return;
     setStatus("sending");
+    setImageError(false);
+
+    // Picture first: a failed upload should hold the post rather than
+    // silently dropping the image.
+    let imageUrl: string | null = null;
+    if (imageFile && session) {
+      imageUrl = await uploadCommunityImage(session, imageFile);
+      if (!imageUrl) {
+        setStatus("idle");
+        setImageError(true);
+        return;
+      }
+    }
+
     const ok = await submitToInbox({
-      subject: `New community post for review (${getChannel(channel).name})`,
+      subject: `New community post for review (${hubChannel.name}${
+        tagId ? ` / ${getChannel(tagId).name}` : ""
+      })`,
       channel: getChannel(channel).name,
-      author: name.trim() || "Anonymous",
-      post: text.trim(),
+      author,
+      title: title.trim(),
+      post: text.trim() || "(no body — title only)",
+      image_url: imageUrl ?? "None",
     });
     if (!ok) {
       setStatus("error");
@@ -408,29 +478,67 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
     }
     const pending = loadJSON<PendingPost[]>(PENDING_POSTS_KEY) ?? [];
     pending.unshift({
-      author: name.trim() || "Anonymous",
+      author,
+      title: title.trim(),
       text: text.trim(),
       at: Date.now(),
       channel,
       flairs: communityFlairs(),
+      image: imageUrl ?? undefined,
     });
     saveJSON(PENDING_POSTS_KEY, pending);
+    setTitle("");
     setText("");
-    setName("");
+    pickImage(null);
     setStatus("idle");
     setSent(true);
     // Let the feed pick up the new pending post.
     window.dispatchEvent(new Event("empower:community-updated"));
   }
 
+  // Accounts live but visitor signed out: posts carry your account name now.
+  if (accountsEnabled && authReady && !session) {
+    return (
+      <div className="card-ink rounded-2xl bg-cream p-5 sm:p-6">
+        <p className="font-display text-lg font-semibold text-ink">
+          Share a win, a question, or what you&apos;re figuring out
+        </p>
+        <p className="mt-2 text-sm leading-6 text-stone">
+          <span className="font-semibold text-ink">
+            Posting is for members
+          </span>{" "}
+          — posts carry your account&apos;s display name (a first name is
+          plenty). Your profile page stays private unless you choose to share
+          it, and reading stays open to everyone, forever.
+        </p>
+        <Link
+          href="/account"
+          className="mt-3 inline-block rounded-md bg-forest px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-forest-700"
+        >
+          Sign in or create an account
+        </Link>
+      </div>
+    );
+  }
+  if (accountsEnabled && !authReady) return null;
+
   return (
     <form
       onSubmit={handleSubmit}
       className="card-ink rounded-2xl bg-cream p-5 sm:p-6"
     >
-      <label htmlFor="composer" className="font-display text-lg font-semibold text-ink">
+      <label htmlFor="composer-title" className="font-display text-lg font-semibold text-ink">
         Share a win, a question, or what you&apos;re figuring out
       </label>
+      <input
+        id="composer-title"
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        maxLength={140}
+        placeholder="Title — say it in one line"
+        className="mt-3 w-full rounded-lg border border-sand bg-paper px-4 py-2.5 text-[0.98rem] font-semibold text-ink placeholder:font-normal placeholder:text-stone/60 focus:border-amber focus:outline-none"
+      />
       <textarea
         id="composer"
         value={text}
@@ -439,9 +547,9 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
         placeholder={
           channel === "say-hello"
             ? "Introduce yourself: first name, where you're at in life, what you're working toward…"
-            : "No account needed. Posts are reviewed before they appear for everyone."
+            : "Add the details (optional). Posts are reviewed before they appear for everyone."
         }
-        className="mt-3 w-full rounded-lg border border-sand bg-paper px-4 py-3 text-[0.95rem] leading-6 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
+        className="mt-2 w-full rounded-lg border border-sand bg-paper px-4 py-3 text-[0.95rem] leading-6 text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
       />
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <label
@@ -452,28 +560,89 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
         </label>
         <select
           id="composer-channel"
-          value={channel}
-          onChange={(e) => setChannel(e.target.value as ChannelId)}
+          value={hub}
+          onChange={(e) => {
+            setHub(e.target.value as ChannelId);
+            setTagId("");
+          }}
           className="rounded-lg border border-sand bg-paper px-3 py-1.5 text-sm font-semibold text-ink focus:border-amber focus:outline-none"
         >
-          {CHANNELS.map((c) => (
+          {CHANNELS.filter((c) => !c.parent).map((c) => (
             <option key={c.id} value={c.id}>
-              {c.parent ? `\u2014 ${c.name}` : c.name}
+              {c.name}
             </option>
           ))}
         </select>
+        <span className="ml-auto">
+          {session ? (
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-sand bg-paper px-3 py-1.5 text-sm font-semibold text-stone transition-colors hover:text-ink">
+              <ImagePlus className="h-4 w-4" />
+              {imageFile ? "Change picture" : "Add a picture"}
+              <input
+                type="file"
+                accept="image/*"
+                className="sr-only"
+                onChange={(e) => pickImage(e.target.files?.[0] ?? null)}
+              />
+            </label>
+          ) : (
+            <span className="text-xs text-stone">
+              Sign in to attach pictures
+            </span>
+          )}
+        </span>
       </div>
+      {tags.length > 0 && (
+        <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+          <span className="text-xs font-semibold uppercase tracking-wide text-stone">
+            Tag (optional)
+          </span>
+          {tags.map((t) => {
+            const on = tagId === t.id;
+            return (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setTagId(on ? "" : t.id)}
+                aria-pressed={on}
+                className="rounded-md border px-2.5 py-1 text-xs font-bold transition-colors"
+                style={
+                  on
+                    ? { background: t.color, borderColor: t.color, color: "#fbf8f1" }
+                    : { borderColor: t.color, color: t.color }
+                }
+              >
+                {t.name}
+              </button>
+            );
+          })}
+        </div>
+      )}
+      {imagePreview && (
+        <div className="relative mt-3 inline-block">
+          {/* eslint-disable-next-line @next/next/no-img-element -- local blob preview */}
+          <img
+            src={imagePreview}
+            alt="Your attached picture"
+            className="max-h-40 rounded-lg border border-sand"
+          />
+          <button
+            type="button"
+            onClick={() => pickImage(null)}
+            aria-label="Remove picture"
+            className="absolute -right-2 -top-2 rounded-full border border-sand bg-cream p-1 text-stone shadow-sm transition-colors hover:text-ink"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      )}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name (optional; first name is plenty)"
-          className="w-full max-w-[16rem] rounded-lg border border-sand bg-paper px-4 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-amber focus:outline-none"
-        />
+        <span className="text-xs font-semibold text-ink/70">
+          Posting as {author}
+        </span>
         <button
           type="submit"
-          disabled={status === "sending" || !text.trim()}
+          disabled={status === "sending" || !title.trim()}
           className="btn-ink inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === "sending" ? (
@@ -499,6 +668,12 @@ function Composer({ activeChannel }: { activeChannel: "all" | ChannelId }) {
         <p className="mt-3 text-sm font-medium text-forest">
           Sent. It&apos;s in the feed below for you now, and appears for everyone
           once it&apos;s reviewed.
+        </p>
+      )}
+      {imageError && (
+        <p className="mt-3 text-sm font-medium text-terracotta">
+          The picture didn&apos;t upload, so the post wasn&apos;t sent. Try
+          again, or remove the picture and post without it.
         </p>
       )}
       {status === "error" && (
@@ -1115,6 +1290,15 @@ function PostCard({
           <p key={para.slice(0, 32)}>{para}</p>
         ))}
       </div>
+      {post.image && (
+        // eslint-disable-next-line @next/next/no-img-element -- curated member upload, arbitrary storage URL
+        <img
+          src={post.image.src}
+          alt={post.image.alt ?? ""}
+          loading="lazy"
+          className="mt-4 max-h-96 w-auto max-w-full rounded-xl border-2 border-ink/10"
+        />
+      )}
       {post.link && (
         <p className="mt-4">
           <Link
@@ -2061,7 +2245,25 @@ export default function CommunityFeed({
               <p className="text-xs font-medium text-stone">{timeAgo(p.at)}</p>
             </div>
           </div>
-          <p className="mt-4 text-[0.98rem] leading-7 text-stone">{p.text}</p>
+          {p.title && (
+            <h2 className="mt-4 font-display text-lg font-semibold leading-snug text-ink">
+              {p.title}
+            </h2>
+          )}
+          {p.text && (
+            <p className={`${p.title ? "mt-2" : "mt-4"} text-[0.98rem] leading-7 text-stone`}>
+              {p.text}
+            </p>
+          )}
+          {p.image && (
+            // eslint-disable-next-line @next/next/no-img-element -- member upload, arbitrary storage URL
+            <img
+              src={p.image}
+              alt=""
+              loading="lazy"
+              className="mt-3 max-h-80 w-auto max-w-full rounded-xl border border-sand"
+            />
+          )}
         </article>
       ))}
 

@@ -400,6 +400,10 @@ export interface CommunityPost {
   channel: ChannelId;
   /** Pinned posts sort to the top of their channel with a Pinned chip. */
   pinned?: boolean;
+  /** Optional attached picture. Member uploads land in the public
+   *  `community-images` Supabase Storage bucket; when curating a
+   *  submission in, copy the image_url from the review email here. */
+  image?: { src: string; alt?: string };
   link?: { label: string; href: string };
   comments: CommunityComment[];
 }
