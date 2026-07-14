@@ -944,7 +944,7 @@ export function ProfileEditor({
   ] as const;
 
   return (
-    <section className={overlay ? "" : "bg-paper-deep"}>
+    <section className={overlay ? "" : "bg-paper"}>
       <div
         className={
           overlay ? "" : "mx-auto max-w-[88rem] px-3 py-6 sm:px-6 lg:py-10"
@@ -952,7 +952,7 @@ export function ProfileEditor({
       >
         <div
           className={`overflow-hidden rounded-3xl ${
-            overlay ? "bg-paper-deep shadow-2xl" : ""
+            overlay ? "bg-paper-deep shadow-2xl" : "bg-paper-deep shadow-sm"
           }`}
         >
           {/* in-frame top bar */}
