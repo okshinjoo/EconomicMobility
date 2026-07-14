@@ -315,7 +315,7 @@ export default function ToolsHub() {
         <div className="mx-auto max-w-6xl px-6 pb-14">
           <Link
             href="/tools/letters"
-            className="card-ink group mx-auto flex max-w-2xl flex-col items-center rounded-2xl bg-cream p-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-10"
+            className="group mx-auto flex max-w-xl flex-col items-center rounded-2xl border-2 border-ink bg-cream p-8 text-center shadow-[0_12px_30px_-16px_rgba(17,33,28,0.35)] transition-transform duration-200 hover:-translate-y-1 sm:p-10"
           >
             <PenLine className="h-8 w-8 text-terracotta" strokeWidth={1.75} />
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
