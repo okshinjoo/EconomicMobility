@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, ShieldCheck } from "lucide-react";
 import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
@@ -240,11 +240,17 @@ export default function ResourcesPageView() {
 
         {/* Closer — A: amber field */}
         <section className="bg-amber text-ink">
-          <div className="mx-auto max-w-5xl px-6 py-12">
-            <p className="max-w-3xl text-base leading-7 text-ink/80">
+          <div className="mx-auto max-w-5xl px-6 py-14">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
+              <ShieldCheck className="h-4 w-4" strokeWidth={2} />
+              Straight with you
+            </span>
+            <p className="mt-3 max-w-3xl font-display text-2xl font-medium leading-snug text-ink sm:text-[1.7rem]">
               We don&apos;t run or control these organizations. They&apos;re
-              listed here because they&apos;re free, reputable, and useful.
-              Double-check eligibility on the official site, and be wary of
+              here because they&apos;re free, reputable, and genuinely useful.
+            </p>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-ink/75">
+              Double-check eligibility on the official site — and be wary of
               anyone charging you for help that&apos;s free.
             </p>
           </div>

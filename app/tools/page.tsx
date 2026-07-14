@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, FileSpreadsheet, Download } from "lucide-react";
+import { ArrowRight, FileSpreadsheet, Download, PenLine } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -308,29 +308,29 @@ export default function ToolsHub() {
         </div>
       </section>
 
-      {/* Letter Generator — a plain registry-style card, not a promo band
-          (nav-audit §4c: the templates band below is this page's ONE
-          cross-sell; the letters are inventory, listed like the rest). */}
+      {/* Letter Generator — a centered feature card (owner ask July: the flat
+          registry row read too plain). Still the page's secondary cross-sell;
+          the templates band below stays the primary one. */}
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 pb-14">
           <Link
             href="/tools/letters"
-            className="group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sand bg-cream p-6 transition-colors hover:border-ink/20"
+            className="card-ink group mx-auto flex max-w-2xl flex-col items-center rounded-2xl bg-cream p-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:p-10"
           >
-            <div className="max-w-xl">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-stone">
-                Not a calculator, still a tool
-              </p>
-              <h2 className="mt-1 font-display text-lg font-semibold text-ink">
-                Letter Generator
-              </h2>
-              <p className="mt-1.5 text-sm leading-6 text-stone">
-                Credit-report disputes and debt-validation requests, built in
-                your browser. Nothing you type leaves your device.
-              </p>
-            </div>
-            <span className="text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 group-hover:text-ink">
+            <PenLine className="h-8 w-8 text-terracotta" strokeWidth={1.75} />
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
+              Not a calculator, still a tool
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
+              Letter Generator
+            </h2>
+            <p className="mt-2 max-w-md text-sm leading-6 text-stone">
+              Credit-report disputes and debt-validation requests, built right
+              in your browser. Nothing you type leaves your device.
+            </p>
+            <span className="btn-ink mt-6 inline-flex items-center gap-2 rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
               Write a letter
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
             </span>
           </Link>
         </div>
