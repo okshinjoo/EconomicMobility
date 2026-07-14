@@ -71,6 +71,20 @@ const VIEW_KEY = "empower:community-view:v1";
 const SAVED_KEY = "empower:community-saved:v1";
 const PENDING_POSTS_KEY = "empower:community-posts:v1";
 const LIKES_KEY = "empower:community-likes:v1";
+/** This device's last feed visit — powers the honest "new since you were
+ *  here" dot (derived from real post dates vs. a local timestamp only). */
+const LAST_VISIT_KEY = "empower:community-last-visit:v1";
+// Read once per page load (module-scoped): StrictMode's double effect and
+// in-session back-and-forth navigation must not clobber the real previous
+// visit with "just now", or the dots vanish immediately.
+let sessionLastVisit: number | null | undefined;
+function readLastVisitOnce(): number | null {
+  if (sessionLastVisit === undefined) {
+    sessionLastVisit = loadJSON<number>(LAST_VISIT_KEY);
+    saveJSON(LAST_VISIT_KEY, Date.now());
+  }
+  return sessionLastVisit;
+}
 
 interface PendingComment {
   author: string;
@@ -129,6 +143,39 @@ function formatDate(iso: string): string {
   });
 }
 
+/** "2d ago" relative timestamps (the Reddit/HN row pattern) derived from the
+ *  post's real date. Absolute date lives in the title attr for hover. */
+function relativeDate(iso: string): string {
+  const days = Math.floor(
+    (Date.now() - Date.parse(`${iso}T12:00:00`)) / 86_400_000
+  );
+  if (days <= 0) return "today";
+  if (days < 7) return `${days}d ago`;
+  if (days < 30) return `${Math.floor(days / 7)}w ago`;
+  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+  return `${Math.floor(days / 365)}y ago`;
+}
+
+function absoluteDate(iso: string): string {
+  return new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+/** Server renders the absolute date (deterministic, no hydration mismatch);
+ *  the mounted client swaps in the relative form, absolute kept on hover. */
+function PostDate({ iso }: { iso: string }) {
+  const [rel, setRel] = useState<string | null>(null);
+  useEffect(() => setRel(relativeDate(iso)), [iso]);
+  return (
+    <time dateTime={iso} title={absoluteDate(iso)}>
+      {rel ?? formatDate(iso)}
+    </time>
+  );
+}
+
 /** Outlined "You" chip beside your own name — the GitHub-Author pattern,
  *  so your comments are findable at a glance. Pairs with the amber outline
  *  on the comment block itself. */
@@ -145,19 +192,24 @@ function Avatar({
   team,
   cred,
   mine,
+  small,
 }: {
   name: string;
   team?: boolean;
   cred?: number;
   /** The signed-in visitor's own avatar reads "me", not an initial. */
   mine?: boolean;
+  /** Compact feed rows use a smaller disc. */
+  small?: boolean;
 }) {
   const ring = credRingColor(cred ?? 0);
   return (
     <span
       title={ring ? `Community Cred: ${cred}` : undefined}
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display font-bold ${
-        mine ? "text-sm italic" : "text-base"
+      className={`flex shrink-0 items-center justify-center rounded-full font-display font-bold ${
+        small ? "h-8 w-8" : "h-10 w-10"
+      } ${
+        mine ? "text-sm italic" : small ? "text-sm" : "text-base"
       } ${team ? "bg-forest text-cream" : "bg-amber/25 text-amber-deep"}`}
       style={ring ? { boxShadow: `0 0 0 2px ${ring}` } : undefined}
     >
@@ -679,7 +731,7 @@ function CommentItem({
             )}
             <FlairChips labels={comment.authorFlairs} />
             <span className="font-normal text-stone">
-              {formatDate(comment.date)}
+              <PostDate iso={comment.date} />
             </span>
           </p>
           <p className="mt-1 text-[0.95rem] leading-6 text-stone">
@@ -741,7 +793,7 @@ function CommentItem({
                   )}
                   <FlairChips labels={r.authorFlairs} />
                   <span className="font-normal text-stone">
-                    {formatDate(r.date)}
+                    <PostDate iso={r.date} />
                   </span>
                 </p>
                 <p className="mt-1 text-[0.95rem] leading-6 text-stone">
@@ -850,18 +902,25 @@ function MiniCard({
   );
 }
 
-/** Compact (Reddit-style) row: chip + title + meta. Click to expand the
- *  full post in place. Carries the post-<id> anchor so deep links work. */
+/** Compact (Reddit-style) row: avatar + chips + title, then one meta line —
+ *  author, relative time, comment count. Click opens the post page. Carries
+ *  the post-<id> anchor so deep links work. */
 function CompactRow({
   post,
   commentTotal,
   likeCount = 0,
   onTag,
+  cred,
+  isNew = false,
 }: {
   post: CommunityPost;
   commentTotal: number;
   likeCount?: number;
   onTag: (id: ChannelId) => void;
+  /** Author's Community Cred (drives the avatar ring). */
+  cred?: number;
+  /** Posted since this device's last visit (local timestamp, honest). */
+  isNew?: boolean;
 }) {
   const { hub, tag } = usePostChips(post);
   const postBase = useContext(PostBaseContext);
@@ -869,68 +928,80 @@ function CompactRow({
     <Link
       id={`post-${post.id}`}
       href={`${postBase}/${post.id}`}
-      className="group block w-full scroll-mt-24 rounded-xl border border-sand bg-cream px-4 py-3 text-left transition-colors hover:border-ink/25"
+      className="group flex w-full items-start gap-3 scroll-mt-24 rounded-xl border border-sand bg-cream px-4 py-3 text-left transition-[border-color,box-shadow] hover:border-ink/40 hover:shadow-[2px_2px_0_rgba(17,33,28,0.12)]"
     >
-      <div className="flex flex-wrap items-center gap-2">
-        {post.pinned && (
-          <span className="rounded-md bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-cream">
-            Pinned
-          </span>
-        )}
-        <span
-          className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
-          style={{ color: hub.color, background: `${hub.color}1a` }}
-        >
-          {hub.name}
-        </span>
-        {tag && (
+      <span className="hidden pt-0.5 sm:block">
+        <Avatar name={post.author} team={post.team} cred={cred} small />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {isNew && (
+            <span
+              title="New since your last visit"
+              aria-label="New since your last visit"
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-deep"
+            />
+          )}
+          {post.pinned && (
+            <span className="rounded-md bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-cream">
+              Pinned
+            </span>
+          )}
           <span
-            role="button"
-            tabIndex={0}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onTag(tag.id);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+            className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
+            style={{ color: hub.color, background: `${hub.color}1a` }}
+          >
+            {hub.name}
+          </span>
+          {tag && (
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 onTag(tag.id);
-              }
-            }}
-            title={`Show only ${tag.name} posts`}
-            className="rounded-md border px-1.5 py-0.5 text-[10px] font-bold transition-opacity hover:opacity-70"
-            style={{ borderColor: tag.color, color: tag.color }}
-          >
-            {tag.name}
-          </span>
-        )}
-        <span className="min-w-0 flex-1 truncate font-display text-base font-semibold text-ink group-hover:underline">
-          {post.title}
-        </span>
-      </div>
-      <p className="mt-1 flex flex-wrap items-center gap-x-2 text-xs text-stone">
-        <span className="font-semibold">{post.author}</span>
-        <span>·</span>
-        <span>{formatDate(post.date)}</span>
-        <span>·</span>
-        <span className="inline-flex items-center gap-1">
-          <MessageCircle className="h-3 w-3" />
-          {commentTotal === 0
-            ? "No comments yet"
-            : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
-        </span>
-        {likeCount > 0 && (
-          <>
-            <span>·</span>
-            <span className="inline-flex items-center gap-1">
-              <Heart className="h-3 w-3" />
-              {likeCount}
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onTag(tag.id);
+                }
+              }}
+              title={`Show only ${tag.name} posts`}
+              className="rounded-md border px-1.5 py-0.5 text-[10px] font-bold transition-opacity hover:opacity-70"
+              style={{ borderColor: tag.color, color: tag.color }}
+            >
+              {tag.name}
             </span>
-          </>
-        )}
-      </p>
+          )}
+          <span className="min-w-0 font-display text-base font-semibold leading-snug text-ink group-hover:underline">
+            {post.title}
+          </span>
+        </span>
+        <span className="mt-1 flex flex-wrap items-center gap-x-2 text-xs text-stone">
+          <span className="font-semibold text-ink/70">{post.author}</span>
+          <span>·</span>
+          <PostDate iso={post.date} />
+          <span>·</span>
+          <span className="inline-flex items-center gap-1">
+            <MessageCircle className="h-3 w-3" />
+            {commentTotal === 0
+              ? "No comments yet"
+              : `${commentTotal} comment${commentTotal === 1 ? "" : "s"}`}
+          </span>
+          {likeCount > 0 && (
+            <>
+              <span>·</span>
+              <span className="inline-flex items-center gap-1">
+                <Heart className="h-3 w-3" />
+                {likeCount}
+              </span>
+            </>
+          )}
+        </span>
+      </span>
     </Link>
   );
 }
@@ -1006,7 +1077,9 @@ function PostCard({
               </span>
             )}
           </p>
-          <p className="text-xs font-medium text-stone">{formatDate(post.date)}</p>
+          <p className="text-xs font-medium text-stone">
+            <PostDate iso={post.date} />
+          </p>
         </div>
         <div className="ml-auto flex flex-wrap items-center justify-end gap-1.5">
           {post.pinned && (
@@ -1319,11 +1392,19 @@ export default function CommunityFeed({
   const [showComposer, setShowComposer] = useState(false);
   const [savedPosts, setSavedPosts] = useState<Record<string, boolean>>({});
   const [savedOnly, setSavedOnly] = useState(false);
+  // Posts dated after this device's previous visit wear a small dot.
+  const [newSince, setNewSince] = useState<number | null>(null);
+  // The sort bar sticks just under the sticky header (height measured,
+  // since the main and student headers differ).
+  const [stickyTop, setStickyTop] = useState(64);
 
   useEffect(() => {
     const v = loadJSON<string>(VIEW_KEY);
     if (v === "card" || v === "compact") setView(v);
     setSavedPosts(loadJSON<Record<string, boolean>>(SAVED_KEY) ?? {});
+    setNewSince(readLastVisitOnce());
+    const h = document.querySelector("header")?.getBoundingClientRect().height;
+    if (h) setStickyTop(Math.round(h));
     // Legacy deep links (/community#post-<id>) now live on post pages.
     const hash = window.location.hash;
     if (hash.startsWith("#post-")) {
@@ -1747,8 +1828,9 @@ export default function CommunityFeed({
         ))}
       </div>
 
-      {/* the active channel's one-line intro — or, for a sub picked via a
-          post tag, a removable filter pill */}
+      {/* the active channel's header card (Discourse category-header
+          pattern) — or, for a sub picked via a post tag, a removable
+          filter pill */}
       {active !== "all" &&
         (getChannel(active).parent ? (
           <div className="flex items-center gap-2 px-1">
@@ -1772,9 +1854,37 @@ export default function CommunityFeed({
             </span>
           </div>
         ) : (
-          <p className="px-1 text-sm font-medium text-stone">
-            {getChannel(active).tagline}
-          </p>
+          (() => {
+            const c = getChannel(active);
+            const n = countFor(c.id);
+            return (
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-sand bg-cream px-4 py-3.5 sm:px-5">
+                <c.icon
+                  className="h-6 w-6 shrink-0"
+                  strokeWidth={1.75}
+                  style={{ color: c.color }}
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-lg font-bold leading-tight text-ink">
+                    {c.name}
+                  </p>
+                  <p className="text-sm leading-5 text-stone">
+                    {c.tagline} · {n} {n === 1 ? "post" : "posts"}
+                  </p>
+                </div>
+                {!showComposer && (
+                  <button
+                    type="button"
+                    onClick={openComposer}
+                    className="btn-ink hidden items-center gap-1.5 rounded-md bg-amber px-3.5 py-2 text-sm font-bold text-ink sm:inline-flex"
+                  >
+                    <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+                    New post
+                  </button>
+                )}
+              </div>
+            );
+          })()
         ))}
 
       {showComposer && (
@@ -1823,7 +1933,12 @@ export default function CommunityFeed({
         )}
       </div>
 
-      {/* sort bar */}
+      {/* sort bar — sticks under the header while the feed scrolls
+          (md+ only: below that the wrapped bar would pin too tall) */}
+      <div
+        className="z-30 -mx-1 rounded-b-xl bg-paper px-1 py-1.5 md:sticky"
+        style={{ top: stickyTop }}
+      >
       <div className="flex flex-wrap items-center gap-1.5">
         {!showComposer && (
           <button
@@ -1927,6 +2042,7 @@ export default function CommunityFeed({
           </select>
         )}
       </div>
+      </div>
 
       {/* The visitor's own posts awaiting review */}
       {visiblePending.map((p) => (
@@ -1997,6 +2113,14 @@ export default function CommunityFeed({
           Nothing posted in this window yet. Try a longer range.
         </p>
       )}
+      {/* keyed on the active filter/sort/view so switching replays the
+          dash-stagger entrance (globals.css, dashboard motion system) */}
+      <div
+        key={`${active}|${sort}|${topRange}|${view}|${followingOnly}|${savedOnly}`}
+        className={`dash-stagger ${
+          view === "compact" ? "space-y-2.5" : "space-y-5"
+        }`}
+      >
       {visiblePosts.map((post) =>
         view === "card" ? (
           <PostCard
@@ -2026,9 +2150,12 @@ export default function CommunityFeed({
             commentTotal={commentTotalFor(post, pendingComments)}
             likeCount={feedLikes.counts[post.id] ?? 0}
             onTag={setActive}
+            cred={authorMeta[post.author]?.cred}
+            isNew={newSince !== null && postTime(post) > newSince}
           />
         )
       )}
+      </div>
       </div>
     </div>
     </PostBaseContext.Provider>
