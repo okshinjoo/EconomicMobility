@@ -11,6 +11,7 @@ import { Check, Plus, Trash2 } from "lucide-react";
 import { frameHref } from "@/lib/frame";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
+import SaveToProfile from "@/components/SaveToProfile";
 import {
   loadTracker,
   saveTracker,
@@ -599,7 +600,8 @@ export default function StudentTracker() {
         />
       </div>
 
-      <p className="mt-10 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
+      <SaveToProfile thing="tracker" className="mt-8" />
+      <p className="mt-3 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
         Everything here stays on your device (and syncs to your account if
         you have one). The GPA is an unofficial estimate on the standard 4.0
         scale — your transcript is the real record.{" "}
