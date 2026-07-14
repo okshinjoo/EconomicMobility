@@ -265,6 +265,13 @@ My Plan gets journey-style stages + the roadmap-trail presentation):**
   link leaks; /journey and /students/journey both swap band → card.
   npm run build passes; leakhunt clean (308 pages, 0 leaks).
 
+**Session 7 tuning (July 14, owner live-test feedback):** zero questions
+overshot — the guide built immediately without asking if anything else
+should be covered. Rule is now BUILD FIRST, ASK LITTLE: clear goal ->
+one warm catch-all question ("anything else you want this plan to
+cover — another goal, a date, a number?") -> summary on the very next
+turn regardless of the answer. Cap stays two questions total.
+
 **Session 7 (July 13, 2026, owner: "it asks too many questions"):**
 BUILD FIRST, ASK LATER. Interview rules now jump straight to the
 confirm-back summary when the first message names a clear goal, filling
