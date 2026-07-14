@@ -306,6 +306,10 @@ export const collegeExtraArticles: Article[] = [
         type: "key",
         text: "A scholarship should shrink your debt, not your grant. One written question tells you whether it will.",
       },
+      {
+        type: "p",
+        text: "None of this is a reason to stop applying. It's a reason to apply with the policy in hand, and the [Scholarship Finder](/students/scholarships) is a good place to line up your next round of verified awards.",
+      },
     ],
     related: ["finding-scholarships", "reading-aid-award-letter", "understanding-unmet-need"],
   },
@@ -654,7 +658,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "The Profile opens October 1 each year, the same day as the FAFSA. Deadlines belong to each school, not to the College Board, and they arrive in waves: early-decision and early-action applicants often need it by early to mid November, while regular-decision deadlines usually land January through February. File both forms in the fall and you never have to think about which wave you're in.",
+        text: "The Profile opens October 1 each year, the same day as the FAFSA. Deadlines belong to each school, not to the College Board, and they arrive in waves: early-decision and early-action applicants often need it by early to mid November, while regular-decision deadlines usually land January through February. File both forms in the fall and you never have to think about which wave you're in. The [student money calendar](/students/deadlines) tracks both opening days and can send you a reminder.",
       },
       {
         type: "p",
@@ -899,6 +903,10 @@ export const collegeExtraArticles: Article[] = [
         type: "key",
         text: "Work-study is a job, not a gift, but it's a job designed to fit a student's life. If it's offered to you, it's usually worth claiming.",
       },
+      {
+        type: "p",
+        text: "And if work-study isn't in your package, or the good positions are gone, the [Opportunity Finder](/students/opportunities) lists paid internships, fellowships, and programs that fit a student's schedule the same way.",
+      },
     ],
     related: ["grants-loans-scholarships", "reading-aid-award-letter", "fafsa-step-by-step"],
   },
@@ -1130,7 +1138,7 @@ export const collegeExtraArticles: Article[] = [
       {
         type: "list",
         items: [
-          "**Filing late or not at all.** Some aid is first-come, first-served; when the money's gone, it's gone. File as soon as you can after the form opens, and check your state and school deadlines, many of which land far earlier than the federal cutoff.",
+          "**Filing late or not at all.** Some aid is first-come, first-served; when the money's gone, it's gone. File as soon as you can after the form opens, and check your state and school deadlines, many of which land far earlier than the federal cutoff. The [student money calendar](/students/deadlines) can email you reminders before the big ones.",
           "**Leaving fields blank.** A blank can read as 'unanswered' and stall everything. If an amount is zero, write 0.",
           "**Mismatched info.** A name or Social Security number that doesn't match official records can freeze your whole application.",
           "**Listing the wrong parent.** Whose information counts depends on specific rules, especially with divorce or separation. Get this one right.",
@@ -1238,7 +1246,7 @@ export const collegeExtraArticles: Article[] = [
         items: [
           "Take a full course load and map your degree so you graduate on time, or early.",
           "Knock out general requirements cheaply: community college, credit-by-exam, transferable courses.",
-          "Buy used or rented textbooks, or borrow them from the library.",
+          "Buy used or rented textbooks, or borrow them from the library. [Textbooks Without the $400 Semester](/learn/college/cutting-textbook-costs) maps every route.",
           "Use the campus you're already paying for: health services, gym, events, free food.",
           "Live on a real budget so you don't borrow to cover everyday spending.",
         ],
@@ -1647,7 +1655,7 @@ export const collegeExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "Keep score while you do this. The [student tracker](/students/tracker) counts your units toward the 60-unit transfer mark, flags the courses you haven't confirmed yet, and shows the dollars every transferable course protects.",
+        text: "Keep score while you do this. The [student tracker](/students/tracker) counts your units toward the 60-unit transfer mark, flags the courses you haven't confirmed yet, and shows the dollars every transferable course protects. For the whole reading path in order, the [Transfer Ready course](/courses/transfer-ready) strings these guides together.",
       },
       {
         type: "h2",

@@ -190,7 +190,7 @@ export const budgetingEarningArticles: Article[] = [
       },
       {
         type: "p",
-        text: "One more practical note: once you start, there's usually a benefits *enrollment* window, a short period where you choose your health plan, set your retirement contribution, and pick other options. Don't sleep through it. Missing it can mean waiting a whole year to enroll or leaving that match on the table. Read what HR sends you, and ask if anything's unclear.",
+        text: "One more practical note: once you start, there's usually a benefits *enrollment* window, a short period where you choose your health plan, set your retirement contribution, and pick other options. Don't sleep through it. Missing it can mean waiting a whole year to enroll or leaving that match on the table. [Your First Benefits Enrollment](/learn/budgeting/your-first-benefits-enrollment) walks through those forms one by one.",
       },
       {
         type: "p",

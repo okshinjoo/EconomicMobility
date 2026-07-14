@@ -64,7 +64,7 @@ export const collegeArticles: Article[] = [
           "Enter your personal details and the schools you want to receive your information.",
           "Add your income and asset information. Many people can import tax data directly, which cuts down on typing and mistakes.",
           "If you're a dependent student, invite your parent to add their part and sign.",
-          "Review everything, sign, and submit. You'll get a confirmation that it went through.",
+          "Review everything, sign, and submit. You'll get a confirmation that it went through. (A share of applications get [picked for verification](/learn/college/fafsa-verification) afterward; it's routine paperwork, not an accusation.)",
         ],
       },
       {
@@ -73,7 +73,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Some aid is first-come, first-served, so filing soon after the form opens can mean more money. The FAFSA usually opens around **October 1** for the next school year, and the federal deadline runs to **June 30** of that school year. But many states and schools set their own deadlines *months* earlier, so check yours and don't wait until the last week. One more thing: the FAFSA isn't a one-time task. You file a new one for each school year you want aid.",
+        text: "Some aid is first-come, first-served, so filing soon after the form opens can mean more money. The FAFSA usually opens around **October 1** for the next school year, and the federal deadline runs to **June 30** of that school year. But many states and schools set their own deadlines *months* earlier, so check yours and don't wait until the last week. The [student money calendar](/students/deadlines) tracks the big dates and can email you reminders. One more thing: the FAFSA isn't a one-time task. You file a new one for each school year you want aid.",
       },
       {
         type: "key",
@@ -228,7 +228,7 @@ export const collegeArticles: Article[] = [
         type: "list",
         items: [
           "Your high school or college counseling and financial aid offices.",
-          "Free scholarship search sites (never ones that charge a fee).",
+          "Free scholarship search sites (never ones that charge a fee). Our own [Scholarship Finder](/students/scholarships) is a hand-verified list you can filter by where you are in school.",
           "Local groups: rotary clubs, unions, community foundations, places of worship.",
           "Your parents' employers, and your own employer if you work.",
           "Groups tied to your background, interests, or planned major.",
@@ -259,7 +259,7 @@ export const collegeArticles: Article[] = [
         text: "Every scholarship you win shrinks what you might have to borrow. Once the offers come in, the next job is [reading your aid letter](/learn/college/reading-aid-award-letter) and seeing how it all fits together.",
       },
     ],
-    related: ["grants-loans-scholarships", "reading-aid-award-letter"],
+    related: ["grants-loans-scholarships", "reading-aid-award-letter", "scholarship-displacement"],
   },
 
   {
@@ -474,7 +474,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "A private loan may ask for a co-signer, often a parent. That person is on the hook to repay if you can't, and the debt is legally theirs too. Go in knowing what it means for both of you.",
+        text: "A private loan may ask for a co-signer, often a parent. That person is on the hook to repay if you can't, and the debt is legally theirs too. [Cosigning: What You're Really Signing Up For](/learn/credit/cosigning-explained) spells out what it means for both of you.",
       },
       {
         type: "p",

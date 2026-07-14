@@ -112,6 +112,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A starter credit card backed by a refundable cash deposit, designed to help people build credit from scratch.",
     related: "credit",
+    article: "/learn/credit/build-credit-from-zero",
   },
   {
     slug: "authorized-user",
@@ -119,6 +120,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Someone added to another person's credit card account. The account's history can help the authorized user build credit.",
     related: "credit",
+    article: "/learn/credit/build-credit-from-zero",
   },
   {
     slug: "hard-inquiry",
@@ -234,6 +236,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A form your employer sends each year showing how much you earned and how much tax was already withheld from your pay.",
     related: "taxes",
+    article: "/learn/taxes/understanding-tax-forms",
   },
   {
     slug: "1099",
@@ -242,6 +245,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A tax form reporting income that didn't come from a regular employer, such as freelance, gig, or contract work.",
     related: "taxes",
+    article: "/learn/taxes/understanding-tax-forms",
   },
   {
     slug: "w-4",
@@ -258,6 +262,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The portion of your paycheck your employer sends to the government for taxes before you ever see it.",
     related: "taxes",
+    article: "/learn/taxes/how-to-fill-out-w4",
   },
   {
     slug: "tax-deduction",
@@ -283,6 +288,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A flat amount most people subtract from their income so it isn't taxed, instead of itemizing each deduction.",
     related: "taxes",
+    article: "/learn/taxes/deductions-vs-credits",
   },
   {
     slug: "taxable-income",
@@ -358,6 +364,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A school's total yearly price before any aid: tuition, fees, housing, food, books, and more.",
     related: "college",
+    article: "/learn/college/reading-aid-award-letter",
   },
   {
     slug: "unmet-need",
@@ -428,6 +435,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An account you use to buy and sell investments like stocks and index funds.",
     related: "investing",
+    article: "/learn/investing/opening-first-account",
   },
   {
     slug: "asset-allocation",
@@ -467,6 +475,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An account your lender uses to hold and pay your property taxes and home insurance for you, bundled into your monthly payment.",
     related: "home-ownership",
+    article: "/learn/home-ownership/hidden-costs-of-owning",
   },
   {
     slug: "pmi",
@@ -483,6 +492,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A mortgage whose interest rate and monthly payment stay the same for the whole loan.",
     related: "home-ownership",
+    article: "/learn/home-ownership/what-is-a-mortgage",
   },
   {
     slug: "underwater",
@@ -585,6 +595,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A second lock on an account: after your password, you confirm it's really you with a code or app. It stops most break-ins even when a password leaks.",
     related: "money-safety",
+    article: "/learn/money-safety/security-tune-up",
   },
   {
     slug: "security-deposit",
@@ -615,6 +626,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The amount you pay for an insurance policy, usually monthly, whether or not you ever file a claim. It's the price of being covered.",
     related: "insurance",
+    article: "/learn/insurance/how-insurance-works",
   },
   {
     slug: "deductible",
@@ -622,6 +634,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "What you pay out of your own pocket before insurance starts paying. A lower deductible usually means a higher premium, and the reverse.",
     related: "insurance",
+    article: "/learn/insurance/how-insurance-works",
   },
   {
     slug: "overdraft",
@@ -640,6 +653,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The insurance company employee who reviews a claim after an accident: examining the evidence, helping assign fault, and estimating the damage before the insurer pays.",
     related: "insurance",
+    article: "/learn/insurance/after-a-car-accident",
   },
   {
     slug: "annual-maximum",
@@ -647,6 +661,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The most a dental plan will pay toward your care in a year, often $1,000 to $2,000. You cover everything beyond it, the reverse of health insurance, where the yearly cap limits what you pay.",
     related: "insurance",
+    article: "/learn/insurance/dental-vision-insurance",
   },
   {
     slug: "at-fault",
@@ -655,6 +670,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Legally responsible for causing an accident. Insurers assign fault from the evidence, sometimes splitting it between drivers, and an at-fault accident usually raises your premium at renewal for a few years.",
     related: "insurance",
+    article: "/learn/insurance/after-a-car-accident",
   },
   {
     slug: "charity-care",
@@ -662,6 +678,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A hospital program that reduces or wipes out bills for patients with limited income. Nonprofit hospitals are generally required to offer one, but you usually have to ask the billing office and apply.",
     related: "insurance",
+    article: "/learn/insurance/negotiating-medical-bills",
   },
   {
     slug: "coinsurance",
@@ -669,6 +686,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Your percentage share of a medical bill once you've met your deductible. With 20% coinsurance on a $1,000 bill, you pay $200 and the plan pays $800.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "collision-coverage",
@@ -676,6 +694,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The part of an auto policy that pays to fix your own car after a crash, whether you hit another car or a guardrail. It's optional and comes with a deductible you pay first.",
     related: "insurance",
+    article: "/learn/insurance/auto-insurance-basics",
   },
   {
     slug: "comprehensive-coverage",
@@ -683,6 +702,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The part of an auto policy that covers damage to your car from things other than a crash: theft, vandalism, fire, hail, a falling tree, hitting an animal. Optional, with a deductible.",
     related: "insurance",
+    article: "/learn/insurance/auto-insurance-basics",
   },
   {
     slug: "copay",
@@ -690,6 +710,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A flat fee you pay for a specific service, like $25 for a doctor visit or $10 for a prescription. You know the amount in advance, and the plan covers the rest.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "disability-insurance",
@@ -706,6 +727,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The government-run site (HealthCare.gov, or your state's own version) where you shop for health insurance on your own. Many people qualify for subsidies there that lower the monthly cost, so it's worth checking before assuming a plan is out of reach.",
     related: "insurance",
+    article: "/learn/insurance/turning-26-health-insurance",
   },
   {
     slug: "hmo",
@@ -713,6 +735,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A health plan type that keeps costs down by requiring you to stay in-network and usually pick a primary doctor who refers you to specialists. Less flexibility, lower price.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "in-network",
@@ -721,6 +744,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Describes doctors, hospitals, and pharmacies that have agreed to your health plan's negotiated prices. In-network care costs you far less; out-of-network care can cost dramatically more or not be covered at all.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "insurance-claim",
@@ -729,6 +753,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The request you file when something covered happens and you want the insurer to pay. A fender-bender or a hospital stay becomes a claim the moment you report it and ask the policy to cover it.",
     related: "insurance",
+    article: "/learn/insurance/how-insurance-works",
   },
   {
     slug: "itemized-bill",
@@ -736,6 +761,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A medical bill broken out line by line, showing every charge instead of one lump total. Ask the billing office for one so you can check for duplicate charges, wrong quantities, and services you never got.",
     related: "insurance",
+    article: "/learn/insurance/negotiating-medical-bills",
   },
   {
     slug: "liability-coverage",
@@ -743,6 +769,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The part of an auto policy that pays for damage and injuries you cause other people, including their car and their medical bills. It's the coverage the law requires almost everywhere, and carrying too little can leave you personally owing the rest.",
     related: "insurance",
+    article: "/learn/insurance/auto-insurance-basics",
   },
   {
     slug: "life-insurance",
@@ -758,6 +785,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Disability coverage that picks up where short-term ends, often after about three months, and can keep paying part of your income for years if you still can't work. If you can only have one kind, this is the one that matters.",
     related: "insurance",
+    article: "/learn/insurance/disability-insurance",
   },
   {
     slug: "open-enrollment",
@@ -765,6 +793,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The yearly window when you can sign up for or switch health, dental, and vision plans through work or the marketplace. Outside that window, you usually need a big life change, like a move or a new baby, to adjust coverage.",
     related: "insurance",
+    article: "/learn/budgeting/your-first-benefits-enrollment",
   },
   {
     slug: "out-of-pocket-maximum",
@@ -773,6 +802,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The most you can be required to pay in a year for covered care on a health plan. Once you hit it, the plan pays 100% of covered costs for the rest of the year, which caps how bad a health year can get.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "own-occupation",
@@ -781,6 +811,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A disability policy feature that pays if you can't do your own job, even if you could still do some other work. Any-occupation policies pay only if you can't do much of any job, which makes them cheaper but weaker protection.",
     related: "insurance",
+    article: "/learn/insurance/disability-insurance",
   },
   {
     slug: "ppo",
@@ -788,6 +819,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A health plan type that lets you see specialists directly and use out-of-network providers, at a higher price. More freedom than an HMO, bigger premium.",
     related: "insurance",
+    article: "/learn/insurance/health-insurance-explained",
   },
   {
     slug: "rental-reimbursement-coverage",
@@ -795,6 +827,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A cheap auto policy add-on that pays for a rental car while yours is in the shop after a covered claim. Without it, your own policy generally won't cover the rental, though an at-fault driver's insurer usually owes you one.",
     related: "insurance",
+    article: "/learn/insurance/after-a-car-accident",
   },
   {
     slug: "self-insure",
@@ -803,6 +836,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Covering a risk with your own savings instead of buying a policy. Skipping the extended warranty on a gadget you could afford to replace is self-insuring; the rule is to buy insurance only for disasters you couldn't pay for yourself.",
     related: "insurance",
+    article: "/learn/insurance/insurance-checkup",
   },
   {
     slug: "short-term-disability",
@@ -810,6 +844,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Disability coverage that replaces roughly half to two-thirds of your pay for a few weeks up to several months, after a brief waiting period. It covers things like surgery recovery, and it's commonly what pays you during parental leave after childbirth.",
     related: "insurance",
+    article: "/learn/insurance/disability-insurance",
   },
   {
     slug: "small-claims-court",
@@ -818,6 +853,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A simplified court for modest money disputes, with limits that vary by state but commonly reach several thousand dollars. Filing costs little and you don't need a lawyer, which makes it a real option when an uninsured driver owes you for repairs.",
     related: "insurance",
+    article: "/learn/home-ownership/security-deposit-back",
   },
   {
     slug: "ssdi",
@@ -826,6 +862,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Social Security Disability Insurance, the federal program funded by payroll taxes that pays a modest monthly benefit if a severe condition keeps you from doing substantially any work for at least a year. Applications take months and are often denied, so treat it as a floor under the worst cases rather than a primary plan.",
     related: "insurance",
+    article: "/learn/insurance/disability-insurance",
   },
   {
     slug: "subsidy",
@@ -833,6 +870,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Help from the government that lowers what you pay, like the discounts many people get on marketplace health plans. The marketplace applies any subsidy you qualify for as you compare plans, so the sticker premium is often not your price.",
     related: "insurance",
+    article: "/learn/insurance/turning-26-health-insurance",
   },
   {
     slug: "surprise-bill",
@@ -849,6 +887,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Life insurance that covers you for a set period, like 20 or 30 years, and pays out only if you die during that term. It's pure protection with no savings piece attached, which keeps it relatively affordable.",
     related: "insurance",
+    article: "/learn/insurance/do-you-need-life-insurance",
   },
   {
     slug: "waiting-period",
@@ -856,6 +895,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The stretch of time before a policy starts paying: the months a dental plan makes new members wait before covering major work, or the weeks before disability payments begin. Choosing a longer waiting period is a classic way to lower a disability premium.",
     related: "insurance",
+    article: "/learn/insurance/disability-insurance",
   },
   {
     slug: "whole-life-insurance",
@@ -864,6 +904,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Life insurance that covers your entire life and mixes in a savings or investment component. It costs much more than term coverage for the same amount of protection, which is why salespeople tend to push it hardest.",
     related: "insurance",
+    article: "/learn/insurance/do-you-need-life-insurance",
   },
   // --- Credit & money safety (article-sweep expansion, July 2026) ---
   {
@@ -872,6 +913,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Investment fraud that spreads through a trusted community, like a church, campus group, or hometown network, carried by people who honestly believe in it. Trusting your community is the exact thing these criminals abuse.",
     related: "money-safety",
+    article: "/learn/money-safety/investment-fraud",
   },
   {
     slug: "annualcreditreport-com",
@@ -879,6 +921,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The only site authorized by federal law to give you free copies of your credit reports from all three bureaus. If a 'free credit report' site asks for a credit card number, you're in the wrong place.",
     related: "credit",
+    article: "/learn/credit/check-credit-free",
   },
   {
     slug: "articulation-agreement",
@@ -929,6 +972,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An accounting move where a creditor writes off a debt as a loss, typically after about six months of nonpayment. It does not mean the debt is forgiven; it's usually handed or sold to a collector next.",
     related: "credit",
+    article: "/learn/credit/collections-explained",
   },
   {
     slug: "chargeback",
@@ -936,6 +980,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A credit card charge reversed after you dispute it, like when something you paid for never arrives. Payment apps, wires, and gift cards have no real equivalent, which is exactly why scammers prefer them.",
     related: "money-safety",
+    article: "/learn/money-safety/payment-app-safety",
   },
   {
     slug: "check-clearing",
@@ -943,6 +988,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "When a deposited check has actually been paid by the sender's bank, which can take many days. 'Available' money in your account is not cleared money; a fake check can bounce weeks after the funds appear.",
     related: "money-safety",
+    article: "/learn/money-safety/fake-check-scams",
   },
   {
     slug: "collections",
@@ -983,6 +1029,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A small loan where the money sits in a locked savings account while you make the monthly payments. At the end the cash is yours, and you've built a record of on-time payments. Banks and credit unions offer them.",
     related: "credit",
+    article: "/learn/credit/build-credit-from-zero",
   },
   {
     slug: "data-breach",
@@ -1029,6 +1076,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A non-lawyer specifically authorized by the U.S. Department of Justice to give immigration legal advice at a recognized nonprofit. Along with licensed attorneys, they're the only people legally allowed to advise on immigration cases.",
     related: "money-safety",
+    article: "/learn/money-safety/immigrant-scams",
   },
   {
     slug: "fake-check-scam",
@@ -1070,6 +1118,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A free official lookup at brokercheck.finra.org showing any broker's licenses, employment history, and customer complaints. Pair it with the SEC's adviser database; someone selling investments who appears in neither is your answer.",
     related: "money-safety",
+    article: "/learn/money-safety/investment-fraud",
   },
   {
     slug: "fraud-alert",
@@ -1093,6 +1142,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A window where no interest or payment is due yet: on a credit card, the weeks between the statement and the due date (pay the full statement balance inside it and you owe no interest); on federal student loans, the roughly six months after leaving school before the first bill.",
     related: "credit",
+    article: "/learn/credit/how-credit-cards-work",
   },
   {
     slug: "hardship-program",
@@ -1101,6 +1151,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A lender's plan for customers going through a rough stretch, such as reduced or paused payments. Calling before you fall further behind usually beats waiting; most creditors would rather work out a plan than send a debt to collections.",
     related: "credit",
+    article: "/learn/budgeting/prioritizing-bills-when-money-is-tight",
   },
   {
     slug: "identitytheft-gov",
@@ -1108,6 +1159,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The FTC's free site for identity theft victims. You tell it what happened and it builds a step-by-step recovery plan: the letters to send, who to call, and what to dispute.",
     related: "money-safety",
+    article: "/learn/money-safety/identity-theft",
   },
   {
     slug: "installment-credit",
@@ -1142,6 +1194,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "How long you've had credit: the age of your oldest account, the average age of all of them, and how recently you opened the newest. About 15% of your score, and it grows on its own as long as you leave old accounts open.",
     related: "credit",
+    article: "/learn/credit/credit-mix-and-age",
   },
   {
     slug: "notario-fraud",
@@ -1150,6 +1203,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Immigration 'help' sold by someone advertising as a 'notario,' trading on the fact that a notario p\u00fablico is a legal professional in many Latin American countries but a U.S. notary is not. Unqualified helpers often file the wrong paperwork and damage real cases.",
     related: "money-safety",
+    article: "/learn/money-safety/immigrant-scams",
   },
   {
     slug: "notary-public",
@@ -1164,6 +1218,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A short code texted or generated to confirm it's really you logging in. It exists to keep other people out of your account, so anyone asking you to read one out loud is the person trying to get in.",
     related: "money-safety",
+    article: "/learn/money-safety/phishing-scams",
   },
   {
     slug: "original-creditor",
@@ -1171,6 +1226,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The company you first owed, like the card issuer or clinic, before the debt was handed to a collector. The roughly seven-year clock on a collection runs from when you first fell behind with them, not from when the debt was sold.",
     related: "credit",
+    article: "/learn/credit/collections-explained",
   },
   {
     slug: "password-manager",
@@ -1185,6 +1241,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Offering to pay a collection in exchange for the collector removing it from your credit report entirely. Some collectors will do it, none are obligated to, so get any promise in writing before sending a dollar.",
     related: "credit",
+    article: "/learn/credit/collections-explained",
   },
   {
     slug: "payment-app",
@@ -1200,6 +1257,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The record of whether you've paid your bills on time, about 35% of your credit score and the single biggest piece. One payment 30 or more days late can drop your score sharply and stay on your report for years.",
     related: "credit",
+    article: "/learn/credit/what-is-a-credit-score",
   },
   {
     slug: "pig-butchering",
@@ -1207,6 +1265,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A long-game scam where a warm online contact walks you into a fake investment platform, your on-screen 'balance' grows, and you're urged to put in more. The platform is a stage set, and the money is gone.",
     related: "money-safety",
+    article: "/learn/money-safety/romance-scams",
   },
   {
     slug: "ponzi-scheme",
@@ -1214,6 +1273,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A fraud that pays 'returns' to earlier investors using new investors' deposits, with nothing real underneath. The tell is smoothness: real markets bounce around, so gains that only go up in tidy identical steps are a story someone is writing.",
     related: "money-safety",
+    article: "/learn/money-safety/investment-fraud",
   },
   {
     slug: "pump-and-dump",
@@ -1221,6 +1281,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Promoters quietly buy a cheap stock or token, flood social media with hype, then sell everything near the top and let the price collapse on whoever arrived last. If someone is excited for you to buy what they already own, notice whose exit you're funding.",
     related: "money-safety",
+    article: "/learn/money-safety/investment-fraud",
   },
   {
     slug: "rate-shopping",
@@ -1229,6 +1290,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Comparing several lenders for one loan, like a car loan or mortgage, within a short window of a couple of weeks. Scoring models usually count all those checks as a single hard inquiry, so comparing offers doesn't pile up damage.",
     related: "credit",
+    article: "/learn/credit/hard-vs-soft-inquiries",
   },
   {
     slug: "recovery-scam",
@@ -1236,6 +1298,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "After you've lost money to a scam, someone contacts you promising to get it back for an upfront fee or some information. It's a second scam, sometimes run by the same people; real authorities never charge to recover your money.",
     related: "money-safety",
+    article: "/learn/money-safety/if-youve-been-scammed",
   },
   {
     slug: "rent-reporting",
@@ -1252,6 +1315,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A 'job' receiving packages at home and resending them to another address. The goods were bought with stolen cards, and the role exists to hide the fraud trail behind your name and address, which can put you in a criminal investigation.",
     related: "money-safety",
+    article: "/learn/money-safety/job-scams",
   },
   {
     slug: "romance-scam",
@@ -1268,6 +1332,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A word or phrase your family agrees on in advance that anyone calling about an emergency and money has to say. It takes five minutes at dinner and beats the most convincing cloned voice ever made.",
     related: "money-safety",
+    article: "/learn/money-safety/family-emergency-scams",
   },
   {
     slug: "soft-inquiry",
@@ -1284,6 +1349,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Everything you owed on a credit card when the monthly statement was generated. Pay this full amount by the due date and you owe zero interest.",
     related: "credit",
+    article: "/learn/credit/how-credit-cards-work",
   },
   {
     slug: "statement-closing-date",
@@ -1291,6 +1357,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The day each month your card totals your balance and reports it to the credit bureaus. Paying a few days before this date, not just by the due date, lowers the utilization that gets reported.",
     related: "credit",
+    article: "/learn/credit/credit-utilization",
   },
   {
     slug: "student-credit-card",
@@ -1299,6 +1366,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A starter card built for people in school with little or no credit history. Easier to get approved for, often with no annual fee.",
     related: "credit",
+    article: "/learn/credit/choosing-first-credit-card",
   },
   {
     slug: "thin-file",
@@ -1306,6 +1374,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A credit report with little or nothing in it, common for students, young people, and newcomers to the country. Nothing is wrong; there just isn't enough borrowing history yet for the system to score you.",
     related: "credit",
+    article: "/learn/credit/build-credit-from-zero",
   },
   {
     slug: "validation-rights",
@@ -1313,6 +1382,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Your legal right to make a debt collector prove a debt is real before you pay a cent. Dispute in writing within 30 days of first contact and the collector generally must verify the debt before collecting further.",
     related: "credit",
+    article: "/learn/credit/collections-explained",
   },
   {
     slug: "vantagescore",
@@ -1327,6 +1397,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Phishing by phone call: someone posing as your bank's fraud department or a government agency to talk you out of a code, password, or payment. Hang up and call the official number on the back of your card.",
     related: "money-safety",
+    article: "/learn/money-safety/phishing-scams",
   },
   {
     slug: "voice-cloning",
@@ -1335,6 +1406,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Software that imitates a specific person's voice from a short recording, like a social media clip or voicemail greeting. It means a familiar voice on the phone is no longer proof of who's calling.",
     related: "money-safety",
+    article: "/learn/money-safety/family-emergency-scams",
   },
   // --- College & home (article-sweep expansion, July 2026) ---
   {
@@ -1343,6 +1415,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A mortgage whose interest rate can change after an initial period, which means the monthly payment can rise. It may start cheaper than a fixed rate, but you carry the risk of increases.",
     related: "home-ownership",
+    article: "/learn/home-ownership/what-is-a-mortgage",
   },
   {
     slug: "appraisal",
@@ -1350,6 +1423,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A professional estimate of what a home is worth, ordered by the lender before it approves a mortgage. It keeps you and the lender from paying more than the home's value.",
     related: "home-ownership",
+    article: "/learn/home-ownership/closing-costs",
   },
   {
     slug: "award-letter",
@@ -1374,6 +1448,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A standard mortgage with no government backing. Lenders usually want a credit score around 620 or higher, and putting less than 20% down means paying PMI.",
     related: "home-ownership",
+    article: "/learn/home-ownership/credit-score-to-buy",
   },
   {
     slug: "daca",
@@ -1381,6 +1456,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Deferred Action for Childhood Arrivals, a program that gives some people brought to the US as children protection from deportation and a work permit. DACA students can't get federal student aid, but state aid, school aid, and many scholarships are still open.",
     related: "college",
+    article: "/learn/college/undocumented-daca-aid",
   },
   {
     slug: "deferment",
@@ -1388,6 +1464,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A temporary pause on student loan payments that you arrange with your servicer, often for school, unemployment, or hardship. On subsidized loans, interest stops building during deferment.",
     related: "college",
+    article: "/learn/college/repaying-student-loans",
   },
   {
     slug: "dependent-student",
@@ -1395,6 +1472,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A student whose parents' income and information count on the FAFSA, which covers most students straight out of high school. Independent students, such as older, married, or veteran students, file with their own information only.",
     related: "college",
+    article: "/learn/college/fafsa-step-by-step",
   },
   {
     slug: "direct-loan",
@@ -1402,6 +1480,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The standard federal student loan, borrowed from the government through the FAFSA. Direct Loans come in subsidized and unsubsidized versions and carry fixed rates set each July.",
     related: "college",
+    article: "/learn/college/federal-vs-private-loans",
   },
   {
     slug: "down-payment-assistance",
@@ -1409,6 +1488,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Grants or low-interest loans that cover part or all of your down payment, usually through a state housing agency or first-time buyer program. A real program never charges a fee to unlock the money.",
     related: "home-ownership",
+    article: "/learn/home-ownership/first-time-buyer-programs",
   },
   {
     slug: "eviction",
@@ -1416,6 +1496,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The court process a landlord must use to remove a tenant. Changing your locks, tossing your belongings, or shutting off utilities to push you out is illegal, no matter how far behind on rent you are.",
     related: "home-ownership",
+    article: "/learn/home-ownership/renting-101-tenant-rights",
   },
   {
     slug: "fair-housing-laws",
@@ -1424,6 +1505,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Laws that make it illegal for a landlord to reject or mistreat you because of your race, national origin, religion, family status, and more. They protect everyone, regardless of immigration status.",
     related: "home-ownership",
+    article: "/learn/home-ownership/renting-101-tenant-rights",
   },
   {
     slug: "federal-student-loan",
@@ -1440,6 +1522,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A mortgage backed by the Federal Housing Administration, built for buyers with smaller down payments or lower credit scores. Credit minimums often start around 580, lower than conventional loans.",
     related: "home-ownership",
+    article: "/learn/home-ownership/credit-score-to-buy",
   },
   {
     slug: "first-time-homebuyer-program",
@@ -1456,6 +1539,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Grants and scholarships: money for school you never pay back. On an award letter, gift aid is the part that truly lowers your cost.",
     related: "college",
+    article: "/learn/college/reading-aid-award-letter",
   },
   {
     slug: "hoa",
@@ -1463,6 +1547,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A homeowners association, the group that manages a shared community or condo building. Members pay monthly HOA fees, which belong in your true cost of owning.",
     related: "home-ownership",
+    article: "/learn/home-ownership/hidden-costs-of-owning",
   },
   {
     slug: "home-equity",
@@ -1485,6 +1570,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Insurance that pays to repair or rebuild your home after fire, storms, and other covered damage. Lenders require it, and it's often paid monthly through escrow.",
     related: "home-ownership",
+    article: "/learn/home-ownership/hidden-costs-of-owning",
   },
   {
     slug: "housing-finance-agency",
@@ -1492,6 +1578,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Your state's official agency for affordable homeownership, and the hub for legitimate first-time buyer programs and down-payment help. Every state has one.",
     related: "home-ownership",
+    article: "/learn/home-ownership/first-time-buyer-programs",
   },
   {
     slug: "in-state-tuition",
@@ -1508,6 +1595,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Lease language meaning each roommate owes the entire rent, not just their share. If one person stops paying, the landlord can come after any of you for all of it.",
     related: "home-ownership",
+    article: "/learn/home-ownership/roommates-and-money",
   },
   {
     slug: "loan-estimate",
@@ -1515,6 +1603,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The standardized form a lender must send soon after you apply for a mortgage, itemizing the rate, monthly payment, and every fee. Because all lenders use the same form, it's the tool for comparing offers side by side.",
     related: "home-ownership",
+    article: "/learn/home-ownership/closing-costs",
   },
   {
     slug: "loan-forgiveness",
@@ -1531,6 +1620,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The company that handles your student loan day to day: it sends the bills, takes your payments, and answers questions. Log in at StudentAid.gov to see who yours is.",
     related: "college",
+    article: "/learn/college/repaying-student-loans",
   },
   {
     slug: "need-based-aid",
@@ -1546,6 +1636,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "What a school actually costs you after subtracting grants and scholarships. A $40,000 school that gives $25,000 in gift aid has a $15,000 net price, which can beat a cheaper-looking school that gives less.",
     related: "college",
+    article: "/learn/college/private-vs-public-aid",
   },
   {
     slug: "normal-wear-and-tear",
@@ -1554,6 +1645,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The ordinary aging a rental gets from someone simply living there: faded paint, small nail holes, lightly worn carpet. A landlord can't take it out of your security deposit; real damage is different.",
     related: "home-ownership",
+    article: "/learn/home-ownership/security-deposit-back",
   },
   {
     slug: "origination-fee",
@@ -1575,6 +1667,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The main federal grant for undergraduates with financial need, worth up to $7,395 for the 2026\u201327 school year. You qualify through the FAFSA, and you never pay it back.",
     related: "college",
+    article: "/learn/college/grants-loans-scholarships",
   },
   {
     slug: "pre-qualification",
@@ -1582,6 +1675,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A quick, informal estimate of what you might borrow, based on numbers you type into a website. Nothing is verified, so treat it as a guess, not a promise like a pre-approval.",
     related: "home-ownership",
+    article: "/learn/home-ownership/getting-pre-approved",
   },
   {
     slug: "private-student-loan",
@@ -1599,6 +1693,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A financial aid officer's power to adjust your aid when the FAFSA missed something real, like a lost job or big medical bills. Ask the school for a professional judgment or special circumstances review.",
     related: "college",
+    article: "/learn/college/appealing-financial-aid",
   },
   {
     slug: "property-tax",
@@ -1607,6 +1702,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A yearly tax homeowners pay their local government, based on the home's value. It's often collected monthly through your mortgage's escrow account, and it can rise as your home's value rises.",
     related: "home-ownership",
+    article: "/learn/home-ownership/hidden-costs-of-owning",
   },
   {
     slug: "qualifying-event",
@@ -1614,6 +1710,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A life change, like turning 26, losing a job, or having a baby, that opens a limited special-enrollment window to get health insurance outside open enrollment. The window is short, often 60 days, so act fast.",
     related: "insurance",
+    article: "/learn/insurance/turning-26-health-insurance",
   },
   {
     slug: "refinance",
@@ -1629,6 +1726,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The part of an aid package you earn or repay: loans and work-study. A $5,000 loan listed as aid still costs you $5,000 plus interest later.",
     related: "college",
+    article: "/learn/college/reading-aid-award-letter",
   },
   {
     slug: "standard-repayment-plan",
@@ -1637,6 +1735,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The default federal student loan plan: a fixed monthly payment that clears the loan over a set number of years, usually ten. If it doesn't fit your income, other plans can lower the bill.",
     related: "college",
+    article: "/learn/college/repaying-student-loans",
   },
   {
     slug: "sticker-price",
@@ -1644,6 +1743,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A school's full published price before any aid is subtracted. Almost nobody pays it; what matters is your cost after grants and scholarships.",
     related: "college",
+    article: "/learn/college/private-vs-public-aid",
   },
   {
     slug: "sublease",
@@ -1651,6 +1751,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Renting out your rental to someone else, who pays you while you stay responsible to the landlord. Most leases require the landlord's permission first.",
     related: "home-ownership",
+    article: "/learn/home-ownership/roommates-and-money",
   },
   {
     slug: "transfer-agreement",
@@ -1659,6 +1760,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A deal between a community college and four-year schools guaranteeing which credits will transfer. Find yours before picking classes so every course counts toward the bachelor's degree.",
     related: "college",
+    article: "/learn/college/community-college-transfer-money",
   },
   {
     slug: "underwriting",
@@ -1698,6 +1800,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The 401(k)'s sibling for schools, hospitals, and nonprofits. Money comes out of your paycheck automatically, gets invested, and often earns an employer match.",
     related: "investing",
+    article: "/learn/investing/retirement-accounts-explained",
   },
   {
     slug: "52-week-range",
@@ -1705,6 +1808,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A stock's lowest and highest price over the past year, shown to give today's price context. Near the low is not the same as cheap, and near the high is not the same as finished.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   {
     slug: "actively-managed-fund",
@@ -1728,6 +1832,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The total money a firm or advisor manages for clients. An advisor charging an AUM fee takes a percentage of your balance every year, commonly about 1%.",
     related: "investing",
+    article: "/learn/investing/expense-ratios-and-fees",
   },
   {
     slug: "average-annual-return",
@@ -1758,6 +1863,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An option giving you the right to buy a stock at a set price by a set date. You buy a call when you're betting the price will go up.",
     related: "investing",
+    article: "/learn/investing/options-explained",
   },
   {
     slug: "capital-gains",
@@ -1765,6 +1871,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The profit from selling an investment for more than you paid. Buy a fund for $1,000, sell for $1,400, and you have a $400 capital gain, which is usually taxable in a regular brokerage account.",
     related: "taxes",
+    article: "/learn/taxes/investment-taxes-101",
   },
   {
     slug: "cash-management-account",
@@ -1772,6 +1879,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An account at a brokerage that holds your uninvested cash and sweeps it into partner banks, so it stays FDIC insured and earns a competitive rate while it waits.",
     related: "investing",
+    article: "/learn/investing/compare-savings-accounts",
   },
   {
     slug: "catch-up-contribution",
@@ -1825,6 +1933,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A loan you make to a company. It carries a bit more risk than a government bond, so it typically pays a bit more interest to compensate.",
     related: "investing",
+    article: "/learn/investing/bonds-explained",
   },
   {
     slug: "correction",
@@ -1865,6 +1974,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A stock's yearly dividend divided by its price. A $50 stock paying $1 a year yields 2%. A yield towering over everything around it is usually a warning, not a gift.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   {
     slug: "dollar-cost-averaging",
@@ -1881,6 +1991,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A brokerage setting that automatically uses each dividend to buy more shares. Those new shares pay dividends too, which keeps the compounding going without you touching anything.",
     related: "investing",
+    article: "/learn/investing/dividends-explained",
   },
   {
     slug: "early-withdrawal-penalty",
@@ -1942,6 +2053,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A slice of a single share, so you can buy $10 of a fund whose full shares cost $500. It's what lets a small monthly contribution get fully invested every time.",
     related: "investing",
+    article: "/learn/investing/start-investing-with-50",
   },
   {
     slug: "fsa",
@@ -1950,6 +2062,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A workplace account for health costs where unspent money can vanish at the end of the year. Not the same as an HSA, which rolls over and stays yours for good.",
     related: "insurance",
+    article: "/learn/investing/what-is-an-hsa",
   },
   {
     slug: "fund-of-funds",
@@ -1964,6 +2077,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The schedule a target-date fund follows as it slowly shifts from mostly stocks toward mostly bonds over the decades before your retirement year.",
     related: "investing",
+    article: "/learn/investing/target-date-funds",
   },
   {
     slug: "hedge",
@@ -1979,6 +2093,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A health plan with lower monthly premiums and a higher deductible. Being enrolled in a qualifying one is what makes you eligible to contribute to an HSA.",
     related: "insurance",
+    article: "/learn/investing/what-is-an-hsa",
   },
   {
     slug: "hsa",
@@ -2002,6 +2117,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The rule that existing bond prices fall when interest rates rise, and rise when rates fall. If new bonds pay 5%, nobody wants your old 3% bond at full price anymore.",
     related: "investing",
+    article: "/learn/investing/bonds-explained",
   },
   {
     slug: "ipo",
@@ -2027,6 +2143,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Using borrowed money so a small amount controls a larger position. It amplifies both directions: a 20% move in the stock becomes a 40% move in your own money.",
     related: "investing",
+    article: "/learn/investing/margin-and-short-selling",
   },
   {
     slug: "liquidity",
@@ -2043,6 +2160,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A sales commission some mutual funds charge when you buy or sell, sometimes around 5% off the top. Funds without one are called no-load funds, and there are enough excellent ones that you never need to pay a load.",
     related: "investing",
+    article: "/learn/investing/expense-ratios-and-fees",
   },
   {
     slug: "margin",
@@ -2058,6 +2176,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Your broker's demand for more cash when a margined position falls too far. Miss it and the broker can sell your holdings without your permission, often at the worst prices of a crash.",
     related: "investing",
+    article: "/learn/investing/margin-and-short-selling",
   },
   {
     slug: "market-capitalization",
@@ -2066,6 +2185,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A company's total price tag: the share price multiplied by the number of shares that exist. A $10 stock with 10 billion shares is a $100 billion company, which is why share price alone says nothing about size.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   {
     slug: "market-crash",
@@ -2088,6 +2208,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The date a bond or CD reaches the end of its term and pays your original money back. A 5-year CD opened today matures in five years.",
     related: "investing",
+    article: "/learn/investing/bonds-explained",
   },
   {
     slug: "money-market-account",
@@ -2095,6 +2216,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A bank savings account with a little checking mixed in, often a debit card or a few checks a month, at rates near a high-yield savings account. Different from a money market fund, which is an investment, not an insured deposit.",
     related: "investing",
+    article: "/learn/investing/compare-savings-accounts",
   },
   {
     slug: "municipal-bond",
@@ -2102,6 +2224,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A loan you make to a state, city, or local project, often with tax perks on the interest you earn.",
     related: "investing",
+    article: "/learn/investing/bonds-explained",
   },
   {
     slug: "mutual-fund",
@@ -2149,6 +2272,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The share price divided by the company's earnings per share over the past year. A P/E of 20 means you're paying $20 for every $1 of annual profit the company generates.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   {
     slug: "paper-loss",
@@ -2184,6 +2308,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An option giving you the right to sell a stock at a set price by a set date. You buy a put when you're betting the price will fall, or to protect shares you already own.",
     related: "investing",
+    article: "/learn/investing/options-explained",
   },
   {
     slug: "qualified-dividend",
@@ -2237,6 +2362,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A 401(k) option where you contribute money you've already paid tax on, and qualified withdrawals in retirement, growth included, come out tax-free.",
     related: "investing",
+    article: "/learn/investing/what-is-a-401k",
   },
   {
     slug: "rsu",
@@ -2269,6 +2395,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A feedback loop where a rising price forces short sellers to buy shares back, which pushes the price even higher. Squeezes have vaporized professional funds.",
     related: "investing",
+    article: "/learn/investing/margin-and-short-selling",
   },
   {
     slug: "sipc",
@@ -2276,6 +2403,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Insurance that protects the holdings in your brokerage account if the brokerage itself fails, up to legal limits. It does not protect against your investments losing value; nothing covers that.",
     related: "investing",
+    article: "/learn/investing/how-to-pick-a-brokerage",
   },
   {
     slug: "speculative",
@@ -2297,6 +2425,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The set price an option lets you buy or sell the stock at. Whether an option pays off depends on where the stock lands relative to its strike before expiration.",
     related: "investing",
+    article: "/learn/investing/options-explained",
   },
   {
     slug: "suitability-standard",
@@ -2311,6 +2440,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The penalty many annuities charge to get your money back in the early years, often starting around 7% and stepping down slowly over 7 to 10 years.",
     related: "investing",
+    article: "/learn/investing/annuities-explained",
   },
   {
     slug: "target-date-fund",
@@ -2326,6 +2456,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Describes an account the government taxes more gently to encourage saving, like a 401(k), IRA, or HSA. The break comes either when money goes in or when it comes out.",
     related: "investing",
+    article: "/learn/investing/retirement-accounts-explained",
   },
   {
     slug: "tax-deferred",
@@ -2350,6 +2481,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The short letter code that identifies a stock or fund on an exchange, like MPLM. You use it to look up a quote or place a trade.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   {
     slug: "time-horizon",
@@ -2394,6 +2526,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A loan you make to the U.S. government, which pays you interest and returns your money at the end of the term. Among the safest investments there are.",
     related: "investing",
+    article: "/learn/investing/bonds-explained",
   },
   {
     slug: "vesting",
@@ -2401,6 +2534,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The schedule on which promised benefits actually become yours, like RSUs arriving in chunks over four years, sometimes with a one-year cliff before anything vests. Leave before shares vest and you forfeit them.",
     related: "investing",
+    article: "/learn/investing/rsus-and-espp",
   },
   {
     slug: "volatility",
@@ -2415,6 +2549,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The number of shares that changed hands today. Volume running several times its average means something happened, and it's worth finding out what before you act.",
     related: "investing",
+    article: "/learn/investing/how-to-read-a-stock-quote",
   },
   // --- Budgeting, banking & earning (article-sweep expansion, July 2026) ---
   {
@@ -2423,6 +2558,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A free, confidential phone and text line that connects you to local help in your community: food, rent and utility assistance, and other programs. You just call or text the number 211.",
     related: "government-aid",
+    article: "/learn/government-aid/utility-rent-assistance",
   },
   {
     slug: "annual-fee",
@@ -2431,6 +2567,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A yearly charge just for holding a credit card or account. Plenty of good cards charge none, and long-time customers can often get one waived by asking.",
     related: "credit",
+    article: "/learn/credit/choosing-first-credit-card",
   },
   {
     slug: "apy",
@@ -2448,6 +2585,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A charge for using an ATM outside your bank's network, sometimes from both the machine's owner and your own bank. Sticking to in-network machines, or a bank that reimburses the fees, makes them disappear.",
     related: "budgeting",
+    article: "/learn/budgeting/avoiding-bank-fees",
   },
   {
     slug: "autopay",
@@ -2463,6 +2601,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A storefront that turns your paycheck into cash for a fee, often a few percent of the check. On a $1,000 paycheck that can be $20 or $30 gone every payday; a free bank account does the same job for nothing.",
     related: "budgeting",
+    article: "/learn/government-aid/payday-loans-and-predatory-lending",
   },
   {
     slug: "checking-account",
@@ -2516,6 +2655,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The value something loses over time, especially a car. New cars lose value fastest, which is a big reason a solid used car is usually the better deal on a tight budget.",
     related: "budgeting",
+    article: "/learn/budgeting/leasing-vs-buying-car",
   },
   {
     slug: "employer-match",
@@ -2524,6 +2664,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Money your employer adds to your 401(k) when you contribute, like 50 cents for every dollar up to a limit. Contributing enough to grab the full match is an instant 50 to 100% return that nothing else pays.",
     related: "investing",
+    article: "/learn/investing/401k-vs-ira",
   },
   {
     slug: "envelope-method",
@@ -2531,6 +2672,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A budgeting method where each spending category gets a set amount of cash in a labeled envelope, and when the envelope is empty, spending there stops until next month. Apps and some banks do the same thing with digital buckets.",
     related: "budgeting",
+    article: "/learn/budgeting/budgeting-methods",
   },
   {
     slug: "exchange-rate",
@@ -2538,6 +2680,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The price of swapping one currency for another, like dollars into pesos. Transfer services often use a rate slightly worse than the real one and quietly keep the difference.",
     related: "budgeting",
+    article: "/learn/budgeting/sending-money-abroad",
   },
   {
     slug: "fdic",
@@ -2546,6 +2689,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The Federal Deposit Insurance Corporation, which insures money in bank accounts up to $250,000 per person, per bank. If the bank fails, you get your money back.",
     related: "budgeting",
+    article: "/learn/investing/high-yield-savings-account",
   },
   {
     slug: "freelancing",
@@ -2554,6 +2698,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Getting paid directly by clients for a skill you already have, like writing, design, tutoring, or repairs. It usually pays better than gig apps once you build a little reputation.",
     related: "budgeting",
+    article: "/learn/taxes/self-employment-taxes",
   },
   {
     slug: "gap-insurance",
@@ -2569,6 +2714,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Earning money through flexible per-task jobs like driving, delivering, or errand apps. You choose your hours, but you cover your own costs and no taxes are taken out for you.",
     related: "budgeting",
+    article: "/learn/budgeting/side-hustles-honestly",
   },
   {
     slug: "independent-contractor",
@@ -2576,6 +2722,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A worker who is self-employed rather than an employee, so no taxes are withheld and minimum wage and overtime rules do not apply. Some employers mislabel real employees as contractors to dodge those protections.",
     related: "taxes",
+    article: "/learn/budgeting/know-your-rights-as-a-worker",
   },
   {
     slug: "itin",
@@ -2608,6 +2755,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "When spending rises to swallow every raise, so you earn more for years and never feel further ahead. The fix is sending part of each raise to savings before you get used to spending it.",
     related: "budgeting",
+    article: "/learn/budgeting/your-first-paycheck",
   },
   {
     slug: "medicare",
@@ -2622,6 +2770,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The true exchange rate banks use with each other, easy to look up online. Compare it to the rate a transfer service offers you; the gap is the hidden cost on top of the fee.",
     related: "budgeting",
+    article: "/learn/budgeting/sending-money-abroad",
   },
   {
     slug: "minimum-wage",
@@ -2629,6 +2778,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The lowest hourly pay the law allows where you work. Many states and cities set theirs higher than the federal rate, and being paid below it is wage theft.",
     related: "budgeting",
+    article: "/learn/budgeting/know-your-rights-as-a-worker",
   },
   {
     slug: "money-factor",
@@ -2636,6 +2786,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The finance charge built into a car lease payment, playing the role interest plays on a loan. It is quoted as a tiny decimal; multiplying it by 2,400 shows roughly the interest rate you are paying.",
     related: "budgeting",
+    article: "/learn/budgeting/leasing-vs-buying-car",
   },
   {
     slug: "money-order",
@@ -2660,6 +2811,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A charge some banks bill you just for having the account. Plenty of banks and credit unions never charge one, so there is no reason to pay it.",
     related: "budgeting",
+    article: "/learn/budgeting/avoiding-bank-fees",
   },
   {
     slug: "multi-level-marketing",
@@ -2668,6 +2820,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A business where your income depends on recruiting people under you, not just selling a product. Most participants lose money, and the profits flow to whoever sits at the top of the pyramid.",
     related: "money-safety",
+    article: "/learn/budgeting/side-hustles-honestly",
   },
   {
     slug: "ncua",
@@ -2676,6 +2829,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The National Credit Union Administration, which insures credit union deposits up to $250,000 per person. It is the credit union version of FDIC insurance.",
     related: "budgeting",
+    article: "/learn/investing/high-yield-savings-account",
   },
   {
     slug: "overtime",
@@ -2684,6 +2838,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Extra pay for hourly work past 40 hours in a week, generally at 1.5 times your normal rate. At $16 an hour, overtime hours pay $24, and most hourly jobs cannot legally skip it.",
     related: "budgeting",
+    article: "/learn/budgeting/know-your-rights-as-a-worker",
   },
   {
     slug: "paid-time-off",
@@ -2691,6 +2846,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Vacation days, sick days, and holidays you get paid for without working. It has real dollar value even though it never shows up in the salary line.",
     related: "budgeting",
+    article: "/learn/budgeting/reading-a-job-offer",
   },
   {
     slug: "pay-period",
@@ -2698,6 +2854,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The stretch of work one paycheck covers, such as one week, two weeks, or a month. Your pay stub shows what you earned for the current pay period alongside year-to-date totals.",
     related: "budgeting",
+    article: "/learn/budgeting/how-to-read-a-pay-stub",
   },
   {
     slug: "pay-stub",
@@ -2715,6 +2872,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A savings method where money moves to savings the moment you get paid, before you spend on anything else. You live on what is left, instead of trying to save whatever remains at the end of the month, which is usually nothing.",
     related: "budgeting",
+    article: "/learn/budgeting/budgeting-methods",
   },
   {
     slug: "payday-loan",
@@ -2738,6 +2896,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A card you load money onto ahead of time and spend down like a debit card, no bank account required. Convenient, but reload and monthly fees quietly eat into your balance.",
     related: "budgeting",
+    article: "/learn/budgeting/unbanked-underbanked",
   },
   {
     slug: "remittance",
@@ -2762,6 +2921,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A checking account built for people a bank turned down over past account problems, like an old unpaid overdraft. Use it responsibly for a while and you can usually graduate to a regular free account.",
     related: "budgeting",
+    article: "/learn/budgeting/unbanked-underbanked",
   },
   {
     slug: "side-hustle",
@@ -2786,6 +2946,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The nine-digit number the government uses to track your earnings and identity. Once you are 18 it can open real credit in your name, which is exactly why it is worth guarding.",
     related: "money-safety",
+    article: "/learn/money-safety/protecting-your-documents",
   },
   {
     slug: "title-loan",
@@ -2794,6 +2955,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A loan borrowed against your car, using its title as collateral. Miss payments and the lender can take the car, which for many people means losing the way they get to work.",
     related: "government-aid",
+    article: "/learn/government-aid/payday-loans-and-predatory-lending",
   },
   {
     slug: "total-compensation",
@@ -2801,6 +2963,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Everything a job pays you, not just the salary: health coverage, a 401(k) match, paid time off, and other benefits. Two offers with the same salary can be thousands of dollars apart once you add it all up.",
     related: "budgeting",
+    article: "/learn/budgeting/reading-a-job-offer",
   },
   {
     slug: "unsecured-debt",
@@ -2816,6 +2979,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An employer keeping pay you legally earned: paying below minimum wage, skipping overtime, taking tips, or making you work off the clock. It is common, usually illegal, and your rights generally apply regardless of immigration status.",
     related: "budgeting",
+    article: "/learn/budgeting/know-your-rights-as-a-worker",
   },
   {
     slug: "windfall",
@@ -2832,6 +2996,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The running total since January 1, shown on pay stubs next to earnings and deductions. One column shows this paycheck; the YTD column shows everything so far this year.",
     related: "budgeting",
+    article: "/learn/budgeting/how-to-read-a-pay-stub",
   },
   {
     slug: "zero-based-budget",
@@ -2839,6 +3004,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A budgeting method where you assign every dollar of your take-home pay a job before the month starts, until no dollar is left without a purpose. Bring home $2,500 and all $2,500 gets handed out on paper: rent, groceries, savings, even the fun line.",
     related: "budgeting",
+    article: "/learn/budgeting/budgeting-methods",
   },
   // --- Taxes & government aid (article-sweep expansion, July 2026) ---
   {
@@ -2847,6 +3013,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The form your school sends showing what was paid in tuition and fees for the year, usually posted in the student portal. You need it to claim education tax credits.",
     related: "taxes",
+    article: "/learn/taxes/education-tax-credits",
   },
   {
     slug: "1099-b",
@@ -2854,6 +3021,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The tax form your brokerage sends listing everything you sold during the year, what you originally paid, and the resulting gains and losses. Tax software imports it or lets you copy a few boxes.",
     related: "taxes",
+    article: "/learn/taxes/investment-taxes-101",
   },
   {
     slug: "1099-div",
@@ -2861,6 +3029,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The tax form your brokerage sends totaling the dividends you received during the year and marking which portion is qualified for lower tax rates.",
     related: "taxes",
+    article: "/learn/taxes/investment-taxes-101",
   },
   {
     slug: "1099-nec",
@@ -2868,6 +3037,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The tax form reporting pay for freelance, gig, or contract work. Unlike a W-2, it usually shows no tax withheld, which means the tax on that income is still yours to pay.",
     related: "taxes",
+    article: "/learn/taxes/understanding-tax-forms",
   },
   {
     slug: "american-opportunity-credit",
@@ -2883,6 +3053,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "When a creditor takes money directly from your bank account to collect a debt, allowed only after winning a court judgment. Certain benefits deposited in the account are often protected.",
     related: "government-aid",
+    article: "/learn/government-aid/what-happens-if-you-dont-pay-debts",
   },
   {
     slug: "capital-loss",
@@ -2891,6 +3062,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "What you have when you sell an investment for less than you paid. Losses cancel out your capital gains, and up to $3,000 of leftover loss can reduce your ordinary income each year.",
     related: "taxes",
+    article: "/learn/taxes/investment-taxes-101",
   },
   {
     slug: "certified-acceptance-agent",
@@ -2905,6 +3077,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The bankruptcy type that sets up a three-to-five-year repayment plan out of your income instead of erasing debts right away. The main draw is keeping your property, including a house you're behind on.",
     related: "government-aid",
+    article: "/learn/government-aid/bankruptcy-explained",
   },
   {
     slug: "chapter-7",
@@ -2912,6 +3085,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The bankruptcy type that legally erases qualifying debts like credit cards and medical bills, in exchange for possibly selling non-essential assets. It's typically faster and fits people with limited income and few assets.",
     related: "government-aid",
+    article: "/learn/government-aid/bankruptcy-explained",
   },
   {
     slug: "chip",
@@ -2920,6 +3094,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Free or low-cost health coverage for kids in families that earn too much for Medicaid but can't afford private insurance. It covers checkups, shots, and dental, and kids often qualify even when their parents don't.",
     related: "government-aid",
+    article: "/learn/government-aid/medicaid-explained",
   },
   {
     slug: "cost-basis",
@@ -2927,6 +3102,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "What you originally paid for an investment, used to measure your gain or loss when you sell. Buy at $2,000, sell at $2,600, and your $2,000 basis makes the taxable gain $600.",
     related: "investing",
+    article: "/learn/taxes/tax-loss-harvesting",
   },
   {
     slug: "court-summons",
@@ -2935,6 +3111,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The legal papers telling you you're being sued and giving you a deadline to respond. Ignoring one can mean losing the case automatically, so always respond, even without a lawyer.",
     related: "government-aid",
+    article: "/learn/government-aid/what-happens-if-you-dont-pay-debts",
   },
   {
     slug: "debt-consolidation",
@@ -2951,6 +3128,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An arrangement set up by a nonprofit credit counselor where you make one monthly payment to the agency and it pays your creditors, often at interest rates it negotiated down for you.",
     related: "government-aid",
+    article: "/learn/government-aid/debt-relief-options",
   },
   {
     slug: "debt-settlement",
@@ -2966,6 +3144,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Written proof, which you can demand from any collector, that a debt is really yours and the amount is right. Ask for it before paying a cent, because errors and outright scams are common.",
     related: "government-aid",
+    article: "/learn/government-aid/debt-collector-rights",
   },
   {
     slug: "dependent",
@@ -2980,6 +3159,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The legal erasing of a debt so you no longer owe it. Bankruptcy can discharge credit cards and medical bills, and some federal student loans can be discharged after a school's fraud or a lasting disability.",
     related: "government-aid",
+    article: "/learn/government-aid/bankruptcy-explained",
   },
   {
     slug: "ebt-card",
@@ -2988,6 +3168,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The debit-style card that benefits like SNAP load onto each month. You swipe it at the register like any bank card, and it covers most groceries.",
     related: "government-aid",
+    article: "/learn/government-aid/snap-explained",
   },
   {
     slug: "eitc",
@@ -3005,6 +3186,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "The government's yearly income benchmark for each household size, used to decide who qualifies for programs. Benefits usually use a multiple of it, like SNAP's cutoff near 130% or WIC's at 185%.",
     related: "government-aid",
+    article: "/learn/government-aid/benefits-cliffs",
   },
   {
     slug: "filing-status",
@@ -3034,6 +3216,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An IRS payment plan that breaks a tax bill you can't pay into smaller monthly payments. Applying takes a few minutes online, and while interest keeps running, the crisis is over.",
     related: "taxes",
+    article: "/learn/taxes/cant-pay-taxes",
   },
   {
     slug: "irs-free-file",
@@ -3041,6 +3224,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A partnership between the IRS and tax software companies that lets filers under an income limit use guided tax software at no cost. One of several genuinely free ways to file a simple return.",
     related: "taxes",
+    article: "/learn/taxes/free-ways-to-file",
   },
   {
     slug: "itemize",
@@ -3048,6 +3232,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "To list out specific deductions one by one instead of taking the flat standard deduction. It only pays off when those individual deductions add up to more than the standard amount, which is uncommon early on.",
     related: "taxes",
+    article: "/learn/taxes/deductions-vs-credits",
   },
   {
     slug: "lifetime-learning-credit",
@@ -3064,6 +3249,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A program that helps lower-income households pay heating and cooling bills. Depending on your state, it can cover part of an energy bill, stop an imminent shut-off, or fund weatherizing to lower future bills.",
     related: "government-aid",
+    article: "/learn/government-aid/utility-rent-assistance",
   },
   {
     slug: "long-term-capital-gains",
@@ -3072,6 +3258,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Profits on investments held more than one year before selling, taxed at lower rates than your paycheck. People with modest incomes can pay 0% federal tax on them, which makes patience a tax strategy.",
     related: "taxes",
+    article: "/learn/taxes/investment-taxes-101",
   },
   {
     slug: "low-income-taxpayer-clinic",
@@ -3093,6 +3280,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A free, certified helper who walks you through applying for marketplace health coverage or Medicaid. You never pay for a navigator's help.",
     related: "government-aid",
+    article: "/learn/government-aid/medicaid-explained",
   },
   {
     slug: "offer-in-compromise",
@@ -3100,6 +3288,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An IRS agreement to settle a tax debt for less than you owe when paying in full would be a genuine hardship. It's hard to qualify for, and free help like a Low Income Taxpayer Clinic can tell you if you might.",
     related: "taxes",
+    article: "/learn/taxes/cant-pay-taxes",
   },
   {
     slug: "paycheck-advance",
@@ -3108,6 +3297,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Getting part of your pay before payday, through your employer or an app. Employer advances are often interest-free; advance apps can stack tips, subscriptions, and instant-transfer fees that quietly add up to a high rate.",
     related: "government-aid",
+    article: "/learn/government-aid/payday-loans-and-predatory-lending",
   },
   {
     slug: "payroll-tax",
@@ -3124,6 +3314,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A program that forgives your remaining federal student loan balance after years of qualifying payments while working full time for the government or many nonprofits. Certify your employment every year so problems surface early.",
     related: "government-aid",
+    article: "/learn/government-aid/student-loan-forgiveness",
   },
   {
     slug: "public-charge",
@@ -3131,6 +3322,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "A test used in some immigration applications, like green card requests, asking whether someone is likely to depend on the government. It doesn't apply to everyone, and most benefits, including help your U.S.-citizen kids use, don't count against you.",
     related: "government-aid",
+    article: "/learn/government-aid/immigrants-and-benefits",
   },
   {
     slug: "quarterly-estimated-payments",
@@ -3139,6 +3331,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Tax payments you send the IRS four times a year when no employer is withholding for you, common with gig and freelance income. Skipping them can mean a small penalty at filing time.",
     related: "taxes",
+    article: "/learn/taxes/gig-1099-taxes",
   },
   {
     slug: "re-certify",
@@ -3147,6 +3340,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "To re-submit your income and family size each year to stay on an income-driven student loan plan. Miss the deadline and your payment can jump back up without warning.",
     related: "government-aid",
+    article: "/learn/government-aid/income-driven-repayment",
   },
   {
     slug: "refund-advance-loan",
@@ -3169,6 +3363,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Paying weekly or monthly for furniture or electronics until you own them. By the time you do, you've often paid several times what the item costs in a store.",
     related: "government-aid",
+    article: "/learn/government-aid/payday-loans-and-predatory-lending",
   },
   {
     slug: "self-employment-tax",
@@ -3192,6 +3387,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Summer grocery money for school-age kids who normally get free or reduced-price school meals. Most eligible families are enrolled automatically, and the money arrives on an EBT card while school is out.",
     related: "government-aid",
+    article: "/learn/government-aid/wic-school-meals",
   },
   {
     slug: "tanf",
@@ -3215,6 +3411,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Volunteer Income Tax Assistance, a free IRS-backed program where trained volunteers prepare tax returns at no cost. It serves lower-income filers, students, older adults, and people who speak English as a second language.",
     related: "taxes",
+    article: "/learn/taxes/free-ways-to-file",
   },
   {
     slug: "wage-garnishment",
@@ -3223,6 +3420,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "When part of your paycheck goes straight to a creditor under a court order, usually after the creditor sues and wins. Some income, like certain government benefits, is legally protected from it.",
     related: "government-aid",
+    article: "/learn/government-aid/what-happens-if-you-dont-pay-debts",
   },
   {
     slug: "wash-sale-rule",
@@ -3230,6 +3428,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "An IRS rule that cancels your tax loss if you sell an investment and buy the same or a nearly identical one within 30 days before or after the sale. Swapping into a genuinely different fund keeps the loss valid.",
     related: "taxes",
+    article: "/learn/taxes/tax-loss-harvesting",
   },
   {
     slug: "wic",

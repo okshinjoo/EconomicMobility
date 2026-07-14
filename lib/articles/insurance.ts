@@ -201,7 +201,7 @@ export const insuranceArticles: Article[] = [
           "**A job.** Many employers offer a health plan and pay part of the premium for you. If you have this option, it's usually the easiest place to start.",
           "**The government marketplace.** At **HealthCare.gov** (or your state's own marketplace), you can shop for a plan on your own. Many people qualify for help that lowers the cost, so it's worth checking even if you assume you can't afford it.",
           "**Medicaid.** If your income is low, you may qualify for [Medicaid](/learn/government-aid/medicaid-explained), which provides coverage at little or no cost. Eligibility and how to apply vary by state.",
-          "**A parent's plan.** Young adults can stay on a parent's health plan until they turn 26, which can be the simplest and cheapest option while it lasts.",
+          "**A parent's plan.** Young adults can stay on a parent's health plan until they turn 26, which can be the simplest and cheapest option while it lasts. [Turning 26](/learn/insurance/turning-26-health-insurance) covers the hand-off when that clock runs out.",
         ],
       },
       {
@@ -778,7 +778,7 @@ export const insuranceArticles: Article[] = [
           "**Duplicate charges:** the same test, room, or supply billed twice.",
           "**Services you never got:** a procedure or medication that wasn't actually yours.",
           "**Wrong quantities:** billed for a full day when you were there for an hour.",
-          "**Charges your insurance should have covered:** sometimes a claim was filed wrong, not that you owe the money. If terms like deductible and coinsurance are fuzzy, [Health Insurance, Explained](/learn/insurance/health-insurance-explained) covers them.",
+          "**Charges your insurance should have covered:** sometimes a claim was filed wrong, not that you owe the money. If the insurer denied the claim outright, [When Health Insurance Says No](/learn/insurance/appealing-insurance-denial) walks through the appeal.",
         ],
       },
       {

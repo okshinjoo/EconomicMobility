@@ -381,7 +381,7 @@ export const creditArticles: Article[] = [
     body: [
       {
         type: "p",
-        text: "Credit comes with a lot of folklore. People are scared to check their own score, afraid to ever close a card, convinced one mistake will haunt them forever. Most of it isn't true. Here's what genuinely hurts your score, and what's harmless.",
+        text: "Credit comes with a lot of folklore. People are scared to check their own score, afraid to ever close a card, convinced one mistake will haunt them forever. Most of it isn't true ([Credit Myths Your Family May Have Taught You](/learn/credit/credit-myths) unpacks the biggest ones). Here's what genuinely hurts your score, and what's harmless.",
       },
       {
         type: "h2",

@@ -504,7 +504,7 @@ export const budgetingMoneyArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Run the math on one call: knocking $25 off your internet bill is $300 a year, tax-free, for 20 minutes of your time. Very few side hustles pay that hourly rate.",
+        text: "Run the math on one call: knocking $25 off your internet bill is $300 a year, tax-free, for 20 minutes of your time. Very few [side hustles](/learn/budgeting/side-hustles-honestly) pay that hourly rate.",
       },
     ],
     related: ["avoiding-bank-fees", "negotiating-medical-bills", "saving-on-a-tight-budget"],

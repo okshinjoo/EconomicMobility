@@ -406,7 +406,7 @@ export const investingArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Once your plan is running, the hardest work is doing nothing. Check in once or twice a year to make sure your allocation still fits, nudge it back if it's drifted, and otherwise let it ride. Investing rewards patience over activity. Set it up well, keep adding, and let time and compounding carry the load.",
+        text: "Once your plan is running, the hardest work is doing nothing. Check in once or twice a year to make sure your allocation still fits, nudge it back if it's drifted, and otherwise let it ride. Investing rewards patience over activity. Set it up well, keep adding, and let time and compounding carry the load. If you're playing the longer game for your family, [Building Wealth When You're Starting From Zero](/learn/investing/building-generational-wealth) picks up where this leaves off.",
       },
     ],
     related: ["index-funds-explained", "risk-and-diversification", "dollar-cost-averaging", "market-crashes"],

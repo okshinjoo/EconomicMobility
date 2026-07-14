@@ -11,6 +11,14 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Debt Payoff Calculator",
     href: "/tools/debt",
   },
+  "paying-off-credit-cards": {
+    label: "Credit Card Payoff Calculator",
+    href: "/tools/debt/credit-card",
+  },
+  "how-credit-cards-work": {
+    label: "Credit Card Payoff Calculator",
+    href: "/tools/debt/credit-card",
+  },
 
   // Budgeting
   "building-your-first-budget": { label: "Budget Planner", href: "/tools/budget" },
@@ -51,6 +59,34 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Debt Payoff Calculator",
     href: "/tools/debt",
   },
+  "what-is-apy": {
+    label: "Compound Interest Calculator",
+    href: "/tools/savings/compound",
+  },
+  "saving-on-a-tight-budget": {
+    label: "Savings Goal Calculator",
+    href: "/tools/savings",
+  },
+  "building-a-savings-habit": {
+    label: "Savings Goal Calculator",
+    href: "/tools/savings",
+  },
+  "cost-of-living": {
+    label: "Reality Check",
+    href: "/tools/budget/reality-check",
+  },
+  "buying-a-used-car": {
+    label: "Auto Loan Calculator",
+    href: "/tools/debt/auto-loan",
+  },
+  "leasing-vs-buying-car": {
+    label: "Auto Loan Calculator",
+    href: "/tools/debt/auto-loan",
+  },
+  "how-to-ask-for-a-raise": {
+    label: "Paycheck Calculator",
+    href: "/tools/budget/paycheck",
+  },
 
   // Taxes
   "filing-taxes-first-time": {
@@ -64,6 +100,18 @@ export const articleTools: Record<string, { label: string; href: string }> = {
   "investment-taxes-101": {
     label: "Roth IRA Calculator",
     href: "/tools/savings/roth-ira",
+  },
+  "how-to-fill-out-w4": {
+    label: "Paycheck Calculator",
+    href: "/tools/budget/paycheck",
+  },
+  "tax-refund-explained": {
+    label: "Paycheck Calculator",
+    href: "/tools/budget/paycheck",
+  },
+  "tax-brackets-explained": {
+    label: "Paycheck Calculator",
+    href: "/tools/budget/paycheck",
   },
 
   // Investing
@@ -124,8 +172,24 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     href: "/tools/savings/retirement",
   },
   "roth-vs-traditional-ira": {
+    label: "Roth IRA Calculator",
+    href: "/tools/savings/roth-ira",
+  },
+  "retirement-basics": {
     label: "Retirement Calculator",
     href: "/tools/savings/retirement",
+  },
+  "magic-of-compound-interest": {
+    label: "Compound Interest Calculator",
+    href: "/tools/savings/compound",
+  },
+  "dollar-cost-averaging": {
+    label: "Compound Interest Calculator",
+    href: "/tools/savings/compound",
+  },
+  "building-generational-wealth": {
+    label: "Net Worth Tracker",
+    href: "/tools/budget/net-worth",
   },
   "401k-vs-ira": {
     label: "Retirement Calculator",
@@ -160,6 +224,26 @@ export const articleTools: Record<string, { label: string; href: string }> = {
   "understanding-unmet-need": {
     label: "College Cost Estimator",
     href: "/tools/college",
+  },
+  "federal-vs-private-loans": {
+    label: "Student Loan Calculator",
+    href: "/tools/college/student-loan",
+  },
+  "subsidized-vs-unsubsidized": {
+    label: "Student Loan Calculator",
+    href: "/tools/college/student-loan",
+  },
+  "repaying-student-loans": {
+    label: "Student Loan Calculator",
+    href: "/tools/college/student-loan",
+  },
+  "minimizing-college-debt": {
+    label: "Student Loan Calculator",
+    href: "/tools/college/student-loan",
+  },
+  "appealing-financial-aid": {
+    label: "Compare Aid Offers",
+    href: "/tools/college/compare-offers",
   },
   "student-loans-before-you-sign": {
     label: "Student Loan Calculator",
@@ -196,6 +280,38 @@ export const articleTools: Record<string, { label: string; href: string }> = {
     label: "Mortgage Calculator",
     href: "/tools/debt/mortgage",
   },
+  "getting-pre-approved": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "pmi-explained": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "closing-costs": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "credit-score-to-buy": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "underwater-mortgage": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "first-time-buyer-programs": {
+    label: "Mortgage Calculator",
+    href: "/tools/debt/mortgage",
+  },
+  "saving-for-down-payment": {
+    label: "Savings Goal Calculator",
+    href: "/tools/savings",
+  },
+  "first-home-runway": {
+    label: "Savings Goal Calculator",
+    href: "/tools/savings",
+  },
 
   // Government aid & debt relief
   "income-driven-repayment": {
@@ -210,5 +326,17 @@ export const articleTools: Record<string, { label: string; href: string }> = {
   "reading-aid-award-letter": {
     label: "Compare Aid Offers",
     href: "/tools/college/compare-offers",
+  },
+  "student-loan-forgiveness": {
+    label: "Student Loan Calculator",
+    href: "/tools/college/student-loan",
+  },
+  "debt-relief-options": {
+    label: "Debt Payoff Calculator",
+    href: "/tools/debt",
+  },
+  "what-happens-if-you-dont-pay-debts": {
+    label: "Debt Payoff Calculator",
+    href: "/tools/debt",
   },
 };

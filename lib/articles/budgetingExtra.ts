@@ -78,7 +78,7 @@ export const budgetingExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "Don't overthink the choice. Pick the one that sounds the least painful, run it for a month, and adjust. A budget is a tool you're allowed to swap out until one fits.",
+        text: "Don't overthink the choice. Pick the one that sounds the least painful, run it for a month, and adjust. A budget is a tool you're allowed to swap out until one fits. And whichever you pick, a week of [tracking your spending](/learn/budgeting/tracking-your-spending) first makes the numbers real instead of guesses.",
       },
     ],
     related: ["building-a-savings-habit", "building-your-first-budget", "50-30-20-rule"],

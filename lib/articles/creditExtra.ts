@@ -211,7 +211,7 @@ export const creditExtraArticles: Article[] = [
       },
       {
         type: "tip",
-        text: "If your interest rate is brutal, look into a balance transfer or a personal loan, but only at a genuinely *lower* rate, and only if you won't run the card back up. [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) compares the bigger restructuring options.",
+        text: "If your interest rate is brutal, look into a [balance transfer or a consolidation loan](/learn/credit/balance-transfers-and-consolidation-loans), but only at a genuinely *lower* rate, and only if you won't run the card back up. [Debt Settlement vs. Consolidation vs. Counseling](/learn/government-aid/debt-relief-options) compares the bigger restructuring options.",
       },
       {
         type: "h2",

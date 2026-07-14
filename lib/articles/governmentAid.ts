@@ -61,7 +61,7 @@ export const governmentAidArticles: Article[] = [
       },
       {
         type: "key",
-        text: "Most programs care about your current income and household size, not your past, your credit, or your pride. If your situation changed recently, like a lost job or a new baby, you may qualify now even if you didn't before.",
+        text: "Most programs care about your current income and household size, not your past, your credit, or your pride. If your situation changed recently, like a lost job or a new baby, you may qualify now even if you didn't before. (And if you're near a program's income limit and weighing a raise or extra hours, [Benefits Cliffs](/learn/government-aid/benefits-cliffs) explains the math before it surprises you.)",
       },
       {
         type: "p",

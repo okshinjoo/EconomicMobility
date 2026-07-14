@@ -653,7 +653,7 @@ export const governmentAidExtraArticles: Article[] = [
       },
       {
         type: "p",
-        text: "If you're staring down an urgent bill, you have more options than the storefront wants you to believe. Before you sign anything, try these:",
+        text: "If you're staring down an urgent bill, you have [more options than the storefront wants you to believe](/learn/government-aid/need-cash-fast). Before you sign anything, try these:",
       },
       {
         type: "steps",
