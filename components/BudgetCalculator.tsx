@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedNumber from "@/components/AnimatedNumber";
+import SaveToProfile from "@/components/SaveToProfile";
 
 import { useEffect, useMemo, useState } from "react";
 import { Plus, X, Info, RotateCcw, Link2 } from "lucide-react";
@@ -701,9 +702,7 @@ export default function BudgetCalculator() {
             included. This isn&apos;t tax advice.
           </p>
           <div className="flex items-center justify-between gap-3 border-t border-sand pt-3">
-            <span className="text-xs text-stone">
-              Saved on this device only; no account needed.
-            </span>
+            <SaveToProfile thing="budget" className="min-w-0" />
             <button
               type="button"
               onClick={handleClear}

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getReadMap, lastReadSlug } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
-import { stageLabel } from "@/lib/profile";
+import { stageLabel, readLocalProfile, GOAL_OPTIONS } from "@/lib/profile";
 import { readStudentStage } from "@/lib/studentStage";
 import { STAGE_PLANS, rotatedRecs, doneRecHrefs } from "@/lib/studentRecs";
 import { pickNextUnread } from "@/lib/readingLevel";
@@ -24,6 +24,13 @@ import {
 } from "@/lib/dashboardPrefs";
 import { loadTracker, summarize, summarizeApps } from "@/lib/studentTracker";
 import { readAboutYou } from "@/lib/aboutYou";
+import { readBudgetSummary, readDebtSummary } from "@/lib/calcImports";
+import {
+  readGoalCheckins,
+  setGoalCheckin,
+  CHECKIN_OPTIONS,
+  type GoalCheckinMap,
+} from "@/lib/goalCheckins";
 import { loadPlan, type MyPlan } from "@/lib/plan";
 import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
@@ -659,6 +666,150 @@ export function CustomizeCard({
   );
 }
 
+/** The numbers your calculators saved, on your profile (July 14 owner ask:
+ *  "save the budget calculator onto your profile... an import tools
+ *  section"). Nothing new is stored — the calculators have always kept
+ *  their snapshots in synced empower:* keys; this card surfaces them. */
+function CalcNumbersCard() {
+  const [budget, setBudget] = useState<ReturnType<typeof readBudgetSummary>>(null);
+  const [debt, setDebt] = useState<ReturnType<typeof readDebtSummary>>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setBudget(readBudgetSummary());
+    setDebt(readDebtSummary());
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
+  const usd = (n: number) => `$${Math.round(n).toLocaleString()}`;
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">
+          Your numbers, from your tools
+        </h3>
+        <Link href="/tools" className="text-xs font-semibold text-forest hover:underline">
+          All tools →
+        </Link>
+      </div>
+      {budget || debt ? (
+        <>
+          <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4">
+            {budget && (
+              <>
+                <div>
+                  <p className="font-display text-2xl font-bold text-forest">{usd(budget.netMonthly)}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: DASH.muted }}>
+                    take-home / month
+                  </p>
+                </div>
+                <div>
+                  <p className={`font-display text-2xl font-bold ${budget.leftover >= 0 ? "text-forest" : "text-terracotta"}`}>
+                    {usd(budget.leftover)}
+                  </p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: DASH.muted }}>
+                    left over / month
+                  </p>
+                </div>
+              </>
+            )}
+            {debt && (
+              <div>
+                <p className="font-display text-2xl font-bold text-forest">{usd(debt.monthlyPayment)}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: DASH.muted }}>
+                  to debts / month ({debt.count} {debt.count === 1 ? "debt" : "debts"})
+                </p>
+              </div>
+            )}
+          </div>
+          <p className="mt-3 text-xs leading-5" style={{ color: DASH.muted }}>
+            Straight from the{" "}
+            <Link href="/tools/budget" className="font-semibold text-forest hover:underline">
+              Budget Planner
+            </Link>
+            {debt && (
+              <>
+                {" "}and{" "}
+                <Link href="/tools/debt" className="font-semibold text-forest hover:underline">
+                  Debt Payoff
+                </Link>
+              </>
+            )}
+            . Update the numbers there and this card follows.
+          </p>
+        </>
+      ) : (
+        <p className="mt-2 text-sm leading-6 text-stone">
+          Run the{" "}
+          <Link href="/tools/budget" className="font-semibold text-forest hover:underline">
+            Budget Planner
+          </Link>{" "}
+          once and your take-home and monthly leftover land here — filling
+          out a tool with your real numbers is the fastest way to understand
+          them.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** Self-reported progress on the goals picked in About you (July 14 owner
+ *  ask: "a way to report how well you're doing on your goals"). */
+function GoalCheckinsCard() {
+  const [checkins, setCheckins] = useState<GoalCheckinMap>({});
+  const [goals, setGoals] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setCheckins(readGoalCheckins());
+    setGoals(readLocalProfile()?.goals ?? []);
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+      <h3 className="font-display text-base font-bold text-ink">
+        How are your goals going?
+      </h3>
+      {goals.length === 0 ? (
+        <p className="mt-2 text-sm leading-6 text-stone">
+          Pick a goal or two on the About-you tab and check in on them here —
+          an honest &ldquo;not started&rdquo; counts too.
+        </p>
+      ) : (
+        <ul className="mt-3 space-y-3">
+          {goals.map((g) => {
+            const label = GOAL_OPTIONS.find((o) => o.id === g)?.label ?? g;
+            const current = checkins[g]?.status;
+            return (
+              <li key={g}>
+                <p className="text-sm font-semibold text-ink">{label}</p>
+                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  {CHECKIN_OPTIONS.map((o) => (
+                    <button
+                      key={o.id}
+                      type="button"
+                      aria-pressed={current === o.id}
+                      onClick={() => setCheckins(setGoalCheckin(g, o.id))}
+                      className={`rounded-md px-2.5 py-1 text-xs font-bold transition-colors ${
+                        current === o.id
+                          ? o.id === "done"
+                            ? "bg-forest text-cream"
+                            : "bg-amber text-ink"
+                          : "border border-sand bg-paper text-stone hover:text-ink"
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 /** The new insight/personalization row rendered between the stat cards and
  *  the tabbed panel. Card visibility follows prefs.hiddenCards. */
 export function DashboardExtras({
@@ -688,6 +839,8 @@ export function DashboardExtras({
         <>
           {!hidden.has("heatmap") && <ActivityHeatmap />}
           {!hidden.has("pipeline") && <PipelineCard />}
+          {!hidden.has("calc-numbers") && <CalcNumbersCard />}
+          {!hidden.has("goal-checkins") && <GoalCheckinsCard />}
         </>
       )}
     </div>

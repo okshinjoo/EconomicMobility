@@ -32,6 +32,8 @@ export const DASHBOARD_CARDS: { id: string; label: string }[] = [
   { id: "recent", label: "Recent reading" },
   { id: "badges", label: "Badge case" },
   { id: "topics", label: "Reading by topic" },
+  { id: "calc-numbers", label: "Your calculator numbers" },
+  { id: "goal-checkins", label: "Goals check-in" },
 ];
 
 export const MAX_PINNED_TOOLS = 4;
