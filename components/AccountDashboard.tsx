@@ -23,6 +23,7 @@ import {
 } from "@/lib/dashboardPrefs";
 import { loadTracker, summarize, summarizeApps } from "@/lib/studentTracker";
 import { readAboutYou } from "@/lib/aboutYou";
+import { loadPlan, type MyPlan } from "@/lib/plan";
 import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
@@ -445,6 +446,65 @@ function PinnedToolsCard({
   );
 }
 
+/** The member's plan, surfaced on the profile (owner ask July 14:
+ *  "so now you can see it on your profile?"). Progress derived with the
+ *  same done signals the plan page uses; no plan -> a build-one nudge. */
+function PlanCard() {
+  const [plan, setPlan] = useState<MyPlan | null>(null);
+  const [done, setDone] = useState(0);
+  useEffect(() => {
+    const pl = loadPlan();
+    setPlan(pl);
+    if (!pl) return;
+    const read = getReadMap();
+    const tools = loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
+    const courses = getBadges();
+    const chall = getChallengeBadges();
+    setDone(
+      pl.items.filter((it) => {
+        if (it.checked) return true;
+        if (!it.doneKey) return false;
+        if (it.kind === "guide") return Boolean(read[it.doneKey]);
+        if (it.kind === "tool") return Boolean(tools[it.doneKey]);
+        if (it.kind === "course") return Boolean(courses[it.doneKey]);
+        if (it.kind === "challenge") return Boolean(chall[it.doneKey]);
+        return false;
+      }).length
+    );
+  }, []);
+  return (
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-base font-bold text-ink">Your plan</h3>
+        <Link href="/plan" className="text-xs font-semibold text-forest hover:underline">
+          {plan ? "Open your plan →" : "Build one →"}
+        </Link>
+      </div>
+      {plan ? (
+        <>
+          <p className="mt-2 text-sm font-semibold text-ink">{plan.headline}</p>
+          <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full" style={{ background: "#f2ecdf" }}>
+            <div
+              className="h-full rounded-full bg-forest transition-[width]"
+              style={{ width: `${plan.items.length ? Math.max(4, Math.round((done / plan.items.length) * 100)) : 0}%` }}
+            />
+          </div>
+          <p className="mt-2 text-xs font-semibold" style={{ color: DASH.muted }}>
+            {done} of {plan.items.length} steps done — it checks itself off as
+            you read and use the site.
+          </p>
+        </>
+      ) : (
+        <p className="mt-2 text-sm leading-6 text-stone">
+          No plan yet. A short conversation with the guide builds one from
+          real guides, tools, and deadlines — and it lives here once it
+          exists.
+        </p>
+      )}
+    </div>
+  );
+}
+
 /** The picked life moments' bundles, straight from lib/moments — the
  *  About-you tab's "anything happening soon?" answers paying off. */
 function MomentsCard() {
@@ -571,6 +631,7 @@ export function DashboardExtras({
   const hidden = new Set(prefs.hiddenCards);
   return (
     <div className="grid items-start gap-4 xl:grid-cols-2">
+      {!hidden.has("plan") && <PlanCard />}
       {!hidden.has("heatmap") && <ActivityHeatmap />}
       {!hidden.has("pipeline") && <PipelineCard />}
       {!hidden.has("tools") && <PinnedToolsCard prefs={prefs} onChange={onChange} />}

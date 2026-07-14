@@ -22,6 +22,7 @@ export const ACCENT_OPTIONS: { id: string; color: string; label: string }[] = [
 /** The overview cards a member can show/hide. Ids are stable — they live
  *  in saved prefs; rename labels freely, never ids. */
 export const DASHBOARD_CARDS: { id: string; label: string }[] = [
+  { id: "plan", label: "Your plan" },
   { id: "stats", label: "Reading & progress stats" },
   { id: "heatmap", label: "Activity heatmap" },
   { id: "pipeline", label: "Scholarship pipeline & tracker" },
