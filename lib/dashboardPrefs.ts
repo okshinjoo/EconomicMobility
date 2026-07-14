@@ -36,7 +36,10 @@ export const DASHBOARD_CARDS: { id: string; label: string }[] = [
   { id: "goal-checkins", label: "Goals check-in" },
 ];
 
-export const MAX_PINNED_TOOLS = 4;
+// Raised from 4 to 8 (July 14 owner ask: "save any tools into your profile"
+// with a visual portrayal) — the profile card now shows saved tools as a
+// small mark grid, and any calculator page can save into this set.
+export const MAX_PINNED_TOOLS = 8;
 
 export interface DashboardPrefs {
   /** Hex from ACCENT_OPTIONS, or null for the amber default. */
@@ -67,4 +70,27 @@ export function readDashboardPrefs(): DashboardPrefs {
 
 export function writeDashboardPrefs(p: DashboardPrefs): void {
   saveJSON(DASHBOARD_PREFS_KEY, p);
+}
+
+/** Is this tool saved to the profile? (client-only; reads local prefs) */
+export function isToolSaved(slug: string): boolean {
+  return readDashboardPrefs().pinnedTools.includes(slug);
+}
+
+/** Toggle a tool in the saved set from anywhere (e.g. a calculator page).
+ *  Returns "saved" / "removed", or "full" when adding past MAX_PINNED_TOOLS
+ *  (the caller shows a remove-one hint). Reads fresh each call so it stays
+ *  consistent across the tool page and the dashboard. */
+export function toggleSavedTool(slug: string): "saved" | "removed" | "full" {
+  const prefs = readDashboardPrefs();
+  if (prefs.pinnedTools.includes(slug)) {
+    writeDashboardPrefs({
+      ...prefs,
+      pinnedTools: prefs.pinnedTools.filter((s) => s !== slug),
+    });
+    return "removed";
+  }
+  if (prefs.pinnedTools.length >= MAX_PINNED_TOOLS) return "full";
+  writeDashboardPrefs({ ...prefs, pinnedTools: [...prefs.pinnedTools, slug] });
+  return "saved";
 }

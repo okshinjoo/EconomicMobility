@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { categoryByBase, hrefFor } from "@/lib/toolsRegistry";
+import SaveToolButton from "@/components/SaveToolButton";
 
 /** Tab nav across the calculators in a category. `current` is the active slug. */
 export default function CalcSwitcher({
@@ -13,7 +14,7 @@ export default function CalcSwitcher({
   if (!cat) return null;
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       {cat.items.map((item) => {
         const active = item.slug === current;
         if (item.status === "soon") {
@@ -44,6 +45,10 @@ export default function CalcSwitcher({
           </Link>
         );
       })}
+      {/* save-this-tool toggle — writes to the profile's saved-tools set */}
+      <span className="ml-auto">
+        <SaveToolButton slug={current} />
+      </span>
     </div>
   );
 }

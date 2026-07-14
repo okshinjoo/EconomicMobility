@@ -34,6 +34,7 @@ import {
 import { loadPlan, type MyPlan } from "@/lib/plan";
 import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
+import ToolMark from "@/components/ToolMark";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -415,7 +416,8 @@ function PinnedToolsCard({
       {editing ? (
         <>
           <p className="mt-2 text-xs" style={{ color: DASH.muted }}>
-            Pick up to {MAX_PINNED_TOOLS}. They open with your saved numbers.
+            Save up to {MAX_PINNED_TOOLS}. They open with your saved numbers.
+            You can also save any calculator from its own page.
           </p>
           <div className="mt-2.5 flex flex-wrap gap-1.5">
             {TOOL_INDEX.map((t) => {
@@ -444,16 +446,18 @@ function PinnedToolsCard({
             <Link
               key={t.slug}
               href={t.href}
-              className="rounded-lg border border-sand bg-paper px-3.5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-forest/40 hover:text-forest"
+              className="flex items-center gap-2.5 rounded-lg border border-sand bg-paper px-3 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-forest/40 hover:text-forest"
             >
-              {t.title}
+              <ToolMark slug={t.slug} color="#0c4a39" className="h-6 w-6 shrink-0" />
+              <span className="min-w-0 truncate">{t.title}</span>
             </Link>
           ))}
         </div>
       ) : (
         <p className="mt-2 text-sm text-stone">
-          No tools pinned yet. Hit &ldquo;Choose tools&rdquo; and put your
-          favorites one click away.
+          No tools saved yet. Hit the &ldquo;Save to profile&rdquo; button on
+          any calculator, or &ldquo;Choose tools&rdquo; here — they show up as
+          a quick-launch grid with your saved numbers.
         </p>
       )}
     </div>
