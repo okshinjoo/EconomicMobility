@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Ticker from "@/components/Ticker";
+import StartRouter from "@/components/StartRouter";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { isStudentArticle } from "@/lib/studentShelf";
@@ -247,6 +248,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Where are you right now? — first-time intent-router (prototype):
+          three human doors instead of choice overload; the third adapts to a
+          returning visitor's saved goal via the personalization engine. */}
+      <StartRouter />
 
       {/* My Plan beta strip — front-and-center by owner call (July 14:
           "I want it on the front"); the honest still-learning caveat rides
