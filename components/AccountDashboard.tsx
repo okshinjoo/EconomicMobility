@@ -35,6 +35,7 @@ import { loadPlan, type MyPlan } from "@/lib/plan";
 import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import ToolMark from "@/components/ToolMark";
+import YouCard from "@/components/YouCard";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -833,6 +834,11 @@ export function DashboardExtras({
     <div className="dash-stagger grid items-start gap-4 xl:grid-cols-2">
       {group === "overview" ? (
         <>
+          {/* Leads the overview: reflects the saved factoids back so the
+              site visibly "learns you". */}
+          <div className="xl:col-span-2">
+            <YouCard />
+          </div>
           {!hidden.has("plan") && <PlanCard />}
           {!hidden.has("tools") && (
             <PinnedToolsCard prefs={prefs} onChange={onChange} />
