@@ -51,8 +51,8 @@ export default function ChallengesPage() {
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               community feed
-            </Link>{" "}
-            is where the group part happens.
+            </Link>
+            , where the group part happens.
           </p>
         </div>
       </section>

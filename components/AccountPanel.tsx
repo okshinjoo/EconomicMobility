@@ -167,15 +167,25 @@ export default function AccountPanel({
   if (!accountsEnabled || !supabase) {
     return (
       <section className={overlay ? "" : "bg-paper-deep"}>
-      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center" style={overlay ? undefined : { marginTop: "3rem", marginBottom: "3rem" }}>
+      <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center sm:p-10" style={overlay ? undefined : { marginTop: "3rem", marginBottom: "3rem" }}>
         <UserRound className="mx-auto h-10 w-10 text-stone" strokeWidth={1.5} />
-        <h2 className="mt-4 font-display text-2xl font-bold text-ink">
-          Accounts aren&apos;t open quite yet
-        </h2>
-        <p className="mx-auto mt-2 max-w-md text-base leading-7 text-stone">
-          Very soon you&apos;ll be able to create a free account to sync your
-          progress across devices. Until then, everything you do here is saved
-          on this device automatically, no account needed.
+        <h1 className="mt-4 font-display text-3xl font-bold text-ink sm:text-4xl">
+          Your Account
+        </h1>
+        <p className="mx-auto mt-3 max-w-md text-base leading-7 text-stone">
+          An account is a free, optional way to save your progress, quiz
+          results, saved tools, and badges and sync them across your phone,
+          laptop, and library computer. It never unlocks paywalled content,
+          because there isn&apos;t any.
+        </p>
+        <p className="mx-auto mt-4 max-w-md rounded-xl border-2 border-forest/20 bg-forest/[0.06] px-4 py-3 text-sm font-semibold leading-6 text-forest">
+          Almost every guide and tool on Empower works with no account at all —
+          your progress already saves on this device automatically.
+        </p>
+        <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-stone">
+          Free accounts are rolling out now. Check back soon to sign up, sign
+          in, or reset a password — in the meantime, nothing here is behind a
+          sign-up wall.
         </p>
       </div>
       </section>

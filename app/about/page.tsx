@@ -152,9 +152,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The story — B: ink-framed photo + tilted quote card */}
+      {/* Who we are — teaser to the dedicated /who-we-are page (the full
+          founder story now lives there so the footer's "Who We Are" link has
+          a real home instead of a same-page anchor). */}
       <section id="story" className="scroll-mt-24 bg-paper-deep">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
           <div className="relative">
             <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border-2 border-ink shadow-[7px_7px_0_#11211c] lg:-rotate-1">
               <Image
@@ -165,9 +167,6 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            {/* Mobile: the quote sits BELOW the photo (overlaying it covered
-                the founder's face on small screens). From lg it returns to
-                the tilted overlay card. */}
             <div className="mt-6 max-w-md rotate-1 rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[5px_5px_0_#e7a33c] lg:absolute lg:-right-8 lg:bottom-8 lg:mt-0 lg:max-w-[16rem] lg:rotate-2">
               <p className="font-display text-lg italic leading-snug">
                 &ldquo;Empower stands for the Economic Mobility Project, and
@@ -179,45 +178,18 @@ export default function AboutPage() {
 
           <div>
             <span className="-rotate-2 inline-block rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]">
-              Why I built this
+              Who we are
             </span>
             <h2 className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-[2.75rem]">
               I&apos;m building the thing I wish I&apos;d had.
             </h2>
-            <div className="mt-6 space-y-4 text-lg leading-8 text-stone">
-              <p>
-                My parents are immigrants, and I&apos;m the first in my family
-                to go to college. Growing up, money was something we worried
-                about but rarely understood. Nobody had failed us. The
-                information was never ours to begin with. It lived behind
-                paywalls, in jargon, in households that had done all of this
-                before.
-              </p>
-              <p>
-                For me, the way in was investing. I got curious, started
-                digging, and kept running into small changes I could make that
-                would completely alter my trajectory. Honestly, learning about
-                finance is the best thing I&apos;ve ever done for myself. Not
-                just because it taught me how to invest, but because it gave
-                me a clear path and real motivation to keep going. Once the
-                fog lifted, the steps were a lot clearer.
-              </p>
-              <p>
-                Getting there was the frustrating part. Before I understood
-                anything, I had to dig through confusing articles and bounce
-                between sites that seemed more interested in selling me a
-                credit card or an insurance plan than in explaining anything.
-                Every time something finally clicked, I had the same thought:
-                someone could have told me this years ago.
-              </p>
-              <p>
-                So I decided to become that &ldquo;someone&rdquo; for the next
-                student in my shoes. Education this useful shouldn&apos;t be
-                this hard to reach. That&apos;s what the Economic Mobility
-                Project is here to fix.
-              </p>
-            </div>
-            <div className="mt-8 border-l-2 border-amber pl-4">
+            <p className="mt-6 text-lg leading-8 text-stone">
+              The child of immigrants and the first in my family to go to
+              college, I built the Economic Mobility Project because the money
+              knowledge that changes a life shouldn&apos;t live behind paywalls,
+              jargon, or households that already know the game.
+            </p>
+            <div className="mt-6 border-l-2 border-amber pl-4">
               {FOUNDER_NAME && (
                 <p className="font-display text-lg font-semibold text-ink">
                   {FOUNDER_NAME}
@@ -225,6 +197,12 @@ export default function AboutPage() {
               )}
               <p className="text-sm font-medium text-stone">{FOUNDER_TITLE}</p>
             </div>
+            <Link
+              href="/who-we-are"
+              className="mt-7 inline-flex items-center rounded-md border-2 border-ink bg-cream px-6 py-3 text-base font-bold text-ink shadow-[3px_3px_0_#11211c] transition-colors hover:bg-paper"
+            >
+              Read the full story
+            </Link>
           </div>
         </div>
       </section>
