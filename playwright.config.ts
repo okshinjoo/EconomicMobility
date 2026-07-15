@@ -11,7 +11,10 @@ import { defineConfig, devices } from "@playwright/test";
 // the dev server OUT of the default path because Turbopack dev is memory-heavy
 // on low-RAM machines — prefer a built server or a deployed URL.
 
-const BASE_URL = process.env.BASE_URL ?? "http://localhost:3000";
+// `||` not `??`: the CI workflow passes BASE_URL as an empty string "" on PR
+// events (no base_url input), and "" must fall back to localhost — otherwise
+// page.goto("/") has no base and throws "Cannot navigate to invalid URL".
+const BASE_URL = process.env.BASE_URL?.trim() || "http://localhost:3000";
 
 export default defineConfig({
   testDir: "./tests",
