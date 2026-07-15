@@ -279,20 +279,6 @@ export default function Home() {
       {/* Personalized "pick up where you left off" (renders only with history) */}
       <WelcomeBack paths={topicPaths} badgeSources={badgeSources} />
 
-      {/* Value-prop marquee (Base44 swap, July 2026) — counts are live. */}
-      <Ticker
-        tone="amber"
-        items={[
-          { label: "No sign-up to learn", href: "/start-here" },
-          { label: `${guideTotal} plain-English guides`, href: "/learn" },
-          { label: `${scholarships.length} verified scholarships`, href: "/students/scholarships" },
-          { label: `${opportunities.length} paid opportunities`, href: "/students/opportunities" },
-          { label: `${calculatorTotal} free calculators`, href: "/tools" },
-          { label: "Free forever", href: "/about" },
-          { label: "No paywall", href: "/start-here" },
-        ]}
-      />
-
       {/* Come with a real question — read articles rotate out of the list */}
       <section className="bg-forest text-cream">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
@@ -316,6 +302,21 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Value-prop marquee — moved to cap the "real question" band (owner
+          ask): the breadth-of-library stats land right after the hook. */}
+      <Ticker
+        tone="amber"
+        items={[
+          { label: "No sign-up to learn", href: "/start-here" },
+          { label: `${guideTotal} plain-English guides`, href: "/learn" },
+          { label: `${scholarships.length} verified scholarships`, href: "/students/scholarships" },
+          { label: `${opportunities.length} paid opportunities`, href: "/students/opportunities" },
+          { label: `${calculatorTotal} free calculators`, href: "/tools" },
+          { label: "Free forever", href: "/about" },
+          { label: "No paywall", href: "/start-here" },
+        ]}
+      />
 
 
       {/* The library, in numbers — every figure derived live from the data
