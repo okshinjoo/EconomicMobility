@@ -311,7 +311,7 @@ export default function ToolsHub() {
       {/* Letter Generator — a centered feature card (owner ask July: the flat
           registry row read too plain). Still the page's secondary cross-sell;
           the templates band below stays the primary one. */}
-      <section className="bg-paper">
+      <section className="bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 pt-12 pb-14 sm:pt-16">
           <Link
             href="/tools/letters"
