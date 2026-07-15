@@ -1,0 +1,55 @@
+name: Public-route regression (Playwright)
+
+# Runs the browser-visible regression suite (tests/regression.spec.ts) against
+# a real build. Manual trigger, on pushes to main, and on PRs.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Run against this URL instead of a local build (e.g. https://economicmobilityproject.org)"
+        required: false
+        default: ""
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        # npm install (not npm ci): package-lock.json wasn't regenerated when
+        # @playwright/test was added, so let install reconcile it.
+        run: npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # If a base_url was provided, test that deployed URL directly.
+      # Otherwise build the app and let Playwright boot `next start`.
+      - name: Build (only when testing a local server)
+        if: ${{ github.event.inputs.base_url == '' }}
+        run: npm run build
+
+      - name: Run regression suite
+        run: npm run test:e2e
+        env:
+          BASE_URL: ${{ github.event.inputs.base_url }}
+          START_SERVER: ${{ github.event.inputs.base_url == '' && '1' || '' }}
+          CI: "true"
+
+      - name: Upload report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
