@@ -18,6 +18,11 @@ import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { readLocalProfile } from "@/lib/profile";
 import { loadPlan } from "@/lib/plan";
+import {
+  readContext,
+  rankedPriorities,
+  journeySlugForGoal,
+} from "@/lib/personalization";
 
 const CHALLENGE_BADGES_KEY = "empower:challenge-badges:v1";
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -128,6 +133,9 @@ function TrailMini({
 export default function JourneyIndex({ items, frame = "main" }: { items: JourneyCardData[]; frame?: Frame }) {
   const [ready, setReady] = useState(false);
   const [goalIds, setGoalIds] = useState<Set<string>>(new Set());
+  // Journey ids for goals the normalized context flags as urgent right now
+  // (money tight → budget, possible scam → safety) — these lead the list.
+  const [urgentIds, setUrgentIds] = useState<Set<string>>(new Set());
   const [quizTopics, setQuizTopics] = useState<Set<string>>(new Set());
   const [doneKeys, setDoneKeys] = useState<Set<string>>(new Set());
   // "Made for you" (session 6): when a saved plan exists, it leads the page
@@ -142,6 +150,14 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
   useEffect(() => {
     const profile = readLocalProfile();
     setGoalIds(new Set(profile?.goals ?? []));
+    const ctx = readContext();
+    setUrgentIds(
+      new Set(
+        rankedPriorities(ctx)
+          .filter((b) => b.tier === "now")
+          .map((b) => journeySlugForGoal(b.goal))
+      )
+    );
     const quiz = loadJSON<{ answers?: { q3?: string[] } }>(
       STORAGE_KEYS.quizResult
     );
@@ -205,6 +221,7 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
       j.steps.filter((s) => doneKeys.has(`${j.id}:${s.kind}:${s.key}`)).length;
     const score = (j: JourneyCardData) => {
       let s = 0;
+      if (urgentIds.has(j.id)) s += 200; // urgent needs lead, above plain goals
       if (goalIds.has(j.id)) s += 100;
       if (j.quizTopics.some((t) => quizTopics.has(t))) s += 10;
       const d = doneCount(j);
@@ -212,7 +229,7 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
       return s;
     };
     return [...items].sort((a, b) => score(b) - score(a));
-  }, [items, ready, goalIds, quizTopics, doneKeys]);
+  }, [items, ready, goalIds, urgentIds, quizTopics, doneKeys]);
 
   return (
     <>

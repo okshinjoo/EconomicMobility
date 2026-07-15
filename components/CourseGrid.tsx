@@ -6,12 +6,31 @@
 // then just the goal line, a compact meta row, and progress. The longer
 // description lives on the course page, where you read it AFTER choosing.
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { frameHref, type Frame } from "@/lib/frame";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges, BadgeMedal, type BadgeMap } from "@/components/CourseQuiz";
 import CourseDoodle from "@/components/CourseDoodle";
+import { readContext, type Goal } from "@/lib/personalization";
+
+// Which normalized goal each course serves — so the person's goals float the
+// matching course up (and label why). Courses with no clean goal (e.g. taxes,
+// which isn't a profile goal) simply never boost.
+const COURSE_GOAL: Record<string, Goal> = {
+  "first-paycheck": "improve_budgeting",
+  "credit-from-zero": "build_credit",
+  "paying-for-college": "pay_for_college",
+  "first-apartment": "improve_budgeting",
+  "start-investing": "start_investing",
+  "scam-proof": "protect_from_scams",
+  "invest-smarter": "start_investing",
+  "debt-comeback": "pay_off_debt",
+  "retirement-started": "plan_for_retirement",
+  "aid-season-playbook": "pay_for_college",
+  "borrow-smart": "pay_for_college",
+  "transfer-ready": "transfer_without_losing_money",
+};
 
 export interface CourseCardData {
   id: string;
@@ -29,15 +48,34 @@ export interface CourseCardData {
 export default function CourseGrid({ items, frame = "main" }: { items: CourseCardData[]; frame?: Frame }) {
   const [read, setRead] = useState<Record<string, number>>({});
   const [badges, setBadges] = useState<BadgeMap>({});
+  // The person's normalized goals (post-mount, client-only). Courses that
+  // serve one float up, with a "For your goal" chip.
+  const [goals, setGoals] = useState<Set<Goal>>(new Set());
 
   useEffect(() => {
     setRead(getReadMap());
     setBadges(getBadges());
+    setGoals(new Set(readContext().goals));
   }, []);
+
+  // Stable goal-aware ordering: courses serving a picked goal lead, everything
+  // else keeps its curated order. Never hides a course (memory contract).
+  const ordered = useMemo(() => {
+    if (goals.size === 0) return items;
+    const matches = (c: CourseCardData) => {
+      const g = COURSE_GOAL[c.id];
+      return g ? goals.has(g) : false;
+    };
+    return [...items].sort(
+      (a, b) => Number(matches(b)) - Number(matches(a))
+    );
+  }, [items, goals]);
 
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((course, i) => {
+      {ordered.map((course, i) => {
+        const goal = COURSE_GOAL[course.id];
+        const forYou = goal ? goals.has(goal) : false;
         const done = course.articleSlugs.filter((s) => read[s]).length;
         const total = course.articleSlugs.length;
         const badge = badges[course.id];
@@ -81,6 +119,11 @@ export default function CourseGrid({ items, frame = "main" }: { items: CourseCar
             </div>
 
             <div className="flex flex-1 flex-col border-t-2 border-ink p-5">
+              {forYou && (
+                <span className="mb-2 inline-flex w-fit items-center rounded-full bg-forest/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-forest">
+                  For your goal
+                </span>
+              )}
               <p
                 className="font-display text-[1.05rem] italic leading-snug"
                 style={{ color: course.color }}

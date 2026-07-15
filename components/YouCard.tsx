@@ -10,7 +10,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Sparkles, ArrowRight } from "lucide-react";
-import { readYou, type You } from "@/lib/personalization";
+import {
+  readYou,
+  readContext,
+  madeForYouCopy,
+  nextProfilePrompt,
+  type You,
+  type MadeForYouCopy,
+  type ProfilePrompt,
+} from "@/lib/personalization";
 
 const STAGE_CHIP: Record<string, string> = {
   hs: "High-school student",
@@ -36,7 +44,17 @@ const FAMILY_CHIP: Record<string, string> = {
 
 export default function YouCard() {
   const [you, setYou] = useState<You | null>(null);
-  useEffect(() => setYou(readYou()), []);
+  // The single best next move for this person, from the normalized context —
+  // contradiction-guarded (a high-schooler never gets community-college copy).
+  const [lead, setLead] = useState<MadeForYouCopy | null>(null);
+  // The one most-useful thing still worth asking (null once enough is known).
+  const [prompt, setPrompt] = useState<ProfilePrompt | null>(null);
+  useEffect(() => {
+    setYou(readYou());
+    const ctx = readContext();
+    setLead(madeForYouCopy(ctx));
+    setPrompt(nextProfilePrompt(ctx));
+  }, []);
   if (!you) return null;
 
   // Nothing saved yet — nudge them to tell us, so the tailoring can kick in.
@@ -80,7 +98,27 @@ export default function YouCard() {
         <Sparkles className="h-4 w-4 text-forest" strokeWidth={2} />
         Tailored to you
       </p>
-      <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-forest/70">
+      {lead?.personalized && (
+        <div className="mt-2 rounded-xl border-2 border-ink bg-cream p-4">
+          <p className="font-display text-base font-bold leading-snug text-ink">
+            {lead.headline}
+          </p>
+          <p className="mt-1 text-sm leading-6 text-stone">{lead.sub}</p>
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <Link
+              href={lead.href}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              Start here
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+            </Link>
+            {lead.reason && (
+              <span className="text-xs text-stone">{lead.reason}</span>
+            )}
+          </div>
+        </div>
+      )}
+      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-forest/70">
         What we&apos;ve learned about you
       </p>
       <div className="mt-2 flex flex-wrap gap-1.5">
@@ -112,6 +150,20 @@ export default function YouCard() {
             ))}
           </div>
         </>
+      )}
+      {prompt && (
+        <div className="mt-4 border-t-2 border-forest/15 pt-3">
+          <p className="text-sm font-semibold text-ink">{prompt.question}</p>
+          <p className="mt-0.5 text-xs leading-5 text-stone">
+            {prompt.benefit}{" "}
+            <Link
+              href={prompt.href}
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              Answer on About you
+            </Link>
+          </p>
+        </div>
       )}
     </div>
   );

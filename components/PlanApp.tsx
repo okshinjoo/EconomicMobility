@@ -33,6 +33,7 @@ import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 import { frameHref, type Frame } from "@/lib/frame";
 import { readAboutYou } from "@/lib/aboutYou";
 import { readGoalCheckins } from "@/lib/goalCheckins";
+import { readContext } from "@/lib/personalization";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 import SaveToProfile from "@/components/SaveToProfile";
@@ -265,6 +266,9 @@ function gatherKnowns() {
   const checkins = Object.fromEntries(
     Object.entries(checkinMap).map(([goal, c]) => [goal, c.status])
   );
+  // Normalized upcoming events (lib/personalization) — money_tight and
+  // possible_scam make the route sequence the plan for stability/safety first.
+  const events = readContext().events;
   return {
     stage: stage ? stageMap[stage] : undefined,
     income: about.income || undefined,
@@ -274,6 +278,7 @@ function gatherKnowns() {
     // into the interview's ALREADY KNOWN block as a tone signal.
     confidence: about.confidence || undefined,
     checkins: Object.keys(checkins).length ? checkins : undefined,
+    events: events.length ? events : undefined,
   };
 }
 

@@ -276,6 +276,18 @@ const GOAL_IDS = ["credit", "debt", "budget", "emergency", "invest", "college", 
 const STAGE_IDS = ["high-school", "community-college", "four-year", "transferring", "working", "between"];
 const INCOME_IDS = ["steady", "irregular", "none", "supported"];
 const FAMILY_IDS = ["on-my-own", "family-helps", "i-help-family"];
+// Normalized upcoming events (lib/personalizationRules). Only the two urgent
+// ones change plan SEQUENCING; the rest ride along as light context.
+const EVENT_IDS = [
+  "first_job",
+  "moving_out",
+  "heading_to_college",
+  "graduating",
+  "first_credit_card",
+  "money_tight",
+  "ready_to_invest",
+  "possible_scam",
+];
 // lib/aboutYou confidence enum -> the human phrasing the prompt uses.
 const CONFIDENCE_LABELS: Record<string, string> = {
   new: "new to all of this",
@@ -369,6 +381,9 @@ interface Knowns {
   confidence?: string;
   /** Self-reported progress per goal (lib/goalCheckins): goal id -> status. */
   checkins?: Record<string, string>;
+  /** Normalized upcoming events (lib/personalization). money_tight and
+   *  possible_scam reorder the plan toward stability/safety first. */
+  events?: string[];
 }
 
 /* ------------------------------ done-awareness --------------------------- */
@@ -464,6 +479,30 @@ function checkinLine(goal: string, checkins?: Record<string, string>): string {
   return `\n- Their own progress: they say they're ${where} — lead with the next moves rather than square-one basics, unless a foundational gap genuinely matters. A brief "since you've already made a start" framing fits.`;
 }
 
+/** Urgent upcoming events reshape SEQUENCING: a possible scam or tight money
+ *  must lead, before any longer-term goal — even if that goal is what they
+ *  asked for. Non-urgent events ride along as light context only. */
+function urgencyLine(events?: string[]): string {
+  if (!events?.length) return "";
+  const out: string[] = [];
+  if (events.includes("possible_scam"))
+    out.push(
+      `\n- URGENT SAFETY: they indicated they may have been scammed. STAGE 1 MUST be the immediate response (secure accounts, contact the bank/payment provider, change compromised passwords, freeze credit if appropriate, report it) — before any longer-term goal. Never promise money can be recovered; never name a "recovery" service.`
+    );
+  if (events.includes("money_tight"))
+    out.push(
+      `\n- URGENT — MONEY IS TIGHT RIGHT NOW: sequence for stability FIRST. Stage 1 must be stabilizing essentials, bills, and breathing room. Do NOT open the plan with investing, buying a home, or maxing retirement even if that is the stated goal — those move to a later stage clearly framed "once things are steadier". Keep the tone calm, never alarming or shaming.`
+    );
+  const soft = events.filter(
+    (e) => e !== "possible_scam" && e !== "money_tight"
+  );
+  if (soft.length)
+    out.push(
+      `\n- Coming up soon for them: ${soft.join(", ")} (light context — weave in only where it naturally fits the goal).`
+    );
+  return out.join("");
+}
+
 /** Standing answers from the profile/About-you tab: the interview skips
  *  what these already cover and folds them into the confirm-back summary
  *  (the person still gets to say "not quite"). */
@@ -478,6 +517,10 @@ function sanitizeKnowns(raw: unknown): Knowns {
     if (g.length > 0) out.goals = g.slice(0, 3);
   }
   if (CONFIDENCE_LABELS[String(r.confidence)]) out.confidence = String(r.confidence);
+  if (Array.isArray(r.events)) {
+    const e = r.events.map(String).filter((id) => EVENT_IDS.includes(id));
+    if (e.length > 0) out.events = e.slice(0, 8);
+  }
   if (r.checkins && typeof r.checkins === "object") {
     const raw = r.checkins as Record<string, unknown>;
     const clean: Record<string, string> = {};
@@ -507,6 +550,16 @@ function knownsBlock(k: Knowns): string {
     lines.push(
       `- Self-reported progress on their goals: ${progress} (if today's goal is one they say they've started or are partway through, your summary can acknowledge it — "sounds like you've already made a start on this")`
     );
+  }
+  if (k.events?.length) {
+    if (k.events.includes("possible_scam"))
+      lines.push(
+        `- They flagged a possible scam. Treat account safety as the immediate priority in your summary and the plan; never promise recovery.`
+      );
+    if (k.events.includes("money_tight"))
+      lines.push(
+        `- They said money is tight right now. Lead toward stability; don't open with investing or big purchases. Keep the tone calm, never alarming.`
+      );
   }
   if (lines.length === 0) return "";
   return `
@@ -678,7 +731,7 @@ HARD RULES:
 - Goal: ${intake.goal}${intake.detail ? ` — in their words: "${intake.detail}"` : ""}
 - Where they are: ${intake.stage}
 - Money month to month: ${intake.income}
-- Family: ${intake.family}${readingLevelLine(done)}${checkinLine(intake.goal, knowns.checkins)}
+- Family: ${intake.family}${readingLevelLine(done)}${checkinLine(intake.goal, knowns.checkins)}${urgencyLine(knowns.events)}
 ${intake.target ? `- Their target: "${intake.target}"` : ""}
 ${confirmedSummary ? `- Their confirmed story, in the guide's words they agreed to: "${confirmedSummary}"` : ""}
 ${

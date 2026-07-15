@@ -9,6 +9,12 @@ import { journeyByTopic, getJourney } from "@/lib/journeys";
 import TopicMark from "@/components/TopicMark";
 import SaveToProfile from "@/components/SaveToProfile";
 import {
+  readContext,
+  rankedPriorities,
+  journeySlugForGoal,
+  GOAL_LABEL,
+} from "@/lib/personalization";
+import {
   ALL_TOPIC_IDS,
   CLOSING_LINE,
   KC_QUESTIONS_PER_TOPIC,
@@ -63,6 +69,24 @@ function useDoneState() {
   return done;
 }
 
+/** The person's top saved-goal path (from their profile, NOT the quiz) — an
+ *  additive nudge shown alongside the quiz recommendation. Null when they
+ *  haven't saved any goals. Mounted-only (localStorage). */
+function useProfileGoalPath(): { label: string; href: string } | null {
+  const [path, setPath] = useState<{ label: string; href: string } | null>(
+    null
+  );
+  useEffect(() => {
+    const top = rankedPriorities(readContext())[0];
+    if (top)
+      setPath({
+        label: GOAL_LABEL[top.goal],
+        href: `/journey/${journeySlugForGoal(top.goal)}`,
+      });
+  }, []);
+  return path;
+}
+
 export default function QuizResults({
   answers,
   tier,
@@ -77,6 +101,7 @@ export default function QuizResults({
   const frame = useFrame();
   const profile = getFinancialProfile(answers.q1, answers.q2, tier);
   const doneState = useDoneState();
+  const goalPath = useProfileGoalPath();
 
   const hasTopics = selectedTopicIds.length > 0;
   // "Pure" not-sure = unsure with no specific topics → general check + broad guidance.
@@ -365,6 +390,27 @@ export default function QuizResults({
           </section>
         );
       })()}
+
+      {/* Additive: a path from the goals they saved on their profile — kept
+          distinct from the quiz-topic recommendation above (it's from what
+          they told us, not from this quiz). Only shows if they've saved a
+          goal. */}
+      {goalPath && (
+        <section className="mt-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border-2 border-forest/20 bg-forest/[0.05] p-5">
+            <p className="text-base text-ink">
+              <span className="font-semibold">From your profile:</span> you said
+              you&apos;re working on {goalPath.label}.
+            </p>
+            <Link
+              href={frameHref(goalPath.href, frame)}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              Open that path
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Closing line */}
       <p className="mt-10 text-center text-sm leading-6 text-stone/70">

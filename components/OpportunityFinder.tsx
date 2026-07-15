@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { fuzzyScore } from "@/lib/fuzzy";
+import { readContext, scholarshipDefault } from "@/lib/personalization";
 import {
   opportunities,
   OPPS_VERIFIED_AS_OF,
@@ -53,6 +54,9 @@ export default function OpportunityFinder() {
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
   const [visible, setVisible] = useState(30);
+  // When the opening stage came from the person's profile, we say so (subtle,
+  // editable) — the same shared default the Scholarship Finder uses.
+  const [autoNote, setAutoNote] = useState("");
 
   useEffect(() => {
     const t = searchParams.get("type");
@@ -62,11 +66,31 @@ export default function OpportunityFinder() {
     const s = searchParams.get("stage");
     if (s && STAGE_VALUES.includes(s as OppStage | "all")) {
       setStage(s as OppStage | "all");
+      setAutoNote(""); // an explicit deep-link is a manual choice, not a guess
     }
     if (searchParams.get("undoc") === "1") setUndocOnly(true);
     const q = searchParams.get("q");
     if (q) setQuery(q);
   }, [searchParams]);
+
+  // Profile-based default (mount-once). Skipped when the URL names a stage.
+  // OppStage shares the scholarship stage vocabulary, so we reuse the same
+  // normalized resolver.
+  useEffect(() => {
+    if (searchParams.get("stage")) return;
+    const { stage: guess, reason } = scholarshipDefault(readContext());
+    if (guess) {
+      setStage(guess);
+      setAutoNote(`Started with ${STAGE_LABELS[guess]} because ${reason}.`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Any manual stage pick clears the profile note.
+  function pickStage(next: OppStage | "all") {
+    setStage(next);
+    setAutoNote("");
+  }
 
   useEffect(() => {
     setVisible(30);
@@ -125,7 +149,7 @@ export default function OpportunityFinder() {
           <button
             key={value}
             type="button"
-            onClick={() => setStage(value)}
+            onClick={() => pickStage(value)}
             aria-pressed={stage === value}
             className={`rounded-md border-2 px-3.5 py-1.5 text-sm font-bold transition-colors ${
               stage === value
@@ -162,6 +186,19 @@ export default function OpportunityFinder() {
         {undocOnly && " · no citizenship requirement"}, ordered by where
         they fall in the school year.
       </p>
+
+      {autoNote && (
+        <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-sm text-forest">
+          <span className="font-semibold">{autoNote}</span>
+          <button
+            type="button"
+            onClick={() => pickStage("all")}
+            className="font-semibold underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Show all
+          </button>
+        </p>
+      )}
 
       {/* Cards */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">

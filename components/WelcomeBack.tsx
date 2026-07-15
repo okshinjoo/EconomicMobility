@@ -8,6 +8,12 @@ import { ROADMAP_SET } from "@/lib/roadmaps";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
+import {
+  readContext,
+  madeForYouCopy,
+  topicMatchesGoals,
+  type MadeForYouCopy,
+} from "@/lib/personalization";
 
 export interface TopicPath {
   id: string;
@@ -60,6 +66,18 @@ export default function WelcomeBack({
 }) {
   const [rec, setRec] = useState<Recommendation | null>(null);
   const [earned, setEarned] = useState<EarnedBadge[]>([]);
+  // Profile-driven "Made for you" line, contradiction-guarded. Urgent
+  // situations (a possible scam, money tight) take over the strip; otherwise
+  // the behavioral reading-continuation rec keeps priority.
+  const [lead, setLead] = useState<MadeForYouCopy | null>(null);
+  const [leadUrgent, setLeadUrgent] = useState(false);
+
+  useEffect(() => {
+    const ctx = readContext();
+    const copy = madeForYouCopy(ctx);
+    setLead(copy.personalized ? copy : null);
+    setLeadUrgent(ctx.hasUrgent);
+  }, []);
 
   useEffect(() => {
     const courseBadges = getBadges();
@@ -117,7 +135,22 @@ export default function WelcomeBack({
           return;
         }
       }
-      // Topic finished — fall through to quiz topics / any started topic.
+      // Topic finished — fall through to goal topics / quiz / any started.
+    }
+
+    // 1.5 A topic that serves one of their SAVED GOALS (profile). Goals are a
+    // stronger, longer-lived signal than a one-time quiz, so they come next —
+    // right after in-progress continuity.
+    const ctx = readContext();
+    if (ctx.goals.length) {
+      for (const topic of paths) {
+        if (!topicMatchesGoals(topic.id, ctx)) continue;
+        const r = nextIn(topic);
+        if (r) {
+          setRec(last ? r : { ...r, kicker: "Toward your goal" });
+          return;
+        }
+      }
     }
 
     // 2. Quiz-selected topics they haven't finished.
@@ -154,12 +187,31 @@ export default function WelcomeBack({
     // First-time visitor (or finished everything): stay hidden.
   }, [paths]);
 
-  if (!rec && earned.length === 0) return null;
+  // Show the profile lead when it's urgent (it outranks "next article") or
+  // when there's no reading rec to show — otherwise the reading rec leads.
+  const showLead = Boolean(lead && (leadUrgent || !rec));
+
+  if (!rec && earned.length === 0 && !showLead) return null;
 
   return (
     <section className="border-t border-sand bg-paper-deep">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-5">
-        {rec ? (
+        {showLead && lead ? (
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-terracotta">
+              {lead.kicker}
+            </span>
+            <p className="text-base text-ink">
+              {lead.headline}{" "}
+              <Link
+                href={lead.href}
+                className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-ink"
+              >
+                Start here
+              </Link>
+            </p>
+          </div>
+        ) : rec ? (
           <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
             <span
               className="text-xs font-semibold uppercase tracking-[0.16em]"
@@ -226,7 +278,7 @@ export default function WelcomeBack({
               </span>
             </Link>
           )}
-          {rec && (
+          {rec && !showLead && (
             <p className="text-sm font-medium text-stone">
               {rec.readCount} of {rec.topicTotal} {rec.topicShort.toLowerCase()}{" "}
               guides read

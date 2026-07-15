@@ -25,9 +25,26 @@ export function readStudentStage(): KnownStage | null {
   if (profile && valid(profile.studentStage)) return profile.studentStage;
   const local = loadJSON<KnownStage>(STORAGE_KEYS.studentStage);
   if (valid(local)) return local;
+  // The tracker's track is only an ANSWER when the person actually used the
+  // tracker. A freshly-opened tracker ships mode:"cc" with empty arrays — a
+  // default, not a choice — and letting that speak fed high-schoolers
+  // community-college copy across the site (the July 14 personalization bug).
+  // Require real content before trusting the track.
   const tracker = loadJSON<TrackerData>(TRACKER_KEY);
-  if (tracker && valid(tracker.mode)) return tracker.mode;
+  if (tracker && valid(tracker.mode) && trackerWasUsed(tracker)) {
+    return tracker.mode;
+  }
   return null;
+}
+
+/** A tracker snapshot carries a deliberate track only once it holds real
+ *  work — otherwise its mode is just the default. */
+function trackerWasUsed(t: TrackerData): boolean {
+  return (
+    (Array.isArray(t.courses) && t.courses.length > 0) ||
+    (Array.isArray(t.apps) && t.apps.length > 0) ||
+    (Array.isArray(t.todos) && t.todos.length > 0)
+  );
 }
 
 /** Remember a picker answer locally (signed-in profiles save their own). */

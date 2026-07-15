@@ -12,6 +12,7 @@ import { useSearchParams } from "next/navigation";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
+import { readContext, scholarshipDefault } from "@/lib/personalization";
 import {
   scholarships,
   VERIFIED_AS_OF,
@@ -45,6 +46,9 @@ export default function ScholarshipFinder() {
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
   const [visible, setVisible] = useState(30);
+  // When the opening stage came from the person's profile, we say so (subtle,
+  // editable) — never a claim of confirmed eligibility, just where we started.
+  const [autoNote, setAutoNote] = useState("");
 
   // Audience doors (hero links + subnav) deep-link with ?stage / ?undoc / ?q
   // — applied on mount and on every client-side param change.
@@ -52,11 +56,31 @@ export default function ScholarshipFinder() {
     const s = searchParams.get("stage");
     if (s && STAGE_VALUES.includes(s as StudentStage | "all")) {
       setStage(s as StudentStage | "all");
+      setAutoNote(""); // an explicit deep-link is a manual choice, not a guess
     }
     if (searchParams.get("undoc") === "1") setUndocOnly(true);
     const q = searchParams.get("q");
     if (q) setQuery(q);
   }, [searchParams]);
+
+  // Profile-based default (mount-once). Skipped when the URL already names a
+  // stage (that intent wins) — otherwise start where the person's normalized
+  // profile points, with an editable "Started with X" note.
+  useEffect(() => {
+    if (searchParams.get("stage")) return;
+    const { stage: guess, reason } = scholarshipDefault(readContext());
+    if (guess) {
+      setStage(guess);
+      setAutoNote(`Started with ${STAGE_LABELS[guess]} because ${reason}.`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Any manual stage pick clears the profile note.
+  function pickStage(next: StudentStage | "all") {
+    setStage(next);
+    setAutoNote("");
+  }
 
   useEffect(() => {
     setVisible(30);
@@ -95,7 +119,7 @@ export default function ScholarshipFinder() {
           <button
             key={value}
             type="button"
-            onClick={() => setStage(value)}
+            onClick={() => pickStage(value)}
             aria-pressed={stage === value}
             className={`rounded-md border-2 px-3.5 py-1.5 text-sm font-bold transition-colors ${
               stage === value
@@ -131,6 +155,19 @@ export default function ScholarshipFinder() {
         {undocOnly && " · no citizenship requirement"}, ordered by where
         they fall in the school year.
       </p>
+
+      {autoNote && (
+        <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-sm text-forest">
+          <span className="font-semibold">{autoNote}</span>
+          <button
+            type="button"
+            onClick={() => pickStage("all")}
+            className="font-semibold underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Show all
+          </button>
+        </p>
+      )}
 
       {/* Cards */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
