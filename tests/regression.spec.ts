@@ -52,7 +52,9 @@ const ROUTES: Record<string, { title: string; h1: string | RegExp }> = {
   },
   "/privacy": {
     title: "Privacy Policy | Empower — Economic Mobility Project",
-    h1: /Privacy policy\. The short version/,
+    // The h1 is just "Privacy policy." — "The short version:" is a separate
+    // element below it, not part of the heading.
+    h1: /Privacy policy\./,
   },
 };
 
