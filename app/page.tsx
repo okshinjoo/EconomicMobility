@@ -204,7 +204,9 @@ export default function Home() {
               Free, jargon-free money help built to break the cycle of
               economic disadvantage: hundreds of plain-English guides,
               hand-verified scholarships and paid opportunities, and
-              calculators for your real numbers. No account, ever.
+              calculators for your real numbers. All free, no sign-up. An
+              account is optional, just for community posts and syncing across
+              devices.
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -280,7 +282,7 @@ export default function Home() {
       <Ticker
         tone="amber"
         items={[
-          { label: "No sign-up required", href: "/start-here" },
+          { label: "No sign-up to learn", href: "/start-here" },
           { label: `${guideTotal} plain-English guides`, href: "/learn" },
           { label: `${scholarships.length} verified scholarships`, href: "/students/scholarships" },
           { label: `${opportunities.length} paid opportunities`, href: "/students/opportunities" },
