@@ -41,6 +41,7 @@ export default function StudentDeadlinesPage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <main id="main-content" tabIndex={-1}>
       {/* Hero — A-voice terracotta field: deadlines wear the urgent color */}
       <section className="relative overflow-hidden border-b-2 border-ink bg-terracotta text-cream">
         <CalendarDays
@@ -218,6 +219,7 @@ export default function StudentDeadlinesPage() {
           </p>
         </div>
       </section>
+      </main>
 
       <Footer frame="student" />
     </div>

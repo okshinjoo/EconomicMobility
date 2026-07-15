@@ -167,6 +167,7 @@ export default function Home() {
       <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <Header />
 
+      <main id="main-content" tabIndex={-1}>
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
@@ -761,6 +762,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

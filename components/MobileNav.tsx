@@ -74,7 +74,7 @@ export default function MobileNav() {
               </button>
             </div>
 
-            <nav className="flex-1 overflow-y-auto px-6 py-2">
+            <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-6 py-2">
               {nav.map((entry) => {
                 if (!entry.items) {
                   return (

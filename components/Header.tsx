@@ -9,7 +9,7 @@ import { getSearchItems } from "@/lib/search";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-forest/95 text-cream backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
           className="group flex items-center gap-3 transition-opacity hover:opacity-90"

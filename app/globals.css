@@ -103,6 +103,25 @@ body {
   animation: ticker-scroll 55s linear infinite;
 }
 
+/* Skip-to-content link (a11y, WCAG 2.4.1): off-screen until focused, then
+   slides into view as the first Tab stop. z-index is set here (not a utility)
+   because the unlayered `body > *` grain rule beats layered z-* classes. */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -60px;
+  z-index: 100;
+  border-radius: 0 0 0.5rem 0;
+  background: var(--color-forest);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* Account dashboard motion (July 2026, Base44-audit easing): staggered
    card entrances, growing bars, cascading heatmap cells. All neutralized
    by the reduced-motion block above. */

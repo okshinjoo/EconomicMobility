@@ -31,10 +31,11 @@ export function AddOneToCalendar({ deadlineId }: { deadlineId: string }) {
     <button
       type="button"
       onClick={() => download([d], `empower-${d.id}.ics`)}
+      aria-label={`Add “${d.title}” to your calendar`}
       className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-stone transition-colors hover:text-ink"
       title="Downloads a calendar file. Open it and your calendar app takes over"
     >
-      <CalendarPlus className="h-3.5 w-3.5" />
+      <CalendarPlus aria-hidden="true" className="h-3.5 w-3.5" />
       Add to calendar
     </button>
   );

@@ -92,6 +92,9 @@ export default function RootLayout({
       {/* Font variables live on <html>: the @theme block in globals.css
           references them at :root, where body-level variables can't be seen. */}
       <body className="antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         {children}
         {modal ?? null}
         <ChatLauncher items={getSearchItems()} />

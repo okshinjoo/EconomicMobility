@@ -244,7 +244,7 @@ export default function StudentHeader({
           beside search + the exit door at a 1280 viewport (measured July 13
           after the row overlapped at every desktop width). No wordmark here
           on purpose — the E tile + Students sticker is the identity. */}
-      <nav className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-5 py-3.5">
+      <nav aria-label="For Students" className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-5 py-3.5">
         <Link
           href="/students"
           className="flex shrink-0 items-center gap-3 transition-opacity hover:opacity-90"

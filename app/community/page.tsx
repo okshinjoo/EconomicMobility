@@ -24,6 +24,7 @@ export default function CommunityPage() {
     <div className="min-h-screen bg-paper text-ink">
       <Header />
 
+      <main id="main-content" tabIndex={-1}>
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
         <ScrollDrift>
@@ -59,6 +60,7 @@ export default function CommunityPage() {
           <CommunityFeed posts={communityPosts} authorMeta={authorMeta} />
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>
