@@ -15,11 +15,16 @@ const BASE_URL = process.env.BASE_URL ?? "http://localhost:3000";
 
 export default defineConfig({
   testDir: "./tests",
-  timeout: 30_000,
-  expect: { timeout: 8_000 },
-  fullyParallel: true,
+  timeout: 45_000,
+  expect: { timeout: 10_000 },
+  // In CI, run SERIALLY against the single `next start` server. Parallel
+  // workers hammering one server on a shared runner caused a timeout cascade
+  // (a block of unchanged pages failing together) — one worker is robust and
+  // still finishes in ~2-3 min. Local dev keeps parallelism.
+  fullyParallel: !process.env.CI,
+  workers: process.env.CI ? 1 : undefined,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : [["list"]],
   use: {
     baseURL: BASE_URL,
@@ -35,7 +40,7 @@ export default defineConfig({
           command: "npm run start",
           url: BASE_URL,
           reuseExistingServer: !process.env.CI,
-          timeout: 120_000,
+          timeout: 180_000,
         },
       }
     : {}),
