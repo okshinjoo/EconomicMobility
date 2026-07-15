@@ -312,7 +312,7 @@ export default function ToolsHub() {
           registry row read too plain). Still the page's secondary cross-sell;
           the templates band below stays the primary one. */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 pb-14">
+        <div className="mx-auto max-w-6xl px-6 pt-12 pb-14 sm:pt-16">
           <Link
             href="/tools/letters"
             className="group mx-auto flex max-w-xl flex-col items-center rounded-2xl border-2 border-ink bg-cream p-8 text-center shadow-[0_12px_30px_-16px_rgba(17,33,28,0.35)] transition-transform duration-200 hover:-translate-y-1 sm:p-10"
