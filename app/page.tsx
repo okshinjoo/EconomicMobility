@@ -11,7 +11,6 @@ import {
   getTopicRoadmap,
 } from "@/lib/articles";
 import { toolCategories } from "@/lib/toolsRegistry";
-import { glossary } from "@/lib/glossary";
 import CountUp from "@/components/CountUp";
 import QuestionStrip, { type StripQuestion } from "@/components/QuestionStrip";
 import TopicMark from "@/components/TopicMark";
@@ -30,7 +29,6 @@ import {
   Percent,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import Ticker from "@/components/Ticker";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import { isStudentArticle } from "@/lib/studentShelf";
@@ -224,11 +222,6 @@ export default function Home() {
               </Link>
             </div>
 
-            <p className="mt-10 text-sm font-medium text-stone">
-              {guideTotal} guides · {scholarships.length} verified
-              scholarships · {opportunities.length} paid opportunities ·{" "}
-              {calculatorTotal} calculators
-            </p>
           </div>
 
           {/* Right: layered photography */}
@@ -278,19 +271,42 @@ export default function Home() {
       {/* Personalized "pick up where you left off" (renders only with history) */}
       <WelcomeBack paths={topicPaths} badgeSources={badgeSources} />
 
-      {/* Value-prop marquee (Base44 swap, July 2026) — counts are live. */}
-      <Ticker
-        tone="amber"
-        items={[
-          { label: "No sign-up to learn", href: "/start-here" },
-          { label: `${guideTotal} plain-English guides`, href: "/learn" },
-          { label: `${scholarships.length} verified scholarships`, href: "/students/scholarships" },
-          { label: `${opportunities.length} paid opportunities`, href: "/students/opportunities" },
-          { label: `${calculatorTotal} free calculators`, href: "/tools" },
-          { label: "Free forever", href: "/about" },
-          { label: "No paywall", href: "/start-here" },
-        ]}
-      />
+      {/* What's actually here — ONE consolidated proof strip (replaces the
+          value marquee, the hero stat line, and the 6-cell numbers grid).
+          Three live, linked counts; calm, no motion. */}
+      <section className="bg-paper-deep">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            A real library, not a landing page
+          </span>
+          <h2 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
+            Everything you need, in one honest place.
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {(
+              [
+                [guideTotal, "plain-English guides", "/learn"],
+                [scholarships.length, "verified scholarships", "/students/scholarships"],
+                [calculatorTotal, "free calculators", "/tools"],
+              ] as const
+            ).map(([value, label, href]) => (
+              <Link key={label} href={href} className="group">
+                <CountUp
+                  value={value}
+                  className="font-display text-5xl font-bold tracking-tight text-forest sm:text-6xl"
+                />
+                <div className="mt-2 h-1 w-10 rounded-full bg-amber" />
+                <p className="mt-3 text-base font-medium leading-6 text-stone transition-colors group-hover:text-ink">
+                  {label}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-8 text-sm leading-6 text-stone">
+            All free. No paywalls, no upsells, and we never sell your data.
+          </p>
+        </div>
+      </section>
 
       {/* Come with a real question — read articles rotate out of the list */}
       <section className="bg-forest text-cream">
@@ -316,38 +332,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* The library, in numbers — every figure derived live from the data
-          (honesty rule), counting up on first scroll into view. */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
-            {(
-              [
-                [guideTotal, "Plain-English guides, all free"],
-                [scholarships.length, "Scholarships, each one hand-verified"],
-                [opportunities.length, "Paid internships and programs, vetted"],
-                [calculatorTotal, "Calculators that run in your browser"],
-                [glossary.length, "Jargon terms, translated"],
-                [courses.length, "Focused courses with badges at the end"],
-              ] as const
-            ).map(([value, label], i) => (
-              <Reveal key={label} delay={i * 90}>
-                <div className={i % 2 === 1 ? "lg:mt-6" : ""}>
-                  <CountUp
-                    value={value}
-                    className="font-display text-6xl font-bold tracking-tight text-forest sm:text-7xl"
-                  />
-                  <div className="mt-2 h-1 w-10 rounded-full bg-amber" />
-                  <p className="mt-3 max-w-[16rem] text-sm font-medium leading-6 text-stone">
-                    {label}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* For Students — the microsite is the biggest thing built this year;
           advertise it like it (owner directive, July 2026). A-voice amber
