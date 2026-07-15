@@ -72,9 +72,11 @@ export async function POST(req: NextRequest) {
 
   let query = "";
   let history: HistoryMsg[] = [];
+  let youText = "";
   try {
     const body = await req.json();
     query = String(body?.query ?? "").trim().slice(0, 500);
+    youText = String(body?.you ?? "").trim().slice(0, 400);
     if (Array.isArray(body?.history)) {
       history = (body.history as HistoryMsg[])
         .filter(
@@ -139,6 +141,16 @@ export async function POST(req: NextRequest) {
     },
   ];
 
+  // Tailor to the person when they've saved factoids about themselves. The
+  // model factors this in (tone, which starting idea/article, a light
+  // acknowledgment) without reciting it back.
+  const system = youText
+    ? `${SYSTEM}
+
+WHO YOU'RE TALKING TO (from what they've saved about themselves — factor this in, never recite it back): ${youText}
+Tailor to them: choose the starting idea and article that fit their goals and situation; match your tone to their confidence (don't over-explain to someone comfortable, don't assume knowledge from someone new); and when it fits naturally, acknowledge their situation in a short clause ("since money comes in unevenly, ..."). Don't be creepy about how much you know — one light acknowledgment at most, and never list their details back at them.`
+    : SYSTEM;
+
   let res: Response;
   try {
     res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -151,7 +163,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 160,
-        system: SYSTEM,
+        system,
         messages,
       }),
       signal: AbortSignal.timeout(20000),

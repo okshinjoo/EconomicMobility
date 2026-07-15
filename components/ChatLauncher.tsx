@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MessageCircle, X, Send, Sparkles, ArrowUpRight } from "lucide-react";
 import type { SearchItem } from "@/lib/search";
 import { guideAnswer, type GuideAnswer } from "@/lib/guide";
+import { youSummary } from "@/lib/personalization";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AI is ON (July 2026): /api/chat holds the Anthropic key server-side and
@@ -34,6 +35,9 @@ async function fetchAnswer(
             .slice(1)
             .slice(-6)
             .map((m) => ({ role: m.role, text: m.text })),
+          // What the person has saved about themselves, so the guide tailors
+          // its answer (empty string when nothing's saved).
+          you: youSummary(),
         }),
       });
       if (res.ok) {
