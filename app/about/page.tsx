@@ -76,25 +76,25 @@ export default function AboutPage() {
             with a whisper of rotation (owner ask, borrowed-restraint from the
             cinematic concept). Faint depth, not decoration; reduced-motion
             visitors get the exact static layer. */}
-        <ScrollDrift range={24} driftX={-10} rotate={2}>
+        <ScrollDrift range={44} driftX={-20} rotate={4}>
           <TopicMark
             id="investing"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.07]"
+            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.13]"
           />
         </ScrollDrift>
-        <ScrollDrift range={38} driftX={16} rotate={-3}>
+        <ScrollDrift range={66} driftX={28} rotate={-5}>
           <TopicMark
             id="college"
             color="#fbf8f1"
-            className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 opacity-[0.05]"
+            className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 opacity-[0.12]"
           />
         </ScrollDrift>
-        <ScrollDrift range={52} driftX={-22} rotate={3.5}>
+        <ScrollDrift range={78} driftX={-32} rotate={6}>
           <TopicMark
             id="money-safety"
             color="#e7a33c"
-            className="pointer-events-none absolute left-[40%] top-[34%] h-40 w-40 opacity-[0.05]"
+            className="pointer-events-none absolute left-[42%] top-[36%] h-44 w-44 opacity-[0.10]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
