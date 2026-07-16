@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/plan",
     "/students/scholarships",
     "/students/opportunities",
+    "/students/compare-colleges",
     "/students/deadlines",
     "/students/tracker", "/tools/letters", "/tools/templates", "/account",
     "/privacy",

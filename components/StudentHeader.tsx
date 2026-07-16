@@ -74,7 +74,7 @@ const NAV: StudentNavEntry[] = [
     footer: [
       { label: "All nine money topics", href: "/students/learn" },
       { label: "Glossary", href: "/students/glossary" },
-      { label: "Compare Colleges (preview)", href: "/students/compare-colleges" },
+      { label: "Compare Colleges", href: "/students/compare-colleges" },
     ],
   },
   {
