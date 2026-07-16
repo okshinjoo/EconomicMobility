@@ -15,10 +15,15 @@
 // derives. Every node is a real link; undone nodes render pale, never
 // locked (memory contract). Mouse drags to pan (native scroll covers
 // touch); the Branch-list toggle in SkillTree keeps the accessible cards.
+// v5: COMPREHENSIVE (owner: "should cover everything") — every course,
+// life plan (journey), and live calculator hangs on its branch as leaf
+// rings, and a tenth FIRST-STEPS branch carries the cross-cutting quick
+// wins (budget calc, Reality Check, quiz, plan, profile, resources,
+// community), lit from lit.starters.
 
 import { useEffect, useRef, type ReactElement } from "react";
 import Link from "next/link";
-import { Star, Wrench } from "lucide-react";
+import { Route, Sparkles, Star, Wrench } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillTreeData } from "@/lib/skillTree";
@@ -29,8 +34,8 @@ import type { Lit } from "@/components/SkillTree";
 // wrap into extra rows instead of colliding with the neighboring branch.
 // WOBBLE bends each branch's spine off the straight ray for the fluid look
 // — SECTOR + WOBBLE must stay under half the 40° branch pitch.
-const W = 2800;
-const H = 2800;
+const W = 3200;
+const H = 3200;
 const CX = W / 2;
 const CY = H / 2;
 const R_HEAD = 230; // radius of the topic head nodes
@@ -41,8 +46,12 @@ const DRIFT = 0.02; // per-dot angular wander along a chain
 const TIER_LEAD = 62; // spine run from the previous band to a tier pill
 const CHAIN_LEAD = 46; // tier pill to the first dot of its chains
 const QUIZ_LEAD = 70; // limb end to the checkpoint diamond
-const LEAF_LEAD = 105; // chain end to the tool/course leaves
-const LEAF_SPREAD = 0.115; // radians between the two leaves
+const LEAF_LEAD = 105; // chain end to the first ring of leaves
+const LEAF_RING_STEP = 92; // radial spacing between leaf rings
+const LEAF_GAP = 0.13; // angular spacing between leaves in a ring
+const STARTER_STEP = 92; // radial spacing along the First-steps twigs
+const STARTER_GAP = 0.3; // angular gap between the two starter twigs
+const FOREST = "#0c4a39";
 
 // Angular gap between sibling twig chains, by chain count — tuned so the
 // widest fan plus wobble/drift stays inside the branch's 40° lane.
@@ -134,15 +143,103 @@ export default function SkillTreeMap({
     el.scrollTop = (H - el.clientHeight) / 2;
   }, []);
 
-  const n = data.branches.length;
+  const n = data.branches.length + 1; // +1: the First-steps branch leads
   const paths: MapPath[] = [];
   const nodes: ReactElement[] = [];
   const center = { x: CX, y: CY };
 
   let guidesRead = 0;
 
+  // Branch 0 — First steps: the cross-cutting quick wins (fill out the
+  // Budget Planner, do the Reality Check, take the quiz, build My Plan,
+  // round out your profile, browse resources, say something in community).
+  {
+    const a = -Math.PI / 2;
+    const doneCount = data.starters.filter((s) =>
+      lit.starters.has(s.id)
+    ).length;
+    const headState: NodeState =
+      doneCount === data.starters.length
+        ? "done"
+        : doneCount > 0
+          ? "part"
+          : "none";
+    const head = pt(R_HEAD, a + wob(9, 0));
+    paths.push({
+      d: curve(center, head, 1),
+      color: FOREST,
+      lit: headState !== "none",
+    });
+    nodes.push(
+      <Link
+        key="starters-head"
+        href="/start-here"
+        title={`First steps — quick wins that make the site yours · ${
+          lit.mounted ? doneCount : 0
+        } of ${data.starters.length} done`}
+        aria-label={`First steps: ${
+          lit.mounted ? doneCount : 0
+        } of ${data.starters.length} done`}
+        className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+        style={{
+          left: head.x,
+          top: head.y,
+          width: 58,
+          height: 58,
+          transform: "translate(-50%, -50%)",
+          ...fill(headState, FOREST),
+        }}
+      >
+        <Sparkles className="h-6 w-6 shrink-0" strokeWidth={2.25} />
+      </Link>
+    );
+    const sizes = [
+      Math.ceil(data.starters.length / 2),
+      Math.floor(data.starters.length / 2),
+    ];
+    let taken = 0;
+    sizes.forEach((sz, c) => {
+      const baseA = a + (c - 0.5) * STARTER_GAP;
+      let prevDot = head;
+      for (let j = 0; j < sz; j++) {
+        const r = R_HEAD + 90 + j * STARTER_STEP;
+        const da = baseA + Math.sin(9 * 3.7 + c * 2.9 + j * 1.3) * 0.015;
+        const p = pt(r, da);
+        const s = data.starters[taken + j];
+        const done = lit.starters.has(s.id);
+        paths.push({
+          d: curve(prevDot, p, (c + j) % 2 ? 0.7 : -0.7),
+          color: FOREST,
+          lit: done,
+        });
+        nodes.push(
+          <Link
+            key={`starter-${s.id}`}
+            href={s.href}
+            title={`${s.label}${lit.mounted && done ? " — done" : ""}`}
+            className="absolute z-10 flex items-center justify-center overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+            style={{
+              left: p.x,
+              top: p.y,
+              width: 74,
+              height: 74,
+              transform: "translate(-50%, -50%)",
+              ...fill(done ? "done" : "none", FOREST),
+            }}
+          >
+            <span className="line-clamp-3 text-[9px] font-bold leading-[1.2]">
+              {s.short}
+            </span>
+          </Link>
+        );
+        prevDot = p;
+      }
+      taken += sz;
+    });
+  }
+
   data.branches.forEach((b, i) => {
-    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    const a = ((i + 1) / n) * Math.PI * 2 - Math.PI / 2;
     const readCount = b.tiers.reduce(
       (m, t) => m + t.articles.filter((x) => lit.read[x.slug]).length,
       0
@@ -329,74 +426,95 @@ export default function SkillTreeMap({
       rCur += QUIZ_LEAD;
     }
 
-    // Leaves: the topic's tool and flagship course fan out at the tip.
+    // Leaves: EVERY life plan, calculator, and course on this branch fans
+    // out at the tip in rings of up to four.
     depth += 1;
-    const leafR = rCur + LEAF_LEAD;
     const leafA = a + wob(i, depth);
-    const both = Boolean(b.tool && b.course);
-    if (b.tool) {
-      const p = pt(leafR, leafA + (both ? -LEAF_SPREAD : 0));
-      const done = lit.tools.has(b.tool.href);
-      paths.push({
-        d: curve(prev, p, -0.8),
-        color: b.color,
-        lit: done,
-      });
-      nodes.push(
-        <Link
-          key={`${b.id}-tool`}
-          href={b.tool.href}
-          title={`Tool: ${b.tool.label}${done ? " — tried" : ""}`}
-          className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
-          style={{
-            left: p.x,
-            top: p.y,
-            width: 76,
-            height: 76,
-            transform: "translate(-50%, -50%)",
-            ...fill(done ? "done" : "none", b.color),
-          }}
-        >
-          <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-          <span className="line-clamp-2 text-[9px] font-bold leading-[1.15]">
-            {b.tool.label}
-          </span>
-        </Link>
-      );
+    interface Leaf {
+      key: string;
+      href: string;
+      title: string;
+      done: boolean;
+      icon: "tool" | "course" | "journey";
+      label: string;
+      color: string;
     }
-    if (b.course) {
-      const p = pt(leafR, leafA + (both ? LEAF_SPREAD : 0));
-      const done = lit.badges.has(b.course.id);
-      paths.push({
-        d: curve(prev, p, 0.8),
+    const leaves: Leaf[] = [
+      ...b.journeys.map((j) => ({
+        key: `${b.id}-j-${j.id}`,
+        href: `/journey/${j.id}`,
+        title: `Life plan: ${j.title}`,
+        done: false,
+        icon: "journey" as const,
+        label: j.title,
         color: b.color,
-        lit: done,
-      });
-      nodes.push(
-        <Link
-          key={`${b.id}-course`}
-          href={`/courses/${b.course.id}`}
-          title={`Course: ${b.course.title}${done ? " — badge earned" : ""}`}
-          className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
-          style={{
-            left: p.x,
-            top: p.y,
-            width: 76,
-            height: 76,
-            transform: "translate(-50%, -50%)",
-            ...fill(done ? "done" : "none", b.course.color),
-          }}
-        >
-          <BadgeMedal
-            color={done ? CREAM : "#9aa39b"}
-            variant="course"
-            className="h-4 w-4 shrink-0"
-          />
-          <span className="line-clamp-2 text-[9px] font-bold leading-[1.15]">
-            {b.course.title}
-          </span>
-        </Link>
+      })),
+      ...b.tools.map((t) => ({
+        key: `${b.id}-tool-${t.href}`,
+        href: t.href,
+        title: `Tool: ${t.label}`,
+        done: lit.tools.has(t.href),
+        icon: "tool" as const,
+        label: t.label,
+        color: b.color,
+      })),
+      ...b.courses.map((c) => ({
+        key: `${b.id}-c-${c.id}`,
+        href: `/courses/${c.id}`,
+        title: `Course: ${c.title}`,
+        done: lit.badges.has(c.id),
+        icon: "course" as const,
+        label: c.title,
+        color: c.color,
+      })),
+    ];
+    let anchor = prev;
+    for (let ring = 0; leaves.length > 0; ring++) {
+      const rowLeaves = leaves.splice(0, 4);
+      const r = rCur + LEAF_LEAD + ring * LEAF_RING_STEP;
+      const positions = rowLeaves.map((_, j) =>
+        pt(r, leafA + (j - (rowLeaves.length - 1) / 2) * LEAF_GAP)
       );
+      rowLeaves.forEach((leaf, j) => {
+        const p = positions[j];
+        paths.push({
+          d: curve(anchor, p, j % 2 ? 0.8 : -0.8),
+          color: b.color,
+          lit: leaf.done,
+        });
+        nodes.push(
+          <Link
+            key={leaf.key}
+            href={leaf.href}
+            title={`${leaf.title}${lit.mounted && leaf.done ? " — done" : ""}`}
+            className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+            style={{
+              left: p.x,
+              top: p.y,
+              width: 72,
+              height: 72,
+              transform: "translate(-50%, -50%)",
+              ...fill(leaf.done ? "done" : "none", leaf.color),
+            }}
+          >
+            {leaf.icon === "tool" ? (
+              <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+            ) : leaf.icon === "journey" ? (
+              <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+            ) : (
+              <BadgeMedal
+                color={leaf.done ? CREAM : "#9aa39b"}
+                variant="course"
+                className="h-3.5 w-3.5 shrink-0"
+              />
+            )}
+            <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
+              {leaf.label}
+            </span>
+          </Link>
+        );
+      });
+      anchor = positions[Math.floor((positions.length - 1) / 2)];
     }
   });
 
