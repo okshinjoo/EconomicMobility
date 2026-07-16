@@ -18,9 +18,15 @@ import { useEffect, useRef, type ReactNode } from "react";
 export default function ScrollDrift({
   children,
   range = 16,
+  driftX = 0,
+  rotate = 0,
 }: {
   children: ReactNode;
   range?: number;
+  /** Horizontal drift across the scroll, px. Default 0 (pure vertical). */
+  driftX?: number;
+  /** A whisper of rotation across the scroll, deg. Default 0. Keep small. */
+  rotate?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -38,7 +44,12 @@ export default function ScrollDrift({
       // 0 → hero below the fold, 1 → hero scrolled past. Heroes sit at the
       // top of the page, so on load this lands mid-range — a whisper.
       const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      el.style.transform = `translateY(${((p - 0.5) * 2 * range).toFixed(1)}px)`;
+      const d = (p - 0.5) * 2; // -1 → 1
+      // translate3d + rotate: with driftX=rotate=0 this is exactly the old
+      // translateY, so every existing hero renders identically.
+      el.style.transform =
+        `translate3d(${(d * driftX).toFixed(1)}px, ${(d * range).toFixed(1)}px, 0) ` +
+        `rotate(${(d * rotate).toFixed(2)}deg)`;
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -51,7 +62,7 @@ export default function ScrollDrift({
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [range]);
+  }, [range, driftX, rotate]);
 
   return (
     <div ref={ref} aria-hidden className="pointer-events-none absolute inset-0">

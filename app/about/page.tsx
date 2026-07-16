@@ -72,11 +72,29 @@ export default function AboutPage() {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift>
+        {/* Living ghost marks — a few brand marks drifting at different speeds
+            with a whisper of rotation (owner ask, borrowed-restraint from the
+            cinematic concept). Faint depth, not decoration; reduced-motion
+            visitors get the exact static layer. */}
+        <ScrollDrift range={24} driftX={-10} rotate={2}>
           <TopicMark
             id="investing"
             color="#fbf8f1"
             className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.07]"
+          />
+        </ScrollDrift>
+        <ScrollDrift range={38} driftX={16} rotate={-3}>
+          <TopicMark
+            id="college"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 opacity-[0.05]"
+          />
+        </ScrollDrift>
+        <ScrollDrift range={52} driftX={-22} rotate={3.5}>
+          <TopicMark
+            id="money-safety"
+            color="#e7a33c"
+            className="pointer-events-none absolute left-[40%] top-[34%] h-40 w-40 opacity-[0.05]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
