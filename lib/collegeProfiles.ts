@@ -82,6 +82,17 @@ export interface CollegeProfile {
   factors: Partial<Record<FactorId, C7Rating>>;
   /** One honest line of personality/context. */
   note: string;
+  /** Transfer admission (CDS section D) — absent = not encoded yet.
+   *  The door that matters most for community-college students. */
+  transfer?: {
+    /** Percent of transfer applicants admitted; null = not published. */
+    admitRate: number | null;
+    admitYear?: string;
+    /** GPA to apply / typical admitted GPA, free text (null = not published). */
+    gpaNote: string | null;
+    /** One-line transfer reality: guarantees, CC priority, tiny intake. */
+    note?: string;
+  };
 }
 
 /** The cycle most figures come from — shown publicly, re-verify yearly. */
@@ -100,7 +111,7 @@ export const colleges: CollegeProfile[] = [
     gpaNote: null,
     needBlind: "all",
     meetsFullNeed: true,
-    aidNote: "No-loan aid; tuition free under $200k family income (2025–26)",
+    aidNote: "No-loan aid; EVERYTHING free under $100k family income, tuition free under $200k (2025–26)",
     factors: {
       rigor: "considered",
       essay: "considered",
@@ -111,6 +122,12 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "Its CDS rates nearly every factor just “considered” — the fully holistic read, no formula to game.",
+    transfer: {
+      admitRate: 1,
+      admitYear: "fall 2023",
+      gpaNote: null,
+      note: "Around 15 transfer spots a year — effectively a lottery.",
+    },
   },
   {
     id: "mit",
@@ -137,6 +154,12 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "One of the few that says outright: legacy counts for nothing.",
+    transfer: {
+      admitRate: 4,
+      admitYear: "fall 2023",
+      gpaNote: null,
+      note: "A few dozen admits a year — transfer is HARDER than freshman admission here.",
+    },
   },
   {
     id: "yale",
@@ -160,6 +183,11 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "Reads applications in committee, two readers minimum — context matters more than any single number.",
+    transfer: {
+      admitRate: null,
+      gpaNote: null,
+      note: "Tiny transfer class, plus the Eli Whitney program for nontraditional students returning to school.",
+    },
   },
   {
     id: "stanford",
@@ -183,6 +211,11 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "California banned legacy preference at private colleges from fall 2025 — it no longer counts here.",
+    transfer: {
+      admitRate: null,
+      gpaNote: null,
+      note: "Only a few dozen spots a year — but community-college and nontraditional students are genuinely part of that class.",
+    },
   },
   {
     id: "amherst",
@@ -204,6 +237,11 @@ export const colleges: CollegeProfile[] = [
       interest: "no",
     },
     note: "Dropped legacy preference in 2021 — one of the first elite colleges to do it.",
+    transfer: {
+      admitRate: null,
+      gpaNote: null,
+      note: "Actively recruits community-college transfers — rare among elite liberal-arts colleges.",
+    },
   },
   {
     id: "bowdoin",
@@ -453,6 +491,12 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "UC “comprehensive review”: no test scores, no recommendation letters, no legacy — your record and your PIQ essays.",
+    transfer: {
+      admitRate: 25,
+      admitYear: "fall 2023",
+      gpaNote: "3.0 minimum for CA residents; admitted transfers average ≈3.9",
+      note: "Junior-level transfers only; California community colleges get priority by UC policy.",
+    },
   },
   {
     id: "ucla",
@@ -478,6 +522,12 @@ export const colleges: CollegeProfile[] = [
       religion: "no",
     },
     note: "The most-applied-to university in America — same UC review as Berkeley, no legacy, no letters.",
+    transfer: {
+      admitRate: 26,
+      admitYear: "fall 2024",
+      gpaNote: "2.4 minimum to apply (higher for most majors); admitted transfers average ≈3.9",
+      note: "About 9 in 10 admitted transfers come from California community colleges — the designed path.",
+    },
   },
   {
     id: "ut-austin",
@@ -498,6 +548,11 @@ export const colleges: CollegeProfile[] = [
       legacy: "no",
     },
     note: "Texans in roughly the top 6% of their class are auto-admitted by law — the clearest formula in the country.",
+    transfer: {
+      admitRate: null,
+      gpaNote: null,
+      note: "Transfer admission is major-dependent — business and CS run far tougher than the average.",
+    },
   },
   {
     id: "michigan",
@@ -518,6 +573,12 @@ export const colleges: CollegeProfile[] = [
       firstGen: "considered",
     },
     note: "A public that reads like a private — essays and context genuinely move decisions.",
+    transfer: {
+      admitRate: 40,
+      admitYear: "fall 2023",
+      gpaNote: "3.0 minimum recommended; competitive admits run higher",
+      note: "Roughly double the freshman admit rate — a genuinely wider second door.",
+    },
   },
   {
     id: "alabama",
@@ -560,6 +621,11 @@ export const colleges: CollegeProfile[] = [
       interest: "no",
     },
     note: "CSUs admit on a GPA-based eligibility index — no essays, no recommendations, no interviews at all.",
+    transfer: {
+      admitRate: null,
+      gpaNote: "2.0+ with an Associate Degree for Transfer",
+      note: "An ADT from a California community college guarantees CSU admission — the surest four-year path in the state.",
+    },
   },
   {
     id: "howard",
@@ -596,5 +662,10 @@ export const colleges: CollegeProfile[] = [
       rank: "important",
     },
     note: "Assured admission by published GPA/class-rank standards — if you qualify, you’re in. Access is the mission.",
+    transfer: {
+      admitRate: null,
+      gpaNote: null,
+      note: "Guaranteed transfer pathways (MyPath2ASU) from hundreds of community colleges.",
+    },
   },
 ];

@@ -99,6 +99,7 @@ export default function CollegeCompare() {
   const [religion, setReligion] = useState<ReligionFilter>("all");
   const [test, setTest] = useState<TestFilter>("all");
   const [bandF, setBandF] = useState<BandFilter>("all");
+  const [transferDoor, setTransferDoor] = useState(false);
   const [sort, setSort] = useState<Sort>("az");
   const [compare, setCompare] = useState<string[]>([]);
 
@@ -112,6 +113,12 @@ export default function CollegeCompare() {
     if (religion === "religious") list = list.filter((c) => c.religious);
     if (test !== "all") list = list.filter((c) => c.testPolicy === test);
     if (bandF !== "all") list = list.filter((c) => band(c.admitRate).id === bandF);
+    // Wider door for transfers: a published transfer admit rate ABOVE the
+    // freshman rate (the fact community-college students rarely get shown).
+    if (transferDoor)
+      list = list.filter(
+        (c) => c.transfer?.admitRate != null && c.transfer.admitRate > c.admitRate
+      );
 
     const q = query.trim();
     if (q) {
@@ -133,7 +140,7 @@ export default function CollegeCompare() {
     if (sort === "selective") list.sort((a, b) => a.admitRate - b.admitRate);
     if (sort === "accessible") list.sort((a, b) => b.admitRate - a.admitRate);
     return list;
-  }, [query, need, fullNeed, religion, test, bandF, sort]);
+  }, [query, need, fullNeed, religion, test, bandF, transferDoor, sort]);
 
   const compared = colleges.filter((c) => compare.includes(c.id));
 
@@ -185,6 +192,7 @@ export default function CollegeCompare() {
           <Chip active={bandF === "very"} onClick={() => setBandF(bandF === "very" ? "all" : "very")}>10–25%</Chip>
           <Chip active={bandF === "selective"} onClick={() => setBandF(bandF === "selective" ? "all" : "selective")}>25–50%</Chip>
           <Chip active={bandF === "accessible"} onClick={() => setBandF(bandF === "accessible" ? "all" : "accessible")}>Over 50%</Chip>
+          <Chip active={transferDoor} onClick={() => setTransferDoor(!transferDoor)}>Wider door for transfers</Chip>
           <span className="ml-2 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
             Sort
           </span>
@@ -252,6 +260,15 @@ export default function CollegeCompare() {
                   ["GPA (published)", (c: CollegeProfile) => c.gpaNote ?? "—"],
                   ["Religious affiliation", (c: CollegeProfile) => c.religious ?? "None"],
                   ["Aid note", (c: CollegeProfile) => c.aidNote ?? "—"],
+                  [
+                    "Transfer admit rate",
+                    (c: CollegeProfile) =>
+                      c.transfer?.admitRate != null
+                        ? `${c.transfer.admitRate}%${c.transfer.admitYear ? ` (${c.transfer.admitYear})` : ""}`
+                        : "—",
+                  ],
+                  ["Transfer GPA", (c: CollegeProfile) => c.transfer?.gpaNote ?? "—"],
+                  ["Transfer path", (c: CollegeProfile) => c.transfer?.note ?? "—"],
                 ] as const
               ).map(([label, get]) => (
                 <tr key={label} className="border-b border-sand">
@@ -372,6 +389,23 @@ export default function CollegeCompare() {
               )}
               {c.aidNote && (
                 <p className="mt-1 text-[13px] font-medium text-forest">{c.aidNote}.</p>
+              )}
+
+              {c.transfer && (
+                <div className="mt-2 rounded-lg bg-forest/[0.06] px-3 py-2 text-[13px] leading-5">
+                  <p>
+                    <span className="font-bold text-forest">Transfers:</span>{" "}
+                    <span className="text-ink">
+                      {c.transfer.admitRate != null
+                        ? `${c.transfer.admitRate}% admitted${c.transfer.admitYear ? ` (${c.transfer.admitYear})` : ""}`
+                        : "rate not published"}
+                      {c.transfer.gpaNote ? ` · GPA: ${c.transfer.gpaNote}` : ""}
+                    </span>
+                  </p>
+                  {c.transfer.note && (
+                    <p className="mt-0.5 text-stone">{c.transfer.note}</p>
+                  )}
+                </div>
               )}
 
               <p className="mt-3 flex-1 text-sm italic leading-6 text-stone">
