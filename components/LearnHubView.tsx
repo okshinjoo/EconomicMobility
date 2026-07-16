@@ -11,6 +11,7 @@ import { ROADMAP_SLUGS } from "@/lib/roadmaps";
 import { glossary } from "@/lib/glossary";
 import TermOfTheDay from "@/components/TermOfTheDay";
 import { frameHref, type Frame } from "@/lib/frame";
+import HeadlineRise from "@/components/HeadlineRise";
 
 
 // The four guides we'd hand someone first, whatever their situation —
@@ -63,7 +64,8 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
           <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[1.05] tracking-tight sm:text-6xl">
             Learn money,{" "}
             <span className="relative whitespace-nowrap text-amber">
-              your way.
+              {/* Letter-by-letter blur-lift (owner call, July 16). */}
+              <HeadlineRise chars>your way.</HeadlineRise>
               <svg
                 aria-hidden="true"
                 viewBox="0 0 300 18"

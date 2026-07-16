@@ -8,6 +8,7 @@ import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
 import ToolMark from "@/components/ToolMark";
 import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
 import { templates } from "@/lib/templates";
+import HeadlineRise from "@/components/HeadlineRise";
 
 export const metadata: Metadata = {
   title: "Calculators | Empower — Economic Mobility Project",
@@ -29,7 +30,8 @@ export default function ToolsHub() {
           <h1 className="mt-4 font-display text-[2.6rem] font-bold leading-[1.07] sm:leading-[1.05] tracking-tight text-ink sm:text-6xl">
             Run your{" "}
             <span className="relative whitespace-nowrap text-forest">
-              real numbers.
+              {/* Letter-by-letter blur-lift (owner call, July 16). */}
+              <HeadlineRise chars>real numbers.</HeadlineRise>
               <svg
                 aria-hidden="true"
                 viewBox="0 0 300 18"
