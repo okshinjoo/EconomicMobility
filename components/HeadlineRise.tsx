@@ -88,7 +88,13 @@ export default function HeadlineRise({
                         filter: shown
                           ? "blur(0px) brightness(100%)"
                           : "blur(10px) brightness(30%)",
-                        transition: `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, filter 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`,
+                        // Hidden paints with NO transition (else the delayed
+                        // hide races the reveal and words 2+ never move —
+                        // the "only the first word animates" bug). The
+                        // transition attaches only on the reveal commit.
+                        transition: shown
+                          ? `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, filter 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`
+                          : "none",
                       }
                     : undefined
                 }
@@ -104,7 +110,11 @@ export default function HeadlineRise({
                       ? {
                           transform: shown ? "none" : "translateY(100%)",
                           opacity: shown ? 1 : 0,
-                          transition: `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`,
+                          // Same race fix as the blur variant: hidden paints
+                          // transition-free, the eased rise attaches on reveal.
+                          transition: shown
+                            ? `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`
+                            : "none",
                         }
                       : undefined
                   }
