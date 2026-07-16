@@ -137,8 +137,8 @@ export default function SkillTreeMap({
           color={headState === "done" ? CREAM : b.color}
           className="h-6 w-6 shrink-0"
         />
-        <span className="text-[9.5px] font-bold leading-[1.15]">{b.short}</span>
-        <span className="text-[9px] font-bold tabular-nums opacity-80">
+        <span className="text-[10px] font-bold leading-[1.15]">{b.short}</span>
+        <span className="text-[9.5px] font-bold tabular-nums opacity-80">
           {lit.mounted ? readCount : 0}/{b.guideTotal}
         </span>
       </Link>
@@ -186,10 +186,10 @@ export default function SkillTreeMap({
             ...fill(state, b.color),
           }}
         >
-          <span className="text-[9px] font-bold leading-[1.1]">
+          <span className="text-[10px] font-bold leading-[1.1]">
             {tier.label}
           </span>
-          <span className="text-[9px] font-bold tabular-nums opacity-80">
+          <span className="text-[9.5px] font-bold tabular-nums opacity-80">
             {lit.mounted ? done : 0}/{tier.articles.length}
           </span>
         </Link>
@@ -265,7 +265,7 @@ export default function SkillTreeMap({
           }}
         >
           <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-          <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
+          <span className="line-clamp-2 text-[9px] font-bold leading-[1.15]">
             {b.tool.label}
           </span>
         </Link>
@@ -302,7 +302,7 @@ export default function SkillTreeMap({
             variant="course"
             className="h-4 w-4 shrink-0"
           />
-          <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
+          <span className="line-clamp-2 text-[9px] font-bold leading-[1.15]">
             {b.course.title}
           </span>
         </Link>
@@ -379,7 +379,7 @@ export default function SkillTreeMap({
               y1={l.y1}
               x2={l.x2}
               y2={l.y2}
-              stroke={l.lit ? l.color : `${l.color}3d`}
+              stroke={l.lit ? l.color : "#11211c26"}
               strokeWidth={l.lit ? 3 : 2}
               strokeLinecap="round"
               style={{ transition: "stroke 500ms" }}
