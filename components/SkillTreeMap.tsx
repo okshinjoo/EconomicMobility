@@ -34,8 +34,8 @@ import type { Lit } from "@/components/SkillTree";
 // wrap into extra rows instead of colliding with the neighboring branch.
 // WOBBLE bends each branch's spine off the straight ray for the fluid look
 // — SECTOR + WOBBLE must stay under half the 40° branch pitch.
-const W = 3200;
-const H = 3200;
+const W = 3400;
+const H = 3400;
 const CX = W / 2;
 const CY = H / 2;
 const R_HEAD = 230; // radius of the topic head nodes
@@ -46,9 +46,9 @@ const DRIFT = 0.02; // per-dot angular wander along a chain
 const TIER_LEAD = 62; // spine run from the previous band to a tier pill
 const CHAIN_LEAD = 46; // tier pill to the first dot of its chains
 const QUIZ_LEAD = 70; // limb end to the checkpoint diamond
-const LEAF_LEAD = 105; // chain end to the first ring of leaves
-const LEAF_RING_STEP = 92; // radial spacing between leaf rings
-const LEAF_GAP = 0.13; // angular spacing between leaves in a ring
+const LEAF_LEAD = 92; // twig end to a tier's item ring
+const LEAF_RING_STEP = 92; // radial spacing between item rings
+const LEAF_GAP = 0.15; // angular spacing between items in a ring
 const STARTER_STEP = 92; // radial spacing along the First-steps twigs
 const STARTER_GAP = 0.3; // angular gap between the two starter twigs
 const FOREST = "#0c4a39";
@@ -78,6 +78,17 @@ const MUTED = "#77807a";
 const AMBER = "#e7a33c";
 
 type NodeState = "done" | "part" | "none";
+
+/** A non-article node woven into the limb: tool, course, or life plan. */
+interface BranchItem {
+  key: string;
+  href: string;
+  title: string;
+  done: boolean;
+  icon: "tool" | "course" | "journey";
+  label: string;
+  color: string;
+}
 
 /** Solid = done, tinted = in progress, pale = not yet. */
 function fill(state: NodeState, color: string) {
@@ -296,6 +307,50 @@ export default function SkillTreeMap({
       </Link>
     );
 
+    // Non-article tasks are woven INTO the limb, not parked at the tip
+    // (owner: "intertwined with the other topics, shouldn't just be the
+    // articles"): life plans follow the Start-here guides, calculators
+    // follow the middle tier, courses follow the last tier — and the quiz
+    // diamond stays the capstone.
+    const tierItems: BranchItem[][] = b.tiers.map(() => []);
+    if (b.tiers.length > 0) {
+      const mid = Math.min(1, b.tiers.length - 1);
+      const last = b.tiers.length - 1;
+      b.journeys.forEach((j) =>
+        tierItems[0].push({
+          key: `${b.id}-j-${j.id}`,
+          href: `/journey/${j.id}`,
+          title: `Life plan: ${j.title}`,
+          done: false,
+          icon: "journey",
+          label: j.title,
+          color: b.color,
+        })
+      );
+      b.tools.forEach((t) =>
+        tierItems[mid].push({
+          key: `${b.id}-tool-${t.href}`,
+          href: t.href,
+          title: `Tool: ${t.label}`,
+          done: lit.tools.has(t.href),
+          icon: "tool",
+          label: t.label,
+          color: b.color,
+        })
+      );
+      b.courses.forEach((c) =>
+        tierItems[last].push({
+          key: `${b.id}-c-${c.id}`,
+          href: `/courses/${c.id}`,
+          title: `Course: ${c.title}`,
+          done: lit.badges.has(c.id),
+          icon: "course",
+          label: c.title,
+          color: c.color,
+        })
+      );
+    }
+
     // Tier bands: a labeled pill on the spine, then the tier's guides as
     // dots in rows — several guides share the same depth and branch off.
     let rCur = R_HEAD;
@@ -396,6 +451,62 @@ export default function SkillTreeMap({
         ? chainStart + (Math.max(...sizes) - 1) * DOT_STEP
         : chipR;
       prev = continueFrom;
+
+      // This tier's tools/courses/life plans, in rings of up to three,
+      // before the next tier pill — the limb passes straight through them.
+      const items = [...tierItems[ti]];
+      let anchor = prev;
+      for (let ring = 0; items.length > 0; ring++) {
+        const row = items.splice(0, 3);
+        const r = rCur + LEAF_LEAD + ring * LEAF_RING_STEP;
+        const positions = row.map((_, j) =>
+          pt(r, chipA + (j - (row.length - 1) / 2) * LEAF_GAP)
+        );
+        row.forEach((item, j) => {
+          const p = positions[j];
+          paths.push({
+            d: curve(anchor, p, j % 2 ? 0.8 : -0.8),
+            color: b.color,
+            lit: item.done,
+          });
+          nodes.push(
+            <Link
+              key={item.key}
+              href={item.href}
+              title={`${item.title}${
+                lit.mounted && item.done ? " — done" : ""
+              }`}
+              className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: 72,
+                height: 72,
+                transform: "translate(-50%, -50%)",
+                ...fill(item.done ? "done" : "none", item.color),
+              }}
+            >
+              {item.icon === "tool" ? (
+                <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              ) : item.icon === "journey" ? (
+                <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              ) : (
+                <BadgeMedal
+                  color={item.done ? CREAM : "#9aa39b"}
+                  variant="course"
+                  className="h-3.5 w-3.5 shrink-0"
+                />
+              )}
+              <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
+                {item.label}
+              </span>
+            </Link>
+          );
+        });
+        anchor = positions[Math.floor((positions.length - 1) / 2)];
+        rCur = r;
+      }
+      prev = anchor;
     });
 
     // The checkpoint-quiz diamond caps the chain.
@@ -435,96 +546,6 @@ export default function SkillTreeMap({
       rCur += QUIZ_LEAD;
     }
 
-    // Leaves: EVERY life plan, calculator, and course on this branch fans
-    // out at the tip in rings of up to four.
-    depth += 1;
-    const leafA = a + wob(i, depth);
-    interface Leaf {
-      key: string;
-      href: string;
-      title: string;
-      done: boolean;
-      icon: "tool" | "course" | "journey";
-      label: string;
-      color: string;
-    }
-    const leaves: Leaf[] = [
-      ...b.journeys.map((j) => ({
-        key: `${b.id}-j-${j.id}`,
-        href: `/journey/${j.id}`,
-        title: `Life plan: ${j.title}`,
-        done: false,
-        icon: "journey" as const,
-        label: j.title,
-        color: b.color,
-      })),
-      ...b.tools.map((t) => ({
-        key: `${b.id}-tool-${t.href}`,
-        href: t.href,
-        title: `Tool: ${t.label}`,
-        done: lit.tools.has(t.href),
-        icon: "tool" as const,
-        label: t.label,
-        color: b.color,
-      })),
-      ...b.courses.map((c) => ({
-        key: `${b.id}-c-${c.id}`,
-        href: `/courses/${c.id}`,
-        title: `Course: ${c.title}`,
-        done: lit.badges.has(c.id),
-        icon: "course" as const,
-        label: c.title,
-        color: c.color,
-      })),
-    ];
-    let anchor = prev;
-    for (let ring = 0; leaves.length > 0; ring++) {
-      const rowLeaves = leaves.splice(0, 4);
-      const r = rCur + LEAF_LEAD + ring * LEAF_RING_STEP;
-      const positions = rowLeaves.map((_, j) =>
-        pt(r, leafA + (j - (rowLeaves.length - 1) / 2) * LEAF_GAP)
-      );
-      rowLeaves.forEach((leaf, j) => {
-        const p = positions[j];
-        paths.push({
-          d: curve(anchor, p, j % 2 ? 0.8 : -0.8),
-          color: b.color,
-          lit: leaf.done,
-        });
-        nodes.push(
-          <Link
-            key={leaf.key}
-            href={leaf.href}
-            title={`${leaf.title}${lit.mounted && leaf.done ? " — done" : ""}`}
-            className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
-            style={{
-              left: p.x,
-              top: p.y,
-              width: 72,
-              height: 72,
-              transform: "translate(-50%, -50%)",
-              ...fill(leaf.done ? "done" : "none", leaf.color),
-            }}
-          >
-            {leaf.icon === "tool" ? (
-              <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-            ) : leaf.icon === "journey" ? (
-              <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-            ) : (
-              <BadgeMedal
-                color={leaf.done ? CREAM : "#9aa39b"}
-                variant="course"
-                className="h-3.5 w-3.5 shrink-0"
-              />
-            )}
-            <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
-              {leaf.label}
-            </span>
-          </Link>
-        );
-      });
-      anchor = positions[Math.floor((positions.length - 1) / 2)];
-    }
   });
 
   // Drag-to-pan (mouse only — touch gets native scroll). A real drag
