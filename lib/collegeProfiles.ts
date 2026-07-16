@@ -246,7 +246,7 @@ export const colleges: CollegeProfile[] = [
   {
     id: "amherst",
     undergrads: 1900,
-    satRange: "1450–1550",
+    satRange: "1500–1560",
     actRange: "33–35",
     gradRate: 93,
     name: "Amherst College",
@@ -352,7 +352,7 @@ export const colleges: CollegeProfile[] = [
   {
     id: "georgetown",
     undergrads: 7900,
-    satRange: "1440–1550",
+    satRange: "1400–1540",
     actRange: "32–35",
     gradRate: null,
     name: "Georgetown University",
@@ -450,7 +450,7 @@ export const colleges: CollegeProfile[] = [
     id: "byu",
     undergrads: 31000,
     satRange: null,
-    actRange: "26–32",
+    actRange: "28–32",
     gradRate: null,
     name: "BYU (Brigham Young)",
     place: "Provo, UT",
@@ -753,7 +753,7 @@ export const colleges: CollegeProfile[] = [
   {
     id: "asu",
     undergrads: 65000,
-    satRange: "1110–1350",
+    satRange: null,
     actRange: null,
     gradRate: 67,
     name: "Arizona State University",
