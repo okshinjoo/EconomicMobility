@@ -23,7 +23,7 @@
 
 import { useEffect, useRef, type ReactElement } from "react";
 import Link from "next/link";
-import { Route, Sparkles, Star, Wrench } from "lucide-react";
+import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillTreeData } from "@/lib/skillTree";
@@ -217,7 +217,7 @@ export default function SkillTreeMap({
             key={`starter-${s.id}`}
             href={s.href}
             title={`${s.label}${lit.mounted && done ? " — done" : ""}`}
-            className="absolute z-10 flex items-center justify-center overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+            className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
             style={{
               left: p.x,
               top: p.y,
@@ -227,7 +227,13 @@ export default function SkillTreeMap({
               ...fill(done ? "done" : "none", FOREST),
             }}
           >
-            <span className="line-clamp-3 text-[9px] font-bold leading-[1.2]">
+            <Zap
+              className="h-3.5 w-3.5 shrink-0"
+              strokeWidth={2.5}
+              fill={done ? AMBER : "none"}
+              style={done ? { color: AMBER } : undefined}
+            />
+            <span className="line-clamp-2 text-[9px] font-bold leading-[1.2]">
               {s.short}
             </span>
           </Link>
@@ -366,7 +372,7 @@ export default function SkillTreeMap({
               aria-label={`${art.title}${
                 lit.mounted && read ? " (read)" : ""
               }`}
-              className="absolute z-10 rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-125"
+              className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-125"
               style={{
                 left: p.x,
                 top: p.y,
@@ -375,8 +381,11 @@ export default function SkillTreeMap({
                 transform: "translate(-50%, -50%)",
                 backgroundColor: read ? b.color : CREAM,
                 borderColor: read ? INK : `${b.color}66`,
+                color: read ? CREAM : `${b.color}99`,
               }}
-            />
+            >
+              <BookOpen className="h-3 w-3 shrink-0" strokeWidth={2.5} />
+            </Link>
           );
           prevDot = p;
           if (c === midIdx && j === sz - 1) continueFrom = p;

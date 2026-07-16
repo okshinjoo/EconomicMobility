@@ -12,7 +12,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Route, Star, Wrench } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Route, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
@@ -394,21 +394,44 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
           </button>
         </div>
         {view === "map" && (
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold text-stone">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-full border border-ink bg-forest" />
-              done
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-full border border-forest bg-forest/25" />
-              in progress
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-full border border-forest/40 bg-cream" />
-              not yet
-            </span>
-            <span>· drag to explore — every circle is a link</span>
-          </p>
+          <div className="flex flex-col items-end gap-1 text-[11px] font-semibold text-stone">
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-ink bg-forest" />
+                done
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-forest bg-forest/25" />
+                in progress
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-forest/40 bg-cream" />
+                not yet
+              </span>
+              <span>· drag to explore — every circle is a link</span>
+            </p>
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="inline-flex items-center gap-1">
+                <BookOpen className="h-3 w-3" strokeWidth={2.5} /> guide
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Zap className="h-3 w-3" strokeWidth={2.5} /> quick win
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Wrench className="h-3 w-3" strokeWidth={2.5} /> tool
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <BadgeMedal color="#5f6b64" variant="course" className="h-3 w-3" />{" "}
+                course
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Route className="h-3 w-3" strokeWidth={2.5} /> life plan
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Star className="h-3 w-3" strokeWidth={2.5} /> quiz
+              </span>
+            </p>
+          </div>
         )}
       </div>
 
