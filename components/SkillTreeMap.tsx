@@ -2,11 +2,14 @@
 
 // SkillTreeMap — the radial mind-map view of the skill tree (July 16, 2026,
 // owner ask: a Creately-style radial skill map; v2: per-guide branching
-// pathways; v3 same day: "branches should come out more fluid" + smaller
-// icon-only topic bubbles). Branches meander on a deterministic wobble and
-// every connector is a curved SVG path — solid in the branch color where
-// travelled, DOTTED grey where not yet. Topic heads are small TopicMark
-// circles; the full category + count lives in the hover tooltip. Pure
+// pathways; v3: fluid curves + icon-only topic heads; v4 same day: "the
+// bubbles shouldn't be placed next to each other" — a tier's guides now
+// hang on 1-5 wandering TWIG CHAINS that sprout from the tier pill at
+// different angles, each dot deeper than the last, and the limb continues
+// from the middle twig's tip). Connectors are curved SVG paths — solid in
+// the branch color where travelled, DOTTED grey where not yet. Topic heads
+// are small TopicMark circles; the full category + count lives in the
+// hover tooltip. Pure
 // geometry (no Date/random — the server renders the zero-progress map, no
 // hydration mismatch); lighting comes from the same Lit trackers SkillTree
 // derives. Every node is a real link; undone nodes render pale, never
@@ -26,21 +29,39 @@ import type { Lit } from "@/components/SkillTree";
 // wrap into extra rows instead of colliding with the neighboring branch.
 // WOBBLE bends each branch's spine off the straight ray for the fluid look
 // — SECTOR + WOBBLE must stay under half the 40° branch pitch.
-const W = 2000;
-const H = 2000;
+const W = 2800;
+const H = 2800;
 const CX = W / 2;
 const CY = H / 2;
 const R_HEAD = 230; // radius of the topic head nodes
-const SECTOR = 0.28; // half-width (radians) of a branch's dot lane
 const WOBBLE = 0.035; // max spine bend (radians) per depth step
 const DOT = 26; // guide-dot diameter
-const DOT_GAP = 34; // chord spacing between dots in a row
-const ROW_STEP = 46; // radial spacing between rows of one tier
+const DOT_STEP = 50; // radial spacing between dots along a twig chain
+const DRIFT = 0.02; // per-dot angular wander along a chain
 const TIER_LEAD = 62; // spine run from the previous band to a tier pill
-const ROW_LEAD = 52; // tier pill to its first row of dots
-const QUIZ_LEAD = 76; // last row to the checkpoint diamond
-const LEAF_LEAD = 110; // chain end to the tool/course leaves
+const CHAIN_LEAD = 46; // tier pill to the first dot of its chains
+const QUIZ_LEAD = 70; // limb end to the checkpoint diamond
+const LEAF_LEAD = 105; // chain end to the tool/course leaves
 const LEAF_SPREAD = 0.115; // radians between the two leaves
+
+// Angular gap between sibling twig chains, by chain count — tuned so the
+// widest fan plus wobble/drift stays inside the branch's 40° lane.
+const CHAIN_GAP: Record<number, number> = {
+  1: 0,
+  2: 0.16,
+  3: 0.15,
+  4: 0.13,
+  5: 0.115,
+};
+
+/** Split a tier's guides into 1-5 twig chains of near-equal length. */
+function splitChains(len: number): number[] {
+  if (len === 0) return [];
+  const n = Math.min(5, Math.max(1, Math.ceil(len / 5)));
+  const base = Math.floor(len / n);
+  const rem = len % n;
+  return Array.from({ length: n }, (_, c) => base + (c < rem ? 1 : 0));
+}
 
 const CREAM = "#fdfbf2";
 const INK = "#11211c";
@@ -216,27 +237,27 @@ export default function SkillTreeMap({
         </Link>
       );
 
-      let r = chipR + ROW_LEAD;
-      let idx = 0;
-      let lastSpine = chip;
-      while (idx < tier.articles.length) {
-        depth += 1;
-        const rowA = a + wob(i, depth);
-        const cap = Math.max(3, Math.floor((2 * SECTOR * r) / DOT_GAP));
-        const k = Math.min(cap, tier.articles.length - idx);
-        const row = tier.articles.slice(idx, idx + k);
-        const spine = pt(r, rowA);
-        paths.push({
-          d: curve(lastSpine, spine, depth % 2 ? 1 : -1),
-          color: b.color,
-          lit: row.some((x) => lit.read[x.slug]),
-        });
-        row.forEach((art, j) => {
-          const off = (j - (k - 1) / 2) * (DOT_GAP / r);
-          const p = pt(r, rowA + off);
+      // Twig chains: the tier's guides wander outward on 1-5 curving
+      // offshoots — no two bubbles side by side, each one deeper than the
+      // last. The limb continues from the middle twig's tip.
+      const sizes = splitChains(tier.articles.length);
+      const chainStart = chipR + CHAIN_LEAD;
+      const gap = CHAIN_GAP[sizes.length] ?? 0.13;
+      const midIdx = Math.floor((sizes.length - 1) / 2);
+      let continueFrom = chip;
+      let taken = 0;
+      sizes.forEach((sz, c) => {
+        const baseA = chipA + (c - (sizes.length - 1) / 2) * gap;
+        let prevDot = chip;
+        for (let j = 0; j < sz; j++) {
+          const r = chainStart + j * DOT_STEP;
+          const da =
+            baseA + Math.sin(i * 3.7 + c * 2.9 + j * 1.3) * DRIFT;
+          const p = pt(r, da);
+          const art = tier.articles[taken + j];
           const read = Boolean(lit.read[art.slug]);
           paths.push({
-            d: curve(spine, p, j % 2 ? 0.6 : -0.6),
+            d: curve(prevDot, p, (c + j) % 2 ? 0.7 : -0.7),
             color: b.color,
             lit: read,
           });
@@ -260,13 +281,15 @@ export default function SkillTreeMap({
               }}
             />
           );
-        });
-        idx += k;
-        lastSpine = spine;
-        r += ROW_STEP;
-      }
-      rCur = r - ROW_STEP;
-      prev = lastSpine;
+          prevDot = p;
+          if (c === midIdx && j === sz - 1) continueFrom = p;
+        }
+        taken += sz;
+      });
+      rCur = sizes.length
+        ? chainStart + (Math.max(...sizes) - 1) * DOT_STEP
+        : chipR;
+      prev = continueFrom;
     });
 
     // The checkpoint-quiz diamond caps the chain.
