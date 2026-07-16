@@ -46,6 +46,7 @@ export const nav: NavEntry[] = [
     items: [
       { label: "My Plan", href: "/plan", desc: "Five questions, one personal plan that checks itself off." },
       { label: "Guided paths", href: "/journey", desc: "Nine money goals, walked milestone by milestone." },
+      { label: "Skill Tree", href: "/skills", desc: "Your whole progress map — nodes light up as you learn." },
     ],
     footer: [{ label: "The 2-minute quiz", href: "/quiz" }],
   },

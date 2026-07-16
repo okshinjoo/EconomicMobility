@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/who-we-are", "/contact", "/life",
     "/students",
     "/plan",
+    "/skills",
     "/students/scholarships",
     "/students/opportunities",
     "/students/compare-colleges",
