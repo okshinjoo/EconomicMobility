@@ -1,15 +1,17 @@
 "use client";
 
 // SkillTreeMap — the radial mind-map view of the skill tree (July 16, 2026,
-// owner ask: a Creately-style radial skill map; v2 same day: "more branching
-// out pathways" — every GUIDE is now its own circle, fanning out in rows at
-// its tier's depth instead of one straight chain, and spacing was widened so
-// nothing overlaps). Pure geometry (deterministic, no Date/random — the
-// server renders the zero-progress map, no hydration mismatch); lighting
-// comes from the same Lit trackers SkillTree derives. Every node is a real
-// link; undone nodes render pale, never locked (memory contract). Mouse
-// drags to pan (native scroll covers touch); the Branch-list toggle in
-// SkillTree keeps the accessible card view.
+// owner ask: a Creately-style radial skill map; v2: per-guide branching
+// pathways; v3 same day: "branches should come out more fluid" + smaller
+// icon-only topic bubbles). Branches meander on a deterministic wobble and
+// every connector is a curved SVG path — solid in the branch color where
+// travelled, DOTTED grey where not yet. Topic heads are small TopicMark
+// circles; the full category + count lives in the hover tooltip. Pure
+// geometry (no Date/random — the server renders the zero-progress map, no
+// hydration mismatch); lighting comes from the same Lit trackers SkillTree
+// derives. Every node is a real link; undone nodes render pale, never
+// locked (memory contract). Mouse drags to pan (native scroll covers
+// touch); the Branch-list toggle in SkillTree keeps the accessible cards.
 
 import { useEffect, useRef, type ReactElement } from "react";
 import Link from "next/link";
@@ -22,12 +24,15 @@ import type { Lit } from "@/components/SkillTree";
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
 // laid out in rows whose per-row capacity grows with radius, so wide tiers
 // wrap into extra rows instead of colliding with the neighboring branch.
+// WOBBLE bends each branch's spine off the straight ray for the fluid look
+// — SECTOR + WOBBLE must stay under half the 40° branch pitch.
 const W = 2000;
 const H = 2000;
 const CX = W / 2;
 const CY = H / 2;
 const R_HEAD = 230; // radius of the topic head nodes
-const SECTOR = 0.3; // half-width (radians) of a branch's lane
+const SECTOR = 0.28; // half-width (radians) of a branch's dot lane
+const WOBBLE = 0.035; // max spine bend (radians) per depth step
 const DOT = 26; // guide-dot diameter
 const DOT_GAP = 34; // chord spacing between dots in a row
 const ROW_STEP = 46; // radial spacing between rows of one tier
@@ -57,11 +62,29 @@ function pt(r: number, a: number) {
   return { x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) };
 }
 
-interface MapLine {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
+/** Deterministic per-branch, per-depth spine bend — the fluid meander. */
+function wob(branch: number, depth: number) {
+  return Math.sin(branch * 2.1 + depth * 1.9) * WOBBLE;
+}
+
+interface XY {
+  x: number;
+  y: number;
+}
+
+/** A gently bowed quadratic curve between two points. */
+function curve(p1: XY, p2: XY, bow: number) {
+  const dx = p2.x - p1.x;
+  const dy = p2.y - p1.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const b = Math.min(30, len * 0.22) * bow;
+  const mx = (p1.x + p2.x) / 2 - (dy / len) * b;
+  const my = (p1.y + p2.y) / 2 + (dx / len) * b;
+  return `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+}
+
+interface MapPath {
+  d: string;
   color: string;
   lit: boolean;
 }
@@ -91,7 +114,7 @@ export default function SkillTreeMap({
   }, []);
 
   const n = data.branches.length;
-  const lines: MapLine[] = [];
+  const paths: MapPath[] = [];
   const nodes: ReactElement[] = [];
   const center = { x: CX, y: CY };
 
@@ -111,14 +134,12 @@ export default function SkillTreeMap({
           ? "part"
           : "none";
     const isGoal = lit.goalTopics.has(b.id);
+    let depth = 0; // wobble/bow counter down the branch
 
-    // Head node — the topic.
-    const head = pt(R_HEAD, a);
-    lines.push({
-      x1: center.x,
-      y1: center.y,
-      x2: head.x,
-      y2: head.y,
+    // Head node — the topic, icon-only; the full name lives in the tooltip.
+    const head = pt(R_HEAD, a + wob(i, depth));
+    paths.push({
+      d: curve(center, head, i % 2 ? 1 : -1),
       color: b.color,
       lit: headState !== "none",
     });
@@ -129,12 +150,15 @@ export default function SkillTreeMap({
         title={`${b.title}${isGoal ? " · your goal" : ""} — ${
           lit.mounted ? readCount : 0
         } of ${b.guideTotal} guides read`}
-        className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-2 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+        aria-label={`${b.title}: ${
+          lit.mounted ? readCount : 0
+        } of ${b.guideTotal} guides read`}
+        className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
         style={{
           left: head.x,
           top: head.y,
-          width: 104,
-          height: 104,
+          width: 58,
+          height: 58,
           transform: "translate(-50%, -50%)",
           ...fill(headState, b.color),
           boxShadow: isGoal ? `0 0 0 3px ${AMBER}` : undefined,
@@ -143,12 +167,8 @@ export default function SkillTreeMap({
         <TopicMark
           id={b.id}
           color={headState === "done" ? CREAM : b.color}
-          className="h-6 w-6 shrink-0"
+          className="h-7 w-7 shrink-0"
         />
-        <span className="text-[10px] font-bold leading-[1.15]">{b.short}</span>
-        <span className="text-[9.5px] font-bold tabular-nums opacity-80">
-          {lit.mounted ? readCount : 0}/{b.guideTotal}
-        </span>
       </Link>
     );
 
@@ -164,13 +184,12 @@ export default function SkillTreeMap({
           : done > 0
             ? "part"
             : "none";
+      depth += 1;
       const chipR = rCur + TIER_LEAD;
-      const chip = pt(chipR, a);
-      lines.push({
-        x1: prev.x,
-        y1: prev.y,
-        x2: chip.x,
-        y2: chip.y,
+      const chipA = a + wob(i, depth);
+      const chip = pt(chipR, chipA);
+      paths.push({
+        d: curve(prev, chip, depth % 2 ? 1 : -1),
         color: b.color,
         lit: state !== "none",
       });
@@ -201,27 +220,23 @@ export default function SkillTreeMap({
       let idx = 0;
       let lastSpine = chip;
       while (idx < tier.articles.length) {
+        depth += 1;
+        const rowA = a + wob(i, depth);
         const cap = Math.max(3, Math.floor((2 * SECTOR * r) / DOT_GAP));
         const k = Math.min(cap, tier.articles.length - idx);
         const row = tier.articles.slice(idx, idx + k);
-        const spine = pt(r, a);
-        lines.push({
-          x1: lastSpine.x,
-          y1: lastSpine.y,
-          x2: spine.x,
-          y2: spine.y,
+        const spine = pt(r, rowA);
+        paths.push({
+          d: curve(lastSpine, spine, depth % 2 ? 1 : -1),
           color: b.color,
           lit: row.some((x) => lit.read[x.slug]),
         });
         row.forEach((art, j) => {
           const off = (j - (k - 1) / 2) * (DOT_GAP / r);
-          const p = pt(r, a + off);
+          const p = pt(r, rowA + off);
           const read = Boolean(lit.read[art.slug]);
-          lines.push({
-            x1: spine.x,
-            y1: spine.y,
-            x2: p.x,
-            y2: p.y,
+          paths.push({
+            d: curve(spine, p, j % 2 ? 0.6 : -0.6),
             color: b.color,
             lit: read,
           });
@@ -256,13 +271,11 @@ export default function SkillTreeMap({
 
     // The checkpoint-quiz diamond caps the chain.
     if (b.hasQuiz) {
-      const p = pt(rCur + QUIZ_LEAD, a);
+      depth += 1;
+      const p = pt(rCur + QUIZ_LEAD, a + wob(i, depth));
       const done = lit.quizzes.has(b.id);
-      lines.push({
-        x1: prev.x,
-        y1: prev.y,
-        x2: p.x,
-        y2: p.y,
+      paths.push({
+        d: curve(prev, p, depth % 2 ? 1 : -1),
         color: b.color,
         lit: done,
       });
@@ -275,14 +288,14 @@ export default function SkillTreeMap({
           style={{
             left: p.x,
             top: p.y,
-            width: 54,
-            height: 54,
+            width: 48,
+            height: 48,
             transform: "translate(-50%, -50%) rotate(45deg)",
             ...fill(done ? "done" : "none", b.color),
           }}
         >
           <Star
-            className="h-5 w-5 -rotate-45"
+            className="h-4.5 w-4.5 -rotate-45"
             strokeWidth={2.5}
             fill={done ? AMBER : "none"}
             style={done ? { color: AMBER } : undefined}
@@ -294,16 +307,15 @@ export default function SkillTreeMap({
     }
 
     // Leaves: the topic's tool and flagship course fan out at the tip.
+    depth += 1;
     const leafR = rCur + LEAF_LEAD;
+    const leafA = a + wob(i, depth);
     const both = Boolean(b.tool && b.course);
     if (b.tool) {
-      const p = pt(leafR, a + (both ? -LEAF_SPREAD : 0));
+      const p = pt(leafR, leafA + (both ? -LEAF_SPREAD : 0));
       const done = lit.tools.has(b.tool.href);
-      lines.push({
-        x1: prev.x,
-        y1: prev.y,
-        x2: p.x,
-        y2: p.y,
+      paths.push({
+        d: curve(prev, p, -0.8),
         color: b.color,
         lit: done,
       });
@@ -316,8 +328,8 @@ export default function SkillTreeMap({
           style={{
             left: p.x,
             top: p.y,
-            width: 80,
-            height: 80,
+            width: 76,
+            height: 76,
             transform: "translate(-50%, -50%)",
             ...fill(done ? "done" : "none", b.color),
           }}
@@ -330,13 +342,10 @@ export default function SkillTreeMap({
       );
     }
     if (b.course) {
-      const p = pt(leafR, a + (both ? LEAF_SPREAD : 0));
+      const p = pt(leafR, leafA + (both ? LEAF_SPREAD : 0));
       const done = lit.badges.has(b.course.id);
-      lines.push({
-        x1: prev.x,
-        y1: prev.y,
-        x2: p.x,
-        y2: p.y,
+      paths.push({
+        d: curve(prev, p, 0.8),
         color: b.color,
         lit: done,
       });
@@ -349,8 +358,8 @@ export default function SkillTreeMap({
           style={{
             left: p.x,
             top: p.y,
-            width: 80,
-            height: 80,
+            width: 76,
+            height: 76,
             transform: "translate(-50%, -50%)",
             ...fill(done ? "done" : "none", b.course.color),
           }}
@@ -430,16 +439,15 @@ export default function SkillTreeMap({
           height={H}
           aria-hidden="true"
         >
-          {lines.map((l, idx) => (
-            <line
+          {paths.map((l, idx) => (
+            <path
               key={idx}
-              x1={l.x1}
-              y1={l.y1}
-              x2={l.x2}
-              y2={l.y2}
-              stroke={l.lit ? l.color : "#11211c26"}
+              d={l.d}
+              fill="none"
+              stroke={l.lit ? l.color : "#11211c33"}
               strokeWidth={l.lit ? 3 : 2}
               strokeLinecap="round"
+              strokeDasharray={l.lit ? undefined : "1 8"}
               style={{ transition: "stroke 500ms" }}
             />
           ))}
