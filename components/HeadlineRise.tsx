@@ -32,7 +32,16 @@ function textOf(node: ReactNode): string {
   return "";
 }
 
-export default function HeadlineRise({ children }: { children: ReactNode }) {
+export default function HeadlineRise({
+  children,
+  blur = false,
+}: {
+  children: ReactNode;
+  /** Cinematic variant (July 2026, borrowed-restraint from the Cortex
+   *  concept): words lift with a blur-and-brightness fade instead of the
+   *  overflow-mask rise. Default off — existing heroes render identically. */
+  blur?: boolean;
+}) {
   const [armed, setArmed] = useState(false);
   const [shown, setShown] = useState(false);
 
@@ -66,22 +75,44 @@ export default function HeadlineRise({ children }: { children: ReactNode }) {
         {units.map((unit, i) => (
           <span key={i}>
             {i > 0 && " "}
-            <span className="inline-block overflow-hidden align-bottom">
-            <span
-              className="inline-block"
-              style={
-                armed
-                  ? {
-                      transform: shown ? "none" : "translateY(100%)",
-                      opacity: shown ? 1 : 0,
-                      transition: `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`,
-                    }
-                  : undefined
-              }
-            >
-              {isValidElement(unit) ? (unit as ReactElement) : unit}
+            {blur ? (
+              /* Cinematic variant: no overflow mask (it would clip the blur)
+                 — each word lifts in with a blur-and-brightness fade. */
+              <span
+                className="inline-block"
+                style={
+                  armed
+                    ? {
+                        transform: shown ? "none" : "translateY(20px)",
+                        opacity: shown ? 1 : 0,
+                        filter: shown
+                          ? "blur(0px) brightness(100%)"
+                          : "blur(10px) brightness(30%)",
+                        transition: `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, filter 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`,
+                      }
+                    : undefined
+                }
+              >
+                {isValidElement(unit) ? (unit as ReactElement) : unit}
               </span>
-            </span>
+            ) : (
+              <span className="inline-block overflow-hidden align-bottom">
+                <span
+                  className="inline-block"
+                  style={
+                    armed
+                      ? {
+                          transform: shown ? "none" : "translateY(100%)",
+                          opacity: shown ? 1 : 0,
+                          transition: `transform 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms, opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 60}ms`,
+                        }
+                      : undefined
+                  }
+                >
+                  {isValidElement(unit) ? (unit as ReactElement) : unit}
+                </span>
+              </span>
+            )}
           </span>
         ))}
       </span>

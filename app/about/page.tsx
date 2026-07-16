@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeadlineRise from "@/components/HeadlineRise";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -102,8 +103,13 @@ export default function AboutPage() {
             Our Mission
           </span>
           <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            Financial freedom shouldn&apos;t be a{" "}
-            <span className="italic text-amber">family secret.</span>
+            {/* Cinematic word-reveal (Cortex-concept borrow, dialed to house
+                restraint): blur-and-brightness lift, 60ms/word, reduced-motion
+                safe. HEROES ONLY — this is /about's one headline moment. */}
+            <HeadlineRise blur>
+              Financial freedom shouldn&apos;t be a{" "}
+              <span className="italic text-amber">family secret.</span>
+            </HeadlineRise>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-cream/75">
             The Economic Mobility Project puts the knowledge that builds
