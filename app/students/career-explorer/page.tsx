@@ -52,7 +52,7 @@ export default function CareerExplorerPage() {
           <p className="max-w-3xl text-sm leading-6 text-stone">
             <span className="font-bold text-ink">How to read this:</span>{" "}
             figures come from the Bureau of Labor Statistics — median pay from
-            the May 2023 wage survey, growth from the official 2023–33
+            the May 2024 wage survey, growth from the official 2024–34
             projections. &ldquo;Median&rdquo; means half earn more and half
             earn less; big cities and experience push it up.
             &ldquo;Earn while you train&rdquo; is strict: it marks only paths

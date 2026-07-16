@@ -65,7 +65,10 @@ export default function CareerExplorer() {
   const results = useMemo(() => {
     let list = [...careers];
     if (field !== "all") list = list.filter((c) => c.field === field);
-    if (edu === "nodegree") list = list.filter((c) => c.education === "hs");
+    if (edu === "nodegree")
+      list = list.filter((c) =>
+        ["none", "hs", "some-college"].includes(c.education)
+      );
     if (edu === "certificate") list = list.filter((c) => c.education === "certificate");
     if (edu === "associate") list = list.filter((c) => c.education === "associate");
     if (edu === "bachelor")
