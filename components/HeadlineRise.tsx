@@ -102,7 +102,9 @@ export default function HeadlineRise({
                 {isValidElement(unit) ? (unit as ReactElement) : unit}
               </span>
             ) : (
-              <span className="inline-block overflow-hidden align-bottom">
+              {/* pb/-mb pair gives descenders room inside the mask — under
+                  tight hero leading the slot otherwise clips the "g"/"y". */}
+              <span className="inline-block overflow-hidden align-bottom pb-[0.12em] -mb-[0.12em]">
                 <span
                   className="inline-block"
                   style={

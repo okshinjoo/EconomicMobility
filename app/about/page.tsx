@@ -103,11 +103,11 @@ export default function AboutPage() {
             Our Mission
           </span>
           <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            {/* Cinematic word-reveal (Cortex-concept borrow, dialed to house
-                restraint): blur-and-brightness lift, 60ms/word, reduced-motion
-                safe. HEROES ONLY — this is /about's one headline moment. */}
+            {/* Blur-lift on the amber phrase ONLY (owner call, July 16):
+                the plain words render static; the yellow payoff blurs in.
+                Reduced-motion safe. HEROES ONLY. */}
+            Financial freedom shouldn&apos;t be a{" "}
             <HeadlineRise blur>
-              Financial freedom shouldn&apos;t be a{" "}
               <span className="italic text-amber">family secret.</span>
             </HeadlineRise>
           </h1>

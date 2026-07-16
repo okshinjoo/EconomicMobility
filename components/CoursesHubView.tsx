@@ -42,8 +42,10 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
             Courses
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            <HeadlineRise>
-              One goal <span className="italic text-amber">at a time.</span>
+            {/* Blur-lift on the amber phrase only (owner call, July 16). */}
+            One goal{" "}
+            <HeadlineRise blur>
+              <span className="italic text-amber">at a time.</span>
             </HeadlineRise>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">

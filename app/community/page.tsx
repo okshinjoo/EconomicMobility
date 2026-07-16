@@ -39,8 +39,10 @@ export default function CommunityPage() {
             The community
           </span>
           <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            <HeadlineRise>
-              Learning out loud,{" "}
+            {/* Blur-lift on the amber phrase only (owner call, July 16) —
+                also retires the word-mask that clipped "together."s descender. */}
+            Learning out loud,{" "}
+            <HeadlineRise blur>
               <span className="italic text-amber">together.</span>
             </HeadlineRise>
           </h1>

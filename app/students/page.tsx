@@ -75,8 +75,9 @@ export default function StudentsPage() {
               For students
             </span>
             <h1 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              <HeadlineRise>
-                The money side of school,{" "}
+              {/* Blur-lift on the amber phrase only (owner call, July 16). */}
+              The money side of school,{" "}
+              <HeadlineRise blur>
                 <span className="italic text-amber">in one place.</span>
               </HeadlineRise>
             </h1>
