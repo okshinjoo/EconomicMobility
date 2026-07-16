@@ -80,21 +80,21 @@ export default function AboutPage() {
           <TopicMark
             id="investing"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <ScrollDrift range={66} driftX={28} rotate={-5}>
           <TopicMark
             id="college"
             color="#fbf8f1"
-            className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 opacity-[0.12]"
+            className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 opacity-[0.15]"
           />
         </ScrollDrift>
         <ScrollDrift range={78} driftX={-32} rotate={6}>
           <TopicMark
             id="money-safety"
             color="#e7a33c"
-            className="pointer-events-none absolute left-[42%] top-[36%] h-44 w-44 opacity-[0.10]"
+            className="pointer-events-none absolute left-[42%] top-[36%] h-44 w-44 opacity-[0.13]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
