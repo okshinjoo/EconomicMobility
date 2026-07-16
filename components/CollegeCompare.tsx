@@ -37,7 +37,7 @@ function band(rate: number): { id: BandFilter; label: string } {
   return { id: "accessible", label: "Accessible" };
 }
 
-const NEED_LABEL: Record<CollegeProfile["needBlind"], string> = {
+const NEED_LABEL: Record<NonNullable<CollegeProfile["needBlind"]>, string> = {
   all: "Need-blind (incl. international)",
   domestic: "Need-blind (US applicants)",
   aware: "Need-aware",
@@ -254,8 +254,8 @@ export default function CollegeCompare() {
               {(
                 [
                   ["Admitted", (c: CollegeProfile) => `${c.admitRate}% (${c.admitYear})`],
-                  ["Need policy", (c: CollegeProfile) => NEED_LABEL[c.needBlind]],
-                  ["Meets full need", (c: CollegeProfile) => (c.meetsFullNeed ? "Yes" : "No")],
+                  ["Need policy", (c: CollegeProfile) => (c.needBlind ? NEED_LABEL[c.needBlind] : "—")],
+                  ["Meets full need", (c: CollegeProfile) => (c.meetsFullNeed == null ? "—" : c.meetsFullNeed ? "Yes" : "No")],
                   ["Tests", (c: CollegeProfile) => (c.testPolicy ? TEST_LABEL[c.testPolicy] : "—")],
                   ["GPA (published)", (c: CollegeProfile) => c.gpaNote ?? "—"],
                   [
@@ -353,9 +353,11 @@ export default function CollegeCompare() {
               </div>
 
               <div className="mt-3 flex flex-wrap gap-1.5">
-                <span className="rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
-                  {NEED_LABEL[c.needBlind]}
-                </span>
+                {c.needBlind && (
+                  <span className="rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
+                    {NEED_LABEL[c.needBlind]}
+                  </span>
+                )}
                 {c.meetsFullNeed && (
                   <span className="rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
                     Meets full need
