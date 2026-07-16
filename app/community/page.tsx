@@ -39,12 +39,12 @@ export default function CommunityPage() {
             The community
           </span>
           <h1 className="mt-6 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            {/* Blur-lift on the amber phrase only (owner call, July 16) —
-                also retires the word-mask that clipped "together."s descender. */}
+            {/* Letter-by-letter blur-lift on the amber phrase only (owner
+                call, July 16) — no word-mask, so no descender clipping. */}
             Learning out loud,{" "}
-            <HeadlineRise blur>
-              <span className="italic text-amber">together.</span>
-            </HeadlineRise>
+            <span className="italic text-amber">
+              <HeadlineRise chars>together.</HeadlineRise>
+            </span>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/80">
             Rooms for every conversation: say hello, share a win, ask the

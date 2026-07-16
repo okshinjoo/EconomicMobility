@@ -103,13 +103,12 @@ export default function AboutPage() {
             Our Mission
           </span>
           <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            {/* Blur-lift on the amber phrase ONLY (owner call, July 16):
-                the plain words render static; the yellow payoff blurs in.
-                Reduced-motion safe. HEROES ONLY. */}
+            {/* Letter-by-letter blur-lift on the amber phrase ONLY (owner
+                call, July 16). Reduced-motion safe. HEROES ONLY. */}
             Financial freedom shouldn&apos;t be a{" "}
-            <HeadlineRise blur>
-              <span className="italic text-amber">family secret.</span>
-            </HeadlineRise>
+            <span className="italic text-amber">
+              <HeadlineRise chars>family secret.</HeadlineRise>
+            </span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-cream/75">
             The Economic Mobility Project puts the knowledge that builds

@@ -6,6 +6,7 @@ import JourneyIndex, {
 import { journeys, journeyByTopic } from "@/lib/journeys";
 import { frameHref, type Frame } from "@/lib/frame";
 import PlanPromoBand from "@/components/PlanPromoBand";
+import HeadlineRise from "@/components/HeadlineRise";
 
 
 /**
@@ -88,7 +89,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
           </span>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             Don&apos;t browse.{" "}
-            <span className="italic text-amber">Follow a path.</span>
+            <span className="italic text-amber"><HeadlineRise chars>Follow a path.</HeadlineRise></span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
             Pick the goal, and we&apos;ll walk you there: ordered milestones,

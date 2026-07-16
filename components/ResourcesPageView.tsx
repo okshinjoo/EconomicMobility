@@ -5,6 +5,7 @@ import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
 import ScrollDrift from "@/components/ScrollDrift";
 import { scholarships } from "@/lib/scholarships";
+import HeadlineRise from "@/components/HeadlineRise";
 
 
 const groups = [
@@ -132,7 +133,7 @@ export default function ResourcesPageView() {
             </span>
             <h1 className="mt-5 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
               Help that&apos;s{" "}
-              <span className="italic text-amber">already out there.</span>
+              <span className="italic text-amber"><HeadlineRise chars>already out there.</HeadlineRise></span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
               A hand-picked list of trusted, free programs and tools for

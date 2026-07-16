@@ -5,6 +5,7 @@ import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
 import { moments } from "@/lib/moments";
 import { frameHref, type Frame } from "@/lib/frame";
+import HeadlineRise from "@/components/HeadlineRise";
 
 
 /**
@@ -31,7 +32,7 @@ export default function LifePageView({ frame }: { frame: Frame }) {
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
             Start from{" "}
-            <span className="italic text-amber">what&apos;s happening.</span>
+            <span className="italic text-amber"><HeadlineRise chars>what&apos;s happening.</HeadlineRise></span>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">
             Nobody wakes up wanting to study personal finance. Something

@@ -9,6 +9,7 @@ import { communityQuestions } from "@/lib/communityQuestions";
 import ScrollDrift from "@/components/ScrollDrift";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema } from "@/lib/structuredData";
+import HeadlineRise from "@/components/HeadlineRise";
 
 export const metadata: Metadata = {
   title: "Ask Empower: Real Money Questions, Answered",
@@ -46,7 +47,7 @@ export default function AskPage() {
             </span>
             <h1 className="mt-5 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
               Real answers to{" "}
-              <span className="italic text-amber">real questions.</span>
+              <span className="italic text-amber"><HeadlineRise chars>real questions.</HeadlineRise></span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
               No question is too basic, and you never have to give your name.

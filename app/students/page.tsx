@@ -75,11 +75,11 @@ export default function StudentsPage() {
               For students
             </span>
             <h1 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              {/* Blur-lift on the amber phrase only (owner call, July 16). */}
+              {/* Letter-by-letter blur-lift on the amber phrase (July 16). */}
               The money side of school,{" "}
-              <HeadlineRise blur>
-                <span className="italic text-amber">in one place.</span>
-              </HeadlineRise>
+              <span className="italic text-amber">
+                <HeadlineRise chars>in one place.</HeadlineRise>
+              </span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-cream/75">
               Deadlines that actually move money, the guides worth reading

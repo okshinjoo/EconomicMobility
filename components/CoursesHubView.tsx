@@ -42,11 +42,11 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
             Courses
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-            {/* Blur-lift on the amber phrase only (owner call, July 16). */}
+            {/* Letter-by-letter blur-lift on the amber phrase (July 16). */}
             One goal{" "}
-            <HeadlineRise blur>
-              <span className="italic text-amber">at a time.</span>
-            </HeadlineRise>
+            <span className="italic text-amber">
+              <HeadlineRise chars>at a time.</HeadlineRise>
+            </span>
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-8 text-cream/75">
             Each module is a short, ordered reading path built around one real

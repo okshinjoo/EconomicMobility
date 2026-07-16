@@ -8,6 +8,7 @@ import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeadlineRise from "@/components/HeadlineRise";
 
 export const metadata: Metadata = {
   title: "Start Here | Empower — Economic Mobility Project",
@@ -89,7 +90,7 @@ export default function StartHerePage() {
               Start here
             </span>
             <h1 className="mt-5 font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.95] tracking-tight sm:text-7xl">
-              New here? <span className="italic text-amber">Welcome.</span>
+              New here? <span className="italic text-amber"><HeadlineRise chars>Welcome.</HeadlineRise></span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
               There&apos;s no wrong way to use Empower. If you&apos;re not sure

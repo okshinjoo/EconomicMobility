@@ -35,12 +35,17 @@ function textOf(node: ReactNode): string {
 export default function HeadlineRise({
   children,
   blur = false,
+  chars = false,
 }: {
   children: ReactNode;
   /** Cinematic variant (July 2026, borrowed-restraint from the Cortex
    *  concept): words lift with a blur-and-brightness fade instead of the
    *  overflow-mask rise. Default off — existing heroes render identically. */
   blur?: boolean;
+  /** Per-LETTER reveal (owner ask July 16: "each letter one at a time, but
+   *  fast") — 18ms/char, 400ms each. String children only; words stay in
+   *  nowrap groups so the phrase never line-breaks mid-word. Implies blur. */
+  chars?: boolean;
 }) {
   const [armed, setArmed] = useState(false);
   const [shown, setShown] = useState(false);
@@ -55,6 +60,56 @@ export default function HeadlineRise({
     );
     return () => cancelAnimationFrame(raf);
   }, []);
+
+  // Per-letter mode: fast char-by-char blur lift. Words sit in nowrap
+  // groups so the phrase never line-breaks mid-word; the stagger counter
+  // runs across the whole phrase so the cascade reads as one motion.
+  if (chars) {
+    const text = textOf(children);
+    const tokens = text.split(/(\s+)/);
+    let charIndex = 0;
+    return (
+      <>
+        <span className="sr-only">{text}</span>
+        <span aria-hidden>
+          {tokens.map((tok, ti) => {
+            if (/^\s+$/.test(tok)) return <span key={ti}>{" "}</span>;
+            return (
+              <span key={ti} className="inline-block whitespace-nowrap">
+                {tok.split("").map((ch, wi) => {
+                  const d = charIndex++ * 18;
+                  return (
+                    <span
+                      key={wi}
+                      className="inline-block"
+                      style={
+                        armed
+                          ? {
+                              transform: shown ? "none" : "translateY(14px)",
+                              opacity: shown ? 1 : 0,
+                              filter: shown
+                                ? "blur(0px) brightness(100%)"
+                                : "blur(8px) brightness(30%)",
+                              // Hidden paints transition-free (the stagger
+                              // race fix); the reveal carries the delays.
+                              transition: shown
+                                ? `transform 400ms cubic-bezier(0.22, 1, 0.36, 1) ${d}ms, opacity 400ms cubic-bezier(0.22, 1, 0.36, 1) ${d}ms, filter 400ms cubic-bezier(0.22, 1, 0.36, 1) ${d}ms`
+                                : "none",
+                            }
+                          : undefined
+                      }
+                    >
+                      {ch}
+                    </span>
+                  );
+                })}
+              </span>
+            );
+          })}
+        </span>
+      </>
+    );
+  }
 
   // Flatten children into mask units: words from strings, elements whole.
   const units: ReactNode[] = [];

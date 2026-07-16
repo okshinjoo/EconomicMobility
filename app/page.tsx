@@ -30,6 +30,7 @@ import {
   Percent,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import HeadlineRise from "@/components/HeadlineRise";
 import Ticker from "@/components/Ticker";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
@@ -183,7 +184,9 @@ export default function Home() {
               Your future.
               <br />
               <span className="relative whitespace-nowrap text-forest">
-                No gatekeepers.
+                {/* Letter-by-letter blur-lift (owner call, July 16); the
+                    amber squiggle stays put beneath the arriving letters. */}
+                <HeadlineRise chars>No gatekeepers.</HeadlineRise>
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 300 18"
