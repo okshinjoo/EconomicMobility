@@ -1,202 +1,110 @@
-// Career Explorer — PREVIEW (July 13, 2026, owner ask: parked project,
-// "subheadings with mockups, but that's it for now... show that it's in
-// progress"). What a career actually pays, what training it needs, and
-// which of our verified opportunities lead into it. EVERYTHING below the
-// hero is a static, non-interactive mockup with clearly-labeled
-// approximate figures (public BLS data will back the real page) — no
-// live data, no sitemap entry, noindex until it ships. Student-native.
+// Career Explorer — LIVE (July 16, 2026; the last parked preview ships,
+// same path Compare Colleges took). 100 careers on public BLS data: median
+// pay, growth outlook, training path, and the audience-defining
+// "earn while you train" filter (paid apprenticeships/academies/employer
+// training). Data in lib/careers.ts (vintage-tagged, re-verify when BLS
+// refreshes). Student-native page — the layout provides StudentHeader.
 
 import Link from "next/link";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import HeadlineRise from "@/components/HeadlineRise";
+import CareerExplorer from "@/components/CareerExplorer";
+import { careers, CAREER_DATA_VINTAGE } from "@/lib/careers";
 
 export const metadata: Metadata = {
-  title: "Career Explorer (in progress) | Empower — Economic Mobility Project",
+  title: "Career Explorer | Empower — Economic Mobility Project",
   description:
-    "A preview of the career explorer we're building: real median pay, the training each path needs, and the verified programs that lead into it.",
-  robots: { index: false },
+    "100 careers with real BLS numbers: median pay, growth outlook, what training each actually needs — and which ones pay you while you learn. Facts, not rankings.",
 };
 
-// Approximate figures (recent BLS medians), used ONLY to make the preview
-// honest about what the real page will show.
-const SAMPLE_CAREERS = [
-  {
-    name: "Registered Nurse",
-    pay: "≈ $94,000/yr median",
-    training: "Bachelor's (BSN) or associate + bridge",
-    outlook: "Growing ~5%, steady everywhere",
-    note: "Hospital tuition-repayment deals are common; SHPEP-style pipelines exist for the pre-health years.",
-    tags: ["Health", "License", "Every city"],
-  },
-  {
-    name: "Electrician",
-    pay: "≈ $62,000/yr median",
-    training: "Paid apprenticeship: earn while you train, no degree",
-    outlook: "Growing ~9%, faster than average",
-    note: "Union apprenticeships pay from day one and end with zero student debt.",
-    tags: ["Trades", "No degree", "Paid training"],
-  },
-  {
-    name: "Software Developer",
-    pay: "≈ $133,000/yr median",
-    training: "Bachelor's typical; strong portfolio routes exist",
-    outlook: "Growing ~15%, much faster than average",
-    note: "Free training pipelines (CodePath, NPower) and early-ID internships lead straight in.",
-    tags: ["Tech", "Remote-friendly", "Portfolio counts"],
-  },
-];
-
-const FILTER_CHIPS = ["Pays $60k+", "No degree needed", "Paid training", "Fast-growing", "Health", "Tech", "Trades"];
-
-export default function CareerExplorerPreview() {
+export default function CareerExplorerPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
-
-      {/* Hero — honest about the state of things */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-5xl px-6 pb-10 pt-12">
-          <nav className="text-sm font-medium text-stone">
-            <Link
-              href="/students"
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-            >
-              For Students
-            </Link>{" "}
-            / Career Explorer
-          </nav>
-          <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
-            Know what the job pays before you pick the path.
+      {/* Hero — C voice on forest, sitewide letter-reveal accent */}
+      <section className="relative overflow-hidden bg-forest text-cream">
+        <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
+            For Students · Tool
+          </span>
+          <h1 className="mt-4 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.98] tracking-tight sm:text-6xl">
+            What does that job{" "}
+            <span className="italic text-amber">
+              <HeadlineRise chars>actually pay?</HeadlineRise>
+            </span>
           </h1>
-          <p className="mt-3 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-            In progress: design preview, nothing live yet
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
+            Real numbers for {careers.length} careers: the median paycheck,
+            whether the field is growing, what training it truly requires —
+            and the paths that <em>pay you</em> while you learn, from union
+            apprenticeships to the FAA&apos;s academy. No rankings, no
+            gatekeeping, no &ldquo;follow your passion&rdquo; hand-waving.
           </p>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone">
-            We&apos;re building an explorer that answers the three questions
-            that matter before you commit years to a path: what it really
-            pays, what training it takes (and whether that training pays
-            you), and which doors in our{" "}
-            <Link
-              href="/students/opportunities"
-              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-            >
-              Opportunity Finder
-            </Link>{" "}
-            lead into it. The mockup below shows the plan; figures are
-            approximate, from public Bureau of Labor Statistics data.
+          <p className="mt-4 text-sm font-semibold text-cream/60">
+            {CAREER_DATA_VINTAGE} · every figure from public federal data
           </p>
         </div>
       </section>
 
-      {/* The mockup — static, clearly labeled */}
+      {/* How to read this */}
+      <section className="border-b-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-6xl px-6 py-6">
+          <p className="max-w-3xl text-sm leading-6 text-stone">
+            <span className="font-bold text-ink">How to read this:</span>{" "}
+            figures come from the Bureau of Labor Statistics — median pay from
+            the May 2023 wage survey, growth from the official 2023–33
+            projections. &ldquo;Median&rdquo; means half earn more and half
+            earn less; big cities and experience push it up.
+            &ldquo;Earn while you train&rdquo; is strict: it marks only paths
+            with a genuinely paid pathway — apprenticeships, academies,
+            employer-funded training — not just &ldquo;no degree
+            required.&rdquo;
+          </p>
+        </div>
+      </section>
+
+      {/* The tool */}
       <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <CareerExplorer />
+        </div>
+      </section>
+
+      {/* Next steps — the tools this pairs with */}
+      <section className="border-t-2 border-ink bg-paper-deep">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="relative">
-            <span className="absolute -top-3 left-6 z-10 -rotate-2 rounded-md border-2 border-ink bg-terracotta px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream shadow-[3px_3px_0_#11211c]">
-              Mockup: sample data
-            </span>
-            <div
-              aria-hidden
-              className="card-ink-lg pointer-events-none select-none rounded-2xl bg-cream p-6 sm:p-8"
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            Turn a career into a plan
+          </span>
+          <h2 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
+            Found a number you like? Work backward from it.
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <Link
+              href="/students/tools/reality-check"
+              className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
             >
-              {/* Search + filters */}
-              <div className="rounded-lg border-2 border-ink/15 bg-paper px-4 py-2.5 text-base text-stone/60">
-                Search: nurse, electrician, teacher, coding…
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {FILTER_CHIPS.map((f, i) => (
-                  <span
-                    key={f}
-                    className={`rounded-md border-2 px-3 py-1.5 text-sm font-bold ${
-                      i === 2
-                        ? "border-ink bg-forest text-cream shadow-[2px_2px_0_#11211c]"
-                        : "border-ink/15 bg-cream text-stone"
-                    }`}
-                  >
-                    {f}
-                  </span>
-                ))}
-              </div>
-
-              {/* Career cards */}
-              <div className="mt-6 grid gap-4 lg:grid-cols-3">
-                {SAMPLE_CAREERS.map((c) => (
-                  <div
-                    key={c.name}
-                    className="flex h-full flex-col rounded-xl border-2 border-ink bg-paper p-5 shadow-[3px_3px_0_#11211c]"
-                  >
-                    <div className="flex flex-wrap gap-1.5">
-                      {c.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="mt-2.5 font-display text-xl font-bold text-ink">
-                      {c.name}
-                    </h3>
-                    <p className="mt-1 font-display text-lg font-bold text-forest">
-                      {c.pay}
-                    </p>
-                    <dl className="mt-2 space-y-1.5 text-sm leading-6">
-                      <div>
-                        <dt className="text-[11px] font-bold uppercase tracking-wide text-stone">Training</dt>
-                        <dd className="font-semibold text-ink">{c.training}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-[11px] font-bold uppercase tracking-wide text-stone">Outlook</dt>
-                        <dd className="font-semibold text-ink">{c.outlook}</dd>
-                      </div>
-                    </dl>
-                    <p className="mt-3 flex-1 rounded-lg bg-forest/[0.07] p-2.5 text-xs leading-5 text-ink/85">
-                      <span className="font-bold text-forest">The way in: </span>
-                      {c.note}
-                    </p>
-                    <span className="mt-3 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
-                      Programs that lead here →
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* What's coming */}
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
-            <div className="card-ink rounded-2xl bg-cream p-6">
-              <h2 className="font-display text-lg font-bold text-ink">
-                What the real page will do
-              </h2>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-stone">
-                <li>— Around a hundred careers curated from public BLS data: median pay, training required, growth outlook, and what the work actually looks like day to day.</li>
-                <li>— Filters that respect every route: degree paths, paid apprenticeships, and certificate programs side by side. &quot;Earn while you train&quot; is a first-class filter, not a footnote.</li>
-                <li>— Every career wired to the real doors: matching programs in the Opportunity Finder and awards in the Scholarship Finder.</li>
-                <li>— Typo-tolerant search, like everything else on the site.</li>
-              </ul>
-            </div>
-            <div className="card-ink rounded-2xl bg-cream p-6">
-              <h2 className="font-display text-lg font-bold text-ink">
-                Until it ships
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-stone">
-                The pieces it will connect are already live: the{" "}
-                <Link href="/students/opportunities" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                  Opportunity Finder
-                </Link>{" "}
-                (paid internships, research, and training programs, many
-                open in high school), the{" "}
-                <Link href="/students/tools/paycheck" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                  Paycheck calculator
-                </Link>{" "}
-                for turning any salary into take-home reality, and the{" "}
-                <Link href="/students/tools/reality-check" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
-                  Reality Check
-                </Link>{" "}
-                for finding the salary your life actually needs.
+              <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                The Reality Check
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-stone">
+                Pick the life you want — apartment, car, groceries — and see
+                the salary it takes. Then come back and find the careers that
+                clear it.
               </p>
-            </div>
+            </Link>
+            <Link
+              href="/students/opportunities"
+              className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                Internships &amp; Opportunities
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-stone">
+                68 verified internships, fellowships, and programs — many paid
+                — that lead into the careers on this page.
+              </p>
+            </Link>
           </div>
         </div>
       </section>
