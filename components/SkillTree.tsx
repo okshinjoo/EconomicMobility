@@ -14,6 +14,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Star, Wrench } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
+import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
@@ -22,7 +23,15 @@ import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";
 
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
 
-interface Lit {
+function viewChip(active: boolean) {
+  return `rounded-md border-2 px-3.5 py-1.5 text-[13px] font-bold transition-colors ${
+    active
+      ? "border-ink bg-amber text-ink shadow-[2px_2px_0_#11211c]"
+      : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
+  }`;
+}
+
+export interface Lit {
   read: Record<string, number>;
   quizzes: Set<string>; // topic ids whose checkpoint quiz has a saved score
   badges: Set<string>; // earned course ids
@@ -249,6 +258,7 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
 }
 
 export default function SkillTree({ data }: { data: SkillTreeData }) {
+  const [view, setView] = useState<"map" | "list">("map");
   const [lit, setLit] = useState<Lit>({
     read: {},
     quizzes: new Set(),
@@ -329,12 +339,56 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         ))}
       </div>
 
-      {/* The nine branches */}
-      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {ordered.map((b) => (
-          <Branch key={b.id} b={b} lit={lit} />
-        ))}
+      {/* View toggle — the radial map IS the tree; the list keeps the detail */}
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setView("map")}
+            aria-pressed={view === "map"}
+            className={viewChip(view === "map")}
+          >
+            Map
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("list")}
+            aria-pressed={view === "list"}
+            className={viewChip(view === "list")}
+          >
+            Branch list
+          </button>
+        </div>
+        {view === "map" && (
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold text-stone">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded-full border border-ink bg-forest" />
+              done
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded-full border border-forest bg-forest/25" />
+              in progress
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded-full border border-forest/40 bg-cream" />
+              not yet
+            </span>
+            <span>· drag to explore — every circle is a link</span>
+          </p>
+        )}
       </div>
+
+      {view === "map" ? (
+        <div className="mt-4">
+          <SkillTreeMap data={data} lit={lit} />
+        </div>
+      ) : (
+        <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {ordered.map((b) => (
+            <Branch key={b.id} b={b} lit={lit} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
