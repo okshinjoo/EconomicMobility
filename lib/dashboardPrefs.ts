@@ -25,6 +25,7 @@ export const DASHBOARD_CARDS: { id: string; label: string }[] = [
   { id: "plan", label: "Your plan" },
   { id: "stats", label: "Reading & progress stats" },
   { id: "heatmap", label: "Activity heatmap" },
+  { id: "skill-points", label: "Skill points" },
   { id: "pipeline", label: "Scholarship pipeline & tracker" },
   { id: "tools", label: "Pinned tools" },
   { id: "moments", label: "What's coming up" },

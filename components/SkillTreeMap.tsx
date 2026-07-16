@@ -133,9 +133,12 @@ interface MapPath {
 export default function SkillTreeMap({
   data,
   lit,
+  points,
 }: {
   data: SkillTreeData;
   lit: Lit;
+  /** Derived skill-points total (computed by SkillTree, shown in the hub). */
+  points: number;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{
@@ -648,6 +651,9 @@ export default function SkillTreeMap({
             style={{ color: AMBER }}
           >
             {lit.mounted ? guidesRead : 0}/{data.guidesTotal} guides
+          </span>
+          <span className="text-[10px] font-bold tabular-nums text-cream/70">
+            {lit.mounted ? points.toLocaleString() : 0} skill points
           </span>
         </div>
 

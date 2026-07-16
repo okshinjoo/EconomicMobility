@@ -17,8 +17,7 @@ import TopicMark from "@/components/TopicMark";
 import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
-import { PLAN_KEY } from "@/lib/plan";
-import { readLocalProfile } from "@/lib/profile";
+import { readStarterSet, skillPointsTotal, SKILL_POINTS } from "@/lib/skillPoints";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { readContext, topicMatchesGoals } from "@/lib/personalization";
 import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";
@@ -294,23 +293,9 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
       loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
     const tools = new Set(Object.keys(visited));
 
-    // First-steps actions, proven done by the trackers that already exist.
-    const starters = new Set<string>();
-    if (loadJSON(STORAGE_KEYS.quizResult) !== null) starters.add("quiz");
-    if (loadJSON(STORAGE_KEYS.budget) !== null) starters.add("budget");
-    if (loadJSON(STORAGE_KEYS.realityCheck) !== null) starters.add("reality");
-    if (loadJSON(PLAN_KEY) !== null) starters.add("plan");
-    const profile = readLocalProfile();
-    if (profile && (profile.goals.length > 0 || profile.displayName))
-      starters.add("profile");
-    if (visited["/resources"] || visited["/students/resources"])
-      starters.add("resources");
-    const pendingPosts =
-      loadJSON<Record<string, unknown>>("empower:community-posts:v1") ?? {};
-    const pendingComments =
-      loadJSON<Record<string, unknown>>("empower:community-comments:v1") ?? {};
-    if (Object.keys(pendingPosts).length + Object.keys(pendingComments).length > 0)
-      starters.add("community");
+    // First-steps actions, proven done by the trackers that already exist
+    // (shared reader — the same set feeds the skill-points score).
+    const starters = readStarterSet();
 
     const ctx = readContext();
     const goalTopics = new Set(
@@ -349,10 +334,48 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         0
       )
     : 0;
-  const toolsUsed = lit.mounted ? lit.tools.size : 0;
+  const toolsUsed = lit.mounted
+    ? [...lit.tools].filter(
+        (p) => p.startsWith("/tools/") || p.startsWith("/students/tools/")
+      ).length
+    : 0;
+
+  // Skill points — derived from the counts above, never stored.
+  const points = skillPointsTotal({
+    guides: guidesRead,
+    quizzes: quizzesDone,
+    courses: coursesDone,
+    tools: toolsUsed,
+    starters: lit.mounted ? lit.starters.size : 0,
+  });
 
   return (
     <div>
+      {/* Skill points — recomputed live from the trackers, follows the
+          profile because the trackers sync. Never stored, can't drift. */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 rounded-2xl border-2 border-ink bg-forest px-5 py-4 text-cream shadow-[4px_4px_0_#11211c]">
+        <div>
+          <div className="font-display text-3xl font-bold tabular-nums text-amber">
+            {points.toLocaleString()}
+            <span className="ml-2 text-lg font-semibold text-cream">
+              skill points
+            </span>
+          </div>
+          <p className="mt-0.5 text-[13px] font-semibold text-cream/70">
+            guides {SKILL_POINTS.guide} · tools {SKILL_POINTS.tool} · quick
+            wins {SKILL_POINTS.starter} · quizzes {SKILL_POINTS.quiz} ·
+            courses {SKILL_POINTS.course} — counted from what you&apos;ve
+            actually done
+          </p>
+        </div>
+        <Link
+          href="/account"
+          className="text-sm font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+        >
+          They live on your profile
+        </Link>
+      </div>
+
       {/* Canopy: overall progress */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {(
@@ -437,7 +460,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
 
       {view === "map" ? (
         <div className="mt-4">
-          <SkillTreeMap data={data} lit={lit} />
+          <SkillTreeMap data={data} lit={lit} points={points} />
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
