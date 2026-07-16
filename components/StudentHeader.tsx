@@ -129,7 +129,7 @@ const NAV: StudentNavEntry[] = [
       { label: "Paid internships", href: "/students/opportunities?type=internship", desc: "Programs that pay you while you learn the field.", icon: Banknote, color: "#0c4a39" },
       { label: "Research programs", href: "/students/opportunities?type=research", desc: "Summer research with stipends, high school and college.", icon: Search, color: "#c4573b" },
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Wallet, color: "#15624b" },
-      { label: "Career Explorer", href: "/students/career-explorer", desc: "In progress: a preview of what's coming.", icon: Telescope, color: "#4b5f8a" },
+      { label: "Career Explorer", href: "/students/career-explorer", desc: "100 careers: real pay, growth, and training paths.", icon: Telescope, color: "#4b5f8a" },
     ],
   },
   {
