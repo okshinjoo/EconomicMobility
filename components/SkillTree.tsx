@@ -12,21 +12,41 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Star, Wrench } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Route, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
+import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
+import { PLAN_KEY } from "@/lib/plan";
+import { readLocalProfile } from "@/lib/profile";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { readContext, topicMatchesGoals } from "@/lib/personalization";
 import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";
 
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
 
-interface Lit {
+function sideChip(done: boolean) {
+  return `inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-[12px] font-bold transition-colors ${
+    done
+      ? "border-forest/40 bg-forest/[0.08] text-forest"
+      : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
+  }`;
+}
+
+function viewChip(active: boolean) {
+  return `rounded-md border-2 px-3.5 py-1.5 text-[13px] font-bold transition-colors ${
+    active
+      ? "border-ink bg-amber text-ink shadow-[2px_2px_0_#11211c]"
+      : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
+  }`;
+}
+
+export interface Lit {
   read: Record<string, number>;
   quizzes: Set<string>; // topic ids whose checkpoint quiz has a saved score
   badges: Set<string>; // earned course ids
   tools: Set<string>; // visited tool pathnames
+  starters: Set<string>; // done First-steps action ids (see lib/skillTree)
   goalTopics: Set<string>;
   mounted: boolean;
 }
@@ -71,10 +91,12 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
   );
   const pct = b.guideTotal ? readCount / b.guideTotal : 0;
   const quizDone = lit.quizzes.has(b.id);
-  const courseDone = b.course ? lit.badges.has(b.course.id) : false;
-  const toolDone = b.tool ? lit.tools.has(b.tool.href) : false;
   const isGoal = lit.goalTopics.has(b.id);
-  const started = readCount > 0 || quizDone || courseDone || toolDone;
+  const started =
+    readCount > 0 ||
+    quizDone ||
+    b.courses.some((c) => lit.badges.has(c.id)) ||
+    b.tools.some((t) => lit.tools.has(t.href));
 
   // "Where you can be heading next": first unread guide in roadmap order.
   const nextUp = (() => {
@@ -180,41 +202,39 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
         )}
       </div>
 
-      {/* Side nodes: tool + course */}
-      {(b.tool || b.course) && (
+      {/* Side nodes: every life plan, tool, and course on this branch */}
+      {(b.journeys.length > 0 || b.tools.length > 0 || b.courses.length > 0) && (
         <div className="mt-3 flex flex-wrap gap-2">
-          {b.tool && (
-            <Link
-              href={b.tool.href}
-              className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-[12px] font-bold transition-colors ${
-                toolDone
-                  ? "border-forest/40 bg-forest/[0.08] text-forest"
-                  : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
-              }`}
-            >
-              <Wrench className="h-3 w-3" strokeWidth={2.5} />
-              {b.tool.label}
-              {toolDone && <Check className="h-3 w-3" strokeWidth={3} />}
+          {b.journeys.map((j) => (
+            <Link key={j.id} href={`/journey/${j.id}`} className={sideChip(false)}>
+              <Route className="h-3 w-3" strokeWidth={2.5} />
+              {j.title}
             </Link>
-          )}
-          {b.course && (
-            <Link
-              href={`/courses/${b.course.id}`}
-              className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-[12px] font-bold transition-colors ${
-                courseDone
-                  ? "border-forest/40 bg-forest/[0.08] text-forest"
-                  : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
-              }`}
-            >
-              <BadgeMedal
-                color={courseDone ? b.course.color : "#9aa39b"}
-                variant="course"
-                className="h-3.5 w-3.5"
-              />
-              {b.course.title}
-              {courseDone && <Check className="h-3 w-3" strokeWidth={3} />}
-            </Link>
-          )}
+          ))}
+          {b.tools.map((t) => {
+            const done = lit.tools.has(t.href);
+            return (
+              <Link key={t.href} href={t.href} className={sideChip(done)}>
+                <Wrench className="h-3 w-3" strokeWidth={2.5} />
+                {t.label}
+                {done && <Check className="h-3 w-3" strokeWidth={3} />}
+              </Link>
+            );
+          })}
+          {b.courses.map((c) => {
+            const done = lit.badges.has(c.id);
+            return (
+              <Link key={c.id} href={`/courses/${c.id}`} className={sideChip(done)}>
+                <BadgeMedal
+                  color={done ? c.color : "#9aa39b"}
+                  variant="course"
+                  className="h-3.5 w-3.5"
+                />
+                {c.title}
+                {done && <Check className="h-3 w-3" strokeWidth={3} />}
+              </Link>
+            );
+          })}
         </div>
       )}
 
@@ -249,11 +269,13 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
 }
 
 export default function SkillTree({ data }: { data: SkillTreeData }) {
+  const [view, setView] = useState<"map" | "list">("map");
   const [lit, setLit] = useState<Lit>({
     read: {},
     quizzes: new Set(),
     badges: new Set(),
     tools: new Set(),
+    starters: new Set(),
     goalTopics: new Set(),
     mounted: false,
   });
@@ -268,14 +290,33 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         .map((k) => k.slice("topic-quiz:".length))
     );
     const badges = new Set(Object.keys(getBadges()));
-    const tools = new Set(
-      Object.keys(loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {})
-    );
+    const visited =
+      loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
+    const tools = new Set(Object.keys(visited));
+
+    // First-steps actions, proven done by the trackers that already exist.
+    const starters = new Set<string>();
+    if (loadJSON(STORAGE_KEYS.quizResult) !== null) starters.add("quiz");
+    if (loadJSON(STORAGE_KEYS.budget) !== null) starters.add("budget");
+    if (loadJSON(STORAGE_KEYS.realityCheck) !== null) starters.add("reality");
+    if (loadJSON(PLAN_KEY) !== null) starters.add("plan");
+    const profile = readLocalProfile();
+    if (profile && (profile.goals.length > 0 || profile.displayName))
+      starters.add("profile");
+    if (visited["/resources"] || visited["/students/resources"])
+      starters.add("resources");
+    const pendingPosts =
+      loadJSON<Record<string, unknown>>("empower:community-posts:v1") ?? {};
+    const pendingComments =
+      loadJSON<Record<string, unknown>>("empower:community-comments:v1") ?? {};
+    if (Object.keys(pendingPosts).length + Object.keys(pendingComments).length > 0)
+      starters.add("community");
+
     const ctx = readContext();
     const goalTopics = new Set(
       data.branches.filter((b) => topicMatchesGoals(b.id, ctx)).map((b) => b.id)
     );
-    setLit({ read, quizzes, badges, tools, goalTopics, mounted: true });
+    setLit({ read, quizzes, badges, tools, starters, goalTopics, mounted: true });
   }, [data.branches]);
 
   // Goal branches lead; everything else keeps the canonical topic order.
@@ -303,7 +344,10 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     ? data.branches.filter((b) => b.hasQuiz && lit.quizzes.has(b.id)).length
     : 0;
   const coursesDone = lit.mounted
-    ? data.branches.filter((b) => b.course && lit.badges.has(b.course.id)).length
+    ? data.branches.reduce(
+        (n, b) => n + b.courses.filter((c) => lit.badges.has(c.id)).length,
+        0
+      )
     : 0;
   const toolsUsed = lit.mounted ? lit.tools.size : 0;
 
@@ -329,12 +373,103 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         ))}
       </div>
 
-      {/* The nine branches */}
-      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {ordered.map((b) => (
-          <Branch key={b.id} b={b} lit={lit} />
-        ))}
+      {/* View toggle — the radial map IS the tree; the list keeps the detail */}
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setView("map")}
+            aria-pressed={view === "map"}
+            className={viewChip(view === "map")}
+          >
+            Map
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("list")}
+            aria-pressed={view === "list"}
+            className={viewChip(view === "list")}
+          >
+            Branch list
+          </button>
+        </div>
+        {view === "map" && (
+          <div className="flex flex-col items-end gap-1 text-[11px] font-semibold text-stone">
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-ink bg-forest" />
+                done
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-forest bg-forest/25" />
+                in progress
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-3 w-3 rounded-full border border-forest/40 bg-cream" />
+                not yet
+              </span>
+              <span>· drag to explore — every circle is a link</span>
+            </p>
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="inline-flex items-center gap-1">
+                <BookOpen className="h-3 w-3" strokeWidth={2.5} /> guide
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Zap className="h-3 w-3" strokeWidth={2.5} /> quick win
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Wrench className="h-3 w-3" strokeWidth={2.5} /> tool
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <BadgeMedal color="#5f6b64" variant="course" className="h-3 w-3" />{" "}
+                course
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Route className="h-3 w-3" strokeWidth={2.5} /> life plan
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Star className="h-3 w-3" strokeWidth={2.5} /> quiz
+              </span>
+            </p>
+          </div>
+        )}
       </div>
+
+      {view === "map" ? (
+        <div className="mt-4">
+          <SkillTreeMap data={data} lit={lit} />
+        </div>
+      ) : (
+        <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="card-ink flex flex-col rounded-2xl bg-cream p-5">
+            <h3 className="font-display text-lg font-bold leading-snug text-ink">
+              First steps
+            </h3>
+            <p className="mt-0.5 text-[13px] font-semibold tabular-nums text-stone">
+              {lit.mounted ? lit.starters.size : 0} of {data.starters.length}{" "}
+              quick wins done
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {data.starters.map((s) => {
+                const done = lit.starters.has(s.id);
+                return (
+                  <Link key={s.id} href={s.href} className={sideChip(done)}>
+                    {s.label}
+                    {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                  </Link>
+                );
+              })}
+            </div>
+            <p className="mt-4 border-t border-sand pt-3 text-sm font-semibold text-stone">
+              The quick wins that make the site yours — each one takes a few
+              minutes.
+            </p>
+          </div>
+          {ordered.map((b) => (
+            <Branch key={b.id} b={b} lit={lit} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
