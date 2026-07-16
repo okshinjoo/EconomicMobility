@@ -58,7 +58,7 @@ export default function CareerExplorerPage() {
             &ldquo;Earn while you train&rdquo; is strict: it marks only paths
             with a genuinely paid pathway — apprenticeships, academies,
             employer-funded training — not just &ldquo;no degree
-            required.&rdquo;
+            required.&rdquo; Every figure was re-verified against bls.gov in July 2026.
           </p>
         </div>
       </section>

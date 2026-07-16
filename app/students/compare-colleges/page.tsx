@@ -80,7 +80,9 @@ export default function CompareCollegesPage() {
             weigh&rdquo;), admissions releases, and aid pages, from the{" "}
             {COLLEGE_DATA_VINTAGE} unless noted. Admit rates drift every year;
             treat a point or two as noise. A &ldquo;—&rdquo; means the college
-            doesn&apos;t publish that number, not that it doesn&apos;t matter.
+            doesn&apos;t publish that number, not that it doesn&apos;t matter.{" "}
+            Every school's figures were re-verified against official sources
+            (CDS filings, .edu pages, federal College Scorecard) in July 2026.
           </p>
         </div>
       </section>
