@@ -140,7 +140,7 @@ export const colleges: CollegeProfile[] = [
       admitRate: 1,
       admitYear: "fall 2023",
       gpaNote: null,
-      note: "Around 15 transfer spots a year — effectively a lottery.",
+      note: "Roughly a dozen transfer spots a year — effectively a lottery.",
     },
   },
   {
@@ -173,7 +173,7 @@ export const colleges: CollegeProfile[] = [
     },
     note: "One of the few that says outright: legacy counts for nothing.",
     transfer: {
-      admitRate: 4,
+      admitRate: 2,
       admitYear: "fall 2023",
       gpaNote: null,
       note: "A few dozen admits a year — transfer is HARDER than freshman admission here.",
@@ -572,8 +572,8 @@ export const colleges: CollegeProfile[] = [
     note: "UC “comprehensive review”: no test scores, no legacy, no required letters (Berkeley invites some optionally) — your record and your PIQ essays.",
     transfer: {
       admitRate: 25,
-      admitYear: "fall 2023",
-      gpaNote: "3.0 minimum for CA residents; admitted transfers average ≈3.9",
+      admitYear: "fall 2024",
+      gpaNote: "3.0 minimum for all applicants (3.5 for Engineering); admitted mid-50% 3.61–3.96",
       note: "Junior-level transfers only; California community colleges get priority by UC policy.",
     },
   },
@@ -606,10 +606,10 @@ export const colleges: CollegeProfile[] = [
     },
     note: "The most-applied-to university in America — same UC review as Berkeley, no legacy, no letters.",
     transfer: {
-      admitRate: 26,
+      admitRate: 23,
       admitYear: "fall 2024",
-      gpaNote: "2.4 minimum to apply (higher for most majors); admitted transfers average ≈3.9",
-      note: "About 9 in 10 admitted transfers come from California community colleges — the designed path.",
+      gpaNote: "2.4 minimum to apply (competitive admits 3.2+); admitted median 3.90",
+      note: "CA community-college applicants fare even better (26% admitted) — 93% of admitted transfers come from a CCC.",
     },
   },
   {
@@ -665,9 +665,9 @@ export const colleges: CollegeProfile[] = [
     },
     note: "A public that reads like a private — essays and context genuinely move decisions.",
     transfer: {
-      admitRate: 40,
-      admitYear: "fall 2023",
-      gpaNote: "3.0 minimum recommended; competitive admits run higher",
+      admitRate: 35,
+      admitYear: "fall 2024",
+      gpaNote: "No university-wide minimum published; Engineering requires 3.0 in prerequisites",
       note: "Roughly double the freshman admit rate — a genuinely wider second door.",
     },
   },
