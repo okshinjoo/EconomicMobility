@@ -65,6 +65,15 @@ export interface CollegeProfile {
   control: "public" | "private";
   /** Religious affiliation, when the college has one. */
   religious?: string;
+  /** Undergraduate enrollment, rounded (render with ≈); null = not encoded. */
+  undergrads: number | null;
+  /** SAT middle 50% of enrolled first-years (CDS C9); null = not published
+   *  or test-blind. */
+  satRange: string | null;
+  /** ACT middle 50% (CDS C9); null = not published or test-blind. */
+  actRange: string | null;
+  /** Six-year graduation rate, percent (CDS section B); null = not encoded. */
+  gradRate: number | null;
   /** Percent admitted, with the cycle it comes from. */
   admitRate: number;
   admitYear: string;
@@ -101,6 +110,10 @@ export const COLLEGE_DATA_VINTAGE = "2024–25 admissions cycle";
 export const colleges: CollegeProfile[] = [
   {
     id: "harvard",
+    undergrads: 7100,
+    satRange: "1500–1580",
+    actRange: "34–36",
+    gradRate: 98,
     name: "Harvard University",
     place: "Cambridge, MA",
     control: "private",
@@ -131,6 +144,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "mit",
+    undergrads: 4600,
+    satRange: "1520–1580",
+    actRange: "35–36",
+    gradRate: 96,
     name: "MIT",
     place: "Cambridge, MA",
     control: "private",
@@ -163,6 +180,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "yale",
+    undergrads: 6700,
+    satRange: "1500–1580",
+    actRange: "33–35",
+    gradRate: 97,
     name: "Yale University",
     place: "New Haven, CT",
     control: "private",
@@ -191,6 +212,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "stanford",
+    undergrads: 7800,
+    satRange: "1500–1580",
+    actRange: "34–35",
+    gradRate: 94,
     name: "Stanford University",
     place: "Stanford, CA",
     control: "private",
@@ -219,6 +244,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "amherst",
+    undergrads: 1900,
+    satRange: "1450–1550",
+    actRange: "33–35",
+    gradRate: 93,
     name: "Amherst College",
     place: "Amherst, MA",
     control: "private",
@@ -245,6 +274,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "bowdoin",
+    undergrads: 1800,
+    satRange: "1450–1550",
+    actRange: "33–35",
+    gradRate: 94,
     name: "Bowdoin College",
     place: "Brunswick, ME",
     control: "private",
@@ -266,6 +299,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "dartmouth",
+    undergrads: 4500,
+    satRange: "1480–1570",
+    actRange: "33–35",
+    gradRate: 95,
     name: "Dartmouth College",
     place: "Hanover, NH",
     control: "private",
@@ -287,6 +324,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "brown",
+    undergrads: 7200,
+    satRange: "1490–1570",
+    actRange: "34–35",
+    gradRate: 95,
     name: "Brown University",
     place: "Providence, RI",
     control: "private",
@@ -309,6 +350,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "georgetown",
+    undergrads: 7900,
+    satRange: "1440–1550",
+    actRange: "32–35",
+    gradRate: null,
     name: "Georgetown University",
     place: "Washington, DC",
     control: "private",
@@ -330,6 +375,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "notre-dame",
+    undergrads: 8900,
+    satRange: "1440–1550",
+    actRange: "33–35",
+    gradRate: 96,
     name: "University of Notre Dame",
     place: "Notre Dame, IN",
     control: "private",
@@ -351,6 +400,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "boston-college",
+    undergrads: 9500,
+    satRange: "1430–1530",
+    actRange: "32–34",
+    gradRate: 92,
     name: "Boston College",
     place: "Chestnut Hill, MA",
     control: "private",
@@ -370,6 +423,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "baylor",
+    undergrads: 15200,
+    satRange: null,
+    actRange: "25–31",
+    gradRate: 80,
     name: "Baylor University",
     place: "Waco, TX",
     control: "private",
@@ -389,6 +446,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "byu",
+    undergrads: 31000,
+    satRange: null,
+    actRange: "26–32",
+    gradRate: null,
     name: "BYU (Brigham Young)",
     place: "Provo, UT",
     control: "private",
@@ -409,6 +470,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "berea",
+    undergrads: 1500,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
     name: "Berea College",
     place: "Berea, KY",
     control: "private",
@@ -429,6 +494,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "vanderbilt",
+    undergrads: 7100,
+    satRange: "1500–1570",
+    actRange: "34–35",
+    gradRate: 93,
     name: "Vanderbilt University",
     place: "Nashville, TN",
     control: "private",
@@ -449,6 +518,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "rice",
+    undergrads: 4500,
+    satRange: "1500–1570",
+    actRange: "34–35",
+    gradRate: 93,
     name: "Rice University",
     place: "Houston, TX",
     control: "private",
@@ -469,6 +542,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "uc-berkeley",
+    undergrads: 33000,
+    satRange: null,
+    actRange: null,
+    gradRate: 93,
     name: "UC Berkeley",
     place: "Berkeley, CA",
     control: "public",
@@ -500,6 +577,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "ucla",
+    undergrads: 32000,
+    satRange: null,
+    actRange: null,
+    gradRate: 92,
     name: "UCLA",
     place: "Los Angeles, CA",
     control: "public",
@@ -531,6 +612,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "ut-austin",
+    undergrads: 42000,
+    satRange: "1230–1480",
+    actRange: null,
+    gradRate: 88,
     name: "UT Austin",
     place: "Austin, TX",
     control: "public",
@@ -556,6 +641,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "michigan",
+    undergrads: 33000,
+    satRange: "1350–1530",
+    actRange: "31–34",
+    gradRate: 93,
     name: "University of Michigan",
     place: "Ann Arbor, MI",
     control: "public",
@@ -582,6 +671,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "alabama",
+    undergrads: 32000,
+    satRange: null,
+    actRange: "21–31",
+    gradRate: 72,
     name: "University of Alabama",
     place: "Tuscaloosa, AL",
     control: "public",
@@ -600,6 +693,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "csulb",
+    undergrads: 33000,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
     name: "Cal State Long Beach",
     place: "Long Beach, CA",
     control: "public",
@@ -629,6 +726,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "howard",
+    undergrads: 10000,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
     name: "Howard University",
     place: "Washington, DC",
     control: "private",
@@ -648,6 +749,10 @@ export const colleges: CollegeProfile[] = [
   },
   {
     id: "asu",
+    undergrads: 65000,
+    satRange: "1110–1350",
+    actRange: null,
+    gradRate: 67,
     name: "Arizona State University",
     place: "Tempe, AZ",
     control: "public",

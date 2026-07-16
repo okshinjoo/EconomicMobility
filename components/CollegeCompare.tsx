@@ -258,6 +258,18 @@ export default function CollegeCompare() {
                   ["Meets full need", (c: CollegeProfile) => (c.meetsFullNeed ? "Yes" : "No")],
                   ["Tests", (c: CollegeProfile) => (c.testPolicy ? TEST_LABEL[c.testPolicy] : "—")],
                   ["GPA (published)", (c: CollegeProfile) => c.gpaNote ?? "—"],
+                  [
+                    "Undergrads",
+                    (c: CollegeProfile) =>
+                      c.undergrads != null ? `≈${c.undergrads.toLocaleString()}` : "—",
+                  ],
+                  ["SAT (middle 50%)", (c: CollegeProfile) => c.satRange ?? "—"],
+                  ["ACT (middle 50%)", (c: CollegeProfile) => c.actRange ?? "—"],
+                  [
+                    "6-year grad rate",
+                    (c: CollegeProfile) =>
+                      c.gradRate != null ? `${c.gradRate}%` : "—",
+                  ],
                   ["Religious affiliation", (c: CollegeProfile) => c.religious ?? "None"],
                   ["Aid note", (c: CollegeProfile) => c.aidNote ?? "—"],
                   [
@@ -325,6 +337,9 @@ export default function CollegeCompare() {
                   <p className="mt-0.5 text-[13px] font-medium text-stone">
                     {c.place} · {c.control === "public" ? "Public" : "Private"}
                     {c.religious ? ` · ${c.religious}` : ""}
+                    {c.undergrads != null
+                      ? ` · ≈${c.undergrads.toLocaleString()} undergrads`
+                      : ""}
                   </p>
                 </div>
                 <div className="text-right">
@@ -355,6 +370,20 @@ export default function CollegeCompare() {
                   {b.label}
                 </span>
               </div>
+
+              {(c.satRange || c.actRange || c.gradRate != null) && (
+                <p className="mt-2 text-[13px] font-medium text-stone">
+                  {[
+                    c.satRange ? `SAT ${c.satRange}` : null,
+                    c.actRange ? `ACT ${c.actRange}` : null,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                  {(c.satRange || c.actRange) && " (middle 50%)"}
+                  {c.gradRate != null &&
+                    `${c.satRange || c.actRange ? " · " : ""}${c.gradRate}% graduate in 6 years`}
+                </p>
+              )}
 
               {(very.length > 0 || important.length > 0 || nos.length > 0) && (
                 <div className="mt-3 space-y-1.5 text-[13px] leading-5">
