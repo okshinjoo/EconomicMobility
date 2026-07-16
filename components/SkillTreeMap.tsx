@@ -1,13 +1,15 @@
 "use client";
 
 // SkillTreeMap — the radial mind-map view of the skill tree (July 16, 2026,
-// owner ask: make the tree LOOK like a Creately-style radial skill map).
-// Pure geometry (deterministic, no Date/random — the server renders the
-// zero-progress map, no hydration mismatch); lighting comes from the same
-// Lit trackers SkillTree derives. Every node is a real link; undone nodes
-// render pale, never locked (memory contract). Mouse drags to pan (native
-// scroll covers touch); the Branch-list toggle in SkillTree keeps the
-// accessible card view with the full detail.
+// owner ask: a Creately-style radial skill map; v2 same day: "more branching
+// out pathways" — every GUIDE is now its own circle, fanning out in rows at
+// its tier's depth instead of one straight chain, and spacing was widened so
+// nothing overlaps). Pure geometry (deterministic, no Date/random — the
+// server renders the zero-progress map, no hydration mismatch); lighting
+// comes from the same Lit trackers SkillTree derives. Every node is a real
+// link; undone nodes render pale, never locked (memory contract). Mouse
+// drags to pan (native scroll covers touch); the Branch-list toggle in
+// SkillTree keeps the accessible card view.
 
 import { useEffect, useRef, type ReactElement } from "react";
 import Link from "next/link";
@@ -17,16 +19,22 @@ import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillTreeData } from "@/lib/skillTree";
 import type { Lit } from "@/components/SkillTree";
 
-// Canvas geometry — an ellipse (y squashed) so the map reads wide like a
-// whiteboard, not a tall circle.
-const W = 1820;
-const H = 1300;
+// Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
+// laid out in rows whose per-row capacity grows with radius, so wide tiers
+// wrap into extra rows instead of colliding with the neighboring branch.
+const W = 2000;
+const H = 2000;
 const CX = W / 2;
 const CY = H / 2;
-const SQUASH = 0.66;
-const R_HEAD = 185; // radius of the topic head nodes
-const STEP = 132; // spacing between chain nodes along an arm
-const LEAF_STEP = 124; // tool/course leaves sit past the chain's end
+const R_HEAD = 230; // radius of the topic head nodes
+const SECTOR = 0.3; // half-width (radians) of a branch's lane
+const DOT = 26; // guide-dot diameter
+const DOT_GAP = 34; // chord spacing between dots in a row
+const ROW_STEP = 46; // radial spacing between rows of one tier
+const TIER_LEAD = 62; // spine run from the previous band to a tier pill
+const ROW_LEAD = 52; // tier pill to its first row of dots
+const QUIZ_LEAD = 76; // last row to the checkpoint diamond
+const LEAF_LEAD = 110; // chain end to the tool/course leaves
 const LEAF_SPREAD = 0.115; // radians between the two leaves
 
 const CREAM = "#fdfbf2";
@@ -46,7 +54,7 @@ function fill(state: NodeState, color: string) {
 }
 
 function pt(r: number, a: number) {
-  return { x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) * SQUASH };
+  return { x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) };
 }
 
 interface MapLine {
@@ -144,12 +152,11 @@ export default function SkillTreeMap({
       </Link>
     );
 
-    // Chain: tier nodes, then the checkpoint-quiz diamond.
+    // Tier bands: a labeled pill on the spine, then the tier's guides as
+    // dots in rows — several guides share the same depth and branch off.
+    let rCur = R_HEAD;
     let prev = head;
-    let k = 0;
     b.tiers.forEach((tier, ti) => {
-      k += 1;
-      const p = pt(R_HEAD + k * STEP, a);
       const done = tier.articles.filter((x) => lit.read[x.slug]).length;
       const state: NodeState =
         tier.articles.length > 0 && done === tier.articles.length
@@ -157,11 +164,13 @@ export default function SkillTreeMap({
           : done > 0
             ? "part"
             : "none";
+      const chipR = rCur + TIER_LEAD;
+      const chip = pt(chipR, a);
       lines.push({
         x1: prev.x,
         y1: prev.y,
-        x2: p.x,
-        y2: p.y,
+        x2: chip.x,
+        y2: chip.y,
         color: b.color,
         lit: state !== "none",
       });
@@ -169,37 +178,85 @@ export default function SkillTreeMap({
         tier.articles.find((x) => !lit.read[x.slug]) ?? tier.articles[0];
       nodes.push(
         <Link
-          key={`${b.id}-t${ti}`}
+          key={`${b.id}-chip-${ti}`}
           href={next ? `${b.href}/${next.slug}` : b.href}
           title={`${b.short} · ${tier.label}: ${
             lit.mounted ? done : 0
           } of ${tier.articles.length} read${
             next ? ` — next: ${next.title}` : ""
           }`}
-          className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+          className="absolute z-10 whitespace-nowrap rounded-md border-2 px-2 py-0.5 text-[10px] font-bold transition-colors duration-500 hover:z-20 hover:scale-105"
           style={{
-            left: p.x,
-            top: p.y,
-            width: 82,
-            height: 82,
+            left: chip.x,
+            top: chip.y,
             transform: "translate(-50%, -50%)",
             ...fill(state, b.color),
           }}
         >
-          <span className="text-[10px] font-bold leading-[1.1]">
-            {tier.label}
-          </span>
-          <span className="text-[9.5px] font-bold tabular-nums opacity-80">
-            {lit.mounted ? done : 0}/{tier.articles.length}
-          </span>
+          {tier.label} · {lit.mounted ? done : 0}/{tier.articles.length}
         </Link>
       );
-      prev = p;
+
+      let r = chipR + ROW_LEAD;
+      let idx = 0;
+      let lastSpine = chip;
+      while (idx < tier.articles.length) {
+        const cap = Math.max(3, Math.floor((2 * SECTOR * r) / DOT_GAP));
+        const k = Math.min(cap, tier.articles.length - idx);
+        const row = tier.articles.slice(idx, idx + k);
+        const spine = pt(r, a);
+        lines.push({
+          x1: lastSpine.x,
+          y1: lastSpine.y,
+          x2: spine.x,
+          y2: spine.y,
+          color: b.color,
+          lit: row.some((x) => lit.read[x.slug]),
+        });
+        row.forEach((art, j) => {
+          const off = (j - (k - 1) / 2) * (DOT_GAP / r);
+          const p = pt(r, a + off);
+          const read = Boolean(lit.read[art.slug]);
+          lines.push({
+            x1: spine.x,
+            y1: spine.y,
+            x2: p.x,
+            y2: p.y,
+            color: b.color,
+            lit: read,
+          });
+          nodes.push(
+            <Link
+              key={`${b.id}-g-${art.slug}`}
+              href={`${b.href}/${art.slug}`}
+              title={`${art.title}${lit.mounted && read ? " — read" : ""}`}
+              aria-label={`${art.title}${
+                lit.mounted && read ? " (read)" : ""
+              }`}
+              className="absolute z-10 rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-125"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: DOT,
+                height: DOT,
+                transform: "translate(-50%, -50%)",
+                backgroundColor: read ? b.color : CREAM,
+                borderColor: read ? INK : `${b.color}66`,
+              }}
+            />
+          );
+        });
+        idx += k;
+        lastSpine = spine;
+        r += ROW_STEP;
+      }
+      rCur = r - ROW_STEP;
+      prev = lastSpine;
     });
 
+    // The checkpoint-quiz diamond caps the chain.
     if (b.hasQuiz) {
-      k += 1;
-      const p = pt(R_HEAD + k * STEP, a);
+      const p = pt(rCur + QUIZ_LEAD, a);
       const done = lit.quizzes.has(b.id);
       lines.push({
         x1: prev.x,
@@ -233,10 +290,11 @@ export default function SkillTreeMap({
         </Link>
       );
       prev = p;
+      rCur += QUIZ_LEAD;
     }
 
     // Leaves: the topic's tool and flagship course fan out at the tip.
-    const leafR = R_HEAD + k * STEP + LEAF_STEP;
+    const leafR = rCur + LEAF_LEAD;
     const both = Boolean(b.tool && b.course);
     if (b.tool) {
       const p = pt(leafR, a + (both ? -LEAF_SPREAD : 0));
