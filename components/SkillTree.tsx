@@ -15,6 +15,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Check, Route, Star, Wrench, X, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import SkillTreeMap from "@/components/SkillTreeMap";
+import ProgressRings from "@/components/ProgressRings";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
 import { readStarterSet, skillPointsTotal, SKILL_POINTS } from "@/lib/skillPoints";
@@ -732,25 +733,40 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         </Link>
       </div>
 
-      {/* Canopy: overall progress */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {(
-          [
-            [guidesRead, data.guidesTotal, "guides read"],
-            [quizzesDone, data.quizzesTotal, "checkpoint quizzes"],
-            [coursesDone, data.coursesTotal, "flagship courses"],
-            [toolsUsed, data.toolsTotal, "tools tried"],
-          ] as const
-        ).map(([done, total, label]) => (
-          <div key={label} className="rounded-2xl border-2 border-ink/10 bg-cream p-4">
-            <div className="font-display text-3xl font-bold tabular-nums text-forest">
-              {done}
-              <span className="text-lg font-semibold text-stone">/{total}</span>
+      {/* Canopy: overall progress as nested rings (owner ask July 17 —
+          the Apple Activity card, in house colors). Server paints every
+          ring empty; the trackers hydrate above and the rings draw in. */}
+      {(() => {
+        const canopy = [
+          { label: "guides read", done: guidesRead, total: data.guidesTotal, color: "#15624b" },
+          { label: "checkpoint quizzes", done: quizzesDone, total: data.quizzesTotal, color: "#c9842a" },
+          { label: "flagship courses", done: coursesDone, total: data.coursesTotal, color: "#d26a4c" },
+          { label: "tools tried", done: toolsUsed, total: data.toolsTotal, color: "#2f6d80" },
+        ];
+        return (
+          <div className="flex flex-col items-center gap-6 rounded-2xl border-2 border-ink/10 bg-cream p-6 sm:flex-row sm:gap-10 sm:p-7">
+            <ProgressRings items={canopy} />
+            <div className="grid w-full flex-1 grid-cols-2 gap-x-6 gap-y-4">
+              {canopy.map((c) => (
+                <div key={c.label}>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-stone">
+                    {c.label}
+                  </div>
+                  <div
+                    className="font-display text-3xl font-bold tabular-nums"
+                    style={{ color: c.color }}
+                  >
+                    {c.done}
+                    <span className="text-lg font-semibold text-stone">
+                      /{c.total}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="mt-0.5 text-[13px] font-semibold text-stone">{label}</div>
           </div>
-        ))}
-      </div>
+        );
+      })()}
 
       {/* View toggle — the radial map IS the tree; the list keeps the detail */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
