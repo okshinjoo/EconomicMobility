@@ -38,14 +38,14 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "careers-bls",
     name: "Career Explorer — BLS data",
-    what: "100 careers: median pay (May 2024 OES), growth (2024–34 projections), typical entry education.",
+    what: "100 careers: median pay (May 2025 OEWS), growth (2024–34 projections), typical entry education.",
     files: ["lib/careers.ts"],
     publicVintage: CAREER_DATA_VINTAGE,
-    lastVerified: "July 2026",
-    cadence: "Each spring, when BLS publishes the new OES wage survey.",
-    nextDueISO: "2026-08-15",
+    lastVerified: "July 17, 2026 (May 2025 OEWS applied — all 100 SOC-matched from bls.gov oesm25nat)",
+    cadence: "Each spring when BLS publishes the new OEWS wage survey; projections refresh in fall (2025–35 set expected fall 2026).",
+    nextDueISO: "2026-11-15",
     recipe:
-      "The May 2025 OES published in spring 2026, so a refresh is already possible: update medianPay per occupation from bls.gov/oes, keep growth on the 2024–34 projections until the next projection cycle, bump CAREER_DATA_VINTAGE, and spot-check earnWhileTraining flags (strict rule: genuinely paid pathways only).",
+      "Two parts. FALL 2026: the 2025–35 employment projections should publish — update each career's growth and the vintage's projection years. SPRING 2027: May 2026 OEWS wages — download oesm26nat.zip via a real browser (BLS blocks curl), SOC-match (the July 2026 refresh script pattern lives in git history), update medianPay, bump CAREER_DATA_VINTAGE. Spot-check earnWhileTraining flags each pass (strict rule: genuinely paid pathways only).",
   },
   {
     id: "colleges-cds",
