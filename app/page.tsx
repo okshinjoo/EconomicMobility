@@ -326,36 +326,40 @@ export default function Home() {
 
 
       {/* The library, in numbers — every figure derived live from the data
-          (honesty rule), counting up on first scroll into view. */}
+          (honesty rule), counting up on first scroll into view. Owner pass
+          July 17: each pair is a LINK to its home, and the cells sit on one
+          straight line (the old alternating lg:mt-6 stagger is gone; six
+          across on lg). prefetch={false}: six hub payloads racing the page
+          on scroll-into-view is the exact perf-audit failure mode. */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-16">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
             {(
               [
-                [guideTotal, "Guides", "plain-English, every one free"],
-                [scholarships.length, "Scholarships", "each one hand-verified"],
-                [opportunities.length, "Opportunities", "paid internships and programs, vetted"],
-                [calculatorTotal, "Calculators", "running right in your browser"],
-                [glossary.length, "Terms", "jargon, translated to plain English"],
-                [courses.length, "Courses", "focused, with a badge at the end"],
+                [guideTotal, "Guides", "plain-English, every one free", "/learn"],
+                [scholarships.length, "Scholarships", "each one hand-verified", "/students/scholarships"],
+                [opportunities.length, "Opportunities", "paid internships and programs, vetted", "/students/opportunities"],
+                [calculatorTotal, "Calculators", "running right in your browser", "/tools"],
+                [glossary.length, "Terms", "jargon, translated to plain English", "/glossary"],
+                [courses.length, "Courses", "focused, with a badge at the end", "/courses"],
               ] as const
-            ).map(([value, word, rest], i) => (
+            ).map(([value, word, rest, statHref], i) => (
               <Reveal key={word} delay={i * 90}>
-                <div className={i % 2 === 1 ? "lg:mt-6" : ""}>
+                <Link href={statHref} prefetch={false} className="group block">
                   {/* OYLA study: the number and its word as a stacked serif
                       pair — the figure stays live data (honesty rule). */}
                   <CountUp
                     value={value}
-                    className="font-display text-6xl font-bold tracking-tight text-forest sm:text-7xl"
+                    className="font-display text-6xl font-bold tracking-tight text-forest transition-colors group-hover:text-amber-deep"
                   />
-                  <div className="-mt-1 font-display text-3xl font-medium italic leading-tight tracking-tight text-ink sm:text-4xl">
+                  <div className="-mt-1 font-display text-2xl font-medium italic leading-tight tracking-tight text-ink decoration-amber decoration-2 underline-offset-4 group-hover:underline sm:text-3xl">
                     {word}
                   </div>
-                  <div className="mt-3 h-1 w-10 rounded-full bg-amber" />
-                  <p className="mt-3 max-w-[16rem] text-sm font-medium leading-6 text-stone">
+                  <div className="mt-3 h-1 w-10 rounded-full bg-amber transition-[width] duration-200 group-hover:w-16" />
+                  <p className="mt-3 text-sm font-medium leading-6 text-stone">
                     {rest}
                   </p>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>
