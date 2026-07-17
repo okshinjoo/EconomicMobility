@@ -7,9 +7,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
  *  in the rail "should show a different visual"). Five variants, one per
  *  rail calculator, each computed from REAL arithmetic below (the honesty
  *  rule: "not a prediction, just arithmetic") and normalized into the same
- *  400×240 stage. Amber line draws in, faint bars rise, dots pop — the
- *  full show once on first viewport entry, a faster replay on every
- *  variant swap. Server renders the finished compound chart (no-JS and
+ *  400×240 stage. Look follows the owner's bklit.com reference (July 17):
+ *  a smooth curve, dashed column gridlines at the milestones, labels
+ *  centered under their columns. Amber line draws in, columns fade up,
+ *  dots pop — the full show once on first viewport entry, a faster
+ *  replay on every variant swap. Server renders the finished compound chart (no-JS and
  *  reduced-motion visitors see charts complete, swaps included).
  *  Deliberately no dollar axis: the calculators hold the real numbers. */
 
@@ -19,26 +21,40 @@ const X0 = 20, X1 = 380, Y_TOP = 20, Y_BASE = 220;
 
 interface VariantData {
   line: string;
+  area: string;
   /** Optional dashed reference (savings goal line, tax gross line). */
   refLine?: string;
-  bars: number[]; // heights in px (0..200)
   dots: Array<[number, number]>;
   labels: Array<[number, string]>;
   caption: string;
 }
 
-/** Normalize a sampled series into the stage; returns path + interpolators. */
+/** Normalize a sampled series into the stage; returns a SMOOTH path
+ *  (Catmull-Rom converted to cubic beziers — the bklit look) plus
+ *  interpolators. */
 function stage(values: number[], yMax: number) {
   const n = values.length - 1;
   const x = (i: number) => X0 + (i / n) * (X1 - X0);
   const y = (v: number) => Y_BASE - (v / yMax) * (Y_BASE - Y_TOP);
-  const line = values
-    .map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${y(v).toFixed(1)}`)
-    .join(" ");
-  return { line, x, y };
+  const pts = values.map((v, i) => [x(i), y(v)] as const);
+  let line = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[Math.min(pts.length - 1, i + 2)];
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+    line += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  const area = `${line} L${X1},${Y_BASE} L${X0},${Y_BASE} Z`;
+  return { line, area, x, y };
 }
 
-/** Five milestone picks along a series: dot coords, bar heights, labels. */
+/** Five milestone picks along a series: dot coords + labels centered on
+ *  the same column x (clamped so edge labels stay inside the stage). */
 function milestones(
   values: number[],
   yMax: number,
@@ -48,15 +64,13 @@ function milestones(
   const { x, y } = stage(values, yMax);
   const n = values.length - 1;
   const dots: Array<[number, number]> = [];
-  const bars: number[] = [];
   const labels: Array<[number, string]> = [];
   fracs.forEach((f, i) => {
     const idx = Math.round(f * n);
     dots.push([x(idx), y(values[idx])]);
-    bars.push(Math.max(8, (values[idx] / yMax) * 200));
-    labels.push([x(idx) - 14, names[i]]);
+    labels.push([Math.min(366, Math.max(34, x(idx))), names[i]]);
   });
-  return { dots, bars, labels };
+  return { dots, labels };
 }
 
 const VARIANTS: Record<MathVariant, VariantData> = (() => {
@@ -77,7 +91,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
       "Yr 1", "Yr 5", "Yr 10", "Yr 20", "Yr 30",
     ]);
     out.compound = {
-      line: s.line, ...m,
+      line: s.line, area: s.area, ...m,
       caption: "$200 a month at 7% — thirty years of compounding.",
     };
   }
@@ -100,7 +114,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
       `Mo ${Math.round(n * 0.75)}`, `Mo ${n}`,
     ]);
     out.debt = {
-      line: s.line, ...m,
+      line: s.line, area: s.area, ...m,
       caption: "$6,000 of card debt at 22% APR, $300 a month: gone in 26 months.",
     };
   }
@@ -126,6 +140,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
     ]);
     out.savings = {
       line: s.line,
+      area: s.area,
       refLine: `M${X0},${gy.toFixed(1)} L${X1},${gy.toFixed(1)}`,
       ...m,
       caption: "$150 a month toward a $5,000 goal (the dashed line).",
@@ -149,7 +164,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
       "Yr 1", "Yr 3", "Yr 5", "Yr 7", "Yr 10",
     ]);
     out.loan = {
-      line: s.line, ...m,
+      line: s.line, area: s.area, ...m,
       caption: "$30,000 borrowed at 6.8% — the standard 10-year payoff.",
     };
   }
@@ -183,6 +198,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
     ]);
     out.tax = {
       line: s.line,
+      area: s.area,
       refLine: ref.line,
       ...m,
       caption: "Take-home (solid) vs. gross pay (dashed) as income climbs.",
@@ -265,31 +281,41 @@ export default function CompoundChart({
             strokeDasharray="4 4"
           />
         ))}
-        {/* Faint bars rising under the line */}
-        {data.bars.map((h, i) => (
-          <rect
-            key={i}
-            x={40 + i * 70}
-            y={240 - h}
-            width="36"
-            height={h}
-            rx="4"
-            fill="#11211c"
-            fillOpacity="0.25"
+        {/* Dashed column gridlines at the milestones (the bklit look) */}
+        {data.dots.map(([cx], i) => (
+          <line
+            key={`col-${i}`}
+            x1={cx}
+            y1={Y_TOP - 8}
+            x2={cx}
+            y2={Y_BASE}
+            stroke="rgba(251,248,241,0.12)"
+            strokeWidth="1"
+            strokeDasharray="4 4"
             style={
               armed
                 ? {
-                    transformBox: "fill-box",
-                    transformOrigin: "bottom",
-                    transform: hidden ? "scaleY(0)" : "scaleY(1)",
-                    transition: `transform ${0.6 * t}s cubic-bezier(0.22,1,0.36,1) ${
-                      (0.3 + i * 0.12) * t
-                    }s`,
+                    opacity: hidden ? 0 : 1,
+                    transition: `opacity ${0.5 * t}s ease ${(0.2 + i * 0.1) * t}s`,
                   }
                 : undefined
             }
           />
         ))}
+        {/* Soft area fill under the curve */}
+        <path
+          d={data.area}
+          fill="#e7a33c"
+          fillOpacity="0.1"
+          style={
+            armed
+              ? {
+                  opacity: hidden ? 0 : 1,
+                  transition: `opacity ${1 * t}s ease ${1.2 * t}s`,
+                }
+              : undefined
+          }
+        />
         {/* Dashed reference line (savings goal / gross pay) */}
         {data.refLine && (
           <path
@@ -354,8 +380,9 @@ export default function CompoundChart({
           <text
             key={label}
             x={x}
-            y="232"
+            y="234"
             fontSize="10"
+            textAnchor="middle"
             fill="rgba(251,248,241,0.5)"
           >
             {label}
