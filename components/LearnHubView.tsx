@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import { ReadBadge } from "@/components/ReadBadge";
@@ -64,7 +65,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
           color="#fbf8f1"
           className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.07]"
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 pt-14 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <HeroRecede className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 pt-14 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div>
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             The Library
@@ -137,7 +138,7 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
               </Reveal>
             ))}
           </div>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* The full library — horizontal topic rows, photos alternating sides */}

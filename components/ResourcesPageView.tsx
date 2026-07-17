@@ -4,6 +4,7 @@ import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import { scholarships } from "@/lib/scholarships";
 import HeadlineRise from "@/components/HeadlineRise";
 
@@ -127,7 +128,7 @@ export default function ResourcesPageView() {
               className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.16]"
             />
           </ScrollDrift>
-          <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-14 lg:pt-20">
+          <HeroRecede className="relative mx-auto max-w-5xl px-6 pb-28 pt-14 lg:pt-20">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Resources
             </span>
@@ -140,7 +141,7 @@ export default function ResourcesPageView() {
               college aid, government benefits, money help, and taxes. Usually
               the hard part is knowing they exist.
             </p>
-          </div>
+          </HeroRecede>
         </section>
 
         {/* State finder — the hero object, pulled up over the field */}

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 
 export const metadata: Metadata = {
   title: "Who We Are | Empower — Economic Mobility Project",
@@ -35,7 +36,7 @@ export default function WhoWeArePage() {
             className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Who We Are
           </span>
@@ -48,7 +49,7 @@ export default function WhoWeArePage() {
             looking for honest money answers, couldn&apos;t find them, and
             decided to build them for the next student in her shoes.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* The story — B: ink-framed photo + tilted quote card */}

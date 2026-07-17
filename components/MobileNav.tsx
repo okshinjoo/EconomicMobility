@@ -3,8 +3,35 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { nav } from "@/lib/nav";
+
+/* SynapseX study (July 17, 2026): the menu glyph is three real bars that
+   squash into an × — top bar drops + rotates, middle collapses, bottom
+   rises + counter-rotates. Both the trigger and the drawer's close button
+   render the same glyph driven by the same `open`, so the morph plays as
+   the drawer fades in. Global reduced-motion CSS neutralizes it. */
+function MorphBars({ toX }: { toX: boolean }) {
+  const bar =
+    "absolute left-0 h-[2px] w-full rounded-full bg-current transition-transform duration-300";
+  return (
+    <span aria-hidden className="relative block h-[14px] w-[18px]">
+      <span
+        className={`${bar} top-0 ${toX ? "translate-y-[6px] rotate-45" : ""}`}
+      />
+      <span
+        className={`${bar} top-[6px] transition-[transform,opacity] ${
+          toX ? "scale-x-0 opacity-0" : ""
+        }`}
+      />
+      <span
+        className={`${bar} top-[12px] ${
+          toX ? "-translate-y-[6px] -rotate-45" : ""
+        }`}
+      />
+    </span>
+  );
+}
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -48,7 +75,7 @@ export default function MobileNav() {
         aria-expanded={open}
         className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-ink-700"
       >
-        <Menu className="h-6 w-6" />
+        <MorphBars toX={open} />
       </button>
 
       {mounted &&
@@ -70,7 +97,7 @@ export default function MobileNav() {
                 aria-label="Close menu"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-cream transition-colors hover:bg-ink-700"
               >
-                <X className="h-6 w-6" />
+                <MorphBars toX={open} />
               </button>
             </div>
 

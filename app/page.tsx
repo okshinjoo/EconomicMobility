@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
+import HeroRecede from "@/components/HeroRecede";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structuredData";
 import { topics } from "@/lib/topics";
@@ -172,7 +173,8 @@ export default function Home() {
       <main className="relative z-10 bg-paper" id="main-content" tabIndex={-1}>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
+        {/* SynapseX study (July 17): the hero sinks away as you scroll in. */}
+        <HeroRecede className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
           {/* Left: copy */}
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
@@ -250,7 +252,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* My Plan beta strip — front-and-center by owner call (July 14:

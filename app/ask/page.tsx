@@ -8,6 +8,7 @@ import AskQuestion from "@/components/AskQuestion";
 import AskAnswers from "@/components/AskAnswers";
 import { communityQuestions } from "@/lib/communityQuestions";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema } from "@/lib/structuredData";
 import HeadlineRise from "@/components/HeadlineRise";
@@ -47,7 +48,7 @@ export default function AskPage() {
               Q.
             </span>
           </ScrollDrift>
-          <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-14 lg:pt-20">
+          <HeroRecede className="relative mx-auto max-w-3xl px-6 pb-24 pt-14 lg:pt-20">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Ask Empower
             </span>
@@ -60,7 +61,7 @@ export default function AskPage() {
               Ask anything about money. The most common and useful questions
               get answered right here, in plain English.
             </p>
-          </div>
+          </HeroRecede>
         </section>
 
         {/* Ask box — B: the composer as a touchable object over the field */}

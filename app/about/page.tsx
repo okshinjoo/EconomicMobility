@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import HeadlineRise from "@/components/HeadlineRise";
 import Reveal from "@/components/Reveal";
 
@@ -104,7 +105,7 @@ export default function AboutPage() {
             className="pointer-events-none absolute left-[42%] top-[36%] h-44 w-44 opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Our Mission
           </span>
@@ -122,7 +123,7 @@ export default function AboutPage() {
             within reach of everyone. Especially the students who were never
             handed the map.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* The mission — leads the page: the case for access, in the owner's

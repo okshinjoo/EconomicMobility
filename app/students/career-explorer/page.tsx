@@ -9,6 +9,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CareerExplorer from "@/components/CareerExplorer";
@@ -32,7 +33,7 @@ export default function CareerExplorerPage() {
             className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
+        <HeroRecede className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Tool
           </span>
@@ -52,7 +53,7 @@ export default function CareerExplorerPage() {
           <p className="mt-4 text-sm font-semibold text-cream/60">
             {CAREER_DATA_VINTAGE} · every figure from public federal data
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* How to read this */}

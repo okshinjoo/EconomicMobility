@@ -2,6 +2,7 @@ import Link from "next/link";
 import CourseGrid, { type CourseCardData } from "@/components/CourseGrid";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import HeadlineRise from "@/components/HeadlineRise";
 import { courses, getCourseFlashcards } from "@/lib/courses";
 import { frameHref, type Frame } from "@/lib/frame";
@@ -37,7 +38,7 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
             className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Courses
           </span>
@@ -64,7 +65,7 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
             </Link>{" "}
             is always open.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       <section className="bg-paper">

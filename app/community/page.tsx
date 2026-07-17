@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import HeadlineRise from "@/components/HeadlineRise";
 import CommunityFeed from "@/components/CommunityFeed";
 import { communityPosts, getMemberIndex } from "@/lib/communityFeed";
@@ -40,7 +41,7 @@ export default function CommunityPage() {
             className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             The community
           </span>
@@ -59,7 +60,7 @@ export default function CommunityPage() {
             behind it (a first name is plenty). Everything is reviewed by a
             human before it appears for everyone, so it stays kind and useful.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Rail + feed (CommunityFeed owns the CGF-style left rail) */}

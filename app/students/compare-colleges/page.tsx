@@ -10,6 +10,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CollegeCompare from "@/components/CollegeCompare";
@@ -56,7 +57,7 @@ export default function CompareCollegesPage() {
             className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
+        <HeroRecede className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Tool
           </span>
@@ -76,7 +77,7 @@ export default function CompareCollegesPage() {
             {colleges.length} colleges · built from each school&apos;s own
             Common Data Set · no rankings, just published facts
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* How to read this — the honesty box */}

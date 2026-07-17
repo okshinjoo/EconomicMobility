@@ -14,6 +14,7 @@ import { frameHref } from "@/lib/frame";
 import Image from "next/image";
 import ParallaxPhoto from "@/components/ParallaxPhoto";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import HeadlineRise from "@/components/HeadlineRise";
 import { deadlines } from "@/lib/deadlines";
 import { scholarships } from "@/lib/scholarships";
@@ -69,7 +70,7 @@ export default function StudentsPage() {
             className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.15]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
+        <HeroRecede className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
           <div>
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               For students
@@ -140,7 +141,7 @@ export default function StudentsPage() {
               />
             </div>
           </div>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Made for you — stage picker that becomes six stage-right doors */}

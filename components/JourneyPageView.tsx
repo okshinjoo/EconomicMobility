@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import JourneyPath, { type PathStage } from "@/components/JourneyPath";
 import { getJourney } from "@/lib/journeys";
 import { frameHref, type Frame } from "@/lib/frame";
@@ -101,7 +102,7 @@ export default function JourneyPageView({
             className="pointer-events-none absolute -right-16 -top-10 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-4xl px-6 py-14 lg:py-20">
+        <HeroRecede className="relative mx-auto max-w-4xl px-6 py-14 lg:py-20">
           <Link
             href={href("/journey")}
             className="text-sm font-semibold text-cream/70 underline decoration-amber decoration-2 underline-offset-4 hover:text-cream"
@@ -122,7 +123,7 @@ export default function JourneyPageView({
             {journey.stages.length} milestones · {guideCount} guides · your
             progress saves on this device, no account needed.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       <section className="bg-paper">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import TopicMark from "@/components/TopicMark";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import { moments } from "@/lib/moments";
 import { frameHref, type Frame } from "@/lib/frame";
 import HeadlineRise from "@/components/HeadlineRise";
@@ -26,7 +27,7 @@ export default function LifePageView({ frame }: { frame: Frame }) {
             className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Life moments
           </span>
@@ -40,7 +41,7 @@ export default function LifePageView({ frame }: { frame: Frame }) {
             Pick your moment and get the three guides, the tool, and the path
             that fit it.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Moments grid */}

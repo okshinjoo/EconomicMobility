@@ -9,6 +9,7 @@ import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 import HeadlineRise from "@/components/HeadlineRise";
 
 export const metadata: Metadata = {
@@ -91,7 +92,7 @@ export default function StartHerePage() {
               className="pointer-events-none absolute -bottom-24 -right-20 h-[26rem] w-[26rem] opacity-[0.16]"
             />
           </ScrollDrift>
-          <div className="relative mx-auto max-w-5xl px-6 py-16 lg:py-24">
+          <HeroRecede className="relative mx-auto max-w-5xl px-6 py-16 lg:py-24">
             <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
               Start here
             </span>
@@ -102,7 +103,7 @@ export default function StartHerePage() {
               There&apos;s no wrong way to use Empower. If you&apos;re not sure
               where to begin, though, here&apos;s the quick tour.
             </p>
-          </div>
+          </HeroRecede>
         </section>
 
         {/* The path — editorial numbered walkthrough with giant numerals */}

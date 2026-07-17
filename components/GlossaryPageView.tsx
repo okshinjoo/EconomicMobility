@@ -5,6 +5,7 @@ import { glossary } from "@/lib/glossary";
 import { getTopic } from "@/lib/topics";
 import { frameHref, type Frame } from "@/lib/frame";
 import ScrollDrift from "@/components/ScrollDrift";
+import HeroRecede from "@/components/HeroRecede";
 
 
 /**
@@ -46,7 +47,7 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
             Aa
           </span>
         </ScrollDrift>
-        <div className="relative mx-auto max-w-5xl px-6 pb-14 pt-14 lg:pt-16">
+        <HeroRecede className="relative mx-auto max-w-5xl px-6 pb-14 pt-14 lg:pt-16">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-ink/60">
             Glossary
           </span>
@@ -74,7 +75,7 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
               </a>
             ))}
           </div>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Term marquee — real glossary entries, each links to its definition */}
