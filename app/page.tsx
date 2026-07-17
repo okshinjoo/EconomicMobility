@@ -21,10 +21,8 @@ import WelcomeBack, {
   type TopicPath,
   type BadgeSource,
 } from "@/components/WelcomeBack";
-import CompoundChart from "@/components/CompoundChart";
 import ParallaxPhoto from "@/components/ParallaxPhoto";
-import TiltCard from "@/components/TiltCard";
-import { TrendUp as TrendingUp, CreditCard, PiggyBank, GraduationCap, Percent } from "@phosphor-icons/react/dist/ssr";
+import MathShowcase from "@/components/MathShowcase";
 import Reveal from "@/components/Reveal";
 import HeadlineRise from "@/components/HeadlineRise";
 import Ticker from "@/components/Ticker";
@@ -38,16 +36,6 @@ import { deadlines } from "@/lib/deadlines";
 // Real questions, real guides — the honest front door to the library.
 // The first four render for everyone; once a reader finishes one of these
 // articles, QuestionStrip rotates it out and pulls in the next question.
-// "More calculators" rail beside the compound chart (Base44 direct copy,
-// owner call July 2026) — hints are theirs, hrefs point at our real tools.
-const mathCalcs = [
-  { name: "Compound Interest", hint: "See money grow", href: "/tools/savings/compound", icon: TrendingUp },
-  { name: "Debt Payoff", hint: "Snowball or avalanche", href: "/tools/debt", icon: CreditCard },
-  { name: "Savings Goal", hint: "How long to get there", href: "/tools/savings", icon: PiggyBank },
-  { name: "Student Loan", hint: "Real cost of borrowing", href: "/tools/college/student-loan", icon: GraduationCap },
-  { name: "Tax Estimator", hint: "What you actually keep", href: "/tools/budget/paycheck", icon: Percent },
-];
-
 const startingQuestions: StripQuestion[] = [
   {
     q: "Why is my first paycheck smaller than I expected?",
@@ -681,41 +669,10 @@ export default function Home() {
               </p>
             </Reveal>
           </div>
-          {/* The ONE 3D-tilt card sitewide (Base44-audit #9) — restraint
-              is the point; don't add a second. */}
-          <TiltCard className="rounded-lg border border-cream/10 bg-cream/5 p-6 md:col-span-5">
-            <CompoundChart className="h-64" />
-          </TiltCard>
-          <div className="flex flex-col gap-2 md:col-span-3">
-            <p className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-amber">
-              More calculators
-            </p>
-            {mathCalcs.map((calc) => (
-              <Link
-                key={calc.name}
-                href={calc.href}
-                className="group flex items-center gap-3 rounded-lg border border-cream/10 bg-cream/5 p-3 transition-colors hover:border-amber hover:bg-cream/10"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber/15 text-amber transition-colors group-hover:bg-amber group-hover:text-ink">
-                  <calc.icon className="h-4 w-4" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-medium leading-tight text-cream">
-                    {calc.name}
-                  </span>
-                  <span className="block text-xs leading-tight text-cream/50">
-                    {calc.hint}
-                  </span>
-                </span>
-              </Link>
-            ))}
-            <Link
-              href="/tools"
-              className="mt-2 text-sm font-semibold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
-            >
-              See all {calculatorTotal} calculators
-            </Link>
-          </div>
+          {/* Chart card + calculator rail share hover state (owner ask
+              July 17: hovering a calculator swaps the visual), so both
+              live in MathShowcase — still the ONE TiltCard sitewide. */}
+          <MathShowcase calculatorTotal={calculatorTotal} />
         </div>
       </section>
 
