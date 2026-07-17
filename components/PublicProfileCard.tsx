@@ -117,9 +117,18 @@ export default function PublicProfileCard({
   return (
     <div className="card-ink mt-6 rounded-2xl bg-cream p-6 sm:p-8">
       <div className="flex items-start gap-4">
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-amber/25 font-display text-2xl font-bold text-amber-deep">
-          {p.displayName.trim().charAt(0).toUpperCase() || "?"}
-        </span>
+        {p.avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element -- member upload, arbitrary storage URL
+          <img
+            src={p.avatarUrl}
+            alt=""
+            className="h-16 w-16 shrink-0 rounded-full border-2 border-ink/10 object-cover"
+          />
+        ) : (
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-amber/25 font-display text-2xl font-bold text-amber-deep">
+            {p.displayName.trim().charAt(0).toUpperCase() || "?"}
+          </span>
+        )}
         <div className="min-w-0">
           <h1 className="font-display text-2xl font-bold text-ink sm:text-3xl">
             {p.displayName}

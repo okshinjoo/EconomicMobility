@@ -44,6 +44,9 @@ export interface Profile {
   /** Opt-in: show bio/role/flairs/member-since on the public member page.
    *  Default OFF — private-first, same stance as showTag. */
   publicProfile: boolean;
+  /** Public URL of the member's uploaded photo (avatars bucket); empty or
+   *  absent = the initial-letter avatar. Optional: older mirrors lack it. */
+  avatarUrl?: string;
 }
 
 export const ROLE_LABELS: Record<Exclude<ProfileRole, "">, string> = {

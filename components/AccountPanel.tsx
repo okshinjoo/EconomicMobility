@@ -45,8 +45,10 @@ import {
   flairLabel,
   flairColor,
   writeLocalProfile,
+  readLocalProfile,
   clearLocalProfile,
 } from "@/lib/profile";
+import { uploadAvatar, removeAvatar } from "@/lib/avatarImage";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 import {
   useMemberData,
@@ -684,6 +686,9 @@ export function ProfileEditor({
   const [flairs, setFlairs] = useState<string[]>([]);
   const [bio, setBio] = useState("");
   const [publicProfile, setPublicProfile] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarBusy, setAvatarBusy] = useState(false);
+  const [avatarNote, setAvatarNote] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -780,6 +785,7 @@ export function ProfileEditor({
           flairs: Array.isArray(data.flairs) ? (data.flairs as string[]) : [],
           bio: (data.bio as string) ?? "",
           publicProfile: Boolean(data.public_profile),
+          avatarUrl: (data.avatar_url as string) ?? "",
         };
         setDisplayName(p.displayName);
         setRole(p.role);
@@ -789,6 +795,7 @@ export function ProfileEditor({
         setFlairs(p.flairs);
         setBio(p.bio);
         setPublicProfile(p.publicProfile);
+        setAvatarUrl(p.avatarUrl ?? "");
         writeLocalProfile(p);
       }
       setLoading(false);
@@ -796,7 +803,7 @@ export function ProfileEditor({
     supabase
       .from("profiles")
       .select(
-        "display_name, role, student_stage, show_tag, goals, flairs, bio, public_profile"
+        "display_name, role, student_stage, show_tag, goals, flairs, bio, public_profile, avatar_url"
       )
       .eq("id", userId)
       .maybeSingle()
@@ -842,6 +849,7 @@ export function ProfileEditor({
       flairs,
       bio: bio.trim(),
       publicProfile,
+      avatarUrl,
     };
     const row = {
       id: userId,
@@ -853,12 +861,13 @@ export function ProfileEditor({
       flairs: profile.flairs,
       bio: profile.bio,
       public_profile: profile.publicProfile,
+      avatar_url: profile.avatarUrl ?? "",
     };
     let { error } = await supabase.from("profiles").upsert(row);
-    if (error && /student_stage/.test(error.message)) {
-      // Column not migrated yet — save everything else; the stage still
-      // works locally via the profile mirror.
-      const { student_stage: _omit, ...legacyRow } = row;
+    if (error && /student_stage|avatar_url/.test(error.message)) {
+      // Column(s) not migrated yet — save everything else; both still
+      // work locally via the profile mirror.
+      const { student_stage: _s, avatar_url: _a, ...legacyRow } = row;
       ({ error } = await supabase.from("profiles").upsert(legacyRow));
     }
     setSaving(false);
@@ -873,7 +882,50 @@ export function ProfileEditor({
           : "Couldn't save just now. Try again in a moment."
       );
     }
-  }, [supabase, userId, displayName, role, studentStage, showTag, goals, flairs, bio, publicProfile]);
+  }, [supabase, userId, displayName, role, studentStage, showTag, goals, flairs, bio, publicProfile, avatarUrl]);
+
+  const onAvatarFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setAvatarBusy(true);
+    setAvatarNote(null);
+    const url = await uploadAvatar(userId, file);
+    if (!url) {
+      setAvatarNote(
+        "Couldn't upload that photo. If this keeps happening, the avatars bucket may not be set up yet (docs/supabase-schema.sql)."
+      );
+      setAvatarBusy(false);
+      return;
+    }
+    setAvatarUrl(url);
+    // Persist immediately — nobody expects a photo to need a Save click.
+    const { error } = await supabase
+      .from("profiles")
+      .upsert({ id: userId, avatar_url: url });
+    setAvatarBusy(false);
+    if (error) {
+      setAvatarNote(
+        /avatar_url/.test(error.message)
+          ? "Uploaded, but the avatar_url column isn't in the database yet (docs/supabase-schema.sql)."
+          : "Uploaded, but saving to your profile hiccuped — hit Save changes to finish."
+      );
+    } else {
+      const local = readLocalProfile();
+      if (local) writeLocalProfile({ ...local, avatarUrl: url });
+    }
+  };
+
+  const onAvatarRemove = async () => {
+    setAvatarBusy(true);
+    setAvatarNote(null);
+    await removeAvatar(userId);
+    setAvatarUrl("");
+    await supabase.from("profiles").upsert({ id: userId, avatar_url: "" });
+    const local = readLocalProfile();
+    if (local) writeLocalProfile({ ...local, avatarUrl: "" });
+    setAvatarBusy(false);
+  };
 
   async function changeEmail(e: React.FormEvent) {
     e.preventDefault();
@@ -1090,6 +1142,7 @@ export function ProfileEditor({
                   role={role}
                   studentStage={studentStage}
                   accent={dashPrefs.accent ?? undefined}
+                  avatarUrl={avatarUrl}
                   flairIds={flairs.slice(0, MAX_FLAIRS)}
                   goalsCount={goals.length}
                   memberSince={memberSince}
@@ -1226,6 +1279,62 @@ export function ProfileEditor({
                 and if you want, it shows next to your name when you post in
                 the community.
               </p>
+              <div>
+                <span className={labelCls}>Profile picture</span>
+                <div className="mt-1 flex items-center gap-4">
+                  {avatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element -- member upload, arbitrary storage URL
+                    <img
+                      src={avatarUrl}
+                      alt="Your profile picture"
+                      className="h-16 w-16 rounded-full border-2 border-ink/10 object-cover"
+                    />
+                  ) : (
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full bg-amber/25 font-display text-2xl font-bold text-amber-deep">
+                      {(displayName.trim() || "?").charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                  <div className="space-y-1.5">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <label className="cursor-pointer rounded-md border-2 border-ink/15 bg-cream px-3 py-1.5 text-[13px] font-bold text-ink transition-colors hover:border-ink/40">
+                        {avatarBusy
+                          ? "Working…"
+                          : avatarUrl
+                            ? "Change photo"
+                            : "Upload a photo"}
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={onAvatarFile}
+                          disabled={avatarBusy}
+                          className="sr-only"
+                        />
+                      </label>
+                      {avatarUrl && (
+                        <button
+                          type="button"
+                          onClick={onAvatarRemove}
+                          disabled={avatarBusy}
+                          className="text-[13px] font-semibold text-stone underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-xs leading-5 text-stone">
+                      Cropped square and saved right away. Shows on your
+                      dashboard — and on your public member page only if you
+                      turn that on below.
+                    </p>
+                  </div>
+                </div>
+                {avatarNote && (
+                  <p className="mt-2 text-xs font-semibold text-terracotta">
+                    {avatarNote}
+                  </p>
+                )}
+              </div>
+
               <div>
                 <label htmlFor="profile-name" className={labelCls}>
                   Display name
@@ -1809,6 +1918,7 @@ function FlatIdentityCard({
   role,
   studentStage = "",
   accent,
+  avatarUrl = "",
   flairIds,
   goalsCount,
   memberSince,
@@ -1825,6 +1935,8 @@ function FlatIdentityCard({
   studentStage?: StudentStage;
   /** Member-picked avatar color (lib/dashboardPrefs); amber default. */
   accent?: string;
+  /** Uploaded photo URL; empty = the initial-letter circle. */
+  avatarUrl?: string;
   flairIds: string[];
   goalsCount: number;
   memberSince: string;
@@ -1851,14 +1963,23 @@ function FlatIdentityCard({
         Edit
       </button>
       <div className="flex flex-col items-center px-6 pb-1 pt-7 text-center">
-        <span
-          className={`flex h-20 w-20 items-center justify-center rounded-full text-3xl font-bold ${
-            accent ? "text-cream" : "bg-amber text-ink"
-          }`}
-          style={accent ? { background: accent } : undefined}
-        >
-          {(name.trim() || email).charAt(0).toUpperCase()}
-        </span>
+        {avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element -- member upload, arbitrary storage URL
+          <img
+            src={avatarUrl}
+            alt=""
+            className="h-20 w-20 rounded-full border-2 border-cream/30 object-cover"
+          />
+        ) : (
+          <span
+            className={`flex h-20 w-20 items-center justify-center rounded-full text-3xl font-bold ${
+              accent ? "text-cream" : "bg-amber text-ink"
+            }`}
+            style={accent ? { background: accent } : undefined}
+          >
+            {(name.trim() || email).charAt(0).toUpperCase()}
+          </span>
+        )}
         <p className="mt-3 font-display text-2xl font-semibold">
           {name.trim() || "Add your name"}
         </p>

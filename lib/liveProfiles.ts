@@ -13,6 +13,8 @@ export interface PublicProfile {
   flairs: string[];
   /** ISO timestamp of account creation — the public "member since". */
   since: string;
+  /** Uploaded photo URL; empty = initial-letter avatar. */
+  avatarUrl: string;
 }
 
 /** Mirror of communityFeed's memberSlug — duplicated here so the client
@@ -30,11 +32,19 @@ export async function fetchPublicProfileBySlug(
   if (!accountsEnabled || !slug) return null;
   const supabase = getSupabase();
   if (!supabase) return null;
-  const { data, error } = await supabase
+  const first = await supabase
     .from("profiles")
-    .select("display_name, bio, role, flairs, created_at")
+    .select("display_name, bio, role, flairs, created_at, avatar_url")
     .eq("public_profile", true);
-  if (error || !data) return null;
+  // avatar_url not migrated yet — fall back to the older shape.
+  const res = first.error
+    ? await supabase
+        .from("profiles")
+        .select("display_name, bio, role, flairs, created_at")
+        .eq("public_profile", true)
+    : first;
+  if (res.error || !res.data) return null;
+  const data: unknown = res.data;
   const hit = (
     data as Array<{
       display_name: string;
@@ -42,6 +52,7 @@ export async function fetchPublicProfileBySlug(
       role: string | null;
       flairs: unknown;
       created_at: string;
+      avatar_url?: string | null;
     }>
   ).find((r) => profileSlug(r.display_name ?? "") === slug);
   if (!hit || !hit.display_name) return null;
@@ -51,5 +62,6 @@ export async function fetchPublicProfileBySlug(
     role: hit.role ?? "",
     flairs: Array.isArray(hit.flairs) ? (hit.flairs as string[]) : [],
     since: hit.created_at,
+    avatarUrl: hit.avatar_url ?? "",
   };
 }
