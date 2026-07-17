@@ -203,7 +203,7 @@ export default function CollegeCompare() {
       </div>
 
       <p className="mt-4 text-sm font-medium text-stone">
-        {results.length} of {colleges.length} colleges · figures from each
+        {results.length} of {colleges.length}{" "}colleges · figures from each
         college&apos;s Common Data Set and admissions pages, {COLLEGE_DATA_VINTAGE}.
         A missing value means the college doesn&apos;t publish it.
       </p>

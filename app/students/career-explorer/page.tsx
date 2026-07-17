@@ -46,7 +46,7 @@ export default function CareerExplorerPage() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
             Real numbers for {careers.length} careers: the median paycheck,
             whether the field is growing, what training it truly requires —
-            and the paths that <em>pay you</em> while you learn, from union
+            and the paths that <em>pay you</em>{" "}while you learn, from union
             apprenticeships to the FAA&apos;s academy. No rankings, no
             gatekeeping, no &ldquo;follow your passion&rdquo; hand-waving.
           </p>

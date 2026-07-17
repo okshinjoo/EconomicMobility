@@ -74,7 +74,7 @@ export default function CompareCollegesPage() {
             for nothing. Compare what each college actually says it looks for.
           </p>
           <p className="mt-4 text-sm font-semibold text-cream/60">
-            {colleges.length} colleges · built from each school&apos;s own
+            {colleges.length}{" "}colleges · built from each school&apos;s own
             Common Data Set · no rankings, just published facts
           </p>
         </HeroRecede>
@@ -88,7 +88,7 @@ export default function CompareCollegesPage() {
             figures come from each college&apos;s Common Data Set (the form
             nearly every college files — section C7 is &ldquo;what we
             weigh&rdquo;), admissions releases, and aid pages, from the{" "}
-            {COLLEGE_DATA_VINTAGE} unless noted. Admit rates drift every year;
+            {COLLEGE_DATA_VINTAGE}{" "}unless noted. Admit rates drift every year;
             treat a point or two as noise. A &ldquo;—&rdquo; means the college
             doesn&apos;t publish that number, not that it doesn&apos;t matter.{" "}
             Every school's figures were re-verified against official sources
