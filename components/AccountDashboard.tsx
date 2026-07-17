@@ -352,6 +352,7 @@ function SkillPointsCard() {
     [counts.tools, "tools tried"],
     [counts.starters, "quick wins"],
     [counts.quizzes, "quizzes passed"],
+    [counts.mastered, "sections mastered"],
     [counts.courses, "course badges"],
   ] as const;
   return (

@@ -26,7 +26,8 @@ import Link from "next/link";
 import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
-import type { SkillTreeData } from "@/lib/skillTree";
+import { MIN_MASTERY_POOL, type SkillBranch, type SkillTreeData } from "@/lib/skillTree";
+import { tierKey } from "@/lib/skillMastery";
 import type { Lit } from "@/components/SkillTree";
 
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
@@ -134,11 +135,14 @@ export default function SkillTreeMap({
   data,
   lit,
   points,
+  onTestOut,
 }: {
   data: SkillTreeData;
   lit: Lit;
   /** Derived skill-points total (computed by SkillTree, shown in the hub). */
   points: number;
+  /** Open a mastery test-out (ti null = the whole topic). */
+  onTestOut: (b: SkillBranch, ti: number | null) => void;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{
@@ -360,12 +364,11 @@ export default function SkillTreeMap({
     let prev = head;
     b.tiers.forEach((tier, ti) => {
       const done = tier.articles.filter((x) => lit.read[x.slug]).length;
+      const full =
+        tier.articles.length > 0 && done === tier.articles.length;
+      const mastered = lit.mastered.has(tierKey(b.id, ti));
       const state: NodeState =
-        tier.articles.length > 0 && done === tier.articles.length
-          ? "done"
-          : done > 0
-            ? "part"
-            : "none";
+        full || mastered ? "done" : done > 0 ? "part" : "none";
       depth += 1;
       const chipR = rCur + TIER_LEAD;
       const chipA = a + wob(i, depth);
@@ -377,25 +380,56 @@ export default function SkillTreeMap({
       });
       const next =
         tier.articles.find((x) => !lit.read[x.slug]) ?? tier.articles[0];
+      const canTest =
+        lit.mounted &&
+        !full &&
+        !mastered &&
+        tier.mastery.length >= MIN_MASTERY_POOL;
+      const pillLabel = (
+        <>
+          {tier.label} ·{" "}
+          {mastered && !full
+            ? "mastered ★"
+            : `${lit.mounted ? done : 0}/${tier.articles.length}`}
+        </>
+      );
+      const pillClass =
+        "absolute z-10 whitespace-nowrap rounded-md border-2 px-2 py-0.5 text-[10px] font-bold transition-colors duration-500 hover:z-20 hover:scale-105";
+      const pillStyle = {
+        left: chip.x,
+        top: chip.y,
+        transform: "translate(-50%, -50%)",
+        ...fill(state, b.color),
+      };
       nodes.push(
-        <Link
-          key={`${b.id}-chip-${ti}`}
-          href={next ? `${b.href}/${next.slug}` : b.href}
-          title={`${b.short} · ${tier.label}: ${
-            lit.mounted ? done : 0
-          } of ${tier.articles.length} read${
-            next ? ` — next: ${next.title}` : ""
-          }`}
-          className="absolute z-10 whitespace-nowrap rounded-md border-2 px-2 py-0.5 text-[10px] font-bold transition-colors duration-500 hover:z-20 hover:scale-105"
-          style={{
-            left: chip.x,
-            top: chip.y,
-            transform: "translate(-50%, -50%)",
-            ...fill(state, b.color),
-          }}
-        >
-          {tier.label} · {lit.mounted ? done : 0}/{tier.articles.length}
-        </Link>
+        canTest ? (
+          // Not finished and testable: the pill opens the test-out dialog
+          // (which itself links onward to the next unread guide).
+          <button
+            key={`${b.id}-chip-${ti}`}
+            type="button"
+            onClick={() => onTestOut(b, ti)}
+            title={`${b.short} · ${tier.label}: ${done} of ${tier.articles.length} read — continue, or test out if you already know it`}
+            className={pillClass}
+            style={pillStyle}
+          >
+            {pillLabel}
+          </button>
+        ) : (
+          <Link
+            key={`${b.id}-chip-${ti}`}
+            href={next ? `${b.href}/${next.slug}` : b.href}
+            title={`${b.short} · ${tier.label}: ${
+              lit.mounted ? done : 0
+            } of ${tier.articles.length} read${
+              mastered && !full ? " · mastered by test-out" : ""
+            }${next ? ` — next: ${next.title}` : ""}`}
+            className={pillClass}
+            style={pillStyle}
+          >
+            {pillLabel}
+          </Link>
+        )
       );
 
       // Twig chains: the tier's guides wander outward on 1-5 curving
@@ -420,13 +454,19 @@ export default function SkillTreeMap({
           paths.push({
             d: curve(prevDot, p, (c + j) % 2 ? 0.7 : -0.7),
             color: b.color,
-            lit: read,
+            lit: read || mastered,
           });
           nodes.push(
             <Link
               key={`${b.id}-g-${art.slug}`}
               href={`${b.href}/${art.slug}`}
-              title={`${art.title}${lit.mounted && read ? " — read" : ""}`}
+              title={`${art.title}${
+                lit.mounted && read
+                  ? " — read"
+                  : lit.mounted && mastered
+                    ? " — covered by your mastery test"
+                    : ""
+              }`}
               aria-label={`${art.title}${
                 lit.mounted && read ? " (read)" : ""
               }`}
@@ -437,8 +477,12 @@ export default function SkillTreeMap({
                 width: DOT,
                 height: DOT,
                 transform: "translate(-50%, -50%)",
-                backgroundColor: read ? b.color : CREAM,
-                borderColor: read ? INK : `${b.color}66`,
+                backgroundColor: read
+                  ? b.color
+                  : mastered
+                    ? `${b.color}2b`
+                    : CREAM,
+                borderColor: read ? INK : `${b.color}${mastered ? "" : "66"}`,
                 color: read ? CREAM : `${b.color}99`,
               }}
             >

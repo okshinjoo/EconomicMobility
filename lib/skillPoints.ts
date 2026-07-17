@@ -14,6 +14,7 @@ import { loadJSON, STORAGE_KEYS } from "./storage";
 import { getReadMap } from "./readTracking";
 import { PLAN_KEY } from "./plan";
 import { readLocalProfile } from "./profile";
+import { getMasteryMap } from "./skillMastery";
 
 /** Point value per kind of finished work. */
 export const SKILL_POINTS = {
@@ -21,6 +22,7 @@ export const SKILL_POINTS = {
   tool: 15, // calculator tried
   starter: 20, // First-steps quick win
   quiz: 25, // topic checkpoint quiz passed
+  mastery: 30, // branch section mastered via test-out
   course: 50, // course badge earned
 } as const;
 
@@ -33,6 +35,8 @@ export interface SkillPointCounts {
   courses: number;
   tools: number;
   starters: number;
+  /** Branch sections mastered via test-out quizzes. */
+  mastered: number;
 }
 
 export function skillPointsTotal(c: SkillPointCounts): number {
@@ -41,7 +45,8 @@ export function skillPointsTotal(c: SkillPointCounts): number {
     c.quizzes * SKILL_POINTS.quiz +
     c.courses * SKILL_POINTS.course +
     c.tools * SKILL_POINTS.tool +
-    c.starters * SKILL_POINTS.starter
+    c.starters * SKILL_POINTS.starter +
+    c.mastered * SKILL_POINTS.mastery
   );
 }
 
@@ -87,5 +92,12 @@ export function readSkillCounts(): SkillPointCounts {
   const visited =
     loadJSON<Record<string, number>>(STORAGE_KEYS.visitedTools) ?? {};
   const tools = Object.keys(visited).filter(isToolPath).length;
-  return { guides, quizzes, courses, tools, starters: readStarterSet().size };
+  return {
+    guides,
+    quizzes,
+    courses,
+    tools,
+    starters: readStarterSet().size,
+    mastered: Object.keys(getMasteryMap()).length,
+  };
 }

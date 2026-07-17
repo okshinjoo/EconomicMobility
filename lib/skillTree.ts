@@ -18,6 +18,7 @@
 import { topics, type TopicId } from "./topics";
 import { getTopicRoadmap, getArticleBySlug } from "./articles";
 import { getTopicQuiz } from "./topicQuizzes";
+import { knowledgeCheckBank } from "./quizData";
 import { courses } from "./courses";
 import { journeys } from "./journeys";
 import { toolCategories } from "./toolsRegistry";
@@ -25,7 +26,24 @@ import { toolCategories } from "./toolsRegistry";
 export interface SkillTierNode {
   label: string; // "Start here" / "Go deeper" / "Advanced"
   articles: { slug: string; title: string }[];
+  /** Test-out question pool — EXISTING questions only (knowledge-check
+   *  bank + this tier's article quizzes + the topic checkpoint on the
+   *  last tier). Below MIN_MASTERY_POOL, no test-out is offered. */
+  mastery: MasteryQuestion[];
 }
+
+/** Normalized quiz question for mastery test-outs. */
+export interface MasteryQuestion {
+  q: string;
+  options: string[];
+  answer: number;
+  explain?: string;
+}
+
+/** Smallest pool a tier test-out may run on (never invent questions). */
+export const MIN_MASTERY_POOL = 3;
+/** Smallest pool a whole-topic test-out may run on. */
+export const MIN_TOPIC_POOL = 5;
 
 export interface SkillLeafTool {
   label: string;
@@ -58,6 +76,8 @@ export interface SkillBranch {
   courses: SkillLeafCourse[];
   /** Every guided journey shelved under this topic. */
   journeys: SkillLeafJourney[];
+  /** Whole-topic test-out pool (union of the tier pools, deduped). */
+  topicMastery: MasteryQuestion[];
 }
 
 /** Cross-cutting quick wins — the "First steps" branch. `kind` tells the
@@ -205,10 +225,58 @@ export function buildSkillTree(): SkillTreeData {
   }
 
   const branches: SkillBranch[] = topics.map((t) => {
-    const tiers = getTopicRoadmap(t.id).map((g) => ({
-      label: g.label,
-      articles: g.articles.map((a) => ({ slug: a.slug, title: a.title })),
-    }));
+    const bank = knowledgeCheckBank[t.id];
+    const roadmap = getTopicRoadmap(t.id);
+    const seen = new Set<string>();
+    const dedupe = (qs: MasteryQuestion[]) =>
+      qs.filter((q) => {
+        if (seen.has(q.q)) return false;
+        seen.add(q.q);
+        return true;
+      });
+    const tiers = roadmap.map((g, ti) => {
+      const pool: MasteryQuestion[] = [];
+      if (ti === 0)
+        pool.push(
+          ...bank.beginner.map((q) => ({
+            q: q.question,
+            options: q.options,
+            answer: q.correctIndex,
+          }))
+        );
+      for (const a of g.articles)
+        pool.push(
+          ...(a.quiz ?? []).map((q) => ({
+            q: q.question,
+            options: q.options,
+            answer: q.answer,
+            explain: q.explain,
+          }))
+        );
+      if (ti === roadmap.length - 1) {
+        pool.push(
+          ...bank.advanced.map((q) => ({
+            q: q.question,
+            options: q.options,
+            answer: q.correctIndex,
+          }))
+        );
+        pool.push(
+          ...(getTopicQuiz(t.id) ?? []).map((q) => ({
+            q: q.question,
+            options: q.options,
+            answer: q.answer,
+            explain: q.explain,
+          }))
+        );
+      }
+      return {
+        label: g.label,
+        articles: g.articles.map((a) => ({ slug: a.slug, title: a.title })),
+        mastery: dedupe(pool).slice(0, 8),
+      };
+    });
+    const topicMastery = tiers.flatMap((x) => x.mastery).slice(0, 10);
     return {
       id: t.id,
       title: t.title,
@@ -221,6 +289,7 @@ export function buildSkillTree(): SkillTreeData {
       tools: toolsByTopic.get(t.id) ?? [],
       courses: coursesByTopic.get(t.id) ?? [],
       journeys: journeysByTopic.get(t.id) ?? [],
+      topicMastery,
     };
   });
 

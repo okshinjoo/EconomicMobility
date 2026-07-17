@@ -18,6 +18,13 @@ import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
 import { readStarterSet, skillPointsTotal, SKILL_POINTS } from "@/lib/skillPoints";
+import { getMasteryMap, markMastered, tierKey } from "@/lib/skillMastery";
+import MasteryQuiz from "@/components/MasteryQuiz";
+import {
+  MIN_MASTERY_POOL,
+  MIN_TOPIC_POOL,
+  type MasteryQuestion,
+} from "@/lib/skillTree";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { readContext, topicMatchesGoals } from "@/lib/personalization";
 import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";
@@ -46,6 +53,7 @@ export interface Lit {
   badges: Set<string>; // earned course ids
   tools: Set<string>; // visited tool pathnames
   starters: Set<string>; // done First-steps action ids (see lib/skillTree)
+  mastered: Set<string>; // tier keys passed via test-out (lib/skillMastery)
   goalTopics: Set<string>;
   mounted: boolean;
 }
@@ -83,7 +91,15 @@ function ProgressRing({
   );
 }
 
-function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
+function Branch({
+  b,
+  lit,
+  onTestOut,
+}: {
+  b: SkillBranch;
+  lit: Lit;
+  onTestOut: (b: SkillBranch, ti: number | null) => void;
+}) {
   const readCount = b.tiers.reduce(
     (n, t) => n + t.articles.filter((a) => lit.read[a.slug]).length,
     0
@@ -91,16 +107,23 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
   const pct = b.guideTotal ? readCount / b.guideTotal : 0;
   const quizDone = lit.quizzes.has(b.id);
   const isGoal = lit.goalTopics.has(b.id);
+  const masteredCount = b.tiers.filter((_, ti) =>
+    lit.mastered.has(tierKey(b.id, ti))
+  ).length;
   const started =
     readCount > 0 ||
     quizDone ||
+    masteredCount > 0 ||
     b.courses.some((c) => lit.badges.has(c.id)) ||
     b.tools.some((t) => lit.tools.has(t.href));
 
-  // "Where you can be heading next": first unread guide in roadmap order.
+  // "Where you can be heading next": first unread guide in roadmap order —
+  // skipping tiers already mastered via test-out.
   const nextUp = (() => {
-    for (const tier of b.tiers)
+    for (const [ti, tier] of b.tiers.entries()) {
+      if (lit.mastered.has(tierKey(b.id, ti))) continue;
       for (const a of tier.articles) if (!lit.read[a.slug]) return a;
+    }
     return null;
   })();
 
@@ -141,31 +164,60 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
 
       {/* Trunk: tier nodes */}
       <div className="mt-4 ml-[37px] border-l-2 pl-5" style={{ borderColor: `${b.color}44` }}>
-        {b.tiers.map((tier) => {
+        {b.tiers.map((tier, ti) => {
           const done = tier.articles.filter((a) => lit.read[a.slug]).length;
           const full = done === tier.articles.length && tier.articles.length > 0;
+          const mastered = lit.mastered.has(tierKey(b.id, ti));
+          const canTest =
+            lit.mounted &&
+            !full &&
+            !mastered &&
+            tier.mastery.length >= MIN_MASTERY_POOL;
           return (
             <div key={tier.label} className="relative py-1.5">
               <span
                 className={`absolute -left-[27px] top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border-2 ${
-                  full ? "" : "bg-cream"
+                  full || mastered ? "" : "bg-cream"
                 }`}
                 style={{
                   borderColor: b.color,
-                  backgroundColor: full ? b.color : undefined,
+                  backgroundColor: full || mastered ? b.color : undefined,
                 }}
               />
               <div className="flex items-baseline justify-between gap-3">
                 <span
-                  className={`text-sm font-semibold ${full ? "text-ink" : "text-stone"}`}
+                  className={`text-sm font-semibold ${
+                    full || mastered ? "text-ink" : "text-stone"
+                  }`}
                 >
                   {tier.label}
                   {full && (
                     <Check className="ml-1 inline h-3.5 w-3.5 text-forest" strokeWidth={3} />
                   )}
+                  {!full && mastered && (
+                    <span className="ml-1.5 inline-flex items-center gap-0.5 text-[11px] font-bold text-forest">
+                      <Star
+                        className="h-3 w-3 text-amber"
+                        strokeWidth={2.5}
+                        fill="currentColor"
+                      />
+                      mastered
+                    </span>
+                  )}
                 </span>
-                <span className="text-[12px] font-bold tabular-nums text-stone">
-                  {lit.mounted ? done : 0}/{tier.articles.length}
+                <span className="flex items-baseline gap-2">
+                  {canTest && (
+                    <button
+                      type="button"
+                      onClick={() => onTestOut(b, ti)}
+                      className="text-[11px] font-bold text-forest underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+                    >
+                      test out
+                    </button>
+                  )}
+                  <span className="text-[12px] font-bold tabular-nums text-stone">
+                    {lit.mounted ? done : 0}/{tier.articles.length}
+                  </span>
                 </span>
               </div>
             </div>
@@ -262,6 +314,18 @@ function Branch({ b, lit }: { b: SkillBranch; lit: Lit }) {
             Start anywhere — the tree lights up as you read.
           </p>
         )}
+        {lit.mounted &&
+          masteredCount < b.tiers.length &&
+          nextUp !== null &&
+          b.topicMastery.length >= MIN_TOPIC_POOL && (
+            <button
+              type="button"
+              onClick={() => onTestOut(b, null)}
+              className="mt-1.5 block text-[12px] font-semibold text-stone underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+            >
+              Already know {b.short}? Test out of the whole topic
+            </button>
+          )}
       </div>
     </div>
   );
@@ -275,9 +339,15 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     badges: new Set(),
     tools: new Set(),
     starters: new Set(),
+    mastered: new Set(),
     goalTopics: new Set(),
     mounted: false,
   });
+  /** Open test-out: ti === null means the whole topic. */
+  const [testOut, setTestOut] = useState<{
+    b: SkillBranch;
+    ti: number | null;
+  } | null>(null);
 
   useEffect(() => {
     const read = getReadMap();
@@ -296,12 +366,22 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     // First-steps actions, proven done by the trackers that already exist
     // (shared reader — the same set feeds the skill-points score).
     const starters = readStarterSet();
+    const mastered = new Set(Object.keys(getMasteryMap()));
 
     const ctx = readContext();
     const goalTopics = new Set(
       data.branches.filter((b) => topicMatchesGoals(b.id, ctx)).map((b) => b.id)
     );
-    setLit({ read, quizzes, badges, tools, starters, goalTopics, mounted: true });
+    setLit({
+      read,
+      quizzes,
+      badges,
+      tools,
+      starters,
+      mastered,
+      goalTopics,
+      mounted: true,
+    });
   }, [data.branches]);
 
   // Goal branches lead; everything else keeps the canonical topic order.
@@ -347,7 +427,38 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     courses: coursesDone,
     tools: toolsUsed,
     starters: lit.mounted ? lit.starters.size : 0,
+    mastered: lit.mounted ? lit.mastered.size : 0,
   });
+
+  // Test-out plumbing: which questions, what passing means, what a pass marks.
+  const testQuestions: MasteryQuestion[] =
+    testOut === null
+      ? []
+      : testOut.ti === null
+        ? testOut.b.topicMastery
+        : testOut.b.tiers[testOut.ti].mastery;
+  const testNeed = Math.ceil(testQuestions.length * 0.8);
+  const testNextUnread = (() => {
+    if (testOut === null) return undefined;
+    const tiers =
+      testOut.ti === null ? testOut.b.tiers : [testOut.b.tiers[testOut.ti]];
+    for (const tier of tiers)
+      for (const a of tier.articles)
+        if (!lit.read[a.slug]) return `${testOut.b.href}/${a.slug}`;
+    return undefined;
+  })();
+  const handlePass = (score: number) => {
+    if (testOut === null) return;
+    const keys =
+      testOut.ti === null
+        ? testOut.b.tiers.map((_, i) => tierKey(testOut.b.id, i))
+        : [tierKey(testOut.b.id, testOut.ti)];
+    markMastered(keys, score, testQuestions.length);
+    setLit((prev) => ({
+      ...prev,
+      mastered: new Set(Object.keys(getMasteryMap())),
+    }));
+  };
 
   return (
     <div>
@@ -364,8 +475,9 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
           <p className="mt-0.5 text-[13px] font-semibold text-cream/70">
             guides {SKILL_POINTS.guide} · tools {SKILL_POINTS.tool} · quick
             wins {SKILL_POINTS.starter} · quizzes {SKILL_POINTS.quiz} ·
-            courses {SKILL_POINTS.course} — counted from what you&apos;ve
-            actually done
+            mastery tests {SKILL_POINTS.mastery} · courses{" "}
+            {SKILL_POINTS.course} — counted from what you&apos;ve actually
+            done
           </p>
         </div>
         <Link
@@ -458,9 +570,39 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         )}
       </div>
 
+      {testOut !== null && testQuestions.length > 0 && (
+        <MasteryQuiz
+          title={
+            testOut.ti === null
+              ? `All of ${testOut.b.short}`
+              : `${testOut.b.short} · ${testOut.b.tiers[testOut.ti].label}`
+          }
+          questions={testQuestions}
+          need={testNeed}
+          continueHref={testNextUnread}
+          continueLabel="Keep reading instead"
+          alt={
+            testOut.ti !== null &&
+            testOut.b.topicMastery.length >= MIN_TOPIC_POOL
+              ? {
+                  label: `Or test out of all of ${testOut.b.short} at once`,
+                  onClick: () => setTestOut({ b: testOut.b, ti: null }),
+                }
+              : undefined
+          }
+          onPass={handlePass}
+          onClose={() => setTestOut(null)}
+        />
+      )}
+
       {view === "map" ? (
         <div className="mt-4">
-          <SkillTreeMap data={data} lit={lit} points={points} />
+          <SkillTreeMap
+            data={data}
+            lit={lit}
+            points={points}
+            onTestOut={(b, ti) => setTestOut({ b, ti })}
+          />
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -489,7 +631,12 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
             </p>
           </div>
           {ordered.map((b) => (
-            <Branch key={b.id} b={b} lit={lit} />
+            <Branch
+              key={b.id}
+              b={b}
+              lit={lit}
+              onTestOut={(bb, ti) => setTestOut({ b: bb, ti })}
+            />
           ))}
         </div>
       )}

@@ -24,6 +24,7 @@ const MAP_KEYS = new Set([
   "empower:read-articles:v1",
   "empower:visited-tools:v1",
   "empower:article-quizzes:v1",
+  "empower:skill-mastery:v1",
   "empower:course-badges:v1",
   "empower:challenge-badges:v1",
   "empower:challenge-progress:v1",
