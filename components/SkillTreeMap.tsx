@@ -183,6 +183,8 @@ export default function SkillTreeMap({
           ? "part"
           : "none";
     const head = pt(R_HEAD, a + wob(9, 0));
+    const startPct = lit.mounted ? doneCount / data.starters.length : 0;
+    const startPctLabel = Math.round(startPct * 100);
     paths.push({
       d: curve(center, head, 1),
       color: FOREST,
@@ -192,23 +194,42 @@ export default function SkillTreeMap({
       <Link
         key="starters-head"
         href="/start-here"
-        title={`First steps — quick wins that make the site yours · ${
+        title={`First steps — quick wins that make the site yours · ${startPctLabel}% done (${
           lit.mounted ? doneCount : 0
-        } of ${data.starters.length} done`}
-        aria-label={`First steps: ${
-          lit.mounted ? doneCount : 0
-        } of ${data.starters.length} done`}
-        className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+        } of ${data.starters.length})`}
+        aria-label={`First steps: ${startPctLabel}% done`}
+        className="group absolute z-10 flex items-center justify-center rounded-full border-2 transition-transform duration-300 hover:z-20 hover:scale-110"
         style={{
           left: head.x,
           top: head.y,
           width: 58,
           height: 58,
           transform: "translate(-50%, -50%)",
-          ...fill(headState, FOREST),
+          backgroundColor: FOREST,
+          borderColor: INK,
+          color: CREAM,
         }}
       >
-        <Sparkles className="h-6 w-6 shrink-0" strokeWidth={2.25} />
+        <Sparkles
+          className="h-6 w-6 shrink-0 transition-opacity duration-200 group-hover:opacity-0"
+          strokeWidth={2.25}
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 overflow-hidden rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+          style={{ backgroundColor: CREAM }}
+        >
+          <span
+            className="absolute inset-x-0 bottom-0"
+            style={{ height: `${startPctLabel}%`, backgroundColor: FOREST }}
+          />
+          <span
+            className="absolute inset-0 flex items-center justify-center text-[13px] font-bold tabular-nums"
+            style={{ color: INK, textShadow: "0 0 6px #fdfbf2" }}
+          >
+            {startPctLabel}%
+          </span>
+        </span>
       </Link>
     );
     const sizes = [
@@ -278,7 +299,30 @@ export default function SkillTreeMap({
     const isGoal = lit.goalTopics.has(b.id);
     let depth = 0; // wobble/bow counter down the branch
 
-    // Head node — the topic, icon-only; the full name lives in the tooltip.
+    // Head completion: everything on the branch with a done-state —
+    // guides (read or covered by mastery), the checkpoint quiz, tools,
+    // and courses. Powers the hover gauge.
+    const coveredGuides = b.tiers.reduce((m, t, ti) => {
+      const tierMastered = lit.mastered.has(tierKey(b.id, ti));
+      return (
+        m + t.articles.filter((x) => lit.read[x.slug] || tierMastered).length
+      );
+    }, 0);
+    const headDoneItems =
+      coveredGuides +
+      (b.hasQuiz && lit.quizzes.has(b.id) ? 1 : 0) +
+      b.tools.filter((t) => lit.tools.has(t.href)).length +
+      b.courses.filter((c) => lit.badges.has(c.id)).length;
+    const headTotalItems =
+      b.guideTotal + (b.hasQuiz ? 1 : 0) + b.tools.length + b.courses.length;
+    const headPct =
+      headTotalItems > 0 && lit.mounted ? headDoneItems / headTotalItems : 0;
+    const headPctLabel = Math.round(headPct * 100);
+
+    // Head node — the topic, icon-only and ALWAYS solid in its color
+    // (owner, July 16: "the main topic circles should be fully filled
+    // in"); hovering flips it to a gauge that fills bottom-up with the
+    // topic's completion.
     const head = pt(R_HEAD, a + wob(i, depth));
     paths.push({
       d: curve(center, head, i % 2 ? 1 : -1),
@@ -289,28 +333,48 @@ export default function SkillTreeMap({
       <Link
         key={`${b.id}-head`}
         href={b.href}
-        title={`${b.title}${isGoal ? " · your goal" : ""} — ${
+        title={`${b.title}${
+          isGoal ? " · your goal" : ""
+        } — ${headPctLabel}% complete (${
           lit.mounted ? readCount : 0
-        } of ${b.guideTotal} guides read`}
-        aria-label={`${b.title}: ${
-          lit.mounted ? readCount : 0
-        } of ${b.guideTotal} guides read`}
-        className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+        } of ${b.guideTotal} guides read)`}
+        aria-label={`${b.title}: ${headPctLabel}% complete`}
+        className="group absolute z-10 flex items-center justify-center rounded-full border-2 transition-transform duration-300 hover:z-20 hover:scale-110"
         style={{
           left: head.x,
           top: head.y,
           width: 58,
           height: 58,
           transform: "translate(-50%, -50%)",
-          ...fill(headState, b.color),
+          backgroundColor: b.color,
+          borderColor: INK,
           boxShadow: isGoal ? `0 0 0 3px ${AMBER}` : undefined,
         }}
       >
         <TopicMark
           id={b.id}
-          color={headState === "done" ? CREAM : b.color}
-          className="h-7 w-7 shrink-0"
+          color={CREAM}
+          className="h-7 w-7 shrink-0 transition-opacity duration-200 group-hover:opacity-0"
         />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 overflow-hidden rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+          style={{ backgroundColor: CREAM }}
+        >
+          <span
+            className="absolute inset-x-0 bottom-0"
+            style={{
+              height: `${headPctLabel}%`,
+              backgroundColor: b.color,
+            }}
+          />
+          <span
+            className="absolute inset-0 flex items-center justify-center text-[13px] font-bold tabular-nums"
+            style={{ color: INK, textShadow: "0 0 6px #fdfbf2" }}
+          >
+            {headPctLabel}%
+          </span>
+        </span>
       </Link>
     );
 
