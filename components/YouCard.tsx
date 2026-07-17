@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, X } from "lucide-react";
 import {
   readYou,
   readContext,
@@ -19,6 +19,10 @@ import {
   type MadeForYouCopy,
   type ProfilePrompt,
 } from "@/lib/personalization";
+import { readLocalProfile, writeLocalProfile } from "@/lib/profile";
+import { readAboutYou, writeAboutYou } from "@/lib/aboutYou";
+import { removeStored, STORAGE_KEYS } from "@/lib/storage";
+import { getSupabase } from "@/lib/supabase";
 
 const STAGE_CHIP: Record<string, string> = {
   hs: "High-school student",
@@ -42,6 +46,17 @@ const FAMILY_CHIP: Record<string, string> = {
   "i-help-family": "Supporting family",
 };
 
+/** Best-effort DB write so a correction survives re-login; the local
+ *  mirror is what every client surface reads. Silently no-ops signed out
+ *  or with accounts disabled. */
+async function syncProfilePatch(patch: Record<string, unknown>) {
+  const supabase = getSupabase();
+  if (!supabase) return;
+  const { data } = await supabase.auth.getSession();
+  const uid = data.session?.user.id;
+  if (uid) await supabase.from("profiles").upsert({ id: uid, ...patch });
+}
+
 export default function YouCard() {
   const [you, setYou] = useState<You | null>(null);
   // The single best next move for this person, from the normalized context —
@@ -49,13 +64,55 @@ export default function YouCard() {
   const [lead, setLead] = useState<MadeForYouCopy | null>(null);
   // The one most-useful thing still worth asking (null once enough is known).
   const [prompt, setPrompt] = useState<ProfilePrompt | null>(null);
-  useEffect(() => {
+  const refresh = () => {
     setYou(readYou());
     const ctx = readContext();
     setLead(madeForYouCopy(ctx));
     setPrompt(nextProfilePrompt(ctx));
-  }, []);
+  };
+  useEffect(refresh, []);
   if (!you) return null;
+
+  // "That's not quite right" (owner ask, July 16): every learned fact can
+  // be cleared right here — the correction writes to the fact's real home
+  // (profile mirror + DB / About-you snapshot / local stage key) and the
+  // card re-reads, so stale facts never have to be lived with.
+  const clearStage = () => {
+    const p = readLocalProfile();
+    if (p) writeLocalProfile({ ...p, studentStage: "" });
+    removeStored(STORAGE_KEYS.studentStage);
+    void syncProfilePatch({ student_stage: "" });
+    refresh();
+  };
+  const clearRole = () => {
+    const p = readLocalProfile();
+    if (p) writeLocalProfile({ ...p, role: "", studentStage: "" });
+    removeStored(STORAGE_KEYS.studentStage);
+    void syncProfilePatch({ role: "", student_stage: "" });
+    refresh();
+  };
+  const clearGoal = (id: string) => {
+    const p = readLocalProfile();
+    if (p) {
+      const goals = p.goals.filter((g) => g !== id);
+      writeLocalProfile({ ...p, goals });
+      void syncProfilePatch({ goals });
+    }
+    refresh();
+  };
+  const clearIncome = () => {
+    writeAboutYou({ ...readAboutYou(), income: "" });
+    refresh();
+  };
+  const clearFamily = () => {
+    writeAboutYou({ ...readAboutYou(), family: "" });
+    refresh();
+  };
+  const clearMoment = (id: string) => {
+    const a = readAboutYou();
+    writeAboutYou({ ...a, moments: (a.moments ?? []).filter((m) => m !== id) });
+    refresh();
+  };
 
   // Nothing saved yet — nudge them to tell us, so the tailoring can kick in.
   if (you.savedCount === 0) {
@@ -76,14 +133,24 @@ export default function YouCard() {
     );
   }
 
-  const chips: string[] = [];
-  if (you.stage) chips.push(STAGE_CHIP[you.stage]);
-  else if (you.role) chips.push(ROLE_CHIP[you.role]);
+  const chips: { label: string; clear: () => void }[] = [];
+  if (you.stage)
+    chips.push({ label: STAGE_CHIP[you.stage], clear: clearStage });
+  else if (you.role)
+    chips.push({ label: ROLE_CHIP[you.role], clear: clearRole });
   for (const g of you.goals.slice(0, 3))
-    chips.push(g.statusLabel ? `${g.label} · ${g.statusLabel}` : g.label);
-  if (you.income) chips.push(INCOME_CHIP[you.income]);
-  if (you.family) chips.push(FAMILY_CHIP[you.family]);
-  if (you.moment) chips.push(you.moment.title);
+    chips.push({
+      label: g.statusLabel ? `${g.label} · ${g.statusLabel}` : g.label,
+      clear: () => clearGoal(g.id),
+    });
+  if (you.income)
+    chips.push({ label: INCOME_CHIP[you.income], clear: clearIncome });
+  if (you.family)
+    chips.push({ label: FAMILY_CHIP[you.family], clear: clearFamily });
+  if (you.moment) {
+    const id = you.moment.id;
+    chips.push({ label: you.moment.title, clear: () => clearMoment(id) });
+  }
 
   // What we steer them to: a guided path per active goal (journeys are keyed
   // to the same goal ids).
@@ -124,13 +191,33 @@ export default function YouCard() {
       <div className="mt-2 flex flex-wrap gap-1.5">
         {chips.map((c) => (
           <span
-            key={c}
-            className="rounded-full bg-forest/10 px-2.5 py-1 text-xs font-semibold text-forest"
+            key={c.label}
+            className="inline-flex items-center gap-1 rounded-full bg-forest/10 py-1 pl-2.5 pr-1 text-xs font-semibold text-forest"
           >
-            {c}
+            {c.label}
+            <button
+              type="button"
+              onClick={c.clear}
+              title="Not quite right? Remove this"
+              aria-label={`Not quite right — remove "${c.label}"`}
+              className="rounded-full p-0.5 text-forest/50 transition-colors hover:bg-forest/15 hover:text-forest"
+            >
+              <X className="h-3 w-3" strokeWidth={2.5} />
+            </button>
           </span>
         ))}
       </div>
+      <p className="mt-1.5 text-[11px] leading-4 text-stone">
+        Not quite right? Click the × on anything and we&apos;ll forget it —
+        or retune everything on the{" "}
+        <Link
+          href="/account"
+          className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-2 hover:text-ink"
+        >
+          About you tab
+        </Link>
+        .
+      </p>
       {paths.length > 0 && (
         <>
           <p className="mt-4 text-sm leading-6 text-stone">
