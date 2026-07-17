@@ -102,7 +102,7 @@ export default async function BlogPostPage({
             {post.dek}
           </p>
           <p className="mt-5 flex items-center gap-4 border-b border-sand pb-6 text-sm font-medium text-stone">
-            <span>By the Empower Team</span>
+            <span>By Shinjoo, founder</span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               {post.readMinutes} min read

@@ -740,8 +740,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/85 to-forest/30" />
             <div className="relative">
               <div className="max-w-xl px-6 py-12 sm:px-14 sm:py-14">
+                {/* Was "More than a website" — the one true empty-contrast
+                    fragment the anti-slop copy pass found (July 17). */}
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber">
-                  More than a website
+                  The community
                 </span>
                 <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-cream sm:text-4xl">
                   Education is step one.{" "}

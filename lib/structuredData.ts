@@ -8,6 +8,19 @@
 const BASE = "https://economicmobilityproject.org";
 
 const ORG_ID = `${BASE}/#org`;
+const FOUNDER_ID = `${BASE}/#founder`;
+
+/** The founder node (July 17, 2026, owner: "credit everything to me").
+ *  First name only — the site has never published a surname; keep it so. */
+function founderPerson() {
+  return {
+    "@type": "Person",
+    "@id": FOUNDER_ID,
+    name: "Shinjoo",
+    jobTitle: "Founder",
+    worksFor: { "@id": ORG_ID },
+  };
+}
 
 /** The publisher node, referenced by @id from articles/courses/posts. */
 export function organizationSchema() {
@@ -49,7 +62,7 @@ export function articleSchema(a: {
     articleSection: a.sectionTitle,
     inLanguage: "en-US",
     isAccessibleForFree: true,
-    author: { "@id": ORG_ID },
+    author: founderPerson(),
     publisher: { "@id": ORG_ID },
   };
 }
@@ -88,7 +101,7 @@ export function blogPostingSchema(p: {
     inLanguage: "en-US",
     isAccessibleForFree: true,
     ...(p.image ? { image: `${BASE}${p.image}` } : {}),
-    author: { "@id": ORG_ID },
+    author: founderPerson(),
     publisher: { "@id": ORG_ID },
   };
 }

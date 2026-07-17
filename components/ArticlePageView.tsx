@@ -159,10 +159,10 @@ export default function ArticlePageView({
                 <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-sand pb-6">
                   <div className="flex items-center gap-2.5">
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-cream">
-                      E
+                      S
                     </span>
                     <span className="text-sm font-semibold text-ink">
-                      Empower Editorial Team
+                      Shinjoo, founder
                     </span>
                   </div>
                   <span className="hidden h-4 w-px bg-sand sm:block" />
