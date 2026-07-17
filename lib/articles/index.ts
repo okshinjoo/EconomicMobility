@@ -12,6 +12,7 @@ import { budgetingExtraArticles } from "./budgetingExtra";
 import { creditExtraArticles } from "./creditExtra";
 import { taxesExtraArticles } from "./taxesExtra";
 import { collegeExtraArticles } from "./collegeExtra";
+import { collegeCareerArticles } from "./collegeCareer";
 import { investingExtraArticles } from "./investingExtra";
 import { homeOwnershipExtraArticles } from "./homeOwnershipExtra";
 import { governmentAidExtraArticles } from "./governmentAidExtra";
@@ -39,6 +40,7 @@ const topicArticleSets: Article[][] = [
   creditExtraArticles,
   taxesExtraArticles,
   collegeExtraArticles,
+  collegeCareerArticles,
   investingExtraArticles,
   homeOwnershipExtraArticles,
   governmentAidExtraArticles,

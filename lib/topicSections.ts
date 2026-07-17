@@ -88,6 +88,17 @@ const TOPIC_SECTIONS: Partial<Record<TopicId, TopicSectionDef[]>> = {
       ],
     },
     {
+      id: "getting-hired",
+      title: "Getting hired",
+      blurb:
+        "Resumes, interviews, and reading your first offer: the job side of student money.",
+      slugs: [
+        "resume-with-no-experience",
+        "ace-your-first-interview",
+        "first-job-offer-money",
+      ],
+    },
+    {
       id: "big-moves",
       title: "Big moves",
       blurb:
