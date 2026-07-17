@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import ChallengeGrid, { type ChallengeCardData } from "@/components/ChallengeGrid";
 import { challenges } from "@/lib/challenges";
 
@@ -24,6 +25,11 @@ export default function ChallengesPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       {/* Hero — soft terracotta tint (the solid field read as abrasive) */}
       <section className="border-b-2 border-ink" style={{ background: "#f0d0c0" }}>
@@ -63,7 +69,14 @@ export default function ChallengesPage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

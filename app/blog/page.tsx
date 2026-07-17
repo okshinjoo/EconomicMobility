@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import BlogList, { type BlogListItem } from "@/components/BlogList";
 import { sortedBlogPosts } from "@/lib/blog";
 import { allArticles } from "@/lib/articles";
@@ -37,6 +38,11 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
@@ -89,7 +95,14 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

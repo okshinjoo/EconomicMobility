@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import CoursePageView from "@/components/CoursePageView";
 import { courses, getCourse } from "@/lib/courses";
 
@@ -34,8 +35,15 @@ export default async function CoursePage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+      <div className="relative z-10 bg-paper">
       <CoursePageView courseId={course} frame="main" />
-      <Footer />
+      </div>
+
+      <CurtainFooter>
+        <Footer />
+      </CurtainFooter>
     </div>
   );
 }

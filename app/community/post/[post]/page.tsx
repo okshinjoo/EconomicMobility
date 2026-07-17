@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import { SinglePost } from "@/components/CommunityFeed";
 import {
   communityPosts,
@@ -57,6 +58,11 @@ export default async function CommunityPostPage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       <section className="bg-paper">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:py-14">
@@ -139,7 +145,14 @@ export default async function CommunityPostPage({
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

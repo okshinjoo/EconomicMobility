@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import CalcSwitcher from "@/components/CalcSwitcher";
 import PaycheckCalculator from "@/components/PaycheckCalculator";
 
@@ -16,6 +17,9 @@ export default function PaycheckPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+      <div className="relative z-10 bg-paper">
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 pt-12">
           <nav className="flex items-center gap-1.5 text-sm font-medium text-stone">
@@ -51,7 +55,11 @@ export default function PaycheckPage() {
           <PaycheckCalculator />
         </div>
       </section>
-      <Footer />
+      </div>
+
+      <CurtainFooter>
+        <Footer />
+      </CurtainFooter>
     </div>
   );
 }
