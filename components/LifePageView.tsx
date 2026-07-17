@@ -19,11 +19,11 @@ export default function LifePageView({ frame }: { frame: Frame }) {
 
       {/* Hero — C voice */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift>
+        <ScrollDrift range={52} driftX={-20} rotate={4}>
           <TopicMark
             id="budgeting"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.13]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">

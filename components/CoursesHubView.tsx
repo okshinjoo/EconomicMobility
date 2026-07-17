@@ -30,11 +30,11 @@ export default function CoursesHubView({ frame }: { frame: Frame }) {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift>
+        <ScrollDrift range={48} driftX={22} rotate={-4}>
           <TopicMark
             id="college"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.07]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[26rem] w-[26rem] opacity-[0.13]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">

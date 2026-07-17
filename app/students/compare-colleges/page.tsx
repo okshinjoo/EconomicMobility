@@ -9,6 +9,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import ScrollDrift from "@/components/ScrollDrift";
+import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CollegeCompare from "@/components/CollegeCompare";
 import { colleges, COLLEGE_DATA_VINTAGE } from "@/lib/collegeProfiles";
@@ -47,6 +49,13 @@ export default function CompareCollegesPage() {
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero — C voice on forest, with the sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
+        <ScrollDrift range={52} driftX={-18} rotate={3}>
+          <TopicMark
+            id="college"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Tool

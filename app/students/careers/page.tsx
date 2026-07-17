@@ -10,6 +10,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Download, Telescope, Briefcase } from "lucide-react";
 import Footer from "@/components/Footer";
+import ScrollDrift from "@/components/ScrollDrift";
+import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import { templates } from "@/lib/templates";
 
@@ -48,6 +50,13 @@ export default function CareersPage() {
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero — C voice on forest, sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
+        <ScrollDrift range={46} driftX={20} rotate={-4}>
+          <TopicMark
+            id="budgeting"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Careers

@@ -39,10 +39,10 @@ export default function AskPage() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <ScrollDrift>
+          <ScrollDrift range={48} driftX={-22} rotate={4}>
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -bottom-32 -right-6 select-none font-display text-[22rem] font-bold italic leading-none text-cream opacity-[0.07]"
+              className="pointer-events-none absolute -bottom-32 -right-6 select-none font-display text-[22rem] font-bold italic leading-none text-cream opacity-[0.10]"
             >
               Q.
             </span>

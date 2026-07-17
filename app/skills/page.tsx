@@ -7,6 +7,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollDrift from "@/components/ScrollDrift";
+import TopicMark from "@/components/TopicMark";
 import CurtainFooter from "@/components/CurtainFooter";
 import HeadlineRise from "@/components/HeadlineRise";
 import ScrollDissolve from "@/components/ScrollDissolve";
@@ -32,6 +34,13 @@ export default function SkillsPage() {
 
       {/* Hero — forest field, sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
+        <ScrollDrift range={50} driftX={-22} rotate={4}>
+          <TopicMark
+            id="investing"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+          />
+        </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             Your progress

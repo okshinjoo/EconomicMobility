@@ -33,11 +33,11 @@ export default function CommunityPage() {
       <main id="main-content" tabIndex={-1}>
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift>
+        <ScrollDrift range={54} driftX={-26} rotate={5}>
           <TopicMark
             id="money-safety"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.07]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">

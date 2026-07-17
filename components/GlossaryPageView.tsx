@@ -38,10 +38,10 @@ export default function GlossaryPageView({ frame }: { frame: Frame }) {
 
       {/* Hero — A: solid amber field with a ghost glyph */}
       <section className="relative overflow-hidden bg-amber text-ink">
-        <ScrollDrift>
+        <ScrollDrift range={46} driftX={18} rotate={-3}>
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -right-8 -top-24 select-none font-display text-[24rem] font-bold italic leading-none text-ink opacity-[0.06]"
+            className="pointer-events-none absolute -right-8 -top-24 select-none font-display text-[24rem] font-bold italic leading-none text-ink opacity-[0.09]"
           >
             Aa
           </span>
