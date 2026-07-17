@@ -48,10 +48,11 @@ const UNIT_ROW_CAP = 3; // unit bubbles per row
 const UNIT_ROW_STEP = 72; // radial spacing between unit rows
 const UNIT_ROW_LEAD = 56; // tier pill to its first unit row
 const QUIZ_LEAD = 70; // limb end to the checkpoint diamond
-const LEAF_LEAD = 92; // twig end to a tier's item ring
-const LEAF_RING_STEP = 92; // radial spacing between item rings
-const LEAF_GAP = 0.15; // angular spacing between items in a ring
-const STARTER_STEP = 92; // radial spacing along the First-steps twigs
+const LEAF_LEAD = 72; // twig end to a tier's item ring
+const LEAF_RING_STEP = 64; // radial spacing between item rings
+const LEAF_GAP = 0.17; // angular spacing between items in a ring
+const ITEM = 44; // item bubble diameter (icon-only; name in tooltip)
+const STARTER_STEP = 68; // radial spacing along the First-steps twigs
 const STARTER_GAP = 0.3; // angular gap between the two starter twigs
 const FOREST = "#0c4a39";
 
@@ -241,25 +242,23 @@ export default function SkillTreeMap({
             key={`starter-${s.id}`}
             href={s.href}
             title={`${s.label}${lit.mounted && done ? " — done" : ""}`}
-            className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+            aria-label={`${s.label}${lit.mounted && done ? " (done)" : ""}`}
+            className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
             style={{
               left: p.x,
               top: p.y,
-              width: 74,
-              height: 74,
+              width: 48,
+              height: 48,
               transform: "translate(-50%, -50%)",
               ...fill(done ? "done" : "none", FOREST),
             }}
           >
             <Zap
-              className="h-3.5 w-3.5 shrink-0"
+              className="h-4 w-4 shrink-0"
               strokeWidth={2.5}
               fill={done ? AMBER : "none"}
               style={done ? { color: AMBER } : undefined}
             />
-            <span className="line-clamp-2 text-[9px] font-bold leading-[1.2]">
-              {s.short}
-            </span>
           </Link>
         );
         prevDot = p;
@@ -440,30 +439,30 @@ export default function SkillTreeMap({
               title={`${item.title}${
                 lit.mounted && item.done ? " — done" : ""
               }`}
-              className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+              aria-label={`${item.title}${
+                lit.mounted && item.done ? " (done)" : ""
+              }`}
+              className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
               style={{
                 left: p.x,
                 top: p.y,
-                width: 72,
-                height: 72,
+                width: ITEM,
+                height: ITEM,
                 transform: "translate(-50%, -50%)",
                 ...fill(item.done ? "done" : "none", item.color),
               }}
             >
               {item.icon === "tool" ? (
-                <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+                <Wrench className="h-4 w-4 shrink-0" strokeWidth={2.5} />
               ) : item.icon === "journey" ? (
-                <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+                <Route className="h-4 w-4 shrink-0" strokeWidth={2.5} />
               ) : (
                 <BadgeMedal
                   color={item.done ? CREAM : "#9aa39b"}
                   variant="course"
-                  className="h-3.5 w-3.5 shrink-0"
+                  className="h-4 w-4 shrink-0"
                 />
               )}
-              <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
-                {item.label}
-              </span>
             </Link>
           );
         });
