@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { MessageCircle, X, Send, Sparkles, ArrowUpRight } from "lucide-react";
 import type { SearchItem } from "@/lib/search";
+import { loadSearchIndex } from "@/lib/searchIndexClient";
 import { guideAnswer, type GuideAnswer } from "@/lib/guide";
 import { youSummary } from "@/lib/personalization";
 
@@ -66,7 +67,7 @@ const GREETING: Msg = {
   text: "Hi, I'm your money guide. Ask me anything about money. I'll explain it in plain English and hand you the exact guide or calculator for it.",
 };
 
-export default function ChatLauncher({ items }: { items: SearchItem[] }) {
+export default function ChatLauncher() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -77,6 +78,13 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  // Perf round 2 (July 17, 2026): the index is no longer a prop on every
+  // page — warm the shared cache when the panel opens so the first answer
+  // doesn't wait on it.
+  useEffect(() => {
+    if (open) void loadSearchIndex();
+  }, [open]);
 
   // Auto-scroll to the newest message.
   useEffect(() => {
@@ -107,7 +115,8 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
     const priorMsgs = msgs;
     setMsgs((m) => [...m, { role: "user", text: q }]);
     setThinking(true);
-    const answer = await fetchAnswer(q, priorMsgs, items);
+    const index = await loadSearchIndex();
+    const answer = await fetchAnswer(q, priorMsgs, index);
     setThinking(false);
     setMsgs((m) => [...m, { role: "guide", text: answer.reply, items: answer.items }]);
   }

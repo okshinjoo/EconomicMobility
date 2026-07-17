@@ -7,7 +7,6 @@ import StudentReturnChip from "@/components/StudentReturnChip";
 import { getStudentPagePaths } from "@/lib/studentShelf";
 import VisitTracker from "@/components/VisitTracker";
 import ScrollProgress from "@/components/ScrollProgress";
-import { getSearchItems } from "@/lib/search";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,7 +96,7 @@ export default function RootLayout({
         </a>
         {children}
         {modal ?? null}
-        <ChatLauncher items={getSearchItems()} />
+        <ChatLauncher />
         <StudentReturnChip studentPaths={getStudentPagePaths()} />
         <VisitTracker />
         <ScrollProgress />

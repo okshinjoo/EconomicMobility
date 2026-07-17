@@ -38,7 +38,6 @@ import {
 } from "lucide-react";
 import AccountButton from "@/components/AccountButton";
 import SearchDialog from "@/components/SearchDialog";
-import type { SearchItem } from "@/lib/search";
 
 interface StudentDropItem {
   label: string;
@@ -225,11 +224,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
   );
 }
 
-export default function StudentHeader({
-  searchItems,
-}: {
-  searchItems: SearchItem[];
-}) {
+export default function StudentHeader() {
   const pathname = usePathname();
 
   return (
@@ -284,7 +279,7 @@ export default function StudentHeader({
         </div>
 
         <div className="flex shrink-0 items-center gap-2.5">
-          <SearchDialog items={searchItems} compact />
+          <SearchDialog frame="student" compact />
           <Link prefetch={false}
             href="/"
             className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-cream/80 underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"

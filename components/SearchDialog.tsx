@@ -15,6 +15,8 @@ import {
   Compass,
 } from "lucide-react";
 import type { SearchItem, SearchKind } from "@/lib/search";
+import { frameHref, type Frame } from "@/lib/frame";
+import { loadSearchIndex } from "@/lib/searchIndexClient";
 
 const KIND_COLOR: Record<SearchKind, string> = {
   Topic: "#0c4a39",
@@ -70,14 +72,19 @@ interface Section {
 }
 
 export default function SearchDialog({
-  items,
+  frame = "main",
   compact = false,
 }: {
-  items: SearchItem[];
+  /** Student frame maps every result href through frameHref post-fetch. */
+  frame?: Frame;
   /** Icon-only trigger until 2xl (StudentHeader's crowded row); the main
    *  header keeps the labeled pill. */
   compact?: boolean;
 }) {
+  // Perf round 2 (July 17, 2026): the index is no longer a prop serialized
+  // into every page — it's fetched once from /api/search-index on first
+  // open and cached module-wide (shared with the ChatLauncher).
+  const [items, setItems] = useState<SearchItem[] | null>(null);
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -91,6 +98,24 @@ export default function SearchDialog({
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  // First open: pull the index (CDN-cached JSON, ~one round trip), mapping
+  // hrefs into the student frame when needed.
+  useEffect(() => {
+    if (!open || items !== null) return;
+    let alive = true;
+    loadSearchIndex().then((list) => {
+      if (!alive) return;
+      setItems(
+        frame === "main"
+          ? list
+          : list.map((i) => ({ ...i, href: frameHref(i.href, frame) }))
+      );
+    });
+    return () => {
+      alive = false;
+    };
+  }, [open, items, frame]);
 
   // ⌘K / Ctrl+K toggles the palette.
   useEffect(() => {
@@ -129,6 +154,7 @@ export default function SearchDialog({
 
   // Flat, relevance-ordered results (drives keyboard nav) + grouped sections.
   const { flat, sections } = useMemo(() => {
+    if (items === null) return { flat: [], sections: [] };
     const q = query.trim().toLowerCase();
 
     if (!q) {

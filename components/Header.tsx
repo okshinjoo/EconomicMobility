@@ -4,7 +4,6 @@ import MobileNav from "@/components/MobileNav";
 import SearchDialog from "@/components/SearchDialog";
 import AccountButton from "@/components/AccountButton";
 import { nav, type NavEntry } from "@/lib/nav";
-import { getSearchItems } from "@/lib/search";
 
 export default function Header() {
   return (
@@ -45,7 +44,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <SearchDialog items={getSearchItems()} />
+          <SearchDialog />
           {/* Auth-aware CTA slot: quiz button while accounts are dark or
               booting, "Sign in" when signed out, avatar when signed in. */}
           <AccountButton />
