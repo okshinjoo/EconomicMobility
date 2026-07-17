@@ -53,6 +53,9 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
 
       {/* Hero — light editorial (Base44 learn-page structure, our skin) */}
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
+        {/* ONE ghost per hero: the static budgeting whisper that predated
+            the living treatment sat in this same corner and doubled up with
+            the drifting mark (owner caught it July 17) — removed. */}
         <ScrollDrift range={62} driftX={-26} rotate={5}>
           <TopicMark
             id="taxes"
@@ -60,11 +63,6 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
             className="pointer-events-none absolute -right-14 -top-10 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
-        <TopicMark
-          id="budgeting"
-          color="#fbf8f1"
-          className="pointer-events-none absolute -right-14 -top-8 h-[19rem] w-[19rem] opacity-[0.07]"
-        />
         <HeroRecede className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pb-12 pt-14 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div>
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
