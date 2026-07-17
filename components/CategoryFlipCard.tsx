@@ -56,7 +56,7 @@ export default function CategoryFlipCard({
       }}
     >
       <div
-        className="relative h-full min-h-[15.5rem] [transform-style:preserve-3d]"
+        className="relative h-full min-h-[17.5rem] [transform-style:preserve-3d]"
         style={{
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 500ms cubic-bezier(0.77, 0, 0.175, 1)",
