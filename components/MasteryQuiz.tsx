@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Star, X } from "lucide-react";
+import { Star, X } from "@phosphor-icons/react/dist/ssr";
 import type { MasteryQuestion } from "@/lib/skillMastery";
 
 export default function MasteryQuiz({
@@ -106,7 +106,7 @@ export default function MasteryQuiz({
             aria-label="Close"
             className="rounded-md p-1 text-stone hover:bg-ink/5 hover:text-ink"
           >
-            <X className="h-5 w-5" strokeWidth={2.5} />
+            <X className="h-5 w-5" weight="bold" />
           </button>
         </div>
 
@@ -213,8 +213,7 @@ export default function MasteryQuiz({
               <>
                 <p className="inline-flex items-center gap-2 font-display text-2xl font-bold text-forest">
                   <Star
-                    className="h-6 w-6 text-amber"
-                    strokeWidth={2.5}
+                    className="h-6 w-6 text-amber" weight="bold"
                     fill="currentColor"
                   />
                   Mastered — {score}/{questions.length}

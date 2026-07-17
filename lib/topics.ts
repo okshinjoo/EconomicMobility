@@ -1,15 +1,5 @@
-import {
-  CreditCard,
-  Wallet,
-  Receipt,
-  GraduationCap,
-  TrendingUp,
-  Home as HomeIcon,
-  HeartHandshake,
-  ShieldCheck,
-  Umbrella,
-  type LucideIcon,
-} from "lucide-react";
+import { CreditCard, Wallet, Receipt, GraduationCap, TrendUp as TrendingUp, House as HomeIcon, Handshake as HeartHandshake, ShieldCheck, Umbrella } from "@phosphor-icons/react/dist/ssr";
+import type { Icon as LucideIcon } from "@phosphor-icons/react";
 
 export type TopicId =
   | "credit"

@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import type { Icon as LucideIcon } from "@phosphor-icons/react";
 import { topics } from "./topics";
 import { toolCategories } from "./toolsRegistry";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, X } from "lucide-react";
+import { Check, X } from "@phosphor-icons/react/dist/ssr";
 import type { ArticleQuizQuestion } from "@/lib/articles/types";
 import { loadJSON, saveJSON } from "@/lib/storage";
 
@@ -147,14 +147,12 @@ export default function ArticleQuiz({
                 >
                   {isAnswered && isCorrect && (
                     <Check
-                      className="mt-1 h-4 w-4 shrink-0 text-forest"
-                      strokeWidth={3}
+                      className="mt-1 h-4 w-4 shrink-0 text-forest" weight="bold"
                     />
                   )}
                   {isAnswered && isChosen && !isCorrect && (
                     <X
-                      className="mt-1 h-4 w-4 shrink-0 text-terracotta"
-                      strokeWidth={3}
+                      className="mt-1 h-4 w-4 shrink-0 text-terracotta" weight="bold"
                     />
                   )}
                   <span>{opt}</span>

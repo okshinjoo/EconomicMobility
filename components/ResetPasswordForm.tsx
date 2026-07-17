@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, CheckCircle2, Eye, EyeOff } from "lucide-react";
+import { CircleNotch as Loader2, CheckCircle as CheckCircle2, Eye, EyeSlash as EyeOff } from "@phosphor-icons/react/dist/ssr";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 
 export default function ResetPasswordForm() {
@@ -67,7 +67,7 @@ export default function ResetPasswordForm() {
   if (done) {
     return (
       <div className="rounded-xl border-2 border-forest/30 bg-forest/[0.06] p-6 text-center">
-        <CheckCircle2 className="mx-auto h-8 w-8 text-forest" strokeWidth={1.75} />
+        <CheckCircle2 className="mx-auto h-8 w-8 text-forest" />
         <p className="mt-2 font-display text-lg font-semibold text-ink">
           Password updated
         </p>
@@ -120,9 +120,9 @@ export default function ResetPasswordForm() {
             className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
           >
             {showPw ? (
-              <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+              <EyeOff className="h-5 w-5" />
             ) : (
-              <Eye className="h-5 w-5" strokeWidth={1.75} />
+              <Eye className="h-5 w-5" />
             )}
           </button>
         </div>

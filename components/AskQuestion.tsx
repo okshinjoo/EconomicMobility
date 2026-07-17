@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, ShieldCheck, Loader2 } from "lucide-react";
+import { PaperPlaneTilt as Send, ShieldCheck, CircleNotch as Loader2 } from "@phosphor-icons/react/dist/ssr";
 import { topics } from "@/lib/topics";
 import { communityTag, communityFlairs } from "@/lib/profile";
 

@@ -7,7 +7,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Check, Plus, Trash2 } from "lucide-react";
+import { Check, Plus, Trash as Trash2 } from "@phosphor-icons/react/dist/ssr";
 import { frameHref } from "@/lib/frame";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
@@ -565,7 +565,7 @@ export default function StudentTracker() {
                 }`}
                 aria-label={t.done ? "Mark not done" : "Mark done"}
               >
-                {t.done && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+                {t.done && <Check className="h-3.5 w-3.5" weight="bold" />}
               </button>
               <span
                 className={`flex-1 text-sm font-medium ${

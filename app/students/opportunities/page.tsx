@@ -5,7 +5,7 @@
 // twin, like /students/scholarships).
 
 import Link from "next/link";
-import { Briefcase } from "lucide-react";
+import { Briefcase } from "@phosphor-icons/react/dist/ssr";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
@@ -35,8 +35,7 @@ export default function OpportunitiesPage() {
       <section className="relative overflow-hidden border-y-2 border-ink bg-amber text-ink">
         <Briefcase
           aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 text-ink opacity-[0.07]"
-          strokeWidth={1}
+          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 text-ink opacity-[0.07]" weight="light"
         />
         <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-12">
           <nav className="text-sm font-medium text-ink/70">

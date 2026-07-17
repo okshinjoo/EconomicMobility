@@ -8,7 +8,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { HandCoins } from "lucide-react";
+import { HandCoins } from "@phosphor-icons/react/dist/ssr";
 import { fuzzyScore } from "@/lib/fuzzy";
 import {
   careers,
@@ -129,7 +129,7 @@ export default function CareerExplorer() {
                 : "border-forest/40 bg-forest/[0.06] text-forest hover:border-forest"
             }`}
           >
-            <HandCoins className="h-4 w-4" strokeWidth={2.25} />
+            <HandCoins className="h-4 w-4" weight="bold" />
             Earn while you train
           </button>
           <span className="text-[13px] text-stone">
@@ -227,7 +227,7 @@ export default function CareerExplorer() {
               </span>
               {c.earnWhileTraining && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
-                  <HandCoins className="h-3 w-3" strokeWidth={2.5} />
+                  <HandCoins className="h-3 w-3" weight="bold" />
                   Earn while you train
                 </span>
               )}

@@ -6,7 +6,7 @@
 // follower counts wait for the live comments system.
 
 import { useEffect, useState } from "react";
-import { UserPlus, UserCheck } from "lucide-react";
+import { UserPlus, UserCheck } from "@phosphor-icons/react/dist/ssr";
 import { loadJSON, saveJSON } from "@/lib/storage";
 
 export const FOLLOWS_KEY = "empower:community-follows:v1";

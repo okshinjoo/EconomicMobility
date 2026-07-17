@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ParallaxPhoto from "@/components/ParallaxPhoto";
-import { ChevronRight } from "lucide-react";
+import { CaretRight as ChevronRight } from "@phosphor-icons/react/dist/ssr";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { learnContent, guideCount, LEARN_UPDATED } from "@/lib/learnContent";
 import { getTopicRoadmap } from "@/lib/articles";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, FileSpreadsheet, Download, PenLine } from "lucide-react";
+import { ArrowRight, FileXls as FileSpreadsheet, DownloadSimple as Download, PencilSimpleLine as PenLine } from "@phosphor-icons/react/dist/ssr";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
@@ -109,7 +109,7 @@ export default function ToolsHub() {
                 className="btn-ink hidden shrink-0 items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink sm:inline-flex"
               >
                 Try it
-                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+                <ArrowRight className="h-3.5 w-3.5" weight="bold" />
               </Link>
             </div>
             {/* button drops below the row on the narrowest screens */}
@@ -118,7 +118,7 @@ export default function ToolsHub() {
               className="btn-ink mt-4 inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink sm:hidden"
             >
               Try the Reality Check
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+              <ArrowRight className="h-3.5 w-3.5" weight="bold" />
             </Link>
           </Reveal>
         </div>
@@ -316,7 +316,7 @@ export default function ToolsHub() {
             href="/tools/letters"
             className="group mx-auto flex max-w-xl flex-col items-center rounded-2xl border-2 border-ink bg-cream p-8 text-center shadow-[0_12px_30px_-16px_rgba(17,33,28,0.35)] transition-transform duration-200 hover:-translate-y-1 sm:p-10"
           >
-            <PenLine className="h-8 w-8 text-terracotta" strokeWidth={1.75} />
+            <PenLine className="h-8 w-8 text-terracotta" />
             <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
               Not a calculator, still a tool
             </p>
@@ -329,7 +329,7 @@ export default function ToolsHub() {
             </p>
             <span className="btn-ink mt-6 inline-flex items-center gap-2 rounded-md bg-amber px-6 py-3 text-sm font-bold text-ink">
               Write a letter
-              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              <ArrowRight className="h-4 w-4" weight="bold" />
             </span>
           </Link>
         </div>
@@ -369,7 +369,7 @@ export default function ToolsHub() {
                     download
                     className="group flex h-full flex-col rounded-2xl border border-white/10 bg-forest-700 p-5 transition-colors duration-200 hover:border-amber/40"
                   >
-                    <t.icon className="h-6 w-6 text-amber" strokeWidth={1.5} />
+                    <t.icon className="h-6 w-6 text-amber" weight="light" />
                     <h3 className="mt-3 text-base font-semibold leading-tight">
                       {t.title}
                     </h3>

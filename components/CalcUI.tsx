@@ -1,7 +1,7 @@
 // Shared building blocks for the calculator tools so they stay visually
 // consistent (the Budget Planner predates this and keeps its own copies).
 
-import { Plus, X, RotateCcw } from "lucide-react";
+import { Plus, X, ArrowCounterClockwise as RotateCcw } from "@phosphor-icons/react/dist/ssr";
 
 export const num = (v: string): number => {
   // People type money the way it's written: "1,500" or "$65,000".

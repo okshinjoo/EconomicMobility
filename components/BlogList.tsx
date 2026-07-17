@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Clock } from "lucide-react";
+import { Check, Clock } from "@phosphor-icons/react/dist/ssr";
 import type { TopicId } from "@/lib/topics";
 import { getReadMap } from "@/lib/readTracking";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
@@ -199,7 +199,7 @@ export default function BlogList({
                     {formatDate(post.date)}
                     {wasRead && (
                       <span className="inline-flex items-center gap-1 font-semibold text-forest">
-                        <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                        <Check className="h-3.5 w-3.5" weight="bold" />
                         You read this
                       </span>
                     )}

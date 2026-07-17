@@ -7,7 +7,7 @@
 // render and every client agree.
 
 import { useEffect, useMemo, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ArrowSquareOut as ExternalLink } from "@phosphor-icons/react/dist/ssr";
 import { useSearchParams } from "next/navigation";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { frameHref } from "@/lib/frame";

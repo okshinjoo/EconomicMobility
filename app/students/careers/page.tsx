@@ -8,7 +8,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Download, Telescope, Briefcase } from "lucide-react";
+import { DownloadSimple as Download, Binoculars as Telescope, Briefcase } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
 import HeroRecede from "@/components/HeroRecede";
@@ -118,7 +118,7 @@ export default function CareersPage() {
                     download
                     className="btn-ink inline-flex items-center gap-1.5 rounded-md bg-amber px-3.5 py-2 text-sm font-bold text-ink"
                   >
-                    <Download className="h-4 w-4" strokeWidth={2.5} />
+                    <Download className="h-4 w-4" weight="bold" />
                     Download .docx
                   </a>
                   {t.tool && (
@@ -174,7 +174,7 @@ export default function CareersPage() {
               href="/students/career-explorer"
               className="card-ink-lg group flex h-full flex-col rounded-2xl bg-forest p-6 text-cream transition-transform duration-200 hover:-translate-y-1"
             >
-              <Telescope className="h-6 w-6 text-amber" strokeWidth={2.25} />
+              <Telescope className="h-6 w-6 text-amber" weight="bold" />
               <h3 className="mt-3 font-display text-xl font-bold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
                 Career Explorer
               </h3>
@@ -188,7 +188,7 @@ export default function CareersPage() {
               href="/students/opportunities"
               className="card-ink-lg group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"
             >
-              <Briefcase className="h-6 w-6 text-terracotta" strokeWidth={2.25} />
+              <Briefcase className="h-6 w-6 text-terracotta" weight="bold" />
               <h3 className="mt-3 font-display text-xl font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
                 Internships &amp; Opportunities
               </h3>

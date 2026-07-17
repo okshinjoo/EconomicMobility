@@ -3,7 +3,7 @@
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useMemo, useState } from "react";
-import { Home } from "lucide-react";
+import { House as Home } from "@phosphor-icons/react/dist/ssr";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
 import {
   Card,

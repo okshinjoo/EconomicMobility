@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronRight, Clock, BookMarked } from "lucide-react";
+import { CaretRight as ChevronRight, Clock, BookBookmark as BookMarked } from "@phosphor-icons/react/dist/ssr";
 import ArticleBody from "@/components/ArticleBody";
 import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
@@ -138,7 +138,7 @@ export default function ArticlePageView({
                     className="flex h-12 w-12 items-center justify-center rounded-2xl"
                     style={{ background: `${accent}1A`, color: accent }}
                   >
-                    <meta.icon className="h-6 w-6" strokeWidth={1.6} />
+                    <meta.icon className="h-6 w-6" />
                   </span>
                   <Link
                     href={href(meta.href)}

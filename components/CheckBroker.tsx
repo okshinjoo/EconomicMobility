@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ArrowSquareOut as ExternalLink } from "@phosphor-icons/react/dist/ssr";
 
 /**
  * The "ask and check" habit from investor.gov, made one-click: type any

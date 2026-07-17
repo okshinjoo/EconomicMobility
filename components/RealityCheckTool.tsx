@@ -4,7 +4,7 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowCounterClockwise as RotateCcw } from "@phosphor-icons/react/dist/ssr";
 import {
   lifestyleCategories,
   salaryForLifestyle,

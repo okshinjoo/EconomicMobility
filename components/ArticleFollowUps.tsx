@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import TopicMark from "@/components/TopicMark";
 import type { TopicId } from "@/lib/topics";
-import { ArrowLeft, ArrowRight, Check, Map, Sparkles, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapTrifold as Map, Sparkle as Sparkles, Wrench } from "@phosphor-icons/react/dist/ssr";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
 import { getReadMap } from "@/lib/readTracking";
 import { frameHref, type Frame } from "@/lib/frame";
@@ -88,7 +88,7 @@ export function ToolCard({
         className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-cream"
         style={{ color: accent }}
       >
-        <Wrench className="h-6 w-6" strokeWidth={1.75} />
+        <Wrench className="h-6 w-6" />
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">
@@ -130,7 +130,7 @@ export function RoadmapPathCard({
         className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-cream"
         style={{ color: accent }}
       >
-        <Map className="h-6 w-6" strokeWidth={1.75} />
+        <Map className="h-6 w-6" />
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">
@@ -321,7 +321,7 @@ export function RelatedArticles({
                       className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold normal-case tracking-normal text-cream"
                       style={{ background: rel.color }}
                     >
-                      <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                      <Check className="h-2.5 w-2.5" weight="bold" />
                       Read
                     </span>
                   )}

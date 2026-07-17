@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, Flag, MessageCircle } from "lucide-react";
+import { Check, Flag, ChatCircle as MessageCircle } from "@phosphor-icons/react/dist/ssr";
 import type { Challenge } from "@/lib/challenges";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import { loadJSON, saveJSON } from "@/lib/storage";
@@ -157,7 +157,7 @@ export default function ChallengeChecklist({
                     background: checked ? accent : undefined,
                   }}
                 >
-                  {checked && <Check className="h-4 w-4" strokeWidth={3} />}
+                  {checked && <Check className="h-4 w-4" weight="bold" />}
                 </button>
                 <div className="min-w-0">
                   <p className={`font-semibold leading-snug text-ink ${checked ? "line-through decoration-2 opacity-70" : ""}`}>

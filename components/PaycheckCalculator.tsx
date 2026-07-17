@@ -3,7 +3,7 @@
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useMemo, useState } from "react";
-import { Info } from "lucide-react";
+import { Info } from "@phosphor-icons/react/dist/ssr";
 import {
   estimateTaxes,
   FILING_OPTIONS,

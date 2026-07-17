@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Sparkles, ArrowRight, X } from "lucide-react";
+import { Sparkle as Sparkles, ArrowRight, X } from "@phosphor-icons/react/dist/ssr";
 import {
   readYou,
   readContext,
@@ -133,7 +133,7 @@ export default function YouCard() {
     return (
       <div className="rounded-2xl border-2 border-forest/20 bg-forest/[0.05] p-5">
         <p className="flex items-center gap-2 font-display text-base font-bold text-ink">
-          <Sparkles className="h-4 w-4 text-forest" strokeWidth={2} />
+          <Sparkles className="h-4 w-4 text-forest" />
           Let the site learn you
         </p>
         <p className="mt-1.5 text-sm leading-6 text-stone">
@@ -176,7 +176,7 @@ export default function YouCard() {
   return (
     <div className="rounded-2xl border-2 border-forest/20 bg-forest/[0.05] p-5">
       <p className="flex items-center gap-2 font-display text-base font-bold text-ink">
-        <Sparkles className="h-4 w-4 text-forest" strokeWidth={2} />
+        <Sparkles className="h-4 w-4 text-forest" />
         Tailored to you
       </p>
       {lead?.personalized && (
@@ -191,7 +191,7 @@ export default function YouCard() {
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
             >
               Start here
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+              <ArrowRight className="h-3.5 w-3.5" weight="bold" />
             </Link>
             {lead.reason && (
               <span className="text-xs text-stone">{lead.reason}</span>
@@ -216,7 +216,7 @@ export default function YouCard() {
               aria-label={`Not quite right — remove "${c.label}"`}
               className="rounded-full p-0.5 text-forest/50 transition-colors hover:bg-forest/15 hover:text-forest"
             >
-              <X className="h-3 w-3" strokeWidth={2.5} />
+              <X className="h-3 w-3" weight="bold" />
             </button>
           </span>
         ))}
@@ -246,7 +246,7 @@ export default function YouCard() {
                 className="inline-flex items-center gap-1.5 rounded-md border-2 border-ink bg-cream px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:border-forest hover:text-forest"
               >
                 {p.label}
-                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+                <ArrowRight className="h-3.5 w-3.5" weight="bold" />
               </Link>
             ))}
           </div>

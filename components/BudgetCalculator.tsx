@@ -4,7 +4,7 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import SaveToProfile from "@/components/SaveToProfile";
 
 import { useEffect, useMemo, useState } from "react";
-import { Plus, X, Info, RotateCcw, Link2 } from "lucide-react";
+import { Plus, X, Info, ArrowCounterClockwise as RotateCcw, LinkSimple as Link2 } from "@phosphor-icons/react/dist/ssr";
 import {
   estimateTaxes,
   FILING_OPTIONS,

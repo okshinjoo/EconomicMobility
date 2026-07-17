@@ -15,35 +15,7 @@ import {
 } from "@/lib/liveComments";
 import { fetchLikes, setLike } from "@/lib/liveLikes";
 import { uploadCommunityImage } from "@/lib/communityImages";
-import {
-  Heart,
-  MessageCircle,
-  Send,
-  Loader2,
-  Clock3,
-  GraduationCap,
-  Compass,
-  BookOpen,
-  Inbox,
-  Pin,
-  Award,
-  Flame,
-  Clock,
-  BarChart3,
-  UserCheck,
-  List,
-  LayoutGrid,
-  Plus,
-  X,
-  Search,
-  ArrowBigUp,
-  Share2,
-  Bookmark,
-  Check as CheckIcon,
-  Trash2,
-  ChevronDown,
-  ImagePlus,
-} from "lucide-react";
+import { Heart, ChatCircle as MessageCircle, PaperPlaneTilt as Send, CircleNotch as Loader2, Clock as Clock3, GraduationCap, Compass, BookOpen, Tray as Inbox, PushPin as Pin, Medal as Award, Flame, Clock, ChartBar as BarChart3, UserCheck, List, SquaresFour as LayoutGrid, Plus, X, MagnifyingGlass as Search, ArrowFatUp as ArrowBigUp, ShareNetwork as Share2, BookmarkSimple as Bookmark, Check as CheckIcon, Trash as Trash2, CaretDown as ChevronDown, ImageSquare as ImagePlus } from "@phosphor-icons/react/dist/ssr";
 import {
   CHANNELS,
   getChannel,
@@ -1774,7 +1746,6 @@ export default function CommunityFeed({
       >
         <c.icon
           className={`flex-shrink-0 ${compact ? "h-3 w-3" : "h-4 w-4"}`}
-          strokeWidth={1.75}
           style={{ color: compact ? "#8a8577" : c.color }}
         />
         <span className="min-w-0 flex-1 truncate text-left">{c.name}</span>
@@ -1810,7 +1781,7 @@ export default function CommunityFeed({
         onClick={openComposer}
         className="btn-ink mb-2 flex w-full items-center justify-center gap-2 rounded-md border-2 border-ink bg-amber px-4 py-2.5 text-sm font-bold text-ink"
       >
-        <Plus className="h-4 w-4" strokeWidth={2.5} />
+        <Plus className="h-4 w-4" weight="bold" />
         New post
       </button>
       {/* find a channel */}
@@ -1864,7 +1835,7 @@ export default function CommunityFeed({
               : "text-stone hover:bg-paper hover:text-ink"
           }`}
         >
-          <Inbox className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+          <Inbox className="h-4 w-4 flex-shrink-0" />
           <span className="flex-1 text-left">All posts</span>
           <span className="text-xs font-bold text-stone/70">{posts.length}</span>
         </button>
@@ -1955,7 +1926,7 @@ export default function CommunityFeed({
             href={frameHref(href, frame)}
             className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-stone transition-colors hover:bg-paper hover:text-ink"
           >
-            <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+            <Icon className="h-4 w-4 flex-shrink-0" />
             {label}
           </Link>
         ))}
@@ -2064,7 +2035,6 @@ export default function CommunityFeed({
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-sand bg-cream px-4 py-3.5 sm:px-5">
                 <c.icon
                   className="h-6 w-6 shrink-0"
-                  strokeWidth={1.75}
                   style={{ color: c.color }}
                 />
                 <div className="min-w-0 flex-1">
@@ -2081,7 +2051,7 @@ export default function CommunityFeed({
                     onClick={openComposer}
                     className="btn-ink hidden items-center gap-1.5 rounded-md bg-amber px-3.5 py-2 text-sm font-bold text-ink sm:inline-flex"
                   >
-                    <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+                    <Plus className="h-3.5 w-3.5" weight="bold" />
                     New post
                   </button>
                 )}
@@ -2149,7 +2119,7 @@ export default function CommunityFeed({
             onClick={openComposer}
             className="inline-flex items-center gap-1.5 rounded-lg bg-amber px-3 py-1.5 text-sm font-bold text-ink transition-colors hover:bg-amber-deep hover:text-cream"
           >
-            <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+            <Plus className="h-3.5 w-3.5" weight="bold" />
             New post
           </button>
         )}
@@ -2173,7 +2143,7 @@ export default function CommunityFeed({
                 : "border border-sand bg-cream text-stone hover:text-ink"
             }`}
           >
-            <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+            <Icon className="h-3.5 w-3.5" />
             {label}
           </button>
         ))}
@@ -2197,7 +2167,7 @@ export default function CommunityFeed({
                     : "bg-cream text-stone hover:text-ink"
                 }`}
               >
-                <Icon className="h-4 w-4" strokeWidth={2} />
+                <Icon className="h-4 w-4" />
               </button>
             ))}
           </div>
@@ -2212,7 +2182,7 @@ export default function CommunityFeed({
               : "border border-sand bg-cream text-stone hover:text-ink"
           }`}
         >
-          <UserCheck className="h-3.5 w-3.5" strokeWidth={2} />
+          <UserCheck className="h-3.5 w-3.5" />
           Following
         </button>
         <button
@@ -2226,7 +2196,7 @@ export default function CommunityFeed({
               : "border border-sand bg-cream text-stone hover:text-ink"
           }`}
         >
-          <Bookmark className="h-3.5 w-3.5" strokeWidth={2} />
+          <Bookmark className="h-3.5 w-3.5" />
           Saved
         </button>
         </div>

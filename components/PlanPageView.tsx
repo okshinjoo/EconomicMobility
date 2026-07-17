@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Compass } from "lucide-react";
+import { Compass } from "@phosphor-icons/react/dist/ssr";
 import PlanApp from "@/components/PlanApp";
 import { frameHref, type Frame } from "@/lib/frame";
 
@@ -17,8 +17,7 @@ export default function PlanPageView({ frame }: { frame: Frame }) {
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
         <Compass
           aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-10 h-80 w-80 opacity-[0.08]"
-          strokeWidth={1}
+          className="pointer-events-none absolute -bottom-16 -right-10 h-80 w-80 opacity-[0.08]" weight="light"
         />
         <div className="relative mx-auto max-w-4xl px-6 py-14 lg:py-16">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ListChecks } from "lucide-react";
+import { ArrowRight, ListChecks } from "@phosphor-icons/react/dist/ssr";
 import { loadJSON } from "@/lib/storage";
 import { frameHref, type Frame } from "@/lib/frame";
 
@@ -45,7 +45,7 @@ export default function TopicQuizCard({
         className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-cream"
         style={{ color: accent }}
       >
-        <ListChecks className="h-6 w-6" strokeWidth={1.75} />
+        <ListChecks className="h-6 w-6" />
       </span>
       <div className="flex-1">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone">

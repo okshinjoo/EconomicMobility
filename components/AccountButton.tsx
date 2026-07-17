@@ -16,7 +16,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { UserRound, LayoutDashboard, LogOut } from "lucide-react";
+import { UserCircle as UserRound, SquaresFour as LayoutDashboard, SignOut as LogOut } from "@phosphor-icons/react/dist/ssr";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { ensureSynced, stopMirror } from "@/lib/accountSync";
 import { readLocalProfile, clearLocalProfile } from "@/lib/profile";
@@ -118,7 +118,7 @@ export default function AccountButton() {
                   onClick={() => setOpen(false)}
                   className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-ink-700"
                 >
-                  <LayoutDashboard className="h-4 w-4 text-amber" strokeWidth={1.75} />
+                  <LayoutDashboard className="h-4 w-4 text-amber" />
                   Your account
                 </Link>
                 <button
@@ -128,7 +128,7 @@ export default function AccountButton() {
                   }}
                   className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-cream transition-colors hover:bg-ink-700"
                 >
-                  <LogOut className="h-4 w-4 text-amber" strokeWidth={1.75} />
+                  <LogOut className="h-4 w-4 text-amber" />
                   Sign out
                 </button>
               </div>
@@ -151,7 +151,7 @@ export default function AccountButton() {
         title="Sign in or create an account"
         className="flex h-9 w-9 items-center justify-center rounded-full text-cream/80 transition-colors hover:bg-white/10 hover:text-amber lg:hidden"
       >
-        <UserRound className="h-5 w-5" strokeWidth={1.75} />
+        <UserRound className="h-5 w-5" />
       </Link>
     </>
   );

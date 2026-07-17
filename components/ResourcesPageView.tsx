@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowSquareOut as ExternalLink, ArrowRight, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import CheckBroker from "@/components/CheckBroker";
 import TopicMark from "@/components/TopicMark";
 import StateResources from "@/components/StateResources";
@@ -203,7 +203,7 @@ export default function ResourcesPageView() {
                         className="btn-ink mt-4 inline-flex items-center gap-2 rounded-md bg-amber px-5 py-2.5 text-sm font-bold text-ink"
                       >
                         Browse the scholarship finder
-                        <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                        <ArrowRight className="h-4 w-4" weight="bold" />
                       </Link>
                     </div>
                   )}
@@ -244,7 +244,7 @@ export default function ResourcesPageView() {
         <section className="bg-amber text-ink">
           <div className="mx-auto max-w-5xl px-6 py-14">
             <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
-              <ShieldCheck className="h-4 w-4" strokeWidth={2} />
+              <ShieldCheck className="h-4 w-4" />
               Straight with you
             </span>
             <p className="mt-3 max-w-3xl font-display text-2xl font-medium leading-snug text-ink sm:text-[1.7rem]">

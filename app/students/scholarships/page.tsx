@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Award } from "lucide-react";
+import { Medal as Award } from "@phosphor-icons/react/dist/ssr";
 import { Suspense } from "react";
 import { frameHref } from "@/lib/frame";
 import type { Metadata } from "next";
@@ -33,8 +33,7 @@ export default function ScholarshipsPage() {
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
         <Award
           aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 opacity-[0.08]"
-          strokeWidth={1}
+          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 opacity-[0.08]" weight="light"
         />
         <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-12">
           <nav className="text-sm font-medium text-cream/70">

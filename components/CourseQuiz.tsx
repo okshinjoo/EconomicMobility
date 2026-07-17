@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, X, Lock, Award } from "lucide-react";
+import { Check, X, Lock, Medal as Award } from "@phosphor-icons/react/dist/ssr";
 import type { CourseQuizQuestion } from "@/lib/courses";
 import { PASS_PERCENT } from "@/lib/courses";
 import { getReadMap } from "@/lib/readTracking";
@@ -283,10 +283,10 @@ export default function CourseQuiz({
                       className={`flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-[0.95rem] leading-6 text-ink transition-colors disabled:cursor-default ${cls}`}
                     >
                       {graded && isCorrect && (
-                        <Check className="mt-1 h-4 w-4 shrink-0 text-forest" strokeWidth={3} />
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-forest" weight="bold" />
                       )}
                       {graded && isChosen && !isCorrect && (
-                        <X className="mt-1 h-4 w-4 shrink-0 text-terracotta" strokeWidth={3} />
+                        <X className="mt-1 h-4 w-4 shrink-0 text-terracotta" weight="bold" />
                       )}
                       <span>{opt}</span>
                     </button>

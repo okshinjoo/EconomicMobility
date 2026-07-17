@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import TopicMark from "@/components/TopicMark";
 import TopicQuiz, { type TopicQuizItem } from "@/components/TopicQuiz";
 import { getTopicQuiz } from "@/lib/topicQuizzes";

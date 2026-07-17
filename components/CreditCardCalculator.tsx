@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Info } from "lucide-react";
+import { Info } from "@phosphor-icons/react/dist/ssr";
 import { simulatePayoff, loanPayment } from "@/lib/debtPayoff";
 import { Donut, Legend } from "@/components/Charts";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";

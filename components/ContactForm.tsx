@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Loader2, CheckCircle2 } from "lucide-react";
+import { PaperPlaneTilt as Send, CircleNotch as Loader2, CheckCircle as CheckCircle2 } from "@phosphor-icons/react/dist/ssr";
 
 // The project's real inbox, shown as a fallback link. Submissions send through
 // Web3Forms (same moderated channel as the Ask/Community forms), so the form
@@ -66,7 +66,7 @@ export default function ContactForm() {
   if (status === "done") {
     return (
       <div className="rounded-2xl border-2 border-forest/30 bg-forest/[0.06] p-6 text-center sm:p-8">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-forest" strokeWidth={1.75} />
+        <CheckCircle2 className="mx-auto h-10 w-10 text-forest" />
         <p className="mt-3 font-display text-xl font-semibold text-ink">
           Thanks, we&apos;ve got it.
         </p>

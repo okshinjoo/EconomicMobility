@@ -24,13 +24,7 @@ import WelcomeBack, {
 import CompoundChart from "@/components/CompoundChart";
 import ParallaxPhoto from "@/components/ParallaxPhoto";
 import TiltCard from "@/components/TiltCard";
-import {
-  TrendingUp,
-  CreditCard,
-  PiggyBank,
-  GraduationCap,
-  Percent,
-} from "lucide-react";
+import { TrendUp as TrendingUp, CreditCard, PiggyBank, GraduationCap, Percent } from "@phosphor-icons/react/dist/ssr";
 import Reveal from "@/components/Reveal";
 import HeadlineRise from "@/components/HeadlineRise";
 import Ticker from "@/components/Ticker";

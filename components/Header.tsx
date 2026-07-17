@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { CaretDown as ChevronDown } from "@phosphor-icons/react/dist/ssr";
 import MobileNav from "@/components/MobileNav";
 import SearchDialog from "@/components/SearchDialog";
 import AccountButton from "@/components/AccountButton";
@@ -88,7 +88,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
                     className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg"
                     style={{ background: `${item.color}1f`, color: item.color }}
                   >
-                    <item.icon className="h-4 w-4" strokeWidth={1.75} />
+                    <item.icon className="h-4 w-4" />
                   </span>
                 )}
                 <span className="min-w-0">

@@ -11,22 +11,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  Loader2,
-  CheckCircle2,
-  UserRound,
-  Eye,
-  EyeOff,
-  X,
-  Check,
-  Pencil,
-  LayoutDashboard,
-  TrendingUp,
-  Target,
-  ShieldCheck,
-  BookOpen,
-  Mail,
-} from "lucide-react";
+import { CircleNotch as Loader2, CheckCircle as CheckCircle2, UserCircle as UserRound, Eye, EyeSlash as EyeOff, X, Check, Pencil, SquaresFour as LayoutDashboard, TrendUp as TrendingUp, Target, ShieldCheck, BookOpen, Envelope as Mail } from "@phosphor-icons/react/dist/ssr";
 import TopicMark from "@/components/TopicMark";
 import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
@@ -112,7 +97,7 @@ function CloseX({ className = "" }: { className?: string }) {
       title="Close (Esc)"
       className={`flex h-9 w-9 items-center justify-center rounded-full border border-sand bg-cream text-stone transition-colors hover:bg-paper hover:text-ink ${className}`}
     >
-      <X className="h-4.5 w-4.5 h-[18px] w-[18px]" strokeWidth={2.25} />
+      <X className="h-4.5 w-4.5 h-[18px] w-[18px]" weight="bold" />
     </button>
   );
 }
@@ -173,7 +158,7 @@ export default function AccountPanel({
     return (
       <section className={overlay ? "" : "bg-paper-deep"}>
       <div className="card-ink mx-auto max-w-3xl rounded-2xl bg-cream p-8 text-center sm:p-10" style={overlay ? undefined : { marginTop: "3rem", marginBottom: "3rem" }}>
-        <UserRound className="mx-auto h-10 w-10 text-stone" strokeWidth={1.5} />
+        <UserRound className="mx-auto h-10 w-10 text-stone" weight="light" />
         <h1 className="mt-4 font-display text-3xl font-bold text-ink sm:text-4xl">
           Your Account
         </h1>
@@ -257,8 +242,7 @@ export default function AccountPanel({
             ].map((line) => (
               <li key={line} className="flex items-start gap-2.5">
                 <Check
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber"
-                  strokeWidth={2.5}
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber" weight="bold"
                 />
                 <span className="text-[0.95rem] leading-6 text-cream/90">
                   {line}
@@ -452,7 +436,7 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
 
       {notice ? (
         <div className="mt-6 rounded-xl border-2 border-forest/30 bg-forest/[0.06] p-5 text-center">
-          <CheckCircle2 className="mx-auto h-8 w-8 text-forest" strokeWidth={1.75} />
+          <CheckCircle2 className="mx-auto h-8 w-8 text-forest" />
           <p className="mt-2 text-sm leading-6 text-ink">{notice}</p>
           {mode === "signup" && (
             <p className="mt-3 text-xs leading-5 text-stone">
@@ -550,9 +534,9 @@ function AuthForms({ supabase }: { supabase: SupabaseClient }) {
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
                 >
                   {showPw ? (
-                    <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+                    <EyeOff className="h-5 w-5" />
                   ) : (
-                    <Eye className="h-5 w-5" strokeWidth={1.75} />
+                    <Eye className="h-5 w-5" />
                   )}
                 </button>
               </div>
@@ -1094,7 +1078,7 @@ export function ProfileEditor({
                 href={keepHref}
                 className="mb-4 flex items-center justify-center gap-2 rounded-lg bg-forest py-2.5 text-sm font-bold text-cream transition-colors hover:bg-forest-700"
               >
-                <BookOpen className="h-4 w-4" strokeWidth={2} />
+                <BookOpen className="h-4 w-4" />
                 Keep learning
               </Link>
               {navItems.map(([id, Icon]) => (
@@ -1115,7 +1099,7 @@ export function ProfileEditor({
                       : { color: DASH.muted }
                   }
                 >
-                  <Icon className="h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+                  <Icon className="h-4 w-4 flex-shrink-0" />
                   {PANEL_LABELS[id]}
                 </button>
               ))}
@@ -1128,7 +1112,6 @@ export function ProfileEditor({
                   <div className="flex items-start gap-3">
                     <CheckCircle2
                       className="mt-0.5 h-6 w-6 flex-shrink-0 text-forest"
-                      strokeWidth={1.75}
                     />
                     <div>
                       <p className="font-display text-lg font-bold text-ink">
@@ -1282,7 +1265,6 @@ export function ProfileEditor({
               <div className="flex items-center gap-3">
                 <Target
                   className="h-5 w-5 flex-shrink-0 text-forest"
-                  strokeWidth={1.75}
                 />
                 <p className="text-sm leading-6" style={{ color: DASH.muted }}>
                   <span className="font-semibold text-ink">
@@ -1836,7 +1818,6 @@ export function ProfileEditor({
                     <div className="flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
                       <CheckCircle2
                         className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
-                        strokeWidth={1.75}
                       />
                       <p className="text-sm leading-6 text-ink">{emailNotice}</p>
                     </div>
@@ -1874,9 +1855,9 @@ export function ProfileEditor({
                       className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-stone transition-colors hover:text-ink"
                     >
                       {showPw ? (
-                        <EyeOff className="h-5 w-5" strokeWidth={1.75} />
+                        <EyeOff className="h-5 w-5" />
                       ) : (
-                        <Eye className="h-5 w-5" strokeWidth={1.75} />
+                        <Eye className="h-5 w-5" />
                       )}
                     </button>
                   </div>
@@ -1912,7 +1893,6 @@ export function ProfileEditor({
                     <div className="flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
                       <CheckCircle2
                         className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
-                        strokeWidth={1.75}
                       />
                       <p className="text-sm leading-6 text-ink">
                         <span className="font-bold">{pwNotice}</span> Use the
@@ -1931,7 +1911,6 @@ export function ProfileEditor({
                   <div className="mt-3 flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
                     <CheckCircle2
                       className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
-                      strokeWidth={1.75}
                     />
                     <p className="text-sm leading-6 text-ink">
                       <span className="font-bold">
@@ -2101,11 +2080,11 @@ function FlatIdentityCard({
       </div>
       <div className="mx-6 mt-4 space-y-2.5 border-t border-white/15 py-5 text-sm">
         <p className="flex min-w-0 items-center gap-2.5 text-cream/85">
-          <Mail className="h-4 w-4 flex-shrink-0 text-amber" strokeWidth={1.75} />
+          <Mail className="h-4 w-4 flex-shrink-0 text-amber" />
           <span className="truncate">{email}</span>
         </p>
         <p className="flex items-center gap-2.5 text-cream/85">
-          <Target className="h-4 w-4 flex-shrink-0 text-amber" strokeWidth={1.75} />
+          <Target className="h-4 w-4 flex-shrink-0 text-amber" />
           {goalsCount} {goalsCount === 1 ? "goal" : "goals"} picked
         </p>
       </div>

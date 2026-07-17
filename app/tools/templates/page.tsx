@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ChevronRight, Download, Check } from "lucide-react";
+import { CaretRight as ChevronRight, DownloadSimple as Download, Check } from "@phosphor-icons/react/dist/ssr";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
@@ -90,8 +90,7 @@ export default function TemplatesPage() {
                       className="flex items-start gap-2 text-sm leading-6 text-ink"
                     >
                       <Check
-                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest"
-                        strokeWidth={2.5}
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" weight="bold"
                       />
                       {line}
                     </li>

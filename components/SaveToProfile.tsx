@@ -11,7 +11,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle as CheckCircle2 } from "@phosphor-icons/react/dist/ssr";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 
 export default function SaveToProfile({
@@ -44,7 +44,7 @@ export default function SaveToProfile({
       <p
         className={`flex items-center gap-2 text-sm font-medium text-forest ${className}`}
       >
-        <CheckCircle2 className="h-4 w-4 shrink-0" strokeWidth={2} />
+        <CheckCircle2 className="h-4 w-4 shrink-0" />
         Saved to your profile. This follows you to any device you sign in on.
       </p>
     );

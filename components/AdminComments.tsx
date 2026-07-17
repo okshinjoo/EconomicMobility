@@ -7,7 +7,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, Loader2, X } from "lucide-react";
+import { Check, CircleNotch as Loader2, X } from "@phosphor-icons/react/dist/ssr";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { communityPosts } from "@/lib/communityFeed";

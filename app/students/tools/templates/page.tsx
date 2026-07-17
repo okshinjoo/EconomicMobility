@@ -5,7 +5,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Download } from "lucide-react";
+import { DownloadSimple as Download } from "@phosphor-icons/react/dist/ssr";
 import StudentToolShell from "@/components/StudentToolShell";
 import { templates } from "@/lib/templates";
 import { frameHref } from "@/lib/frame";
@@ -30,7 +30,7 @@ export default function Page() {
             className="card-ink flex h-full flex-col rounded-2xl bg-cream p-6"
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-ink bg-paper text-forest">
-              <t.icon className="h-6 w-6" strokeWidth={1.75} />
+              <t.icon className="h-6 w-6" />
             </span>
             <h2 className="mt-4 font-display text-xl font-bold text-ink">
               {t.title}

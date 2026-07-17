@@ -3,7 +3,7 @@
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useMemo, useState } from "react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap } from "@phosphor-icons/react/dist/ssr";
 import {
   estimateCollege,
   COLLEGE_REPAY_YEARS,

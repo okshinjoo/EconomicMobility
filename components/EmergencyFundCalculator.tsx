@@ -3,7 +3,7 @@
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useMemo, useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
 import {
   Card,

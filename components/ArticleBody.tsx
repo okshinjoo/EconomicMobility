@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import Link from "next/link";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb } from "@phosphor-icons/react/dist/ssr";
 import {
   GLOSSARY_PATTERN,
   slugForSurface,

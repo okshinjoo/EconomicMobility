@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ParallaxPhoto from "@/components/ParallaxPhoto";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft, Clock } from "@phosphor-icons/react/dist/ssr";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import { blogPostingSchema } from "@/lib/structuredData";

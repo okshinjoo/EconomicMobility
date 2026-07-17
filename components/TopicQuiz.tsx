@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, X } from "lucide-react";
+import { Check, X } from "@phosphor-icons/react/dist/ssr";
 import { loadJSON, saveJSON } from "@/lib/storage";
 
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -117,14 +117,12 @@ export default function TopicQuiz({
                     >
                       {isAnswered && isCorrect && (
                         <Check
-                          className="mt-1 h-4 w-4 shrink-0 text-forest"
-                          strokeWidth={3}
+                          className="mt-1 h-4 w-4 shrink-0 text-forest" weight="bold"
                         />
                       )}
                       {isAnswered && isChosen && !isCorrect && (
                         <X
-                          className="mt-1 h-4 w-4 shrink-0 text-terracotta"
-                          strokeWidth={3}
+                          className="mt-1 h-4 w-4 shrink-0 text-terracotta" weight="bold"
                         />
                       )}
                       <span>{opt}</span>

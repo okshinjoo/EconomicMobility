@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { MessageCircle, X, Send, Sparkles, ArrowUpRight } from "lucide-react";
+import { ChatCircle as MessageCircle, X, PaperPlaneTilt as Send, Sparkle as Sparkles, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import type { SearchItem } from "@/lib/search";
 import { loadSearchIndex } from "@/lib/searchIndexClient";
 import { guideAnswer, type GuideAnswer } from "@/lib/guide";
@@ -133,7 +133,7 @@ export default function ChatLauncher() {
           aria-label="Open the money guide chat"
           className="pointer-events-auto absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-forest py-3.5 pl-4 pr-5 text-cream shadow-xl transition duration-200 hover:-translate-y-0.5 hover:bg-forest-700"
         >
-          <MessageCircle className="h-5 w-5" strokeWidth={2} />
+          <MessageCircle className="h-5 w-5" />
           <span className="text-sm font-semibold">Ask</span>
         </button>
       )}
@@ -146,7 +146,7 @@ export default function ChatLauncher() {
         >
           <div className="flex items-center justify-between gap-2 bg-forest px-4 py-3 text-cream">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-amber" strokeWidth={2} />
+              <Sparkles className="h-5 w-5 text-amber" />
               <div className="leading-tight">
                 <p className="text-sm font-semibold">Money Guide</p>
                 <p className="text-[11px] text-cream/70">Answers from our own guides</p>

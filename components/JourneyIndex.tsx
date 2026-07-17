@@ -10,7 +10,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { frameHref, type Frame } from "@/lib/frame";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check } from "@phosphor-icons/react/dist/ssr";
 import TopicMark from "@/components/TopicMark";
 import type { TopicId } from "@/lib/topics";
 import { getReadMap } from "@/lib/readTracking";
@@ -346,7 +346,7 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
               <p className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-ink/70">
                 {finished ? (
                   <>
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                    <Check className="h-3.5 w-3.5" weight="bold" />
                     Path complete
                   </>
                 ) : hereMilestone ? (

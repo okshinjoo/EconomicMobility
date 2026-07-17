@@ -3,7 +3,7 @@
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 import { useEffect, useMemo, useState } from "react";
-import { Target, Link2 } from "lucide-react";
+import { Target, LinkSimple as Link2 } from "@phosphor-icons/react/dist/ssr";
 import { readBudgetSummary } from "@/lib/calcImports";
 import {
   monthlyToReachGoal,

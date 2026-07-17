@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Copy, Download, Check } from "lucide-react";
+import { Copy, DownloadSimple as Download, Check } from "@phosphor-icons/react/dist/ssr";
 import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
 

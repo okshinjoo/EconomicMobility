@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, RotateCcw, Shuffle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ArrowCounterClockwise as RotateCcw, Shuffle } from "@phosphor-icons/react/dist/ssr";
 import type { Flashcard } from "@/lib/courses";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 
@@ -231,7 +231,7 @@ export default function Flashcards({
               className="btn-ink inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-bold text-cream"
               style={{ background: accent }}
             >
-              <Check className="h-4 w-4" strokeWidth={3} />
+              <Check className="h-4 w-4" weight="bold" />
               Got it
             </button>
           </div>

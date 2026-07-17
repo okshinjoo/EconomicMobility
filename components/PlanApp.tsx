@@ -9,7 +9,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Compass, Flag, List, Map as MapIcon, RotateCcw, X } from "lucide-react";
+import { ArrowRight, Check, Compass, Flag, List, MapTrifold as MapIcon, ArrowCounterClockwise as RotateCcw, X } from "@phosphor-icons/react/dist/ssr";
 import { GOAL_OPTIONS, readLocalProfile } from "@/lib/profile";
 import {
   loadPlan,
@@ -387,7 +387,7 @@ function ChatIntake({
           m.role === "assistant" ? (
             <div key={i} className="chat-pop flex items-end gap-2.5">
               <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-cream">
-                <Compass className="h-3.5 w-3.5" strokeWidth={2} />
+                <Compass className="h-3.5 w-3.5" />
               </span>
               <div className="max-w-[80%] rounded-2xl rounded-bl-md border border-forest/10 bg-forest/[0.07] px-4 py-2.5 text-sm leading-6 text-ink">
                 {m.content}
@@ -405,7 +405,7 @@ function ChatIntake({
         {(waiting || building) && (
           <div className="chat-pop flex items-end gap-2.5">
             <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-cream">
-              <Compass className="h-3.5 w-3.5" strokeWidth={2} />
+              <Compass className="h-3.5 w-3.5" />
             </span>
             <div className="flex items-center gap-2 rounded-2xl rounded-bl-md border border-forest/10 bg-forest/[0.07] px-4 py-3">
               {building && (
@@ -1246,7 +1246,7 @@ function PlanChecklist({
                   }`}
                   aria-label={item.checked ? "Mark not done" : "Mark done"}
                 >
-                  {item.checked && <Check className="h-4 w-4" strokeWidth={3} />}
+                  {item.checked && <Check className="h-4 w-4" weight="bold" />}
                 </button>
               ) : (
                 <span
@@ -1256,7 +1256,7 @@ function PlanChecklist({
                       : "border border-ink/20 bg-paper text-stone"
                   }`}
                 >
-                  {checked ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : i + 1}
+                  {checked ? <Check className="h-3.5 w-3.5" weight="bold" /> : i + 1}
                 </span>
               )}
               <div className="min-w-0 flex-1">
@@ -1549,7 +1549,7 @@ function TrailItemRow({
               : "border-ink/25 bg-cream hover:border-forest"
           }`}
         >
-          {item.checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+          {item.checked && <Check className="h-3.5 w-3.5" weight="bold" />}
         </button>
       ) : (
         <span
@@ -1559,7 +1559,7 @@ function TrailItemRow({
               : "border-sand bg-cream text-stone"
           }`}
         >
-          {checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
+          {checked && <Check className="h-3.5 w-3.5" weight="bold" />}
         </span>
       )}
       <div className="min-w-0 flex-1">

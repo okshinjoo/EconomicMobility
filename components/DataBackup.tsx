@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Download, Upload, Check } from "lucide-react";
+import { DownloadSimple as Download, UploadSimple as Upload, Check } from "@phosphor-icons/react/dist/ssr";
 
 // Everything on this site saves to the browser (no accounts). This lets a
 // reader carry that with them: export every empower:* key to a JSON file,

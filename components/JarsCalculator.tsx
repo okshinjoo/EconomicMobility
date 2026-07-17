@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash as Trash2 } from "@phosphor-icons/react/dist/ssr";
 import { num, usd, Label, MoneyInput, PlainInput } from "@/components/CalcUI";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
 import { frameHref } from "@/lib/frame";

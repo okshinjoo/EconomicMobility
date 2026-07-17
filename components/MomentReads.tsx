@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check } from "@phosphor-icons/react/dist/ssr";
 import { getReadMap } from "@/lib/readTracking";
 import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
@@ -52,7 +52,7 @@ export default function MomentReads({
                 className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold text-cream"
                 style={{ background: color }}
               >
-                <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                <Check className="h-2.5 w-2.5" weight="bold" />
                 Read
               </span>
             )}

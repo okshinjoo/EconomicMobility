@@ -9,34 +9,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  ArrowLeft,
-  BookOpen,
-  GraduationCap,
-  ArrowRightLeft,
-  Wallet,
-  Map,
-  Compass,
-  CalendarDays,
-  Mail,
-  FileText,
-  Award,
-  Search,
-  Landmark,
-  HeartHandshake,
-  Briefcase,
-  Wrench,
-  ClipboardList,
-  Calculator,
-  Scale,
-  Banknote,
-  Users,
-  MessageCircle,
-  HelpCircle,
-  Telescope,
-  Sparkles,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, BookOpen, GraduationCap, ArrowsLeftRight as ArrowRightLeft, Wallet, MapTrifold as Map, Compass, CalendarDots as CalendarDays, Envelope as Mail, FileText, Medal as Award, MagnifyingGlass as Search, Bank as Landmark, Handshake as HeartHandshake, Briefcase, Wrench, ClipboardText as ClipboardList, Calculator, Scales as Scale, Money as Banknote, Users, ChatCircle as MessageCircle, Question as HelpCircle, Binoculars as Telescope, Sparkle as Sparkles } from "@phosphor-icons/react/dist/ssr";
+import type { Icon as LucideIcon } from "@phosphor-icons/react";
 import AccountButton from "@/components/AccountButton";
 import SearchDialog from "@/components/SearchDialog";
 
@@ -192,7 +166,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
                     className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg"
                     style={{ background: `${item.color}1f`, color: item.color ?? "#e7a33c" }}
                   >
-                    <item.icon className="h-4 w-4" strokeWidth={1.75} />
+                    <item.icon className="h-4 w-4" />
                   </span>
                 )}
                 <span className="min-w-0">

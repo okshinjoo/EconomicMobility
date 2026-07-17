@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock } from "lucide-react";
+import { Clock } from "@phosphor-icons/react/dist/ssr";
 import { getReadMap } from "@/lib/readTracking";
 
 /**

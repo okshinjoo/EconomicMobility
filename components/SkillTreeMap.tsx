@@ -23,7 +23,7 @@
 
 import { useEffect, useRef, type ReactElement } from "react";
 import Link from "next/link";
-import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
+import { BookOpen, Path as Route, Sparkle as Sparkles, Star, Wrench, Lightning as Zap } from "@phosphor-icons/react/dist/ssr";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillBranch, SkillTreeData } from "@/lib/skillTree";
@@ -211,8 +211,7 @@ export default function SkillTreeMap({
         }}
       >
         <Sparkles
-          className="h-6 w-6 shrink-0 transition-opacity duration-200 group-hover:opacity-0"
-          strokeWidth={2.25}
+          className="h-6 w-6 shrink-0 transition-opacity duration-200 group-hover:opacity-0" weight="bold"
         />
         <span
           aria-hidden="true"
@@ -281,8 +280,7 @@ export default function SkillTreeMap({
             }}
           >
             <Zap
-              className="h-4 w-4 shrink-0"
-              strokeWidth={2.5}
+              className="h-4 w-4 shrink-0" weight="bold"
               fill={done ? AMBER : "none"}
               style={done ? { color: AMBER } : undefined}
             />
@@ -492,9 +490,9 @@ export default function SkillTreeMap({
               }}
             >
               {item.icon === "tool" ? (
-                <Wrench className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+                <Wrench className="h-4 w-4 shrink-0" weight="bold" />
               ) : item.icon === "journey" ? (
-                <Route className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+                <Route className="h-4 w-4 shrink-0" weight="bold" />
               ) : (
                 <BadgeMedal
                   color={item.done ? CREAM : "#9aa39b"}
@@ -655,7 +653,7 @@ export default function SkillTreeMap({
                 ...fill(uState, b.color),
               }}
             >
-              <BookOpen className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              <BookOpen className="h-3.5 w-3.5 shrink-0" weight="bold" />
               <span className="text-[9px] font-bold leading-none tabular-nums">
                 {lit.mounted ? covered : 0}/{unitArts.length}
               </span>
@@ -702,8 +700,7 @@ export default function SkillTreeMap({
           }}
         >
           <Star
-            className="h-4.5 w-4.5 -rotate-45"
-            strokeWidth={2.5}
+            className="h-4.5 w-4.5 -rotate-45" weight="bold"
             fill={done ? AMBER : "none"}
             style={done ? { color: AMBER } : undefined}
           />

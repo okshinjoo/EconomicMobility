@@ -10,7 +10,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Scale, X } from "lucide-react";
+import { Scales as Scale, X } from "@phosphor-icons/react/dist/ssr";
 import { fuzzyScore } from "@/lib/fuzzy";
 import {
   colleges,
@@ -211,7 +211,7 @@ export default function CollegeCompare() {
       {/* ---- compare tray ---- */}
       {compare.length > 0 && (
         <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl border-2 border-forest/25 bg-forest/[0.06] px-4 py-3">
-          <Scale className="h-4 w-4 text-forest" strokeWidth={2.25} />
+          <Scale className="h-4 w-4 text-forest" weight="bold" />
           <span className="text-sm font-bold text-forest">
             Comparing {compare.length} of {MAX_COMPARE}:
           </span>
@@ -223,7 +223,7 @@ export default function CollegeCompare() {
               className="inline-flex items-center gap-1 rounded-md border-2 border-ink bg-cream px-2.5 py-1 text-[13px] font-bold text-ink hover:border-terracotta hover:text-terracotta"
             >
               {c.name}
-              <X className="h-3 w-3" strokeWidth={3} />
+              <X className="h-3 w-3" weight="bold" />
             </button>
           ))}
           {compare.length < 2 && (
@@ -455,7 +455,7 @@ export default function CollegeCompare() {
                       : "border-ink bg-cream text-ink hover:bg-paper-deep disabled:cursor-not-allowed disabled:opacity-40"
                   }`}
                 >
-                  <Scale className="h-3.5 w-3.5" strokeWidth={2.25} />
+                  <Scale className="h-3.5 w-3.5" weight="bold" />
                   {inCompare ? "In your comparison" : "Compare"}
                 </button>
               </div>

@@ -16,15 +16,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpen,
-  Calculator,
-  Check,
-  Flag,
-  GraduationCap,
-  ListChecks,
-} from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, Check, Flag, GraduationCap, ListChecks } from "@phosphor-icons/react/dist/ssr";
 import { getReadMap } from "@/lib/readTracking";
 import { getBadges } from "@/components/CourseQuiz";
 import { STORAGE_KEYS, loadJSON } from "@/lib/storage";
@@ -468,11 +460,10 @@ export default function JourneyPath({
                         }`}
                       >
                         {done ? (
-                          <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                          <Check className="h-3.5 w-3.5" weight="bold" />
                         ) : (
                           <Icon
                             className="h-3 w-3 transition-transform duration-200 motion-safe:group-hover:rotate-3 motion-safe:group-hover:scale-110"
-                            strokeWidth={2}
                           />
                         )}
                       </span>

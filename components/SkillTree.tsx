@@ -12,7 +12,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Check, Route, Star, Wrench, X, Zap } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Path as Route, Star, Wrench, X, Lightning as Zap } from "@phosphor-icons/react/dist/ssr";
 import TopicMark from "@/components/TopicMark";
 import SkillTreeMap from "@/components/SkillTreeMap";
 import ProgressRings from "@/components/ProgressRings";
@@ -103,12 +103,12 @@ function ActivityPanel({ a, onClose }: { a: ActivityInfo; onClose: () => void })
             aria-label="Close"
             className="rounded-md p-1 text-stone hover:bg-ink/5 hover:text-ink"
           >
-            <X className="h-5 w-5" strokeWidth={2.5} />
+            <X className="h-5 w-5" weight="bold" />
           </button>
         </div>
         {a.done && (
           <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-forest">
-            <Check className="h-4 w-4" strokeWidth={3} />
+            <Check className="h-4 w-4" weight="bold" />
             Already done — revisit any time.
           </p>
         )}
@@ -199,7 +199,7 @@ function UnitPanel({
             aria-label="Close"
             className="rounded-md p-1 text-stone hover:bg-ink/5 hover:text-ink"
           >
-            <X className="h-5 w-5" strokeWidth={2.5} />
+            <X className="h-5 w-5" weight="bold" />
           </button>
         </div>
 
@@ -223,13 +223,11 @@ function UnitPanel({
                     <Check
                       className={`mt-0.5 h-4 w-4 shrink-0 ${
                         read ? "text-forest" : "text-amber"
-                      }`}
-                      strokeWidth={3}
+                      }`} weight="bold"
                     />
                   ) : (
                     <BookOpen
-                      className="mt-0.5 h-4 w-4 shrink-0 text-stone/60"
-                      strokeWidth={2.5}
+                      className="mt-0.5 h-4 w-4 shrink-0 text-stone/60" weight="bold"
                     />
                   )}
                   <span
@@ -255,7 +253,7 @@ function UnitPanel({
             </Link>
           ) : (
             <p className="inline-flex items-center gap-1.5 text-sm font-bold text-forest">
-              <Check className="h-4 w-4" strokeWidth={3} />
+              <Check className="h-4 w-4" weight="bold" />
               Every guide here is read.
             </p>
           )}
@@ -428,13 +426,12 @@ function Branch({
                 >
                   {tier.label}
                   {full && (
-                    <Check className="ml-1 inline h-3.5 w-3.5 text-forest" strokeWidth={3} />
+                    <Check className="ml-1 inline h-3.5 w-3.5 text-forest" weight="bold" />
                   )}
                   {!full && mastered && (
                     <span className="ml-1.5 inline-flex items-center gap-0.5 text-[11px] font-bold text-forest">
                       <Star
-                        className="h-3 w-3 text-amber"
-                        strokeWidth={2.5}
+                        className="h-3 w-3 text-amber" weight="bold"
                         fill="currentColor"
                       />
                       mastered
@@ -479,8 +476,7 @@ function Branch({
               } hover:text-forest hover:underline hover:decoration-amber hover:decoration-2 hover:underline-offset-4`}
             >
               <Star
-                className={`h-3.5 w-3.5 ${quizDone ? "text-amber" : "text-stone/50"}`}
-                strokeWidth={2.5}
+                className={`h-3.5 w-3.5 ${quizDone ? "text-amber" : "text-stone/50"}`} weight="bold"
                 fill={quizDone ? "currentColor" : "none"}
               />
               Checkpoint quiz{quizDone ? " — passed" : ""}
@@ -494,7 +490,7 @@ function Branch({
         <div className="mt-3 flex flex-wrap gap-2">
           {b.journeys.map((j) => (
             <Link key={j.id} href={fh(`/journey/${j.id}`)} className={sideChip(false)}>
-              <Route className="h-3 w-3" strokeWidth={2.5} />
+              <Route className="h-3 w-3" weight="bold" />
               {j.title}
             </Link>
           ))}
@@ -502,9 +498,9 @@ function Branch({
             const done = lit.tools.has(t.href);
             return (
               <Link key={t.href} href={fh(t.href)} className={sideChip(done)}>
-                <Wrench className="h-3 w-3" strokeWidth={2.5} />
+                <Wrench className="h-3 w-3" weight="bold" />
                 {t.label}
-                {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                {done && <Check className="h-3 w-3" weight="bold" />}
               </Link>
             );
           })}
@@ -518,7 +514,7 @@ function Branch({
                   className="h-3.5 w-3.5"
                 />
                 {c.title}
-                {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                {done && <Check className="h-3 w-3" weight="bold" />}
               </Link>
             );
           })}
@@ -538,11 +534,11 @@ function Branch({
                 {nextUp.title}
               </span>
             </span>
-            <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+            <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0" weight="bold" />
           </Link>
         ) : lit.mounted ? (
           <p className="inline-flex items-center gap-1.5 text-sm font-bold text-forest">
-            <Check className="h-4 w-4" strokeWidth={3} />
+            <Check className="h-4 w-4" weight="bold" />
             Every guide here is read. Branch complete.
           </p>
         ) : (
@@ -807,23 +803,23 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
             </p>
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <span className="inline-flex items-center gap-1">
-                <BookOpen className="h-3 w-3" strokeWidth={2.5} /> guide
+                <BookOpen className="h-3 w-3" weight="bold" /> guide
               </span>
               <span className="inline-flex items-center gap-1">
-                <Zap className="h-3 w-3" strokeWidth={2.5} /> quick win
+                <Zap className="h-3 w-3" weight="bold" /> quick win
               </span>
               <span className="inline-flex items-center gap-1">
-                <Wrench className="h-3 w-3" strokeWidth={2.5} /> tool
+                <Wrench className="h-3 w-3" weight="bold" /> tool
               </span>
               <span className="inline-flex items-center gap-1">
                 <BadgeMedal color="#5f6b64" variant="course" className="h-3 w-3" />{" "}
                 course
               </span>
               <span className="inline-flex items-center gap-1">
-                <Route className="h-3 w-3" strokeWidth={2.5} /> life plan
+                <Route className="h-3 w-3" weight="bold" /> life plan
               </span>
               <span className="inline-flex items-center gap-1">
-                <Star className="h-3 w-3" strokeWidth={2.5} /> quiz
+                <Star className="h-3 w-3" weight="bold" /> quiz
               </span>
             </p>
           </div>
@@ -900,7 +896,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
                 return (
                   <Link key={s.id} href={fh(s.href)} className={sideChip(done)}>
                     {s.label}
-                    {done && <Check className="h-3 w-3" strokeWidth={3} />}
+                    {done && <Check className="h-3 w-3" weight="bold" />}
                   </Link>
                 );
               })}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ClipboardList } from "lucide-react";
+import { ClipboardText as ClipboardList } from "@phosphor-icons/react/dist/ssr";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import StudentTracker from "@/components/StudentTracker";
@@ -18,8 +18,7 @@ export default function StudentTrackerPage() {
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
         <ClipboardList
           aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 opacity-[0.08]"
-          strokeWidth={1}
+          className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 opacity-[0.08]" weight="light"
         />
         <div className="relative mx-auto max-w-5xl px-6 pb-12 pt-12">
           <nav className="text-sm font-medium text-cream/70">

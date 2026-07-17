@@ -8,41 +8,8 @@
 // attribute those to the name the writer gave (first name is plenty).
 
 import type { TopicId } from "./topics";
-import {
-  Hand,
-  Trophy,
-  MessageCircleQuestion,
-  PiggyBank,
-  CreditCard,
-  Flag,
-  GraduationCap,
-  FileText,
-  Landmark,
-  TrendingUp,
-  Briefcase,
-  Users,
-  ShieldAlert,
-  Wallet,
-  Receipt,
-  Home,
-  Rocket,
-  Sprout,
-  Armchair,
-  Bitcoin,
-  Hammer,
-  Scissors,
-  FileWarning,
-  ShoppingCart,
-  Umbrella,
-  Lightbulb,
-  Banknote,
-  Key,
-  Award,
-  ArrowRightLeft,
-  Backpack,
-  School,
-  type LucideIcon,
-} from "lucide-react";
+import { Hand, Trophy, ChatCircleDots as MessageCircleQuestion, PiggyBank, CreditCard, Flag, GraduationCap, FileText, Bank as Landmark, TrendUp as TrendingUp, Briefcase, Users, ShieldWarning as ShieldAlert, Wallet, Receipt, House as Home, Rocket, Plant as Sprout, Armchair, CurrencyBtc as Bitcoin, Hammer, Scissors, Warning as FileWarning, ShoppingCart, Umbrella, Lightbulb, Money as Banknote, Key, Medal as Award, ArrowsLeftRight as ArrowRightLeft, Backpack, Student as School } from "@phosphor-icons/react/dist/ssr";
+import type { Icon as LucideIcon } from "@phosphor-icons/react";
 
 /** The community's channels (Clever-Girl-Finance-style spaces). Every post
  *  lives in exactly one. Adding a channel here adds it to the filter bar and

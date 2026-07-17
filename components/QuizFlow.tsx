@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Compass,
-  Lock,
-  Clock,
-  X,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Compass, Lock, Clock, X } from "@phosphor-icons/react/dist/ssr";
 import { getTopic, topics, type TopicId } from "@/lib/topics";
 import {
   quizQuestions,
@@ -370,9 +362,9 @@ export default function QuizFlow({
                 }`}
               >
                 {gotIt ? (
-                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                  <Check className="h-3.5 w-3.5" weight="bold" />
                 ) : (
-                  <X className="h-3.5 w-3.5" strokeWidth={3} />
+                  <X className="h-3.5 w-3.5" weight="bold" />
                 )}
               </span>
               <p className="text-sm leading-6 text-ink/80">
@@ -649,7 +641,7 @@ function WelcomeScreen({
                 key={item.label}
                 className="inline-flex items-center gap-2 text-sm font-medium text-stone"
               >
-                <item.icon className="h-4 w-4 text-forest" strokeWidth={1.75} />
+                <item.icon className="h-4 w-4 text-forest" />
                 {item.label}
               </span>
             ))}
@@ -787,9 +779,9 @@ function OptionButton({
                   : "border-ink/20 bg-transparent"
         }`}
       >
-        {answerState === "correct" && <Check className="h-4 w-4" strokeWidth={3} />}
-        {answerState === "wrong" && <X className="h-4 w-4" strokeWidth={3} />}
-        {!answerState && selected && <Check className="h-4 w-4" strokeWidth={3} />}
+        {answerState === "correct" && <Check className="h-4 w-4" weight="bold" />}
+        {answerState === "wrong" && <X className="h-4 w-4" weight="bold" />}
+        {!answerState && selected && <Check className="h-4 w-4" weight="bold" />}
       </span>
     </button>
   );

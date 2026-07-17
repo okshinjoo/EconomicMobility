@@ -6,7 +6,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
+import { CalendarDots as CalendarDays } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import ReminderSignup from "@/components/ReminderSignup";
@@ -46,8 +46,7 @@ export default function StudentDeadlinesPage() {
       <section className="relative overflow-hidden border-b-2 border-ink bg-terracotta text-cream">
         <CalendarDays
           aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-10 h-80 w-80 opacity-[0.09]"
-          strokeWidth={1}
+          className="pointer-events-none absolute -bottom-16 -right-10 h-80 w-80 opacity-[0.09]" weight="light"
         />
         <div className="relative mx-auto max-w-6xl px-6 pb-12 pt-12">
           <nav className="text-sm font-medium text-cream/70">

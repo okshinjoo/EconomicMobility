@@ -8,7 +8,7 @@
 // account. Mounted-gated so there's no hydration mismatch.
 
 import { useEffect, useState } from "react";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { BookmarkSimple as Bookmark, BookmarkSimple as BookmarkCheck } from "@phosphor-icons/react/dist/ssr";
 import { isToolSaved, toggleSavedTool, MAX_PINNED_TOOLS } from "@/lib/dashboardPrefs";
 
 export default function SaveToolButton({ slug }: { slug: string }) {
@@ -49,9 +49,9 @@ export default function SaveToolButton({ slug }: { slug: string }) {
         }`}
       >
         {saved ? (
-          <BookmarkCheck className="h-4 w-4" strokeWidth={2} />
+          <BookmarkCheck className="h-4 w-4" weight="fill" />
         ) : (
-          <Bookmark className="h-4 w-4" strokeWidth={2} />
+          <Bookmark className="h-4 w-4" />
         )}
         {saved ? "Saved to profile" : "Save to profile"}
       </button>

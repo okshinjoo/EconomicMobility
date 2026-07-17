@@ -5,7 +5,7 @@
 // calendar app handles reminders from then on. No phone numbers, no
 // servers, nothing stored.
 
-import { CalendarPlus } from "lucide-react";
+import { CalendarPlus } from "@phosphor-icons/react/dist/ssr";
 import { deadlines, type Deadline } from "@/lib/deadlines";
 import { buildDeadlinesIcs } from "@/lib/ics";
 

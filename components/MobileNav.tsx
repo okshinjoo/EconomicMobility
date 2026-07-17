@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { CaretDown as ChevronDown } from "@phosphor-icons/react/dist/ssr";
 import { nav } from "@/lib/nav";
 
 /* SynapseX study (July 17, 2026): the menu glyph is three real bars that
@@ -154,7 +154,7 @@ export default function MobileNav() {
                           >
                             {sub.icon && (
                               <span style={{ color: sub.color }}>
-                                <sub.icon className="h-4 w-4" strokeWidth={1.75} />
+                                <sub.icon className="h-4 w-4" />
                               </span>
                             )}
                             {sub.label}

@@ -20,7 +20,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, GraduationCap, X } from "lucide-react";
+import { ArrowLeft, GraduationCap, X } from "@phosphor-icons/react/dist/ssr";
 
 const KEY = "empower:from-students";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { TrendingDown, Info } from "lucide-react";
+import { TrendDown as TrendingDown, Info } from "@phosphor-icons/react/dist/ssr";
 import {
   simulatePayoff,
   minimumsOnly,
@@ -12,7 +12,7 @@ import {
 } from "@/lib/debtPayoff";
 import { Donut, Legend, TrendChart } from "@/components/Charts";
 import { readBudgetSummary } from "@/lib/calcImports";
-import { Link2 } from "lucide-react";
+import { LinkSimple as Link2 } from "@phosphor-icons/react/dist/ssr";
 import { STORAGE_KEYS, loadJSON, saveJSON, removeStored } from "@/lib/storage";
 import {
   Card,
