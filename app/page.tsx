@@ -489,6 +489,14 @@ export default function Home() {
                   those begins.
                 </p>
               </Reveal>
+              {/* A real person signs the mission (de-AI pass, July 17) —
+                  Shinjoo is already named publicly on the scholarship
+                  verification box and in the community intro. */}
+              <Reveal delay={240}>
+                <p className="font-display text-lg italic text-forest">
+                  — Shinjoo, founder
+                </p>
+              </Reveal>
             </div>
 
             <div className="mt-9 grid gap-4 sm:grid-cols-3">

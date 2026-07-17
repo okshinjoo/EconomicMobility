@@ -27,6 +27,7 @@ const columns = [
     links: [
       { href: "/about", label: "Our Mission" },
       { href: "/who-we-are", label: "Who We Are" },
+      { href: "/updates", label: "Site Notes" },
       { href: "/contact", label: "Contact" },
       { href: "/account", label: "Your Account" },
       { href: "/privacy", label: "Privacy" },

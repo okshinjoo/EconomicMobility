@@ -42,3 +42,10 @@ next-env.d.ts
 
 # Local Claude Code session settings (keep launch.json, ignore local perms)
 .claude/settings.local.json
+
+# iCloud/Finder duplicate junk ("file 2.ts") — appears via cloud sync, never commit
+* [0-9].ts
+* [0-9].tsx
+* [0-9].js
+* [0-9].json
+* [0-9].md

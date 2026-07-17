@@ -34,6 +34,7 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Resources", subtitle: "Trusted outside help, plus a finder for your state.", href: "/resources", group: "Pages", keywords: "benefits state help 211" },
   { kind: "Page", title: "Ask a Question", subtitle: "Ask anything about money, anonymously.", href: "/ask", group: "Pages", keywords: "ask faq community questions" },
   { kind: "Page", title: "Glossary", subtitle: "Every money word, in plain English.", href: "/glossary", group: "Pages", keywords: "definitions terms" },
+  { kind: "Page", title: "Site Notes", subtitle: "What's new around here, with real ship dates.", href: "/updates", group: "Pages", keywords: "updates changelog new features whats new" },
   { kind: "Page", title: "Start Here", subtitle: "A quick tour of the site for newcomers.", href: "/start-here", group: "Pages" },
   { kind: "Page", title: "All Calculators", subtitle: "Every free calculator in one place.", href: "/tools", group: "Pages", keywords: "tools" },
   { kind: "Page", title: "Browse All Topics", subtitle: "The full library of guides.", href: "/learn", group: "Pages" },
