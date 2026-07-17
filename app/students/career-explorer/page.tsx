@@ -25,11 +25,11 @@ export default function CareerExplorerPage() {
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero — C voice on forest, sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={48} driftX={24} rotate={-5}>
+        <ScrollDrift range={60} driftX={30} rotate={-6}>
           <TopicMark
             id="credit"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">

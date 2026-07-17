@@ -49,11 +49,11 @@ export default function CompareCollegesPage() {
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero — C voice on forest, with the sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={52} driftX={-18} rotate={3}>
+        <ScrollDrift range={65} driftX={-22} rotate={4}>
           <TopicMark
             id="college"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">

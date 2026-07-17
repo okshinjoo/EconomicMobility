@@ -120,11 +120,11 @@ export default function ResourcesPageView() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <ScrollDrift range={50} driftX={-24} rotate={5}>
+          <ScrollDrift range={62} driftX={-30} rotate={6}>
             <TopicMark
               id="government-aid"
               color="#fbf8f1"
-              className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.13]"
+              className="pointer-events-none absolute -right-20 -top-16 h-[24rem] w-[24rem] opacity-[0.16]"
             />
           </ScrollDrift>
           <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-14 lg:pt-20">

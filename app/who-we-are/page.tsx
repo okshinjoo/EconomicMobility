@@ -28,11 +28,11 @@ export default function WhoWeArePage() {
 
       {/* Hero — C: editorial maximal on a forest field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={50} driftX={20} rotate={-5}>
+        <ScrollDrift range={62} driftX={25} rotate={-6}>
           <TopicMark
             id="credit"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-24 -top-20 h-[28rem] w-[28rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">

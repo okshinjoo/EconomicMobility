@@ -34,11 +34,11 @@ export default function SkillsPage() {
 
       {/* Hero — forest field, sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={50} driftX={-22} rotate={4}>
+        <ScrollDrift range={62} driftX={-28} rotate={5}>
           <TopicMark
             id="investing"
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-16 -top-12 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-6xl px-6 py-14 lg:py-20">

@@ -62,11 +62,11 @@ export default function StudentsPage() {
 
       {/* Hero — the microsite's homepage opening: field, photo, live stats */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={46} driftX={-18} rotate={3}>
+        <ScrollDrift range={58} driftX={-22} rotate={4}>
           <TopicMark
             id="college"
             color="#fbf8f1"
-            className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.12]"
+            className="pointer-events-none absolute -left-16 -bottom-16 h-[22rem] w-[22rem] opacity-[0.15]"
           />
         </ScrollDrift>
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ScrollDrift from "@/components/ScrollDrift";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import { ReadBadge } from "@/components/ReadBadge";
@@ -51,6 +52,13 @@ export default function LearnHubView({ frame }: { frame: Frame }) {
 
       {/* Hero — light editorial (Base44 learn-page structure, our skin) */}
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
+        <ScrollDrift range={62} driftX={-26} rotate={5}>
+          <TopicMark
+            id="taxes"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-14 -top-10 h-[24rem] w-[24rem] opacity-[0.16]"
+          />
+        </ScrollDrift>
         <TopicMark
           id="budgeting"
           color="#fbf8f1"

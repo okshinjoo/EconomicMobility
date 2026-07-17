@@ -84,11 +84,11 @@ export default function StartHerePage() {
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
         <section className="relative overflow-hidden bg-forest text-cream">
-          <ScrollDrift range={52} driftX={24} rotate={-4}>
+          <ScrollDrift range={65} driftX={30} rotate={-5}>
             <TopicMark
               id="money-safety"
               color="#fbf8f1"
-              className="pointer-events-none absolute -bottom-24 -right-20 h-[26rem] w-[26rem] opacity-[0.13]"
+              className="pointer-events-none absolute -bottom-24 -right-20 h-[26rem] w-[26rem] opacity-[0.16]"
             />
           </ScrollDrift>
           <div className="relative mx-auto max-w-5xl px-6 py-16 lg:py-24">

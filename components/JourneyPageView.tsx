@@ -94,11 +94,11 @@ export default function JourneyPageView({
 
       {/* Hero — C voice on the journey's field */}
       <section className="relative overflow-hidden bg-forest text-cream">
-        <ScrollDrift range={48} driftX={20} rotate={-4}>
+        <ScrollDrift range={60} driftX={25} rotate={-5}>
           <TopicMark
             id={journey.topic}
             color="#fbf8f1"
-            className="pointer-events-none absolute -right-16 -top-10 h-[24rem] w-[24rem] opacity-[0.13]"
+            className="pointer-events-none absolute -right-16 -top-10 h-[24rem] w-[24rem] opacity-[0.16]"
           />
         </ScrollDrift>
         <div className="relative mx-auto max-w-4xl px-6 py-14 lg:py-20">
