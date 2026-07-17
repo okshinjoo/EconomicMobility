@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import QuestionBoxes from "@/components/QuestionBoxes";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import DataBackup from "@/components/DataBackup";
 import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
@@ -74,6 +75,11 @@ export default function StartHerePage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       <main>
         {/* Hero — C: editorial maximal on a forest field */}
@@ -221,7 +227,14 @@ export default function StartHerePage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

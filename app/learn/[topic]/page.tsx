@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import TopicPageView from "@/components/TopicPageView";
 import { topics, getTopic, type TopicId } from "@/lib/topics";
 import { learnContent } from "@/lib/learnContent";
@@ -39,8 +40,15 @@ export default async function TopicPage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+      <div className="relative z-10 bg-paper">
       <TopicPageView topic={topic} frame="main" />
-      <Footer />
+      </div>
+
+      <CurtainFooter>
+        <Footer />
+      </CurtainFooter>
     </div>
   );
 }

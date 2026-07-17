@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import { blogPostingSchema } from "@/lib/structuredData";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import ArticleBody from "@/components/ArticleBody";
 import ReadingProgress from "@/components/ReadingProgress";
 import MarkAsRead from "@/components/MarkAsRead";
@@ -66,6 +67,11 @@ export default async function BlogPostPage({
           with Learn article slugs (consumers look up bare slugs only). */}
       <MarkAsRead slug={`blog/${post.slug}`} />
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       <article className="bg-paper">
         <div
@@ -153,7 +159,14 @@ export default async function BlogPostPage({
         </div>
       </article>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

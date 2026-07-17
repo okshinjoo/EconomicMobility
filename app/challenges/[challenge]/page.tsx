@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import ChallengeChecklist from "@/components/ChallengeChecklist";
 import { challenges, getChallenge } from "@/lib/challenges";
 
@@ -37,6 +38,11 @@ export default async function ChallengePage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
@@ -78,7 +84,14 @@ export default async function ChallengePage({
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

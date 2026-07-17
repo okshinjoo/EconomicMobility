@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, FileSpreadsheet, Download, PenLine } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import Reveal from "@/components/Reveal";
 import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
 import ToolMark from "@/components/ToolMark";
@@ -20,6 +21,11 @@ export default function ToolsHub() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       {/* Hero — A: solid amber field */}
       <section className="border-b-2 border-ink bg-paper-deep">
@@ -388,7 +394,14 @@ export default function ToolsHub() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }

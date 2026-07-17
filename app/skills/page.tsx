@@ -7,6 +7,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import HeadlineRise from "@/components/HeadlineRise";
 import ScrollDissolve from "@/components/ScrollDissolve";
 import SkillTree from "@/components/SkillTree";
@@ -23,6 +24,11 @@ export default function SkillsPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
+
+
+      {/* content column stacks above the fixed footer (curtain reveal) */}
+
+      <div className="relative z-10 bg-paper">
 
       {/* Hero — forest field, sitewide letter-reveal accent */}
       <section className="relative overflow-hidden bg-forest text-cream">
@@ -85,7 +91,14 @@ export default function SkillsPage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+
+
+      <CurtainFooter>
+
+        <Footer />
+
+      </CurtainFooter>
     </div>
   );
 }
