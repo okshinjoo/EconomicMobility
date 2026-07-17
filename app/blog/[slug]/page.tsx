@@ -28,9 +28,25 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return { title: "Not Found | Empower" };
+  // Share cards (July 17, 2026): the post's real photo IS the card — the
+  // editorial-site pattern (platforms render og:title beneath it), warmer
+  // than any text composite. Guides keep their generated title cards.
+  const imageUrl = `https://economicmobilityproject.org${post.image.src}`;
   return {
     title: `${post.title} | Empower Blog`,
     description: post.dek,
+    openGraph: {
+      title: post.title,
+      description: post.dek,
+      type: "article",
+      images: [{ url: imageUrl, alt: post.image.alt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.dek,
+      images: [imageUrl],
+    },
   };
 }
 
