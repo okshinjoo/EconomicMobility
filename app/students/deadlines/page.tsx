@@ -153,7 +153,7 @@ export default function StudentDeadlinesPage() {
                 <Link
                   key={a.slug}
                   href={frameHref(`/learn/${a.topicId}/${a.slug}`, "student")}
-                  className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                  className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
                 >
                   <div className="flex items-center justify-between">
                     <span

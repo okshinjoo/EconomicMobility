@@ -128,7 +128,7 @@ export default function DtiCalculator() {
               {/* gauge */}
               <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-ink-700">
                 <div
-                  className="h-full rounded-full transition-all"
+                  className="h-full rounded-full transition-[width]"
                   style={{ width: `${Math.min(100, dti)}%`, background: band.color }}
                 />
                 {/* 36% and 43% markers */}

@@ -688,7 +688,7 @@ export default function Home() {
               <Link
                 key={calc.name}
                 href={calc.href}
-                className="group flex items-center gap-3 rounded-lg border border-cream/10 bg-cream/5 p-3 transition-all hover:border-amber hover:bg-cream/10"
+                className="group flex items-center gap-3 rounded-lg border border-cream/10 bg-cream/5 p-3 transition-colors hover:border-amber hover:bg-cream/10"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber/15 text-amber transition-colors group-hover:bg-amber group-hover:text-ink">
                   <calc.icon className="h-4 w-4" />

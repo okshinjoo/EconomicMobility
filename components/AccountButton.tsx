@@ -24,7 +24,7 @@ import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
 
 const CTA_CLASSES =
-  "hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:bg-cream lg:inline-block";
+  "hidden whitespace-nowrap rounded-md bg-amber px-5 py-2.5 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-cream lg:inline-block";
 
 function QuizCta() {
   const frame = useFrame();

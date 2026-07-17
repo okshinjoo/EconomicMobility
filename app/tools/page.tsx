@@ -377,7 +377,7 @@ export default function ToolsHub() {
                   <a
                     href={t.file}
                     download
-                    className="group flex h-full flex-col rounded-2xl border border-white/10 bg-forest-700 p-5 transition-all duration-200 hover:border-amber/40"
+                    className="group flex h-full flex-col rounded-2xl border border-white/10 bg-forest-700 p-5 transition-colors duration-200 hover:border-amber/40"
                   >
                     <t.icon className="h-6 w-6 text-amber" strokeWidth={1.5} />
                     <h3 className="mt-3 text-base font-semibold leading-tight">

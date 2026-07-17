@@ -443,7 +443,7 @@ export default function QuizFlow({
               </div>
               <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-sand">
                 <div
-                  className="h-full rounded-full bg-amber transition-all duration-300"
+                  className="h-full rounded-full bg-amber transition-[width] duration-300"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -762,7 +762,7 @@ function OptionButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`group flex w-full items-center gap-4 rounded-2xl px-4 py-4 text-left text-base font-medium transition-all duration-150 disabled:cursor-default ${shell}`}
+      className={`group flex w-full items-center gap-4 rounded-2xl px-4 py-4 text-left text-base font-medium transition duration-150 disabled:cursor-default ${shell}`}
     >
       {letter && (
         <span

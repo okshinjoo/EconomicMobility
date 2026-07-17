@@ -171,7 +171,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
       >
         {entry.label}
       </Link>
-      <div className="invisible absolute left-1/2 top-full z-50 hidden -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 xl:block">
+      <div className="invisible absolute left-1/2 top-full z-50 hidden -translate-x-1/2 pt-3 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 xl:block">
         <div
           className={`rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl ${
             entry.columns === 2 ? "w-[31rem]" : "w-80"

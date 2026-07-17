@@ -38,7 +38,7 @@ export default function QuestionBoxes({
         const row = (
           <Link
             href={item.href}
-            className="group flex items-center gap-4 rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] px-5 py-3.5 text-[#1A1A1A] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+            className="group flex items-center gap-4 rounded-lg border-2 border-[#1A1A1A] bg-[#F5F2EB] px-5 py-3.5 text-[#1A1A1A] transition duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
             <span
               aria-hidden

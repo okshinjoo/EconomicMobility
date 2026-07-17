@@ -152,7 +152,7 @@ export default function EmergencyFundCalculator() {
                 </div>
                 <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-ink-700">
                   <div
-                    className="h-full rounded-full bg-forest transition-all"
+                    className="h-full rounded-full bg-forest transition-[width]"
                     style={{ width: `${pct}%` }}
                   />
                 </div>

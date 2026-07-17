@@ -413,7 +413,7 @@ export default function JourneyPath({
           return (
             <div
               key={stage.id}
-              className={`rounded-2xl border-2 bg-cream p-5 transition-all ${
+              className={`rounded-2xl border-2 bg-cream p-5 transition ${
                 isHere
                   ? "border-amber shadow-lg"
                   : stageDone

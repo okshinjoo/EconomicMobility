@@ -96,7 +96,7 @@ export default function StudentToolsHub() {
                       <Link
                         key={item.mainHref}
                         href={TOOL_FRAME_MAP[item.mainHref]}
-                        className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                        className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
                       >
                         <h3 className="font-semibold leading-snug text-ink">
                           {item.title}
@@ -126,7 +126,7 @@ export default function StudentToolsHub() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                    className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
                   >
                     <h3 className="font-semibold leading-snug text-ink">
                       {item.title}

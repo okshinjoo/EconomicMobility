@@ -122,7 +122,7 @@ export default function ChatLauncher({ items }: { items: SearchItem[] }) {
           ref={fabRef}
           onClick={() => setOpen(true)}
           aria-label="Open the money guide chat"
-          className="pointer-events-auto absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-forest py-3.5 pl-4 pr-5 text-cream shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-700"
+          className="pointer-events-auto absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-forest py-3.5 pl-4 pr-5 text-cream shadow-xl transition duration-200 hover:-translate-y-0.5 hover:bg-forest-700"
         >
           <MessageCircle className="h-5 w-5" strokeWidth={2} />
           <span className="text-sm font-semibold">Ask</span>

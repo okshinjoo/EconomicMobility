@@ -258,7 +258,7 @@ export default function TopicPageView({
                           <Link
                             key={art.slug}
                             href={href(`/learn/${topic}/${art.slug}`)}
-                            className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition-all duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                            className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
                           >
                             <div className="flex items-center justify-between">
                               <span

@@ -69,7 +69,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
       </Link>
 
       {/* pt-3 bridges the gap so hover isn't lost between trigger and panel */}
-      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         <div
           className={`rounded-2xl border border-ink-600 bg-ink p-2 shadow-2xl ${
             entry.columns === 2 ? "w-[31rem]" : "w-72"

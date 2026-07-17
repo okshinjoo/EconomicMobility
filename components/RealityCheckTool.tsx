@@ -384,7 +384,7 @@ export default function RealityCheckTool() {
                   key={opt.id}
                   type="button"
                   onClick={() => setCol(opt.id)}
-                  className={`rounded-xl border-2 px-4 py-3 text-left transition-all ${
+                  className={`rounded-xl border-2 px-4 py-3 text-left transition ${
                     col === opt.id
                       ? "border-ink bg-forest/[0.08] shadow-[3px_3px_0_#11211c]"
                       : "border-ink/20 bg-cream hover:border-ink"
@@ -450,7 +450,7 @@ export default function RealityCheckTool() {
                       onClick={() =>
                         setPicks((prev) => ({ ...prev, [catId]: opt.id }))
                       }
-                      className={`rounded-xl border-2 px-4 py-3 text-left transition-all ${
+                      className={`rounded-xl border-2 px-4 py-3 text-left transition ${
                         selected
                           ? "border-ink bg-forest/[0.08] shadow-[3px_3px_0_#11211c]"
                           : "border-ink/20 bg-cream hover:border-ink"

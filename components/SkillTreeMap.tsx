@@ -265,7 +265,7 @@ export default function SkillTreeMap({
             aria-label={`${s.label}${
               lit.mounted && done ? " (done)" : ""
             } — see what it does`}
-            className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+            className="absolute z-10 flex items-center justify-center rounded-full border-2 [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-110"
             style={{
               left: p.x,
               top: p.y,
@@ -476,7 +476,7 @@ export default function SkillTreeMap({
               aria-label={`${item.title}${
                 lit.mounted && item.done ? " (done)" : ""
               } — see what it does`}
-              className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+              className="absolute z-10 flex items-center justify-center rounded-full border-2 [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-110"
               style={{
                 left: p.x,
                 top: p.y,
@@ -551,7 +551,7 @@ export default function SkillTreeMap({
         </>
       );
       const pillClass =
-        "absolute z-10 whitespace-nowrap rounded-md border-2 px-2 py-0.5 text-[10px] font-bold transition-colors duration-500 hover:z-20 hover:scale-105";
+        "absolute z-10 whitespace-nowrap rounded-md border-2 px-2 py-0.5 text-[10px] font-bold [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-105";
       const pillStyle = {
         left: chip.x,
         top: chip.y,
@@ -640,7 +640,7 @@ export default function SkillTreeMap({
               }: ${lit.mounted ? covered : 0} of ${
                 unitArts.length
               } guides — see what you'll learn`}
-              className="absolute z-10 flex flex-col items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+              className="absolute z-10 flex flex-col items-center justify-center rounded-full border-2 [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-110"
               style={{
                 left: p.x,
                 top: p.y,
@@ -686,7 +686,7 @@ export default function SkillTreeMap({
           key={`${b.id}-quiz`}
           href={`${b.href}/quiz`}
           title={`${b.short} checkpoint quiz${done ? " — passed" : ""}`}
-          className="absolute z-10 flex items-center justify-center rounded-xl border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
+          className="absolute z-10 flex items-center justify-center rounded-xl border-2 [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-110"
           style={{
             left: p.x,
             top: p.y,

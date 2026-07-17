@@ -1686,7 +1686,7 @@ function PlanTrailView({ stages, ...rowProps }: RowProps & { stages: PlanStage[]
           return (
             <div
               key={si}
-              className={`rounded-2xl border-2 bg-cream p-5 transition-all ${
+              className={`rounded-2xl border-2 bg-cream p-5 transition ${
                 isHere
                   ? "border-amber shadow-lg"
                   : stageDone

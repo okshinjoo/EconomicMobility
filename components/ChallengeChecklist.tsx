@@ -137,7 +137,7 @@ export default function ChallengeChecklist({
           return (
             <li
               key={step.id}
-              className={`rounded-2xl bg-cream p-5 transition-all ${
+              className={`rounded-2xl bg-cream p-5 transition ${
                 checked ? "card-ink" : "border-2 border-ink shadow-[3px_3px_0_#11211c]"
               }`}
               style={checked ? { background: `${accent}0d` } : undefined}

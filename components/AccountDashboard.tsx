@@ -296,7 +296,7 @@ function ActivityHeatmap() {
   const weeks: { key: string; count: number }[][] = [];
   for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           Your reading, day by day
@@ -344,7 +344,7 @@ function PipelineCard() {
   const apps = summarizeApps(snapshot.apps);
   const s = summarize(snapshot);
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           Tracker &amp; scholarship pipeline
@@ -404,7 +404,7 @@ function PinnedToolsCard({
     });
   };
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">Your tools</h3>
         <button
@@ -493,7 +493,7 @@ function PlanCard() {
     );
   }, []);
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">Your plan</h3>
         <Link href="/plan" className="text-xs font-semibold text-forest hover:underline">
@@ -543,7 +543,7 @@ function MomentsCard() {
   const slugOf = (href: string) =>
     href.split(/[?#]/)[0].split("/").filter(Boolean).pop() ?? "";
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           For what&apos;s coming up
@@ -609,7 +609,7 @@ export function CustomizeCard({
   onChange: (next: DashboardPrefs) => void;
 }) {
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <h3 className="font-display text-base font-bold text-ink">Make it yours</h3>
       <p className="mt-1 text-xs" style={{ color: DASH.muted }}>
         Your color, your cards. Saved to your account; hiding a card never
@@ -688,7 +688,7 @@ function CalcNumbersCard() {
   if (!mounted) return <SkeletonCard lines={3} />;
   const usd = (n: number) => `$${Math.round(n).toLocaleString()}`;
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold text-ink">
           Your numbers, from your tools
@@ -771,7 +771,7 @@ function GoalCheckinsCard() {
   }, []);
   if (!mounted) return <SkeletonCard lines={3} />;
   return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <h3 className="font-display text-base font-bold text-ink">
         How are your goals going?
       </h3>
@@ -932,7 +932,7 @@ export function FlatStatCards({
 
   return (
     <div className="dash-stagger grid gap-4 xl:grid-cols-2">
-      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-base font-bold text-ink">Reading Stats</h3>
           <span
@@ -956,7 +956,7 @@ export function FlatStatCards({
         </div>
       </div>
 
-      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
+      <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="font-display text-base font-bold text-ink">Total Progress</h3>
           <span
