@@ -18,13 +18,15 @@ import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
 import { loadJSON, STORAGE_KEYS } from "@/lib/storage";
 import { readStarterSet, skillPointsTotal, SKILL_POINTS } from "@/lib/skillPoints";
-import { getMasteryMap, markMastered, tierKey } from "@/lib/skillMastery";
-import MasteryQuiz from "@/components/MasteryQuiz";
 import {
+  getMasteryMap,
+  markMastered,
+  tierKey,
   MIN_MASTERY_POOL,
   MIN_TOPIC_POOL,
   type MasteryQuestion,
-} from "@/lib/skillTree";
+} from "@/lib/skillMastery";
+import MasteryQuiz from "@/components/MasteryQuiz";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { readContext, topicMatchesGoals } from "@/lib/personalization";
 import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";

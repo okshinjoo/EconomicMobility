@@ -41,6 +41,7 @@ import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import ToolMark from "@/components/ToolMark";
 import YouCard from "@/components/YouCard";
+import SkillTreeMini from "@/components/SkillTreeMini";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -873,6 +874,7 @@ export function DashboardExtras({
   prefs,
   onChange,
   group,
+  paths,
 }: {
   prefs: DashboardPrefs;
   onChange: (next: DashboardPrefs) => void;
@@ -880,6 +882,9 @@ export function DashboardExtras({
    *  do-now cards; progress = how-far-I've-come cards. CustomizeCard
    *  lives on the About-you tab now. */
   group: "overview" | "progress";
+  /** Topic paths (already built server-side for the dashboard) — powers
+   *  the mini skill tree on the progress tab. */
+  paths?: TopicPath[];
 }) {
   const hidden = new Set(prefs.hiddenCards);
   return (
@@ -900,6 +905,9 @@ export function DashboardExtras({
       ) : (
         <>
           {!hidden.has("skill-points") && <SkillPointsCard />}
+          {!hidden.has("skill-tree") && paths && paths.length > 0 && (
+            <SkillTreeMini paths={paths} />
+          )}
           {!hidden.has("heatmap") && <ActivityHeatmap />}
           {!hidden.has("pipeline") && <PipelineCard />}
           {!hidden.has("calc-numbers") && <CalcNumbersCard />}

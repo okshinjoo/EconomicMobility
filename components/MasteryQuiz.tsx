@@ -10,7 +10,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Star, X } from "lucide-react";
-import type { MasteryQuestion } from "@/lib/skillTree";
+import type { MasteryQuestion } from "@/lib/skillMastery";
 
 export default function MasteryQuiz({
   title,

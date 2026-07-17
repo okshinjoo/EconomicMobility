@@ -26,8 +26,8 @@ import Link from "next/link";
 import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
-import { MIN_MASTERY_POOL, type SkillBranch, type SkillTreeData } from "@/lib/skillTree";
-import { tierKey } from "@/lib/skillMastery";
+import type { SkillBranch, SkillTreeData } from "@/lib/skillTree";
+import { MIN_MASTERY_POOL, tierKey } from "@/lib/skillMastery";
 import type { Lit } from "@/components/SkillTree";
 
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are

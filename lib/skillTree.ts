@@ -19,6 +19,22 @@ import { topics, type TopicId } from "./topics";
 import { getTopicRoadmap, getArticleBySlug } from "./articles";
 import { getTopicQuiz } from "./topicQuizzes";
 import { knowledgeCheckBank } from "./quizData";
+import {
+  MIN_MASTERY_POOL,
+  STARTER_ACTIONS,
+  type MasteryQuestion,
+  type StarterAction,
+} from "./skillMastery";
+
+// Client-safe pieces live in lib/skillMastery (bundle-size gotcha) and are
+// re-exported here so server callers keep one import site.
+export {
+  MIN_MASTERY_POOL,
+  MIN_TOPIC_POOL,
+  STARTER_ACTIONS,
+  type MasteryQuestion,
+  type StarterAction,
+} from "./skillMastery";
 import { courses } from "./courses";
 import { journeys } from "./journeys";
 import { toolCategories } from "./toolsRegistry";
@@ -31,19 +47,6 @@ export interface SkillTierNode {
    *  last tier). Below MIN_MASTERY_POOL, no test-out is offered. */
   mastery: MasteryQuestion[];
 }
-
-/** Normalized quiz question for mastery test-outs. */
-export interface MasteryQuestion {
-  q: string;
-  options: string[];
-  answer: number;
-  explain?: string;
-}
-
-/** Smallest pool a tier test-out may run on (never invent questions). */
-export const MIN_MASTERY_POOL = 3;
-/** Smallest pool a whole-topic test-out may run on. */
-export const MIN_TOPIC_POOL = 5;
 
 export interface SkillLeafTool {
   label: string;
@@ -79,76 +82,6 @@ export interface SkillBranch {
   /** Whole-topic test-out pool (union of the tier pools, deduped). */
   topicMastery: MasteryQuestion[];
 }
-
-/** Cross-cutting quick wins — the "First steps" branch. `kind` tells the
- *  client which existing tracker proves it done. */
-export interface StarterAction {
-  id: string;
-  label: string;
-  /** Compact label for the map bubbles. */
-  short: string;
-  href: string;
-  kind:
-    | "quiz"
-    | "budget"
-    | "reality"
-    | "plan"
-    | "profile"
-    | "resources"
-    | "community";
-}
-
-export const STARTER_ACTIONS: StarterAction[] = [
-  {
-    id: "quiz",
-    label: "Take the 2-minute quiz",
-    short: "2-minute quiz",
-    href: "/quiz",
-    kind: "quiz",
-  },
-  {
-    id: "budget",
-    label: "Fill out the Budget Planner",
-    short: "Budget Planner",
-    href: "/tools/budget",
-    kind: "budget",
-  },
-  {
-    id: "reality",
-    label: "Do the Reality Check",
-    short: "Reality Check",
-    href: "/tools/budget/reality-check",
-    kind: "reality",
-  },
-  {
-    id: "plan",
-    label: "Build My Plan",
-    short: "Build My Plan",
-    href: "/plan",
-    kind: "plan",
-  },
-  {
-    id: "profile",
-    label: "Fill out your profile",
-    short: "Your profile",
-    href: "/account",
-    kind: "profile",
-  },
-  {
-    id: "resources",
-    label: "Browse the resource library",
-    short: "Resource library",
-    href: "/resources",
-    kind: "resources",
-  },
-  {
-    id: "community",
-    label: "Say something in the community",
-    short: "Say hello",
-    href: "/community",
-    kind: "community",
-  },
-];
 
 /** Calculator categories shelved onto topic branches. */
 const CATEGORY_TOPIC: Record<string, TopicId> = {

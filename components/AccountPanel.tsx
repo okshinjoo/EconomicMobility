@@ -1115,6 +1115,7 @@ export function ProfileEditor({
                           group="progress"
                           prefs={dashPrefs}
                           onChange={updateDashPrefs}
+                          paths={paths}
                         />
                       )}
                     </>
