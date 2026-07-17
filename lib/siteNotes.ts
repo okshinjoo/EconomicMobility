@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "The skill tree comes to For Students",
+    body: "The climbable map of every guide, tool, and course now lives inside the student site too — same tree, same progress, and every branch opens the student versions of things. Find it under Your Path in the student menu.",
+    href: "/students/skills",
+    hrefLabel: "Climb it in For Students",
+  },
+  {
+    date: "July 17, 2026",
     title: "Three new guides on how the machine works",
     body: "A trio about the financial machinery nobody explains to you: how private-equity buyouts gut the businesses they buy (and who pays), why rent keeps climbing (the shortage, the corporate landlords, the pricing software), and junk fees — why the advertised price is never the price. Each one ends with what you can actually do about it, and each has a quick knowledge check.",
     href: "/learn/investing/private-equity-explained",
