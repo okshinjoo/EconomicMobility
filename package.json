@@ -10,7 +10,8 @@
     "build:templates": "node scripts/build-templates.mjs",
     "build:resumes": "node scripts/build-resume-templates.mjs",
     "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "check:links": "node scripts/check-internal-links.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
