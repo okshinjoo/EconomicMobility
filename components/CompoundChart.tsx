@@ -101,7 +101,7 @@ const VARIANTS: Record<MathVariant, VariantData> = (() => {
     ]);
     out.debt = {
       line: s.line, ...m,
-      caption: "$6,000 of card debt at 22% APR, $300 a month: gone in two years.",
+      caption: "$6,000 of card debt at 22% APR, $300 a month: gone in 26 months.",
     };
   }
 
