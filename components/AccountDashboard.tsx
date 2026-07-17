@@ -36,6 +36,7 @@ import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import ToolMark from "@/components/ToolMark";
 import YouCard from "@/components/YouCard";
+import { Skeleton, SkeletonCard } from "@/components/Skeleton";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -288,7 +289,7 @@ function ActivityHeatmap() {
     }
     setDays(out);
   }, []);
-  if (days.length === 0) return null;
+  if (days.length === 0) return <SkeletonCard lines={4} />;
   const total = days.reduce((s, d) => s + d.count, 0);
   const level = (n: number) => (n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n <= 4 ? 3 : 4);
   // Columns of 7 (weeks), oldest left.
@@ -337,7 +338,7 @@ function ActivityHeatmap() {
 function PipelineCard() {
   const [snapshot, setSnapshot] = useState<ReturnType<typeof loadTracker> | null>(null);
   useEffect(() => setSnapshot(loadTracker()), []);
-  if (!snapshot) return null;
+  if (!snapshot) return <SkeletonCard lines={4} />;
   const hasAnything =
     snapshot.courses.length > 0 || snapshot.apps.length > 0 || snapshot.todos.length > 0;
   const apps = summarizeApps(snapshot.apps);
@@ -684,7 +685,7 @@ function CalcNumbersCard() {
     setDebt(readDebtSummary());
     setMounted(true);
   }, []);
-  if (!mounted) return null;
+  if (!mounted) return <SkeletonCard lines={3} />;
   const usd = (n: number) => `$${Math.round(n).toLocaleString()}`;
   return (
     <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
@@ -768,7 +769,7 @@ function GoalCheckinsCard() {
     setGoals(readLocalProfile()?.goals ?? []);
     setMounted(true);
   }, []);
-  if (!mounted) return null;
+  if (!mounted) return <SkeletonCard lines={3} />;
   return (
     <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
       <h3 className="font-display text-base font-bold text-ink">
@@ -896,7 +897,17 @@ export function FlatStatCards({
   paths: TopicPath[];
   badgeTotal: number;
 }) {
-  if (!data.mounted) return null;
+  if (!data.mounted)
+    return (
+      <div aria-hidden="true" className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="rounded-2xl border-2 border-ink/10 bg-cream p-4">
+            <Skeleton className="h-7 w-16" />
+            <Skeleton className="mt-2 h-3 w-24" />
+          </div>
+        ))}
+      </div>
+    );
   const { stats, earned, progress } = data;
   const libraryTotal = paths.reduce((s, t) => s + t.articles.length, 0);
   const unread = Math.max(0, libraryTotal - stats.guides);
@@ -1031,7 +1042,13 @@ export function FlatOverview({
   const [doneRecs, setDoneRecs] = useState<Set<string>>(() => new Set());
   useEffect(() => setDoneRecs(doneRecHrefs()), []);
 
-  if (!data.mounted) return null;
+  if (!data.mounted)
+    return (
+      <div className="space-y-5">
+        <SkeletonCard lines={3} />
+        <SkeletonCard lines={4} />
+      </div>
+    );
   const { next, recent, earned, progress } = data;
   const inc = include ? new Set(include) : null;
   const off = new Set([

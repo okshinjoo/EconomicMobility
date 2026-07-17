@@ -189,7 +189,9 @@ export default function SkillTreeSection({ paths }: { paths: TopicPath[] }) {
           </text>
         </svg>
 
-        <div className="min-w-0 flex-1">
+        <div
+          className={`min-w-0 flex-1 ${lit ? "" : "animate-pulse opacity-60"}`}
+        >
           <p className="font-display text-4xl font-bold tabular-nums text-forest">
             {(lit?.points ?? 0).toLocaleString()}
             <span className="ml-2 text-lg font-semibold text-stone">

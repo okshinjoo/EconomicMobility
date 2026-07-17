@@ -23,6 +23,7 @@ import { readLocalProfile, writeLocalProfile } from "@/lib/profile";
 import { readAboutYou, writeAboutYou } from "@/lib/aboutYou";
 import { removeStored, STORAGE_KEYS } from "@/lib/storage";
 import { getSupabase } from "@/lib/supabase";
+import { Skeleton } from "@/components/Skeleton";
 
 const STAGE_CHIP: Record<string, string> = {
   hs: "High-school student",
@@ -71,7 +72,20 @@ export default function YouCard() {
     setPrompt(nextProfilePrompt(ctx));
   };
   useEffect(refresh, []);
-  if (!you) return null;
+  if (!you)
+    return (
+      <div
+        aria-hidden="true"
+        className="rounded-2xl border-2 border-forest/20 bg-forest/[0.05] p-5"
+      >
+        <Skeleton className="h-4 w-36" />
+        <div className="mt-3.5 flex flex-wrap gap-1.5">
+          <Skeleton className="h-6 w-28 rounded-full" />
+          <Skeleton className="h-6 w-36 rounded-full" />
+          <Skeleton className="h-6 w-24 rounded-full" />
+        </div>
+      </div>
+    );
 
   // "That's not quite right" (owner ask, July 16): every learned fact can
   // be cleared right here — the correction writes to the fact's real home
