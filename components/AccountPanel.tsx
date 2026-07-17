@@ -56,6 +56,7 @@ import {
   CustomizeCard,
   DASH,
 } from "@/components/AccountDashboard";
+import SkillTreeSection from "@/components/SkillTreeMini";
 import {
   readDashboardPrefs,
   writeDashboardPrefs,
@@ -1103,6 +1104,13 @@ export function ProfileEditor({
                 <div className="min-w-0 space-y-5">
                   {tab === "progress" && member.mounted && (
                     <>
+                      {/* The skill tree leads as its own full-width section
+                          (owner, July 16: "make the skill tree a separate
+                          section") — tree glyph + points + breakdown. */}
+                      {dashPrefsReady &&
+                        !dashPrefs.hiddenCards.includes("skill-tree") && (
+                          <SkillTreeSection paths={paths} />
+                        )}
                       {!dashPrefs.hiddenCards.includes("stats") && (
                         <FlatStatCards
                           data={member}
@@ -1115,7 +1123,6 @@ export function ProfileEditor({
                           group="progress"
                           prefs={dashPrefs}
                           onChange={updateDashPrefs}
-                          paths={paths}
                         />
                       )}
                     </>

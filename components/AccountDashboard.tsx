@@ -23,11 +23,6 @@ import {
   type DashboardPrefs,
 } from "@/lib/dashboardPrefs";
 import { loadTracker, summarize, summarizeApps } from "@/lib/studentTracker";
-import {
-  readSkillCounts,
-  skillPointsTotal,
-  type SkillPointCounts,
-} from "@/lib/skillPoints";
 import { readAboutYou } from "@/lib/aboutYou";
 import { readBudgetSummary, readDebtSummary } from "@/lib/calcImports";
 import {
@@ -41,7 +36,6 @@ import { moments } from "@/lib/moments";
 import { toolCategories } from "@/lib/toolsRegistry";
 import ToolMark from "@/components/ToolMark";
 import YouCard from "@/components/YouCard";
-import SkillTreeMini from "@/components/SkillTreeMini";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { getChallengeBadges } from "@/components/ChallengeChecklist";
 import { Donut } from "@/components/Charts";
@@ -340,53 +334,6 @@ function ActivityHeatmap() {
 
 /** The tracker + scholarship pipeline, surfaced on the dashboard. Renders
  *  a start nudge when the tracker is empty rather than hiding. */
-/** The skill-tree score, on the profile (owner ask, July 16: "points that
- *  stay on your profile"). Derived fresh from the trackers on every visit
- *  — nothing stored, so it can never disagree with the tree. */
-function SkillPointsCard() {
-  const [counts, setCounts] = useState<SkillPointCounts | null>(null);
-  useEffect(() => setCounts(readSkillCounts()), []);
-  if (!counts) return null;
-  const total = skillPointsTotal(counts);
-  const parts = [
-    [counts.guides, "guides read"],
-    [counts.tools, "tools tried"],
-    [counts.starters, "quick wins"],
-    [counts.quizzes, "quizzes passed"],
-    [counts.mastered, "sections mastered"],
-    [counts.courses, "course badges"],
-  ] as const;
-  return (
-    <div className="rounded-2xl border-2 border-ink/10 bg-cream p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/25 hover:shadow-sm">
-      <div className="flex items-baseline justify-between gap-3">
-        <h3 className="font-display text-base font-bold text-ink">
-          Skill points
-        </h3>
-        <Link
-          href="/skills"
-          className="text-xs font-semibold text-forest hover:underline"
-        >
-          See your skill tree →
-        </Link>
-      </div>
-      <p className="mt-2 font-display text-4xl font-bold tabular-nums text-forest">
-        {total.toLocaleString()}
-      </p>
-      <p className="mt-1 text-[13px] leading-6 text-stone">
-        {total > 0
-          ? parts
-              .filter(([n]) => n > 0)
-              .map(([n, label]) => `${n} ${label}`)
-              .join(" · ")
-          : "Read a guide, try a calculator, or knock out a First-steps quick win on the skill tree — every one adds points here."}
-      </p>
-      <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: DASH.muted }}>
-        Counted live from what you&apos;ve done — never resets
-      </p>
-    </div>
-  );
-}
-
 function PipelineCard() {
   const [snapshot, setSnapshot] = useState<ReturnType<typeof loadTracker> | null>(null);
   useEffect(() => setSnapshot(loadTracker()), []);
@@ -874,7 +821,6 @@ export function DashboardExtras({
   prefs,
   onChange,
   group,
-  paths,
 }: {
   prefs: DashboardPrefs;
   onChange: (next: DashboardPrefs) => void;
@@ -882,9 +828,6 @@ export function DashboardExtras({
    *  do-now cards; progress = how-far-I've-come cards. CustomizeCard
    *  lives on the About-you tab now. */
   group: "overview" | "progress";
-  /** Topic paths (already built server-side for the dashboard) — powers
-   *  the mini skill tree on the progress tab. */
-  paths?: TopicPath[];
 }) {
   const hidden = new Set(prefs.hiddenCards);
   return (
@@ -904,10 +847,6 @@ export function DashboardExtras({
         </>
       ) : (
         <>
-          {!hidden.has("skill-points") && <SkillPointsCard />}
-          {!hidden.has("skill-tree") && paths && paths.length > 0 && (
-            <SkillTreeMini paths={paths} />
-          )}
           {!hidden.has("heatmap") && <ActivityHeatmap />}
           {!hidden.has("pipeline") && <PipelineCard />}
           {!hidden.has("calc-numbers") && <CalcNumbersCard />}
