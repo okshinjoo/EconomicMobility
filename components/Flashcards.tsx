@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { type CSSProperties, useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, Shuffle } from "lucide-react";
 import type { Flashcard } from "@/lib/courses";
 import { STORAGE_KEYS, loadJSON, saveJSON } from "@/lib/storage";
@@ -91,6 +91,17 @@ export default function Flashcards({
 
   const knownCount = cards.filter((c) => known.has(c.slug)).length;
 
+  // Back-face rows ease up into place once the flip lands (delays start
+  // after the card is ~halfway around, so the motion reads on the visible
+  // face, not the hidden one). Inline because the delay varies per row.
+  const backRow = (delay: number): CSSProperties => ({
+    opacity: flipped ? 1 : 0,
+    transform: flipped ? "translateY(0)" : "translateY(10px)",
+    transition:
+      "transform 350ms cubic-bezier(0.22, 1, 0.36, 1), opacity 350ms cubic-bezier(0.22, 1, 0.36, 1)",
+    transitionDelay: flipped ? `${delay}ms` : "0ms",
+  });
+
   return (
     <div>
       {/* Progress */}
@@ -136,7 +147,7 @@ export default function Flashcards({
       ) : (
         <>
           {/* The stack + flipping card */}
-          <div className="relative [perspective:1200px]">
+          <div className="relative [perspective:2000px]">
             {/* Deck behind */}
             {remaining.length > 2 && (
               <div
@@ -160,7 +171,9 @@ export default function Flashcards({
               className="relative block min-h-[16rem] w-full text-left [transform-style:preserve-3d]"
               style={{
                 transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                transition: "transform 500ms cubic-bezier(0.4, 0.2, 0.2, 1)",
+                // Committed ease-in-out: the card gathers itself, turns
+                // fast, and settles — reads as one deliberate motion.
+                transition: "transform 500ms cubic-bezier(0.77, 0, 0.175, 1)",
               }}
             >
               {/* Front: the term */}
@@ -186,14 +199,17 @@ export default function Flashcards({
               >
                 <span
                   className="text-xs font-bold uppercase tracking-[0.16em]"
-                  style={{ color: accent }}
+                  style={{ ...backRow(180), color: accent }}
                 >
                   {card!.term}
                 </span>
-                <span className="flex flex-1 items-center text-lg leading-8 text-ink">
+                <span
+                  className="flex flex-1 items-center text-lg leading-8 text-ink"
+                  style={backRow(260)}
+                >
                   {card!.definition}
                 </span>
-                <span className="text-sm font-medium text-stone">
+                <span className="text-sm font-medium text-stone" style={backRow(340)}>
                   Tap to flip back
                 </span>
               </span>
