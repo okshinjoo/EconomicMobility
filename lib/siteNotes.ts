@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "Three new guides on how the machine works",
+    body: "A trio about the financial machinery nobody explains to you: how private-equity buyouts gut the businesses they buy (and who pays), why rent keeps climbing (the shortage, the corporate landlords, the pricing software), and junk fees — why the advertised price is never the price. Each one ends with what you can actually do about it, and each has a quick knowledge check.",
+    href: "/learn/investing/private-equity-explained",
+    hrefLabel: "Start with private equity",
+  },
+  {
+    date: "July 17, 2026",
     title: "The pages learned to dive",
     body: "A motion pass across the whole site: page headers now sink gently away as you scroll into the content, the mobile menu button morphs instead of swapping, and every animation names exactly what it moves. Subtle on purpose. If you notice it, it's working; if you don't, it's working better.",
   },
