@@ -57,6 +57,22 @@ export interface StarterAction {
 }
 
 export const STARTER_ACTIONS: StarterAction[] = [
+  // Profile + saying hello lead (owner, July 16: "one of your first tasks
+  // should be filling out your profile or saying hi in the feed").
+  {
+    id: "profile",
+    label: "Fill out your profile",
+    short: "Your profile",
+    href: "/account",
+    kind: "profile",
+  },
+  {
+    id: "community",
+    label: "Say hi in the community",
+    short: "Say hello",
+    href: "/community",
+    kind: "community",
+  },
   {
     id: "quiz",
     label: "Take the 2-minute quiz",
@@ -86,25 +102,11 @@ export const STARTER_ACTIONS: StarterAction[] = [
     kind: "plan",
   },
   {
-    id: "profile",
-    label: "Fill out your profile",
-    short: "Your profile",
-    href: "/account",
-    kind: "profile",
-  },
-  {
     id: "resources",
     label: "Browse the resource library",
     short: "Resource library",
     href: "/resources",
     kind: "resources",
-  },
-  {
-    id: "community",
-    label: "Say something in the community",
-    short: "Say hello",
-    href: "/community",
-    kind: "community",
   },
 ];
 // --------------------------------------------------------------------------

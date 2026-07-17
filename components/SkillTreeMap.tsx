@@ -363,17 +363,24 @@ export default function SkillTreeMap({
       </Link>
     );
 
-    // Non-article tasks are woven INTO the limb, not parked at the tip
-    // (owner: "intertwined with the other topics, shouldn't just be the
-    // articles"): life plans follow the Start-here guides, calculators
-    // follow the middle tier, courses follow the last tier — and the quiz
-    // diamond stays the capstone.
-    const tierItems: BranchItem[][] = b.tiers.map(() => []);
-    if (b.tiers.length > 0) {
-      const mid = Math.min(1, b.tiers.length - 1);
-      const last = b.tiers.length - 1;
-      b.journeys.forEach((j) =>
-        tierItems[0].push({
+    // Non-article tasks are spread EVENLY along the limb (owner, July 16:
+    // "the reading tasks and the other tasks aren't evenly split up"):
+    // the limb OPENS with its life plans + first calculator right after
+    // the topic head — a do-something before any reading — remaining
+    // calculators round-robin across the tiers, and courses cap the last
+    // tier before the quiz diamond.
+    const toolItems: BranchItem[] = b.tools.map((t) => ({
+      key: `${b.id}-tool-${t.href}`,
+      href: t.href,
+      title: `Tool: ${t.label}`,
+      done: lit.tools.has(t.href),
+      icon: "tool",
+      label: t.label,
+      color: b.color,
+    }));
+    const openers: BranchItem[] = [
+      ...b.journeys.map(
+        (j): BranchItem => ({
           key: `${b.id}-j-${j.id}`,
           href: `/journey/${j.id}`,
           title: `Life plan: ${j.title}`,
@@ -382,20 +389,16 @@ export default function SkillTreeMap({
           label: j.title,
           color: b.color,
         })
-      );
-      b.tools.forEach((t) =>
-        tierItems[mid].push({
-          key: `${b.id}-tool-${t.href}`,
-          href: t.href,
-          title: `Tool: ${t.label}`,
-          done: lit.tools.has(t.href),
-          icon: "tool",
-          label: t.label,
-          color: b.color,
-        })
-      );
+      ),
+      ...toolItems.slice(0, 1),
+    ];
+    const tierItems: BranchItem[][] = b.tiers.map(() => []);
+    if (b.tiers.length > 0) {
+      toolItems
+        .slice(1)
+        .forEach((t, k) => tierItems[k % b.tiers.length].push(t));
       b.courses.forEach((c) =>
-        tierItems[last].push({
+        tierItems[b.tiers.length - 1].push({
           key: `${b.id}-c-${c.id}`,
           href: `/courses/${c.id}`,
           title: `Course: ${c.title}`,
@@ -407,10 +410,82 @@ export default function SkillTreeMap({
       );
     }
 
+    // Shared ring renderer: items straddle the spine in rows of up to
+    // three; the limb continues from the last row's middle item.
+    const ringRows = (
+      items: BranchItem[],
+      baseA: number,
+      from: { r: number; anchor: XY }
+    ): { r: number; anchor: XY } => {
+      let anchor = from.anchor;
+      let rEnd = from.r;
+      const queue = [...items];
+      for (let ring = 0; queue.length > 0; ring++) {
+        const row = queue.splice(0, 3);
+        const r = from.r + LEAF_LEAD + ring * LEAF_RING_STEP;
+        const positions = row.map((_, j) =>
+          pt(r, baseA + (j - (row.length - 1) / 2) * LEAF_GAP)
+        );
+        row.forEach((item, j) => {
+          const p = positions[j];
+          paths.push({
+            d: curve(anchor, p, j % 2 ? 0.8 : -0.8),
+            color: b.color,
+            lit: item.done,
+          });
+          nodes.push(
+            <Link
+              key={item.key}
+              href={item.href}
+              title={`${item.title}${
+                lit.mounted && item.done ? " — done" : ""
+              }`}
+              className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: 72,
+                height: 72,
+                transform: "translate(-50%, -50%)",
+                ...fill(item.done ? "done" : "none", item.color),
+              }}
+            >
+              {item.icon === "tool" ? (
+                <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              ) : item.icon === "journey" ? (
+                <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              ) : (
+                <BadgeMedal
+                  color={item.done ? CREAM : "#9aa39b"}
+                  variant="course"
+                  className="h-3.5 w-3.5 shrink-0"
+                />
+              )}
+              <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
+                {item.label}
+              </span>
+            </Link>
+          );
+        });
+        anchor = positions[Math.floor((positions.length - 1) / 2)];
+        rEnd = r;
+      }
+      return { r: rEnd, anchor };
+    };
+
     // Tier bands: a labeled pill on the spine, then the tier's guides as
     // dots in rows — several guides share the same depth and branch off.
     let rCur = R_HEAD;
     let prev = head;
+    if (openers.length > 0) {
+      depth += 1;
+      const opened = ringRows(openers, a + wob(i, depth), {
+        r: rCur,
+        anchor: prev,
+      });
+      rCur = opened.r;
+      prev = opened.anchor;
+    }
     b.tiers.forEach((tier, ti) => {
       const done = tier.articles.filter((x) => lit.read[x.slug]).length;
       const full =
@@ -557,61 +632,10 @@ export default function SkillTreeMap({
       rCur = units.length > 0 ? r - UNIT_ROW_STEP + 16 : chipR;
       prev = continueFrom;
 
-      // This tier's tools/courses/life plans, in rings of up to three,
-      // before the next tier pill — the limb passes straight through them.
-      const items = [...tierItems[ti]];
-      let anchor = prev;
-      for (let ring = 0; items.length > 0; ring++) {
-        const row = items.splice(0, 3);
-        const r = rCur + LEAF_LEAD + ring * LEAF_RING_STEP;
-        const positions = row.map((_, j) =>
-          pt(r, chipA + (j - (row.length - 1) / 2) * LEAF_GAP)
-        );
-        row.forEach((item, j) => {
-          const p = positions[j];
-          paths.push({
-            d: curve(anchor, p, j % 2 ? 0.8 : -0.8),
-            color: b.color,
-            lit: item.done,
-          });
-          nodes.push(
-            <Link
-              key={item.key}
-              href={item.href}
-              title={`${item.title}${
-                lit.mounted && item.done ? " — done" : ""
-              }`}
-              className="absolute z-10 flex flex-col items-center justify-center gap-0.5 overflow-hidden rounded-full border-2 px-1.5 text-center transition-colors duration-500 hover:z-20 hover:scale-105"
-              style={{
-                left: p.x,
-                top: p.y,
-                width: 72,
-                height: 72,
-                transform: "translate(-50%, -50%)",
-                ...fill(item.done ? "done" : "none", item.color),
-              }}
-            >
-              {item.icon === "tool" ? (
-                <Wrench className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-              ) : item.icon === "journey" ? (
-                <Route className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
-              ) : (
-                <BadgeMedal
-                  color={item.done ? CREAM : "#9aa39b"}
-                  variant="course"
-                  className="h-3.5 w-3.5 shrink-0"
-                />
-              )}
-              <span className="line-clamp-2 text-[8.5px] font-bold leading-[1.15]">
-                {item.label}
-              </span>
-            </Link>
-          );
-        });
-        anchor = positions[Math.floor((positions.length - 1) / 2)];
-        rCur = r;
-      }
-      prev = anchor;
+      // This tier's remaining tools/courses, before the next tier pill.
+      const ringed = ringRows(tierItems[ti], chipA, { r: rCur, anchor: prev });
+      rCur = ringed.r;
+      prev = ringed.anchor;
     });
 
     // The checkpoint-quiz diamond caps the chain.
