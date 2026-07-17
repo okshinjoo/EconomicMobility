@@ -34,6 +34,8 @@ import {
   type ActivityInfo,
 } from "@/lib/skillMastery";
 import type { Lit } from "@/components/SkillTree";
+import { useFrame } from "@/components/useFrame";
+import { frameHref } from "@/lib/frame";
 
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
 // laid out in rows whose per-row capacity grows with radius, so wide tiers
@@ -139,6 +141,9 @@ export default function SkillTreeMap({
   /** Open an activity's what-and-why panel (tools/plans/courses/starters). */
   onActivityOpen: (a: ActivityInfo) => void;
 }) {
+  // Self-framing links (July 17 student mirror) — see SkillTree.tsx.
+  const frame = useFrame();
+  const fh = (h: string) => frameHref(h, frame);
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{
     x: number;
@@ -338,7 +343,7 @@ export default function SkillTreeMap({
     nodes.push(
       <Link
         key={`${b.id}-head`}
-        href={b.href}
+        href={fh(b.href)}
         title={`${b.title}${
           isGoal ? " · your goal" : ""
         } — ${headPctLabel}% complete (${
@@ -575,7 +580,7 @@ export default function SkillTreeMap({
         ) : (
           <Link
             key={`${b.id}-chip-${ti}`}
-            href={next ? `${b.href}/${next.slug}` : b.href}
+            href={fh(next ? `${b.href}/${next.slug}` : b.href)}
             title={`${b.short} · ${tier.label}: ${
               lit.mounted ? done : 0
             } of ${tier.articles.length} read${
@@ -684,7 +689,7 @@ export default function SkillTreeMap({
       nodes.push(
         <Link
           key={`${b.id}-quiz`}
-          href={`${b.href}/quiz`}
+          href={fh(`${b.href}/quiz`)}
           title={`${b.short} checkpoint quiz${done ? " — passed" : ""}`}
           className="absolute z-10 flex items-center justify-center rounded-xl border-2 [transition:transform_300ms,color_500ms,background-color_500ms,border-color_500ms] hover:z-20 hover:scale-110"
           style={{

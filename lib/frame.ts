@@ -51,6 +51,7 @@ const PREFIXES = [
   "/courses",
   "/quiz",
   "/plan",
+  "/skills",
   "/life",
   "/resources",
 ];

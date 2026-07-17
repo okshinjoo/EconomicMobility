@@ -31,6 +31,15 @@ import {
 import MasteryQuiz from "@/components/MasteryQuiz";
 import { getBadges, BadgeMedal } from "@/components/CourseQuiz";
 import { readContext, topicMatchesGoals } from "@/lib/personalization";
+import { useFrame } from "@/components/useFrame";
+import { frameHref } from "@/lib/frame";
+
+// Mounted by BOTH /skills and /students/skills (July 17 mirror): every
+// component in this file frames its links so guides open the mirrors.
+function useFh() {
+  const frame = useFrame();
+  return (h: string) => frameHref(h, frame);
+}
 import type { SkillTreeData, SkillBranch } from "@/lib/skillTree";
 
 const QUIZ_SCORES_KEY = "empower:article-quizzes:v1";
@@ -46,6 +55,7 @@ function sideChip(done: boolean) {
 /** The what-and-why stop before any activity (owner, July 16: "telling
  *  them what they are doing and why they are doing it"). */
 function ActivityPanel({ a, onClose }: { a: ActivityInfo; onClose: () => void }) {
+  const fh = useFh();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -104,7 +114,7 @@ function ActivityPanel({ a, onClose }: { a: ActivityInfo; onClose: () => void })
         <p className="mt-3 text-sm leading-6 text-stone">{a.blurb}</p>
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <Link
-            href={a.href}
+            href={fh(a.href)}
             className="btn-ink rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink"
           >
             {cta}
@@ -140,6 +150,7 @@ function UnitPanel({
   onClose: () => void;
   onTestOut: () => void;
 }) {
+  const fh = useFh();
   const tier = b.tiers[ti];
   const arts = tier.articles.slice(
     part * UNIT_SIZE,
@@ -204,7 +215,7 @@ function UnitPanel({
             return (
               <li key={a.slug}>
                 <Link
-                  href={`${b.href}/${a.slug}`}
+                  href={fh(`${b.href}/${a.slug}`)}
                   className="group flex items-start gap-2.5 rounded-lg border-2 border-ink/10 bg-paper px-3.5 py-2.5 transition-colors hover:border-ink/40"
                 >
                   {covered ? (
@@ -236,7 +247,7 @@ function UnitPanel({
         <div className="mt-5 flex flex-wrap items-center gap-3">
           {firstUnread ? (
             <Link
-              href={`${b.href}/${firstUnread.slug}`}
+              href={fh(`${b.href}/${firstUnread.slug}`)}
               className="btn-ink rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink"
             >
               Start: {firstUnread.title}
@@ -323,6 +334,7 @@ function Branch({
   lit: Lit;
   onTestOut: (b: SkillBranch, ti: number | null) => void;
 }) {
+  const fh = useFh();
   const readCount = b.tiers.reduce(
     (n, t) => n + t.articles.filter((a) => lit.read[a.slug]).length,
     0
@@ -358,7 +370,7 @@ function Branch({
     >
       {/* Topic node */}
       <div className="flex items-center gap-4">
-        <Link href={b.href} aria-label={`${b.title} guides`}>
+        <Link href={fh(b.href)} aria-label={`${b.title} guides`}>
           <ProgressRing pct={lit.mounted ? pct : 0} color={b.color}>
             <TopicMark id={b.id} color={b.color} className="h-8 w-8" />
           </ProgressRing>
@@ -367,7 +379,7 @@ function Branch({
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-display text-lg font-bold leading-snug text-ink">
               <Link
-                href={b.href}
+                href={fh(b.href)}
                 className="hover:underline hover:decoration-amber hover:decoration-2 hover:underline-offset-4"
               >
                 {b.short}
@@ -460,7 +472,7 @@ function Branch({
               }}
             />
             <Link
-              href={`${b.href}/quiz`}
+              href={fh(`${b.href}/quiz`)}
               className={`inline-flex items-center gap-1.5 text-sm font-semibold ${
                 quizDone ? "text-ink" : "text-stone"
               } hover:text-forest hover:underline hover:decoration-amber hover:decoration-2 hover:underline-offset-4`}
@@ -480,7 +492,7 @@ function Branch({
       {(b.journeys.length > 0 || b.tools.length > 0 || b.courses.length > 0) && (
         <div className="mt-3 flex flex-wrap gap-2">
           {b.journeys.map((j) => (
-            <Link key={j.id} href={`/journey/${j.id}`} className={sideChip(false)}>
+            <Link key={j.id} href={fh(`/journey/${j.id}`)} className={sideChip(false)}>
               <Route className="h-3 w-3" strokeWidth={2.5} />
               {j.title}
             </Link>
@@ -488,7 +500,7 @@ function Branch({
           {b.tools.map((t) => {
             const done = lit.tools.has(t.href);
             return (
-              <Link key={t.href} href={t.href} className={sideChip(done)}>
+              <Link key={t.href} href={fh(t.href)} className={sideChip(done)}>
                 <Wrench className="h-3 w-3" strokeWidth={2.5} />
                 {t.label}
                 {done && <Check className="h-3 w-3" strokeWidth={3} />}
@@ -498,7 +510,7 @@ function Branch({
           {b.courses.map((c) => {
             const done = lit.badges.has(c.id);
             return (
-              <Link key={c.id} href={`/courses/${c.id}`} className={sideChip(done)}>
+              <Link key={c.id} href={fh(`/courses/${c.id}`)} className={sideChip(done)}>
                 <BadgeMedal
                   color={done ? c.color : "#9aa39b"}
                   variant="course"
@@ -516,7 +528,7 @@ function Branch({
       <div className="mt-4 border-t border-sand pt-3">
         {nextUp && lit.mounted ? (
           <Link
-            href={`${b.href}/${nextUp.slug}`}
+            href={fh(`${b.href}/${nextUp.slug}`)}
             className="group inline-flex items-start gap-1.5 text-sm font-semibold text-forest"
           >
             <span>
@@ -555,6 +567,7 @@ function Branch({
 }
 
 export default function SkillTree({ data }: { data: SkillTreeData }) {
+  const fh = useFh();
   const [view, setView] = useState<"map" | "list">("map");
   const [lit, setLit] = useState<Lit>({
     read: {},
@@ -828,7 +841,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
           }
           questions={testQuestions}
           need={testNeed}
-          continueHref={testNextUnread}
+          continueHref={testNextUnread ? fh(testNextUnread) : undefined}
           continueLabel="Keep reading instead"
           alt={
             testOut.ti !== null &&
@@ -869,7 +882,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
               {data.starters.map((s) => {
                 const done = lit.starters.has(s.id);
                 return (
-                  <Link key={s.id} href={s.href} className={sideChip(done)}>
+                  <Link key={s.id} href={fh(s.href)} className={sideChip(done)}>
                     {s.label}
                     {done && <Check className="h-3 w-3" strokeWidth={3} />}
                   </Link>

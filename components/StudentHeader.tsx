@@ -34,6 +34,7 @@ import {
   MessageCircle,
   HelpCircle,
   Telescope,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import AccountButton from "@/components/AccountButton";
@@ -84,6 +85,7 @@ const NAV: StudentNavEntry[] = [
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
       { label: "Student Tracker", href: "/students/tracker", desc: "Units, grades, GPA, for HS, CC, and university.", icon: ClipboardList, color: "#0c4a39" },
       { label: "My Plan", href: "/students/plan", desc: "Five questions, one personal plan that checks itself off.", icon: Compass, color: "#15624b" },
+      { label: "Your Skill Tree", href: "/students/skills", desc: "Every guide, tool, and course on one map that lights up.", icon: Sparkles, color: "#c9842a" },
     ],
     footer: [
       { label: "All guided paths", href: "/students/journey" },
