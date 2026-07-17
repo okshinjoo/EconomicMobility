@@ -27,7 +27,7 @@ import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillBranch, SkillTreeData } from "@/lib/skillTree";
-import { MIN_MASTERY_POOL, tierKey } from "@/lib/skillMastery";
+import { MIN_MASTERY_POOL, tierKey, UNIT_SIZE } from "@/lib/skillMastery";
 import type { Lit } from "@/components/SkillTree";
 
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
@@ -41,11 +41,12 @@ const CX = W / 2;
 const CY = H / 2;
 const R_HEAD = 230; // radius of the topic head nodes
 const WOBBLE = 0.035; // max spine bend (radians) per depth step
-const DOT = 26; // guide-dot diameter
-const DOT_STEP = 50; // radial spacing between dots along a twig chain
-const DRIFT = 0.02; // per-dot angular wander along a chain
 const TIER_LEAD = 62; // spine run from the previous band to a tier pill
-const CHAIN_LEAD = 46; // tier pill to the first dot of its chains
+const UNIT = 44; // guide-unit bubble diameter (a bundle of guides)
+const UNIT_GAP = 0.16; // angular spacing between unit bubbles in a row
+const UNIT_ROW_CAP = 3; // unit bubbles per row
+const UNIT_ROW_STEP = 72; // radial spacing between unit rows
+const UNIT_ROW_LEAD = 56; // tier pill to its first unit row
 const QUIZ_LEAD = 70; // limb end to the checkpoint diamond
 const LEAF_LEAD = 92; // twig end to a tier's item ring
 const LEAF_RING_STEP = 92; // radial spacing between item rings
@@ -53,25 +54,6 @@ const LEAF_GAP = 0.15; // angular spacing between items in a ring
 const STARTER_STEP = 92; // radial spacing along the First-steps twigs
 const STARTER_GAP = 0.3; // angular gap between the two starter twigs
 const FOREST = "#0c4a39";
-
-// Angular gap between sibling twig chains, by chain count — tuned so the
-// widest fan plus wobble/drift stays inside the branch's 40° lane.
-const CHAIN_GAP: Record<number, number> = {
-  1: 0,
-  2: 0.16,
-  3: 0.15,
-  4: 0.13,
-  5: 0.115,
-};
-
-/** Split a tier's guides into 1-5 twig chains of near-equal length. */
-function splitChains(len: number): number[] {
-  if (len === 0) return [];
-  const n = Math.min(5, Math.max(1, Math.ceil(len / 5)));
-  const base = Math.floor(len / n);
-  const rem = len % n;
-  return Array.from({ length: n }, (_, c) => base + (c < rem ? 1 : 0));
-}
 
 const CREAM = "#fdfbf2";
 const INK = "#11211c";
@@ -136,6 +118,7 @@ export default function SkillTreeMap({
   lit,
   points,
   onTestOut,
+  onUnitOpen,
 }: {
   data: SkillTreeData;
   lit: Lit;
@@ -143,6 +126,8 @@ export default function SkillTreeMap({
   points: number;
   /** Open a mastery test-out (ti null = the whole topic). */
   onTestOut: (b: SkillBranch, ti: number | null) => void;
+  /** Open a guide unit's what-you'll-learn panel. */
+  onUnitOpen: (b: SkillBranch, ti: number, part: number) => void;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{
@@ -496,71 +481,80 @@ export default function SkillTreeMap({
         )
       );
 
-      // Twig chains: the tier's guides wander outward on 1-5 curving
-      // offshoots — no two bubbles side by side, each one deeper than the
-      // last. The limb continues from the middle twig's tip.
-      const sizes = splitChains(tier.articles.length);
-      const chainStart = chipR + CHAIN_LEAD;
-      const gap = CHAIN_GAP[sizes.length] ?? 0.13;
-      const midIdx = Math.floor((sizes.length - 1) / 2);
+      // Guide UNITS (owner, July 16: "less bubbles" + a what-you'll-learn
+      // stop): each bubble bundles up to UNIT_SIZE guides at this level.
+      // Clicking opens the unit panel (what you'll learn + the links)
+      // instead of jumping straight into one article. Units fan out in
+      // staggered rows of up to three.
+      const units: { slug: string; title: string }[][] = [];
+      for (let u = 0; u < tier.articles.length; u += UNIT_SIZE)
+        units.push(tier.articles.slice(u, u + UNIT_SIZE));
       let continueFrom = chip;
-      let taken = 0;
-      sizes.forEach((sz, c) => {
-        const baseA = chipA + (c - (sizes.length - 1) / 2) * gap;
-        let prevDot = chip;
-        for (let j = 0; j < sz; j++) {
-          const r = chainStart + j * DOT_STEP;
-          const da =
-            baseA + Math.sin(i * 3.7 + c * 2.9 + j * 1.3) * DRIFT;
-          const p = pt(r, da);
-          const art = tier.articles[taken + j];
-          const read = Boolean(lit.read[art.slug]);
+      let uAnchor = chip;
+      let r = chipR + UNIT_ROW_LEAD;
+      for (let rowStart = 0; rowStart < units.length; rowStart += UNIT_ROW_CAP) {
+        const row = units.slice(rowStart, rowStart + UNIT_ROW_CAP);
+        const positions = row.map((_, j) =>
+          pt(
+            r + (j % 2 ? 16 : 0),
+            chipA + (j - (row.length - 1) / 2) * UNIT_GAP
+          )
+        );
+        row.forEach((unitArts, j) => {
+          const p = positions[j];
+          const part = rowStart + j;
+          const covered = unitArts.filter(
+            (x) => lit.read[x.slug] || mastered
+          ).length;
+          const uState: NodeState =
+            covered === unitArts.length
+              ? "done"
+              : covered > 0
+                ? "part"
+                : "none";
           paths.push({
-            d: curve(prevDot, p, (c + j) % 2 ? 0.7 : -0.7),
+            d: curve(uAnchor, p, j % 2 ? 0.8 : -0.8),
             color: b.color,
-            lit: read || mastered,
+            lit: covered > 0,
           });
           nodes.push(
-            <Link
-              key={`${b.id}-g-${art.slug}`}
-              href={`${b.href}/${art.slug}`}
-              title={`${art.title}${
-                lit.mounted && read
-                  ? " — read"
-                  : lit.mounted && mastered
-                    ? " — covered by your mastery test"
-                    : ""
-              }`}
-              aria-label={`${art.title}${
-                lit.mounted && read ? " (read)" : ""
-              }`}
-              className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-125"
+            <button
+              key={`${b.id}-u-${ti}-${part}`}
+              type="button"
+              onClick={() => onUnitOpen(b, ti, part)}
+              title={`${b.short} · ${tier.label}${
+                units.length > 1 ? ` — part ${part + 1}` : ""
+              }: ${lit.mounted ? covered : 0} of ${
+                unitArts.length
+              } guides. Click to see what you'll learn.`}
+              aria-label={`${b.short} ${tier.label}${
+                units.length > 1 ? ` part ${part + 1}` : ""
+              }: ${lit.mounted ? covered : 0} of ${
+                unitArts.length
+              } guides — see what you'll learn`}
+              className="absolute z-10 flex flex-col items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
               style={{
                 left: p.x,
                 top: p.y,
-                width: DOT,
-                height: DOT,
+                width: UNIT,
+                height: UNIT,
                 transform: "translate(-50%, -50%)",
-                backgroundColor: read
-                  ? b.color
-                  : mastered
-                    ? `${b.color}2b`
-                    : CREAM,
-                borderColor: read ? INK : `${b.color}${mastered ? "" : "66"}`,
-                color: read ? CREAM : `${b.color}99`,
+                ...fill(uState, b.color),
               }}
             >
-              <BookOpen className="h-3 w-3 shrink-0" strokeWidth={2.5} />
-            </Link>
+              <BookOpen className="h-3.5 w-3.5 shrink-0" strokeWidth={2.5} />
+              <span className="text-[9px] font-bold leading-none tabular-nums">
+                {lit.mounted ? covered : 0}/{unitArts.length}
+              </span>
+            </button>
           );
-          prevDot = p;
-          if (c === midIdx && j === sz - 1) continueFrom = p;
-        }
-        taken += sz;
-      });
-      rCur = sizes.length
-        ? chainStart + (Math.max(...sizes) - 1) * DOT_STEP
-        : chipR;
+        });
+        const mid = positions[Math.floor((positions.length - 1) / 2)];
+        uAnchor = mid;
+        continueFrom = mid;
+        r += UNIT_ROW_STEP;
+      }
+      rCur = units.length > 0 ? r - UNIT_ROW_STEP + 16 : chipR;
       prev = continueFrom;
 
       // This tier's tools/courses/life plans, in rings of up to three,

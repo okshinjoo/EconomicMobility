@@ -33,6 +33,11 @@ export const MIN_MASTERY_POOL = 3;
 /** Smallest pool a whole-topic test-out may run on. */
 export const MIN_TOPIC_POOL = 5;
 
+/** Guides per map bubble — a bubble is a BUNDLE of up to this many guides
+ *  (owner, July 16: "less bubbles"; clicking opens the what-you'll-learn
+ *  panel instead of jumping into an article). */
+export const UNIT_SIZE = 5;
+
 /** Cross-cutting quick wins — the "First steps" branch. `kind` tells the
  *  client which existing tracker proves it done. */
 export interface StarterAction {

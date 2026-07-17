@@ -12,7 +12,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Check, Route, Star, Wrench, Zap } from "lucide-react";
+import { ArrowRight, BookOpen, Check, Route, Star, Wrench, X, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import SkillTreeMap from "@/components/SkillTreeMap";
 import { getReadMap } from "@/lib/readTracking";
@@ -24,6 +24,7 @@ import {
   tierKey,
   MIN_MASTERY_POOL,
   MIN_TOPIC_POOL,
+  UNIT_SIZE,
   type MasteryQuestion,
 } from "@/lib/skillMastery";
 import MasteryQuiz from "@/components/MasteryQuiz";
@@ -39,6 +40,146 @@ function sideChip(done: boolean) {
       ? "border-forest/40 bg-forest/[0.08] text-forest"
       : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
   }`;
+}
+
+/** The "what you'll learn" stop between a map bubble and the articles
+ *  (owner, July 16: clicking a bubble "should jump to a second page saying
+ *  what you'll learn and then link multiple articles"). */
+function UnitPanel({
+  b,
+  ti,
+  part,
+  lit,
+  onClose,
+  onTestOut,
+}: {
+  b: SkillBranch;
+  ti: number;
+  part: number;
+  lit: Lit;
+  onClose: () => void;
+  onTestOut: () => void;
+}) {
+  const tier = b.tiers[ti];
+  const arts = tier.articles.slice(
+    part * UNIT_SIZE,
+    part * UNIT_SIZE + UNIT_SIZE
+  );
+  const parts = Math.ceil(tier.articles.length / UNIT_SIZE);
+  const mastered = lit.mastered.has(tierKey(b.id, ti));
+  const firstUnread = arts.find((a) => !lit.read[a.slug]);
+  const canTest =
+    !mastered && tier.mastery.length >= MIN_MASTERY_POOL && firstUnread;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/60 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${b.short} · ${tier.label}: what you'll learn`}
+      onClick={onClose}
+    >
+      <div
+        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl border-2 border-ink bg-cream p-6 shadow-[6px_6px_0_#11211c]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+              What you&apos;ll learn
+            </span>
+            <h2 className="mt-1 font-display text-xl font-bold leading-snug text-ink">
+              {b.short} · {tier.label}
+              {parts > 1 ? ` — part ${part + 1} of ${parts}` : ""}
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="rounded-md p-1 text-stone hover:bg-ink/5 hover:text-ink"
+          >
+            <X className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+        </div>
+
+        <p className="mt-2 text-sm leading-6 text-stone">
+          {arts.length} short guide{arts.length === 1 ? "" : "s"}. Read them
+          in any order — each one lights up on your tree the moment you
+          finish it.
+        </p>
+
+        <ul className="mt-4 space-y-2">
+          {arts.map((a) => {
+            const read = Boolean(lit.read[a.slug]);
+            const covered = read || mastered;
+            return (
+              <li key={a.slug}>
+                <Link
+                  href={`${b.href}/${a.slug}`}
+                  className="group flex items-start gap-2.5 rounded-lg border-2 border-ink/10 bg-paper px-3.5 py-2.5 transition-colors hover:border-ink/40"
+                >
+                  {covered ? (
+                    <Check
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${
+                        read ? "text-forest" : "text-amber"
+                      }`}
+                      strokeWidth={3}
+                    />
+                  ) : (
+                    <BookOpen
+                      className="mt-0.5 h-4 w-4 shrink-0 text-stone/60"
+                      strokeWidth={2.5}
+                    />
+                  )}
+                  <span
+                    className={`text-sm font-semibold leading-6 decoration-amber decoration-2 underline-offset-4 group-hover:underline ${
+                      read ? "text-stone" : "text-ink"
+                    }`}
+                  >
+                    {a.title}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          {firstUnread ? (
+            <Link
+              href={`${b.href}/${firstUnread.slug}`}
+              className="btn-ink rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink"
+            >
+              Start: {firstUnread.title}
+            </Link>
+          ) : (
+            <p className="inline-flex items-center gap-1.5 text-sm font-bold text-forest">
+              <Check className="h-4 w-4" strokeWidth={3} />
+              Every guide here is read.
+            </p>
+          )}
+        </div>
+        {canTest && (
+          <button
+            type="button"
+            onClick={onTestOut}
+            className="mt-3 block text-[13px] font-semibold text-stone underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Already know this? Test out of {tier.label}
+          </button>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function viewChip(active: boolean) {
@@ -350,6 +491,12 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     b: SkillBranch;
     ti: number | null;
   } | null>(null);
+  /** Open what-you'll-learn unit panel (a bubble's bundle of guides). */
+  const [unit, setUnit] = useState<{
+    b: SkillBranch;
+    ti: number;
+    part: number;
+  } | null>(null);
 
   useEffect(() => {
     const read = getReadMap();
@@ -572,6 +719,20 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         )}
       </div>
 
+      {unit !== null && (
+        <UnitPanel
+          b={unit.b}
+          ti={unit.ti}
+          part={unit.part}
+          lit={lit}
+          onClose={() => setUnit(null)}
+          onTestOut={() => {
+            setTestOut({ b: unit.b, ti: unit.ti });
+            setUnit(null);
+          }}
+        />
+      )}
+
       {testOut !== null && testQuestions.length > 0 && (
         <MasteryQuiz
           title={
@@ -604,6 +765,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
             lit={lit}
             points={points}
             onTestOut={(b, ti) => setTestOut({ b, ti })}
+            onUnitOpen={(b, ti, part) => setUnit({ b, ti, part })}
           />
         </div>
       ) : (
