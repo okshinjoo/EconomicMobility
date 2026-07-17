@@ -25,6 +25,17 @@ import {
   type SkillPointCounts,
 } from "@/lib/skillPoints";
 import type { TopicPath } from "@/components/WelcomeBack";
+import ProgressRings from "@/components/ProgressRings";
+
+/** Sitewide totals for the rings band — computed server-side (the pages
+ *  call buildSkillTree) so the article/tool registries stay out of the
+ *  client bundle, same reason paths ride in as a prop. */
+export interface CanopyTotals {
+  guides: number;
+  quizzes: number;
+  courses: number;
+  tools: number;
+}
 
 const INK = "#11211c";
 const AMBER = "#e7a33c";
@@ -54,7 +65,14 @@ function coveredCount(p: TopicPath, lit: MiniLit): number {
   return n;
 }
 
-export default function SkillTreeSection({ paths }: { paths: TopicPath[] }) {
+export default function SkillTreeSection({
+  paths,
+  totals,
+}: {
+  paths: TopicPath[];
+  /** Omitted (older callers): the rings band simply doesn't render. */
+  totals?: CanopyTotals;
+}) {
   const [lit, setLit] = useState<MiniLit | null>(null);
   useEffect(() => {
     const counts = readSkillCounts();
@@ -222,6 +240,48 @@ export default function SkillTreeSection({ paths }: { paths: TopicPath[] }) {
           </p>
         </div>
       </div>
+
+      {/* Rings band (owner ask July 17: "add it into the profile
+          dashboard") — the /skills canopy rings, compact. Same live
+          counts, sitewide totals from the server. */}
+      {totals && (
+        <div className="mt-5 flex flex-col items-center gap-5 border-t-2 border-ink/10 pt-5 sm:flex-row sm:gap-8">
+          {(() => {
+            const rings = [
+              { label: "guides read", done: lit?.counts.guides ?? 0, total: totals.guides, color: "#15624b" },
+              { label: "checkpoint quizzes", done: lit?.counts.quizzes ?? 0, total: totals.quizzes, color: "#c9842a" },
+              { label: "flagship courses", done: lit?.counts.courses ?? 0, total: totals.courses, color: "#d26a4c" },
+              { label: "tools tried", done: lit?.counts.tools ?? 0, total: totals.tools, color: "#2f6d80" },
+            ];
+            return (
+              <>
+                <ProgressRings items={rings} size={150} strokeWidth={12} />
+                <div className="grid w-full flex-1 grid-cols-2 gap-x-6 gap-y-3">
+                  {rings.map((r) => (
+                    <div key={r.label}>
+                      <p
+                        className="text-[11px] font-semibold uppercase tracking-wide"
+                        style={{ color: MUTED }}
+                      >
+                        {r.label}
+                      </p>
+                      <p
+                        className="font-display text-2xl font-bold tabular-nums"
+                        style={{ color: r.color }}
+                      >
+                        {r.done}
+                        <span className="text-base font-semibold text-stone">
+                          /{r.total}
+                        </span>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
+        </div>
+      )}
     </section>
   );
 }

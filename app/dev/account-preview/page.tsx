@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import DevAccountHarness from "@/components/DevAccountHarness";
 import { topics } from "@/lib/topics";
 import { getTopicRoadmap } from "@/lib/articles";
+import { canopyTotals } from "@/lib/skillTree";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
@@ -55,7 +56,11 @@ export default function DevAccountPreviewPage() {
             Dev harness: fake session, saves are stubbed. Not reachable in
             production.
           </p>
-          <DevAccountHarness paths={paths} badgeSources={badgeSources} />
+          <DevAccountHarness
+            paths={paths}
+            badgeSources={badgeSources}
+            canopyTotals={canopyTotals()}
+          />
         </div>
       </section>
       <Footer />

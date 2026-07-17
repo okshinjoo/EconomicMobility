@@ -2,6 +2,7 @@ import AccountOverlayShell from "@/components/AccountOverlayShell";
 import AccountPanel from "@/components/AccountPanel";
 import { topics } from "@/lib/topics";
 import { getTopicRoadmap } from "@/lib/articles";
+import { canopyTotals } from "@/lib/skillTree";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
@@ -36,7 +37,12 @@ export default function AccountModal() {
 
   return (
     <AccountOverlayShell>
-      <AccountPanel paths={paths} badgeSources={badgeSources} overlay />
+      <AccountPanel
+        paths={paths}
+        badgeSources={badgeSources}
+        canopyTotals={canopyTotals()}
+        overlay
+      />
     </AccountOverlayShell>
   );
 }

@@ -58,7 +58,7 @@ import {
   CustomizeCard,
   DASH,
 } from "@/components/AccountDashboard";
-import SkillTreeSection from "@/components/SkillTreeMini";
+import SkillTreeSection, { type CanopyTotals } from "@/components/SkillTreeMini";
 import {
   readDashboardPrefs,
   writeDashboardPrefs,
@@ -120,10 +120,12 @@ function CloseX({ className = "" }: { className?: string }) {
 export default function AccountPanel({
   paths = [],
   badgeSources = [],
+  canopyTotals,
   overlay = false,
 }: {
   paths?: TopicPath[];
   badgeSources?: BadgeSource[];
+  canopyTotals?: CanopyTotals;
   /** True inside the intercepted /account modal: no full-page section
    *  wrappers — the overlay shell provides scrim + scroll. */
   overlay?: boolean;
@@ -213,6 +215,7 @@ export default function AccountPanel({
           syncedKeys={syncedKeys}
           paths={paths}
           badgeSources={badgeSources}
+          canopyTotals={canopyTotals}
           fromAuthRedirect={fromAuthRedirect}
         />
     );
@@ -661,6 +664,7 @@ export function ProfileEditor({
   syncedKeys,
   paths,
   badgeSources,
+  canopyTotals,
   fromAuthRedirect,
   overlay = false,
 }: {
@@ -669,6 +673,7 @@ export function ProfileEditor({
   syncedKeys: number | null;
   paths: TopicPath[];
   badgeSources: BadgeSource[];
+  canopyTotals?: CanopyTotals;
   fromAuthRedirect: boolean;
   overlay?: boolean;
 }) {
@@ -1203,7 +1208,7 @@ export function ProfileEditor({
                           section") — tree glyph + points + breakdown. */}
                       {dashPrefsReady &&
                         !dashPrefs.hiddenCards.includes("skill-tree") && (
-                          <SkillTreeSection paths={paths} />
+                          <SkillTreeSection paths={paths} totals={canopyTotals} />
                         )}
                       {!dashPrefs.hiddenCards.includes("stats") && (
                         <FlatStatCards

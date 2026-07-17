@@ -246,3 +246,16 @@ export function buildSkillTree(): SkillTreeData {
       .filter((i) => i.status === "live").length,
   };
 }
+
+/** The four sitewide canopy totals, for pages that need the rings' targets
+ *  without shipping the whole tree (the account dashboard passes these to
+ *  the client as a tiny prop). Server-side only — builds the full tree. */
+export function canopyTotals() {
+  const data = buildSkillTree();
+  return {
+    guides: data.guidesTotal,
+    quizzes: data.quizzesTotal,
+    courses: data.coursesTotal,
+    tools: data.toolsTotal,
+  };
+}

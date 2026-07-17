@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import AccountPanel from "@/components/AccountPanel";
 import { topics } from "@/lib/topics";
 import { getTopicRoadmap } from "@/lib/articles";
+import { canopyTotals } from "@/lib/skillTree";
 import { courses } from "@/lib/courses";
 import { challenges } from "@/lib/challenges";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
@@ -48,7 +49,11 @@ export default function AccountPage() {
       {/* The panel owns its full layout per auth state: signed OUT it
           renders the split-screen on paper; signed IN the dark app-frame
           dashboard (owner-picked Kinetik clone). */}
-      <AccountPanel paths={paths} badgeSources={badgeSources} />
+      <AccountPanel
+        paths={paths}
+        badgeSources={badgeSources}
+        canopyTotals={canopyTotals()}
+      />
 
       <Footer />
     </div>

@@ -8,6 +8,7 @@
 import { useSearchParams } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { ProfileEditor } from "@/components/AccountPanel";
+import type { CanopyTotals } from "@/components/SkillTreeMini";
 import type { TopicPath, BadgeSource } from "@/components/WelcomeBack";
 
 // ?fresh=1 renders a BRAND-NEW member (empty profile) so the first-sign-in
@@ -53,9 +54,11 @@ const mockSession = {
 export default function DevAccountHarness({
   paths,
   badgeSources,
+  canopyTotals,
 }: {
   paths: TopicPath[];
   badgeSources: BadgeSource[];
+  canopyTotals?: CanopyTotals;
 }) {
   const fresh = useSearchParams().get("fresh") === "1";
   return (
@@ -65,6 +68,7 @@ export default function DevAccountHarness({
       syncedKeys={0}
       paths={paths}
       badgeSources={badgeSources}
+      canopyTotals={canopyTotals}
       fromAuthRedirect={false}
     />
   );
