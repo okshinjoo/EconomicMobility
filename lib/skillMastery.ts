@@ -38,6 +38,18 @@ export const MIN_TOPIC_POOL = 5;
  *  panel instead of jumping into an article). */
 export const UNIT_SIZE = 5;
 
+/** What an activity bubble opens before jumping anywhere (owner, July 16:
+ *  "bring them another page first... telling them what they are doing and
+ *  why they are doing it"). */
+export interface ActivityInfo {
+  title: string;
+  kind: "starter" | "tool" | "journey" | "course";
+  /** What you'll do + why it's worth doing, in house voice. */
+  blurb: string;
+  href: string;
+  done: boolean;
+}
+
 /** Cross-cutting quick wins — the "First steps" branch. `kind` tells the
  *  client which existing tracker proves it done. */
 export interface StarterAction {
@@ -45,6 +57,8 @@ export interface StarterAction {
   label: string;
   /** Compact label for the map bubbles. */
   short: string;
+  /** What + why, shown in the activity panel before the jump. */
+  blurb: string;
   href: string;
   kind:
     | "quiz"
@@ -63,6 +77,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "profile",
     label: "Fill out your profile",
     short: "Your profile",
+    blurb:
+      "Tell the site a little about who you are and what you're working toward. Everything here starts tailoring itself to you: your plan, your recommendations, this very tree.",
     href: "/account",
     kind: "profile",
   },
@@ -70,6 +86,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "community",
     label: "Say hi in the community",
     short: "Say hello",
+    blurb:
+      "Introduce yourself in the say-hello thread. It takes one sentence, it makes this a friendlier place, and money gets easier when it isn't a secret you carry alone.",
     href: "/community",
     kind: "community",
   },
@@ -77,6 +95,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "quiz",
     label: "Take the 2-minute quiz",
     short: "2-minute quiz",
+    blurb:
+      "Five quick questions about where you are with money. No grades, no wrong answers: it maps your starting point so the site knows where to point you.",
     href: "/quiz",
     kind: "quiz",
   },
@@ -84,6 +104,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "budget",
     label: "Fill out the Budget Planner",
     short: "Budget Planner",
+    blurb:
+      "Put your real income and spending into the Budget Planner. Ten minutes shows you exactly where you stand, and the number it finds feeds half the other tools here.",
     href: "/tools/budget",
     kind: "budget",
   },
@@ -91,6 +113,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "reality",
     label: "Do the Reality Check",
     short: "Reality Check",
+    blurb:
+      "Pick the life you want (the apartment, the car, the city) and see the salary it actually takes. It turns someday into a number you can plan around.",
     href: "/tools/budget/reality-check",
     kind: "reality",
   },
@@ -98,6 +122,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "plan",
     label: "Build My Plan",
     short: "Build My Plan",
+    blurb:
+      "Answer five questions and get a step-by-step plan built from real guides and tools. It gives every visit a clear next step.",
     href: "/plan",
     kind: "plan",
   },
@@ -105,6 +131,8 @@ export const STARTER_ACTIONS: StarterAction[] = [
     id: "resources",
     label: "Browse the resource library",
     short: "Resource library",
+    blurb:
+      "Skim the library of vetted outside help: state programs, free legal aid, real assistance. Knowing what exists before you need it is half the protection.",
     href: "/resources",
     kind: "resources",
   },

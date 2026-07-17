@@ -27,7 +27,12 @@ import { BookOpen, Route, Sparkles, Star, Wrench, Zap } from "lucide-react";
 import TopicMark from "@/components/TopicMark";
 import { BadgeMedal } from "@/components/CourseQuiz";
 import type { SkillBranch, SkillTreeData } from "@/lib/skillTree";
-import { MIN_MASTERY_POOL, tierKey, UNIT_SIZE } from "@/lib/skillMastery";
+import {
+  MIN_MASTERY_POOL,
+  tierKey,
+  UNIT_SIZE,
+  type ActivityInfo,
+} from "@/lib/skillMastery";
 import type { Lit } from "@/components/SkillTree";
 
 // Canvas geometry. Each branch owns a ±SECTOR angular lane; guide dots are
@@ -72,6 +77,7 @@ interface BranchItem {
   icon: "tool" | "course" | "journey";
   label: string;
   color: string;
+  blurb: string;
 }
 
 /** Solid = done, tinted = in progress, pale = not yet. */
@@ -120,6 +126,7 @@ export default function SkillTreeMap({
   points,
   onTestOut,
   onUnitOpen,
+  onActivityOpen,
 }: {
   data: SkillTreeData;
   lit: Lit;
@@ -129,6 +136,8 @@ export default function SkillTreeMap({
   onTestOut: (b: SkillBranch, ti: number | null) => void;
   /** Open a guide unit's what-you'll-learn panel. */
   onUnitOpen: (b: SkillBranch, ti: number, part: number) => void;
+  /** Open an activity's what-and-why panel (tools/plans/courses/starters). */
+  onActivityOpen: (a: ActivityInfo) => void;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef<{
@@ -238,11 +247,24 @@ export default function SkillTreeMap({
           lit: done,
         });
         nodes.push(
-          <Link
+          <button
             key={`starter-${s.id}`}
-            href={s.href}
-            title={`${s.label}${lit.mounted && done ? " — done" : ""}`}
-            aria-label={`${s.label}${lit.mounted && done ? " (done)" : ""}`}
+            type="button"
+            onClick={() =>
+              onActivityOpen({
+                title: s.label,
+                kind: "starter",
+                blurb: s.blurb,
+                href: s.href,
+                done,
+              })
+            }
+            title={`${s.label}${
+              lit.mounted && done ? " — done" : ""
+            } — click to see what it does`}
+            aria-label={`${s.label}${
+              lit.mounted && done ? " (done)" : ""
+            } — see what it does`}
             className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
             style={{
               left: p.x,
@@ -259,7 +281,7 @@ export default function SkillTreeMap({
               fill={done ? AMBER : "none"}
               style={done ? { color: AMBER } : undefined}
             />
-          </Link>
+          </button>
         );
         prevDot = p;
       }
@@ -376,6 +398,7 @@ export default function SkillTreeMap({
       icon: "tool",
       label: t.label,
       color: b.color,
+      blurb: t.blurb,
     }));
     const openers: BranchItem[] = [
       ...b.journeys.map(
@@ -387,6 +410,7 @@ export default function SkillTreeMap({
           icon: "journey",
           label: j.title,
           color: b.color,
+          blurb: j.blurb,
         })
       ),
       ...toolItems.slice(0, 1),
@@ -405,6 +429,7 @@ export default function SkillTreeMap({
           icon: "course",
           label: c.title,
           color: c.color,
+          blurb: c.blurb,
         })
       );
     }
@@ -433,15 +458,24 @@ export default function SkillTreeMap({
             lit: item.done,
           });
           nodes.push(
-            <Link
+            <button
               key={item.key}
-              href={item.href}
+              type="button"
+              onClick={() =>
+                onActivityOpen({
+                  title: item.label,
+                  kind: item.icon,
+                  blurb: item.blurb,
+                  href: item.href,
+                  done: item.done,
+                })
+              }
               title={`${item.title}${
                 lit.mounted && item.done ? " — done" : ""
-              }`}
+              } — click to see what it does`}
               aria-label={`${item.title}${
                 lit.mounted && item.done ? " (done)" : ""
-              }`}
+              } — see what it does`}
               className="absolute z-10 flex items-center justify-center rounded-full border-2 transition-colors duration-500 hover:z-20 hover:scale-110"
               style={{
                 left: p.x,
@@ -463,7 +497,7 @@ export default function SkillTreeMap({
                   className="h-4 w-4 shrink-0"
                 />
               )}
-            </Link>
+            </button>
           );
         });
         anchor = positions[Math.floor((positions.length - 1) / 2)];

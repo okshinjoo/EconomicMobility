@@ -25,6 +25,7 @@ import {
   MIN_MASTERY_POOL,
   MIN_TOPIC_POOL,
   UNIT_SIZE,
+  type ActivityInfo,
   type MasteryQuestion,
 } from "@/lib/skillMastery";
 import MasteryQuiz from "@/components/MasteryQuiz";
@@ -40,6 +41,85 @@ function sideChip(done: boolean) {
       ? "border-forest/40 bg-forest/[0.08] text-forest"
       : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
   }`;
+}
+
+/** The what-and-why stop before any activity (owner, July 16: "telling
+ *  them what they are doing and why they are doing it"). */
+function ActivityPanel({ a, onClose }: { a: ActivityInfo; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  const kindLabel = {
+    starter: "Quick win",
+    tool: "Tool",
+    journey: "Life plan",
+    course: "Course",
+  }[a.kind];
+  const cta = {
+    starter: "Let's do it",
+    tool: "Open the calculator",
+    journey: "See the path",
+    course: "Start the course",
+  }[a.kind];
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/60 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${a.title}: what this is`}
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded-2xl border-2 border-ink bg-cream p-6 shadow-[6px_6px_0_#11211c]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+              {kindLabel}
+            </span>
+            <h2 className="mt-1 font-display text-xl font-bold leading-snug text-ink">
+              {a.title}
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="rounded-md p-1 text-stone hover:bg-ink/5 hover:text-ink"
+          >
+            <X className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+        </div>
+        {a.done && (
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-forest">
+            <Check className="h-4 w-4" strokeWidth={3} />
+            Already done — revisit any time.
+          </p>
+        )}
+        <p className="mt-3 text-sm leading-6 text-stone">{a.blurb}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <Link
+            href={a.href}
+            className="btn-ink rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink"
+          >
+            {cta}
+          </Link>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-sm font-semibold text-stone underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Not now
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /** The "what you'll learn" stop between a map bubble and the articles
@@ -497,6 +577,8 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
     ti: number;
     part: number;
   } | null>(null);
+  /** Open activity what-and-why panel (tools/plans/courses/quick wins). */
+  const [activity, setActivity] = useState<ActivityInfo | null>(null);
 
   useEffect(() => {
     const read = getReadMap();
@@ -719,6 +801,10 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
         )}
       </div>
 
+      {activity !== null && (
+        <ActivityPanel a={activity} onClose={() => setActivity(null)} />
+      )}
+
       {unit !== null && (
         <UnitPanel
           b={unit.b}
@@ -766,6 +852,7 @@ export default function SkillTree({ data }: { data: SkillTreeData }) {
             points={points}
             onTestOut={(b, ti) => setTestOut({ b, ti })}
             onUnitOpen={(b, ti, part) => setUnit({ b, ti, part })}
+            onActivityOpen={(a) => setActivity(a)}
           />
         </div>
       ) : (

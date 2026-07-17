@@ -51,17 +51,23 @@ export interface SkillTierNode {
 export interface SkillLeafTool {
   label: string;
   href: string;
+  /** The registry's one-line description — the activity panel's what+why. */
+  blurb: string;
 }
 
 export interface SkillLeafCourse {
   id: string;
   title: string;
   color: string;
+  /** The course's goal line — the activity panel's what+why. */
+  blurb: string;
 }
 
 export interface SkillLeafJourney {
   id: string;
   title: string;
+  /** The journey's promise line — the activity panel's what+why. */
+  blurb: string;
 }
 
 export interface SkillBranch {
@@ -130,7 +136,7 @@ export function buildSkillTree(): SkillTreeData {
     const t = courseTopic(c.articleSlugs);
     if (!t) continue;
     const list = coursesByTopic.get(t) ?? [];
-    list.push({ id: c.id, title: c.title, color: c.color });
+    list.push({ id: c.id, title: c.title, color: c.color, blurb: c.goal });
     coursesByTopic.set(t, list);
   }
 
@@ -145,6 +151,7 @@ export function buildSkillTree(): SkillTreeData {
         .map((i) => ({
           label: i.title,
           href: i.main ? cat.base : `${cat.base}/${i.slug}`,
+          blurb: i.short,
         }))
     );
   }
@@ -153,7 +160,7 @@ export function buildSkillTree(): SkillTreeData {
   for (const j of journeys) {
     const t = JOURNEY_TOPIC_FIX[j.id] ?? j.topic;
     const list = journeysByTopic.get(t) ?? [];
-    list.push({ id: j.id, title: j.title });
+    list.push({ id: j.id, title: j.title, blurb: j.promise });
     journeysByTopic.set(t, list);
   }
 
