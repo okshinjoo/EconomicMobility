@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeadlineRise from "@/components/HeadlineRise";
+import ScrollDissolve from "@/components/ScrollDissolve";
 import SkillTree from "@/components/SkillTree";
 import { buildSkillTree } from "@/lib/skillTree";
 
@@ -30,10 +31,14 @@ export default function SkillsPage() {
             Your progress
           </span>
           <h1 className="mt-4 max-w-4xl font-display text-[2.6rem] font-medium leading-[1.07] sm:leading-[0.98] tracking-tight sm:text-6xl">
-            Watch your money skills{" "}
-            <span className="italic text-amber">
-              <HeadlineRise chars>grow.</HeadlineRise>
-            </span>
+            {/* OYLA study: words dissolve upward as the hero scrolls away —
+                scrubbed to scroll, the exit twin of the letter entrance. */}
+            <ScrollDissolve>
+              Watch your money skills{" "}
+              <span className="italic text-amber">
+                <HeadlineRise chars>grow.</HeadlineRise>
+              </span>
+            </ScrollDissolve>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
             Nine branches — every guide, checkpoint quiz, course, and tool on

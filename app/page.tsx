@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CurtainFooter from "@/components/CurtainFooter";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structuredData";
 import { topics } from "@/lib/topics";
@@ -168,7 +169,7 @@ export default function Home() {
       <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <Header />
 
-      <main id="main-content" tabIndex={-1}>
+      <main className="relative z-10 bg-paper" id="main-content" tabIndex={-1}>
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
@@ -329,23 +330,28 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-3">
             {(
               [
-                [guideTotal, "Plain-English guides, all free"],
-                [scholarships.length, "Scholarships, each one hand-verified"],
-                [opportunities.length, "Paid internships and programs, vetted"],
-                [calculatorTotal, "Calculators that run in your browser"],
-                [glossary.length, "Jargon terms, translated"],
-                [courses.length, "Focused courses with badges at the end"],
+                [guideTotal, "Guides", "plain-English, every one free"],
+                [scholarships.length, "Scholarships", "each one hand-verified"],
+                [opportunities.length, "Opportunities", "paid internships and programs, vetted"],
+                [calculatorTotal, "Calculators", "running right in your browser"],
+                [glossary.length, "Terms", "jargon, translated to plain English"],
+                [courses.length, "Courses", "focused, with a badge at the end"],
               ] as const
-            ).map(([value, label], i) => (
-              <Reveal key={label} delay={i * 90}>
+            ).map(([value, word, rest], i) => (
+              <Reveal key={word} delay={i * 90}>
                 <div className={i % 2 === 1 ? "lg:mt-6" : ""}>
+                  {/* OYLA study: the number and its word as a stacked serif
+                      pair — the figure stays live data (honesty rule). */}
                   <CountUp
                     value={value}
                     className="font-display text-6xl font-bold tracking-tight text-forest sm:text-7xl"
                   />
-                  <div className="mt-2 h-1 w-10 rounded-full bg-amber" />
+                  <div className="-mt-1 font-display text-3xl font-medium italic leading-tight tracking-tight text-ink sm:text-4xl">
+                    {word}
+                  </div>
+                  <div className="mt-3 h-1 w-10 rounded-full bg-amber" />
                   <p className="mt-3 max-w-[16rem] text-sm font-medium leading-6 text-stone">
-                    {label}
+                    {rest}
                   </p>
                 </div>
               </Reveal>
@@ -768,7 +774,11 @@ export default function Home() {
       </section>
       </main>
 
-      <Footer />
+      {/* OYLA study (July 16): the footer is revealed from underneath as
+          the page scrolls off it — see components/CurtainFooter. */}
+      <CurtainFooter>
+        <Footer />
+      </CurtainFooter>
     </div>
   );
 }

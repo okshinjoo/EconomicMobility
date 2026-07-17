@@ -97,8 +97,10 @@ const CATEGORY_TOPIC: Record<string, TopicId> = {
   college: "college",
 };
 
-/** One journey is mis-shelved at the source (debt carries topic
- *  "government-aid"); the tree files it where debt lives on this site. */
+/** The debt journey's home topic is "government-aid" (the Government Aid &
+ *  Debt Relief hub, where most of its guides live) — that's deliberate, not a
+ *  bug. The tree alone re-files it under credit so the credit branch carries
+ *  the payoff path; don't "fix" journeys.ts to match. */
 const JOURNEY_TOPIC_FIX: Record<string, TopicId> = {
   debt: "credit",
 };
