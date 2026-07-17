@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import ContactForm from "@/components/ContactForm";
+import HeroRecede from "@/components/HeroRecede";
 
 export const metadata: Metadata = {
   title: "Contact | Empower — Economic Mobility Project",
@@ -38,7 +39,7 @@ export default function ContactPage() {
       <main>
         {/* Hero — A: amber field, left-aligned with a sticker chip */}
         <section className="bg-amber text-ink">
-          <div className="mx-auto max-w-5xl px-6 pb-12 pt-12 lg:pb-14">
+          <HeroRecede className="mx-auto max-w-5xl px-6 pb-12 pt-12 lg:pb-14">
             <span className="-rotate-2 inline-block rounded-lg border-2 border-ink bg-cream px-4 py-1.5 text-sm font-bold uppercase tracking-wide shadow-[3px_3px_0_#11211c]">
               Get in touch
             </span>
@@ -49,7 +50,7 @@ export default function ContactPage() {
               Send a question, an idea, a story, or an offer to help. This
               project runs on hearing from the people it&apos;s for.
             </p>
-          </div>
+          </HeroRecede>
         </section>
 
         <section className="bg-paper">

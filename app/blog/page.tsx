@@ -7,6 +7,7 @@ import BlogList, { type BlogListItem } from "@/components/BlogList";
 import { sortedBlogPosts } from "@/lib/blog";
 import { allArticles } from "@/lib/articles";
 import { topics, type TopicId } from "@/lib/topics";
+import HeroRecede from "@/components/HeroRecede";
 
 export const metadata: Metadata = {
   title: "Blog | Empower — Economic Mobility Project",
@@ -45,7 +46,7 @@ export default function BlogPage() {
       <div className="relative z-10 bg-paper">
 
       <section className="bg-paper-deep">
-        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
+        <HeroRecede className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
           <span className="inline-block -rotate-2 rounded-lg border-2 border-ink bg-amber px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
             New reads, no lectures
           </span>
@@ -71,7 +72,7 @@ export default function BlogPage() {
             </Link>{" "}
             have you covered.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       <section className="bg-paper">

@@ -7,6 +7,7 @@ import { journeys, journeyByTopic } from "@/lib/journeys";
 import { frameHref, type Frame } from "@/lib/frame";
 import PlanPromoBand from "@/components/PlanPromoBand";
 import HeadlineRise from "@/components/HeadlineRise";
+import HeroRecede from "@/components/HeroRecede";
 
 
 /**
@@ -83,7 +84,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
             />
           ))}
         </svg>
-        <div className="relative mx-auto max-w-7xl px-6 py-12 lg:py-16">
+        <HeroRecede className="relative mx-auto max-w-7xl px-6 py-12 lg:py-16">
           <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber">
             Your path
           </span>
@@ -107,7 +108,7 @@ export default function JourneyIndexView({ frame }: { frame: Frame }) {
             </Link>{" "}
             and we&apos;ll point you at one.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       <section className="bg-paper">

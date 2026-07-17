@@ -10,6 +10,7 @@ import ToolMark from "@/components/ToolMark";
 import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
 import { templates } from "@/lib/templates";
 import HeadlineRise from "@/components/HeadlineRise";
+import HeroRecede from "@/components/HeroRecede";
 
 export const metadata: Metadata = {
   title: "Calculators | Empower — Economic Mobility Project",
@@ -29,7 +30,7 @@ export default function ToolsHub() {
 
       {/* Hero — A: solid amber field */}
       <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto max-w-6xl px-6 pb-14 pt-14">
+        <HeroRecede className="mx-auto max-w-6xl px-6 pb-14 pt-14">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
             Free Tools
           </span>
@@ -68,7 +69,7 @@ export default function ToolsHub() {
             </Link>
             .
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Featured tool spotlight (owner ask July 14: "promote the reality

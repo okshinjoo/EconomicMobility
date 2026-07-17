@@ -5,6 +5,7 @@ import { ChevronRight, Clock, BookMarked } from "lucide-react";
 import ArticleBody from "@/components/ArticleBody";
 import ArticleToc from "@/components/ArticleToc";
 import ReadingProgress from "@/components/ReadingProgress";
+import HeroRecede from "@/components/HeroRecede";
 import MarkAsRead from "@/components/MarkAsRead";
 import CompoundStory from "@/components/CompoundStory";
 import {
@@ -112,8 +113,11 @@ export default function ArticlePageView({
                 <span className="text-ink">{found.title}</span>
               </nav>
 
-              {/* Header */}
+              {/* Header — recedes as it scrolls past (SynapseX dive, July
+                  17). HeroRecede sits INSIDE this div so it measures the
+                  short header block, not the whole article column. */}
               <div className="relative pt-8">
+                <HeroRecede>
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 56 56"
@@ -177,6 +181,7 @@ export default function ArticlePageView({
                     <span className="whitespace-nowrap">{LEARN_UPDATED}</span>
                   </div>
                 </div>
+                </HeroRecede>
               </div>
 
               {/* What you'll learn */}

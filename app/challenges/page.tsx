@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import ChallengeGrid, { type ChallengeCardData } from "@/components/ChallengeGrid";
 import { challenges } from "@/lib/challenges";
+import HeroRecede from "@/components/HeroRecede";
 
 export const metadata: Metadata = {
   title: "Challenges | Empower — Economic Mobility Project",
@@ -33,7 +34,7 @@ export default function ChallengesPage() {
 
       {/* Hero — soft terracotta tint (the solid field read as abrasive) */}
       <section className="border-b-2 border-ink" style={{ background: "#f0d0c0" }}>
-        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
+        <HeroRecede className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
           <span className="inline-block -rotate-1 rounded-lg border-2 border-ink bg-cream px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink shadow-[3px_3px_0_#11211c]">
             Challenges
           </span>
@@ -60,7 +61,7 @@ export default function ChallengesPage() {
             </Link>
             , where the group part happens.
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       <section className="bg-paper">

@@ -7,6 +7,7 @@ import { getCourse, getCourseArticles, getCourseFlashcards } from "@/lib/courses
 import { frameHref, type Frame } from "@/lib/frame";
 import JsonLd from "@/components/JsonLd";
 import { courseSchema } from "@/lib/structuredData";
+import HeroRecede from "@/components/HeroRecede";
 
 /**
  * The whole course page below the header, shared by /courses/[course] and
@@ -45,7 +46,7 @@ export default function CoursePageView({
 
       {/* Hero — A: a solid field of the course's own color */}
       <section className="text-cream" style={{ backgroundColor: accent }}>
-        <div className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
+        <HeroRecede className="mx-auto max-w-7xl px-6 py-14 lg:py-20">
           <nav className="text-sm text-cream/70">
             <Link
               href={href("/courses")}
@@ -82,7 +83,7 @@ export default function CoursePageView({
               ? "final still being written"
               : `${found.finalQuiz.length}-question final`}
           </p>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Reading path */}

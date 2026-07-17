@@ -10,6 +10,7 @@ import ReadOrderedGrid, { HideWhenRead } from "@/components/ReadOrderedGrid";
 import { ReadBadge, TopicProgress } from "@/components/ReadBadge";
 import TopicMark from "@/components/TopicMark";
 import { frameHref, type Frame } from "@/lib/frame";
+import HeroRecede from "@/components/HeroRecede";
 
 /**
  * The whole topic hub below the header, shared by /learn/[topic] and its
@@ -66,7 +67,7 @@ export default function TopicPageView({
           color={accent}
           className="pointer-events-none absolute -bottom-24 -left-24 h-[24rem] w-[24rem] opacity-[0.06]"
         />
-        <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-8">
+        <HeroRecede className="relative mx-auto max-w-6xl px-6 pb-10 pt-8">
           <nav className="flex items-center gap-1.5 text-sm font-medium text-stone">
             <Link href={href("/learn")} className="transition-colors hover:text-ink">
               Learn
@@ -104,7 +105,7 @@ export default function TopicPageView({
               </span>
             </div>
           </div>
-        </div>
+        </HeroRecede>
       </section>
 
       {/* Intro lead */}

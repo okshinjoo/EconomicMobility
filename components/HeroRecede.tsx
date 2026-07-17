@@ -41,10 +41,11 @@ export default function HeroRecede({
       target = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)));
       current += (target - current) * 0.12;
       if (Math.abs(target - current) < 0.001) current = target;
+      // Softened July 17 (owner: "a little less obvious") from 40/0.04/0.9.
       el.style.transform =
-        `translate3d(0, ${(current * 40).toFixed(1)}px, 0) ` +
-        `scale(${(1 - current * 0.04).toFixed(4)})`;
-      el.style.opacity = (1 - current * 0.9).toFixed(3);
+        `translate3d(0, ${(current * 26).toFixed(1)}px, 0) ` +
+        `scale(${(1 - current * 0.025).toFixed(4)})`;
+      el.style.opacity = (1 - current * 0.6).toFixed(3);
       // Keep converging after the last scroll event so the lag settles.
       if (current !== target) raf = requestAnimationFrame(tick);
     };
