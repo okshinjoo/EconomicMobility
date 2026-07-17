@@ -1066,4 +1066,150 @@ export const investingMarketsArticles: Article[] = [
     ],
     related: ["how-to-read-a-stock-quote", "options-explained", "index-funds-explained"],
   },
+  {
+    // Owner ask, July 17 2026: "one about private equity and how it guts
+    // businesses." Mission-fit: naming a structural force plainly. Honesty
+    // notes: every case and figure below is public record (Toys "R" Us
+    // 2005/2017-18, Red Lobster 2014/2024, Steward 2024, Ayash-Rastad 2019,
+    // Gupta et al. 2021 nursing-home study, Aug 2025 401(k) executive
+    // order); the not-every-deal-guts section is deliberate, keep it.
+    slug: "private-equity-explained",
+    topicId: "investing",
+    title: "How Private Equity Guts a Business",
+    dek: "The leveraged-buyout playbook, step by step: who really owes the purchase money, how the owners get paid either way, and why the chain you grew up with closed anyway.",
+    level: "Advanced",
+    readMinutes: 9,
+    takeaways: [
+      "In a leveraged buyout, the purchased company owes the purchase debt, not the firm that bought it.",
+      "Fees, dividend recaps, and selling the real estate mean owners can profit even when the company dies.",
+      "The pattern reaches you as a worker, a renter, a patient, and maybe soon through your 401(k) menu.",
+      "If your employer gets bought, there are specific warning signs worth watching for.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "In 2017, Toys “R” Us was still one of the biggest toy sellers in the country. It filed for bankruptcy that fall, liquidated the next spring, and about 30,000 people lost their jobs. The usual explanation is that Amazon killed it. Look closer and the timeline says something else: twelve years earlier, three investment firms had bought the chain for $6.6 billion, most of it borrowed, with the loans placed on the company's own books. Toys “R” Us spent its final decade sending roughly $400 million a year to lenders. That money never became better stores, a better website, or lower prices, in exactly the years Amazon was building all three.",
+      },
+      {
+        type: "p",
+        text: "This guide is about the machine behind that story: what private equity is, how a leveraged buyout works, why the people who run one can win even when the business loses, and where the pattern touches your own life.",
+      },
+      { type: "h2", text: "What private equity actually is" },
+      {
+        type: "p",
+        text: "Private equity firms pool money from pension funds, university endowments, insurers, and wealthy individuals into funds that buy entire companies. The companies come off the stock market (or never were on it), get reshaped in private with no quarterly public reporting, and the fund aims to sell them for more within about five to seven years. The managers typically charge “2 and 20”: a 2% yearly fee on the money they manage, plus 20% of any profits. That profit share, called carried interest, is taxed at capital-gains rates rather than as ordinary income, a treatment Congress has debated for years and, as of 2026, kept.",
+      },
+      {
+        type: "p",
+        text: "This is not a niche corner of finance. By 2024, industry estimates put roughly 12 million American workers at private-equity-owned companies: dental chains, vet clinics, nursing homes, restaurant groups, hospitals, grocery stores. You have almost certainly handed money to one this month without knowing it.",
+      },
+      { type: "h2", text: "The leveraged buyout, step by step" },
+      {
+        type: "steps",
+        items: [
+          "The firm finds a target: a company with steady cash flow and things that can be sold, like real estate or a strong brand name.",
+          "It puts up a slice of the purchase price, often 30 or 40 cents on the dollar, and borrows the rest.",
+          "The borrowed money becomes the company's debt, not the firm's. The business now owes the cost of its own purchase. This is the single most important fact in this guide.",
+          "Cash flow that used to fund stores, staff, and upgrades is redirected to interest payments, while the new owners cut costs to keep the math working.",
+          "Within about five to seven years, the firm sells: to another buyer, back to the public through an [IPO](/learn/investing/what-is-an-ipo), or to another private-equity firm, which sometimes runs the same play again.",
+        ],
+      },
+      { type: "h2", text: "How the owners get paid either way" },
+      {
+        type: "p",
+        text: "If the company thrives under its new debt, everyone can win. What makes this playbook different from ordinary investing is how many ways the owners can collect before the outcome is known:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Management and monitoring fees.** The purchased company pays its owner ongoing fees simply for being owned, on top of what the fund's investors already pay.",
+          "**Dividend recapitalizations.** The company borrows even more money, and the new loan is paid straight out to the owners as a dividend. The extra debt stays behind.",
+          "**Sale-leasebacks.** The company sells its buildings and land, sends the cash up to the owners, then rents its own former property back indefinitely. Red Lobster's 2014 buyout ran this way: the restaurants' real estate was sold almost immediately for about $1.5 billion, and after a decade of paying rent on land it once owned, the chain filed for bankruptcy in 2024.",
+          "**Asset sales.** Brands, patents, divisions, and equipment can each be sold separately, and are sometimes worth more in pieces than the working business was whole.",
+        ],
+      },
+      {
+        type: "key",
+        text: "Notice the shape of the deal. Gains flow upward along the way as fees, dividends, and asset sales. The debt stays with the company. If the business recovers, the firm wins big; if it collapses, the firm has usually been paid already. The downside lands on the workers, the lenders, and the town the business anchored.",
+      },
+      { type: "h2", text: "What the record shows" },
+      {
+        type: "p",
+        text: "Not every buyout ends in a gutting, but the pattern is common enough to measure. One study of large leveraged buyouts found that about 20% of the purchased companies went bankrupt within ten years, versus roughly 2% for comparable companies that stayed independent (Ayash and Rastad, 2019).",
+      },
+      {
+        type: "p",
+        text: "The record is starkest where customers are most vulnerable. A 2021 study of Medicare patients found that entering a private-equity-owned nursing home raised short-term mortality by about 10%, alongside thinner staffing and lower care ratings. Steward Health Care, a hospital chain owned by a private-equity firm for a decade, sold its hospital buildings in a leaseback deal, paid its owners hundreds of millions, and collapsed into bankruptcy in 2024, leaving Massachusetts scrambling to keep emergency rooms open. Retail tells the same story at the mall: Toys “R” Us and Payless both spent their final years servicing buyout debt instead of adapting to the internet.",
+      },
+      { type: "h2", text: "The honest caveat" },
+      {
+        type: "p",
+        text: "Private equity is a wide label. It also covers growth investing that funds expansion without piling on debt, and some buyouts genuinely rescue drifting companies, keep the jobs, and leave the business stronger. The trouble lives in one specific playbook: a purchase financed with the company's own future, owners who can pay themselves before results arrive, and fees that reward doing deals rather than keeping companies alive. Incentives built that way produce gutted businesses even when nobody involved set out to gut one.",
+      },
+      { type: "h2", text: "Where this touches your life" },
+      {
+        type: "list",
+        items: [
+          "**Your job.** With millions of Americans working at portfolio companies, a buyout announcement at your employer is a real possibility, and it usually means cost-cutting pressure even when nothing fails.",
+          "**Your rent.** Investment firms own large blocks of apartments and single-family rentals in many metros, and rent and fee increases are part of how those deals pay off.",
+          "**Your bills.** Emergency-room staffing groups, dental and vet chains, and ambulance companies have all drawn buyout money, and prices tend to rise after the deal.",
+          "**Your retirement account.** Pensions have invested in these funds for decades. Following a 2025 executive order, 401(k) plans are now being cleared to offer private-equity options to regular savers. If one shows up in your menu, read the fee line first: against the [expense ratios](/learn/investing/expense-ratios-and-fees) you are used to, a fund charging 2-and-20 has to beat a plain index fund by a wide margin just to tie, and your money can be locked up for years.",
+        ],
+      },
+      { type: "h2", text: "If your employer gets bought" },
+      {
+        type: "steps",
+        items: [
+          "Update your resume the week the deal is announced, not the week layoffs start. Calm job searches beat panicked ones.",
+          "Watch for the warning signs: news of a dividend recapitalization, the company selling its own buildings, or a hiring freeze described as “efficiencies.” Those moves usually come before cuts.",
+          "Know the floor: at companies with 100 or more employees, the federal WARN Act generally requires 60 days' written notice of a mass layoff. Severance beyond that is company policy, not a legal right; Toys “R” Us workers initially received none until public pressure produced a hardship fund.",
+          "Pad your cushion while paychecks are steady. The [Emergency Fund calculator](/tools/budget/emergency-fund) will give you a number to aim at.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Curious who owns a company? Search its name plus “acquired” or “private equity.” Ownership changes are public news even when the finances are private.",
+      },
+      {
+        type: "p",
+        text: "None of this is a reason to fear investing, and index funds holding public companies are a different world from buyout funds. It is a reason to know the playbook. The people these deals cost the most are the ones who never saw it coming: the cashier reading about her employer's “strategic review,” the family choosing a nursing home off a brochure. Now you can read the same headline and know exactly what it means.",
+      },
+    ],
+    related: ["what-is-an-ipo", "compare-investment-vehicles", "what-is-a-401k"],
+    quiz: [
+      {
+        question: "In a leveraged buyout, who ends up owing most of the money borrowed to buy the company?",
+        options: [
+          "The private-equity firm that arranged the deal",
+          "The purchased company itself",
+          "The fund's pension-fund investors",
+          "The federal government",
+        ],
+        answer: 1,
+        explain: "The loans go on the bought company's books, so the business pays for its own purchase. That is why cash that once ran the company starts flowing to lenders instead.",
+      },
+      {
+        question: "How can a buyout firm come out ahead even when the company it bought later fails?",
+        options: [
+          "It can't; the firm loses everything too",
+          "Government bailouts cover the loss",
+          "Fees, dividend recaps, and asset sales pay the owners along the way",
+          "Stock market gains offset it automatically",
+        ],
+        answer: 2,
+        explain: "Management fees, dividend recapitalizations, and selling assets like real estate move money to the owners before the outcome is known, while the debt stays with the company.",
+      },
+      {
+        question: "What is a sale-leaseback?",
+        options: [
+          "Selling a company back to its original founders",
+          "A company sells its buildings, keeps the cash flowing upward, and rents the property back",
+          "Leasing employees from a staffing agency",
+          "Selling stock and buying it back later",
+        ],
+        answer: 1,
+        explain: "The company converts property it owns into cash for the owners, then pays rent forever on buildings it used to own outright, as Red Lobster did after its 2014 buyout.",
+      },
+    ],
+  },
 ];

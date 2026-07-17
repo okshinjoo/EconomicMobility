@@ -3439,6 +3439,45 @@ export const glossary: GlossaryTerm[] = [
     related: "government-aid",
     article: "/learn/government-aid/wic-school-meals",
   },
+  {
+    term: "private equity",
+    slug: "private-equity",
+    definition:
+      "Investment funds that buy entire companies, reshape them out of public view, and aim to resell them within about five to seven years. Buyouts are usually financed mostly with debt that the purchased company itself owes.",
+    related: "investing",
+    article: "/learn/investing/private-equity-explained",
+  },
+  {
+    term: "leveraged buyout",
+    slug: "leveraged-buyout",
+    aliases: ["LBO"],
+    definition:
+      "Buying a company mostly with borrowed money and placing that debt on the company's own books, so the business pays for its own purchase out of future earnings.",
+    related: "investing",
+    article: "/learn/investing/private-equity-explained",
+  },
+  {
+    term: "carried interest",
+    slug: "carried-interest",
+    definition:
+      "The share of a fund's profits (usually 20%) that its managers keep as pay. It is taxed at capital-gains rates instead of as ordinary income, which is why it is a long-running political fight.",
+    related: "investing",
+  },
+  {
+    term: "dividend recapitalization",
+    slug: "dividend-recapitalization",
+    aliases: ["dividend recap"],
+    definition:
+      "When a company borrows money and pays the loan out to its owners as a dividend. The owners get cash now; the company keeps the new debt.",
+    related: "investing",
+  },
+  {
+    term: "sale-leaseback",
+    slug: "sale-leaseback",
+    definition:
+      "Selling property a business owns (its stores, buildings, or land) and then renting that same property back. It converts real estate into cash today in exchange for rent bills forever.",
+    related: "investing",
+  },
 
 ];
 
