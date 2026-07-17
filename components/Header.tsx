@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-forest/95 text-cream backdrop-blur-sm">
       <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link
+        <Link prefetch={false}
           href="/"
           className="group flex items-center gap-3 transition-opacity hover:opacity-90"
         >
@@ -33,7 +33,7 @@ export default function Header() {
             entry.items ? (
               <NavMenu key={entry.href} entry={entry} />
             ) : (
-              <Link
+              <Link prefetch={false}
                 key={entry.href}
                 href={entry.href}
                 className="whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber"
@@ -59,7 +59,7 @@ export default function Header() {
 function NavMenu({ entry }: { entry: NavEntry }) {
   return (
     <div className="group relative">
-      <Link
+      <Link prefetch={false}
         href={entry.href}
         aria-haspopup="true"
         className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
@@ -79,7 +79,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
             className={entry.columns === 2 ? "grid grid-cols-2 gap-1" : "space-y-0.5"}
           >
             {entry.items!.map((item) => (
-              <Link
+              <Link prefetch={false}
                 key={item.href}
                 href={item.href}
                 className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-ink-700"
@@ -109,7 +109,7 @@ function NavMenu({ entry }: { entry: NavEntry }) {
           {entry.footer && (
             <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 border-t border-ink-600 px-3 pb-1 pt-2">
               {entry.footer.map((f) => (
-                <Link
+                <Link prefetch={false}
                   key={f.href}
                   href={f.href}
                   className="text-xs font-semibold text-amber transition-colors hover:text-cream"

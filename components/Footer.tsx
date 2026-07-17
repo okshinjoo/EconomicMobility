@@ -63,7 +63,7 @@ export default function Footer({ frame = "main" }: { frame?: Frame }) {
               <ul className="mt-4 space-y-2.5 text-sm text-cream/70">
                 {col.links.map((link) => (
                   <li key={link.href}>
-                    <Link
+                    <Link prefetch={false}
                       href={frameHref(link.href, frame)}
                       className="transition-colors hover:text-cream"
                     >

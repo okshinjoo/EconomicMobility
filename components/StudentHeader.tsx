@@ -164,7 +164,7 @@ const NAV: StudentNavEntry[] = [
 function DropMenu({ entry }: { entry: StudentNavEntry }) {
   return (
     <div className="group relative shrink-0">
-      <Link
+      <Link prefetch={false}
         href={entry.href}
         aria-haspopup="true"
         className="inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 min-[1400px]:px-2.5 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
@@ -181,7 +181,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
             className={entry.columns === 2 ? "grid grid-cols-2 gap-1" : "space-y-0.5"}
           >
             {entry.items!.map((item) => (
-              <Link
+              <Link prefetch={false}
                 key={item.href}
                 href={item.href}
                 className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-ink-700"
@@ -209,7 +209,7 @@ function DropMenu({ entry }: { entry: StudentNavEntry }) {
           {entry.footer && (
             <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 border-t border-ink-600 px-3 pb-1 pt-2">
               {entry.footer.map((f) => (
-                <Link
+                <Link prefetch={false}
                   key={f.href}
                   href={f.href}
                   className="text-xs font-semibold text-amber transition-colors hover:text-cream"
@@ -245,7 +245,7 @@ export default function StudentHeader({
           after the row overlapped at every desktop width). No wordmark here
           on purpose — the E tile + Students sticker is the identity. */}
       <nav aria-label="For Students" className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-5 py-3.5">
-        <Link
+        <Link prefetch={false}
           href="/students"
           className="flex shrink-0 items-center gap-3 transition-opacity hover:opacity-90"
         >
@@ -268,7 +268,7 @@ export default function StudentHeader({
               ? pathname === entry.href
               : pathname.startsWith(entry.href);
             return (
-              <Link
+              <Link prefetch={false}
                 key={entry.label}
                 href={entry.href}
                 className={`shrink-0 whitespace-nowrap rounded-full px-2 py-2 transition-colors min-[1400px]:px-2.5 ${
@@ -285,7 +285,7 @@ export default function StudentHeader({
 
         <div className="flex shrink-0 items-center gap-2.5">
           <SearchDialog items={searchItems} compact />
-          <Link
+          <Link prefetch={false}
             href="/"
             className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-cream/80 underline decoration-amber decoration-2 underline-offset-4 transition-colors hover:text-amber"
           >

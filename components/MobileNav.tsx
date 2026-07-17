@@ -105,7 +105,7 @@ export default function MobileNav() {
               {nav.map((entry) => {
                 if (!entry.items) {
                   return (
-                    <Link
+                    <Link prefetch={false}
                       key={entry.href}
                       href={entry.href}
                       onClick={close}
@@ -122,7 +122,7 @@ export default function MobileNav() {
                     className="border-b border-ink-600/40"
                   >
                     <div className="flex items-center justify-between">
-                      <Link
+                      <Link prefetch={false}
                         href={entry.href}
                         onClick={close}
                         className="flex-1 py-4 font-display text-2xl font-semibold text-cream/90 transition-colors hover:text-amber"
@@ -146,7 +146,7 @@ export default function MobileNav() {
                     {isExp && (
                       <div className="pb-3 pl-1">
                         {entry.items.map((sub) => (
-                          <Link
+                          <Link prefetch={false}
                             key={sub.href}
                             href={sub.href}
                             onClick={close}
@@ -168,14 +168,14 @@ export default function MobileNav() {
             </nav>
 
             <div className="flex-shrink-0 space-y-3 border-t border-ink-600/60 px-6 py-4">
-              <Link
+              <Link prefetch={false}
                 href="/quiz"
                 onClick={close}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber px-6 py-4 text-base font-semibold text-ink transition-colors hover:bg-cream"
               >
                 Take the Quiz
               </Link>
-              <Link
+              <Link prefetch={false}
                 href="/account"
                 onClick={close}
                 className="block text-center text-sm font-semibold text-cream/70 transition-colors hover:text-amber"

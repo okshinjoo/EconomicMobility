@@ -19,7 +19,7 @@ export default function Ticker({
     <div aria-hidden={ariaHidden} className="flex shrink-0 items-center">
       {items.map((item, i) => (
         <span key={`${item.href}-${i}`} className="flex items-center">
-          <Link
+          <Link prefetch={false}
             href={item.href}
             tabIndex={ariaHidden ? -1 : undefined}
             className={`whitespace-nowrap px-6 font-display text-lg font-medium transition-colors ${
