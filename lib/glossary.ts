@@ -3472,6 +3472,15 @@ export const glossary: GlossaryTerm[] = [
     related: "investing",
   },
   {
+    term: "drip pricing",
+    slug: "drip-pricing",
+    aliases: ["junk fees", "junk fee"],
+    definition:
+      "Advertising one price and revealing mandatory fees only late in checkout, so the real total stays hidden until you're invested. Since May 2025, event tickets and hotel stays must show the full mandatory price upfront.",
+    related: "budgeting",
+    article: "/learn/budgeting/junk-fees",
+  },
+  {
     term: "sale-leaseback",
     slug: "sale-leaseback",
     definition:

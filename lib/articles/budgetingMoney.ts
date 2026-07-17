@@ -575,4 +575,111 @@ export const budgetingMoneyArticles: Article[] = [
     ],
     related: ["opening-first-bank-account", "build-credit-from-zero", "do-you-need-to-file"],
   },
+  {
+    // "Whatever you think" batch, July 17 2026 — drip pricing named and
+    // defended against. The 2025 FTC all-in pricing rule (tickets +
+    // short-term lodging, effective May 2025) is the load-bearing date;
+    // bank fees stay with avoiding-bank-fees (canonical owner), bill
+    // negotiation with negotiating-your-bills.
+    slug: "junk-fees",
+    topicId: "budgeting",
+    title: "Junk Fees: The Price Is Never the Price",
+    dek: "Drip pricing, service fees, and resort charges: why the checkout total keeps beating the sticker, and how to shop like you know.",
+    level: "Intermediate",
+    readMinutes: 7,
+    takeaways: [
+      "Drip pricing works by revealing fees only after you're invested in the purchase.",
+      "Fees on event tickets have averaged around 27% of the ticket's own price.",
+      "Since May 2025, tickets and hotel stays must show the full mandatory price upfront.",
+      "The only honest comparison is checkout total against checkout total.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The concert ticket said $25. By checkout it's $43.70, thanks to a service fee, a processing fee, and a \"facility charge\" nobody can explain. The hotel was $89 a night until a $39 \"resort fee\" appeared on the last screen. None of this is an accident, and it has a name: drip pricing, the strategy of advertising one number and charging another, with the difference dripped in late enough that you've stopped paying attention.",
+      },
+      { type: "h2", text: "Why the drip works on you" },
+      {
+        type: "p",
+        text: "Two reasons. First, the advertised number anchors you: $25 feels cheap, and each later fee is judged as a small add-on instead of part of one bigger price. Second, by the time fees appear you've already picked seats, typed your address, and invested ten minutes, so abandoning the cart feels like losing something. Companies know both effects and price accordingly. Government studies of ticketing found fees averaging around 27% of the ticket's own price, which is not a rounding error; it is a second, hidden price.",
+      },
+      { type: "h2", text: "The fee hall of fame" },
+      {
+        type: "list",
+        items: [
+          "**Resort and destination fees:** $20 to $60 a night at hotels, mandatory, covering things like \"pool access\" that were once called the hotel.",
+          "**Ticket service, processing, and delivery fees**, including delivery fees on tickets that are emailed.",
+          "**Airline extras:** checked bags around $35 each way (2025), plus seat-selection charges for sitting anywhere in particular.",
+          "**\"Convenience\" fees** for paying online, which is to say, for paying the only way offered.",
+          "**Restaurant service or \"wellness\" charges** of 3 to 5% printed at the bottom of the menu.",
+          "**Cable and internet line items** like \"broadcast TV fees\" that exist to keep the advertised plan price fictional.",
+          "**Housing fees** — application, administrative, amenity — which are their own story: see [why rent keeps going up](/learn/home-ownership/why-rent-keeps-going-up).",
+        ],
+      },
+      {
+        type: "p",
+        text: "Bank fees are the same species and this library already covers them in [Avoiding Bank Fees](/learn/budgeting/avoiding-bank-fees); the short version is that overdraft charges of $27 to $35 remain legal (a federal cap was finalized in 2024 and repealed in 2025) even as several big banks trimmed or dropped theirs.",
+      },
+      { type: "h2", text: "The rules changed in 2025" },
+      {
+        type: "p",
+        text: "There is real news here. A Federal Trade Commission rule took effect in May 2025 requiring live-event tickets and short-term lodging (hotels and vacation rentals) to show the total price, mandatory fees included, upfront in ads and search results. Broadband got a version of this in 2024, with standardized \"nutrition labels\" for internet plans. So if a ticket site or hotel springs a mandatory fee on you at the last screen, that is no longer just annoying; it is a rule violation you can report to the FTC or your state attorney general, in about two minutes, online.",
+      },
+      { type: "h2", text: "How to shop in a fee world" },
+      {
+        type: "steps",
+        items: [
+          "Compare checkout totals, never sticker prices. Two tabs, both carts filled to the final screen. The cheaper headline loses surprisingly often.",
+          "Screenshot the total before you pay. Disputes get much easier when the number you agreed to is on record.",
+          "Ask. Resort fees, in particular, get waived for polite persistence, especially when anything about the stay fell short.",
+          "Prefer the fee-free rail when one exists: paying in person, by bank transfer, or by mailed check sometimes skips a \"convenience\" charge.",
+          "Once a year, read one full bill from each recurring provider, line by line. Fee creep counts on nobody looking; [Negotiating Your Bills](/learn/budgeting/negotiating-your-bills) covers what to do with what you find.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Treat every advertised price as a claim, not a fact. The checkout page is the fact.",
+      },
+      {
+        type: "key",
+        text: "Junk fees are a flat tax on not having slack: the person who can't float a surprise $39 pays it anyway, while the fee never scales up for the person who could. Shopping by checkout total is a small habit, but it is the one that makes drip pricing stop working on you.",
+      },
+    ],
+    related: ["avoiding-bank-fees", "negotiating-your-bills", "tracking-your-spending"],
+    quiz: [
+      {
+        question: "What is drip pricing?",
+        options: [
+          "Slowly lowering a price until someone buys",
+          "Advertising one price and revealing mandatory fees only late in checkout",
+          "Charging different prices in different states",
+          "Rounding prices up to the nearest dollar",
+        ],
+        answer: 1,
+        explain: "The advertised number anchors you and the fees arrive after you're invested, which is exactly why comparing sticker prices across sellers tells you almost nothing.",
+      },
+      {
+        question: "What did the 2025 FTC rule change?",
+        options: [
+          "It banned all fees on tickets",
+          "It capped hotel prices",
+          "Tickets and short-term lodging must show the total mandatory price upfront",
+          "It only applies to airlines",
+        ],
+        answer: 2,
+        explain: "Live-event tickets and hotel or vacation-rental stays must now include mandatory fees in the advertised price. A surprise mandatory fee at checkout is reportable, not just irritating.",
+      },
+      {
+        question: "What's the most reliable defense against junk fees?",
+        options: [
+          "Only shopping big brands",
+          "Comparing checkout totals rather than advertised prices",
+          "Paying with cash everywhere",
+          "Avoiding online shopping",
+        ],
+        answer: 1,
+        explain: "Fees vary too much for stickers to be comparable. Filling two carts to the final screen and comparing totals is the only comparison that reflects what you'll actually pay.",
+      },
+    ],
+  },
 ];

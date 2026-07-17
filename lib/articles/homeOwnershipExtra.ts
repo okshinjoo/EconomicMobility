@@ -884,4 +884,99 @@ export const homeOwnershipExtraArticles: Article[] = [
     ],
     related: ["renting-vs-buying", "saving-for-down-payment", "getting-pre-approved"],
   },
+  {
+    // "Whatever you think" batch, July 17 2026 — companion to the
+    // private-equity guide: the structural side of rent. Facts on record:
+    // DOJ v. RealPage filed Aug 2024; SF's algorithmic-rent ban 2024;
+    // largest single-family landlord 80,000+ homes. Litigation framed as
+    // ongoing (verify yearly like article figures).
+    slug: "why-rent-keeps-going-up",
+    topicId: "home-ownership",
+    title: "Why Rent Keeps Going Up (It's Not Just You)",
+    dek: "The shortage, the corporate landlords, the pricing software, and the fee layer — and the negotiating leverage you still have.",
+    level: "Intermediate",
+    readMinutes: 8,
+    takeaways: [
+      "America has been under-building homes since 2008, and scarcity hands landlords the leverage.",
+      "Large investors and pricing software have changed how rents get set in many metros.",
+      "Fees around the rent (application, admin, amenity) are a second rent hike in disguise.",
+      "Renewal is a negotiation. An empty unit costs your landlord real money.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The renewal letter says your rent is going up $140 a month, and the first instinct is to wonder what you did wrong. Usually: nothing. What changed is the machinery above you: how many homes exist, who owns them, and how the asking price gets picked. This guide walks through that machinery, because the parts you can push back on only become visible once you can see the whole thing.",
+      },
+      { type: "h2", text: "The shortage underneath everything" },
+      {
+        type: "p",
+        text: "After the 2008 crash, homebuilding collapsed and never fully caught up. Most estimates put the national shortfall at several million homes (common figures run 3 to 5 million as of 2024), and local zoning rules keep many neighborhoods closed to apartments entirely. Scarcity is the foundation every other force builds on: when vacancy is low, a landlord who raises the rent knows someone will pay it, because the renter's alternatives are thin.",
+      },
+      { type: "h2", text: "The new landlords" },
+      {
+        type: "p",
+        text: "The stereotype of a landlord is a person with a spare house. Increasingly it's a company with a call center. Large investment firms moved into single-family rentals after 2008, buying foreclosed homes by the thousand; the biggest single-family landlord now owns more than 80,000 houses, concentrated in Sun Belt metros like Atlanta, Phoenix, and Charlotte. Some of these owners are the same [private equity](/learn/investing/private-equity-explained) funds this library covers elsewhere, and the playbook rhymes: steady rent increases, new fees, and cost-cutting on maintenance are how the deal pays off.",
+      },
+      { type: "h2", text: "The pricing robot" },
+      {
+        type: "p",
+        text: "In much of the apartment world, a human no longer picks the asking rent. Revenue-management software does, and the biggest platform, RealPage, became the center of a national fight: competing landlords fed it their private rent and occupancy data, and it recommended prices back to all of them. In 2024 the Justice Department sued, arguing that this amounts to price-fixing with a software layer in between, and cities from San Francisco onward began banning algorithmic rent-setting outright. As of 2026 the fight is still working through courts and city councils. What matters for you: in buildings priced this way, the software is often tuned to prefer higher rents even at the cost of some vacancy, which is why you'll sometimes see empty units in a building that just raised your rent.",
+      },
+      { type: "h2", text: "The fee layer" },
+      {
+        type: "p",
+        text: "The advertised rent is no longer the price. Application fees of $50 to $100 (paid per application, refunded never), \"administrative\" fees at signing, monthly charges for valet trash, package lockers, and mandatory \"amenity\" bundles all stack on top. Some buildings even charge a monthly fee in place of a security deposit, which sounds friendly until you notice the deposit was refundable and the fee is not. This is [drip pricing](/learn/budgeting/junk-fees) applied to housing, and it deserves the same defense: compare the total monthly cost, not the headline rent.",
+      },
+      { type: "h2", text: "The leverage you still have" },
+      {
+        type: "steps",
+        items: [
+          "Treat renewal as an offer, not a verdict. An empty unit costs the landlord a month or more of rent plus cleaning and repainting, which means keeping you at a smaller increase is often their best deal. Reply 60 days out, politely, with two or three comparable listings attached.",
+          "Time the market when you can. Fewer people move in winter, and asking rents on new leases sag with them; a lease that starts in December is regularly cheaper than the same unit in July.",
+          "Make the fees show themselves. Before paying any application fee, ask for the full fee schedule in writing and the total move-in cost. Apply to one place at a time, not five.",
+          "Know your local floor. Some states and cities cap application fees, deposits, or the notice required for increases. The state finder on the [Resources page](/resources) will point you to yours.",
+          "Run the number before you sign: the [Rent calculator](/tools/budget/rent) turns an asking rent into what it actually means for your paycheck.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Search your city's name plus \"tenant rights\" and look for the official .gov page. Habitability rules, deposit deadlines, and increase-notice requirements are usually stronger than renters assume, and corporate landlords in particular tend to fold quickly when a complaint cites the actual code.",
+      },
+      {
+        type: "key",
+        text: "When rent swallows half a paycheck, that is not a personal budgeting failure. It is a market with a shortage, concentrated ownership, and software squeezing the remainder. You can't fix the structure alone, but knowing it exists is what turns a renewal letter from a sentence into an opening offer.",
+      },
+    ],
+    related: ["renting-your-first-apartment", "renting-101-tenant-rights", "security-deposit-back"],
+    quiz: [
+      {
+        question: "Why did regulators go after rent-pricing software?",
+        options: [
+          "It miscalculated rents by accident",
+          "Competing landlords fed it private data and it recommended prices to all of them, which the DOJ argued is price-fixing",
+          "It only worked in some states",
+          "It set rents too low for landlords",
+        ],
+        answer: 1,
+        explain: "The 2024 Justice Department suit argued that pooling competitors' private rent data through one recommendation engine removes the competition that would normally hold prices down.",
+      },
+      {
+        question: "What gives you real leverage at renewal time?",
+        options: [
+          "Threatening a bad review",
+          "Paying several months early",
+          "The fact that an empty unit costs the landlord a month or more of rent plus turnover costs",
+          "Renewals are never negotiable",
+        ],
+        answer: 2,
+        explain: "Vacancy is expensive. Keeping a reliable tenant at a smaller increase often beats losing a month of rent, which is why a polite counter with comparable listings works more often than people expect.",
+      },
+      {
+        question: "When are new leases usually cheapest?",
+        options: ["Summer", "Winter", "The first week of any month", "There's no pattern"],
+        answer: 1,
+        explain: "Fewer people move in winter, so asking rents on new leases drop with demand. A December start date is regularly cheaper than July for the same unit.",
+      },
+    ],
+  },
 ];
