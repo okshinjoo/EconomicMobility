@@ -5,8 +5,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
 import Reveal from "@/components/Reveal";
-import ToolDoodle, { toolStyles } from "@/components/ToolDoodle";
+import { toolStyles } from "@/components/ToolDoodle";
 import ToolMark from "@/components/ToolMark";
+import CategoryFlipCard from "@/components/CategoryFlipCard";
 import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
 import { templates } from "@/lib/templates";
 import HeadlineRise from "@/components/HeadlineRise";
@@ -123,8 +124,9 @@ export default function ToolsHub() {
         </div>
       </section>
 
-      {/* By category — jump tiles as their own section (Base44 structure,
-          our tiles) */}
+      {/* By category — flip tiles (owner ask July 17: "lets make these
+          flip too"). Front is the category face; hover/tap turns it over
+          to the calculators themselves, so the flip is navigation. */}
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
@@ -133,33 +135,21 @@ export default function ToolsHub() {
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {toolCategories.map((cat, i) => {
               const style = toolStyles[cat.id] ?? toolStyles.budgeting;
-              const liveCount = cat.items.filter((x) => x.status === "live").length;
+              const live = cat.items.filter((x) => x.status === "live");
               return (
-                <Reveal key={cat.id} delay={i * 70}>
-                  <a
-                    href={`#${cat.id}`}
-                    className="card-ink group flex h-full flex-col rounded-2xl p-6 text-ink transition-transform duration-200 hover:-translate-y-1"
-                    style={{ backgroundColor: style.bg }}
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <ToolDoodle id={cat.id} color={style.accent} />
-                      <span
-                        className="rounded-full px-2.5 py-1 text-[11px] font-bold tabular-nums"
-                        style={{
-                          color: style.accent,
-                          background: "rgba(255,255,255,0.6)",
-                        }}
-                      >
-                        {liveCount} calculators
-                      </span>
-                    </div>
-                    <span className="mt-5 block font-display text-lg font-bold leading-tight">
-                      {cat.label}
-                    </span>
-                    <span className="mt-1.5 text-[13px] leading-5 text-ink/70">
-                      {cat.blurb}
-                    </span>
-                  </a>
+                <Reveal key={cat.id} delay={i * 70} className="h-full">
+                  <CategoryFlipCard
+                    catId={cat.id}
+                    label={cat.label}
+                    blurb={cat.blurb}
+                    count={live.length}
+                    bg={style.bg}
+                    accent={style.accent}
+                    items={live.map((item) => ({
+                      title: item.title,
+                      href: hrefFor(cat, item),
+                    }))}
+                  />
                 </Reveal>
               );
             })}
