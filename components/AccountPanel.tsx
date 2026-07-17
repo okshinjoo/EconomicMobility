@@ -704,6 +704,11 @@ export function ProfileEditor({
   const [pwNotice, setPwNotice] = useState<string | null>(null);
   const [pwError, setPwError] = useState<string | null>(null);
   const [pwBusy, setPwBusy] = useState(false);
+  // Self-serve account deletion (July 17, 2026): type DELETE to arm.
+  const [deleteConfirm, setDeleteConfirm] = useState("");
+  const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deleteDone, setDeleteDone] = useState(false);
   // First-sign-in congrats: shown exactly once per account, ever. Fires for
   // a genuinely new account (created within the last day — covers email AND
   // Google signups, whichever door they came through) or a fresh-verification
@@ -969,6 +974,42 @@ export function ProfileEditor({
     setNewPw("");
     setConfirmPw("");
     setPwNotice("Password updated.");
+  }
+
+  // Self-serve deletion: the API route verifies the session token, wipes
+  // storage + rows server-side (service role; auth cascade as backstop),
+  // then deletes the auth user. On-device data deliberately survives.
+  async function deleteAccount() {
+    if (deleteBusy || deleteConfirm.trim() !== "DELETE") return;
+    setDeleteBusy(true);
+    setDeleteError(null);
+    try {
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      if (!token) throw new Error("no session");
+      const res = await fetch("/api/account/delete", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        setDeleteError(
+          res.status === 503
+            ? "Self-serve deletion isn't available right now."
+            : body?.error ?? "Something went wrong."
+        );
+        return;
+      }
+      setDeleteDone(true);
+      // Let the confirmation land, then sign out — the account is gone.
+      setTimeout(() => void supabase.auth.signOut(), 2500);
+    } catch {
+      setDeleteError("Something went wrong.");
+    } finally {
+      setDeleteBusy(false);
+    }
   }
 
   async function signOut() {
@@ -1881,21 +1922,67 @@ export function ProfileEditor({
                 <h3 className="font-display text-lg font-bold text-ink">
                   Delete your account
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-stone">
-                  Email{" "}
-                  <a
-                    href="mailto:Help@economicmobilityproject.org"
-                    className="font-semibold text-forest"
-                  >
-                    Help@economicmobilityproject.org
-                  </a>{" "}
-                  from your account email and we&apos;ll permanently remove
-                  the account and everything attached to it. Details in the{" "}
-                  <Link href="/privacy" className="font-semibold text-forest">
-                    privacy policy
-                  </Link>
-                  .
-                </p>
+                {deleteDone ? (
+                  <div className="mt-3 flex items-start gap-2.5 rounded-xl border-2 border-forest/30 bg-forest/[0.06] px-4 py-3.5">
+                    <CheckCircle2
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest"
+                      strokeWidth={1.75}
+                    />
+                    <p className="text-sm leading-6 text-ink">
+                      <span className="font-bold">
+                        Your account is deleted.
+                      </span>{" "}
+                      Everything on our servers is gone. Signing you out…
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <p className="mt-2 text-sm leading-6 text-stone">
+                      This permanently removes everything on our servers:
+                      your sign-in, profile, photo, synced progress, likes,
+                      comments, and any reminder signup. It cannot be undone.
+                      Progress saved on this device stays on this device and
+                      keeps working logged out. Details in the{" "}
+                      <Link href="/privacy" className="font-semibold text-forest">
+                        privacy policy
+                      </Link>
+                      .
+                    </p>
+                    <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                      <input
+                        type="text"
+                        value={deleteConfirm}
+                        onChange={(e) => setDeleteConfirm(e.target.value)}
+                        placeholder='Type "DELETE" to confirm'
+                        className={`${inputCls} sm:max-w-xs`}
+                        autoComplete="off"
+                      />
+                      <button
+                        type="button"
+                        onClick={deleteAccount}
+                        disabled={deleteBusy || deleteConfirm.trim() !== "DELETE"}
+                        className="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-lg bg-terracotta px-5 py-3 text-sm font-bold text-cream transition-colors hover:bg-ink disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {deleteBusy && (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        )}
+                        Delete my account
+                      </button>
+                    </div>
+                    {deleteError && (
+                      <p className="mt-3 text-sm font-semibold leading-6 text-terracotta">
+                        {deleteError} You can also email{" "}
+                        <a
+                          href="mailto:privacy@economicmobilityproject.org"
+                          className="underline decoration-2 underline-offset-2"
+                        >
+                          privacy@economicmobilityproject.org
+                        </a>{" "}
+                        and we&apos;ll do it by hand.
+                      </p>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           )}

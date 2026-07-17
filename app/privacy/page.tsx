@@ -47,8 +47,8 @@ export default function PrivacyPage() {
             <strong className="text-cream">
               we never sell your data. Ever.
             </strong>{" "}
-            We store as little as possible, and you can delete all of it with
-            one email. Last updated {LAST_UPDATED}.
+            We store as little as possible, and you can delete all of it
+            yourself, anytime, with one button. Last updated {LAST_UPDATED}.
           </p>
         </div>
       </section>
@@ -249,18 +249,28 @@ export default function PrivacyPage() {
 
           <H2>Deleting everything</H2>
           <p className="mt-3">
-            Email{" "}
+            You can delete your account yourself, right now, no email
+            required: the{" "}
+            <Link
+              href="/account"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
+            >
+              account page&apos;s
+            </Link>{" "}
+            Security tab has a delete button. It immediately and permanently
+            removes everything on our servers — your sign-in, synced
+            progress, profile, photo, likes, comments, and any reminder
+            signup. If you&apos;d rather a human handle it (or something
+            goes wrong), email{" "}
             <a
               href="mailto:privacy@economicmobilityproject.org"
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4"
             >
               privacy@economicmobilityproject.org
             </a>{" "}
-            from your account&apos;s email address and we&apos;ll permanently
-            delete your account and every piece of data attached to it —
-            synced progress, profile, photo, likes, and reminder signup —
-            normally within a few days. Published community posts and
-            comments come down on request too. Logged-out data is yours to
+            from your account&apos;s email and we&apos;ll do it by hand,
+            normally within a few days. Community posts we curated onto the
+            site come down on request too. Logged-out data is yours to
             clear anytime from your own browser (or from the{" "}
             <Link
               href="/start-here"
@@ -291,7 +301,9 @@ export default function PrivacyPage() {
             edits. (July 17, 2026: rewrote this page to cover the AI
             features, public like tallies, profile photos, and reminder
             emails in detail — practices didn&apos;t change, the writing
-            caught up.)
+            caught up. Later the same day: account deletion became
+            self-serve, and deleting your account now also removes your
+            comments automatically.)
           </p>
         </div>
       </section>

@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "Delete your account yourself",
+    body: "Account deletion no longer requires emailing us: the account page's Security tab now has a delete button that immediately and permanently removes everything on our servers — sign-in, synced progress, profile, photo, likes, comments, reminder signup. Progress saved on your device stays yours and keeps working logged out. The email route still exists if you'd rather a human handle it.",
+    href: "/privacy",
+    hrefLabel: "The privacy policy has the details",
+  },
+  {
+    date: "July 17, 2026",
     title: "The skill tree comes to For Students",
     body: "The climbable map of every guide, tool, and course now lives inside the student site too — same tree, same progress, and every branch opens the student versions of things. Find it under Your Path in the student menu.",
     href: "/students/skills",
