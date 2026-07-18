@@ -2466,7 +2466,7 @@ export const scholarships: Scholarship[] = [
     stages: ["high-school", "college", "transfer"],
     openToUndocumented: true,
     tags: ["massachusetts", "need-based", "grant", "pell", "tuition-free"],
-    officialUrl: "https://www.mass.edu/osfa/programs/massgrant.asp",
+    officialUrl: "https://www.mass.edu/osfa/programs/massgrantplus.asp",
   },
   {
     id: "ma-masseducate",
