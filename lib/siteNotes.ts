@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "The Careers kit grows up",
+    body: "Three new guides for the job hunt itself: how to get a first job when no one has hired you yet, what a cover letter even is (and when you can skip it), and the five questions every interview asks. Plus a new practice tool — fourteen real interview questions as flip cards, so you can answer out loud and check your answer against the shape of a strong one.",
+    href: "/students/careers",
+    hrefLabel: "Open the Careers kit",
+  },
+  {
+    date: "July 17, 2026",
     title: "Delete your account yourself",
     body: "Account deletion no longer requires emailing us: the account page's Security tab now has a delete button that immediately and permanently removes everything on our servers — sign-in, synced progress, profile, photo, likes, comments, reminder signup. Progress saved on your device stays yours and keeps working logged out. The email route still exists if you'd rather a human handle it.",
     href: "/privacy",

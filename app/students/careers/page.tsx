@@ -8,7 +8,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { DownloadSimple as Download, Binoculars as Telescope, Briefcase } from "@phosphor-icons/react/dist/ssr";
+import { ChatCircleDots, DownloadSimple as Download, Binoculars as Telescope, Briefcase } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
 import HeroRecede from "@/components/HeroRecede";
@@ -24,14 +24,29 @@ export const metadata: Metadata = {
 
 const GUIDES = [
   {
+    slug: "get-your-first-job",
+    title: "Getting Your First Job (When No One Has Hired You Yet)",
+    dek: "Where first jobs actually come from: asking, showing up, and knowing the hiring seasons.",
+  },
+  {
     slug: "resume-with-no-experience",
     title: "A Resume With No Work Experience (Everyone Starts Here)",
     dek: "What you already have — classes, projects, helping people — counts, if you write it down right.",
   },
   {
+    slug: "what-is-a-cover-letter",
+    title: "What a Cover Letter Even Is (and When You Need One)",
+    dek: "Three paragraphs, one page, skippable more often than teachers admit. The whole formula.",
+  },
+  {
     slug: "ace-your-first-interview",
     title: "Your First Interview, Without the Panic",
     dek: "Interviews are a learnable format. Three stories, two questions, one email.",
+  },
+  {
+    slug: "interview-questions-answers",
+    title: "The Five Questions Every Interview Asks",
+    dek: "Build five answers once and you've prepared for nearly every first-job interview at the same time.",
   },
   {
     slug: "first-job-offer-money",
@@ -166,10 +181,24 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Explore + apply — the two big doors */}
+      {/* Explore + apply + practice — the three big doors */}
       <section className="border-t-2 border-ink bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Link
+              href="/students/careers/interview-practice"
+              className="card-ink-lg group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <ChatCircleDots className="h-6 w-6 text-forest" weight="bold" />
+              <h3 className="mt-3 font-display text-xl font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                Interview Practice
+              </h3>
+              <p className="mt-1.5 text-sm leading-6 text-stone">
+                Fourteen questions interviewers actually ask, as flip cards:
+                answer out loud, flip to check your answer&apos;s shape, and
+                drill until you own them.
+              </p>
+            </Link>
             <Link
               href="/students/career-explorer"
               className="card-ink-lg group flex h-full flex-col rounded-2xl bg-forest p-6 text-cream transition-transform duration-200 hover:-translate-y-1"

@@ -17,11 +17,15 @@ export default function Flashcards({
   cards,
   accent,
   deckId,
+  clearedNote = "Every definition in this module, down. The final quiz is right below.",
 }: {
   cards: Flashcard[];
   accent: string;
   /** Persistence key (course id). Omit to disable progress saving. */
   deckId?: string;
+  /** Deck-cleared line — the default speaks course language; other decks
+   *  (interview practice) pass their own. */
+  clearedNote?: string;
 }) {
   const [order, setOrder] = useState<number[]>(() => cards.map((_, i) => i));
   const [index, setIndex] = useState(0);
@@ -132,9 +136,7 @@ export default function Flashcards({
           <p className="mt-4 font-display text-2xl font-semibold text-ink">
             Deck cleared.
           </p>
-          <p className="mt-1 text-sm text-stone">
-            Every definition in this module, down. The final quiz is right below.
-          </p>
+          <p className="mt-1 text-sm text-stone">{clearedNote}</p>
           <button
             type="button"
             onClick={reset}

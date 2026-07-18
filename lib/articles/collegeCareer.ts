@@ -301,4 +301,346 @@ export const collegeCareerArticles: Article[] = [
       "gig-1099-taxes",
     ],
   },
+  // July 17, 2026 expansion (owner: "more advice/tools for jobs, first
+  // jobs, interview prep, what a cover letter even is").
+  {
+    slug: "get-your-first-job",
+    order: 27,
+    topicId: "college",
+    title: "Getting Your First Job (When No One Has Hired You Yet)",
+    dek: "Most first jobs don't come from sending applications into the void. They come from asking, showing up, and knowing where teenagers actually get hired.",
+    level: "Beginner",
+    readMinutes: 7,
+    takeaways: [
+      "First jobs mostly come through people and places, not job boards: someone you know, a manager you asked in person, a school program.",
+      "A few applications done carefully beat thirty done fast. Honest availability and a professional email address matter more than experience.",
+      "If you're under 18, your state may require a work permit, and federal law limits hours for 14- and 15-year-olds.",
+      "You can have references without ever having had a job: teachers, coaches, and volunteer supervisors count.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Job hunting advice is usually written for adults with work histories. A first job search works differently, and honestly, more simply: the places that hire teenagers and students hire a lot of them, expect thin resumes, and mostly want to know that you'll show up when scheduled and be decent to customers.",
+      },
+      {
+        type: "h2",
+        text: "Where first jobs actually come from",
+      },
+      {
+        type: "list",
+        items: [
+          "**People you know.** Most first jobs arrive through a friend who works somewhere, a neighbor who needs help, a cousin's manager. Tell people you're looking; that one sentence does more than ten applications.",
+          "**Walking in and asking.** Restaurants, grocery stores, and shops still hire people who come in, ask for the manager, and hand over a resume. Go at a slow hour, dressed neatly, and ask when they usually hire.",
+          "**Your school.** Counselors hear about jobs constantly, and if you're college-bound, [work-study](/learn/college/work-study-explained) is a job built into your aid package. The [Opportunity Finder](/students/opportunities) lists paid programs and internships we've verified.",
+          "**Hiring seasons.** Stores staff up in October and November for the holidays; pools, camps, and parks hire in spring for summer. Applying a month before the season starts puts you ahead of the rush.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The paperwork side, before you apply",
+      },
+      {
+        type: "steps",
+        items: [
+          "If you're under 18, check whether your state requires a work permit (often called working papers). Many do, and your school's front office usually issues them.",
+          "Set up a professional email address: some version of your name, nothing else. You'll use it for every application and it's free.",
+          "Know your real availability, including practices, family duties, and rides. Writing honest hours on the application prevents the schedule fights that get first jobs quit or lost.",
+          "Have your documents ready for when you're hired: Social Security card or birth certificate, and a parent's help for anything that needs a signature.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Federal law also caps hours for 14- and 15-year-olds: during a school week, no more than 3 hours on a school day and 18 hours total; when school is out, up to 8 hours a day and 40 a week, and work must end by 7 p.m. during the school year (9 p.m. in summer). At 16 the federal hour caps drop away, though some states keep their own.",
+      },
+      {
+        type: "h2",
+        text: "Applying: a few, done well",
+      },
+      {
+        type: "p",
+        text: "Pick a handful of places you could actually get to on time, and give each application real attention: every field filled, availability honest, and the [one-page resume](/learn/college/resume-with-no-experience) attached even when it's optional. About a week after applying, follow up once, in person or by phone: your name, the job, and that you're still interested. Managers hire the applicant they remember.",
+      },
+      {
+        type: "h2",
+        text: "References when you've never worked",
+      },
+      {
+        type: "p",
+        text: "A reference is just an adult, not related to you, who can honestly say you're reliable. Teachers, coaches, club advisors, and volunteer supervisors all count. Ask each one before you list them, tell them what job you're applying for, and thank them after. Two or three is plenty.",
+      },
+      {
+        type: "tip",
+        text: "A real employer never charges you to apply, asks you to buy equipment up front, or pays you before you've worked. Those are the classic signs of a job scam; the full playbook is in [how to spot a scam](/learn/money-safety/how-to-spot-a-scam).",
+      },
+      {
+        type: "key",
+        text: "Getting a first job is mostly a numbers-and-neighbors game: tell everyone you're looking, apply carefully to a few reachable places, follow up once, and have your papers ready. When the offer comes, read it with [your eyes open](/learn/college/first-job-offer-money), and expect [your first paycheck](/learn/budgeting/your-first-paycheck) to be smaller than the math in your head.",
+      },
+    ],
+    related: [
+      "resume-with-no-experience",
+      "what-is-a-cover-letter",
+      "first-job-offer-money",
+    ],
+    quiz: [
+      {
+        question: "Where do most first jobs actually come from?",
+        options: [
+          "Mass-applying to fifty online listings",
+          "People you know, asking managers in person, and school programs",
+          "Paid job-placement services",
+          "Waiting until a business contacts you",
+        ],
+        answer: 1,
+        explain:
+          "Referrals, walk-ins, and school connections fill most first jobs. Online boards work better once you have a work history.",
+      },
+      {
+        question:
+          "You're 15 and it's a school week. How many hours can you legally work under federal law?",
+        options: [
+          "As many as the employer schedules",
+          "No more than 3 hours on a school day, 18 hours in the week",
+          "40 hours, the same as an adult",
+          "Federal law bans working at 15",
+        ],
+        answer: 1,
+        explain:
+          "Federal rules for 14- and 15-year-olds cap school weeks at 3 hours on school days and 18 total, with work ending by 7 p.m. during the school year.",
+      },
+      {
+        question: "Who can be a reference if you've never had a job?",
+        options: [
+          "Only former bosses count",
+          "Your mom, since she knows you best",
+          "A teacher, coach, or volunteer supervisor who agreed in advance",
+          "Nobody — leave references blank",
+        ],
+        answer: 2,
+        explain:
+          "References just need to be non-family adults who can vouch for your reliability. Always ask them first.",
+      },
+    ],
+  },
+  {
+    slug: "what-is-a-cover-letter",
+    order: 28,
+    topicId: "college",
+    title: "What a Cover Letter Even Is (and When You Need One)",
+    dek: "It's one page, three paragraphs, and skippable more often than teachers admit. When it does matter, this is the whole formula.",
+    level: "Beginner",
+    readMinutes: 6,
+    takeaways: [
+      "A cover letter is a short letter answering two questions: why this job, and why you.",
+      "Most first jobs in retail and food service never read one. Internships, offices, and scholarship-style programs usually do.",
+      "The whole thing is three paragraphs: who you are and what you're applying for, why this place specifically, and one piece of evidence you'd be good at it.",
+      "Generic letters hurt more than no letter. One true, specific sentence about the employer beats a page of polish.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "A cover letter is a one-page letter you send with a resume, written to a specific employer about a specific job. The resume lists what you've done; the letter says why it should matter to them. That's the entire concept. Nobody is grading your vocabulary.",
+      },
+      {
+        type: "h2",
+        text: "When you actually need one",
+      },
+      {
+        type: "list",
+        items: [
+          "**Usually skip it:** cashier, food service, retail, and most first jobs with an online application form. If the form doesn't ask, the manager isn't reading letters.",
+          "**Usually send it:** internships, office and research positions, camp counselor and youth-program roles, and anything where a human being reads applications one by one.",
+          "**Always send it** when the posting says to, and follow any instruction inside it exactly. Some postings hide a small request (a word to include, a question to answer) as a test of attention.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The three-paragraph formula",
+      },
+      {
+        type: "steps",
+        items: [
+          "Paragraph one: who you are and what you're applying for, in two sentences. “I'm a junior at Lincoln High applying for the summer camp counselor role posted on your site.”",
+          "Paragraph two: why THIS place. One true, specific detail — you've used their programs, you admire something real about what they do, a person recommended them. This is the paragraph generic letters fail.",
+          "Paragraph three: one story that proves you'd be good at the actual work, using the same evidence style as a [resume bullet](/learn/college/resume-with-no-experience). Tutoring your cousins is evidence for a camp job; running a bake-sale table is evidence for retail.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Close with one line: you'd welcome an interview, and your phone number sits at the top with your name. Address it to a person if the posting names one, and “Dear Hiring Manager” when it doesn't. Nobody has been impressed by “To Whom It May Concern” in decades.",
+      },
+      {
+        type: "h2",
+        text: "Rules that keep it working",
+      },
+      {
+        type: "list",
+        items: [
+          "One page maximum, and short of that is fine. Three tight paragraphs read better than five padded ones.",
+          "Don't repeat your resume in sentence form. The letter adds the why; the resume already has the what.",
+          "Reuse your skeleton between applications, but paragraph two must be rewritten every time. That's the paragraph that gets letters read.",
+          "Same proofreading bar as the resume: one typo in one page reads as carelessness.",
+        ],
+      },
+      {
+        type: "key",
+        text: "A cover letter is three paragraphs of why: why this job, why this place, why you. Write one true specific sentence about the employer and one piece of real evidence about yourself, and you've beaten most of the letters in the pile. A fill-in template is waiting in [the Careers kit](/students/careers).",
+      },
+    ],
+    related: [
+      "resume-with-no-experience",
+      "get-your-first-job",
+      "interview-questions-answers",
+    ],
+    quiz: [
+      {
+        question: "What is a cover letter for?",
+        options: [
+          "Restating your resume in paragraph form",
+          "Explaining why this job and why you, to one specific employer",
+          "Proving you can write formally",
+          "Listing references",
+        ],
+        answer: 1,
+        explain:
+          "The resume carries the what; the letter carries the why. It's written to one employer about one job.",
+      },
+      {
+        question: "Which application most likely needs a cover letter?",
+        options: [
+          "A grocery store's online cashier form",
+          "A summer research internship reviewed by a program director",
+          "A fast-food walk-in application",
+          "None — cover letters are obsolete",
+        ],
+        answer: 1,
+        explain:
+          "Letters matter where a person reads applications individually: internships, offices, programs. High-volume first jobs rarely read them.",
+      },
+      {
+        question: "What makes paragraph two (why this place) work?",
+        options: [
+          "Complimenting the company in general terms",
+          "One true, specific detail about this employer",
+          "Mentioning you need the money",
+          "Keeping it identical across applications to save time",
+        ],
+        answer: 1,
+        explain:
+          "Specificity is the whole test. A sentence you could send to any employer tells this one you didn't mean it.",
+      },
+    ],
+  },
+  {
+    slug: "interview-questions-answers",
+    order: 29,
+    topicId: "college",
+    title: "The Five Questions Every Interview Asks (Build Your Answers Now)",
+    dek: "Interviews feel unpredictable, but the questions barely change. Build five answers once and you've prepared for nearly every first-job interview at the same time.",
+    level: "Beginner",
+    readMinutes: 7,
+    takeaways: [
+      "Almost every first-job interview is built from the same five questions, so answers can be prepared in advance.",
+      "“Tell me about yourself” wants one organized minute, not your life story: what you're doing now, one thing you're proud of, why you're here.",
+      "Story questions follow a shape: the situation, what you did, how it turned out. School and volunteer stories count fully.",
+      "Practicing out loud three times beats reading answers silently ten times. Memorize the shape, never a script.",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "The logistics of interview day (what to wear, when to arrive, the thank-you message) live in [the first-interview guide](/learn/college/ace-your-first-interview). This one is about the words: the five questions that show up in nearly every interview, and how to build an answer for each before anyone asks.",
+      },
+      {
+        type: "h2",
+        text: "1. “Tell me about yourself”",
+      },
+      {
+        type: "p",
+        text: "This is an invitation to talk for one minute, not fifteen. Use a three-part shape: what you're doing now (school, year, activities), one thing you've done that you're proud of, and why you're sitting in this chair. “I'm a junior at Central, I run the ticket table for our theater program, and I'm looking for weekend work where I can use that customer experience.” Done.",
+      },
+      {
+        type: "h2",
+        text: "2. “Why do you want to work here?”",
+      },
+      {
+        type: "p",
+        text: "Needing money is real, and every interviewer knows it. Say one thing beyond it that's true: you like the product, the location works with your schedule, people you know say the team is good, you want experience in this kind of work. One honest, specific reason is the entire assignment.",
+      },
+      {
+        type: "h2",
+        text: "3. “What's a strength? What's a weakness?”",
+      },
+      {
+        type: "p",
+        text: "For the strength, pick one and attach evidence, resume-bullet style: reliable, because you didn't miss a practice in two seasons. For the weakness, name a real one plus what you're doing about it: “I get quiet in big groups, so I joined debate to push myself.” The fake-weakness trick (“I work too hard”) is older than your interviewer, and they're tired of it.",
+      },
+      {
+        type: "h2",
+        text: "4. “Tell me about a time when…”",
+      },
+      {
+        type: "p",
+        text: "…you dealt with a difficult person, solved a problem, made a mistake. These story questions all use one shape: the situation in a sentence, what you did in two or three, and how it ended in one. Pick two stories from school, sports, volunteering, or family responsibility before the interview; between them they'll cover almost any version of the question. A mistake story is a strength here if it ends with what changed afterward.",
+      },
+      {
+        type: "h2",
+        text: "5. “Do you have any questions for us?”",
+      },
+      {
+        type: "p",
+        text: "“No” is the only wrong answer; it reads as wanting any job rather than this one. Bring two: “What does a typical shift look like?” and “What does training cover?” both work everywhere. Asking about pay and scheduling is allowed and normal; asking only about pay and scheduling is the thing to avoid.",
+      },
+      {
+        type: "tip",
+        text: "Practice each answer out loud three times: to a mirror, a friend, or your phone's voice recorder. Out-loud practice is where answers stop being essays and start being speech. The [Interview Practice deck](/students/careers/interview-practice) deals you these questions and more as flip cards.",
+      },
+      {
+        type: "key",
+        text: "Five prepared answers cover most of any first-job interview: an organized minute about yourself, one true reason for this place, a strength with evidence, two ready-made stories, and two questions to ask back. Build them once; reuse them everywhere.",
+      },
+    ],
+    related: [
+      "ace-your-first-interview",
+      "resume-with-no-experience",
+      "first-job-offer-money",
+    ],
+    quiz: [
+      {
+        question: "A strong answer to “tell me about yourself” is…",
+        options: [
+          "Your life story from childhood on",
+          "One organized minute: what you do now, one proud thing, why you're here",
+          "A recitation of your resume line by line",
+          "“What would you like to know?”",
+        ],
+        answer: 1,
+        explain:
+          "Interviewers want one composed minute. The three-part shape gives it a beginning, middle, and reason.",
+      },
+      {
+        question: "The best way to handle the weakness question:",
+        options: [
+          "“I work too hard” — flattering yourself as a flaw",
+          "“I don't have any weaknesses”",
+          "A real weakness plus what you're doing about it",
+          "Change the subject to a strength",
+        ],
+        answer: 2,
+        explain:
+          "A real weakness with a fix in progress shows self-awareness. The humble-brag version is the most recognized dodge in interviewing.",
+      },
+      {
+        question: "The interviewer asks if you have questions. You should…",
+        options: [
+          "Say no, to respect their time",
+          "Ask two prepared questions about the work, like what a shift or training looks like",
+          "Ask only when the pay gets discussed",
+          "Ask how quickly you can be promoted to manager",
+        ],
+        answer: 1,
+        explain:
+          "Two prepared questions signal you want this job specifically. Pay questions are fine too — just not alone.",
+      },
+    ],
+  },
 ];
