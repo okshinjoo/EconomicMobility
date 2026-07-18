@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "The scholarship list grew to 315",
+    body: "129 new hand-verified awards joined the finder in one push: state grant and free-college programs for more than forty states (Tennessee Promise, Cal Grant, New Mexico's free tuition, DCTAG, and many more), the state aid applications that serve undocumented students, plus new trades, healthcare, identity-based, union, and employer scholarships. Every one was checked against its official site before listing, same as always — and 48 awards on the list now explicitly require no citizenship.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 17, 2026",
     title: "A day of sanding: student pages, sharper",
     body: "A long polish pass across For Students. The Guides and Your Path tabs got real landing pages; the scholarship finder now shows every award's next deadline, greys out the ones between application cycles (with the month they come back), and sorts by deadline, amount, or name; the Student Tracker autofills scholarships from our own list and got proper dropdowns; Compare Colleges got compact cards you click into for the full profile; and the whole section picked up the color it was missing.",
     href: "/students",

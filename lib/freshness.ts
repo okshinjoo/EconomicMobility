@@ -102,7 +102,7 @@ export const freshness: FreshnessEntry[] = [
     what: `${scholarships.length} hand-verified awards.`,
     files: ["lib/scholarships.ts"],
     publicVintage: VERIFIED_AS_OF,
-    lastVerified: "July 2026",
+    lastVerified: "July 17, 2026",
     cadence: "Yearly.",
     nextDueISO: "2027-07-01",
     recipe:
