@@ -112,7 +112,7 @@ export default function CareerExplorerPage() {
                 Internships &amp; Opportunities
               </h3>
               <p className="mt-1 text-sm leading-6 text-stone">
-                {opportunities.length} verified internships, fellowships, and programs — many paid
+                {opportunities.length}{" "}verified internships, fellowships, and programs — many paid
                 — that lead into the careers on this page.
               </p>
             </Link>

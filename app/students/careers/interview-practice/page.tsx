@@ -13,7 +13,7 @@ import { interviewCards, INTERVIEW_ACCENT } from "@/lib/interviewDeck";
 export const metadata: Metadata = {
   title: "Interview Practice | Empower — Economic Mobility Project",
   description:
-    `${interviewCards.length} questions interviewers actually ask, as flip cards: see the question, say your answer out loud, flip for what a strong answer contains. Free, no signup.`,
+    `${interviewCards.length}{" "}questions interviewers actually ask, as flip cards: see the question, say your answer out loud, flip for what a strong answer contains. Free, no signup.`,
 };
 
 export default function InterviewPracticePage() {
@@ -35,7 +35,7 @@ export default function InterviewPracticePage() {
             <span className="italic text-amber">before they're asked.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            {interviewCards.length} questions that show up in nearly every first-job
+            {interviewCards.length}{" "}questions that show up in nearly every first-job
             interview. Read one, answer it out loud — actually out loud —
             then flip the card to compare your answer's shape against a
             strong one. Mark the ones you own; drill the rest.
