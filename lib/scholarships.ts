@@ -5613,28 +5613,6 @@ export const scholarships: Scholarship[] = [
     tags: ["pizza-hut", "fast-food", "employer", "mentorship"],
     officialUrl: "https://www.pizzahutfoundation.org/programs/",
   },
-  {
-    id: "dunkin-dmv-regional-scholarship",
-    name: "Dunkin' Baltimore/Metro DC Regional Scholarship",
-    amount: "$2,500",
-    deadline: "Typically April",
-    deadlineMonth: 4,
-    who: "Open to regional high school seniors and undergraduates, with Dunkin' crew members also eligible if employed at least three months and in good standing.",
-    stages: ["high-school", "college"],
-    tags: ["dunkin", "fast-food", "franchisee", "regional"],
-    officialUrl: "https://scholarshipamerica.org/scholarship/dunkinbaltimoredc/",
-  },
-  {
-    id: "dunkin-philadelphia-regional-scholarship",
-    name: "Dunkin' Philadelphia Regional Scholarship Program",
-    amount: "$5,000",
-    deadline: "Typically April",
-    deadlineMonth: 4,
-    who: "Open to Greater Philadelphia-area high school seniors and undergraduates, with Dunkin' crew members also eligible if employed at least three months and in good standing.",
-    stages: ["high-school", "college"],
-    tags: ["dunkin", "fast-food", "franchisee", "regional"],
-    officialUrl: "https://scholarshipamerica.org/scholarship/dunkinphilly/",
-  },
 
   // ── Sports-connected (batch 4) ──
   {
