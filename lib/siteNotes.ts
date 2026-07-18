@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "794 scholarships, found by asking who gets left out",
+    body: "82 more hand-verified entries, built around students scholarship lists usually forget: foster youth and students who've experienced homelessness (including the federal Chafee voucher), students affected by a parent's incarceration and formerly incarcerated students themselves, families who lost a parent (from the 143-year-old railroad fund to workers' comp families), children of migrant farmworkers, students in recovery or living with mental-health conditions, young caregivers and single dads, plus honor-society transfer money like Phi Theta Kappa's awards — which explicitly welcome undocumented students — and fifteen more state programs, including Virginia's first two on our list. 65 awards on the list now explicitly require no citizenship.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "712 scholarships — and honest employer tuition benefits",
     body: "69 more hand-verified entries. New ground: allied-health careers (dental hygiene, radiologic tech, EMS, even mortuary science — the one that's explicitly DACA-open), awards for students living with cancer, rare diseases, arthritis, and other conditions, business and professional societies from fashion to court reporting, families of fallen police officers and firefighters, and national competitions with real scholarship money. We also added the big employer education benefits — Starbucks, Walmart, Target, Amazon, Chipotle — labeled exactly what they are: tuition covered while you work there, not scholarship checks. And fourteen state programs fill in the states our map was thinnest on, from Utah to West Virginia.",
     href: "/students/scholarships",
