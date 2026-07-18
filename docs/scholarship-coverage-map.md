@@ -31,6 +31,10 @@ The pipeline org is real; it just isn't for undergrads.
 - Native × law (NNABA — bar-prep for 3Ls)
 - Undocumented × law (Immigrants Rising Pre-Law Fund discontinued Fall 2025;
   law is structurally grad)
+- Latino × medicine (undergrad) — the national orgs (LMSA, HNBA) are grad; the
+  only undergrad-accessible awards are LMSA *regional chapter* scholarships,
+  which fall below the national/state bar (owner cut them July 18 for
+  consistency with the no-regional rule)
 - Women × law · women × medicine (women's bar / women physicians — grad)
 - LGBTQ+ × law (Lavender Law) · × medicine (GLMA) · × business (ROMBA) ·
   × teaching (CTA LGBTQ+ — professional)
@@ -58,10 +62,8 @@ The pipeline org is real; it just isn't for undergrads.
   justice-impacted × any field (general) · health-condition × field (condition-
   based, not field-based) · undocumented × nursing / business / teaching
 
-## Adds from this audit (25, → 1,375)
-Latino dental (HDAF), two DACA-explicit LMSA pre-med regional awards (a
-deliberate mission exception to the no-regional rule — undocumented pre-med is
-otherwise unserved), Black public service (NFBPA, NABCJ) / environment (TMCF
+## Adds from this audit (23, → 1,373)
+Latino dental (HDAF), Black public service (NFBPA, NABCJ) / environment (TMCF
 Ecology, Black & Latinx Birders) / arts (NAACP × Society) / social work (NABSW)
 / allied health (Creary/NMF), AAPI business (USPAACC) / nursing (AAPINA) / STEM
 (SASE) / arts (Against the Grain), Native business (AIBL) / environment (NAFWS)
