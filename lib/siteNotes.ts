@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,000 scholarships. Every one checked by hand.",
+    body: "The finder crossed one thousand hand-verified awards today. Every entry was checked against its official site — no aggregator listings, no fees, no sweepstakes dressed up as scholarships, and 73 awards explicitly open to undocumented students. The last stretch added maritime and rail money, arts awards from the Emmys organization to the CFDA, the last of the Divine Nine foundations, National Guard tuition programs and foster-youth waivers across fourteen more states, flight-training funds, and awards for students almost no list serves: children of incarcerated parents, young caregivers, students in recovery, migrant farmworker families. Along the way we also confirmed which famous programs are quietly dead — Generation Google, the Heisman high school award, Hilton Cares — so nobody wastes an essay on them. One thousand real doors, and we keep checking every one, every year.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "863 scholarships: veterans, union families, and more",
     body: "69 more hand-verified entries. Deaf, hard-of-hearing, blind, and low-vision students got nine new awards — including the American Foundation for the Blind's relaunched program, renewable up to $28,000. Veterans going to school themselves (not just their kids) got eight, from VFW's Help A Hero to Student Veterans of America. Union households got eleven, from AFSCME and the teachers' union to postal workers and mine workers. Native students got the Alaska Native corporation foundations and both major Native Hawaiian funds. Plus eleven European heritage societies, thirteen more state programs (California's Middle Class Scholarship can cover full cost of attendance and takes Dream Act applicants), and the New England-wide Stephen Phillips fund.",
     href: "/students/scholarships",
