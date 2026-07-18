@@ -26,6 +26,9 @@ interface StudentNavEntry {
   label: string;
   href: string;
   exact?: boolean;
+  /** Extra path prefixes that keep this tab highlighted (its section's
+   *  pages that don't live under href). */
+  activePrefixes?: string[];
   items?: StudentDropItem[];
   /** Small link row under the items, main-Header style. */
   footer?: { label: string; href: string }[];
@@ -38,9 +41,10 @@ const NAV: StudentNavEntry[] = [
   { label: "Overview", href: "/students", exact: true },
   {
     label: "Guides",
-    href: "/students/learn/college",
+    href: "/students/guides",
+    activePrefixes: ["/students/learn", "/students/glossary"],
     items: [
-      { label: "College & aid guides", href: "/students/learn/college", desc: "All 33: aid, admissions, loans, transfer, repayment.", icon: GraduationCap, color: "#c9842a" },
+      { label: "College & aid guides", href: "/students/learn/college", desc: "Aid, admissions, loans, transfer, repayment — all of them.", icon: GraduationCap, color: "#c9842a" },
       { label: "FAFSA, Step by Step", href: "/students/learn/college/fafsa-step-by-step", desc: "The one form that unlocks most college aid.", icon: FileText, color: "#0c4a39" },
       { label: "The transfer money guide", href: "/students/learn/college/community-college-transfer-money", desc: "Protect the community-college discount.", icon: ArrowRightLeft, color: "#c4573b" },
       { label: "Student life essentials", href: "/students#shelf", desc: "Paychecks, taxes, first cards. Beyond tuition.", icon: Wallet, color: "#15624b" },
@@ -53,7 +57,11 @@ const NAV: StudentNavEntry[] = [
   },
   {
     label: "Your Path",
-    href: "/students/journey/college",
+    href: "/students/path",
+    activePrefixes: [
+      "/students/journey", "/students/courses", "/students/plan",
+      "/students/tracker", "/students/skills", "/students/quiz",
+    ],
     items: [
       { label: "Pay for college: the path", href: "/students/journey/college", desc: "Ordered milestones, FAFSA to signing day.", icon: Map, color: "#c9842a" },
       { label: "Paying for College (course)", href: "/students/courses/paying-for-college", desc: "The focused module, badge at the end.", icon: BookOpen, color: "#c4573b" },
@@ -99,6 +107,7 @@ const NAV: StudentNavEntry[] = [
   {
     label: "Careers",
     href: "/students/careers",
+    activePrefixes: ["/students/career-explorer", "/students/opportunities"],
     items: [
       { label: "The Careers kit", href: "/students/careers", desc: "Resume templates, interview guides, and your first offer.", icon: FileText, color: "#0c4a39" },
       { label: "Career Explorer", href: "/students/career-explorer", desc: "100 careers: real pay, growth, and training paths.", icon: Telescope, color: "#4b5f8a" },
@@ -136,13 +145,15 @@ const NAV: StudentNavEntry[] = [
   },
 ];
 
-function DropMenu({ entry }: { entry: StudentNavEntry }) {
+function DropMenu({ entry, active }: { entry: StudentNavEntry; active?: boolean }) {
   return (
     <div className="group relative shrink-0">
       <Link prefetch={false}
         href={entry.href}
         aria-haspopup="true"
-        className="inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 min-[1400px]:px-2.5 text-cream/80 transition-colors hover:text-amber group-focus-within:text-amber"
+        className={`inline-flex items-center whitespace-nowrap rounded-full px-2 py-2 min-[1400px]:px-2.5 transition-colors hover:text-amber group-focus-within:text-amber ${
+          active ? "font-bold text-amber" : "text-cream/80"
+        }`}
       >
         {entry.label}
       </Link>
@@ -235,10 +246,12 @@ export default function StudentHeader() {
             tightened paddings buy. Don't re-widen without re-measuring. */}
         <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-[13px] font-medium min-[1400px]:gap-1.5 min-[1400px]:text-sm xl:overflow-visible">
           {NAV.map((entry) => {
-            if (entry.items) return <DropMenu key={entry.label} entry={entry} />;
             const active = entry.exact
               ? pathname === entry.href
-              : pathname.startsWith(entry.href);
+              : pathname.startsWith(entry.href) ||
+                Boolean(entry.activePrefixes?.some((p) => pathname.startsWith(p)));
+            if (entry.items)
+              return <DropMenu key={entry.label} entry={entry} active={active} />;
             return (
               <Link prefetch={false}
                 key={entry.label}
