@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "The scholarship finder now remembers your list",
+    body: "A finder with 1,672 scholarships is only useful if you can keep your place in it. So now every scholarship has two buttons: Save it to a shortlist of ones you want to apply for, and Mark applied once you've sent it in. A 'Your list' bar appears at the top to flip between everything, the ones you still need to apply for, and the ones you've finished — so a giant list becomes a personal to-do you can actually work through. It all saves right on your device, no account required; sign in and it follows you to your phone and back. Nothing is shared, and we never see it.",
+    href: "/students/scholarships",
+    hrefLabel: "Start your list",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,672 scholarships — the last stone turned over",
     body: "One final sweep to be sure we hadn't missed a category. We went vein by vein through the corners that don't show up in a normal search: the full national catalog of the biggest scholarship administrator, commodity-farm foundations (dairy, soybean, cattle, viticulture), heritage funds for smaller diaspora communities (Iranian, Croatian, Cambodian, Thai, Dominican), disease foundations beyond the common ones (immune deficiency, ALS, burn survivors, scleroderma), the professional trades we were light on (packaging, printing, textiles, environmental health, safety), and civic art and essay contests. 52 more that clear the bar. What we cut says as much as what we kept: a 'scholarship' run by a personal-injury law firm as marketing, fraternal awards you can only get by buying a life-insurance policy, a foundation that quietly stopped funding students, a nationwide-sounding award that was really one city, and a contest open to the whole world rather than a national program. The systematic search is now genuinely finished — what's left is keeping every one of these current, year after year.",
     href: "/students/scholarships",

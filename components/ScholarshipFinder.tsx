@@ -15,12 +15,23 @@
 // still agree — same hydration discipline as the rest of the site.
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowSquareOut as ExternalLink } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowSquareOut as ExternalLink,
+  BookmarkSimple,
+  CheckCircle,
+} from "@phosphor-icons/react/dist/ssr";
 import { useSearchParams } from "next/navigation";
 import { fuzzyScore } from "@/lib/fuzzy";
 import { frameHref } from "@/lib/frame";
 import { useFrame } from "@/components/useFrame";
 import { readContext, scholarshipDefault } from "@/lib/personalization";
+import {
+  readSavedScholarships,
+  toggleSavedScholarship,
+  setScholarshipApplied,
+  summarizeSavedScholarships,
+  type SavedScholarshipMap,
+} from "@/lib/savedScholarships";
 import {
   scholarships,
   VERIFIED_AS_OF,
@@ -107,6 +118,23 @@ export default function ScholarshipFinder() {
   const [autoNote, setAutoNote] = useState("");
   const [sort, setSort] = useState<SortKey>("deadline");
 
+  // Saved / applied marks — personal, local-first, account-synced. Read
+  // post-mount so the server render (no marks) and first client paint agree,
+  // same hydration discipline as the clock above.
+  const [marks, setMarks] = useState<SavedScholarshipMap>({});
+  const [view, setView] = useState<"all" | "saved" | "applied">("all");
+  useEffect(() => {
+    setMarks(readSavedScholarships());
+  }, []);
+  const summary = useMemo(() => summarizeSavedScholarships(marks), [marks]);
+
+  function onToggleSave(id: string) {
+    setMarks(toggleSavedScholarship(id));
+  }
+  function onToggleApplied(id: string, applied: boolean) {
+    setMarks(setScholarshipApplied(id, applied));
+  }
+
   // Audience doors (hero links + subnav) deep-link with ?stage / ?undoc / ?q
   // — applied on mount and on every client-side param change.
   useEffect(() => {
@@ -141,7 +169,7 @@ export default function ScholarshipFinder() {
 
   useEffect(() => {
     setVisible(30);
-  }, [stage, undocOnly, query, sort]);
+  }, [stage, undocOnly, query, sort, view]);
 
   const { open, closed } = useMemo(() => {
     let list = [...scholarships].sort((a, b) => seasonKey(a) - seasonKey(b));
@@ -182,6 +210,17 @@ export default function ScholarshipFinder() {
     return { open: openList, closed: closedList };
   }, [stage, undocOnly, query, now, sort]);
   const results = useMemo(() => [...open, ...closed], [open, closed]);
+  // The saved/applied "view" is a light overlay on top of the filtered
+  // results — kept out of the heavy sort memo so a checkbox click doesn't
+  // re-sort the whole list.
+  const shown = useMemo(() => {
+    if (view === "all") return results;
+    return results.filter((s) => {
+      const m = marks[s.id];
+      if (!m) return false;
+      return view === "saved" ? !!m.saved && !m.applied : !!m.applied;
+    });
+  }, [results, view, marks]);
 
   return (
     <div>
@@ -243,7 +282,15 @@ export default function ScholarshipFinder() {
       </div>
 
       <p className="mt-3 text-sm font-medium text-stone">
-        {now === null ? (
+        {view === "saved" ? (
+          <>
+            {shown.length} on your list to apply for
+          </>
+        ) : view === "applied" ? (
+          <>
+            {shown.length} you&apos;ve marked applied
+          </>
+        ) : now === null ? (
           <>
             {results.length} of {scholarships.length} scholarships
             {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
@@ -278,23 +325,52 @@ export default function ScholarshipFinder() {
         </p>
       )}
 
+      {/* Your list — appears once you've saved or applied to anything */}
+      {now !== null && (summary.toApply + summary.applied > 0 || view !== "all") && (
+        <div className="mt-4 flex flex-wrap items-center gap-2 rounded-lg border border-sand bg-cream p-2.5">
+          <span className="pl-1 text-sm font-bold text-ink">Your list:</span>
+          {(
+            [
+              ["all", "All scholarships"],
+              ["saved", `To apply · ${summary.toApply}`],
+              ["applied", `Applied · ${summary.applied}`],
+            ] as const
+          ).map(([v, label]) => (
+            <button
+              key={v}
+              type="button"
+              onClick={() => setView(v)}
+              aria-pressed={view === v}
+              className={`rounded-md border-2 px-3 py-1 text-sm font-bold transition-colors ${
+                view === v
+                  ? "border-ink bg-forest text-cream"
+                  : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Cards — open cycles first, closed cycles greyed at the end */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {results.slice(0, visible).map((s) => {
+        {shown.slice(0, visible).map((s) => {
           const closedCycle = now !== null && isClosedCycle(s, now.m);
           const until = now === null ? null : monthsUntil(s, now.m);
           const thisMonth = until === 0;
+          const mark = marks[s.id];
           return (
             <a
               key={s.id}
               href={s.officialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={
+              className={`${
                 closedCycle
                   ? "group flex h-full flex-col rounded-xl border-2 border-sand bg-cream/50 p-5 opacity-75 transition-opacity hover:opacity-100"
                   : "card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-              }
+              }${mark?.applied ? " ring-2 ring-amber" : ""}`}
             >
               <div className="flex items-start justify-between gap-3">
                 {closedCycle && now !== null ? (
@@ -361,36 +437,97 @@ export default function ScholarshipFinder() {
                   <ExternalLink className="h-3.5 w-3.5" />
                 </span>
               </p>
+              {/* Save / applied — personal, saved to this device (and your
+                  account if you sign in). Buttons live inside the card link,
+                  so they stop the click from opening the official site. */}
+              <div className="mt-3 flex items-center gap-2 border-t border-sand pt-3">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onToggleSave(s.id);
+                  }}
+                  aria-pressed={!!mark?.saved}
+                  aria-label={mark?.saved ? "Remove from your list" : "Save to your list"}
+                  className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-xs font-bold transition-colors ${
+                    mark?.saved
+                      ? "border-forest bg-forest text-cream"
+                      : "border-ink/15 bg-cream text-stone hover:border-forest hover:text-forest"
+                  }`}
+                >
+                  <BookmarkSimple
+                    weight={mark?.saved ? "fill" : "regular"}
+                    className="h-3.5 w-3.5"
+                  />
+                  {mark?.saved ? "Saved" : "Save"}
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onToggleApplied(s.id, !mark?.applied);
+                  }}
+                  aria-pressed={!!mark?.applied}
+                  aria-label={mark?.applied ? "Unmark as applied" : "Mark as applied"}
+                  className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-xs font-bold transition-colors ${
+                    mark?.applied
+                      ? "border-amber bg-amber text-ink"
+                      : "border-ink/15 bg-cream text-stone hover:border-amber hover:text-ink"
+                  }`}
+                >
+                  <CheckCircle
+                    weight={mark?.applied ? "fill" : "regular"}
+                    className="h-3.5 w-3.5"
+                  />
+                  {mark?.applied ? "Applied" : "Mark applied"}
+                </button>
+              </div>
             </a>
           );
         })}
       </div>
 
-      {results.length > visible && (
+      {shown.length > visible && (
         <div className="mt-6 text-center">
           <button
             type="button"
             onClick={() => setVisible((v) => v + 30)}
             className="btn-ink inline-flex items-center rounded-md bg-cream px-6 py-2.5 text-sm font-bold text-ink"
           >
-            Show {Math.min(30, results.length - visible)} more
+            Show {Math.min(30, shown.length - visible)} more
           </button>
         </div>
       )}
 
-      {results.length === 0 && (
-        <p className="mt-6 text-base leading-7 text-stone">
-          Nothing matches those filters. Widen the search, and remember this
-          list is a curated starting lineup, not the whole universe:{" "}
-          <a
-            href={frameHref("/learn/college/finding-scholarships", frame)}
-            className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-          >
-            Finding Scholarships You&apos;ll Actually Win
-          </a>{" "}
-          covers how to dig further.
-        </p>
-      )}
+      {shown.length === 0 &&
+        (view === "saved" ? (
+          <p className="mt-6 text-base leading-7 text-stone">
+            No scholarships on your list yet. Tap{" "}
+            <span className="font-semibold text-forest">Save</span> on any card to
+            build a shortlist you want to apply for — it stays on this device, and
+            follows you if you sign in.
+          </p>
+        ) : view === "applied" ? (
+          <p className="mt-6 text-base leading-7 text-stone">
+            Nothing marked applied yet. When you send an application, tap{" "}
+            <span className="font-semibold text-ink">Mark applied</span> on its card
+            to check it off here.
+          </p>
+        ) : (
+          <p className="mt-6 text-base leading-7 text-stone">
+            Nothing matches those filters. Widen the search, and remember this
+            list is a curated starting lineup, not the whole universe:{" "}
+            <a
+              href={frameHref("/learn/college/finding-scholarships", frame)}
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              Finding Scholarships You&apos;ll Actually Win
+            </a>{" "}
+            covers how to dig further.
+          </p>
+        ))}
 
       <p className="mt-8 rounded-xl border border-sand bg-cream p-4 text-sm leading-6 text-stone">
         Every entry checked by hand against the program&apos;s official

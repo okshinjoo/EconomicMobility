@@ -31,6 +31,7 @@ const MAP_KEYS = new Set([
   "empower:community-likes:v1",
   "empower:flashcards:v1",
   "empower:welcomed:v1",
+  "empower:saved-scholarships:v1",
 ]);
 
 // Never synced: the profile mirror is managed by the account panel itself.
