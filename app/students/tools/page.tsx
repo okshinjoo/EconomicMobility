@@ -62,25 +62,47 @@ function categorySection(cat: (typeof toolCategories)[number]) {
                       <Link
                         key={item.mainHref}
                         href={TOOL_FRAME_MAP[item.mainHref]}
-                        className="group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
-                        style={{ backgroundColor: style.bg }}
+                        className={
+                          item.main
+                            ? "group flex h-full flex-col rounded-xl border-2 border-ink bg-forest p-5 text-cream shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1"
+                            : "group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
+                        }
+                        style={item.main ? undefined : { backgroundColor: style.bg }}
                       >
-                        <ToolMark
-                          slug={item.slug}
-                          color={style.accent}
-                          className="h-8 w-8 shrink-0"
-                        />
-                        <h3 className="mt-2.5 font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
-                          style={{ textDecorationColor: style.accent }}
+                        <div className="flex items-start justify-between gap-2">
+                          <ToolMark
+                            slug={item.slug}
+                            color={item.main ? "#fbf8f1" : style.accent}
+                            className="h-8 w-8 shrink-0"
+                          />
+                          {item.main && (
+                            <span className="rounded-full bg-amber px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">
+                              Main
+                            </span>
+                          )}
+                        </div>
+                        <h3
+                          className={`mt-2.5 font-display text-base font-bold leading-snug group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4 ${
+                            item.main ? "" : "text-ink"
+                          }`}
+                          style={{ textDecorationColor: item.main ? "#e7a33c" : style.accent }}
                         >
                           {item.title}
                         </h3>
-                        <p className="mt-1.5 flex-1 text-sm leading-6 text-ink/70">
+                        <p
+                          className={`mt-1.5 flex-1 text-sm leading-6 ${
+                            item.main ? "text-cream/75" : "text-ink/70"
+                          }`}
+                        >
                           {item.short}
                         </p>
                         <span
                           className="mt-4 text-sm font-bold underline decoration-2 underline-offset-4"
-                          style={{ color: style.accent, textDecorationColor: `${style.accent}88` }}
+                          style={
+                            item.main
+                              ? { color: "#e7a33c", textDecorationColor: "#e7a33c88" }
+                              : { color: style.accent, textDecorationColor: `${style.accent}88` }
+                          }
                         >
                           Open
                         </span>
