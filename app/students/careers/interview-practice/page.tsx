@@ -49,6 +49,7 @@ export default function InterviewPracticePage() {
             cards={interviewCards}
             accent={INTERVIEW_ACCENT}
             deckId="interview-practice"
+            frontLabel="Question"
             clearedNote="Every question, answered out loud and owned. Walk in like you've done this before — because now you have."
           />
           <p className="mt-8 text-sm leading-6 text-stone">

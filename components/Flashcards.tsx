@@ -18,6 +18,7 @@ export default function Flashcards({
   accent,
   deckId,
   clearedNote = "Every definition in this module, down. The final quiz is right below.",
+  frontLabel = "Term",
 }: {
   cards: Flashcard[];
   accent: string;
@@ -26,6 +27,9 @@ export default function Flashcards({
   /** Deck-cleared line — the default speaks course language; other decks
    *  (interview practice) pass their own. */
   clearedNote?: string;
+  /** What the front of a card holds ("Term" for courses, "Question" for
+   *  interview practice). */
+  frontLabel?: string;
 }) {
   const [order, setOrder] = useState<number[]>(() => cards.map((_, i) => i));
   const [index, setIndex] = useState(0);
@@ -184,7 +188,7 @@ export default function Flashcards({
                   className="text-xs font-bold uppercase tracking-[0.16em]"
                   style={{ color: accent }}
                 >
-                  Term · {safeIndex + 1} of {remaining.length} left
+                  {frontLabel} · {safeIndex + 1} of {remaining.length} left
                 </span>
                 <span className="flex flex-1 items-center font-display text-3xl font-semibold text-ink sm:text-4xl">
                   {card!.term}
