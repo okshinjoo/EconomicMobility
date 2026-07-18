@@ -26,59 +26,8 @@ const EXTRAS = [
   { title: "Free Templates", href: "/students/tools/templates", note: "Budget, debt, and savings spreadsheets that total themselves." },
 ];
 
-export default function StudentToolsHub() {
-  return (
-    <div className="min-h-screen bg-paper text-ink">
-      {/* Hero — B-voice: light field, sticker, and a tilted pastel cluster */}
-      <section className="border-b-2 border-ink bg-paper-deep">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-6 pb-10 pt-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <nav className="text-sm font-medium text-stone">
-              <Link
-                href="/students"
-                className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-              >
-                For Students
-              </Link>{" "}
-              / Tools
-            </nav>
-            <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-              Free · no sign-up · numbers follow you
-            </span>
-            <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
-              Every calculator,{" "}
-              <span className="italic text-forest">in-house.</span>
-            </h1>
-            <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
-              The same free tools as the main site, right here in the student
-              hub, and your numbers follow you between the two.
-            </p>
-          </div>
-          <div className="hidden grid-cols-2 gap-3 lg:grid" aria-hidden>
-            {(
-              [
-                ["College Cost", "#c9842a", "rotate-[1deg]"],
-                ["Budget Planner", "#15624b", "-rotate-[1deg]"],
-                ["Paycheck", "#2f6d80", "-rotate-[0.6deg]"],
-                ["Reality Check", "#d26a4c", "rotate-[0.8deg]"],
-              ] as const
-            ).map(([label, tint, tilt]) => (
-              <div
-                key={label}
-                className={`card-ink rounded-xl px-4 py-6 text-center font-display text-base font-bold text-ink ${tilt}`}
-                style={{ background: `color-mix(in srgb, ${tint} 16%, #fbf8f1)` }}
-              >
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+function categorySection(cat: (typeof toolCategories)[number]) {
 
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-6 py-10">
-          <div className="space-y-10">
-            {toolCategories.map((cat) => {
               const style = toolStyles[cat.id] ?? toolStyles.budgeting;
               const live = cat.items
                 .filter((item) => item.status === "live")
@@ -137,12 +86,71 @@ export default function StudentToolsHub() {
                   </div>
                 </div>
               );
-            })}
+            }
+
+export default function StudentToolsHub() {
+  return (
+    <div className="min-h-screen bg-paper text-ink">
+      {/* Hero — B-voice: light field, sticker, and a tilted pastel cluster */}
+      <section className="border-b-2 border-ink bg-paper-deep">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-6 pb-10 pt-12 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <nav className="text-sm font-medium text-stone">
+              <Link
+                href="/students"
+                className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                For Students
+              </Link>{" "}
+              / Tools
+            </nav>
+            <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
+              Free · no sign-up · numbers follow you
+            </span>
+            <h1 className="mt-4 font-display text-[2.4rem] font-bold leading-[1.07] tracking-tight text-ink sm:text-5xl">
+              Every calculator,{" "}
+              <span className="italic text-forest">in-house.</span>
+            </h1>
+            <p className="mt-4 max-w-xl text-lg leading-8 text-stone">
+              College tools up top — the cost gap, aid offers, loans — then
+              every other free calculator on the site. Your numbers follow
+              you between here and the main site.
+            </p>
+          </div>
+          <div className="hidden grid-cols-2 gap-3 lg:grid">
+            {(
+              [
+                ["College Cost", "/students/tools/college-cost", "#c9842a", "rotate-[1deg]"],
+                ["Budget Planner", "/students/tools/budget", "#15624b", "-rotate-[1deg]"],
+                ["Paycheck", "/students/tools/paycheck", "#2f6d80", "-rotate-[0.6deg]"],
+                ["Reality Check", "/students/tools/reality-check", "#d26a4c", "rotate-[0.8deg]"],
+              ] as const
+            ).map(([label, href, tint, tilt]) => (
+              <Link
+                key={label}
+                href={href}
+                className={`card-ink rounded-xl px-4 py-6 text-center font-display text-base font-bold text-ink transition-transform duration-200 hover:-translate-y-1 hover:underline hover:decoration-2 hover:underline-offset-4 ${tilt}`}
+                style={{ background: `color-mix(in srgb, ${tint} 16%, #fbf8f1)`, textDecorationColor: tint }}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="space-y-10">
+            {/* Student tools lead (owner, July 17: "advertise the student
+                tools first"): the College category, then the made-for-
+                students extras, then the general categories. */}
+            {toolCategories.filter((c) => c.id === "college").map(categorySection)}
 
             <div>
               <div className="flex items-center gap-3">
                 <h2 className="font-display text-xl font-bold text-ink">
-                  More for students
+                  Made for students
                 </h2>
                 <span className="h-px flex-1 bg-sand" />
               </div>
@@ -169,6 +177,9 @@ export default function StudentToolsHub() {
                 ))}
               </div>
             </div>
+
+            {toolCategories.filter((c) => c.id !== "college").map(categorySection)}
+
           </div>
         </div>
       </section>
