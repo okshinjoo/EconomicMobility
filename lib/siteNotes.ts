@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,260 scholarships — a checked door into local money, in almost every state",
+    body: "We said local scholarships are better found through your community foundation — so we went and found yours. 39 new entries, one per state: the biggest scholarship-granting community foundation portal we could verify in each, where a single free application matches you against dozens to hundreds of local funds (North Carolina's covers all 100 counties with 1,200+ funds; New Hampshire's gives out $8 million a year). Where a foundation is regional rather than statewide, the entry says so plainly. Three honest gaps: Vermont, Utah, and DC, where we couldn't verify a real one-application portal — we'd rather leave a hole than list a door that doesn't open. The 'More places to search' shelf also grew from four doors to six: MALDEF's free annual guide of scholarships that don't ask about immigration status, and Dollars for Scholars' finder for its 400+ volunteer-run local chapters.",
+    href: "/students/scholarships",
+    hrefLabel: "Find your state's door",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,221 scholarships — the trades, the professions, and the money nobody lists",
     body: "73 more hand-verified awards, and this wave went where the glossy lists don't: welding, HVAC, diesel, commercial diving, and automotive-restoration scholarships; thirteen state CPA societies and the actuarial diversity pipeline; aviation awards from business-aviation charities to the National Gay Pilots Association; geoscience and meteorology money; and the state workforce grants (Iowa's vocational-tech grant, Arkansas's Workforce Challenge, Georgia's HOPE Career Grant) that reward choosing a trade. The honest part: our researchers surfaced 115 candidates and we shipped 73. We cut every award that only serves graduate students, every 'scholarship' that requires a paid membership to apply, loan-repayment programs that serve working professionals rather than students, contests dressed as scholarships, and three programs whose official pages quietly died — including one foundation that pivoted away from student scholarships entirely without saying so. A shorter list you can trust beats a longer one you can't.",
     href: "/students/scholarships",

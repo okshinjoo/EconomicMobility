@@ -149,7 +149,7 @@ export default function ScholarshipsPage() {
             Free, reputable searchers worth your time: no fees, and no
             handing your data to a marketing machine.
           </p>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href="https://bigfuture.collegeboard.org/scholarship-search"
               target="_blank"
@@ -217,6 +217,42 @@ export default function ScholarshipsPage() {
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
                 Browse UNCF awards
+              </span>
+            </a>
+            <a
+              href="https://www.maldef.org/resources/scholarship-resources/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                MALDEF&apos;s guide
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                A free annual guide of scholarships that don&apos;t ask about
+                immigration status, published for over twenty years. No
+                signup, just the list.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Get the MALDEF guide
+              </span>
+            </a>
+            <a
+              href="https://scholarshipamerica.org/sponsors/dollars-for-scholars/find-your-chapter/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                Dollars for Scholars
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                400+ volunteer-run local scholarship chapters across the
+                country, each raising money for students in its own
+                community. One lookup finds yours.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Find your chapter
               </span>
             </a>
           </div>
