@@ -277,7 +277,7 @@ export const scholarships: Scholarship[] = [
     deadlineMonth: 10,
     who: "Students entering their SECOND year or later. One of the few big awards for students already in college.",
     stages: ["college", "transfer"],
-    officialUrl: "https://scholarshipamerica.org/students/browse-scholarships/",
+    officialUrl: "https://scholarshipamerica.org/scholarship/dreamaward/",
   },
   {
     id: "regeneron-sts",
