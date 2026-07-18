@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,266 scholarships — the famous ones, checked",
+    body: "We went back through the big open-to-anyone awards — the ones every list mentions — to see what we were still missing. Six real additions: the Boren Scholarship (up to $25,000 to study a critical language abroad, with a federal-service commitment we spell out), the Dr Pepper Tuition Giveaway (a panel-judged video contest, not the random drawing its name suggests), Doodle for Google, and the three Ayn Rand Institute essay contests (Anthem, The Fountainhead, Atlas Shrugged — no entry fee, no citizenship requirement). What we deliberately left out matters more: we don't list the 'no-essay, enter-to-win' scholarships that flood search results, because they exist to harvest and sell your data — Unigo, ScholarshipPoints, Chegg, and their kind never make this list. We also cut real programs that don't fit — a scholarship you can't apply to yourself (your teacher or counselor has to enter you), and one we found had quietly shut down and been replaced by a program already on our list.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,260 scholarships — a checked door into local money, in almost every state",
     body: "We said local scholarships are better found through your community foundation — so we went and found yours. 39 new entries, one per state: the biggest scholarship-granting community foundation portal we could verify in each, where a single free application matches you against dozens to hundreds of local funds (North Carolina's covers all 100 counties with 1,200+ funds; New Hampshire's gives out $8 million a year). Where a foundation is regional rather than statewide, the entry says so plainly. Three honest gaps: Vermont, Utah, and DC, where we couldn't verify a real one-application portal — we'd rather leave a hole than list a door that doesn't open. The 'More places to search' shelf also grew from four doors to six: MALDEF's free annual guide of scholarships that don't ask about immigration status, and Dollars for Scholars' finder for its 400+ volunteer-run local chapters.",
     href: "/students/scholarships",
