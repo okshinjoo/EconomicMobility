@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 const EXTRAS = [
+  { title: "Career Explorer", href: "/students/career-explorer", note: "100 careers: real pay, growth, and training paths." },
+  { title: "Compare Colleges", href: "/students/compare-colleges", note: "100 colleges: admissions and aid policies, hand-checked." },
   { title: "Student Tracker", href: "/students/tracker", note: "Units, grades, GPA, and to-dos in one place." },
   { title: "Letter Generator", href: "/students/tools/letters", note: "Credit-dispute and debt-validation letters, built in-browser." },
   { title: "Free Templates", href: "/students/tools/templates", note: "Budget, debt, and savings spreadsheets that total themselves." },

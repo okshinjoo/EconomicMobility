@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, FileXls as FileSpreadsheet, DownloadSimple as Download, PencilSimpleLine as PenLine } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Binoculars, FileXls as FileSpreadsheet, DownloadSimple as Download, GraduationCap, PencilSimpleLine as PenLine } from "@phosphor-icons/react/dist/ssr";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CurtainFooter from "@/components/CurtainFooter";
@@ -304,6 +304,60 @@ export default function ToolsHub() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Explorers — the two big-dataset tools (owner ask July 17: "career
+          explorer and compare colleges should be in the tools section").
+          Not calculators, so they stay OUT of toolsRegistry (which drives
+          every "N calculators" count) and get their own band. Canonical
+          homes are in the student frame; these links cross into it. */}
+      <section className="border-t-2 border-ink bg-paper-deep">
+        <div className="mx-auto max-w-6xl px-6 pt-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
+            Not calculators — explorers
+          </span>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {[
+              {
+                title: "Career Explorer",
+                icon: Binoculars,
+                href: "/students/career-explorer",
+                desc: "One hundred careers on real federal data: what each one pays, how fast it's growing, and the training it takes — with “earn while you train” as a first-class filter.",
+                stat: "100 careers · BLS pay + growth data",
+              },
+              {
+                title: "Compare Colleges",
+                icon: GraduationCap,
+                href: "/students/compare-colleges",
+                desc: "One hundred colleges with hand-checked admissions and aid policies: need-blind or not, meets full need or not, and what they actually weigh when they read your application.",
+                stat: "100 colleges · admissions + aid, hand-encoded",
+              },
+            ].map((ex) => (
+              <Reveal key={ex.href}>
+                <Link
+                  href={ex.href}
+                  className="group flex h-full flex-col rounded-2xl border-2 border-ink bg-forest p-6 text-cream shadow-[4px_4px_0_#e7a33c] transition-transform duration-200 hover:-translate-y-1 sm:p-7"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <ex.icon className="h-8 w-8 text-amber" weight="regular" />
+                    <span className="rounded-full bg-cream/10 px-2.5 py-1 text-[11px] font-bold text-cream/80">
+                      {ex.stat}
+                    </span>
+                  </div>
+                  <h2 className="mt-4 font-display text-2xl font-bold leading-snug">
+                    {ex.title}
+                  </h2>
+                  <p className="mt-2 flex-1 text-sm leading-6 text-cream/75">
+                    {ex.desc}
+                  </p>
+                  <span className="mt-4 text-sm font-bold text-amber underline decoration-amber/50 decoration-2 underline-offset-4 group-hover:text-cream">
+                    Open
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
