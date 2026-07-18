@@ -2,9 +2,17 @@
 
 // The scholarship finder (July 2026): filter the curated list by stage,
 // citizenship-openness, and a fuzzy search box (lib/fuzzy, house rule).
-// Ordering is the ACADEMIC year (August first), so the list reads like the
-// application season actually unfolds — no Date() involved, so the server
-// render and every client agree.
+//
+// DEADLINE AWARENESS (July 17, owner: "include deadlines, and don't show
+// any with deadlines that are already closed — show them greyed out with
+// when applications open again"): month granularity is all the data has,
+// so the honest model is cycles. An award is IN SEASON when its next
+// deadline is within 6 months (windows open a few months ahead); 7-11
+// months out means this year's cycle just closed — those grey out, sink
+// below the open ones, and name the next cycle's typical deadline month
+// + year. The clock arrives POST-MOUNT (nowMonth state), so the server
+// render (season order, nothing greyed) and the client's first paint
+// still agree — same hydration discipline as the rest of the site.
 
 import { useEffect, useMemo, useState } from "react";
 import { ArrowSquareOut as ExternalLink } from "@phosphor-icons/react/dist/ssr";
@@ -26,10 +34,40 @@ const STAGE_LABELS: Record<StudentStage, string> = {
   transfer: "Transferring",
 };
 
-/** August-first ordering: month 8 sorts 0, July sorts 11, varies sinks. */
+/** August-first ordering: month 8 sorts 0, July sorts 11, varies sinks.
+ *  (Pre-mount order only — once the clock arrives, deadline proximity
+ *  takes over.) */
 function seasonKey(s: Scholarship): number {
   if (s.deadlineMonth === null) return 99;
   return (s.deadlineMonth - 8 + 12) % 12;
+}
+
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June", "July",
+  "August", "September", "October", "November", "December",
+];
+
+/** Months until the next occurrence of the deadline month (0 = this
+ *  month); null for rolling/varies. */
+function monthsUntil(s: Scholarship, nowMonth: number): number | null {
+  if (s.deadlineMonth === null) return null;
+  return (s.deadlineMonth - nowMonth + 12) % 12;
+}
+
+/** Closed for this cycle: the deadline passed 1-5 months ago (next one is
+ *  7-11 months out). Within 6 months counts as in season. */
+function isClosedCycle(s: Scholarship, nowMonth: number | null): boolean {
+  if (nowMonth === null) return false;
+  const until = monthsUntil(s, nowMonth);
+  return until !== null && until >= 7;
+}
+
+/** "January 2027" for the next occurrence of the deadline month. */
+function nextDeadlineLabel(s: Scholarship, nowMonth: number, nowYear: number): string {
+  const until = monthsUntil(s, nowMonth);
+  if (until === null || s.deadlineMonth === null) return s.deadline;
+  const year = s.deadlineMonth >= nowMonth ? nowYear : nowYear + 1;
+  return `${MONTH_NAMES[s.deadlineMonth - 1]} ${year}`;
 }
 
 const STAGE_VALUES: (StudentStage | "all")[] = [
@@ -46,6 +84,12 @@ export default function ScholarshipFinder() {
   const [undocOnly, setUndocOnly] = useState(false);
   const [query, setQuery] = useState("");
   const [visible, setVisible] = useState(30);
+  // The clock, post-mount (see the header comment).
+  const [now, setNow] = useState<{ m: number; y: number } | null>(null);
+  useEffect(() => {
+    const d = new Date();
+    setNow({ m: d.getMonth() + 1, y: d.getFullYear() });
+  }, []);
   // When the opening stage came from the person's profile, we say so (subtle,
   // editable) — never a claim of confirmed eligibility, just where we started.
   const [autoNote, setAutoNote] = useState("");
@@ -86,7 +130,7 @@ export default function ScholarshipFinder() {
     setVisible(30);
   }, [stage, undocOnly, query]);
 
-  const results = useMemo(() => {
+  const { open, closed } = useMemo(() => {
     let list = [...scholarships].sort((a, b) => seasonKey(a) - seasonKey(b));
     if (stage !== "all") list = list.filter((s) => s.stages.includes(stage));
     if (undocOnly) list = list.filter((s) => s.openToUndocumented);
@@ -101,8 +145,25 @@ export default function ScholarshipFinder() {
         .sort((a, b) => b.score - a.score)
         .map((r) => r.s);
     }
-    return list;
-  }, [stage, undocOnly, query]);
+    if (now === null) return { open: list, closed: [] as Scholarship[] };
+    // Soonest deadline first among the open (rolling floats mid-list at
+    // 6.5 so this-season deadlines lead but rolling stays visible);
+    // search keeps its relevance order. Closed cycles sink, soonest
+    // reopening first.
+    const openList = list.filter((s) => !isClosedCycle(s, now.m));
+    if (!q) {
+      openList.sort((a, b) => {
+        const ua = monthsUntil(a, now.m) ?? 6.5;
+        const ub = monthsUntil(b, now.m) ?? 6.5;
+        return ua - ub;
+      });
+    }
+    const closedList = list
+      .filter((s) => isClosedCycle(s, now.m))
+      .sort((a, b) => (monthsUntil(a, now.m) ?? 99) - (monthsUntil(b, now.m) ?? 99));
+    return { open: openList, closed: closedList };
+  }, [stage, undocOnly, query, now]);
+  const results = useMemo(() => [...open, ...closed], [open, closed]);
 
   return (
     <div>
@@ -150,10 +211,22 @@ export default function ScholarshipFinder() {
       />
 
       <p className="mt-3 text-sm font-medium text-stone">
-        {results.length} of {scholarships.length} scholarships
-        {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
-        {undocOnly && " · no citizenship requirement"}, ordered by where
-        they fall in the school year.
+        {now === null ? (
+          <>
+            {results.length} of {scholarships.length} scholarships
+            {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
+            {undocOnly && " · no citizenship requirement"}
+          </>
+        ) : (
+          <>
+            {open.length} open now
+            {closed.length > 0 &&
+              ` · ${closed.length} between cycles (greyed, at the end)`}
+            {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
+            {undocOnly && " · no citizenship requirement"}
+          </>
+        )}
+        , ordered by next deadline.
       </p>
 
       {autoNote && (
@@ -169,51 +242,92 @@ export default function ScholarshipFinder() {
         </p>
       )}
 
-      {/* Cards */}
+      {/* Cards — open cycles first, closed cycles greyed at the end */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {results.slice(0, visible).map((s) => (
-          <a
-            key={s.id}
-            href={s.officialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <p className="font-display text-sm font-bold text-terracotta">
-                {s.deadline}
+        {results.slice(0, visible).map((s) => {
+          const closedCycle = now !== null && isClosedCycle(s, now.m);
+          const until = now === null ? null : monthsUntil(s, now.m);
+          const thisMonth = until === 0;
+          return (
+            <a
+              key={s.id}
+              href={s.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={
+                closedCycle
+                  ? "group flex h-full flex-col rounded-xl border-2 border-sand bg-cream/50 p-5 opacity-75 transition-opacity hover:opacity-100"
+                  : "card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+              }
+            >
+              <div className="flex items-start justify-between gap-3">
+                {closedCycle && now !== null ? (
+                  <p className="text-sm font-bold text-stone">
+                    Closed for this cycle · reopens ahead of{" "}
+                    {nextDeadlineLabel(s, now.m, now.y)}
+                  </p>
+                ) : (
+                  <p className="font-display text-sm font-bold text-terracotta">
+                    {now !== null && s.deadlineMonth !== null
+                      ? `Deadline: typically ${nextDeadlineLabel(s, now.m, now.y)}`
+                      : s.deadline}
+                    {thisMonth && (
+                      <span className="ml-2 rounded-full bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
+                        This month
+                      </span>
+                    )}
+                  </p>
+                )}
+                {s.openToUndocumented && (
+                  <span
+                    className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                      closedCycle ? "bg-stone/30 text-ink/60" : "bg-forest text-cream"
+                    }`}
+                  >
+                    No citizenship req.
+                  </span>
+                )}
+              </div>
+              <h3
+                className={`mt-1.5 font-display text-lg font-bold leading-snug ${
+                  closedCycle
+                    ? "text-ink/60"
+                    : "text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4"
+                }`}
+              >
+                {s.name}
+              </h3>
+              <p
+                className={`mt-1 font-display text-base font-bold ${
+                  closedCycle ? "text-stone" : "text-forest"
+                }`}
+              >
+                {s.amount}
               </p>
-              {s.openToUndocumented && (
-                <span className="shrink-0 rounded-full bg-forest px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
-                  No citizenship req.
-                </span>
-              )}
-            </div>
-            <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
-              {s.name}
-            </h3>
-            <p className="mt-1 font-display text-base font-bold text-forest">
-              {s.amount}
-            </p>
-            <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
-              {s.who}
-            </p>
-            <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
-              {s.stages.map((st) => (
+              <p className={`mt-1.5 flex-1 text-sm leading-6 ${closedCycle ? "text-stone/80" : "text-stone"}`}>
+                {s.who}
+              </p>
+              <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+                {s.stages.map((st) => (
+                  <span
+                    key={st}
+                    className="text-[11px] font-bold uppercase tracking-wide text-ink/50"
+                  >
+                    {STAGE_LABELS[st]}
+                  </span>
+                ))}
                 <span
-                  key={st}
-                  className="text-[11px] font-bold uppercase tracking-wide text-ink/50"
+                  className={`ml-auto inline-flex items-center gap-1 text-sm font-semibold ${
+                    closedCycle ? "text-stone" : "text-forest"
+                  }`}
                 >
-                  {STAGE_LABELS[st]}
+                  Official site
+                  <ExternalLink className="h-3.5 w-3.5" />
                 </span>
-              ))}
-              <span className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-forest">
-                Official site
-                <ExternalLink className="h-3.5 w-3.5" />
-              </span>
-            </p>
-          </a>
-        ))}
+              </p>
+            </a>
+          );
+        })}
       </div>
 
       {results.length > visible && (
