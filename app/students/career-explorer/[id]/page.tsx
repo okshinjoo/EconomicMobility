@@ -18,6 +18,7 @@ import type { TopicId } from "@/lib/topics";
 import {
   careers,
   growthLabel,
+  payLabel,
   CAREER_DATA_VINTAGE,
   FIELD_LABELS,
   EDUCATION_LABELS,
@@ -140,7 +141,7 @@ export default async function CareerProfilePage({
           <div className="mt-7 flex flex-wrap items-end gap-x-10 gap-y-4">
             <div>
               <div className="font-display text-4xl font-bold tabular-nums text-cream sm:text-5xl">
-                {usd(c.medianPay)}
+                {payLabel(c.medianPay)}
               </div>
               <div className="mt-1 text-sm font-semibold text-cream/60">
                 median pay per year
@@ -194,7 +195,7 @@ export default async function CareerProfilePage({
           <h2 className="font-display text-2xl font-bold text-ink">By the numbers</h2>
           <p className="mt-1 text-sm text-stone">{CAREER_DATA_VINTAGE}.</p>
           <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            <Stat label="Median pay" value={usd(c.medianPay)} sub="per year" tone="forest" />
+            <Stat label="Median pay" value={payLabel(c.medianPay)} sub="per year" tone="forest" />
             <Stat
               label="What most earn"
               value={hasRange ? `${usd(d!.payLow!)}–${usd(d!.payHigh!)}` : "—"}
@@ -334,7 +335,7 @@ export default async function CareerProfilePage({
                     {FIELD_LABELS[r.field]}
                   </p>
                   <div className="mt-3 font-display text-xl font-bold tabular-nums text-forest">
-                    {usd(r.medianPay)}
+                    {payLabel(r.medianPay)}
                   </div>
                   <div className="text-[11px] font-semibold text-stone">
                     median / year

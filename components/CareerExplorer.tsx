@@ -13,6 +13,7 @@ import { fuzzyScore } from "@/lib/fuzzy";
 import {
   careers,
   growthLabel,
+  payLabel,
   CAREER_DATA_VINTAGE,
   FIELD_LABELS,
   EDUCATION_LABELS,
@@ -212,7 +213,7 @@ export default function CareerExplorer() {
                 </div>
                 <div className="text-right">
                   <div className="font-display text-2xl font-bold tabular-nums text-forest">
-                    {usd(c.medianPay)}
+                    {payLabel(c.medianPay)}
                   </div>
                   <div className="text-[11px] font-semibold text-stone">
                     median pay / year
