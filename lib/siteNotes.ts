@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "712 scholarships — and honest employer tuition benefits",
+    body: "69 more hand-verified entries. New ground: allied-health careers (dental hygiene, radiologic tech, EMS, even mortuary science — the one that's explicitly DACA-open), awards for students living with cancer, rare diseases, arthritis, and other conditions, business and professional societies from fashion to court reporting, families of fallen police officers and firefighters, and national competitions with real scholarship money. We also added the big employer education benefits — Starbucks, Walmart, Target, Amazon, Chipotle — labeled exactly what they are: tuition covered while you work there, not scholarship checks. And fourteen state programs fill in the states our map was thinnest on, from Utah to West Virginia.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "643 scholarships, for the students lists forget",
     body: "119 more hand-verified awards, aimed at students most scholarship lists skip: adult learners and single parents going back to school, students with disabilities, LGBTQ+ students, refugees and asylum seekers, rural and farm-family students, skilled-trades students, and dozens of heritage and faith communities from Armenian to Portuguese. Also new: civic clubs like DAR and Optimist, health-field service programs like the federal Nurse Corps, and journalism awards from the associations for Black, Hispanic, Asian American, and Indigenous journalists. Every entry checked against its official site, same as the first 524.",
     href: "/students/scholarships",
