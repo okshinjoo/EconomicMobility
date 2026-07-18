@@ -33,6 +33,7 @@ const TYPE_VALUES: (OpportunityType | "all")[] = [
   "fellowship",
   "research",
   "program",
+  "competition",
 ];
 const STAGE_VALUES: (OppStage | "all")[] = [
   "all",
