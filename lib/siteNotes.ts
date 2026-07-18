@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,375 scholarships — and a map of what isn't out there",
+    body: "This one was different: instead of hunting for more, we audited what we already have. We laid every kind of student against every field of study and checked each square — is there money for a Black student in public service, a Native student in wildlife biology, an undocumented student heading to medical school? Where a real award existed and we'd missed it, we added it: 25 new ones, filling squares that had been empty — Black students in environmental science and social work, Asian and Native students in business and the arts, women in the trades, LGBTQ+ students in STEM. But the more useful result is the honest map of the blanks. Some squares are empty because the money is real but only for graduate students — most 'minority in law' and 'minority in medicine' scholarships are for people already in law or med school, not undergrads, so we say that plainly instead of pretending. Others are empty because the support exists in a form that isn't a scholarship at all — veterans heading into the trades get apprenticeship placement and wages, not a check to sign, so those live in our opportunities finder instead. A list that can tell you where the money isn't, and why, is worth more than one that pads the number.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,350 scholarships — the corners the big lists skip",
     body: "84 more, from a sweep of the narrow places: scholarships for students with a specific condition (bleeding disorders, myasthenia gravis, epilepsy, ichthyosis), national programs from faith bodies most lists never mention (Assemblies of God, Armenian, Coptic, Zoroastrian, Jain), sport and activity awards beyond the obvious (drum corps, marching band, shooting sports, statewide caddie and 4-H funds), more tuition waivers for the children of fallen and disabled veterans and first responders across a dozen states, and field-specific money in urban planning, court reporting, mortuary science, and cosmetology. Six research passes turned up 100 candidates; 84 made it. We cut the metro-only caddie funds (this stays a national-and-statewide list), a single-chapter wildlife award, a scouting scholarship gated behind three memberships at once, a lupus program whose website has gone dark, and a painting-trade scholarship reachable only through a broken security certificate. When a link won't open in a normal browser, it doesn't go on the list.",
     href: "/students/scholarships",
