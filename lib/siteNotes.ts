@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "Past 500: the scholarship list hits 524",
+    body: "88 more hand-verified awards: university flagship scholarships that meet full need, community foundation awards from Chicago to rural Appalachia, programs for military families and children of first responders, awards for students in US territories and students who've been in foster care, more majors (from welding to library science), employer and union programs, and sports-connected scholarships beyond the varsity track. We also re-checked four programs that had gone quiet — two came back confirmed alive, and two turned out to be genuinely discontinued, so they stay off the list.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "436 scholarships, and new kinds of them",
     body: "122 more hand-verified awards, reaching places scholarship lists usually don't: ROTC and federal service programs that pay full tuition (with the service commitment stated plainly), city promise programs from Kalamazoo to Seattle, future-teacher pipelines, arts and writing awards like Scholastic and YoungArts, heritage and faith organizations across dozens of communities, and awards for students living with diabetes, epilepsy, sickle cell, and other conditions. Every entry checked against its official site before listing.",
     href: "/students/scholarships",
