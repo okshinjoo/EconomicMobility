@@ -20,6 +20,16 @@ export function tokensOf(s: string): string[] {
     .filter((t) => t.length > 0);
 }
 
+/** Query-side tokens: single-letter words ("Help A Hero", "vitamin d") carry
+ *  no search signal but would each demand a literal one-letter word in the
+ *  text, so they're dropped — unless the whole query is single letters, which
+ *  keeps a bare "a" matching literally instead of matching nothing. */
+export function queryTokensOf(s: string): string[] {
+  const all = tokensOf(s);
+  const kept = all.filter((t) => t.length > 1);
+  return kept.length > 0 ? kept : all;
+}
+
 /** Damerau–Levenshtein distance with an early-out cap. Returns cap+1 when
  *  the strings are further apart than `cap`. */
 export function editDistance(a: string, b: string, cap = 2): number {
@@ -92,7 +102,7 @@ export function bestTokenScore(q: string, words: string[]): number {
  *  match; otherwise 0..1. Short queries must fully land; longer ones need
  *  most tokens (60%) to land. */
 export function fuzzyScore(query: string, text: string): number {
-  const qs = tokensOf(query);
+  const qs = queryTokensOf(query);
   if (qs.length === 0) return 0;
   const ws = tokensOf(text);
   if (ws.length === 0) return 0;

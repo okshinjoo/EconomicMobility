@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
-import { bestTokenScore, tokensOf } from "@/lib/fuzzy";
+import { bestTokenScore, queryTokensOf, tokensOf } from "@/lib/fuzzy";
 import { MagnifyingGlass as Search, ArrowElbowDownLeft as CornerDownLeft, X, BookOpen, Calculator, FileText, Books as Library, Compass } from "@phosphor-icons/react/dist/ssr";
 import type { SearchItem, SearchKind } from "@/lib/search";
 import { frameHref, type Frame } from "@/lib/frame";
@@ -167,7 +167,7 @@ export default function SearchDialog({
       };
     }
 
-    const tokens = q.split(/\s+/).filter(Boolean);
+    const tokens = queryTokensOf(q);
     const scored = items
       .map((item) => ({ item, s: scoreItem(item, q, tokens) }))
       .filter((r) => r.s >= 0)
