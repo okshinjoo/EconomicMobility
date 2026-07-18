@@ -72,19 +72,30 @@ export default function CategoryFlipCard({
           className="card-ink flex h-full w-full flex-col rounded-2xl p-6 text-left text-ink [backface-visibility:hidden]"
           style={{ backgroundColor: bg }}
         >
-          <span className="flex w-full items-start justify-between gap-2">
-            <ToolDoodle id={catId} color={accent} />
-            <span
-              className="rounded-full px-2.5 py-1 text-[11px] font-bold tabular-nums"
-              style={{ color: accent, background: "rgba(255,255,255,0.6)" }}
-            >
-              {count} calculators
+          {/* The doodle is a wide banner graphic — give it the full card
+              width instead of squeezing it beside a pill. */}
+          <ToolDoodle id={catId} color={accent} />
+          <span className="mt-4 flex w-full items-end justify-between gap-3">
+            <span className="font-display text-xl font-bold leading-tight">
+              {label}
+            </span>
+            <span className="shrink-0 text-right">
+              <span
+                className="block font-display text-2xl font-bold leading-none tabular-nums"
+                style={{ color: accent }}
+              >
+                {count}
+              </span>
+              <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.14em] text-ink/50">
+                calculators
+              </span>
             </span>
           </span>
-          <span className="mt-5 block font-display text-lg font-bold leading-tight">
-            {label}
-          </span>
-          <span className="mt-1.5 flex-1 text-[13px] leading-5 text-ink/70">
+          <span
+            className="mt-2 block h-1 w-8 rounded-full"
+            style={{ background: accent }}
+          />
+          <span className="mt-2 flex-1 text-[13px] leading-5 text-ink/70">
             {blurb}
           </span>
           <span
