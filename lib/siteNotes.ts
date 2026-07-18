@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,151 scholarships — every state's National Guard benefit, mapped",
+    body: "151 more hand-verified entries, and a milestone inside the milestone: the finder now covers state National Guard tuition benefits in 40 states — we checked all 50 and labeled each one honestly, because they are not all the same thing. Some are true waivers, some reimburse you after grades come in, Vermont's is legally a forgivable loan, and New Hampshire's is space-available — the entry says which, so nobody budgets around money that arrives later than they think. (New Mexico, we confirmed, has no Guard-specific program.) Also new: future-teacher scholarships in 16 more states with every teach-here-after obligation stated plainly, a dozen honor-society awards (we cut the ones where a membership fee is the real price of entry), foster-youth tuition waivers and Native student programs in more states, awards for students with albinism, narcolepsy, hydrocephalus, and cleft conditions, and scholarships from veteran-family funds, utilities, and employers. We also confirmed the James Beard Foundation's famous culinary scholarships have quietly gone dark — off the list until they come back.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,000 scholarships. Every one checked by hand.",
     body: "The finder crossed one thousand hand-verified awards today. Every entry was checked against its official site — no aggregator listings, no fees, no sweepstakes dressed up as scholarships, and 73 awards explicitly open to undocumented students. The last stretch added maritime and rail money, arts awards from the Emmys organization to the CFDA, the last of the Divine Nine foundations, National Guard tuition programs and foster-youth waivers across fourteen more states, flight-training funds, and awards for students almost no list serves: children of incarcerated parents, young caregivers, students in recovery, migrant farmworker families. Along the way we also confirmed which famous programs are quietly dead — Generation Google, the Heisman high school award, Hilton Cares — so nobody wastes an essay on them. One thousand real doors, and we keep checking every one, every year.",
     href: "/students/scholarships",
