@@ -46,6 +46,22 @@ body {
   border-radius: 3px;
 }
 
+/* Native inputs speak the house palette: the typing caret and every
+   checkbox/radio/range/progress the browser draws itself (the calculators
+   lean on these). Tap highlight off — the buttons' own :active press is
+   the feedback, not the OS grey flash. */
+input,
+textarea,
+select {
+  caret-color: var(--color-amber-deep, #c9842a);
+}
+:root {
+  accent-color: var(--color-amber);
+}
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Respect users who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -269,6 +285,15 @@ body > * {
 }
 .article-lead {
   font-family: var(--font-reading), Georgia, serif;
+}
+
+/* Reading links thicken their amber underline under the cursor — a small
+   ink-press acknowledgment, article body only. */
+.article-body a {
+  transition: text-decoration-thickness 0.15s ease;
+}
+.article-body a:hover {
+  text-decoration-thickness: 3px;
 }
 
 /* Editorial drop cap on the first paragraph of an article. */

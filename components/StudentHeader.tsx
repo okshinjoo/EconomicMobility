@@ -218,9 +218,10 @@ export default function StudentHeader() {
       <nav aria-label="For Students" className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-5 py-3.5">
         <Link prefetch={false}
           href="/students"
-          className="flex shrink-0 items-center gap-3 transition-opacity hover:opacity-90"
+          className="group flex shrink-0 items-center gap-3"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
+          {/* Same hat-tip as the main header's mark. */}
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink transition-transform duration-200 group-hover:-rotate-6">
             E
           </span>
           <span className="-rotate-2 rounded-md border-2 border-ink bg-amber px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink shadow-[2px_2px_0_#11211c]">

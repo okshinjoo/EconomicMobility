@@ -11,9 +11,11 @@ export default function Header() {
       <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link prefetch={false}
           href="/"
-          className="group flex items-center gap-3 transition-opacity hover:opacity-90"
+          className="group flex items-center gap-3"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink">
+          {/* The mark tips its hat on hover — one playful spot, replacing
+              the old flat opacity fade. */}
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber font-display text-lg font-bold text-ink transition-transform duration-200 group-hover:-rotate-6">
             E
           </span>
           <span className="leading-tight">

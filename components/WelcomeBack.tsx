@@ -254,7 +254,7 @@ export default function WelcomeBack({
           </div>
         ) : (
           <span className="text-xs font-semibold uppercase tracking-[0.16em] text-forest">
-            Welcome back
+            <Greeting />
           </span>
         )}
 
@@ -288,4 +288,24 @@ export default function WelcomeBack({
       </div>
     </section>
   );
+}
+
+/** Time-of-day greeting for the returning-visitor chip. Server renders the
+ *  neutral "Welcome back"; the real clock arrives after hydration, so the
+ *  markup never mismatches. */
+function Greeting() {
+  const [text, setText] = useState("Welcome back");
+  useEffect(() => {
+    const h = new Date().getHours();
+    setText(
+      h < 5
+        ? "Up late? Welcome back"
+        : h < 12
+          ? "Good morning · welcome back"
+          : h < 18
+            ? "Good afternoon · welcome back"
+            : "Good evening · welcome back"
+    );
+  }, []);
+  return <>{text}</>;
 }
