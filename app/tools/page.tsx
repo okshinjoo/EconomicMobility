@@ -148,6 +148,8 @@ export default function ToolsHub() {
                     items={live.map((item) => ({
                       title: item.title,
                       href: hrefFor(cat, item),
+                      slug: item.slug,
+                      main: item.main,
                     }))}
                   />
                 </Reveal>

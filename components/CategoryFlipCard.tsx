@@ -3,6 +3,7 @@
 import { type CSSProperties, useState } from "react";
 import Link from "next/link";
 import ToolDoodle from "./ToolDoodle";
+import ToolMark from "./ToolMark";
 
 /**
  * Tools-hub category tile that flips (same 3D mechanics as the course
@@ -29,7 +30,7 @@ export default function CategoryFlipCard({
   bg: string;
   accent: string;
   /** Live calculators, final hrefs resolved by the caller. */
-  items: { title: string; href: string }[];
+  items: { title: string; href: string; slug: string; main?: boolean }[];
 }) {
   const [flipped, setFlipped] = useState(false);
 
@@ -86,7 +87,10 @@ export default function CategoryFlipCard({
           <span className="mt-1.5 flex-1 text-[13px] leading-5 text-ink/70">
             {blurb}
           </span>
-          <span className="mt-3 text-xs font-medium text-ink/50">
+          <span
+            className="mt-3 text-xs font-bold text-ink/60 underline decoration-2 underline-offset-4"
+            style={{ textDecorationColor: accent }}
+          >
             Peek inside
           </span>
         </button>
@@ -98,22 +102,40 @@ export default function CategoryFlipCard({
           style={{ backgroundColor: bg }}
         >
           <span
-            className="text-[11px] font-bold uppercase tracking-[0.16em]"
+            className="flex items-baseline justify-between text-[11px] font-bold uppercase tracking-[0.16em]"
             style={{ ...backRow(150), color: accent }}
           >
             {label}
+            <span className="tracking-normal text-ink/45">{items.length}</span>
           </span>
-          <ul className="mt-2 flex-1 space-y-0.5">
+          <ul className="mt-2 flex-1 space-y-px">
             {items.map((item, i) => (
               <li key={item.href} style={backRow(190 + i * 40)}>
                 <Link
                   href={item.href}
                   prefetch={false}
                   tabIndex={flipped ? 0 : -1}
-                  className="inline-block text-[13px] font-semibold leading-[1.5] text-ink underline-offset-4 hover:underline hover:decoration-2"
-                  style={{ textDecorationColor: accent }}
+                  className="group/row -mx-1.5 flex items-center gap-2 rounded-md px-1.5 py-[3px] text-[13px] font-semibold leading-tight text-ink hover:bg-white/60"
                 >
-                  {item.title}
+                  <ToolMark
+                    slug={item.slug}
+                    color={accent}
+                    className="h-4 w-4 shrink-0"
+                  />
+                  <span
+                    className="underline-offset-[3px] group-hover/row:underline group-hover/row:decoration-2"
+                    style={{ textDecorationColor: accent }}
+                  >
+                    {item.title}
+                  </span>
+                  {item.main && (
+                    <span
+                      className="ml-auto rounded-full bg-white/60 px-1.5 py-px text-[9px] font-bold uppercase tracking-wide"
+                      style={{ color: accent }}
+                    >
+                      Main
+                    </span>
+                  )}
                 </Link>
               </li>
             ))}
