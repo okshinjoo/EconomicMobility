@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/students/compare-colleges",
     "/students/career-explorer",
     "/students/careers",
+    "/students/careers/interview-practice",
+    "/students/careers/mock-interview",
     "/students/guides",
     "/students/path",
     "/students/deadlines",
