@@ -62,6 +62,18 @@ function isClosedCycle(s: Scholarship, nowMonth: number | null): boolean {
   return until !== null && until >= 7;
 }
 
+/** Largest dollar figure in the display amount, for amount sorting.
+ *  "Full tuition/ride" outranks any number; no figure at all sinks. */
+function amountValue(s: Scholarship): number {
+  if (/full\s+(tuition|ride|cost)/i.test(s.amount)) return 10_000_000;
+  const nums = [...s.amount.matchAll(/\$([\d,]+)/g)].map((m) =>
+    parseInt(m[1].replace(/,/g, ""), 10)
+  );
+  return nums.length ? Math.max(...nums) : 0;
+}
+
+type SortKey = "deadline" | "amount" | "name";
+
 /** "January 2027" for the next occurrence of the deadline month. */
 function nextDeadlineLabel(s: Scholarship, nowMonth: number, nowYear: number): string {
   const until = monthsUntil(s, nowMonth);
@@ -93,6 +105,7 @@ export default function ScholarshipFinder() {
   // When the opening stage came from the person's profile, we say so (subtle,
   // editable) — never a claim of confirmed eligibility, just where we started.
   const [autoNote, setAutoNote] = useState("");
+  const [sort, setSort] = useState<SortKey>("deadline");
 
   // Audience doors (hero links + subnav) deep-link with ?stage / ?undoc / ?q
   // — applied on mount and on every client-side param change.
@@ -128,7 +141,7 @@ export default function ScholarshipFinder() {
 
   useEffect(() => {
     setVisible(30);
-  }, [stage, undocOnly, query]);
+  }, [stage, undocOnly, query, sort]);
 
   const { open, closed } = useMemo(() => {
     let list = [...scholarships].sort((a, b) => seasonKey(a) - seasonKey(b));
@@ -146,23 +159,28 @@ export default function ScholarshipFinder() {
         .map((r) => r.s);
     }
     if (now === null) return { open: list, closed: [] as Scholarship[] };
-    // Soonest deadline first among the open (rolling floats mid-list at
-    // 6.5 so this-season deadlines lead but rolling stays visible);
-    // search keeps its relevance order. Closed cycles sink, soonest
-    // reopening first.
+    // The open/closed partition ALWAYS holds; the chosen sort applies
+    // within each side. Deadline sort: soonest first (rolling floats
+    // mid-list at 6.5), search keeping relevance order. An explicit
+    // amount/name sort overrides relevance — the person asked for it.
+    const bySort = (a: Scholarship, b: Scholarship): number => {
+      if (sort === "amount") return amountValue(b) - amountValue(a);
+      if (sort === "name") return a.name.localeCompare(b.name);
+      const ua = monthsUntil(a, now.m) ?? 6.5;
+      const ub = monthsUntil(b, now.m) ?? 6.5;
+      return ua - ub;
+    };
     const openList = list.filter((s) => !isClosedCycle(s, now.m));
-    if (!q) {
-      openList.sort((a, b) => {
-        const ua = monthsUntil(a, now.m) ?? 6.5;
-        const ub = monthsUntil(b, now.m) ?? 6.5;
-        return ua - ub;
-      });
-    }
+    if (sort !== "deadline" || !q) openList.sort(bySort);
     const closedList = list
       .filter((s) => isClosedCycle(s, now.m))
-      .sort((a, b) => (monthsUntil(a, now.m) ?? 99) - (monthsUntil(b, now.m) ?? 99));
+      .sort(
+        sort === "deadline"
+          ? (a, b) => (monthsUntil(a, now.m) ?? 99) - (monthsUntil(b, now.m) ?? 99)
+          : bySort
+      );
     return { open: openList, closed: closedList };
-  }, [stage, undocOnly, query, now]);
+  }, [stage, undocOnly, query, now, sort]);
   const results = useMemo(() => [...open, ...closed], [open, closed]);
 
   return (
@@ -202,13 +220,27 @@ export default function ScholarshipFinder() {
         </label>
       </div>
 
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search: transfer, computer science, undocumented, essay…"
-        className="mt-4 w-full rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-      />
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search: transfer, computer science, undocumented, essay…"
+          className="w-full flex-1 rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+        />
+        <label className="flex shrink-0 items-center gap-2 text-sm font-semibold text-ink">
+          Sort by
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as SortKey)}
+            className="rounded-lg border-2 border-ink/15 bg-cream px-3 py-2.5 text-base font-semibold text-ink focus:border-ink focus:outline-none"
+          >
+            <option value="deadline">Next deadline</option>
+            <option value="amount">Biggest amount</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </label>
+      </div>
 
       <p className="mt-3 text-sm font-medium text-stone">
         {now === null ? (
@@ -226,7 +258,11 @@ export default function ScholarshipFinder() {
             {undocOnly && " · no citizenship requirement"}
           </>
         )}
-        , ordered by next deadline.
+        {sort === "deadline"
+          ? ", ordered by next deadline."
+          : sort === "amount"
+            ? ", biggest amounts first (full rides on top, unlisted amounts last)."
+            : ", alphabetical."}
       </p>
 
       {autoNote && (
