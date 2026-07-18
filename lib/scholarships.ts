@@ -11218,17 +11218,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://ngef.org/the-van-hipp-heroes-scholarship-fund/",
   },
   {
-    id: "ncrf-career-launcher-scholarship",
-    name: "NCRF Career Launcher Grants",
-    amount: "$100\u2013$175 (covers program cost)",
-    deadline: "Rolling",
-    deadlineMonth: null,
-    who: "For court reporting students who've passed a 180-wpm skills test, covering the cost of the deposition-training program \u2014 distinct from the A-to-Z award.",
-    stages: ["college"],
-    tags: ["business"],
-    officialUrl: "https://www.ncra.org/home/the-profession/scholarships-and-grants/career-launcher-student-grants",
-  },
-  {
     id: "culvers-foundation-scholarship",
     name: "Culver's Foundation Scholarship",
     amount: "Up to $10,000",
