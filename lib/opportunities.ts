@@ -4600,4 +4600,48 @@ export const opportunities: Opportunity[] = [
     tags: ["fellowship","identity","leadership","paid","high school"],
     officialUrl: "https://bronfman.org/become-a-fellow/",
   },
+
+  // ── Batch 11 (July 18, 2026): owner review — added the structured
+  // freshman/sophomore early-ID PROGRAMS (BCG GFL, PwC Start, Deloitte
+  // Discovery), consistent with the tech early-ID programs already listed
+  // (Microsoft Explore, Uber Career Prep, Salesforce Futureforce); plain
+  // company job internships stay out. HS-research 2nd tier (SIMR/Garcia/
+  // SUMaC/BU RISE/SSTP) verified and EXCLUDED — SIMR is Bay-Area-regional,
+  // the rest are tuition camps with insufficient need-aid (COSMOS/Pioneer). ──
+  {
+    id: "bcg-growing-future-leaders",
+    name: "BCG Growing Future Leaders Program",
+    type: "program",
+    compensation: "Paid: a sophomore-year development program with mentorship, skill-building, and a BCG internship experience; participation costs covered by BCG",
+    deadline: "Typically opens late summer (deadline around September)",
+    deadlineMonth: 9,
+    who: "Current sophomores at four-year U.S. or Canadian universities who identify as Black, Hispanic/Latino, or Indigenous; no business major or consulting background required.",
+    stages: ["college"],
+    tags: ["consulting","business","early-career","diversity"],
+    officialUrl: "https://careers.bcg.com/global/en/on-campus/programs/growing-future-leaders",
+  },
+  {
+    id: "pwc-start",
+    name: "PwC Start Internship Program",
+    type: "internship",
+    compensation: "Paid 8–10 week summer internship in audit, tax, consulting, or advisory; early-year diversity track for freshmen and sophomores",
+    deadline: "Typically rolling, opens over the summer",
+    deadlineMonth: null,
+    who: "Undergraduate freshmen and sophomores (3.0+ GPA); the Start diversity track focuses on underrepresented students, veterans, and students with disabilities.",
+    stages: ["college"],
+    tags: ["accounting","consulting","early-career","diversity"],
+    officialUrl: "https://www.pwc.com/us/en/careers/entry-level/programs-events.html",
+  },
+  {
+    id: "deloitte-discovery",
+    name: "Deloitte Discovery Internship",
+    type: "internship",
+    compensation: "Paid 8–10 week summer internship for first- and second-year students exploring audit, tax, consulting, or advisory",
+    deadline: "Typically May (rolling)",
+    deadlineMonth: 5,
+    who: "Undergraduate first- and second-year students (3.2+ GPA); an early pipeline designed to widen access to professional services for underrepresented students.",
+    stages: ["college"],
+    tags: ["consulting","accounting","early-career","diversity"],
+    officialUrl: "https://www2.deloitte.com/us/en/careers/students.html",
+  },
 ];
