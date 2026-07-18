@@ -2697,4 +2697,116 @@ export const opportunities: Opportunity[] = [
     tags: ["policy","government","public service","free"],
     officialUrl: "https://www.politico.com/pji",
   },
+
+  // ── Batch 6 (July 18, 2026): the debt-free "earn while you learn"
+  // complement — trades apprenticeships, paid teaching years, and free
+  // no-degree tech, from three verification passes against official pages.
+  // Deduped against the earlier same-day batches: Ironworkers and College
+  // Advising Corps were already added, so they're NOT repeated here; the DOL
+  // Apprenticeship.gov finder is kept because those batches only mentioned it
+  // in passing (Ironworkers' `who`), never as its own searchable door. Peace
+  // Corps was verified paid/real but is OMITTED here — a prior batch cut it
+  // deliberately, and this batch respects that call. Cut in verification:
+  // Pursuit (deferred income-share becomes a real bill), Immigrants Rising
+  // Entrepreneurship Fund (a closed startup grant, already a scholarship-finder
+  // launcher), Coro (couldn't confirm free to apply). Mike Rowe Work Ethic →
+  // lib/scholarships.ts. No openToUndocumented flags: no official page stated
+  // it, and the shipbuilding apprenticeship (defense contractor) likely
+  // requires citizenship. ──
+  {
+    id: "apprenticeship-gov-finder",
+    name: "Apprenticeship.gov Finder (U.S. Department of Labor)",
+    type: "program",
+    compensation: "Paid: registered apprenticeships are jobs — you earn a rising wage while you train, no tuition",
+    deadline: "Rolling; openings posted year-round",
+    deadlineMonth: null,
+    who: "Anyone looking for a paid, debt-free apprenticeship in almost any trade or field, searchable by ZIP code",
+    stages: ["high-school","college","transfer"],
+    tags: ["apprenticeship","paid","trades","earn while you learn","department of labor","no degree"],
+    officialUrl: "https://www.apprenticeship.gov/apprenticeship-finder",
+  },
+  {
+    id: "ibew-neca-electrical-apprenticeship",
+    name: "IBEW-NECA Electrical Apprenticeship (electrical training ALLIANCE)",
+    type: "program",
+    compensation: "Paid: earn wages and benefits while you train; graduate debt-free (no tuition)",
+    deadline: "Rolling; apply through your local IBEW/NECA training center",
+    deadlineMonth: null,
+    who: "People who want to become electricians (inside wireman, lineman, residential, or low-voltage) and get paid while training, without college debt",
+    stages: ["high-school","college","transfer"],
+    tags: ["electrician","apprenticeship","IBEW","paid","trades","debt-free"],
+    officialUrl: "https://www.electricaltrainingalliance.org/",
+  },
+  {
+    id: "ua-pipe-trades-apprenticeship",
+    name: "United Association Apprenticeship (Plumbers, Pipefitters, Welders, HVACR)",
+    type: "program",
+    compensation: "Paid: earn wages with raises as you advance; top out debt-free as a journeyworker (tuition covered)",
+    deadline: "Rolling; apply through your local UA program",
+    deadlineMonth: null,
+    who: "People who want a paid, debt-free apprenticeship in plumbing, pipefitting, welding, HVACR, or fire protection",
+    stages: ["high-school","college","transfer"],
+    tags: ["plumber","pipefitter","welding","HVAC","apprenticeship","paid","debt-free"],
+    officialUrl: "https://ua.org/apprenticeship/",
+  },
+  {
+    id: "apprentice-school-newport-news",
+    name: "The Apprentice School at Newport News Shipbuilding",
+    type: "program",
+    compensation: "Paid: a full salary (~$40k-$50k) while you train, tuition-free; earn an associate degree and a guaranteed job, no student loans",
+    deadline: "Annual application cycle; check the school's admissions page",
+    deadlineMonth: null,
+    who: "High school graduates who want a paid, tuition-free shipbuilding apprenticeship in Virginia (likely requires U.S. citizenship as a defense contractor)",
+    stages: ["high-school","college","transfer"],
+    tags: ["apprenticeship","shipbuilding","paid","tuition-free","Virginia","associate degree"],
+    officialUrl: "https://as.edu/",
+  },
+  {
+    id: "breakthrough-collaborative",
+    name: "Breakthrough Collaborative Summer Teaching Fellowship",
+    type: "fellowship",
+    compensation: "Paid: a summer living stipend (roughly $4,500-$5,000, varies by site)",
+    deadline: "Typically winter to spring (varies by site)",
+    deadlineMonth: 2,
+    who: "College undergraduates of any major (and high schoolers at some sites) who spend a summer teaching middle-schoolers from underserved communities — no teaching experience required",
+    stages: ["high-school","college"],
+    tags: ["teaching","summer","stipend","education","first-gen"],
+    officialUrl: "https://breakthroughcollaborative.org/apply-fellow/",
+  },
+  {
+    id: "teach-for-america",
+    name: "Teach For America",
+    type: "program",
+    compensation: "Paid: a full first-year teacher salary as a school employee (about $32k-$72k by region), plus a $3,000-$6,500 training stipend",
+    deadline: "Rolling (several deadlines across the year)",
+    deadlineMonth: null,
+    who: "People who will have a bachelor's degree (2.5+ GPA) by summer training and will teach full-time for two years in under-resourced schools — post-bachelor's only",
+    stages: ["college"],
+    tags: ["teaching","salary","two-year","education","service"],
+    officialUrl: "https://www.teachforamerica.org/",
+  },
+  {
+    id: "per-scholas",
+    name: "Per Scholas",
+    type: "program",
+    compensation: "Free: no-cost tech training (limited need-based stipends only — it does not pay wages)",
+    deadline: "Rolling",
+    deadlineMonth: null,
+    who: "Adults without a degree who want free, full-time tech training (IT support, cybersecurity, software, cloud) over 12-16 weeks in 20+ U.S. cities or remotely",
+    stages: ["college","transfer"],
+    tags: ["tech","IT","free training","no degree","cybersecurity","national"],
+    officialUrl: "https://perscholas.org/",
+  },
+  {
+    id: "marcy-lab-school",
+    name: "The Marcy Lab School",
+    type: "fellowship",
+    compensation: "Free: tuition, books, and a laptop covered, plus a stipend for fellows",
+    deadline: "Rolling",
+    deadlineMonth: null,
+    who: "18-24-year-olds in NYC with a high school diploma and no bachelor's degree, in a tuition-free one-year software-engineering or data fellowship",
+    stages: ["high-school","college"],
+    tags: ["tech","software engineering","tuition-free","stipend","no degree","NYC"],
+    officialUrl: "https://www.marcylabschool.org/",
+  },
 ];

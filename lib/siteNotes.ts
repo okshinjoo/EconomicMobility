@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "224 opportunities — the debt-free trades path, filled in",
+    body: "The finder was strong on research labs, federal internships, and college pipelines, but thin on the path that skips the tuition bill entirely: registered apprenticeships. So we added the door to it. Apprenticeship.gov, the U.S. Labor Department's finder, lets you search thousands of paid apprenticeships by ZIP code, and alongside it we listed big national trades by name — electricians (IBEW), plumbers and pipefitters (UA), and the shipbuilding apprentice school at Newport News — because 'apprenticeship' stays abstract until you see that an electrician earns a wage from day one and finishes with zero debt. We also added two paid teaching years (Breakthrough Collaborative, Teach For America) and two free, no-degree tech programs (Per Scholas, and Brooklyn's Marcy Lab School). What we left out is the point: we cut Pursuit, because its 'no upfront cost' turns into a slice of your salary once you're hired — a real bill, and this list is for paths with no strings. We cut a startup grant that had quietly closed, and a fellowship we couldn't confirm was free to apply.",
+    href: "/students/opportunities",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "The Career Explorer grows to 150 jobs — and now shows how many openings a year",
     body: "We added 50 more careers, chosen to cover the jobs people actually start in and climb from: nursing assistant, medical assistant, and pharmacy tech on the healthcare ladder; cashier, retail, food service, warehouse, and janitorial work; security guard, bus driver, construction laborer, painter, roofer, and industrial mechanic; plus the office and management rungs above them — bank teller, receptionist, loan officer, project manager, financial manager. Every one carries the same real BLS numbers as the rest. We also added a stat we'd been missing: openings a year — how many positions open across the country annually, counting both new jobs and the ones freed up when people retire or move on. It's often a truer read on your odds than the growth rate alone: retail is barely growing, but it opens more than half a million jobs a year. The newest 50 use the 2024 wage figures while we refresh them to the latest, and their full earning range fills in as we pull it. This is the first wave of a longer push toward covering every major career.",
     href: "/students/career-explorer",
