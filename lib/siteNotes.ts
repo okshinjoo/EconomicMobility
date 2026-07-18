@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "643 scholarships, for the students lists forget",
+    body: "119 more hand-verified awards, aimed at students most scholarship lists skip: adult learners and single parents going back to school, students with disabilities, LGBTQ+ students, refugees and asylum seekers, rural and farm-family students, skilled-trades students, and dozens of heritage and faith communities from Armenian to Portuguese. Also new: civic clubs like DAR and Optimist, health-field service programs like the federal Nurse Corps, and journalism awards from the associations for Black, Hispanic, Asian American, and Indigenous journalists. Every entry checked against its official site, same as the first 524.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "Past 500: the scholarship list hits 524",
     body: "88 more hand-verified awards: university flagship scholarships that meet full need, community foundation awards from Chicago to rural Appalachia, programs for military families and children of first responders, awards for students in US territories and students who've been in foster care, more majors (from welding to library science), employer and union programs, and sports-connected scholarships beyond the varsity track. We also re-checked four programs that had gone quiet — two came back confirmed alive, and two turned out to be genuinely discontinued, so they stay off the list.",
     href: "/students/scholarships",
