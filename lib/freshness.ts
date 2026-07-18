@@ -41,10 +41,10 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "careers-bls",
     name: "Career Explorer — BLS data",
-    what: `${careers.length} careers: median pay + pay range (10th–90th pct) + U.S. employment + annual openings, growth (2024–34 projections), typical entry education. Expanding toward comprehensive (~325 target).`,
+    what: `${careers.length} careers (comprehensive): median pay + pay range (10th–90th pct) + U.S. employment + annual openings, growth (2024–34 projections), typical entry education.`,
     files: ["lib/careers.ts", "lib/careerDetails.ts"],
     publicVintage: CAREER_DATA_VINTAGE,
-    lastVerified: "July 18, 2026. TWO vintages by design: the original 100 carry May 2025 OEWS pay (31 with the verified payLow/payHigh/numJobs range, 69 pending the API-quota backfill). WAVES 1–3 added 169 careers (100 → 269) from the BLS Employment Projections table (2024 wage + 2024–34 growth/openings/education) — their May 2025 pay range backfills from the OEWS API later. annualOpenings (2024–34 avg) was added for all via the EP table. Cards/pages show an em dash where a range is still pending. Near the ~325 comprehensive target.",
+    lastVerified: "July 18, 2026. TWO vintages by design: the original 100 carry May 2025 OEWS pay (31 with the verified payLow/payHigh/numJobs range, 69 pending the API-quota backfill). WAVES 1–4 added 223 careers (100 → 323, comprehensive) from the BLS Employment Projections table (2024 wage + 2024–34 growth/openings/education) — their May 2025 pay range backfills from the OEWS API later. annualOpenings (2024–34 avg) was added for all via the EP table. Cards/pages show an em dash where a range is still pending. At the ~325 comprehensive target; remaining uncovered SOCs are residual/niche.",
     cadence: "Each spring when BLS publishes the new OEWS wage survey; projections refresh in fall (2025–35 set expected fall 2026).",
     nextDueISO: "2026-11-15",
     recipe:
