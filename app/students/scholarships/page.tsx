@@ -149,7 +149,10 @@ export default function ScholarshipsPage() {
             Free, reputable searchers worth your time: no fees, and no
             handing your data to a marketing machine.
           </p>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-stone">
+            Cast a wider net
+          </h3>
+          <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href="https://bigfuture.collegeboard.org/scholarship-search"
               target="_blank"
@@ -237,6 +240,11 @@ export default function ScholarshipsPage() {
                 Get the MALDEF guide
               </span>
             </a>
+          </div>
+          <h3 className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-stone">
+            Money close to home
+          </h3>
+          <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href="https://scholarshipamerica.org/sponsors/dollars-for-scholars/find-your-chapter/"
               target="_blank"
@@ -253,6 +261,24 @@ export default function ScholarshipsPage() {
               </p>
               <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
                 Find your chapter
+              </span>
+            </a>
+            <a
+              href="https://cof.org/page/community-foundation-locator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-ink flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-lg font-bold text-ink">
+                Community Foundation Locator
+              </h3>
+              <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                Every accredited community foundation in the country, on one
+                map. If your state isn&apos;t in our list above, your nearest
+                foundation is still here.
+              </p>
+              <span className="mt-3 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                Find your foundation
               </span>
             </a>
           </div>
