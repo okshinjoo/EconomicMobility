@@ -11,7 +11,12 @@ export function normalize(s: string): string {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-z0-9\s]/g, " ");
+    // Keep + and # attached to their token so distinctive names survive:
+    // "A+" / "LGBTQ+" / "18+" / "C#" tokenize as-is instead of collapsing to
+    // a noise token ("A+" → "a", which matched an "a" in hundreds of names).
+    // In this corpus + and # only ever trail a token, never join two, so this
+    // never mis-merges words. Prefix matching keeps "lgbtq" finding "lgbtq+".
+    .replace(/[^a-z0-9+#\s]/g, " ");
 }
 
 export function tokensOf(s: string): string[] {
