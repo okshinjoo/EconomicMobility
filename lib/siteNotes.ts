@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,672 scholarships — the last stone turned over",
+    body: "One final sweep to be sure we hadn't missed a category. We went vein by vein through the corners that don't show up in a normal search: the full national catalog of the biggest scholarship administrator, commodity-farm foundations (dairy, soybean, cattle, viticulture), heritage funds for smaller diaspora communities (Iranian, Croatian, Cambodian, Thai, Dominican), disease foundations beyond the common ones (immune deficiency, ALS, burn survivors, scleroderma), the professional trades we were light on (packaging, printing, textiles, environmental health, safety), and civic art and essay contests. 52 more that clear the bar. What we cut says as much as what we kept: a 'scholarship' run by a personal-injury law firm as marketing, fraternal awards you can only get by buying a life-insurance policy, a foundation that quietly stopped funding students, a nationwide-sounding award that was really one city, and a contest open to the whole world rather than a national program. The systematic search is now genuinely finished — what's left is keeping every one of these current, year after year.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "224 opportunities — the debt-free trades path, filled in",
     body: "The finder was strong on research labs, federal internships, and college pipelines, but thin on the path that skips the tuition bill entirely: registered apprenticeships. So we added the door to it. Apprenticeship.gov, the U.S. Labor Department's finder, lets you search thousands of paid apprenticeships by ZIP code, and alongside it we listed big national trades by name — electricians (IBEW), plumbers and pipefitters (UA), and the shipbuilding apprentice school at Newport News — because 'apprenticeship' stays abstract until you see that an electrician earns a wage from day one and finishes with zero debt. We also added two paid teaching years (Breakthrough Collaborative, Teach For America) and two free, no-degree tech programs (Per Scholas, and Brooklyn's Marcy Lab School). What we left out is the point: we cut Pursuit, because its 'no upfront cost' turns into a slice of your salary once you're hired — a real bill, and this list is for paths with no strings. We cut a startup grant that had quietly closed, and a fellowship we couldn't confirm was free to apply.",
     href: "/students/opportunities",
