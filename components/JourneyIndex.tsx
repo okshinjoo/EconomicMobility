@@ -113,6 +113,22 @@ function TrailMini({
       {pts.map((pt, i) => {
         const done = stageDone[i];
         const here = i === currentIdx && fraction > 0;
+        // The last milestone is the destination — a star, not a dot,
+        // so the trail visibly leads somewhere.
+        if (i === pts.length - 1) {
+          return (
+            <path
+              key={i}
+              d="M0,-6.5 L1.9,-2 L6.5,-1.6 L3.1,1.5 L4,6.2 L0,3.5 L-4,6.2 L-3.1,1.5 L-6.5,-1.6 L-1.9,-2 Z"
+              transform={`translate(${pt.x} ${pt.y})`}
+              fill={done ? color : "#fbf8f1"}
+              stroke={done ? color : "#c9bda2"}
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+              style={{ transition: "fill 0.3s ease, stroke 0.3s ease" }}
+            />
+          );
+        }
         return (
           <circle
             key={i}
@@ -333,7 +349,20 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
               {j.promise}
             </p>
             <p className="mt-3 text-xs font-semibold text-ink/60">
-              {j.stageCount} milestones · {j.guideCount} guides
+              <span
+                className="font-display text-sm font-bold tabular-nums"
+                style={{ color: j.color }}
+              >
+                {j.stageCount}
+              </span>{" "}
+              milestones ·{" "}
+              <span
+                className="font-display text-sm font-bold tabular-nums"
+                style={{ color: j.color }}
+              >
+                {j.guideCount}
+              </span>{" "}
+              guides
             </p>
 
             <div className="mt-2">
@@ -352,10 +381,12 @@ export default function JourneyIndex({ items, frame = "main" }: { items: Journey
                 ) : hereMilestone ? (
                   <>You&apos;re at: {hereMilestone}</>
                 ) : (
-                  <>
+                  <span
+                    className="font-bold text-ink underline decoration-2 underline-offset-4 group-hover:text-forest"
+                    style={{ textDecorationColor: j.color }}
+                  >
                     Start the path
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </>
+                  </span>
                 )}
               </p>
             </div>
