@@ -62,14 +62,15 @@ export default function CareerExplorerPage() {
         <div className="mx-auto max-w-6xl px-6 py-6">
           <p className="max-w-3xl text-sm leading-6 text-stone">
             <span className="font-bold text-ink">How to read this:</span>{" "}
-            figures come from the Bureau of Labor Statistics — median pay and
-            the earning range from the May 2025 wage survey, growth from the
-            official 2024–34 projections. &ldquo;Median&rdquo; means half earn more and half
-            earn less; big cities and experience push it up.
-            &ldquo;Earn while you train&rdquo; is strict: it marks only paths
-            with a genuinely paid pathway — apprenticeships, academies,
-            employer-funded training — not just &ldquo;no degree
-            required.&rdquo; Every figure was re-verified against bls.gov in July 2026.
+            every figure comes from the Bureau of Labor Statistics — median pay
+            from the wage survey (May 2025 for most; the newest additions use
+            the May 2024 figures until we refresh them), growth and yearly
+            openings from the official 2024–34 projections.
+            &ldquo;Median&rdquo; means half earn more and half earn less; big
+            cities and experience push it up. &ldquo;Earn while you train&rdquo;
+            is strict: it marks only paths with a genuinely paid route in —
+            apprenticeships, academies, employer-funded or on-the-job training —
+            not just &ldquo;no degree required.&rdquo;
           </p>
         </div>
       </section>

@@ -193,12 +193,18 @@ export default async function CareerProfilePage({
         <div className="mx-auto max-w-5xl px-6 py-10">
           <h2 className="font-display text-2xl font-bold text-ink">By the numbers</h2>
           <p className="mt-1 text-sm text-stone">{CAREER_DATA_VINTAGE}.</p>
-          <div className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             <Stat label="Median pay" value={usd(c.medianPay)} sub="per year" tone="forest" />
             <Stat
               label="What most earn"
               value={hasRange ? `${usd(d!.payLow!)}–${usd(d!.payHigh!)}` : "—"}
-              sub={hasRange ? "10th to 90th percentile" : "coming soon"}
+              sub={hasRange ? "10th to 90th percentile" : "range coming soon"}
+            />
+            <Stat
+              label="Openings a year"
+              value={d?.annualOpenings ? `~${d.annualOpenings.toLocaleString()}` : "—"}
+              sub={d?.annualOpenings ? "projected, 2024–34" : "—"}
+              tone="forest"
             />
             <Stat
               label="Outlook to 2034"
@@ -212,6 +218,11 @@ export default async function CareerProfilePage({
               sub={d?.numJobs ? "people, nationwide" : "coming soon"}
             />
           </div>
+          <p className="mt-3 text-[13px] leading-6 text-stone">
+            <span className="font-semibold text-ink/70">Openings a year</span> counts
+            new jobs plus the ones that open when people retire or move on — a truer
+            picture of your odds than growth alone.
+          </p>
           <p className="mt-4 text-[13px] leading-6 text-stone">
             &ldquo;Median&rdquo; means half earn more and half earn less. Your
             city, employer, and years on the job move it a lot — that is what the
