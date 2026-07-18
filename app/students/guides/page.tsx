@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { ArrowsLeftRight as ArrowRightLeft, FileText, GraduationCap } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import HeroRecede from "@/components/HeroRecede";
+import ScrollDrift from "@/components/ScrollDrift";
 import Reveal from "@/components/Reveal";
 import TopicMark from "@/components/TopicMark";
 import { topics } from "@/lib/topics";
@@ -25,7 +26,14 @@ export default function StudentGuidesPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
-        <HeroRecede className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
+        <ScrollDrift range={64} driftX={-26} rotate={6}>
+          <TopicMark
+            id="college"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[22rem] w-[22rem] opacity-[0.15]"
+          />
+        </ScrollDrift>
+        <HeroRecede className="relative mx-auto max-w-6xl px-6 py-12 lg:py-16">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Guides
           </span>
@@ -122,12 +130,13 @@ export default function StudentGuidesPage() {
               <Reveal key={t.id} delay={i * 50}>
                 <Link
                   href={`/students/learn/${t.id}`}
-                  className="group flex h-full items-center gap-3 rounded-xl border-2 border-ink/10 bg-cream p-4 transition-transform duration-200 hover:-translate-y-0.5 hover:border-ink/30"
+                  className="group flex h-full items-center gap-3 rounded-xl border-2 border-ink p-4 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
+                  style={{ background: `color-mix(in srgb, ${t.color} 12%, #fbf8f1)` }}
                 >
                   <TopicMark
                     id={t.id}
                     color={t.color}
-                    className="h-8 w-8 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    className="h-10 w-10 shrink-0 transition-transform duration-200 group-hover:scale-110"
                   />
                   <span className="min-w-0">
                     <span className="block font-display text-base font-bold leading-tight text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4" style={{ textDecorationColor: t.color }}>

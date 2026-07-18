@@ -6,6 +6,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import ToolMark from "@/components/ToolMark";
+import { toolStyles } from "@/components/ToolDoodle";
 import { TOOL_FRAME_MAP } from "@/lib/frame";
 import { toolCategories } from "@/lib/toolsRegistry";
 
@@ -77,6 +79,7 @@ export default function StudentToolsHub() {
         <div className="mx-auto max-w-6xl px-6 py-10">
           <div className="space-y-10">
             {toolCategories.map((cat) => {
+              const style = toolStyles[cat.id] ?? toolStyles.budgeting;
               const live = cat.items
                 .filter((item) => item.status === "live")
                 .map((item) => ({
@@ -91,22 +94,42 @@ export default function StudentToolsHub() {
                     <h2 className="font-display text-xl font-bold text-ink">
                       {cat.label}
                     </h2>
-                    <span className="h-px flex-1 bg-sand" />
+                    <span
+                      className="text-sm font-bold tabular-nums"
+                      style={{ color: style.accent }}
+                    >
+                      {live.length}
+                    </span>
+                    <span
+                      className="h-0.5 flex-1 rounded-full"
+                      style={{ background: `${style.accent}55` }}
+                    />
                   </div>
                   <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {live.map((item) => (
                       <Link
                         key={item.mainHref}
                         href={TOOL_FRAME_MAP[item.mainHref]}
-                        className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                        className="group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
+                        style={{ backgroundColor: style.bg }}
                       >
-                        <h3 className="font-semibold leading-snug text-ink">
+                        <ToolMark
+                          slug={item.slug}
+                          color={style.accent}
+                          className="h-8 w-8 shrink-0"
+                        />
+                        <h3 className="mt-2.5 font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+                          style={{ textDecorationColor: style.accent }}
+                        >
                           {item.title}
                         </h3>
-                        <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
+                        <p className="mt-1.5 flex-1 text-sm leading-6 text-ink/70">
                           {item.short}
                         </p>
-                        <span className="mt-4 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                        <span
+                          className="mt-4 text-sm font-bold underline decoration-2 underline-offset-4"
+                          style={{ color: style.accent, textDecorationColor: `${style.accent}88` }}
+                        >
                           Open
                         </span>
                       </Link>
@@ -124,13 +147,16 @@ export default function StudentToolsHub() {
                 <span className="h-px flex-1 bg-sand" />
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {EXTRAS.map((item) => (
+                {EXTRAS.map((item, i) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex h-full flex-col rounded-2xl border border-sand bg-cream p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/15 hover:shadow-md"
+                    className="group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
+                    style={{
+                      background: `color-mix(in srgb, ${["#c9842a", "#2f6d80", "#15624b", "#d26a4c", "#c9842a"][i % 5]} 13%, #fbf8f1)`,
+                    }}
                   >
-                    <h3 className="font-semibold leading-snug text-ink">
+                    <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
                       {item.title}
                     </h3>
                     <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">

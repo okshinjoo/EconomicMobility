@@ -164,19 +164,37 @@ export default function CareersPage() {
           <h2 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
             The guides: resume to interview to offer.
           </h2>
+          {/* The guides ARE a sequence (hunt -> resume -> letter ->
+              interview -> answers -> offer -> work-study), so the numbers
+              carry real order — and each step gets its own tint. */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {GUIDES.map((g) => (
-              <Link
-                key={g.slug}
-                href={`/students/learn/college/${g.slug}`}
-                className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
-              >
-                <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
-                  {g.title}
-                </h3>
-                <p className="mt-1 text-sm leading-6 text-stone">{g.dek}</p>
-              </Link>
-            ))}
+            {GUIDES.map((g, i) => {
+              const accent = ["#c9842a", "#15624b", "#d26a4c", "#2f6d80", "#c9842a", "#15624b", "#d26a4c"][i % 7];
+              return (
+                <Link
+                  key={g.slug}
+                  href={`/students/learn/college/${g.slug}`}
+                  className="card-ink group flex h-full items-start gap-4 rounded-xl p-5 transition-transform duration-200 hover:-translate-y-1"
+                  style={{ background: `color-mix(in srgb, ${accent} 10%, #fbf8f1)` }}
+                >
+                  <span
+                    className="font-display text-3xl font-bold leading-none tabular-nums"
+                    style={{ color: accent }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="min-w-0">
+                    <h3
+                      className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+                      style={{ textDecorationColor: accent }}
+                    >
+                      {g.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-6 text-stone">{g.dek}</p>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

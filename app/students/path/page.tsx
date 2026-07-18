@@ -15,6 +15,8 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import HeroRecede from "@/components/HeroRecede";
+import ScrollDrift from "@/components/ScrollDrift";
+import TopicMark from "@/components/TopicMark";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -31,6 +33,7 @@ const DOORS = [
     title: "Pay for college: the path",
     desc: "Ordered milestones from FAFSA to signing day, checking themselves off as you go.",
     lead: true,
+    tint: "",
   },
   {
     href: "/students/courses/paying-for-college",
@@ -38,6 +41,7 @@ const DOORS = [
     color: "text-terracotta",
     title: "Paying for College (course)",
     desc: "The focused module: lessons, flashcards, a badge at the end.",
+    tint: "color-mix(in srgb, #d26a4c 13%, #fbf8f1)",
   },
   {
     href: "/students/tracker",
@@ -45,6 +49,7 @@ const DOORS = [
     color: "text-forest",
     title: "Student Tracker",
     desc: "Units, grades, GPA, and to-dos — for high school, community college, and university.",
+    tint: "color-mix(in srgb, #15624b 13%, #fbf8f1)",
   },
   {
     href: "/students/plan",
@@ -52,6 +57,7 @@ const DOORS = [
     color: "text-forest",
     title: "My Plan",
     desc: "Five questions, one personal plan built from real guides and real deadlines.",
+    tint: "color-mix(in srgb, #2f6d80 14%, #fbf8f1)",
   },
   {
     href: "/students/skills",
@@ -59,6 +65,7 @@ const DOORS = [
     color: "text-amber",
     title: "Your Skill Tree",
     desc: "Every guide, tool, and course on one map that lights up as you finish things.",
+    tint: "color-mix(in srgb, #c9842a 15%, #fbf8f1)",
   },
 ];
 
@@ -66,7 +73,14 @@ export default function StudentPathPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <section className="relative overflow-hidden border-b-2 border-ink bg-forest text-cream">
-        <HeroRecede className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
+        <ScrollDrift range={60} driftX={28} rotate={-5}>
+          <TopicMark
+            id="budgeting"
+            color="#fbf8f1"
+            className="pointer-events-none absolute -right-16 -top-12 h-[22rem] w-[22rem] opacity-[0.15]"
+          />
+        </ScrollDrift>
+        <HeroRecede className="relative mx-auto max-w-6xl px-6 py-12 lg:py-16">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-amber">
             For Students · Your Path
           </span>
@@ -93,8 +107,9 @@ export default function StudentPathPage() {
                   className={
                     d.lead
                       ? "card-ink-lg group flex h-full flex-col rounded-2xl bg-forest p-6 text-cream transition-transform duration-200 hover:-translate-y-1"
-                      : "card-ink group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"
+                      : "card-ink group flex h-full flex-col rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1"
                   }
+                  style={d.lead ? undefined : { background: d.tint }}
                 >
                   <d.icon className={`h-6 w-6 ${d.color}`} weight="bold" />
                   <h2
