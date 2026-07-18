@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "1,350 scholarships — the corners the big lists skip",
+    body: "84 more, from a sweep of the narrow places: scholarships for students with a specific condition (bleeding disorders, myasthenia gravis, epilepsy, ichthyosis), national programs from faith bodies most lists never mention (Assemblies of God, Armenian, Coptic, Zoroastrian, Jain), sport and activity awards beyond the obvious (drum corps, marching band, shooting sports, statewide caddie and 4-H funds), more tuition waivers for the children of fallen and disabled veterans and first responders across a dozen states, and field-specific money in urban planning, court reporting, mortuary science, and cosmetology. Six research passes turned up 100 candidates; 84 made it. We cut the metro-only caddie funds (this stays a national-and-statewide list), a single-chapter wildlife award, a scouting scholarship gated behind three memberships at once, a lupus program whose website has gone dark, and a painting-trade scholarship reachable only through a broken security certificate. When a link won't open in a normal browser, it doesn't go on the list.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,266 scholarships — the famous ones, checked",
     body: "We went back through the big open-to-anyone awards — the ones every list mentions — to see what we were still missing. Six real additions: the Boren Scholarship (up to $25,000 to study a critical language abroad, with a federal-service commitment we spell out), the Dr Pepper Tuition Giveaway (a panel-judged video contest, not the random drawing its name suggests), Doodle for Google, and the three Ayn Rand Institute essay contests (Anthem, The Fountainhead, Atlas Shrugged — no entry fee, no citizenship requirement). What we deliberately left out matters more: we don't list the 'no-essay, enter-to-win' scholarships that flood search results, because they exist to harvest and sell your data — Unigo, ScholarshipPoints, Chegg, and their kind never make this list. We also cut real programs that don't fit — a scholarship you can't apply to yourself (your teacher or counselor has to enter you), and one we found had quietly shut down and been replaced by a program already on our list.",
     href: "/students/scholarships",
