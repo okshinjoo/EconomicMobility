@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 17, 2026",
+    title: "A practice interview that talks back",
+    body: "The Careers kit now has an AI mock interviewer: pick the kind of job and how tough you want the interviewer (easy, medium, or hard), answer five real interview questions in chat, and get honest coaching feedback at the end. Nothing you say is saved anywhere, so a disastrous practice run costs exactly nothing. The privacy policy's AI section covers it.",
+    href: "/students/careers/mock-interview",
+    hrefLabel: "Practice one now",
+  },
+  {
+    date: "July 17, 2026",
     title: "The Careers kit grows up",
     body: "Three new guides for the job hunt itself: how to get a first job when no one has hired you yet, what a cover letter even is (and when you can skip it), and the five questions every interview asks. Plus a new practice tool — fourteen real interview questions as flip cards, so you can answer out loud and check your answer against the shape of a strong one.",
     href: "/students/careers",

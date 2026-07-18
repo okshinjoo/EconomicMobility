@@ -163,7 +163,7 @@ export default function PrivacyPage() {
 
           <H2>The AI features, honestly</H2>
           <p className="mt-3">
-            Three features use an AI model (Claude, made by Anthropic). Using
+            Four features use an AI model (Claude, made by Anthropic). Using
             them sends some of your text to Anthropic for processing; not
             using them sends nothing. Per Anthropic&apos;s API terms, that
             data is not used to train their models.
@@ -181,6 +181,14 @@ export default function PrivacyPage() {
               answers (goal, timeline, how your income arrives, who you
               support) and a list of what you&apos;ve already read or used
               here are processed to assemble your plan from our own guides.
+            </li>
+            <li>
+              <strong className="text-ink">The mock interviewer:</strong>{" "}
+              the job you pick, the difficulty, and the interview answers you
+              type are processed to run the practice interview and write its
+              feedback. The transcript lives only in your open tab; we store
+              none of it, and the tool tells you not to use real personal
+              details.
             </li>
             <li>
               <strong className="text-ink">Comment screening:</strong> the
@@ -303,7 +311,8 @@ export default function PrivacyPage() {
             emails in detail — practices didn&apos;t change, the writing
             caught up. Later the same day: account deletion became
             self-serve, and deleting your account now also removes your
-            comments automatically.)
+            comments automatically, and the AI mock interviewer launched —
+            its section above was added the same day it shipped.)
           </p>
         </div>
       </section>

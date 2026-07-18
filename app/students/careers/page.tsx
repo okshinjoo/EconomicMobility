@@ -8,7 +8,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ChatCircleDots, DownloadSimple as Download, Binoculars as Telescope, Briefcase } from "@phosphor-icons/react/dist/ssr";
+import { ChatCircleDots, DownloadSimple as Download, Binoculars as Telescope, Briefcase, Microphone } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
 import HeroRecede from "@/components/HeroRecede";
@@ -181,10 +181,24 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Explore + apply + practice — the three big doors */}
+      {/* Explore + apply + practice — the four big doors */}
       <section className="border-t-2 border-ink bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <Link
+              href="/students/careers/mock-interview"
+              className="card-ink-lg group flex h-full flex-col rounded-2xl bg-forest p-6 text-cream transition-transform duration-200 hover:-translate-y-1"
+            >
+              <Microphone className="h-6 w-6 text-amber" weight="bold" />
+              <h3 className="mt-3 font-display text-xl font-bold leading-snug group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                AI Mock Interview
+              </h3>
+              <p className="mt-1.5 text-sm leading-6 text-cream/75">
+                A practice interview that talks back: pick the job and the
+                difficulty, answer five real questions in chat, get honest
+                coaching at the end. Nothing saved, bombing is free.
+              </p>
+            </Link>
             <Link
               href="/students/careers/interview-practice"
               className="card-ink-lg group flex h-full flex-col rounded-2xl bg-cream p-6 transition-transform duration-200 hover:-translate-y-1"

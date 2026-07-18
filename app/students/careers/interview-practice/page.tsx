@@ -68,7 +68,14 @@ export default function InterviewPracticePage() {
               the first-interview guide
             </Link>{" "}
             covers the day itself: what to wear, when to arrive, the
-            thank-you message.
+            thank-you message. Ready for a live one? The{" "}
+            <Link
+              href="/students/careers/mock-interview"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              AI mock interview
+            </Link>{" "}
+            talks back.
           </p>
         </div>
       </section>

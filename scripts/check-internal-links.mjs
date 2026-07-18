@@ -75,6 +75,7 @@ const staticPages = new Set([
   "/students", "/students/scholarships", "/students/opportunities",
   "/students/deadlines", "/students/tracker", "/students/careers",
   "/students/career-explorer", "/students/careers/interview-practice",
+  "/students/careers/mock-interview",
   "/students/compare-colleges",
   "/students/community", "/students/skills", "/students/quiz",
   "/students/plan", "/students/life", "/students/resources",
