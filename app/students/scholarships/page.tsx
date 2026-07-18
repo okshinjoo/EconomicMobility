@@ -54,9 +54,11 @@ export default function ScholarshipsPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/80">
             {scholarships.length} real, established awards, each one verified
-            by us, linked straight to its official site, and ordered by where
-            it falls in the school year. No fees, no data harvesting, no
-            sweepstakes dressed up as scholarships.
+            by us, linked straight to its official site, and ordered by
+            whichever deadline comes next — awards between application
+            cycles wait at the end, greyed, with the month they come back.
+            No fees, no data harvesting, no sweepstakes dressed up as
+            scholarships.
           </p>
           <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-cream">
             And no forms about you: other sites make you hand over your
