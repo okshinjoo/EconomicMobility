@@ -110,7 +110,7 @@ const NAV: StudentNavEntry[] = [
     activePrefixes: ["/students/career-explorer", "/students/opportunities"],
     items: [
       { label: "The Careers kit", href: "/students/careers", desc: "Resume templates, interview guides, and your first offer.", icon: FileText, color: "#0c4a39" },
-      { label: "Career Explorer", href: "/students/career-explorer", desc: "100 careers: real pay, growth, and training paths.", icon: Telescope, color: "#4b5f8a" },
+      { label: "Career Explorer", href: "/students/career-explorer", desc: "Real pay, growth, and training paths — no rankings.", icon: Telescope, color: "#4b5f8a" },
       { label: "The opportunity finder", href: "/students/opportunities", desc: "Internships, fellowships, research. Verified, many paid.", icon: Briefcase, color: "#c9842a" },
       { label: "Paid internships", href: "/students/opportunities?type=internship", desc: "Programs that pay you while you learn the field.", icon: Banknote, color: "#0c4a39" },
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Wallet, color: "#15624b" },

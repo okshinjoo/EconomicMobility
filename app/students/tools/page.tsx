@@ -11,6 +11,8 @@ import ToolMark from "@/components/ToolMark";
 import { toolStyles } from "@/components/ToolDoodle";
 import { TOOL_FRAME_MAP } from "@/lib/frame";
 import { toolCategories } from "@/lib/toolsRegistry";
+import { careers } from "@/lib/careers";
+import { colleges } from "@/lib/collegeProfiles";
 
 export const metadata: Metadata = {
   title: "Tools | Empower Students",
@@ -20,8 +22,8 @@ export const metadata: Metadata = {
 };
 
 const EXTRAS = [
-  { title: "Career Explorer", href: "/students/career-explorer", note: "100 careers: real pay, growth, and training paths.", icon: Binoculars, chip: "100 careers" },
-  { title: "Compare Colleges", href: "/students/compare-colleges", note: "100 colleges: admissions and aid policies, hand-checked.", icon: GraduationCap, chip: "100 colleges" },
+  { title: "Career Explorer", href: "/students/career-explorer", note: `${careers.length} careers: real pay, growth, and training paths.`, icon: Binoculars, chip: `${careers.length} careers` },
+  { title: "Compare Colleges", href: "/students/compare-colleges", note: `${colleges.length} colleges: admissions and aid policies, hand-checked.`, icon: GraduationCap, chip: `${colleges.length} colleges` },
   { title: "Student Tracker", href: "/students/tracker", note: "Units, grades, GPA, and to-dos in one place.", icon: ClipboardText, chip: null },
   { title: "Letter Generator", href: "/students/tools/letters", note: "Credit-dispute and debt-validation letters, built in-browser.", icon: PencilSimpleLine, chip: null },
   { title: "Free Templates", href: "/students/tools/templates", note: "Budget, debt, and savings spreadsheets that total themselves.", icon: FileXls, chip: null },

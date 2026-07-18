@@ -14,11 +14,12 @@ import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CareerExplorer from "@/components/CareerExplorer";
 import { careers, CAREER_DATA_VINTAGE } from "@/lib/careers";
+import { opportunities } from "@/lib/opportunities";
 
 export const metadata: Metadata = {
   title: "Career Explorer | Empower — Economic Mobility Project",
   description:
-    "100 careers with real BLS numbers: median pay, growth outlook, what training each actually needs — and which ones pay you while you learn. Facts, not rankings.",
+    `${careers.length} careers with real BLS numbers: median pay, growth outlook, what training each actually needs — and which ones pay you while you learn. Facts, not rankings.`,
 };
 
 export default function CareerExplorerPage() {
@@ -111,7 +112,7 @@ export default function CareerExplorerPage() {
                 Internships &amp; Opportunities
               </h3>
               <p className="mt-1 text-sm leading-6 text-stone">
-                68 verified internships, fellowships, and programs — many paid
+                {opportunities.length} verified internships, fellowships, and programs — many paid
                 — that lead into the careers on this page.
               </p>
             </Link>

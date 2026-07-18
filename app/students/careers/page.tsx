@@ -15,11 +15,14 @@ import HeroRecede from "@/components/HeroRecede";
 import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import { templates } from "@/lib/templates";
+import { careers } from "@/lib/careers";
+import { opportunities } from "@/lib/opportunities";
+import { interviewCards } from "@/lib/interviewDeck";
 
 export const metadata: Metadata = {
   title: "Careers Kit | Empower — Economic Mobility Project",
   description:
-    "Everything for landing the first job: free resume and cover letter templates (no signup), interview guides written for people with no experience yet, and 100 careers with real pay data.",
+    `Everything for landing the first job: free resume and cover letter templates (no signup), interview guides written for people with no experience yet, and ${careers.length} careers with real pay data.`,
 };
 
 const GUIDES = [
@@ -87,7 +90,7 @@ export default function CareersPage() {
             The whole first-job kit in one place: resume templates you can
             download and fill in, interview guides written for people whose
             experience is school and real life, and {""}
-            100 careers with verified pay data. No signup, no email — just
+            {careers.length} careers with verified pay data. No signup, no email — just
             take what you need.
           </p>
         </HeroRecede>
@@ -226,7 +229,7 @@ export default function CareersPage() {
                 Interview Practice
               </h3>
               <p className="mt-1.5 text-sm leading-6 text-stone">
-                Fourteen questions interviewers actually ask, as flip cards:
+                {interviewCards.length} questions interviewers actually ask, as flip cards:
                 answer out loud, flip to check your answer&apos;s shape, and
                 drill until you own them.
               </p>
@@ -240,7 +243,7 @@ export default function CareersPage() {
                 Career Explorer
               </h3>
               <p className="mt-1.5 text-sm leading-6 text-cream/75">
-                100 careers with verified federal data: median pay, growth,
+                {careers.length} careers with verified federal data: median pay, growth,
                 what training each really needs — and the paths that pay you
                 while you learn.
               </p>
@@ -254,7 +257,7 @@ export default function CareersPage() {
                 Internships &amp; Opportunities
               </h3>
               <p className="mt-1.5 text-sm leading-6 text-stone">
-                68 verified internships, fellowships, and programs — many paid
+                {opportunities.length} verified internships, fellowships, and programs — many paid
                 — ready for the resume you just built.
               </p>
             </Link>

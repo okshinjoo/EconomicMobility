@@ -12,10 +12,13 @@
 // the schedule. (2) When a new year-tagged dataset ships, add an entry.
 // nextDueISO must stay a literal ISO string — the check script regexes it.
 
+import { scholarships } from "./scholarships";
+import { opportunities } from "./opportunities";
+import { colleges } from "./collegeProfiles";
 import { VERIFIED_AS_OF } from "@/lib/scholarships";
 import { OPPS_VERIFIED_AS_OF } from "@/lib/opportunities";
 import { COLLEGE_DATA_VINTAGE } from "@/lib/collegeProfiles";
-import { CAREER_DATA_VINTAGE } from "@/lib/careers";
+import { careers, CAREER_DATA_VINTAGE } from "@/lib/careers";
 
 export interface FreshnessEntry {
   id: string;
@@ -38,7 +41,7 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "careers-bls",
     name: "Career Explorer — BLS data",
-    what: "100 careers: median pay (May 2025 OEWS), growth (2024–34 projections), typical entry education.",
+    what: `${careers.length} careers: median pay (May 2025 OEWS), growth (2024–34 projections), typical entry education.`,
     files: ["lib/careers.ts"],
     publicVintage: CAREER_DATA_VINTAGE,
     lastVerified: "July 17, 2026 (May 2025 OEWS applied — all 100 SOC-matched from bls.gov oesm25nat)",
@@ -50,7 +53,7 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "colleges-cds",
     name: "Compare Colleges — CDS profiles",
-    what: "100 colleges: admit rates, C7 factor weights, need/test policies, aid notes.",
+    what: `${colleges.length} colleges: admit rates, C7 factor weights, need/test policies, aid notes.`,
     files: ["lib/collegeProfiles.ts"],
     publicVintage: COLLEGE_DATA_VINTAGE,
     lastVerified: "July 2026",
@@ -62,7 +65,7 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "opportunities",
     name: "Opportunity Finder",
-    what: "68 verified paid internships, fellowships, and programs.",
+    what: `${opportunities.length} verified paid internships, fellowships, and programs.`,
     files: ["lib/opportunities.ts"],
     publicVintage: OPPS_VERIFIED_AS_OF,
     lastVerified: "July 2026",
@@ -96,7 +99,7 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "scholarships",
     name: "Scholarship Finder",
-    what: "186 hand-verified awards.",
+    what: `${scholarships.length} hand-verified awards.`,
     files: ["lib/scholarships.ts"],
     publicVintage: VERIFIED_AS_OF,
     lastVerified: "July 2026",

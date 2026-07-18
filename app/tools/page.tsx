@@ -9,6 +9,8 @@ import { toolStyles } from "@/components/ToolDoodle";
 import ToolMark from "@/components/ToolMark";
 import CategoryFlipCard from "@/components/CategoryFlipCard";
 import { toolCategories, hrefFor } from "@/lib/toolsRegistry";
+import { careers } from "@/lib/careers";
+import { colleges } from "@/lib/collegeProfiles";
 import { templates } from "@/lib/templates";
 import HeadlineRise from "@/components/HeadlineRise";
 import HeroRecede from "@/components/HeroRecede";
@@ -325,15 +327,15 @@ export default function ToolsHub() {
                 title: "Career Explorer",
                 icon: Binoculars,
                 href: "/students/career-explorer",
-                desc: "One hundred careers on real federal data: what each one pays, how fast it's growing, and the training it takes — with “earn while you train” as a first-class filter.",
-                stat: "100 careers · BLS pay + growth data",
+                desc: `${careers.length} careers on real federal data: what each one pays, how fast it's growing, and the training it takes — with “earn while you train” as a first-class filter.`,
+                stat: `${careers.length} careers · BLS pay + growth data`,
               },
               {
                 title: "Compare Colleges",
                 icon: GraduationCap,
                 href: "/students/compare-colleges",
-                desc: "One hundred colleges with hand-checked admissions and aid policies: need-blind or not, meets full need or not, and what they actually weigh when they read your application.",
-                stat: "100 colleges · admissions + aid, hand-encoded",
+                desc: `${colleges.length} colleges with hand-checked admissions and aid policies: need-blind or not, meets full need or not, and what they actually weigh when they read your application.`,
+                stat: `${colleges.length} colleges · admissions + aid, hand-encoded`,
               },
             ].map((ex) => (
               <Reveal key={ex.href}>

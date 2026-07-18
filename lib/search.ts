@@ -5,6 +5,8 @@
 // articles down to title/dek/href only — full article bodies never reach the
 // client bundle.
 
+import { careers } from "./careers";
+import { interviewCards } from "./interviewDeck";
 import { allArticles } from "./articles";
 import { topics, getTopic } from "./topics";
 import { toolCategories, hrefFor } from "./toolsRegistry";
@@ -47,9 +49,9 @@ const PAGES: SearchItem[] = [
   { kind: "Page", title: "Scholarship Finder", subtitle: "Curated, verified national scholarships. Filter by stage, sorted by season.", href: "/students/scholarships", group: "Pages", keywords: "scholarship money for college award grant free money daca undocumented transfer" },
   { kind: "Page", title: "Internships & Opportunities", subtitle: "Verified internships, fellowships, and research programs, many paid.", href: "/students/opportunities", group: "Pages", keywords: "internship fellowship research program paid summer opportunity experience resume" },
   { kind: "Page", title: "Compare Colleges", subtitle: "What each college actually looks for: admit rates, need-blind aid, CDS factors — facts, not rankings.", href: "/students/compare-colleges", group: "Pages", keywords: "compare colleges need blind holistic admissions gpa selectivity common data set religious university admit rate" },
-  { kind: "Page", title: "Career Explorer", subtitle: "100 careers with real BLS pay, growth, and training paths - including ones that pay you while you learn.", href: "/students/career-explorer", group: "Pages", keywords: "career job salary pay apprenticeship trade no degree bls median wage growth training earn while you train" },
+  { kind: "Page", title: "Career Explorer", subtitle: `${careers.length} careers with real BLS pay, growth, and training paths - including ones that pay you while you learn.`, href: "/students/career-explorer", group: "Pages", keywords: "career job salary pay apprenticeship trade no degree bls median wage growth training earn while you train" },
   { kind: "Page", title: "Careers Kit", subtitle: "Free resume and cover letter templates, interview guides, and what a first job offer really pays.", href: "/students/careers", group: "Pages", keywords: "resume template cover letter interview job hire first job no experience career kit docx download" },
-  { kind: "Page", title: "Interview Practice", subtitle: "Fourteen real interview questions as flip cards: answer out loud, flip to check your answer's shape.", href: "/students/careers/interview-practice", group: "Pages", keywords: "interview practice questions flashcards prep first job answer" },
+  { kind: "Page", title: "Interview Practice", subtitle: `${interviewCards.length} real interview questions as flip cards: answer out loud, flip to check your answer's shape.`, href: "/students/careers/interview-practice", group: "Pages", keywords: "interview practice questions flashcards prep first job answer" },
   { kind: "Page", title: "AI Mock Interview", subtitle: "A practice interview that talks back: pick the job and difficulty, answer five questions, get coaching.", href: "/students/careers/mock-interview", group: "Pages", keywords: "mock interview practice ai chat coach job questions easy medium hard" },
   { kind: "Page", title: "Your Skill Tree", subtitle: "Every guide, quiz, course, and tool on one map - lit up as you learn, with your next step always showing.", href: "/skills", group: "Pages", keywords: "skill tree progress map level up track learning next step badges achievements" },
   { kind: "Page", title: "Student Tracker", subtitle: "Courses, units, grades, and to-dos: progress toward the 60-unit transfer mark.", href: "/students/tracker", group: "Pages", keywords: "class tracker credits units gpa grades transfer schedule todo" },
