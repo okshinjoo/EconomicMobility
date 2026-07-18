@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Check, Plus, Trash as Trash2 } from "@phosphor-icons/react/dist/ssr";
 import { frameHref } from "@/lib/frame";
+import { scholarships, type Scholarship } from "@/lib/scholarships";
 import { readStudentStage } from "@/lib/studentStage";
 import { useFrame } from "@/components/useFrame";
 import SaveToProfile from "@/components/SaveToProfile";
@@ -72,10 +73,77 @@ function newId(): string {
 const selectCls =
   "rounded-md border-2 border-ink/15 bg-cream px-2 py-1.5 text-sm font-semibold text-ink focus:border-ink focus:outline-none";
 
-const tileCls = "card-ink rounded-xl bg-cream p-5";
-const tileNumCls = "font-display text-3xl font-bold text-forest";
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June", "July",
+  "August", "September", "October", "November", "December",
+];
+
+/** Fall/Spring/Summer terms around the current school year, for the
+ *  term dropdown. Client-only (the tracker renders nothing pre-mount),
+ *  so Date here can't cause a hydration mismatch. */
+function termOptions(): string[] {
+  const y = new Date().getFullYear();
+  const out: string[] = [];
+  for (const yr of [y - 1, y, y + 1]) {
+    out.push(`Spring ${yr}`, `Summer ${yr}`, `Fall ${yr}`);
+  }
+  return out;
+}
+
+/** The tracker's track -> which finder stages fit it, for suggestions. */
+const MODE_STAGES: Record<TrackerMode, string[]> = {
+  hs: ["high-school"],
+  cc: ["transfer", "college"],
+  uni: ["college"],
+};
+
+/** Largest dollar figure in a finder amount string, for autofill. */
+function scholarshipDollars(sch: Scholarship): string {
+  const nums = [...sch.amount.matchAll(/\$([\d,]+)/g)].map((m) =>
+    parseInt(m[1].replace(/,/g, ""), 10)
+  );
+  return nums.length ? String(Math.max(...nums)) : "";
+}
+
+/** "March" from a finder deadlineMonth, for the due dropdown. */
+function scholarshipDue(sch: Scholarship): string {
+  return sch.deadlineMonth === null ? "" : MONTHS[sch.deadlineMonth - 1];
+}
+
+/* One pastel per stat-tile slot — the section's color language. */
+const TILE_TINTS = ["#c9842a", "#15624b", "#2f6d80", "#d26a4c"];
+const tileStyle = (i: number) => ({
+  background: `color-mix(in srgb, ${TILE_TINTS[i % 4]} 12%, #fbf8f1)`,
+});
+const tileNumStyle = (i: number) => ({ color: TILE_TINTS[i % 4] });
+
+const tileCls = "card-ink rounded-xl p-5";
+const tileNumCls = "font-display text-3xl font-bold";
 const tileLabelCls =
-  "mt-1 text-xs font-semibold uppercase tracking-wide text-stone";
+  "mt-1 text-xs font-semibold uppercase tracking-wide text-ink/60";
+
+/** Section heading with a live count and an accent rule. */
+function SectionHead({
+  title,
+  count,
+  accent,
+}: {
+  title: string;
+  count: number;
+  accent: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <h2 className="font-display text-2xl font-bold text-ink">{title}</h2>
+      {count > 0 && (
+        <span className="font-display text-lg font-bold tabular-nums" style={{ color: accent }}>
+          {count}
+        </span>
+      )}
+      <span className="h-0.5 flex-1 rounded-full" style={{ background: `${accent}44` }} />
+    </div>
+  );
+}
 
 export default function StudentTracker() {
   const frame = useFrame();
@@ -157,8 +225,8 @@ export default function StudentTracker() {
       <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {mode === "hs" && (
           <>
-            <div className={tileCls}>
-              <p className={tileNumCls}>{summary.unitsFlaggedDone}</p>
+            <div className={tileCls} style={tileStyle(0)}>
+              <p className={tileNumCls} style={tileNumStyle(0)}>{summary.unitsFlaggedDone}</p>
               <p className={tileLabelCls}>College units banked early</p>
               {flaggedTaking > 0 && (
                 <p className="mt-1.5 text-xs text-stone">
@@ -167,12 +235,12 @@ export default function StudentTracker() {
               )}
             </div>
             <GpaTile summary={summary} />
-            <div className={tileCls}>
-              <p className={tileNumCls}>{summary.unitsTaking}</p>
+            <div className={tileCls} style={tileStyle(2)}>
+              <p className={tileNumCls} style={tileNumStyle(2)}>{summary.unitsTaking}</p>
               <p className={tileLabelCls}>Units in progress</p>
             </div>
-            <div className={tileCls}>
-              <p className={tileNumCls}>
+            <div className={tileCls} style={tileStyle(3)}>
+              <p className={tileNumCls} style={tileNumStyle(3)}>
                 ${Math.round(summary.dollarsProtected).toLocaleString("en-US")}
               </p>
               <p className={tileLabelCls}>Tuition you may never pay</p>
@@ -186,8 +254,8 @@ export default function StudentTracker() {
 
         {mode === "cc" && (
           <>
-            <div className={tileCls}>
-              <p className={tileNumCls}>
+            <div className={tileCls} style={tileStyle(0)}>
+              <p className={tileNumCls} style={tileNumStyle(0)}>
                 {summary.unitsDone}
                 <span className="text-lg text-stone">/{TRANSFER_UNITS}</span>
               </p>
@@ -205,8 +273,8 @@ export default function StudentTracker() {
               )}
             </div>
             <GpaTile summary={summary} />
-            <div className={tileCls}>
-              <p className={tileNumCls}>{summary.unitsTransferable}</p>
+            <div className={tileCls} style={tileStyle(2)}>
+              <p className={tileNumCls} style={tileNumStyle(2)}>{summary.unitsTransferable}</p>
               <p className={tileLabelCls}>Transferable units</p>
               {summary.unitsAtRisk > 0 && (
                 <p className="mt-1.5 text-xs font-semibold text-terracotta">
@@ -214,8 +282,8 @@ export default function StudentTracker() {
                 </p>
               )}
             </div>
-            <div className={tileCls}>
-              <p className={tileNumCls}>
+            <div className={tileCls} style={tileStyle(3)}>
+              <p className={tileNumCls} style={tileNumStyle(3)}>
                 ${Math.round(summary.dollarsProtected).toLocaleString("en-US")}
               </p>
               <p className={tileLabelCls}>Not paid twice</p>
@@ -226,8 +294,8 @@ export default function StudentTracker() {
 
         {mode === "uni" && (
           <>
-            <div className={tileCls}>
-              <p className={tileNumCls}>
+            <div className={tileCls} style={tileStyle(0)}>
+              <p className={tileNumCls} style={tileNumStyle(0)}>
                 {summary.unitsDone}
                 <span className="text-lg text-stone">
                   /{summary.targetUnits}
@@ -254,12 +322,12 @@ export default function StudentTracker() {
               </label>
             </div>
             <GpaTile summary={summary} />
-            <div className={tileCls}>
-              <p className={tileNumCls}>{summary.unitsTaking}</p>
+            <div className={tileCls} style={tileStyle(2)}>
+              <p className={tileNumCls} style={tileNumStyle(2)}>{summary.unitsTaking}</p>
               <p className={tileLabelCls}>Units in progress</p>
             </div>
-            <div className={tileCls}>
-              <p className={tileNumCls}>{summary.unitsToGo}</p>
+            <div className={tileCls} style={tileStyle(3)}>
+              <p className={tileNumCls} style={tileNumStyle(3)}>{summary.unitsToGo}</p>
               <p className={tileLabelCls}>Units to go</p>
               <p className="mt-1.5 text-xs leading-4 text-stone">
                 {summary.unitsToGo === 0
@@ -275,9 +343,11 @@ export default function StudentTracker() {
 
       {/* Courses */}
       <div className="mt-10">
-        <h2 className="font-display text-2xl font-bold text-ink">
-          Your {mode === "hs" ? "classes" : "courses"}
-        </h2>
+        <SectionHead
+          title={mode === "hs" ? "Your classes" : "Your courses"}
+          count={data.courses.length}
+          accent="#c9842a"
+        />
         <p className="mt-1.5 text-sm leading-6 text-stone">
           {mode === "hs" && (
             <>
@@ -419,9 +489,11 @@ export default function StudentTracker() {
 
       {/* Scholarship pipeline — all tracks */}
       <div className="mt-10">
-        <h2 className="font-display text-2xl font-bold text-ink">
-          Scholarship applications
-        </h2>
+        <SectionHead
+          title="Scholarship applications"
+          count={data.apps.length}
+          accent="#d26a4c"
+        />
         <p className="mt-1.5 text-sm leading-6 text-stone">
           Treat it like a part-time job with a pipeline: what you&apos;re
           planning, what&apos;s in, what came back. Need more to apply to?{" "}
@@ -524,6 +596,8 @@ export default function StudentTracker() {
         </div>
 
         <AddApp
+          mode={mode}
+          existingNames={new Set(data.apps.map((a) => a.name))}
           onAdd={(app) => update({ ...data, apps: [...data.apps, app] })}
         />
         {data.apps.some((a) => a.status === "lost") && (
@@ -536,7 +610,11 @@ export default function StudentTracker() {
 
       {/* To-dos */}
       <div className="mt-10">
-        <h2 className="font-display text-2xl font-bold text-ink">To-dos</h2>
+        <SectionHead
+          title="To-dos"
+          count={data.todos.filter((t) => !t.done).length}
+          accent="#15624b"
+        />
         <p className="mt-1.5 text-sm leading-6 text-stone">
           The small stuff with real consequences: email the counselor, order
           the transcript, submit the thing.
@@ -656,8 +734,8 @@ function GpaTile({
   summary: { gpa: number | null; gradedUnits: number };
 }) {
   return (
-    <div className={tileCls}>
-      <p className={tileNumCls}>
+    <div className={tileCls} style={tileStyle(1)}>
+      <p className={tileNumCls} style={tileNumStyle(1)}>
         {summary.gpa === null ? "—" : summary.gpa.toFixed(2)}
       </p>
       <p className={tileLabelCls}>GPA (unofficial)</p>
@@ -720,12 +798,19 @@ function AddCourse({
         aria-label="Units"
         className="w-16 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-center text-sm font-semibold text-ink focus:border-ink focus:outline-none"
       />
-      <input
+      <select
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        placeholder="Fall 2026"
-        className="w-28 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-      />
+        aria-label="Term"
+        className="rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm font-semibold text-ink focus:border-ink focus:outline-none"
+      >
+        <option value="">Term…</option>
+        {termOptions().map((t) => (
+          <option key={t} value={t}>
+            {t}
+          </option>
+        ))}
+      </select>
       <button
         type="submit"
         disabled={!name.trim()}
@@ -738,59 +823,179 @@ function AddCourse({
   );
 }
 
-function AddApp({ onAdd }: { onAdd: (a: ScholarshipApp) => void }) {
+function AddApp({
+  mode,
+  existingNames,
+  onAdd,
+}: {
+  mode: TrackerMode;
+  existingNames: Set<string>;
+  onAdd: (a: ScholarshipApp) => void;
+}) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [due, setDue] = useState("");
+  const [open, setOpen] = useState(false);
+
+  // Type-ahead over the site's own vetted list.
+  const matches = useMemo(() => {
+    const q = name.trim().toLowerCase();
+    if (q.length < 2) return [];
+    return scholarships
+      .filter(
+        (sch) =>
+          sch.name.toLowerCase().includes(q) && !existingNames.has(sch.name)
+      )
+      .slice(0, 6);
+  }, [name, existingNames]);
+
+  const pick = (sch: Scholarship) => {
+    setName(sch.name);
+    setAmount(scholarshipDollars(sch));
+    setDue(scholarshipDue(sch));
+    setOpen(false);
+  };
+
+  // Three stage-fit awards with the soonest deadlines, as one-tap adds.
+  const suggestions = useMemo(() => {
+    const nowMonth = new Date().getMonth() + 1;
+    const fits = MODE_STAGES[mode];
+    return scholarships
+      .filter(
+        (sch) =>
+          sch.stages.some((st) => fits.includes(st)) &&
+          !existingNames.has(sch.name) &&
+          sch.deadlineMonth !== null
+      )
+      .sort(
+        (a, b) =>
+          ((a.deadlineMonth! - nowMonth + 12) % 12) -
+          ((b.deadlineMonth! - nowMonth + 12) % 12)
+      )
+      .slice(0, 3);
+  }, [mode, existingNames]);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (!name.trim()) return;
-        onAdd({
-          id: newId(),
-          name: name.trim().slice(0, 80),
-          amount: amount.trim().slice(0, 12),
-          due: due.trim().slice(0, 30),
-          status: "planning",
-        });
-        setName("");
-        setAmount("");
-        setDue("");
-      }}
-      className="mt-4 flex flex-wrap items-center gap-2"
-    >
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Scholarship name, like “Dell Scholars”"
-        className="min-w-0 flex-1 basis-52 rounded-lg border-2 border-ink/15 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-      />
-      <input
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        inputMode="decimal"
-        placeholder="$"
-        aria-label="Award amount"
-        className="w-24 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm font-semibold text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-      />
-      <input
-        value={due}
-        onChange={(e) => setDue(e.target.value)}
-        placeholder="Due date, like “March 1”"
-        aria-label="Deadline"
-        className="w-32 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-      />
-      <button
-        type="submit"
-        disabled={!name.trim()}
-        className="btn-ink inline-flex items-center gap-1.5 rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+    <div className="mt-4">
+      {suggestions.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold uppercase tracking-wide text-stone">
+            From our list, deadlines next:
+          </span>
+          {suggestions.map((sch) => (
+            <button
+              key={sch.id}
+              type="button"
+              onClick={() =>
+                onAdd({
+                  id: newId(),
+                  name: sch.name.slice(0, 80),
+                  amount: scholarshipDollars(sch),
+                  due: scholarshipDue(sch),
+                  status: "planning",
+                })
+              }
+              className="rounded-md border-2 border-ink/20 bg-cream px-2.5 py-1 text-xs font-bold text-ink transition-colors hover:border-ink hover:bg-amber"
+            >
+              + {sch.name.length > 34 ? `${sch.name.slice(0, 33)}…` : sch.name}
+              <span className="ml-1.5 font-semibold text-stone">
+                {scholarshipDue(sch)}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!name.trim()) return;
+          onAdd({
+            id: newId(),
+            name: name.trim().slice(0, 80),
+            amount: amount.trim().slice(0, 12),
+            due: due.trim().slice(0, 30),
+            status: "planning",
+          });
+          setName("");
+          setAmount("");
+          setDue("");
+          setOpen(false);
+        }}
+        className="mt-3 flex flex-wrap items-center gap-2"
       >
-        <Plus className="h-4 w-4" />
-        Add application
-      </button>
-    </form>
+        <div className="relative min-w-0 flex-1 basis-52">
+          <input
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setOpen(true);
+            }}
+            onFocus={() => setOpen(true)}
+            onBlur={() => setOpen(false)}
+            placeholder="Type a name — ours autofill, any name works"
+            className="w-full rounded-lg border-2 border-ink/15 bg-cream px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+          />
+          {open && matches.length > 0 && (
+            <ul className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border-2 border-ink bg-cream shadow-[3px_3px_0_#11211c]">
+              {matches.map((sch) => (
+                <li key={sch.id}>
+                  <button
+                    type="button"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      pick(sch);
+                    }}
+                    className="flex w-full items-baseline justify-between gap-3 px-3.5 py-2 text-left text-sm hover:bg-amber/25"
+                  >
+                    <span className="min-w-0 flex-1 truncate font-semibold text-ink">
+                      {sch.name}
+                    </span>
+                    <span className="shrink-0 text-xs font-bold text-forest">
+                      {sch.amount.length > 18
+                        ? `${sch.amount.slice(0, 17)}…`
+                        : sch.amount}
+                    </span>
+                    <span className="shrink-0 text-xs font-medium text-stone">
+                      {scholarshipDue(sch) || "rolling"}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <input
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          inputMode="decimal"
+          placeholder="$"
+          aria-label="Award amount"
+          className="w-24 rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm font-semibold text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+        />
+        <select
+          value={due}
+          onChange={(e) => setDue(e.target.value)}
+          aria-label="Deadline month"
+          className="rounded-lg border-2 border-ink/15 bg-cream px-3 py-2 text-sm font-semibold text-ink focus:border-ink focus:outline-none"
+        >
+          <option value="">Due…</option>
+          {MONTHS.map((m) => (
+            <option key={m} value={m}>
+              {m}
+            </option>
+          ))}
+          <option value="Rolling">Rolling</option>
+        </select>
+        <button
+          type="submit"
+          disabled={!name.trim()}
+          className="btn-ink inline-flex items-center gap-1.5 rounded-md bg-amber px-4 py-2 text-sm font-bold text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+        >
+          <Plus className="h-4 w-4" />
+          Add application
+        </button>
+      </form>
+    </div>
   );
 }
 
