@@ -20,6 +20,13 @@ export interface SiteNote {
 export const siteNotes: SiteNote[] = [
   {
     date: "July 18, 2026",
+    title: "863 scholarships: veterans, union families, and more",
+    body: "69 more hand-verified entries. Deaf, hard-of-hearing, blind, and low-vision students got nine new awards — including the American Foundation for the Blind's relaunched program, renewable up to $28,000. Veterans going to school themselves (not just their kids) got eight, from VFW's Help A Hero to Student Veterans of America. Union households got eleven, from AFSCME and the teachers' union to postal workers and mine workers. Native students got the Alaska Native corporation foundations and both major Native Hawaiian funds. Plus eleven European heritage societies, thirteen more state programs (California's Middle Class Scholarship can cover full cost of attendance and takes Dream Act applicants), and the New England-wide Stephen Phillips fund.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
+    date: "July 18, 2026",
     title: "794 scholarships, found by asking who gets left out",
     body: "82 more hand-verified entries, built around students scholarship lists usually forget: foster youth and students who've experienced homelessness (including the federal Chafee voucher), students affected by a parent's incarceration and formerly incarcerated students themselves, families who lost a parent (from the 143-year-old railroad fund to workers' comp families), children of migrant farmworkers, students in recovery or living with mental-health conditions, young caregivers and single dads, plus honor-society transfer money like Phi Theta Kappa's awards — which explicitly welcome undocumented students — and fifteen more state programs, including Virginia's first two on our list. 65 awards on the list now explicitly require no citizenship.",
     href: "/students/scholarships",
