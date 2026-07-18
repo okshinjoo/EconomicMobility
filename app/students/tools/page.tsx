@@ -5,6 +5,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Binoculars, ClipboardText, FileXls, GraduationCap, PencilSimpleLine } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ToolMark from "@/components/ToolMark";
 import { toolStyles } from "@/components/ToolDoodle";
@@ -19,12 +20,14 @@ export const metadata: Metadata = {
 };
 
 const EXTRAS = [
-  { title: "Career Explorer", href: "/students/career-explorer", note: "100 careers: real pay, growth, and training paths." },
-  { title: "Compare Colleges", href: "/students/compare-colleges", note: "100 colleges: admissions and aid policies, hand-checked." },
-  { title: "Student Tracker", href: "/students/tracker", note: "Units, grades, GPA, and to-dos in one place." },
-  { title: "Letter Generator", href: "/students/tools/letters", note: "Credit-dispute and debt-validation letters, built in-browser." },
-  { title: "Free Templates", href: "/students/tools/templates", note: "Budget, debt, and savings spreadsheets that total themselves." },
+  { title: "Career Explorer", href: "/students/career-explorer", note: "100 careers: real pay, growth, and training paths.", icon: Binoculars, chip: "100 careers" },
+  { title: "Compare Colleges", href: "/students/compare-colleges", note: "100 colleges: admissions and aid policies, hand-checked.", icon: GraduationCap, chip: "100 colleges" },
+  { title: "Student Tracker", href: "/students/tracker", note: "Units, grades, GPA, and to-dos in one place.", icon: ClipboardText, chip: null },
+  { title: "Letter Generator", href: "/students/tools/letters", note: "Credit-dispute and debt-validation letters, built in-browser.", icon: PencilSimpleLine, chip: null },
+  { title: "Free Templates", href: "/students/tools/templates", note: "Budget, debt, and savings spreadsheets that total themselves.", icon: FileXls, chip: null },
 ];
+
+const EXTRA_ACCENTS = ["#c9842a", "#2f6d80", "#15624b", "#d26a4c", "#c9842a"];
 
 function categorySection(cat: (typeof toolCategories)[number]) {
 
@@ -155,26 +158,48 @@ export default function StudentToolsHub() {
                 <span className="h-px flex-1 bg-sand" />
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {EXTRAS.map((item, i) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
-                    style={{
-                      background: `color-mix(in srgb, ${["#c9842a", "#2f6d80", "#15624b", "#d26a4c", "#c9842a"][i % 5]} 13%, #fbf8f1)`,
-                    }}
-                  >
-                    <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1.5 flex-1 text-sm leading-6 text-stone">
-                      {item.note}
-                    </p>
-                    <span className="mt-4 text-sm font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
-                      Open
-                    </span>
-                  </Link>
-                ))}
+                {EXTRAS.map((item, i) => {
+                  const accent = EXTRA_ACCENTS[i % EXTRA_ACCENTS.length];
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="group flex h-full flex-col rounded-xl border-2 border-ink p-5 shadow-[3px_3px_0_#11211c] transition-transform duration-200 hover:-translate-y-1"
+                      style={{ background: `color-mix(in srgb, ${accent} 13%, #fbf8f1)` }}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <item.icon
+                          className="h-7 w-7 shrink-0"
+                          style={{ color: accent }}
+                          weight="regular"
+                        />
+                        {item.chip && (
+                          <span
+                            className="rounded-full bg-white/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide"
+                            style={{ color: accent }}
+                          >
+                            {item.chip}
+                          </span>
+                        )}
+                      </div>
+                      <h3
+                        className="mt-2.5 font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4"
+                        style={{ textDecorationColor: accent }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p className="mt-1.5 flex-1 text-sm leading-6 text-ink/70">
+                        {item.note}
+                      </p>
+                      <span
+                        className="mt-4 text-sm font-bold underline decoration-2 underline-offset-4"
+                        style={{ color: accent, textDecorationColor: `${accent}88` }}
+                      >
+                        Open
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
