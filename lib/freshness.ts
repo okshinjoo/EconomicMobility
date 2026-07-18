@@ -41,14 +41,14 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "careers-bls",
     name: "Career Explorer — BLS data",
-    what: `${careers.length} careers: median pay (May 2025 OEWS), growth (2024–34 projections), typical entry education.`,
-    files: ["lib/careers.ts"],
+    what: `${careers.length} careers: median pay + pay range (10th–90th pct) + U.S. employment (May 2025 OEWS), growth (2024–34 projections), typical entry education.`,
+    files: ["lib/careers.ts", "lib/careerDetails.ts"],
     publicVintage: CAREER_DATA_VINTAGE,
-    lastVerified: "July 17, 2026 (May 2025 OEWS applied — all 100 SOC-matched from bls.gov oesm25nat)",
+    lastVerified: "July 18, 2026 (pay RANGE + employment added per career via the BLS API by SOC; verified by matching each occupation's API median to stored medianPay). PARTIAL: 31 of 100 have payLow/payHigh/numJobs; the other 69 are pending the BLS free-API daily-quota reset — their SOC codes are already in lib/careerDetails.ts, cards/pages show an em dash until filled.",
     cadence: "Each spring when BLS publishes the new OEWS wage survey; projections refresh in fall (2025–35 set expected fall 2026).",
     nextDueISO: "2026-11-15",
     recipe:
-      "Two parts. FALL 2026: the 2025–35 employment projections should publish — update each career's growth and the vintage's projection years. SPRING 2027: May 2026 OEWS wages — download oesm26nat.zip via a real browser (BLS blocks curl), SOC-match (the July 2026 refresh script pattern lives in git history), update medianPay, bump CAREER_DATA_VINTAGE. Spot-check earnWhileTraining flags each pass (strict rule: genuinely paid pathways only).",
+      "BACKFILL FIRST (owed): fill payLow/payHigh/numJobs for the ~69 careers still missing them in lib/careerDetails.ts. METHOD (much easier than downloading zips): the BLS public JSON API at api.bls.gov/publicAPI/v2/timeseries/data/ works keyless (POST {seriesid:[...], latest:'true'}, cap 25 series/query, ~25 queries/day per IP). OEWS national series id = 'OEUN' + 13 zeros + <6-digit SOC, no dash> + <datatype>; datatypes 01=employment, 11=annual p10, 13=annual median, 15=annual p90. Every career's SOC already lives in lib/careerDetails.ts (the `soc` field) — pull the ones missing payLow, strip the dash, query. Verify each by matching API datatype-13 to that career's stored medianPay (in lib/careers.ts) before trusting p10/p90; a mismatch means the SOC is wrong (the 69 pending SOCs are hand-assigned and unverified). THEN ONGOING: FALL 2026 the 2025–35 projections publish — update growth + projection years. SPRING 2027 May 2026 OEWS — re-pull all series by SOC via the same API, update medianPay/payLow/payHigh/numJobs, bump CAREER_DATA_VINTAGE. Spot-check earnWhileTraining flags each pass (strict rule: genuinely paid pathways only).",
   },
   {
     id: "colleges-cds",

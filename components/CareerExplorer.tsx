@@ -8,7 +8,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { HandCoins } from "@phosphor-icons/react/dist/ssr";
+import { HandCoins, CaretDown, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { fuzzyScore } from "@/lib/fuzzy";
 import {
   careers,
@@ -18,6 +18,7 @@ import {
   EDUCATION_LABELS,
   type CareerField,
 } from "@/lib/careers";
+import { getCareerDetail } from "@/lib/careerDetails";
 
 type EduFilter = "all" | "nodegree" | "certificate" | "associate" | "bachelor";
 type PayFilter = "all" | "under50" | "50to80" | "80to120" | "over120";
@@ -61,6 +62,7 @@ export default function CareerExplorer() {
   const [growthF, setGrowthF] = useState<GrowthFilter>("all");
   const [earnOnly, setEarnOnly] = useState(false);
   const [sort, setSort] = useState<Sort>("pay");
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const results = useMemo(() => {
     let list = [...careers];
@@ -87,13 +89,18 @@ export default function CareerExplorer() {
     const q = query.trim();
     if (q) {
       list = list
-        .map((c) => ({
-          c,
-          score: fuzzyScore(
-            q,
-            `${c.title} ${FIELD_LABELS[c.field]} ${c.trainingNote} ${c.note}`
-          ),
-        }))
+        .map((c) => {
+          const d = getCareerDetail(c.id);
+          return {
+            c,
+            score: fuzzyScore(
+              q,
+              `${c.title} ${FIELD_LABELS[c.field]} ${c.trainingNote} ${c.note} ${
+                d?.whatTheyDo ?? ""
+              } ${d?.skills.join(" ") ?? ""}`
+            ),
+          };
+        })
         .filter((r) => r.score > 0)
         .sort((a, b) => b.score - a.score)
         .map((r) => r.c);
@@ -188,60 +195,131 @@ export default function CareerExplorer() {
       </p>
 
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {results.map((c) => (
-          <div key={c.id} className="card-ink flex flex-col rounded-2xl bg-cream p-5">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h3 className="font-display text-lg font-bold leading-snug text-ink">
-                  {c.title}
-                </h3>
-                <p className="mt-0.5 text-[13px] font-medium text-stone">
-                  {FIELD_LABELS[c.field]}
+        {results.map((c) => {
+          const d = getCareerDetail(c.id);
+          const hasRange = Boolean(d?.payLow && d?.payHigh);
+          const open = openId === c.id;
+          return (
+            <div key={c.id} className="card-ink flex flex-col rounded-2xl bg-cream p-5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="font-display text-lg font-bold leading-snug text-ink">
+                    {c.title}
+                  </h3>
+                  <p className="mt-0.5 text-[13px] font-medium text-stone">
+                    {FIELD_LABELS[c.field]}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="font-display text-2xl font-bold tabular-nums text-forest">
+                    {usd(c.medianPay)}
+                  </div>
+                  <div className="text-[11px] font-semibold text-stone">
+                    median pay / year
+                  </div>
+                </div>
+              </div>
+
+              {hasRange && (
+                <p className="mt-2 text-[13px] font-semibold text-ink/75">
+                  Most earn{" "}
+                  <span className="tabular-nums">
+                    {usd(d!.payLow!)}–{usd(d!.payHigh!)}
+                  </span>{" "}
+                  <span className="font-medium text-stone">
+                    (10th–90th percentile)
+                  </span>
                 </p>
-              </div>
-              <div className="text-right">
-                <div className="font-display text-2xl font-bold tabular-nums text-forest">
-                  {usd(c.medianPay)}
-                </div>
-                <div className="text-[11px] font-semibold text-stone">
-                  median pay / year
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              <span className="rounded-full bg-ink/[0.06] px-2.5 py-1 text-[11px] font-bold text-ink/70">
-                {EDUCATION_LABELS[c.education]}
-              </span>
-              <span
-                className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
-                  c.growth >= 9
-                    ? "bg-forest/10 text-forest"
-                    : c.growth < 2
-                      ? "bg-terracotta/10 text-terracotta"
-                      : "bg-ink/[0.06] text-ink/70"
-                }`}
-              >
-                {c.growth > 0 ? "+" : ""}
-                {c.growth}% by 2033 · {growthLabel(c.growth)}
-              </span>
-              {c.earnWhileTraining && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
-                  <HandCoins className="h-3 w-3" weight="bold" />
-                  Earn while you train
-                </span>
               )}
+
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className="rounded-full bg-ink/[0.06] px-2.5 py-1 text-[11px] font-bold text-ink/70">
+                  {EDUCATION_LABELS[c.education]}
+                </span>
+                <span
+                  className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
+                    c.growth >= 9
+                      ? "bg-forest/10 text-forest"
+                      : c.growth < 2
+                        ? "bg-terracotta/10 text-terracotta"
+                        : "bg-ink/[0.06] text-ink/70"
+                  }`}
+                >
+                  {c.growth > 0 ? "+" : ""}
+                  {c.growth}% by 2034 · {growthLabel(c.growth)}
+                </span>
+                {c.earnWhileTraining && (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2.5 py-1 text-[11px] font-bold text-forest">
+                    <HandCoins className="h-3 w-3" weight="bold" />
+                    Earn while you train
+                  </span>
+                )}
+              </div>
+
+              <p className="mt-2.5 text-[13px] font-medium text-stone">
+                Path: {c.trainingNote}.
+              </p>
+
+              <p className="mt-2 text-sm italic leading-6 text-stone">{c.note}</p>
+
+              {/* Inline "quick look" panel */}
+              {open && d && (
+                <div className="mt-3 space-y-3 border-t-2 border-ink/10 pt-3">
+                  <p className="text-sm leading-6 text-ink/85">{d.whatTheyDo}</p>
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    <p className="text-[13px] leading-5 text-stone">
+                      <span className="font-bold text-ink/70">Where:</span>{" "}
+                      {d.workSetting}
+                    </p>
+                    <p className="text-[13px] leading-5 text-stone">
+                      <span className="font-bold text-ink/70">Hours:</span>{" "}
+                      {d.hours}
+                    </p>
+                  </div>
+                  {d.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {d.skills.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-md border border-ink/15 bg-paper px-2 py-0.5 text-[11px] font-semibold text-ink/70"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Actions */}
+              <div className="mt-3 flex flex-1 items-end justify-between gap-3 pt-1">
+                {d ? (
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(open ? null : c.id)}
+                    aria-expanded={open}
+                    className="inline-flex items-center gap-1 text-[13px] font-bold text-forest hover:text-ink"
+                  >
+                    <CaretDown
+                      className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+                      weight="bold"
+                    />
+                    {open ? "Less" : "Quick look"}
+                  </button>
+                ) : (
+                  <span />
+                )}
+                <Link
+                  href={`/students/career-explorer/${c.id}`}
+                  className="inline-flex items-center gap-1 text-[13px] font-bold text-ink underline decoration-amber decoration-2 underline-offset-4 hover:text-forest"
+                >
+                  Full profile
+                  <ArrowRight className="h-3.5 w-3.5" weight="bold" />
+                </Link>
+              </div>
             </div>
-
-            <p className="mt-2.5 text-[13px] font-medium text-stone">
-              Path: {c.trainingNote}.
-            </p>
-
-            <p className="mt-2 flex-1 text-sm italic leading-6 text-stone">
-              {c.note}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {results.length === 0 && (

@@ -8,6 +8,7 @@ import { blogPosts } from "@/lib/blog";
 import { journeys } from "@/lib/journeys";
 import { TOPIC_QUIZ_IDS } from "@/lib/topicQuizzes";
 import { communityPosts } from "@/lib/communityFeed";
+import { careers } from "@/lib/careers";
 
 const BASE = "https://economicmobilityproject.org";
 
@@ -80,6 +81,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
+  const careerRoutes = careers.map((c) => ({
+    url: `${BASE}/students/career-explorer/${c.id}`,
+    changeFrequency: "monthly" as const,
+  }));
+
   const communityPostRoutes = communityPosts.map((p) => ({
     url: `${BASE}/community/post/${p.id}`,
     changeFrequency: "monthly" as const,
@@ -95,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogRoutes,
     ...journeyRoutes,
     ...topicQuizRoutes,
+    ...careerRoutes,
     ...communityPostRoutes,
   ];
 }

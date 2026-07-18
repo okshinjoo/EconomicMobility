@@ -27,6 +27,13 @@ export const siteNotes: SiteNote[] = [
   },
   {
     date: "July 18, 2026",
+    title: "The Career Explorer goes deeper — a full profile for every job",
+    body: "Every one of the 100 careers now has its own page, not just a card. Each profile lays out what the job actually is, where you'd work and the real hours, the skills it takes, whether a license is involved, and which careers are worth comparing it against. The biggest addition is the pay: alongside the median we now show the real earning range — what the lowest tenth and the highest tenth take home — because 'the median is $63,000' hides that the same job can pay $43,000 starting out or six figures with years and the right city. Those ranges come straight from the Bureau of Labor Statistics wage survey, matched to each job by its federal occupation code; we're filling them in as fast as the government's data service lets us pull them, and a job still waiting on its range shows a dash rather than a guess. On the list itself, the range now sits right on the card, and a 'Quick look' opens the summary without leaving the page.",
+    href: "/students/career-explorer",
+    hrefLabel: "Explore careers",
+  },
+  {
+    date: "July 18, 2026",
     title: "1,266 scholarships — the famous ones, checked",
     body: "We went back through the big open-to-anyone awards — the ones every list mentions — to see what we were still missing. Six real additions: the Boren Scholarship (up to $25,000 to study a critical language abroad, with a federal-service commitment we spell out), the Dr Pepper Tuition Giveaway (a panel-judged video contest, not the random drawing its name suggests), Doodle for Google, and the three Ayn Rand Institute essay contests (Anthem, The Fountainhead, Atlas Shrugged — no entry fee, no citizenship requirement). What we deliberately left out matters more: we don't list the 'no-essay, enter-to-win' scholarships that flood search results, because they exist to harvest and sell your data — Unigo, ScholarshipPoints, Chegg, and their kind never make this list. We also cut real programs that don't fit — a scholarship you can't apply to yourself (your teacher or counselor has to enter you), and one we found had quietly shut down and been replaced by a program already on our list.",
     href: "/students/scholarships",

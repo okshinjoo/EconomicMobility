@@ -62,9 +62,9 @@ export default function CareerExplorerPage() {
         <div className="mx-auto max-w-6xl px-6 py-6">
           <p className="max-w-3xl text-sm leading-6 text-stone">
             <span className="font-bold text-ink">How to read this:</span>{" "}
-            figures come from the Bureau of Labor Statistics — median pay from
-            the May 2024 wage survey, growth from the official 2024–34
-            projections. &ldquo;Median&rdquo; means half earn more and half
+            figures come from the Bureau of Labor Statistics — median pay and
+            the earning range from the May 2025 wage survey, growth from the
+            official 2024–34 projections. &ldquo;Median&rdquo; means half earn more and half
             earn less; big cities and experience push it up.
             &ldquo;Earn while you train&rdquo; is strict: it marks only paths
             with a genuinely paid pathway — apprenticeships, academies,

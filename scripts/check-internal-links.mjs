@@ -46,6 +46,7 @@ const idsIn = (file) => new Set([...read(file).matchAll(/^\s{4}id:\s*"([a-z0-9-]
 const courseIds = idsIn("lib/courses.ts");
 const journeyIds = idsIn("lib/journeys.ts");
 const challengeIds = idsIn("lib/challenges.ts");
+const careerIds = idsIn("lib/careers.ts");
 const blogSlugs = new Set([...read("lib/blog.ts").matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
 const postIds = new Set([...read("lib/communityFeed.ts").matchAll(/id:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
 const glossarySlugs = new Set([...read("lib/glossary.ts").matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
@@ -167,8 +168,17 @@ for (const f of dataFiles) {
 
   // 3. bare slug references that must be real articles
   const relatedIsTopics = f === "lib/learnContent.ts";
+  // careerDetails.related holds CAREER ids (cross-links between profiles), not article slugs.
+  const relatedIsCareers = f === "lib/careerDetails.ts";
   for (const m of s.matchAll(/(related|articleSlugs|STARTER_SLUGS|STUDENT_LIFE_SLUGS|ROADMAP_SLUGS):?\s*(?:=\s*)?\[([^\]]*)\]/gs)) {
     if (relatedIsTopics && m[1] === "related") continue;
+    if (relatedIsCareers && m[1] === "related") {
+      for (const sm of m[2].matchAll(/"([a-z0-9-]+)"/g)) {
+        if (!careerIds.has(sm[1]))
+          errors.push(`${f}:${lineOf(s, m.index)}  [slug] "${sm[1]}" in related — unknown career`);
+      }
+      continue;
+    }
     for (const sm of m[2].matchAll(/"([a-z0-9-]+)"/g)) {
       if (!articleTopic.has(sm[1]))
         errors.push(`${f}:${lineOf(s, m.index)}  [slug] "${sm[1]}" in ${m[1]} — unknown article`);

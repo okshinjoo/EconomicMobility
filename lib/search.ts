@@ -5,7 +5,8 @@
 // articles down to title/dek/href only — full article bodies never reach the
 // client bundle.
 
-import { careers } from "./careers";
+import { careers, FIELD_LABELS } from "./careers";
+import { getCareerDetail } from "./careerDetails";
 import { interviewCards } from "./interviewDeck";
 import { allArticles } from "./articles";
 import { topics, getTopic } from "./topics";
@@ -76,6 +77,24 @@ const blogItems: SearchItem[] = blogPosts.map((p) => ({
   keywords: p.tag,
 }));
 
+const usd = (n: number) => `$${n.toLocaleString()}`;
+
+const careerItems: SearchItem[] = careers.map((c) => {
+  const d = getCareerDetail(c.id);
+  return {
+    kind: "Page" as const,
+    title: c.title,
+    subtitle: `${usd(c.medianPay)}/year median · ${FIELD_LABELS[c.field]}${
+      c.earnWhileTraining ? " · earn while you train" : ""
+    }`,
+    href: `/students/career-explorer/${c.id}`,
+    group: "Careers",
+    keywords: `career job salary pay ${FIELD_LABELS[c.field]} ${c.trainingNote} ${
+      d?.whatTheyDo ?? ""
+    } ${d?.skills.join(" ") ?? ""}`,
+  };
+});
+
 /** Assemble the full searchable index. */
 export function getSearchItems(): SearchItem[] {
   const topicItems: SearchItem[] = topics.map((t) => ({
@@ -120,5 +139,5 @@ export function getSearchItems(): SearchItem[] {
     keywords: (g.aliases ?? []).join(" "),
   }));
 
-  return [...topicItems, ...toolItems, ...articleItems, ...blogItems, ...journeyItems, ...termItems, ...PAGES];
+  return [...topicItems, ...toolItems, ...articleItems, ...blogItems, ...journeyItems, ...careerItems, ...termItems, ...PAGES];
 }
