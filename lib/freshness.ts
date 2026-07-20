@@ -102,11 +102,12 @@ export const freshness: FreshnessEntry[] = [
     what: `${scholarships.length} hand-verified awards.`,
     files: ["lib/scholarships.ts"],
     publicVintage: VERIFIED_AS_OF,
-    lastVerified: "July 18, 2026",
+    lastVerified:
+      "July 19, 2026 (full source audit: every officialUrl classified official/authorized; checker now also catches login-wall redirects and separates bot-wall 403s).",
     cadence: "Yearly.",
     nextDueISO: "2027-07-01",
     recipe:
-      "node scripts/check-scholarships.mjs on every URL; browser-confirm 403s before cutting; refresh 'Typically <month>' deadlines that shifted; keep the curation bar (no fees, no data harvesting); bump VERIFIED_AS_OF.",
+      "node scripts/check-scholarships.mjs on every URL; browser-confirm 403 bot-walls and '200 but LOGIN page' hits before cutting (iMIS association sites bounce dead pages to sign-in URLs that return 200); refresh 'Typically <month>' deadlines that shifted; keep the curation bar (no fees, no data harvesting, no aggregator/directory sources); bump VERIFIED_AS_OF.",
   },
   {
     id: "state-resources",

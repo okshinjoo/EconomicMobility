@@ -129,17 +129,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://www.thedream.us/",
   },
   {
-    id: "golden-door",
-    name: "Golden Door Scholars",
-    amount: "Up to full tuition",
-    deadline: "Typically October",
-    deadlineMonth: 10,
-    who: "Undocumented students, with special focus on career-track degrees.",
-    stages: ["high-school", "college", "transfer"],
-    openToUndocumented: true,
-    officialUrl: "https://www.roadtohire.org/golden-door-scholars",
-  },
-  {
     id: "hsf",
     name: "Hispanic Scholarship Fund",
     amount: "$500–$5,000",
@@ -303,7 +292,7 @@ export const scholarships: Scholarship[] = [
     who: "High school seniors, graduates, or GED holders entering a skilled-trades program at a two-year college or technical school who sign the S.W.E.A.T. Pledge.",
     stages: ["high-school", "college"],
     tags: ["trades", "technical", "vocational"],
-    officialUrl: "https://istsprogramsupport.com/mikeroweworks/",
+    officialUrl: "https://mikeroweworks.org/scholarship/",
   },
   {
     id: "soroptimist-live-your-dream",
@@ -2407,7 +2396,7 @@ export const scholarships: Scholarship[] = [
     who: "West Virginia residents without a college degree yet can attend a WV community or technical college tuition-free in fields like IT and healthcare.",
     stages: ["high-school", "college"],
     tags: ["west-virginia", "community-college", "tuition-free", "workforce"],
-    officialUrl: "http://wvinvests.org/",
+    officialUrl: "https://www.cfwv.com/financial-aid/wv-invests-grant/",
   },
   {
     id: "md-community-college-promise",
@@ -5280,17 +5269,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://www.armyemergencyrelief.org/scholarships/child/",
   },
   {
-    id: "thanksusa-scholarship",
-    name: "ThanksUSA Scholarship",
-    amount: "Up to $3,000",
-    deadline: "Typically May",
-    deadlineMonth: 5,
-    who: "Dependent children or spouses of active-duty, National Guard, or Reserve U.S. military service members.",
-    stages: ["high-school", "college"],
-    tags: ["military", "dependent", "spouse", "need-based", "scholarship"],
-    officialUrl: "https://www.thanksusa.org",
-  },
-  {
     id: "nmfa-spouse-scholarship",
     name: "National Military Family Association Military Spouse Scholarship",
     amount: "$500\u2013$5,000",
@@ -5936,7 +5914,7 @@ export const scholarships: Scholarship[] = [
     who: "The Fleet Reserve Association funds need- and merit-based scholarships for students connected to the Navy, Marine Corps, or Coast Guard through their own service or a parent, grandparent, or great-grandparent's.",
     stages: ["high-school", "college"],
     tags: ["military-connected", "need-based"],
-    officialUrl: "https://www.fra.org/fra/web/web/content/fra_scholarships.aspx",
+    officialUrl: "https://www.fra.org/fra/Web/Events_and_Programs/Fra_Education_Foundation_Scholarships/Web/Content/FRA_Education_Foundation.aspx",
   },
   {
     id: "ioof-wirz-scholarship",
@@ -6308,17 +6286,6 @@ export const scholarships: Scholarship[] = [
     stages: ["high-school", "college"],
     tags: ["trades"],
     officialUrl: "https://collisionrepaireducationfoundation.org/students-scholarships/",
-  },
-  {
-    id: "acf-education-foundation-scholarship",
-    name: "American Culinary Federation Education Foundation Scholarships",
-    amount: "$1,500\u2013$2,500",
-    deadline: "Typically April",
-    deadlineMonth: 4,
-    who: "For students pursuing an apprenticeship, certificate, or degree in culinary, pastry, or foodservice \u2014 no essay or transcript required, with two application cycles a year (spring and fall).",
-    stages: ["college"],
-    tags: ["trades"],
-    officialUrl: "https://www.acfchefs.org/ACF/Education/Scholarships",
   },
   {
     id: "beauty-changes-lives-scholarship",
@@ -7368,17 +7335,6 @@ export const scholarships: Scholarship[] = [
     tags: ["healthcare"],
     officialUrl: "https://www.fnsna.org/scholarships",
   },
-  {
-    id: "navta-boehringer-ingelheim-tuition-for-vet-techs",
-    name: "NAVTA Tuition for Vet Techs Scholarship",
-    amount: "$2,500",
-    deadline: "Typically July",
-    deadlineMonth: 7,
-    who: "For veterinary technology students who've completed at least half of an accredited program with a 3.0+ GPA; up to 20 awards a year.",
-    stages: ["college"],
-    tags: ["healthcare"],
-    officialUrl: "https://navta.net/tuition-for-techs/",
-  },
 
   // ── Living with illness (batch 6) ──
   {
@@ -7623,7 +7579,7 @@ export const scholarships: Scholarship[] = [
     who: "For college students from underserved communities pursuing advertising, communications, media, marketing, journalism, or PR \u2014 paid directly to the student's financial aid office.",
     stages: ["college"],
     tags: ["business"],
-    officialUrl: "https://aaf.org/Foundation/MosaicScholarship",
+    officialUrl: "https://www.americanadvertisingfoundation.org/Foundation/Foundation/Mosaic-Scholarship.aspx",
   },
   {
     id: "prsa-betsy-plank-prssa-scholarship",
@@ -7904,7 +7860,7 @@ export const scholarships: Scholarship[] = [
     who: "Vermont residents of any age without a bachelor's degree whose family adjusted gross income is $100,000 or less; awarded automatically after enrolling at CCV and filing the FAFSA plus Vermont Grant application, no separate application needed.",
     stages: ["high-school", "college"],
     tags: ["state-program"],
-    officialUrl: "https://www.vsac.org/blog/802opportunity-free-tuition-vermont",
+    officialUrl: "https://www.vsac.org/free-tuition-community-college-vermont",
   },
   {
     id: "nh-leveraged-incentive-grant",
@@ -9824,7 +9780,7 @@ export const scholarships: Scholarship[] = [
     who: "For engineering undergrads interested in railway engineering \u2014 signals, bridges, track, and rail construction all qualify; student membership is free.",
     stages: ["college"],
     tags: ["stem"],
-    officialUrl: "https://www.aremafoundation.org/AREMA_DONOR/AREMA_DONOR/Foundation/Educational_Foundation_Scholarships.aspx",
+    officialUrl: "https://www.aremafoundation.org/AREMA_DONOR/AREMA_DONOR/Programs/Scholarships.aspx",
   },
   {
     id: "league-of-railway-women-scholarships",
@@ -12256,7 +12212,7 @@ export const scholarships: Scholarship[] = [
     who: "For high school seniors and community college transfers headed into transportation engineering, with priority for first-generation and Pell-eligible students.",
     stages: ["high-school", "transfer", "college"],
     tags: ["stem"],
-    officialUrl: "https://www.ite.org/membership/university-scholars-program/",
+    officialUrl: "https://ite-scholarships.secure-platform.com/a/organizations/main/home",
   },
   {
     id: "aisc-scholarships",
@@ -17271,7 +17227,7 @@ export const scholarships: Scholarship[] = [
     who: "Virginia residents employed at, or intending to work at, a VA early care/education program, pursuing a Career Studies Certificate or AAS in Early Childhood Development, or a SCHEV-accredited Montessori certification, at a VA community college",
     stages: ["college"],
     tags: ["state-virginia", "occupation-specific", "early-childhood-education", "tuition-scholarship"],
-    officialUrl: "http://earlyeducatorscholarship.doe.virginia.gov/",
+    officialUrl: "https://earlyeducatorscholarship.doe.virginia.gov/",
   },
   {
     id: "va-stem-virginia-west",
@@ -18586,17 +18542,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://www.als.org/get-involved/jane-calmes-als-scholarship-fund",
   },
   {
-    id: "awaken-dreams-lost",
-    name: "Lost Dreams Awaken Scholarship",
-    amount: "Reported ~$1,500 (exact amount set by donor per cycle per Bold.org's own disclosure; verify current figure)",
-    deadline: "Typically July",
-    deadlineMonth: 7,
-    who: "Undergraduate or graduate students in recovery from substance abuse or alcohol addiction, clean for at least one year.",
-    stages: ["college"],
-    tags: ["disease", "addiction-recovery", "national"],
-    officialUrl: "https://bold.org/scholarships/lost-dreams-awaken-scholarship/",
-  },
-  {
     id: "packaging-packaging-professionals",
     name: "Institute of Packaging Professionals (IoPP) Packaging Education Scholarship Fund",
     amount: "$500–$5,000 (varies by individual scholarship; more than $30,000 awarded annually across the fund and chapters)",
@@ -18609,14 +18554,14 @@ export const scholarships: Scholarship[] = [
   },
   {
     id: "graphics-print",
-    name: "Print and Graphics Scholarship Foundation (PGSF) Scholarship",
+    name: "The FGCE Scholarships (formerly Print and Graphics Scholarship Foundation)",
     amount: "$1,500–$10,000 per academic year (renewable up to four years in most cases; over $500,000 awarded annually)",
     deadline: "Typically May",
     deadlineMonth: 5,
     who: "High school seniors or students currently enrolled full-time (12+ credits/term) in a printing technology, printing management, graphic communications, or packaging program at a U.S. technical school, college, or university; GPA 3.0+ (plus SAT/ACT for high school seniors); also open to those currently employed in graphic communications seeking further education.",
     stages: ["high-school", "college"],
     tags: ["printing", "graphic-communications", "packaging", "national", "professional-association"],
-    officialUrl: "https://www.pgsf.org/scholarship-application",
+    officialUrl: "https://www.thefgce.org/students/scholarships/",
   },
   {
     id: "aifd",
@@ -18683,17 +18628,6 @@ export const scholarships: Scholarship[] = [
     stages: ["college"],
     tags: ["environmental-health", "national", "professional-association"],
     officialUrl: "https://www.neha.org/scholarships",
-  },
-  {
-    id: "goodrx-innovation-pharmacy",
-    name: "GoodRx Pharmacy Innovation Scholarship (Pharmacy Technician track)",
-    amount: "$1,000 (5 of 10 total awards reserved for pharmacy technician students; the other 5 for PharmD students)",
-    deadline: "Varies",
-    deadlineMonth: null,
-    who: "High school seniors/graduates or students currently studying to become a Certified Pharmacy Technician (CPhT) through PTCB or the National Healthcareer Association (NHA), including those attending a pharmacy technician training school.",
-    stages: ["high-school", "college"],
-    tags: ["pharmacy-technician", "national", "corporate-sponsor"],
-    officialUrl: "https://www.goodrx.com/corporate/social-impact",
   },
   {
     id: "american-art-auxiliary-contest",

@@ -19,6 +19,13 @@ export interface SiteNote {
 
 export const siteNotes: SiteNote[] = [
   {
+    date: "July 19, 2026",
+    title: "A source audit of all 1,672 scholarships — now 1,666, every link checked",
+    body: "We promised every scholarship here links straight to its official source, so we audited all 1,672 links in one pass to hold ourselves to it. The result: not one entry sourced from the scholarship directories and aggregator sites we warn about — with a single exception we cut, an award that exists only inside one of those platforms, behind its account wall. We also cut a program whose website now redirects to a spam page (the charity is real, but there's no official page left to send you to), one that quietly ended in 2021, and — applying our own no-regional rule — a well-known program that narrowed from national to three states. Two entries turned out to be the same scholarship wearing two names; they're one now. And about a dozen professional-association links had rotted into member-login pages or moved, so we chased down each program's current public page and re-pointed them. The count on the page comes straight from the list, so it now reads 1,666 — smaller and truer.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
     date: "July 18, 2026",
     title: "The scholarship finder now remembers your list",
     body: "A finder with 1,672 scholarships is only useful if you can keep your place in it. So now every scholarship has two buttons: Save it to a shortlist of ones you want to apply for, and Mark applied once you've sent it in. A 'Your list' bar appears at the top to flip between everything, the ones you still need to apply for, and the ones you've finished — so a giant list becomes a personal to-do you can actually work through. It all saves right on your device, no account required; sign in and it follows you to your phone and back. Nothing is shared, and we never see it.",

@@ -27,10 +27,18 @@ async function check({ name, url }) {
     });
     const finalHost = new URL(res.url).hostname.replace(/^www\./, "");
     const origHost = new URL(url).hostname.replace(/^www\./, "");
-    if (!res.ok) {
+    // Login-wall redirect: iMIS association sites (and friends) bounce a dead
+    // public page to a member sign-in URL that returns 200 — a status check
+    // alone calls that healthy. Found the hard way, July 2026 source audit.
+    const loginWall = /asicommon|login\.aspx|\/(log|sign)-?in\b/i.test(res.url) && !/login/i.test(url);
+    if (res.status === 403) {
+      problems.push(`⛨ 403 bot-wall (usually fine — confirm in a real browser) — ${name}\n    ${url}`);
+    } else if (!res.ok) {
       problems.push(`✗ ${res.status} — ${name}\n    ${url}`);
     } else if (finalHost !== origHost) {
       problems.push(`↪ moved to ${finalHost} — ${name}\n    ${url}`);
+    } else if (loginWall) {
+      problems.push(`⚿ 200 but lands on a LOGIN page — ${name}\n    ${url}\n    → ${res.url}`);
     }
   } catch (e) {
     problems.push(`✗ ${e.name === "TimeoutError" ? "timeout" : "error"} — ${name}\n    ${url}`);
