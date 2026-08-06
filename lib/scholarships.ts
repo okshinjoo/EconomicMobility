@@ -18299,9 +18299,9 @@ const scholarshipCatalog: Scholarship[] = [
   },
 ];
 
-// The full catalog remains above as the frozen, recoverable source set. Only
-// records that passed the 2026-08-05 evidence audit are exported to the public
-// Finder; confirmed removals and unresolved reviews stay out of the verified
-// experience until a later remediation record explicitly clears them.
+// The full catalog remains above as the frozen, recoverable source set. The
+// public Finder exports both the evidence-passed records and the owner's
+// approved amount-floor exceptions. Confirmed removals and all other unresolved
+// reviews remain withheld until a later decision explicitly clears them.
 export const scholarships: Scholarship[] =
   applyScholarshipAuditCuration(scholarshipCatalog);
