@@ -1,3 +1,5 @@
+import { applyScholarshipAuditCuration } from "./scholarshipCuration.generated";
+
 // The curated scholarship list (July 2026): real, established, national
 // awards relevant to Empower's audience — first-gen, low-income, immigrant,
 // and transfer students. HONESTY RULES: every entry is a real program with
@@ -10,7 +12,7 @@
 // mills, no "sweepstakes" scholarships that sell your data, no programs we
 // can't verify.
 
-export const VERIFIED_AS_OF = "July 2026";
+export const VERIFIED_AS_OF = "August 2026";
 
 export type StudentStage = "high-school" | "college" | "transfer";
 
@@ -35,13 +37,13 @@ export interface Scholarship {
   officialUrl: string;
 }
 
-export const scholarships: Scholarship[] = [
+const scholarshipCatalog: Scholarship[] = [
   {
     id: "jkc-transfer",
     name: "Jack Kent Cooke Undergraduate Transfer Scholarship",
     amount: "Up to $55,000/yr",
-    deadline: "Typically January",
-    deadlineMonth: 1,
+    deadline: "Typically December",
+    deadlineMonth: 12,
     who: "High-achieving community college students transferring to a four-year school, with financial need.",
     stages: ["transfer"],
     officialUrl: "https://www.jkcf.org/our-scholarships/undergraduate-transfer-scholarship/",
@@ -62,49 +64,49 @@ export const scholarships: Scholarship[] = [
     amount: "Full cost of attendance",
     deadline: "Typically September",
     deadlineMonth: 9,
-    who: "Pell-eligible high school seniors from minority backgrounds with strong records.",
+    who: "Pell-eligible high school seniors with strong academics, leadership, and financial need.",
     stages: ["high-school"],
-    officialUrl: "https://www.thegatesscholarship.org/",
+    officialUrl: "https://www.thegatesscholarship.org/scholarship/",
   },
   {
     id: "questbridge",
     name: "QuestBridge National College Match",
     amount: "Full four-year scholarship",
-    deadline: "Typically September",
-    deadlineMonth: 9,
+    deadline: "Typically October",
+    deadlineMonth: 10,
     who: "Low-income high school seniors; matches you to full rides at partner colleges.",
     stages: ["high-school"],
-    officialUrl: "https://www.questbridge.org/",
+    officialUrl: "https://www.questbridge.org/apply-to-college/programs/national-college-match/the-match-scholarship",
   },
   {
     id: "coca-cola",
     name: "Coca-Cola Scholars Program",
     amount: "$20,000",
-    deadline: "Typically October",
-    deadlineMonth: 10,
+    deadline: "Typically September",
+    deadlineMonth: 9,
     who: "High school seniors with leadership and service; one of the largest merit programs.",
     stages: ["high-school"],
-    officialUrl: "https://www.coca-colascholarsfoundation.org/",
+    officialUrl: "https://www.coca-colascholarsfoundation.org/apply/",
   },
   {
     id: "dell",
     name: "Dell Scholars",
     amount: "$20,000 plus laptop and support",
-    deadline: "Typically December",
-    deadlineMonth: 12,
+    deadline: "Typically February",
+    deadlineMonth: 2,
     who: "Low-income students in an approved college-readiness program, with grit valued over grades.",
     stages: ["high-school"],
-    officialUrl: "https://www.dellscholars.org/",
+    officialUrl: "https://www.dellscholars.org/students/",
   },
   {
     id: "horatio-alger",
     name: "Horatio Alger National Scholarship",
     amount: "$25,000",
-    deadline: "Typically October",
-    deadlineMonth: 10,
-    who: "High school students who have faced and overcome significant adversity, with financial need.",
+    deadline: "Typically March",
+    deadlineMonth: 3,
+    who: "High school juniors who have overcome significant adversity and demonstrate financial need.",
     stages: ["high-school"],
-    officialUrl: "https://scholars.horatioalger.org/",
+    officialUrl: "https://horatioalger.org/scholarships-and-services/undergraduate-scholarships/",
   },
   {
     id: "dream-us-national",
@@ -115,18 +117,18 @@ export const scholarships: Scholarship[] = [
     who: "Undocumented students (DACA or TPS not required) headed to a partner college.",
     stages: ["high-school", "college", "transfer"],
     openToUndocumented: true,
-    officialUrl: "https://www.thedream.us/",
+    officialUrl: "https://www.thedream.us/scholarships/national-scholarship/",
   },
   {
     id: "dream-us-opportunity",
     name: "TheDream.US Opportunity Scholarship",
-    amount: "Up to $80,000",
+    amount: "Up to $100,000",
     deadline: "Typically February",
     deadlineMonth: 2,
     who: "Undocumented students in states that lock them out of in-state tuition.",
     stages: ["high-school", "college"],
     openToUndocumented: true,
-    officialUrl: "https://www.thedream.us/",
+    officialUrl: "https://www.thedream.us/scholarships/opportunity-scholarship/",
   },
   {
     id: "hsf",
@@ -136,7 +138,7 @@ export const scholarships: Scholarship[] = [
     deadlineMonth: 2,
     who: "Students of Hispanic heritage, high school seniors through graduate students.",
     stages: ["high-school", "college", "transfer"],
-    officialUrl: "https://www.hsf.net/",
+    officialUrl: "https://www.hsf.net/scholarship/",
   },
   {
     id: "jackie-robinson",
@@ -419,17 +421,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://www.tacobellfoundation.org/live-mas-scholarship/",
   },
   {
-    id: "uncf-scholarships",
-    name: "UNCF Scholarships",
-    amount: "Varies by program; $62M+ awarded a year",
-    deadline: "Rolling; many programs, many dates",
-    deadlineMonth: null,
-    who: "African American students from high school senior year through college, applying across the many programs UNCF administers.",
-    stages: ["high-school", "college"],
-    tags: ["Black", "African American", "HBCU"],
-    officialUrl: "https://uncf.org/scholarships",
-  },
-  {
     id: "tmcf-scholarships",
     name: "Thurgood Marshall College Fund Scholarships",
     amount: "Varies by program",
@@ -460,7 +451,7 @@ export const scholarships: Scholarship[] = [
     who: "First-generation Latino students enrolled full-time at a four-year HACU-member school with a 2.5+ GPA.",
     stages: ["college"],
     tags: ["Latino", "Hispanic", "first-generation"],
-    officialUrl: "https://hacu.net/hacu-and-cafe-bustelo-el-cafe-del-futuro-scholarships-for-2025-26/",
+    officialUrl: "https://hacu.net/hacu-accepting-applications-for-el-cafe-del-futuro-scholarships/",
   },
   {
     id: "kasf",
@@ -1946,17 +1937,6 @@ export const scholarships: Scholarship[] = [
     stages: ["high-school", "college"],
     tags: ["Latino", "journalism"],
     officialUrl: "https://nahj.org/scholarships/",
-  },
-  {
-    id: "aaja",
-    name: "AAJA Scholarships and Grants",
-    amount: "$1,000-$2,000",
-    deadline: "Typically April",
-    deadlineMonth: 4,
-    who: "College students pursuing journalism, with a focus on Asian American and Pacific Islander journalists; some awards require AAJA student membership (dues).",
-    stages: ["college"],
-    tags: ["Asian American", "journalism", "membership-org"],
-    officialUrl: "https://www.aaja.org/programs/scholarships/",
   },
   {
     id: "ija-aaja-pacific-islander",
@@ -5320,7 +5300,7 @@ export const scholarships: Scholarship[] = [
     who: "For undergraduate juniors, seniors, or graduate students studying facility or stadium management, or a related sports management field, with stadium-related experience.",
     stages: ["college"],
     tags: ["sports management", "facility management", "stadium operations"],
-    officialUrl: "https://www.stadiummanagers.org/index.php/foundation/scholarship-foundation",
+    officialUrl: "https://www.stadiummanagers.org/index.php/foundation",
   },
   {
     id: "nsslha-undergraduate-scholarship",
@@ -7267,7 +7247,7 @@ export const scholarships: Scholarship[] = [
     who: "For paralegal and legal-studies students \u2014 associate, bachelor's, or certificate \u2014 at one of 170+ schools with a Lambda Epsilon Chi chapter, run by the American Association for Paralegal Education.",
     stages: ["college"],
     tags: ["business"],
-    officialUrl: "https://lambdaepsilonchi.org/blog/scholarship",
+    officialUrl: "https://aafpe.org/content/LEX%20Handbook%20Rev%202023%20v1.pdf",
   },
   {
     id: "ncrf-a-to-z-scholarship",
@@ -8395,17 +8375,6 @@ export const scholarships: Scholarship[] = [
     stages: ["high-school"],
     tags: ["stem", "competition"],
     officialUrl: "https://breakthroughjuniorchallenge.org/",
-  },
-  {
-    id: "humanist-essay-contest",
-    name: "The Humanist Essay Contest",
-    amount: "$1,000",
-    deadline: "Typically April",
-    deadlineMonth: 4,
-    who: "For high schoolers who write a 1,500-2,500 word essay on a humanist theme for The Humanist magazine's annual contest.",
-    stages: ["high-school"],
-    tags: ["essay"],
-    officialUrl: "https://thehumanist.com/",
   },
   {
     id: "alpha-lambda-delta-trow-scholarship",
@@ -9736,7 +9705,7 @@ export const scholarships: Scholarship[] = [
     who: "For active BPA members in high school and college chapters, through a catalog of national awards tied to business and technology career paths.",
     stages: ["high-school", "college"],
     tags: ["business"],
-    officialUrl: "https://bpa.org/awards-scholarships/",
+    officialUrl: "https://bpa.org/awards-and-scholarships/scholarships/",
   },
   {
     id: "ala-spirit-of-youth-scholarship",
@@ -10747,7 +10716,7 @@ export const scholarships: Scholarship[] = [
     who: "Arizona's need-based grant for Pell-eligible resident undergrads enrolled at least half-time at participating Arizona colleges.",
     stages: ["high-school", "college"],
     tags: ["state-program"],
-    officialUrl: "https://azgrants.az.gov/arizona-leveraging-educational-assistance-partnership-azleap",
+    officialUrl: "https://www.azregents.edu/programs/scholarships-assistance/azleap",
   },
   {
     id: "north-carolina-unc-need-based-grant",
@@ -13011,17 +12980,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://www.conveniencecares.org/our-programs/future-fund/scholarship",
   },
   {
-    id: "ifec",
-    name: "IFEC (International Foodservice Editorial Council) Scholarship",
-    amount: "$1,500-$6,000",
-    deadline: "Typically March",
-    deadlineMonth: 3,
-    who: "College students combining food/foodservice study with communications (writing, editing, PR, marketing).",
-    stages: ["college", "transfer"],
-    tags: ["hospitality", "culinary", "marketing", "communications", "business"],
-    officialUrl: "https://ifeconline.com/scholarships/",
-  },
-  {
     id: "law-mandela-nblsa-nelson-pre",
     name: "NBLSA Nelson Mandela Pre-Law Scholarship",
     amount: "$4,000 (1st), $2,000 (2nd), $1,000 (3rd)",
@@ -14359,17 +14317,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://iupa.org/",
   },
   {
-    id: "family-family-fire-fire",
-    name: "Fire Family Foundation — Fire Family Scholarship",
-    amount: "$5,000 (10 awarded annually; $50,000 total pool)",
-    deadline: "Varies",
-    deadlineMonth: null,
-    who: "Children (under 26) of current or former firefighters who are members of Firefighters First Credit Union (a nationwide credit union open to all firefighters and fire department employees, government or private, in any state)",
-    stages: ["college"],
-    tags: ["first-responder", "firefighter", "national", "family"],
-    officialUrl: "https://www.firefamilyfoundation.org/Get-Assistance/Scholarships",
-  },
-  {
     id: "family-pepsico-scholars",
     name: "PepsiCo Foundation Family Scholars",
     amount: "Up to $5,000/year (individual amount set by Scholarship America based on need)",
@@ -15024,17 +14971,6 @@ export const scholarships: Scholarship[] = [
     stages: ["college", "transfer"],
     tags: ["native-american", "indigenous", "environment", "natural-resources", "wildlife"],
     officialUrl: "https://www.nafws.org/scholarships/",
-  },
-  {
-    id: "nanaina",
-    name: "NANAINA Scholarship",
-    amount: "$750",
-    deadline: "Typically June",
-    deadlineMonth: 6,
-    who: "American Indian/Alaska Native (AI/AN) undergraduate or graduate nursing students, min. GPA per program requirements",
-    stages: ["college"],
-    tags: ["native-american", "indigenous", "alaska-native", "nursing", "health"],
-    officialUrl: "https://nanainanurses.org/",
   },
   {
     id: "american-native-scholars-vocal",
@@ -18252,17 +18188,6 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://sclerodermawarriors.org/scholarship-program/",
   },
   {
-    id: "eric-idf-marder",
-    name: "IDF Eric Marder Scholarship Program",
-    amount: "Historically $750-$2,000 per award (~30-40 awards/year per third-party aggregators); could not independently confirm the exact current-cycle figure -- official scholarship page is JS-rendered and did not return content on direct fetch",
-    deadline: "Typically March",
-    deadlineMonth: 3,
-    who: "Undergraduate students (patients) diagnosed with a primary immunodeficiency (as classified by WHO), attending or entering college or technical training. IDF also runs a companion Varun Bhaskaran scholarship specifically for students diagnosed with Wiskott-Aldrich Syndrome.",
-    stages: ["college"],
-    tags: ["disease", "immune-deficiency", "rare-disease", "national"],
-    officialUrl: "https://primaryimmune.org/",
-  },
-  {
     id: "als-calmes-jane",
     name: "Jane Calmes ALS Scholarship Fund",
     amount: "$5,000 total, disbursed at $2,500/semester",
@@ -18373,3 +18298,10 @@ export const scholarships: Scholarship[] = [
     officialUrl: "https://vfwauxiliary.org/scholarships/young-american-creative-patriotic-art-contest/",
   },
 ];
+
+// The full catalog remains above as the frozen, recoverable source set. Only
+// records that passed the 2026-08-05 evidence audit are exported to the public
+// Finder; confirmed removals and unresolved reviews stay out of the verified
+// experience until a later remediation record explicitly clears them.
+export const scholarships: Scholarship[] =
+  applyScholarshipAuditCuration(scholarshipCatalog);
