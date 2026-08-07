@@ -55,10 +55,10 @@ remove or discontinue a scholarship.
 Monitoring now covers all 1,220 curated scholarships across 792 official hosts.
 The two monitoring tiers stay deliberately separate:
 
-- 76 scholarship-specific adapters in `scripts/scholarship-status-sources.json`
+- 75 scholarship-specific adapters in `scripts/scholarship-status-sources.json`
   can propose status and exact date changes when the official page supplies
   matching evidence.
-- The remaining 1,144 official URLs receive weekly source-health checks. They
+- The remaining 1,145 official URLs receive weekly source-health checks. They
   record availability, redirects, login walls, content fingerprints, and
   failures, but never infer application status or dates.
 
@@ -72,8 +72,8 @@ The scheduled workers:
 - update only operational health fields in `scholarship_monitor_state`; and
 - never change application status, dates, eligibility, or the public Finder.
 
-The daily status workflow runs the 76 evidence-specific adapters. The weekly
-source-health workflow splits the other 1,144 records into eight deterministic
+The daily status workflow runs the 75 evidence-specific adapters. The weekly
+source-health workflow splits the other 1,145 records into eight deterministic
 host-based shards, so requests to one host remain serialized. A source-health
 failure must persist for three runs before an actionable not-found, server,
 redirect, login-wall, or thin-document review can enter the moderation queue.

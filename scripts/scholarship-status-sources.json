@@ -626,20 +626,6 @@
     }
   },
   {
-    "id": "pizza-hut-foundation-scholarship",
-    "sourceUrl": "https://www.pizzahutfoundation.org/programs/",
-    "requiredPatterns": ["Pizza Hut Foundation", "scholarship platform provider", "August 31, 2026 at 4:00pm CT"],
-    "statusRules": [],
-    "fixedWindow": {
-      "opensOn": "2026-07-01",
-      "closesOn": "2026-08-31",
-      "evidencePatterns": {
-        "opensOn": "program period for scholarships is July 1, 2026",
-        "closesOn": "ends on August 31, 2026 at 4:00pm CT"
-      }
-    }
-  },
-  {
     "id": "choose-aerospace-skillpointe-scholarship",
     "sourceUrl": "https://www.chooseaerospace.org/scholarship.html",
     "requiredPatterns": ["Choose Aerospace", "SKILLED Nation Scholarship", "Scholarship opens November 1, 2026"],
