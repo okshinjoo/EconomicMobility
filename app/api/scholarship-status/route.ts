@@ -32,7 +32,7 @@ export async function GET() {
 
     return NextResponse.json(
       { statuses },
-      { headers: { "cache-control": "public, s-maxage=900, stale-while-revalidate=86400" } },
+      { headers: { "cache-control": "no-store" } },
     );
   } catch {
     // Fail closed: monitoring outages never publish unreviewed state.
