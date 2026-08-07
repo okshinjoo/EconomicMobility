@@ -20,6 +20,7 @@
     "test:scholarship-monitor-foundation": "node scripts/test-scholarship-monitor-foundation.mjs",
     "check:scholarship-monitor-sources": "node scripts/check-scholarship-monitor-sources.mjs",
     "test:scholarship-monitor-worker": "node scripts/test-scholarship-monitor-worker.mjs",
+    "test:scholarship-review": "node scripts/test-scholarship-review.mjs",
     "monitor:scholarships": "node scripts/run-scholarship-monitor.mjs"
   },
   "dependencies": {

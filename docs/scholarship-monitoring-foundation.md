@@ -74,5 +74,15 @@ The first production observation run completed successfully on August 7,
 85 pending review proposals were recorded, and zero public or editorial state
 fields were changed. The encrypted workflow credentials are configured.
 
-The next phase is the moderator review interface and protected accept/reject,
-edit, verify, keep-existing, open-source, and field-lock actions.
+## Phase 3 moderator review
+
+Apply `docs/scholarship-monitor-review.sql` to install the atomic review
+function. Only the service role can execute it; anonymous and ordinary
+authenticated roles cannot. The protected server route independently verifies
+the signed-in user and their `moderators` row before calling the function.
+
+Moderators can bookmark `/admin/scholarships` to compare current and proposed
+values with exact official-source evidence. Accept, edit, verify, keep-current,
+reject, and optional field-lock decisions update the private monitor state and
+append immutable history in one database transaction. These actions do not
+edit `lib/scholarships.ts` or the public Finder.
