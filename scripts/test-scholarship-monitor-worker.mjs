@@ -395,7 +395,7 @@ const usAndCanadaResidencyIsNationalForFinder = evaluateGeography({
     name: "DRI Foundation Scholarship Award",
     sourceUrl: "https://example.org/dri-foundation",
   },
-  html: `<main><h1>The DRI Foundation Scholarship Award</h1><p>The applicant must reside within the United States or Canada.</p></main>`,
+  html: `<aside><h2>DRI International Accessibility Statement</h2><p>Accessibility information.</p></aside><main><h1>The DRI Foundation Scholarship Award</h1><p>Made possible through donations from DRI and DRI Canada, the scholarship supports resilience education. ${"Application information. ".repeat(8)} The applicant must reside within the United States or Canada.</p><h2>Past Winners</h2><p>Community Leadership Award</p><p>Student Resilience Scholarship</p><p>Continuity Education Fellowship</p></main>`,
   finalUrl: "https://example.org/dri-foundation",
 });
 assert.equal(usAndCanadaResidencyIsNationalForFinder.hasCandidate, true);

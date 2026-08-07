@@ -355,10 +355,17 @@ function headingSections(html) {
 
 function geographyTextScope(html, name) {
   const sections = headingSections(html);
+  const nameWords = new Set((name.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((word) => word !== "the"));
   const ranked = sections
-    .map((section) => ({ ...section, identity: identityEvidence(name, section.label) }))
+    .map((section) => {
+      const labelWords = new Set(section.label.toLowerCase().match(/[a-z0-9]+/g) ?? []);
+      const titleScore = nameWords.size
+        ? [...nameWords].filter((word) => labelWords.has(word)).length / nameWords.size
+        : 0;
+      return { ...section, identity: identityEvidence(name, section.label), titleScore };
+    })
     .filter((section) => section.identity.matched.length > 0 && section.identity.score >= 0.5)
-    .sort((a, b) => b.identity.score - a.identity.score || b.label.length - a.label.length);
+    .sort((a, b) => b.titleScore - a.titleScore || b.identity.score - a.identity.score || b.label.length - a.label.length);
   if (ranked[0]) return visibleText(ranked[0].html);
 
   const namedProgramHeadings = sections.filter((section) =>
@@ -386,17 +393,23 @@ function isRejectedNationalContext(context, matchIndex) {
     /\bnationwide gravesite locator\b/i.test(context);
 }
 
-function nationalEvidence(text) {
+function nationalEvidence(text, identityTokens, requireIdentity) {
+  const candidates = [];
   for (const pattern of NATIONAL_GEOGRAPHY_PATTERNS) {
     for (const match of text.matchAll(new RegExp(pattern.source, "gi"))) {
       const index = match.index ?? 0;
       const context = evidenceAround(text, index, match[0].length);
       const contextIndex = Math.max(0, Math.min(context.length, index - Math.max(0, index - 120)));
       if (isRejectedNationalContext(context, contextIndex)) continue;
-      return { match, context };
+      const identityContext = text.slice(
+        Math.max(0, index - 420),
+        Math.min(text.length, index + match[0].length + 240),
+      );
+      candidates.push({ match, context, identityContext });
     }
   }
-  return null;
+  if (!requireIdentity) return candidates[0] ?? null;
+  return candidates.find((candidate) => contextMatchesIdentity(candidate.identityContext, identityTokens)) ?? null;
 }
 
 function stateCodesInEvidence(value) {
@@ -450,10 +463,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
 
   const sharedAwardPage = hasMultipleNamedAwards(text);
 
-  const national = nationalEvidence(text);
-  const acceptedNational = national && (!sharedAwardPage || contextMatchesIdentity(national.context, identity.tokens))
-    ? national
-    : null;
+  const acceptedNational = nationalEvidence(text, identity.tokens, sharedAwardPage);
   const nationalMatch = acceptedNational?.match ?? null;
   const stateEvidence = [];
   const states = new Set();
