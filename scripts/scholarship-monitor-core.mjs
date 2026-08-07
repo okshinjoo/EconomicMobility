@@ -317,7 +317,7 @@ const GEOGRAPHY_NAME_PATTERN = Object.keys(GEOGRAPHY_CODES)
   .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
   .join("|");
 const NATIONAL_GEOGRAPHY_PATTERNS = [
-  /\b(?:all|any) (?:of the )?(?:50|fifty) (?:U\.S\. )?states(?: and (?:the )?(?:District of Columbia|U\.S\. territories|Puerto Rico))?\b/i,
+  /\b(?:(?:all|any) (?:of the )?|one of the )?(?:50|fifty) (?:U\.S\. )?states(?:\s*(?:,|and|or)\s*(?:the )?(?:District of Columbia|U\.S\. territories|Puerto Rico))?\b/i,
   /\b(?:nationwide|across the nation|throughout the United States)\b/i,
   /\b(?:open|available|eligible) to (?:students|applicants|residents)[^.]{0,80}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
   /\b(?:legal )?residents? of (?:the )?(?:United States|U\.S\.)\b/i,
@@ -337,10 +337,6 @@ function stateCodesInEvidence(value) {
     const canonical = Object.keys(GEOGRAPHY_CODES).find((name) => name.toLowerCase() === match[1].toLowerCase());
     if (canonical) found.add(GEOGRAPHY_CODES[canonical]);
   }
-  const uppercaseCodes = [...value.matchAll(/\b[A-Z]{2}\b/g)]
-    .map((match) => match[0])
-    .filter((code) => GEOGRAPHY_CODE_SET.has(code));
-  if (uppercaseCodes.length >= 2) for (const code of uppercaseCodes) found.add(code);
   const singleCode = value.match(/\b(?:state of|resident(?:s)? of|reside in|live in)\s+([A-Z]{2})\b/);
   if (singleCode && GEOGRAPHY_CODE_SET.has(singleCode[1])) found.add(singleCode[1]);
   return [...found].sort();
@@ -376,6 +372,11 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
   for (const pattern of HARD_GEOGRAPHY_PATTERNS) {
     pattern.lastIndex = 0;
     for (const match of text.matchAll(pattern)) {
+      const matchStart = match.index ?? 0;
+      const matchEnd = matchStart + match[0].length;
+      const nationalStart = nationalMatch?.index ?? -1;
+      const nationalEnd = nationalStart + (nationalMatch?.[0]?.length ?? 0);
+      if (nationalMatch && matchStart <= nationalEnd && matchEnd >= nationalStart) continue;
       const context = evidenceAround(text, match.index ?? 0, match[0].length);
       // Work-location promises and geographic preferences do not make a
       // student ineligible based on where they live or study.

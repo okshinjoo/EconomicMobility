@@ -204,6 +204,30 @@ assert.equal(
   "high",
 );
 
+const fiftyStateGeography = evaluateGeography({
+  configuration: {
+    id: "equitable-excellence",
+    name: "Equitable Excellence Scholarship",
+    sourceUrl: "https://example.org/equitable-excellence",
+  },
+  html: `<main><h1>Equitable Excellence Scholarship</h1><p>Applicants must reside in one of the 50 U.S. states, District of Columbia or Puerto Rico.</p></main>`,
+  finalUrl: "https://example.org/equitable-excellence",
+});
+assert.equal(fiftyStateGeography.hasCandidate, true);
+assert.deepEqual(fiftyStateGeography.geo, { scope: "national" });
+
+const conjunctionIsNotOregon = evaluateGeography({
+  configuration: {
+    id: "kansas-promise",
+    name: "Kansas Promise Scholarship",
+    sourceUrl: "https://example.org/kansas-promise",
+  },
+  html: `<main><h1>Kansas Promise Scholarship</h1><p>Applicants must have graduated from a Kansas high school within 12 months, OR have attended a Kansas high school and received a GED, OR have been a Kansas resident for three years.</p></main>`,
+  finalUrl: "https://example.org/kansas-promise",
+});
+assert.equal(conjunctionIsNotOregon.hasCandidate, true);
+assert.deepEqual(conjunctionIsNotOregon.geo, { scope: "states", states: ["KS"] });
+
 const conflictingGeography = evaluateGeography({
   configuration: {
     id: "community-builders",
