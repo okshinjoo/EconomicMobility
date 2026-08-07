@@ -13,7 +13,11 @@
     "test:e2e:headed": "playwright test --headed",
     "check:links": "node scripts/check-internal-links.mjs",
     "check:freshness": "node scripts/check-freshness.mjs",
-    "check:scholarship-tags": "node scripts/check-scholarship-tags.mjs"
+    "check:scholarship-tags": "node scripts/check-scholarship-tags.mjs",
+    "build:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs --write",
+    "check:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs",
+    "seed:scholarship-monitor": "node scripts/seed-scholarship-monitor.mjs",
+    "test:scholarship-monitor-foundation": "node scripts/test-scholarship-monitor-foundation.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
