@@ -115,6 +115,10 @@ const missingEligibility = scholarships.filter((s) => s.eligibility === undefine
 for (const s of missingEligibility)
   problems.push(`eligibility: published "${s.id}" is unclassified (undefined, not confirmed GENERAL [])`);
 
+const missingGeo = scholarships.filter((s) => s.geo === undefined);
+for (const s of missingGeo)
+  problems.push(`geo: published "${s.id}" is unclassified (undefined, not verified national/state-bound)`);
+
 for (const s of scholarships) {
   const who = s.who;
   const tags = s.eligibility ?? [];

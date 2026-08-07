@@ -2,25 +2,19 @@
 
 Status: **ALL PHASES SHIPPED August 7, 2026** (owner approved the spec, then
 directed all phases run in one pass, waiving the interim review gates).
-- Phase 1: taxonomy registry `lib/scholarshipTaxonomy.ts` (94 nodes),
+- Phase 1: taxonomy registry `lib/scholarshipTaxonomy.ts` (97 nodes),
   `eligibility`/`geo` schema fields, provenance sidecar
   `data/scholarship-classifications.json`, gate `npm run check:scholarship-tags`.
-- Phase 2: geo overlay 502 state-bound + 11 national (99 queued needs-review);
-  eligibility overlay 1,111 entries / 1,619 required · 25 preferred · 437
-  relevant assignments (111 queued). METHOD NOTE: classified from the
-  officially-verified who sentences (the 2026-08-05 audit is the verification
-  chain), method `who-derived` in provenance — re-fetching 1,222 official
-  pages is the standing upgrade path, per-record. QUEUE WORKED Aug 7 2026
-  (same day: 7 research agents against official pages, every resolution
-  hand-reviewed with verbatim quotes): 210 → 9 needs-review. Geo now 609
-  (570 state-bound + 39 national); eligibility 1,216 incl. 19
-  confirmed-GENERAL ([]). Durable record:
-  data/scholarship-classification-resolutions.json. Still queued:
-  chick-fil-a-community + toyota + family-steiner (Scholarship America
-  login hub), pa-rtss (JS wall), american-samoa-asg + cnmi-eap (PDF-only
-  rules), ok-careertech-washington-dubose (ambiguous second enrollment
-  path), va-brown-board-education (real historical-harm restriction with
-  no taxonomy id — never mark it GENERAL).
+- Phase 2: geo overlay initially shipped with 502 state-bound + 11 national
+  records, and eligibility with 1,111 entries. METHOD NOTE: classifications
+  use the officially-verified `who` sentences from the 2026-08-05 audit as
+  the verification chain (`who-derived` provenance), with direct official-page
+  research for ambiguous records. The queue was worked Aug 7 2026 and geo
+  coverage was then completed across all 1,222 overlay records: 576
+  state-bound + 646 national, covering all 1,220 currently published awards
+  with zero needs-review records. Eligibility also covers all 1,220 published
+  awards. The durable manual-resolution record is
+  `data/scholarship-classification-resolutions.json`.
 - Phase 3: synonym-expanded fuzzy haystacks, query boilerplate stripping,
   one "Filter by X" suggestion chip, strength-boosted ranking.
 - Phase 4: Your-state select (hard geo filter while browsing), field-of-study
