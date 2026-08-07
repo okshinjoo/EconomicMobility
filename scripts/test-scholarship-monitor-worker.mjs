@@ -233,6 +233,19 @@ assert.deepEqual(failurePatch, {
 assert.equal("application_status" in failurePatch, false);
 assert.equal("closes_on" in failurePatch, false);
 
+const successPatch = operationalStatePatch({
+  result: {
+    success: true,
+    sourceStatus: "healthy",
+    extractionConfidence: "unknown",
+    verificationStatus: "unverified",
+  },
+  previousFailures: 2,
+  checkedAt: "2026-08-07T12:00:00.000Z",
+});
+assert.deepEqual(Object.keys(failurePatch).sort(), ["consecutive_failures", "last_checked_at", "source_status"]);
+assert.deepEqual(Object.keys(successPatch).sort(), ["consecutive_failures", "extraction_confidence", "last_checked_at", "source_status"]);
+
 const health = evaluateSourceHealth({
   html: "<main><h1>Example Scholarship</h1><p>This is the official scholarship program page with application details, eligibility requirements, and contact information.</p></main>",
   sourceUrl: "https://example.org/scholarship",

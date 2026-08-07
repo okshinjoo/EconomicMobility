@@ -473,11 +473,19 @@ if (admin) {
       checkedAt,
     }),
   }));
-  for (let index = 0; index < stateRows.length; index += 200) {
-    const { error } = await admin
-      .from("scholarship_monitor_state")
-      .upsert(stateRows.slice(index, index + 200), { onConflict: "scholarship_id" });
-    if (error) throw error;
+  const stateRowsByShape = new Map();
+  for (const row of stateRows) {
+    const shape = Object.keys(row).sort().join(",");
+    if (!stateRowsByShape.has(shape)) stateRowsByShape.set(shape, []);
+    stateRowsByShape.get(shape).push(row);
+  }
+  for (const rows of stateRowsByShape.values()) {
+    for (let index = 0; index < rows.length; index += 200) {
+      const { error } = await admin
+        .from("scholarship_monitor_state")
+        .upsert(rows.slice(index, index + 200), { onConflict: "scholarship_id" });
+      if (error) throw error;
+    }
   }
 
   if (proposals.length) {
