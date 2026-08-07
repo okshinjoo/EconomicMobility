@@ -5218,7 +5218,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "High school seniors, architecture students, community college transfer students, and eligible pre-professional graduates pursuing a NAAB-accredited architecture degree.",
     stages: ["high-school", "college", "transfer"],
     tags: ["architecture", "design", "naab", "renewable", "next generation"],
-    officialUrl: "https://architectsfoundation.org/opportunities/next-generation-scholarship/",
+    officialUrl: "https://architectsfoundation.org/opportunities/",
   },
   {
     id: "asid-foundation-legacy-scholarship",
@@ -7286,7 +7286,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "For paralegal and legal-studies students \u2014 associate, bachelor's, or certificate \u2014 at one of 170+ schools with a Lambda Epsilon Chi chapter, run by the American Association for Paralegal Education.",
     stages: ["college"],
     tags: ["business"],
-    officialUrl: "https://aafpe.org/content/LEX%20Handbook%20Rev%202023%20v1.pdf",
+    officialUrl: "https://sites.google.com/aafpe.org/aafpe/programs/lex",
   },
   {
     id: "ncrf-a-to-z-scholarship",
@@ -15201,7 +15201,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Ohio resident students adopted on or after January 1, 2023 (not by a stepparent) who attend a qualifying Ohio public or independent college/university.",
     stages: ["high-school", "college"],
     tags: ["ohio", "adoption", "grant"],
-    officialUrl: "https://highered.ohio.gov/students/pay-for-college/ohio-grants-scholarships/adoption-grant",
+    officialUrl: "https://dam.assets.ohio.gov/image/upload/highered.ohio.gov/sgs/guidance-memos/FA25-003.pdf",
   },
   {
     id: "oh-heroes-hidden-ohio",

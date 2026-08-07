@@ -128,6 +128,28 @@ assert.equal(unsafeGenericOpen.applicationStatus, "unknown");
 assert.equal(unsafeGenericOpen.unsafeUndatedOpen, true);
 assert.equal(unsafeGenericOpen.hasCandidate, false);
 
+const staleClosedCycleWithLaterOpening = evaluateGenericCandidateSource({
+  configuration: {
+    id: "paraprofessional-teacher-preparation-grant",
+    name: "Paraprofessional Teacher Preparation Grant",
+    sourceUrl: "https://example.org/paraprofessional-teacher-preparation-grant",
+  },
+  html: `<main><h1>Paraprofessional Teacher Preparation Grant</h1><p>The 2025-2026 application is closed. The 2026-2027 application will become available on April 1, 2026.</p></main>`,
+  finalUrl: "https://example.org/paraprofessional-teacher-preparation-grant",
+  today: "2026-08-07",
+});
+assert.equal(staleClosedCycleWithLaterOpening.opensOn, "2026-04-01");
+assert.equal(staleClosedCycleWithLaterOpening.applicationStatus, "unknown");
+assert.deepEqual(
+  buildFieldProposals({
+    scholarshipId: "paraprofessional-teacher-preparation-grant",
+    current: { opensOn: "2026-04-01" },
+    evaluation: staleClosedCycleWithLaterOpening,
+    sourceUrl: "https://example.org/paraprofessional-teacher-preparation-grant",
+  }),
+  [],
+);
+
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",

@@ -534,7 +534,7 @@ export const scholarshipAmountFloorSourceOverrides: Readonly<Record<string, stri
   "il-special-education-teacher-tuition-waiver": "https://www.isac.org/students/during-college/types-of-financial-aid/scholarships/illinois-special-education-teacher-tuition-waiver-settw-program.html",
   "florida-first-generation-matching-grant": "https://www.floridastudentfinancialaidsg.org/PDF/factsheets/FGMG.pdf",
   "afas-hap-arnold-grant": "https://afas.org/haparnoldgrant/",
-  "architects-foundation-diversity-advancement": "https://architectsfoundation.org/opportunities/next-generation-scholarship/",
+  "architects-foundation-diversity-advancement": "https://architectsfoundation.org/opportunities/",
   "sma-foundation-scholarship": "https://www.stadiummanagers.org/index.php/component/eventbooking/sma-foundation/sma-foundation-scholarship-application-2026-2027",
   "usta-foundation-college-scholarship": "https://www.ustafoundation.com/en/home/what-we-do/college-scholarship-opportunities.html",
   "guam-aheg-sfap": "https://www.uog.edu/financial-aid/local-financial-aid-sfap",
@@ -596,7 +596,7 @@ export const scholarshipAmountFloorSourceOverrides: Readonly<Record<string, stri
   "arizona-guard-tuition-reimbursement": "https://dema.az.gov/education",
   "north-dakota-guard-tuition-assistance": "https://ndlegis.gov/cencode/t37c07-2.pdf",
   "alaska-guard-tuition-reimbursement": "https://ak.ng.mil/Media/News/Article/4132995/new-state-tuition-reimbursement-program-trp-expands-education-opportunities-for/",
-  "sc-teaching-fellows": "https://www.cerra.org/teaching-fellows.html",
+  "sc-teaching-fellows": "https://ed.sc.gov/newsroom/scholarships/sc-teaching-fellows-program/",
   "kheaa-teacher-scholarship": "https://www.kheaa.com/web/scholarships-grants.faces?lv=true",
   "new-jersey-njfc-scholars": "https://www.nj.gov/dcf/home/foster_scholars_program.html",
   "connecticut-dcf-postsecondary-education-assistance": "https://portal.ct.gov/dcf/knowledge-base/articles/foster-care-and-adoption/adoption/post-adoption-services",
@@ -666,4 +666,3 @@ export const scholarshipAmountFloorSourceOverrides: Readonly<Record<string, stri
   "american-iranian": "https://iasfund.org/apply-for-scholarships/",
   "packaging-packaging-professionals": "https://community.iopp.org/events/event-description?CalendarEventKey=9da44e6b-842d-49e6-a5da-0199e2f76078&CommunityKey=7380e9d4-8ab8-4e3e-9439-b6cdc037ed92&Home=%2Fevents%2Fcalendar"
 };
-

@@ -172,13 +172,13 @@ async function fetchOfficialPage(configuration, previous) {
       error.httpStatus = response.status;
       error.sourceStatus = failureStatus(response.status);
       lastError = error;
-      if (response.status === 403 && browserFallback && configuration.monitorMode === "status") {
+      if ([403, 404, 405].includes(response.status) && browserFallback) {
         return await fetchWithBrowser(configuration.sourceUrl);
       }
       if (![429, 500, 502, 503, 504].includes(response.status)) break;
     } catch (error) {
       lastError = error;
-      if (browserFallback && configuration.monitorMode === "status" && attempt === maximumAttempts - 1) {
+      if (browserFallback && attempt === maximumAttempts - 1) {
         try {
           return await fetchWithBrowser(configuration.sourceUrl);
         } catch (browserError) {
@@ -292,19 +292,26 @@ async function inspectUnlocked(configuration) {
         : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
     let resolvedFetch = fetched;
     if (
-      configuration.monitorMode === "status" &&
+      ["status", "candidate"].includes(configuration.monitorMode) &&
       browserFallback &&
       fetched.fetchMethod === "http" &&
       evaluation.missingRequired.length > 0
     ) {
       try {
         const rendered = await fetchWithBrowser(configuration.sourceUrl);
-        const renderedEvaluation = evaluateOfficialSource({
-          configuration,
-          html: rendered.html,
-          finalUrl: rendered.finalUrl,
-          today,
-        });
+        const renderedEvaluation = configuration.monitorMode === "candidate"
+          ? evaluateGenericCandidateSource({
+              configuration,
+              html: rendered.html,
+              finalUrl: rendered.finalUrl,
+              today,
+            })
+          : evaluateOfficialSource({
+              configuration,
+              html: rendered.html,
+              finalUrl: rendered.finalUrl,
+              today,
+            });
         if (renderedEvaluation.missingRequired.length < evaluation.missingRequired.length) {
           resolvedFetch = rendered;
           evaluation = renderedEvaluation;

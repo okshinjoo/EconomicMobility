@@ -370,7 +370,7 @@ export const scholarshipAuditSourceOverrides: Readonly<Record<string, string>> =
   "fee-foster-nevada-waiver-youth": "https://nshe.nevada.edu/system-administration/departments/asa/students/fostering-success/financial-aid-toolkit/",
   "educational-gratuity-pennsylvania-postsecondary": "https://www.pa.gov/agencies/dmva/pennsylvania-veterans/pa-vetconnect/state-veterans-programs/financial-assistance/educational-gratuity-program",
   "perennial-plant": "https://www.perennialplantfoundation.org/",
-  "ecology-tmcf-wildlife": "https://tmcf.org/open-scholarships/2026-2027-tmcf-ecology-wildlife-foundation-scholarship/",
+  "ecology-tmcf-wildlife": "https://tmcf.org/scholarships/open-scholarships/",
   "ca-act-alan-pattee": "https://www.calstate.edu/apply/paying-for-college/csu-costs/tuition-and-fees/fee-waivers/Pages/mandatory-fee-waivers.aspx",
   "oh-officers-ohio-safety": "https://dam.assets.ohio.gov/image/upload/highered.ohio.gov/sgs/guidance-memos/FA25-004.pdf",
   "mo-child-employee-officer-or": "https://dhewd.mo.gov/ppc/grants/public-service-officer",

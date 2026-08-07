@@ -33,6 +33,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Install the browser fallback
+        run: npx playwright install --with-deps chromium
+
       - name: Validate complete monitor coverage
         run: npm run check:scholarship-monitor-sources
 
@@ -40,4 +43,4 @@ jobs:
         run: npm run test:scholarship-monitor-worker
 
       - name: Record official-source health
-        run: npm run monitor:scholarships -- --write --summary-only --mode=source-health --shard-index=${{ matrix.shard }} --shard-count=8
+        run: npm run monitor:scholarships -- --write --browser-fallback --summary-only --mode=source-health --shard-index=${{ matrix.shard }} --shard-count=8

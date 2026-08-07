@@ -416,7 +416,12 @@ export function evaluateGenericCandidateSource({ configuration, html, finalUrl, 
         signalStatus: openSignal ? "open" : null,
       });
     } else if (openSignal && closing?.value && today <= closing.value) applicationStatus = "open";
-    else if (closedSignal) applicationStatus = "closed";
+    // A page can describe the previous cycle as closed while also publishing
+    // a later cycle's opening date. Once that later opening date has passed,
+    // the old closed language is no longer reliable evidence of the current
+    // cycle's status. Keep the status unknown unless the page also supplies
+    // an exact closing date for the newer window.
+    else if (closedSignal && !(opening?.value && opening.value <= today)) applicationStatus = "closed";
   }
 
   const evidence = [

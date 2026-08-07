@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "catalogVerifiedLabel": "August 2026",
   "publishedCount": 1220,
-  "catalogFingerprint": "eea0193c152b8055b5b55ad9e9e8632eeb354fbf31b206df83c3c7fe0d8c1a50",
+  "catalogFingerprint": "727229208f0219d5fab53c1e3a4a5f9e4827a1c40b20000a747947b34a1498b0",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -1339,11 +1339,11 @@
     {
       "scholarshipId": "architects-foundation-diversity-advancement",
       "name": "Architects Foundation Next Generation Scholarship",
-      "officialUrl": "https://architectsfoundation.org/opportunities/next-generation-scholarship/",
+      "officialUrl": "https://architectsfoundation.org/opportunities/",
       "sourceDomain": "architectsfoundation.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
-      "catalogFingerprint": "b69d600ef14a9fcc49a6502c11ffc08624beb2d4d894c7ea121eb9aa25b4f448"
+      "catalogFingerprint": "8df37e6021819a54da5e085ca12dbdfd83c0148137adf8bc178f6387652a1f3e"
     },
     {
       "scholarshipId": "arema-educational-foundation-scholarship",
@@ -3463,11 +3463,11 @@
     {
       "scholarshipId": "ecology-tmcf-wildlife",
       "name": "TMCF | Ecology Wildlife Foundation Scholarship (Thurgood Marshall College Fund)",
-      "officialUrl": "https://tmcf.org/open-scholarships/2026-2027-tmcf-ecology-wildlife-foundation-scholarship/",
+      "officialUrl": "https://tmcf.org/scholarships/open-scholarships/",
       "sourceDomain": "tmcf.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
-      "catalogFingerprint": "fc24b2fa6320b7d42b7d79bde7962b4af54a699b7db902d87ef7b7c440b03f83"
+      "catalogFingerprint": "a0b893cae9f5c1b40b72d1d74e96f953ee294adc43f374aeba09b481fcb51afc"
     },
     {
       "scholarshipId": "educational-gratuity-pennsylvania-postsecondary",
@@ -5812,11 +5812,11 @@
     {
       "scholarshipId": "lex-honor-society-scholarship-competition",
       "name": "LEX Scholarship Competition",
-      "officialUrl": "https://aafpe.org/content/LEX%20Handbook%20Rev%202023%20v1.pdf",
-      "sourceDomain": "aafpe.org",
+      "officialUrl": "https://sites.google.com/aafpe.org/aafpe/programs/lex",
+      "sourceDomain": "sites.google.com",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
-      "catalogFingerprint": "518f67010848b2e0c66f858bb22c71a3654b00654c7d6bf62ebc84dee2986fbe"
+      "catalogFingerprint": "a0365fc88ee16ba7cd0c64d0c71b75dc6e8470130d053238e6434769d5864422"
     },
     {
       "scholarshipId": "life-lessons-scholarship-life-happens",
@@ -8179,11 +8179,11 @@
     {
       "scholarshipId": "oh-adoption-ohio",
       "name": "Ohio College Adoption Grant",
-      "officialUrl": "https://highered.ohio.gov/students/pay-for-college/ohio-grants-scholarships/adoption-grant",
-      "sourceDomain": "highered.ohio.gov",
+      "officialUrl": "https://dam.assets.ohio.gov/image/upload/highered.ohio.gov/sgs/guidance-memos/FA25-003.pdf",
+      "sourceDomain": "dam.assets.ohio.gov",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
-      "catalogFingerprint": "0198d506fe943c3f6f0e28a21c999e4a40dcd529bcda4f931fef85735b71e2df"
+      "catalogFingerprint": "a392d45a5500032dfd7556b028f86b1c5eb2b995d2db698bc873c1ed38467461"
     },
     {
       "scholarshipId": "oh-assistance-loan-nurse-ohio",
@@ -9250,11 +9250,11 @@
     {
       "scholarshipId": "sc-teaching-fellows",
       "name": "South Carolina Teaching Fellows Program",
-      "officialUrl": "https://www.cerra.org/teaching-fellows.html",
-      "sourceDomain": "cerra.org",
+      "officialUrl": "https://ed.sc.gov/newsroom/scholarships/sc-teaching-fellows-program/",
+      "sourceDomain": "ed.sc.gov",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
-      "catalogFingerprint": "af75083e007ec290f945bb66db1fdaa851dffb649fd49789c8f58843251aadb9"
+      "catalogFingerprint": "db8b7b6194fd20b4d9d134cda225141890c1ace2d6840d99a75f9184d4378b20"
     },
     {
       "scholarshipId": "scholars-ufirst",
