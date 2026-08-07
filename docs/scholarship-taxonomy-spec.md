@@ -10,8 +10,17 @@ directed all phases run in one pass, waiving the interim review gates).
   relevant assignments (111 queued). METHOD NOTE: classified from the
   officially-verified who sentences (the 2026-08-05 audit is the verification
   chain), method `who-derived` in provenance — re-fetching 1,222 official
-  pages is the standing upgrade path, per-record, prioritizing the
-  needs-review queue and spot-checks of `required` strengths.
+  pages is the standing upgrade path, per-record. QUEUE WORKED Aug 7 2026
+  (same day: 7 research agents against official pages, every resolution
+  hand-reviewed with verbatim quotes): 210 → 9 needs-review. Geo now 609
+  (570 state-bound + 39 national); eligibility 1,216 incl. 19
+  confirmed-GENERAL ([]). Durable record:
+  data/scholarship-classification-resolutions.json. Still queued:
+  chick-fil-a-community + toyota + family-steiner (Scholarship America
+  login hub), pa-rtss (JS wall), american-samoa-asg + cnmi-eap (PDF-only
+  rules), ok-careertech-washington-dubose (ambiguous second enrollment
+  path), va-brown-board-education (real historical-harm restriction with
+  no taxonomy id — never mark it GENERAL).
 - Phase 3: synonym-expanded fuzzy haystacks, query boilerplate stripping,
   one "Filter by X" suggestion chip, strength-boosted ranking.
 - Phase 4: Your-state select (hard geo filter while browsing), field-of-study

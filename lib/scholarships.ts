@@ -1359,7 +1359,11 @@ const scholarshipCatalog: Scholarship[] = [
     deadlineMonth: 4,
     who: "Illinois residents with financial need attending approved Illinois colleges, including adult and part-time students.",
     stages: ["high-school", "college", "transfer"],
-    openToUndocumented: true,
+    // openToUndocumented removed Aug 7 2026: per ISAC's official notice, a
+    // July 24 2026 federal district court ruling ended undocumented students'
+    // eligibility for ISAC state aid for 2026-27 (Alternative Application
+    // suspended). Re-check when the 2027-28 Alternative Application criteria
+    // publish (scheduled Oct 1, 2026, isac.org/AlternativeApp).
     tags: ["illinois", "state aid", "need-based"],
     officialUrl: "https://www.isac.org/students/during-college/types-of-financial-aid/grants/monetary-award-program/",
   },
@@ -1383,7 +1387,10 @@ const scholarshipCatalog: Scholarship[] = [
     deadlineMonth: null,
     who: "Illinois high school seniors and early college students who commit to teach five years in an Illinois school-of-need after graduating.",
     stages: ["high-school", "college"],
-    openToUndocumented: true,
+    // openToUndocumented removed Aug 7 2026: the scholars' financial award is
+    // an ISAC gift-assistance program, so the July 24 2026 court ruling
+    // (undocumented students ineligible for ISAC state aid, 2026-27) applies.
+    // Re-check with the 2027-28 Alternative Application criteria (Oct 2026).
     tags: ["illinois", "teaching", "service scholarship"],
     officialUrl: "https://www.goldenapple.org/scholars-illinois",
   },

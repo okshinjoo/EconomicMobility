@@ -63,6 +63,7 @@ export const SCHOLARSHIP_TAXONOMY: TaxonomyNode[] = [
   { id: "field.trades.automotive", label: "Automotive & diesel", parent: "field.trades", synonyms: ["mechanic", "diesel", "collision"] },
   { id: "field.trades.construction", label: "Construction", parent: "field.trades", synonyms: ["carpentry", "masonry", "concrete"] },
   { id: "field.trades.aviation-maintenance", label: "Aviation maintenance", parent: "field.trades", synonyms: ["avionics", "aircraft mechanic"] },
+  { id: "field.trades.beauty-cosmetology", label: "Cosmetology & beauty", parent: "field.trades", synonyms: ["cosmetology", "barbering", "esthetics", "nail tech", "beauty school"] },
   { id: "field.arts", label: "Arts & creative", parent: "field", synonyms: ["creative"] },
   { id: "field.arts.music", label: "Music", parent: "field.arts", synonyms: ["musician"] },
   { id: "field.arts.music.instrumental", label: "Instrumental music", parent: "field.arts.music", synonyms: ["piano", "pianist", "violin", "violinist", "cello", "guitar", "flute", "trumpet", "band", "orchestra", "instrument"] },
@@ -92,6 +93,10 @@ export const SCHOLARSHIP_TAXONOMY: TaxonomyNode[] = [
   { id: "identity.lgbtq", label: "LGBTQ+ students", parent: "identity", synonyms: ["gay", "lesbian", "transgender", "queer"], sensitive: true },
   { id: "identity.first-gen", label: "First-generation students", parent: "identity", synonyms: ["first generation", "first in family"] },
   { id: "identity.immigrant-refugee", label: "Immigrant & refugee students", parent: "identity", synonyms: ["immigrants", "refugee", "new american", "daca"], sensitive: true },
+  // Catch-all for named-ancestry awards (Iranian, Lithuanian, Estonian, …) —
+  // the specific ancestry stays searchable via each entry's free-text tags
+  // and who sentence; per-ethnicity leaf nodes would be one-entry bloat.
+  { id: "identity.heritage", label: "Specific heritage & ancestry", parent: "identity", synonyms: ["ancestry", "descent", "heritage"] },
 
   // ── Life circumstances ─────────────────────────────────────────────────
   { id: "circumstance", label: "Life circumstances" },

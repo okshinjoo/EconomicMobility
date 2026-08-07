@@ -1,0 +1,2687 @@
+{
+ "_readme": "Agent-researched resolutions of the needs-review queue (official pages fetched 2026-08-07; every non-unclear record carries a verbatim quote). Consumed when regenerating the overlays; hand-reviewed before applying.",
+ "geo": [
+  {
+   "id": "cobell-undergrad",
+   "resolution": "national",
+   "evidence": "Enrolled member of a U.S. Federally-recognized American Indian Tribe or Alaska Native Corporation",
+   "finalUrl": "https://www.cobellscholar.org/scholarships/undergraduate",
+   "note": "Eligibility is tribal-enrollment based; page states no state residency or state-school requirement. Active (2026-27 app opens Dec 15, 2026)."
+  },
+  {
+   "id": "esperanza-fund",
+   "resolution": "states",
+   "states": [
+    "DC",
+    "MD",
+    "VA"
+   ],
+   "evidence": "Must be a graduating senior at a high school in DC, MD, or VA, ​OR have graduated high school within three (3) years and not yet started college and reside in DC, MD, or VA",
+   "finalUrl": "https://www.esperanzafund.org/scholarship",
+   "note": "Must also plan to enroll full-time at a college in DC, MD, or VA. Household income caps apply ($74,800-$141,000 by household size). Next cycle opens May 1, 2027."
+  },
+  {
+   "id": "que-llueva-cafe",
+   "resolution": "national",
+   "evidence": "Yes. Our scholarship is open to all states in the U.S. including Puerto Rico.",
+   "finalUrl": "https://ca-core.org/scholarship/",
+   "note": "Active; current deadline March 6, 2026."
+  },
+  {
+   "id": "pride-foundation",
+   "resolution": "states",
+   "states": [
+    "AK",
+    "ID",
+    "MT",
+    "OR",
+    "WA"
+   ],
+   "evidence": "Applicants must be a resident of Alaska, Idaho, Montana, Oregon, or Washington but may study elsewhere.",
+   "finalUrl": "https://pridefoundation.org/find-funding/scholarships/",
+   "note": "Residency-bound but school may be anywhere. No citizenship check, consistent with who."
+  },
+  {
+   "id": "aief-undergrad",
+   "resolution": "national",
+   "evidence": "Enroll in an accredited technical school, college, or university as a full-time undergraduate",
+   "finalUrl": "https://secure.nativepartnership.org/site/SPageServer/RAR/PageServer?pagename=aief_services_scholarships_undergrad",
+   "note": "Tribal enrollment documentation (self or parent) required; no state restriction stated. 2026-27 application open."
+  },
+  {
+   "id": "chick-fil-a-community",
+   "resolution": "unclear",
+   "evidence": "Every year, thirteen (13) $25,000 scholarships are awarded to students based on academic success, community service and financial need.",
+   "finalUrl": "https://www.chick-fil-a.com/community-scholars",
+   "note": "Official page and FAQ state no geographic eligibility rule; detailed rules moved behind the Scholarship America Hub login (learnmore.scholarsapply.org/cfacommunityscholars redirects there). The US/PR/Canada residency in `who` could not be verified on a public official page."
+  },
+  {
+   "id": "golden-leaf-nc",
+   "resolution": "states",
+   "states": [
+    "NC"
+   ],
+   "evidence": "Reside in a qualifying rural North Carolina county",
+   "finalUrl": "https://scholars.goldenleaf.org/applicants/colleges-universities/",
+   "note": "Also requires NC residency for tuition purposes and enrollment at a participating North Carolina public or private college/university; 26 qualifying rural counties (PDF list). Reopens January 2027."
+  },
+  {
+   "id": "live-out-loud",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "Reside within New York State",
+   "finalUrl": "https://liveoutloud.org/programs/young-trailblazers-scholarship/",
+   "note": "Current NY residency is the stated bound."
+  },
+  {
+   "id": "farm-credit-ag",
+   "resolution": "states",
+   "states": [
+    "DE",
+    "MD",
+    "PA",
+    "VA",
+    "WV",
+    "DC"
+   ],
+   "evidence": "In order to be eligible, you must reside in Horizon Farm Credit's territory, made up of the following states/counties: Delaware, Maryland (Baltimore, Carroll, Caroline, Cecil, Dorchester, Frederick, Harford, Howard, Kent, Montgomery,",
+   "finalUrl": "https://fcfoundationforag.org/",
+   "note": "Territory: all DE and PA, 16 MD counties, VA counties (Accomack, Clarke, Frederick, Northampton, Page, Shenandoah, Warren), WV counties (Berkeley, Brooke, Hancock, Jefferson, Marshall, Morgan, Ohio), and Washington D.C. 2027 apps open Sept 18, 2026."
+  },
+  {
+   "id": "durastak-syngenta",
+   "resolution": "states",
+   "states": [
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "MI",
+    "MN",
+    "MO",
+    "NE",
+    "ND",
+    "OH",
+    "SD",
+    "WI"
+   ],
+   "evidence": "seniors in high school planning to attend a college or university in the next academic year in IL, IN, IA, KS, MI, MN, MO, NE, ND, OH, SD or WI",
+   "finalUrl": "https://us-seeds.syngentaonline.com/durastak-scholarship-official-rules",
+   "note": "Per official rules: legal residents of any of the 50 states or DC may apply, but the school attended (or planned) must be in the 12 listed states, per the school-in-state bound. 2026 application period closed; landing page has no eligibility text."
+  },
+  {
+   "id": "nahj",
+   "resolution": "national",
+   "evidence": "Attending four-year colleges and community colleges in the U.S. and Puerto Rico",
+   "finalUrl": "https://nahj.org/scholarships/",
+   "note": "Page shows a 3.0 GPA floor; the 2.8-vs-3.0 conflict in `who` was not visible in the fetched eligibility section."
+  },
+  {
+   "id": "nfb-scholarship",
+   "resolution": "national",
+   "evidence": "You are a resident of the fifty states, the District of Columbia, or Puerto Rico (see questions 14 and 15).",
+   "finalUrl": "https://nfb.org/programs-services/scholarships-and-awards/scholarship-program/scholarship-program-faqs",
+   "note": "US-wide inclusiveness, not a state bound. Must also live AND attend school in the 50 states/DC/PR. Main page 403-walls fetchers; verified via browser on the official FAQ page. 2027 application opens in December."
+  },
+  {
+   "id": "telacu",
+   "resolution": "states",
+   "states": [
+    "CA",
+    "IL",
+    "NY",
+    "TX"
+   ],
+   "evidence": "permanent residents within CA, IL, NY, or TX",
+   "finalUrl": "https://telacu.com/telacu-education-foundation/college-success-program/general-program-information/",
+   "note": "Landing page lacks eligibility text; rule is on the General Program Information subpage."
+  },
+  {
+   "id": "ar-academic-challenge",
+   "resolution": "states",
+   "states": [
+    "AR"
+   ],
+   "evidence": "Be an Arkansas resident (at least 12 months prior to enrollment and a US citizen/lawful permanent resident)",
+   "finalUrl": "https://sams.adhe.edu/Scholarship/Details/ACST",
+   "note": "Must also attend an approved Arkansas institution of higher education."
+  },
+  {
+   "id": "pa-rtss",
+   "resolution": "states",
+   "states": [
+    "PA"
+   ],
+   "evidence": "With the exception of financial need, the student must meet all other PA State Grant eligibility requirements to qualify for RTSS.",
+   "finalUrl": "https://www.pheaa.org/funding-opportunities/other-educational-aid/rtss",
+   "note": "PA State Grant eligibility includes Pennsylvania residency; students must be nominated by an approved participating (Pennsylvania) institution, and the program is funded by the Pennsylvania General Assembly. Page is JS-walled to fetchers; verified via browser."
+  },
+  {
+   "id": "native-forward-scholars-fund",
+   "resolution": "national",
+   "evidence": "Degree-seeking students must be attending an accredited institution full-time in the U.S.",
+   "finalUrl": "https://www.nativeforward.org/scholarship-faq/",
+   "note": "General eligibility is Tribal-affiliation based (TEC required) with no state bound. Some individual named funds in the finder (e.g., PNM Pueblo, Shakopee Mdewakanton) carry their own tribal/regional criteria. Scholarship-finder URL is a JS tool and 403-walls fetchers; verified via browser on official FAQ."
+  },
+  {
+   "id": "udall-undergraduate-scholarship",
+   "resolution": "national",
+   "evidence": "U.S. Citizens, Nationals, and Lawful Permanent Residents; b. Who are sophomore or junior-level students of accredited higher education institutions;",
+   "finalUrl": "https://www.udall.gov/documents/pdf/2026%20Eligibility%20Criteria.pdf",
+   "note": "No state restriction in the official 2026 Eligibility Criteria PDF (main page carries no eligibility text). Native categories additionally require enrollment in a federally recognized tribe."
+  },
+  {
+   "id": "ms-excellence-in-teaching-program",
+   "resolution": "states",
+   "states": [
+    "MS"
+   ],
+   "evidence": "the College of Education at Mississippi State University (MSU) and the School of Education at the University of Mississippi (UM)",
+   "finalUrl": "https://www.metp.msstate.edu/about-metp/program-overview",
+   "note": "Bound is by institution: scholars must enroll at MSU or Ole Miss (both in Mississippi). Residency is NOT restricted - overview says the program is designed to attract students from Mississippi 'as well as surrounding states'. Five-year MS public-school teaching commitment with repayment terms per `who` not restated on fetched pages."
+  },
+  {
+   "id": "glenn-miller-scholarship-competition",
+   "resolution": "national",
+   "evidence": "Students from across the nation apply.",
+   "finalUrl": "https://www.glennmiller.org/scholarship",
+   "note": "Semifinalists travel to Clarinda, Iowa for the in-person finals at their own expense - travel requirement, not a residency bound. Active, 2026 deadline April 20."
+  },
+  {
+   "id": "abhms-baptist-scholarship",
+   "resolution": "national",
+   "evidence": "Reside in the United States or Puerto Rico",
+   "finalUrl": "https://abhms.org/empowering-leaders/scholarships-grants",
+   "note": "US/PR-wide inclusiveness, not a state bound; must also attend an accredited US or PR institution and be an active ABC-USA church member."
+  },
+  {
+   "id": "nsa-scholarship-foundation",
+   "resolution": "national",
+   "evidence": "be a United States or Canadian citizen",
+   "finalUrl": "https://nsacct.org/nsaf-scholarships/",
+   "note": "General awards have no state bound. Arizona quirks exist: permanent residents may apply only from Arizona, AZ applicants may carry 9 credit hours, and there is a separate Arizona financial-need scholarship - consistent with `who`."
+  },
+  {
+   "id": "stamps-scholars",
+   "resolution": "national",
+   "evidence": "apply to one or more of our partner schools. If you qualify, you'll automatically be considered for a Stamps award.",
+   "finalUrl": "https://www.stampsscholars.org/our-program/how-to-apply/",
+   "note": "Eligibility runs through partner institutions nationwide; no state residency restriction (institution-specific deadlines may differ for in-state vs out-of-state applicants)."
+  },
+  {
+   "id": "chick-fil-a-team-member-scholarship",
+   "resolution": "national",
+   "evidence": "Both full-time and part-time employees in the United States, Canada and Puerto Rico are eligible.",
+   "finalUrl": "https://www.chick-fil-a.com/remarkable-futures-scholarships/types-of-scholarships",
+   "note": "Employment-based (current Chick-fil-A Team Member), no state bound. Also open in Canada."
+  },
+  {
+   "id": "california-chafee-grant",
+   "resolution": "states",
+   "states": [
+    "CA"
+   ],
+   "evidence": "The Chafee Grant may be used at any eligible California college or university, or career or technical school. Students attending schools in other states may also qualify.",
+   "finalUrl": "https://www.csac.ca.gov/chafee",
+   "note": "California state program (CSAC/California Dept. of Social Services) for current/former California foster youth (ward of the court, in care at least one day between ages 16-18, under 26). School may be outside California - the bound is qualifying through California's foster-care system. Batch URL 405-walls fetchers; verified via browser, which redirects context to csac.ca.gov/chafee."
+  },
+  {
+   "id": "us-senate-youth-program",
+   "resolution": "national",
+   "evidence": "Two student leaders from each state, the District of Columbia and the Department of Defense Education Activity",
+   "finalUrl": "https://ussenateyouth.org/",
+   "note": "Every state participates via its own state selection administrator; delegates travel to Washington Week - not a residency bound to specific states."
+  },
+  {
+   "id": "larry-b-sanchez-memorial-scholarship",
+   "resolution": "states",
+   "states": [
+    "OR",
+    "WA"
+   ],
+   "evidence": "Applicants must live in Oregon, or the following counties in Washington State: Klickitat or Yakima.",
+   "finalUrl": "https://www.ohdc.org/programs/larry-b-sanchez-memorial-scholarship/",
+   "note": "Washington eligibility limited to Klickitat and Yakima counties. 2026 deadline passed (Jan 10, 2026); page says check again next year."
+  },
+  {
+   "id": "gabriel-gomez-sandoval-farmworker-memorial-scholarship",
+   "resolution": "states",
+   "states": [
+    "CA"
+   ],
+   "evidence": "a farmworker or child of a farmworker who has been employed by a California Farm Labor Contractor (FLC) within the past 12 months",
+   "finalUrl": "https://www.calflca.org/scholarships",
+   "note": "Bound is employment through a California farm labor contractor rather than residency. 2027 application opens Spring 2027."
+  },
+  {
+   "id": "toyota-motor-north-america-scholarship",
+   "resolution": "unclear",
+   "evidence": "The program's information has moved to a new location",
+   "finalUrl": "https://start.scholarsapply.org/?programcycleid=60563",
+   "note": "learnmore.scholarsapply.org/toyotamle now only shows a moved notice pointing to the Scholarship America Hub, where the Toyota Motor North America Scholarship Program page requires account login (verified via browser). The 14-states+DC+PR rule in `who` could not be confirmed on a public official page."
+  },
+  {
+   "id": "south-dakota-build-dakota-scholarship",
+   "resolution": "states",
+   "states": [
+    "SD"
+   ],
+   "evidence": "Enroll full-time in Build Dakota Scholarship-eligible program at a South Dakota technical college (Lake Area Technical College, Mitchell Technical College, Southeast Technical College, or Western Dakota Technical College).",
+   "finalUrl": "https://www.builddakotascholarships.com/about/frequently-asked-questions/",
+   "note": "No residency requirement stated (out-of-state students may apply); bound is attending an SD technical college plus the FAQ commitment: 'Following graduation, work full-time in South Dakota in the field of study for a minimum of three years.' Apply page has no eligibility text; rule is on the FAQ page."
+  },
+  {
+   "id": "sealaska-heritage-scholarship",
+   "resolution": "national",
+   "evidence": "scholarships to Alaska Natives who are Sealaska Shareholders and Descendants",
+   "finalUrl": "https://sealaskaheritage.org/shi-scholarships/",
+   "note": "Eligibility is Sealaska shareholder/descendant status (lineage-based); page states no residency requirement, so 'in Southeast Alaska' in `who` reflects the corporation's region rather than a stated residency rule. Individual named awards may add criteria."
+  },
+  {
+   "id": "pepsico-foundation-nextstep-scholarship",
+   "resolution": "states",
+   "states": [
+    "CA",
+    "CO",
+    "FL",
+    "IL",
+    "NY",
+    "TX"
+   ],
+   "evidence": "Westchester Community College, Dallas College, City Colleges of Chicago, Colorado Community College System – Aurora, Denver and Front Range campuses, Valencia College, Los Angeles Community College – LA Trade Tech and LA City College",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/pepsiconextstep/",
+   "note": "Bound is current attendance at one of the named partner campuses in these six states. Program currently closed; page says 2026 program information is tentative and subject to change."
+  },
+  {
+   "id": "new-york-life-golden-futures-scholarship",
+   "resolution": "national",
+   "evidence": "Applicants must be current high school juniors or seniors at the time of application and must reside in the United States.",
+   "finalUrl": "https://www.newyorklife.com/golden-futures/scholarships",
+   "note": "US-wide legal residency only, no state bound ('only legal residency in the United States is required to participate'). Application period currently closed. Site 403-walls fetchers; verified via browser FAQ accordion."
+  },
+  {
+   "id": "kentucky-foster-adopted-tuition-waiver",
+   "resolution": "states",
+   "states": [
+    "KY"
+   ],
+   "evidence": "all of Kentucky's public 4 (year) universities as well as all the colleges and institutions of the Kentucky Community and Technical College System (KCTCS)",
+   "finalUrl": "https://prd.webapps.chfs.ky.gov/kyrise/Home/Education",
+   "note": "For youth committed to Kentucky's Cabinet for Health and Family Services, aged out of Kentucky foster care at 18+, or adopted from Kentucky's system; waiver usable only at Kentucky public institutions, must start within 4 years of HS/GED, up to 150 credit hours or age 28."
+  },
+  {
+   "id": "costco-employee-scholarship",
+   "resolution": "national",
+   "evidence": "All regular full- and part-time and limited part-time permanent Costco employees residing in the United States and Puerto Rico may be eligible",
+   "finalUrl": "https://csf.smapply.org/prog/costco_employee_scholarship/",
+   "note": "US-or-Puerto-Rico inclusiveness, no state restriction."
+  },
+  {
+   "id": "ny-stem-incentive-program",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "You are a legal resident of New York State and have resided in New York State for 12 continuous months.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/nys-science-technology-engineering-and-mathematics-stem-incentive",
+   "note": "Also requires attending SUNY or CUNY and graduating from a NYS high school in the top 10 percent."
+  },
+  {
+   "id": "louisiana-tops-tech-award",
+   "resolution": "states",
+   "states": [
+    "LA"
+   ],
+   "evidence": "Meet TOPS Louisiana Residency requirements",
+   "finalUrl": "https://mylosfa.la.gov/tops/tops-tech/",
+   "note": "Usable only at Louisiana institutions (LCTCS campuses, Louisiana public colleges, or LAICU member private colleges)."
+  },
+  {
+   "id": "sc-guard-college-assistance",
+   "resolution": "states",
+   "states": [
+    "SC"
+   ],
+   "evidence": "enrolled in a two-year or four-year program at eligible South Carolina institutions",
+   "finalUrl": "https://che.sc.gov/scngcap",
+   "note": "Qualifies through South Carolina's system: page states the program offers financial assistance to members of the South Carolina Army and Air National Guard; no separate residency sentence on the page."
+  },
+  {
+   "id": "north-dakota-guard-tuition-assistance",
+   "resolution": "states",
+   "states": [
+    "ND"
+   ],
+   "evidence": "a qualifying member of the national guard who enrolls in an accredited postsecondary institution in North Dakota which is not controlled by the state may receive a grant",
+   "finalUrl": "https://ndlegis.gov/cencode/t37c07-2.pdf",
+   "note": "ND National Guard benefit (state system). Contradiction with who-sentence: N.D.C.C. 37-07.2-01.1 now also allows grants at out-of-state and online institutions, and this chapter covers non-state-controlled ND institutions, not only ND state schools."
+  },
+  {
+   "id": "teaching-fellows-for-maryland",
+   "resolution": "states",
+   "states": [
+    "MD"
+   ],
+   "evidence": "enrolled or intend to enroll at an eligible institution in an undergraduate or graduate program leading to a Maryland professional teacher's certificate",
+   "finalUrl": "https://mhec.maryland.gov/preparing/pages/teachingfellowsmdscholarship.aspx",
+   "note": "Maryland residency is NOT required ('Applicants are no longer required to be Maryland residents'), but the program must be at an eligible Maryland institution with a Maryland teaching commitment, so the award is MD-bound."
+  },
+  {
+   "id": "new-mexico-native-american-instate-tuition",
+   "resolution": "states",
+   "states": [
+    "NM"
+   ],
+   "evidence": "All out of state members of an American Indian nation, tribe and pueblo, located wholly or partially in New Mexico, regardless of the residence of the member prior to acceptance at a post-secondary educational institution shall be eligible to pay the in-state tuition rate.",
+   "finalUrl": "https://hed.nm.gov/financial-aid/residency-requirements",
+   "note": "Benefit is in-state tuition at New Mexico public institutions; qualifies through NM tribal ties, not current residency."
+  },
+  {
+   "id": "ashrae-undergraduate-engineering-scholarships",
+   "resolution": "national",
+   "evidence": "Scholarships available to undergraduate engineering or pre-engineering students who are enrolled full-time in a post-secondary educational institution and pursuing a Bachelor of Science or Engineering degree",
+   "finalUrl": "https://www.ashrae.org/communities/student-zone/scholarships-and-grants/undergraduate-engineering-scholarships",
+   "note": "Eligibility routes are accreditation-based (ASHRAE student branch, ABET, Washington/Sydney Accord). A few named awards give 'special consideration' to ASHRAE Region III schools, but that is a preference, not a residency bound."
+  },
+  {
+   "id": "pge-better-together-stem-scholarship",
+   "resolution": "states",
+   "states": [
+    "CA"
+   ],
+   "evidence": "Reside in PG&E's service territory, or Be a dependent of a resident in PG&E's service territory",
+   "finalUrl": "https://www.pge.com/en/about/educational-resources/grants-and-scholarships.html",
+   "note": "PG&E's service territory is in California. Contradiction with who-sentence: per the page, territory residency is required of all applicants; the HBCU option is only an alternative for where the student enrolls ('a four-year college or university in California or a Historical Black College or University (HBCU) in the U.S.'), not an alternative to residency."
+  },
+  {
+   "id": "ihs",
+   "resolution": "national",
+   "evidence": "Recipients must be a member of a federally recognized American Indian Tribe or Alaska Native village.",
+   "finalUrl": "https://www.ihs.gov/scholarship/apply/",
+   "note": "Eligibility is tribal-membership-based (Preparatory/Pre-Graduate tracks also allow state-recognized or terminated tribes and descendants); no state restriction."
+  },
+  {
+   "id": "forgiveness-loan-minnesota-nurse",
+   "resolution": "states",
+   "states": [
+    "MN"
+   ],
+   "evidence": "Participants must live and work in Minnesota.",
+   "finalUrl": "https://www.health.state.mn.us/facilities/ruralhealth/funding/loans/nurse.html"
+  },
+  {
+   "id": "4-h-illinois-state",
+   "resolution": "states",
+   "states": [
+    "IL"
+   ],
+   "evidence": "Youth who are age-eligible for 4-H participation must be actively enrolled in the Illinois 4-H program at the time of application to qualify for this scholarship.",
+   "finalUrl": "https://4h.extension.illinois.edu/participate/awards-scholarships/scholarships",
+   "note": "Qualifies through Illinois 4-H membership ('Open to current Illinois 4-H members age 15-19')."
+  },
+  {
+   "id": "29-dependent-exemption-louisiana-state",
+   "resolution": "states",
+   "states": [
+    "LA"
+   ],
+   "evidence": "Residency is defined as the veteran's full-time physical presence in a Louisiana household.",
+   "finalUrl": "https://vetaffairs.la.gov/wp-content/uploads/2025/09/Title29ResidencyReqs.pdf",
+   "note": "Main page states 'Eligibility for Title 29 education benefits also require that veterans meet residency requirements' and links this residency-requirements PDF; benefit is a Louisiana in-state tuition exemption tied to the veteran's one-year Louisiana residency."
+  },
+  {
+   "id": "indigenous-kansas-state-status-tuition",
+   "resolution": "states",
+   "states": [
+    "KS"
+   ],
+   "evidence": "enrolled members of certain Indigenous American Tribal Nations",
+   "finalUrl": "https://kansasregents.gov/students/residency_faq",
+   "note": "Quote is from the Kansas Board of Regents FAQ answer stating 'Kansas law allows in-state tuition rates for individuals including ... enrolled members of certain Indigenous American Tribal Nations' at state universities. The FAQ does not name the four Kansas-headquartered tribes listed in the who-sentence; it defers to K.A.R. 88-3-11."
+  },
+  {
+   "id": "california-planning",
+   "resolution": "states",
+   "states": [
+    "CA"
+   ],
+   "evidence": "Our CPF scholarship program awards scholarships to outstanding planning students enrolled at eligible professional planning degree programs in California",
+   "finalUrl": "https://www.cpfapa.org/information-applications",
+   "note": "Bound by enrollment in California planning programs; no separate residency rule stated."
+  },
+  {
+   "id": "avmf-technician-veterinary-zoetis",
+   "resolution": "national",
+   "evidence": "Must be currently enrolled as a full-time student in good standing at a CVTEA-accredited veterinary technology, veterinary nursing, or animal health technology program in the United States or Puerto Rico.",
+   "finalUrl": "https://www.avmf.org/grants-and-scholarships/scholarships/the-zoetis-foundation-avmf-veterinary-technician-student-scholarship/"
+  },
+  {
+   "id": "application-general-horticulture",
+   "resolution": "national",
+   "evidence": "Undergraduates attending a community college, university or technical institution outside of Florida",
+   "finalUrl": "https://www.nationalhorticulturefoundation.org/scholarships",
+   "note": "General Application Fund is an exclusion, not a state bound: undergraduates may attend anywhere in the US EXCEPT Florida (Florida undergrads are served by the separate James S. Davis fund); full-time graduate students have no geographic restriction stated. Consistent with the who-sentence."
+  },
+  {
+   "id": "mo-child-employee-officer-or",
+   "resolution": "states",
+   "states": [
+    "MO"
+   ],
+   "evidence": "Be a Missouri resident and a United States citizen or permanent resident",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants/public-service-officer",
+   "note": "Also requires enrollment in a participating Missouri postsecondary school."
+  },
+  {
+   "id": "ne-attracting-excellence-teaching-to",
+   "resolution": "states",
+   "states": [
+    "NE"
+   ],
+   "evidence": "enrolled in an undergraduate or graduate teacher education program at an eligible Nebraska institution",
+   "finalUrl": "https://ccpe.nebraska.gov/attracting-excellence-teaching-program",
+   "note": "Also requires commitment to teach full-time in an accredited or approved public or private school in Nebraska, matching the who-sentence's forgivable-loan terms."
+  },
+  {
+   "id": "ne-attracting-excellence-teaching-teaching",
+   "resolution": "states",
+   "states": [
+    "NE"
+   ],
+   "evidence": "enrolled in an undergraduate or graduate teacher education program at an eligible Nebraska institution",
+   "finalUrl": "https://ccpe.nebraska.gov/aetp-student-teaching",
+   "note": "Student-teaching variant; also requires the Nebraska full-time teaching commitment ('teach full-time in an accredited or approved public or private school in Nebraska')."
+  },
+  {
+   "id": "in-child-heart-indiana-or",
+   "resolution": "states",
+   "states": [
+    "IN"
+   ],
+   "evidence": "Either listed Indiana as home of record at the time of enlistment in the armed forces of the United States OR resided in Indiana at least five (5) years before the student first applies",
+   "finalUrl": "https://www.in.gov/che/state-financial-aid/state-financial-aid-by-program/tuition-and-fee-exemption-children-of-purple-heart-recipients/",
+   "note": "Veteran parent must have the Indiana connection; benefit is usable at Indiana public colleges (and capped $5,000 at Indiana private nonprofits)."
+  },
+  {
+   "id": "builders-career-loan-nd",
+   "resolution": "states",
+   "states": [
+    "ND"
+   ],
+   "evidence": "Qualifying programs must directly relate to one of the high-need occupations and must be offered at a qualifying North Dakota institution.",
+   "finalUrl": "https://ndus.edu/paying-for-college/career-builders",
+   "note": "Recipients also agree to 'Live within ND for 3 years following program completion' and 'Work in an in-demand occupation within ND for 3 years following program completion.' Page fetched via curl (site has an SSL-chain issue that blocks some fetchers)."
+  },
+  {
+   "id": "corps-dakota",
+   "resolution": "states",
+   "states": [
+    "SD"
+   ],
+   "evidence": "Graduate from an accredited South Dakota high school with a Grade Point Average (GPA) of 2.8 or greater on a 4.0 scale.",
+   "finalUrl": "https://tdx.sdbor.edu/TDClient/33/Portal/KB/ArticleDet?ID=279",
+   "note": "Original URL is only an application-timeline page with no eligibility text; resolved via the SDBOR knowledge-base eligibility article, which also requires attending 'a participating South Dakota college' and agreeing 'to stay in South Dakota and work in a critical need occupation after graduation.'"
+  },
+  {
+   "id": "hagen-harvey",
+   "resolution": "states",
+   "states": [
+    "SD"
+   ],
+   "evidence": "Graduation from an accredited South Dakota high school",
+   "finalUrl": "https://doe.sd.gov/scholarships/HagenHarvey.aspx",
+   "note": "Must also 'attend a public or non-public accredited university, college or technical institute located in South Dakota.'"
+  },
+  {
+   "id": "co-american-colorado-indian-tribes",
+   "resolution": "states",
+   "states": [
+    "CO"
+   ],
+   "evidence": "the governing board of each institution shall adopt a policy to grant in-state tuition classification to a student who is a registered member of a federally recognized American Indian tribe with historical ties to Colorado",
+   "finalUrl": "https://cdhe.colorado.gov/colorado-residency-statutes",
+   "note": "C.R.S. 23-7-112; benefit is Colorado in-state tuition classification at Colorado public institutions (Fort Lewis College excluded due to its existing tuition waiver). Page fetched via curl after a 403 to the default fetcher."
+  },
+  {
+   "id": "ut-advancement-career-officer-public",
+   "resolution": "states",
+   "states": [
+    "UT"
+   ],
+   "evidence": "Be a certified peace officer currently employed by a Utah law enforcement agency",
+   "finalUrl": "https://ushe.edu/psocag/",
+   "note": "Also must be 'Seeking a post-secondary degree in a criminal justice-related program from a credit-granting USHE institution' (Utah System of Higher Education)."
+  },
+  {
+   "id": "ok-donna-george-nigh-oklahoma",
+   "resolution": "states",
+   "states": [
+    "OK"
+   ],
+   "evidence": "Scholarship recipients must be residents of the state of Oklahoma as determined by the State Regents.",
+   "finalUrl": "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Career_Scholarships/Nigh_Public_Service_Scholarship.aspx",
+   "note": "Also must be 'enrolled full time in an undergraduate program at a public or private college or university in the state of Oklahoma.'"
+  },
+  {
+   "id": "children-deceased-disabled-enforcement",
+   "resolution": "states",
+   "states": [
+    "TX"
+   ],
+   "evidence": "Any public institution of higher education, as defined in TEC, Section 61.003(8), is required to participate in the Children of Disabled or Deceased Firefighters and Law Enforcement Officers program.",
+   "finalUrl": "https://reportcenter.highered.texas.gov/agency-publication/guidelines-manuals/children-of-disabled-or-deceased-firefighters-and-law-enforcement-officers-guidelines/",
+   "note": "THECB guidelines PDF (extracted locally; page serves the PDF). Parent must have served as a firefighter, municipal/county/state peace officer, state game warden, or paid TDCJ custodial officer 'in the state of Texas'; exemption applies at Texas public institutions."
+  },
+  {
+   "id": "tx-benefits-certain-individuals-positions",
+   "resolution": "states",
+   "states": [
+    "TX"
+   ],
+   "evidence": "Any public institution of higher education as defined in TEC, Section 61.003, is required to participate in the Education Benefits for Certain Survivors of Individuals in Specific Public Servant Positions program.",
+   "finalUrl": "http://reportcenter.highered.texas.gov/sites/docid/cache/file/43F0A27A-CE26-E8DD-B600DACF6F25E33E.pdf",
+   "note": "The exemptions/waivers page lists this program's guidelines as 'Under Construction', so the THECB guidelines PDF (TEC 54.354) was used. Qualifying public servants are those of 'this state or of a political subdivision of this state' (Texas agencies, TDCJ, etc.); exemption applies at Texas public institutions."
+  },
+  {
+   "id": "tx-courses-enrolled-fire-firefighters",
+   "resolution": "states",
+   "states": [
+    "TX"
+   ],
+   "evidence": "provides an exemption from tuition and laboratory fees to eligible persons employed as firefighters by a political subdivision of the state of Texas or active members of an eligible organized volunteer fire department in this state",
+   "finalUrl": "https://reportcenter.highered.texas.gov/agency-publication/guidelines-manuals/firefighters-enrolled-in-fire-science-courses/",
+   "note": "THECB guidelines PDF (TEC 54.353), extracted locally. Eligible institutions are 'Texas public institutions as defined in TEC, Section 61.003.'"
+  },
+  {
+   "id": "ny-enhanced",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "You are a legal resident of New York State and have resided in New York State for 12 continuous months.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/enhanced-tuition-award-eta",
+   "note": "Also requires 'Pursuing an undergraduate degree at a participating NYS private college.' Program is active (2026-27 deadline listed)."
+  },
+  {
+   "id": "ny-veterans",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "You are a legal resident of New York State and have resided in New York State for 12 continuous months.",
+   "finalUrl": "https://hesc.ny.gov/vta",
+   "note": "Also 'Available to students pursuing an undergraduate or graduate degree or in an approved vocational training program in New York State.'"
+  },
+  {
+   "id": "ny-3407-flight",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "You are a legal resident of New York State and have resided in New York State for 12 continuous months.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/flight-3407-memorial-scholarship",
+   "note": "Also requires 'Study at an approved post-secondary institution in New York State.'"
+  },
+  {
+   "id": "ny-center-trade-world",
+   "resolution": "states",
+   "states": [
+    "NY"
+   ],
+   "evidence": "Study at an approved post-secondary institution in New York State.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/world-trade-center-memorial-scholarship",
+   "note": "Attendance at an approved NYS institution is required. Non-NYS residents (including undocumented students) must first qualify under the NYS DREAM Act, so residency alone is not the bound - study in NY is."
+  },
+  {
+   "id": "nj-care-foster-jersey-new",
+   "resolution": "states",
+   "states": [
+    "NJ"
+   ],
+   "evidence": "Have been in the care and custody of New Jersey Department of Children and Families Child Protection & Permanency in an out-of-home placement for a cumulative of 9 months or more following the youth's 16th birthday.",
+   "finalUrl": "https://www.hesaa.org/Documents/NJFCScholarsEligibilityFlyer.pdf",
+   "note": "All qualifying categories run through NJ CP&P placement, NJ CP&P adoption/KLG, or NJ-approved independent/transitional living programs. State Tuition Waiver portion is usable only at NJ public schools; ETV funds follow the student."
+  },
+  {
+   "id": "ct-children-connecticut-dependent-duty",
+   "resolution": "states",
+   "states": [
+    "CT"
+   ],
+   "evidence": "for any dependent child of a (A) police officer, as defined in section 7-294a, or supernumerary or auxiliary police officer, (B) firefighter, as defined in section 7-323j, or member of a volunteer fire company",
+   "finalUrl": "https://www.cga.ct.gov/current/pub/chap_185b.htm",
+   "note": "Statute directs each board to 'waive the payment of tuition' at Connecticut public institutions (community-technical colleges under 10a-77, CSU under 10a-99, UConn under 10a-105) for dependents of officers/firefighters killed in the line of duty; officer definitions are Connecticut statutory ones. cga.ct.gov has a TLS certificate-chain issue; text retrieved from the same official URL via direct download."
+  },
+  {
+   "id": "ma-based-massachusetts-need",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "Physically reside in Massachusetts for at least one year, as of the start of the enrolled term, with an intent to remain in Massachusetts consistent with Board of Higher Education policy",
+   "finalUrl": "https://www.mass.edu/osfa/programs/needbased.asp"
+  },
+  {
+   "id": "ma-child-dcf-foster-massachusetts",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "Physically reside in Massachusetts for at least one year, as of the start of the enrolled term, with an intent to remain in Massachusetts consistent with Board of Higher Education policy",
+   "finalUrl": "https://www.mass.edu/osfa/programs/foster.asp",
+   "note": "Page is the Foster Child Grant: also requires being 'placed in the custody of the Department of Children and Families through a Care and Protection Petition' (MA DCF), so both residency and custody bounds are Massachusetts."
+  },
+  {
+   "id": "ma-s-teachers-tomorrow",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "Physically reside in Massachusetts for at least one year, as of the start of the enrolled term, with an intent to remain in Massachusetts consistent with Board of Higher Education policy",
+   "finalUrl": "https://www.mass.edu/osfa/programs/tmwteachers.asp",
+   "note": "Also requires enrollment in an approved licensure program at a Massachusetts 4-year public institution; service/repayment terms in the who-sentence match the page."
+  },
+  {
+   "id": "ma-aspiring-incentive-teachers",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "Physically reside in Massachusetts for at least one year, as of the start of the enrolled term, with an intent to remain in Massachusetts consistent with Board of Higher Education policy",
+   "finalUrl": "https://www.mass.edu/osfa/programs/aspiringteachers.asp",
+   "note": "Page states a two-year Commonwealth public-school teaching commitment ('Commit to teaching for two (2) years in a public school in the Commonwealth upon successful completion of a bachelor's degree'); the who-sentence's one-year-per-waiver-year phrasing differs slightly - worth syncing."
+  },
+  {
+   "id": "ma-community-nursing",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "in an undergraduate program of study leading to a certificate or an associate degree in an approved course of study at a public community college in Massachusetts",
+   "finalUrl": "https://www.mass.edu/osfa/programs/ccnursingprogram.asp",
+   "note": "Also carries the standard one-year Massachusetts physical-residency requirement."
+  },
+  {
+   "id": "ma-christian-herter",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "Be enrolled in the 10th or 11th grade in a public or private secondary school in the Commonwealth of Massachusetts.",
+   "finalUrl": "https://www.mass.edu/osfa/programs/herter.asp",
+   "note": "Also requires physically residing in Massachusetts with intent to remain."
+  },
+  {
+   "id": "ccsnh-children-foster",
+   "resolution": "states",
+   "states": [
+    "NH"
+   ],
+   "evidence": "in a program leading to a certificate, associate, or bachelor's degree at any public postsecondary institution within the state shall not be required to pay tuition or mandatory fees for attendance at such institution",
+   "finalUrl": "https://www.ccsnh.edu/paying-for-college-new/tuition-waiver-programs-new/",
+   "note": "Qualification runs through New Hampshire DCYF foster care/custody/guardianship categories and the waiver applies only at NH public institutions (CCSNH/USNH), consistent with the who-sentence's under-26 and 35-recipient caps."
+  },
+  {
+   "id": "ccsnh-nh-scholars",
+   "resolution": "states",
+   "states": [
+    "NH"
+   ],
+   "evidence": "Each CCSNH College will provide annually a $500 scholarship for up to 12 scholarships in high schools in its region for students who successfully complete the NH Scholars Program.",
+   "finalUrl": "https://www.ccsnh.edu/paying-for-college-new/tuition-waiver-programs-new/",
+   "note": "Award qualifies through the New Hampshire Scholars Program at NH high schools and is usable only at the awarding CCSNH college (not transferrable), valid one year after graduation."
+  },
+  {
+   "id": "vt-benefit-health-rural-transformation",
+   "resolution": "national",
+   "states": [
+    "VT"
+   ],
+   "evidence": "Commit to working in Vermont, as a healthcare professional in a healthcare setting, serving a rural community (minimum of 32 hours per week), for 5 years following completion of your degree and receipt of your license (if applicable)",
+   "finalUrl": "https://www.vsac.org/ruralhealth",
+   "note": "Vermont residency NOT required (non-VT residents considered if funding allows); the bound is the 5-year Vermont work commitment — carried by basis.service-commitment, not geo."
+  },
+  {
+   "id": "vt-benefit-trades-vermont",
+   "resolution": "national",
+   "states": [
+    "VT"
+   ],
+   "evidence": "Agree to work full-time in Vermont in your profession for a minimum of one year for each year of funding received",
+   "finalUrl": "https://www.vsac.org/pursue-career-skilled-trades-tuition-free",
+   "note": "Page: 'Vermont residency is not required'; the bound is the required Vermont work commitment — carried by basis.service-commitment, not geo."
+  },
+  {
+   "id": "md-collins-honor-iii-leadership",
+   "resolution": "states",
+   "states": [
+    "MD"
+   ],
+   "evidence": "Enrolled full-time at the following institutions only: Bowie State University, Coppin State University, Morgan State University, or University of Maryland Eastern Shore",
+   "finalUrl": "https://mhec.maryland.gov/preparing/pages/financialaid/programdescriptions/prog_richardwcollinsiiileadershipwhscholarship.aspx",
+   "note": "Also requires being 'Determined to be eligible for in-state tuition by the institution' and ROTC membership. Page lists both full-time and part-time student categories, so the who-sentence's blanket full-time rule may be overstated."
+  },
+  {
+   "id": "fl-benacquisto-florida",
+   "resolution": "states",
+   "states": [
+    "FL"
+   ],
+   "evidence": "Be a U.S. citizen or eligible noncitizen (as determined by the institution) and enroll at an eligible, regionally accredited, public or independent Florida postsecondary institution.",
+   "finalUrl": "https://www.floridastudentfinancialaidsg.org/PDF/factsheets/BSP.pdf",
+   "note": "2025-26 fact sheet frames initial funding only for 'A student who is a Florida resident' (with narrow Florida-diploma exceptions for home education or military/public-service families away from Florida); the former out-of-state National Merit pathway does not appear. All recipients must attend a Florida institution."
+  },
+  {
+   "id": "ms-mississippi-niss",
+   "resolution": "states",
+   "states": [
+    "MS"
+   ],
+   "evidence": "Be a legal resident of the State of Mississippi for one year prior to application.",
+   "finalUrl": "https://www.msfinancialaid.org/nissan/",
+   "note": "Also: 'Recipients must attend one of Mississippi's public two-year colleges or public four-year universities.' Matches the who-sentence including the automotive-industry essay."
+  },
+  {
+   "id": "mo-child-employee-missouri-officer",
+   "resolution": "states",
+   "states": [
+    "MO"
+   ],
+   "evidence": "Be a Missouri resident and a United States citizen or permanent resident",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants/public-service-officer",
+   "note": "Also requires enrollment at 'a participating Missouri postsecondary school' and the officer must be 'employed by Missouri or a political subdivision of the state'."
+  },
+  {
+   "id": "ks-kansas-nursing-service",
+   "resolution": "states",
+   "states": [
+    "KS"
+   ],
+   "evidence": "Must be accepted to a Kansas nursing program (pre-nursing will not be funded);",
+   "finalUrl": "https://kansasregents.gov/resources/PDF/Students/Student_Financial_Aid/NSS_2026-2027.2.pdf",
+   "note": "Kansas residency is explicitly NOT required per KBOR's state-aid brochure, but recipients must attend a Kansas nursing program and 'work full-time as an RN or LPN one year for each year that scholarship assistance was received in the state of Kansas'; unmet service repays at 5% interest, matching the who-sentence."
+  },
+  {
+   "id": "ks-kansas-rotc-service",
+   "resolution": "states",
+   "states": [
+    "KS"
+   ],
+   "evidence": "This program is only available at Kansas State University, Pittsburg State University, University of Kansas, Wichita State University, and Washburn University.",
+   "finalUrl": "https://kansasregents.gov/resources/PDF/Students/Student_Financial_Aid/State_Aid_Brochure_2627.pdf",
+   "note": "Brochure: 'Student agrees to accept a commission as a Second Lieutenant and serve for not less than four years as a commissioned officer in the Kansas Army National Guard.' Brochure lists Washburn University, matching the who-sentence."
+  },
+  {
+   "id": "grahame-somerville-thelma",
+   "resolution": "national",
+   "evidence": "Be a nontraditional student attending, or planning to attend, an accredited two-year or four-year college, university, or vocational-technical school in the United States",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/pncsomerville/",
+   "note": "Page: 'Applicants from the state of Indiana are encouraged to apply' - encouragement only, no state restriction. Applications currently closed; 2026 info tentative. Page says HS graduation year 2021 or prior (who-sentence says 2020 or earlier - update)."
+  },
+  {
+   "id": "day-dominican-parade",
+   "resolution": "national",
+   "evidence": "Must have ancestral roots or heritage from the Dominican Republic.",
+   "finalUrl": "https://natddp.org/scholarships/",
+   "note": "No state or geographic restriction on the page; supports students of Dominican descent pursuing higher education in the United States. natddp.org is the National Dominican Day Parade, not the Dominican American National Roundtable (DANR) named in the who-sentence - the attribution should be corrected. Full guidelines PDF referenced for additional criteria."
+  },
+  {
+   "id": "ky-ovr-coca-cola-blind",
+   "resolution": "states",
+   "states": [
+    "KY"
+   ],
+   "evidence": "Be a current consumer of the KY Office of Vocational Rehabilitation with an Individualized Plan for Employment (IPE).",
+   "finalUrl": "https://kcc.ky.gov/Vocational-Rehabilitation/seeking-services/Blind-Services/Coca-Cola-Scholarship/Pages/Coca-Cola-Scholarships.aspx",
+   "note": "No separate residency line, but eligibility runs entirely through Kentucky's state vocational-rehabilitation system, matching the who-sentence."
+  },
+  {
+   "id": "ma-families-in-broadcasting",
+   "resolution": "states",
+   "states": [
+    "MA"
+   ],
+   "evidence": "To be eligible, a student's legal guardian must be a full-time employee of an MBA member station.",
+   "finalUrl": "https://www.massbroadcasters.org/fbs",
+   "note": "No student residency requirement stated; the bound operates through Massachusetts Broadcasters Association member radio/TV stations (Massachusetts-licensed), so students themselves could live out of state."
+  },
+  {
+   "id": "nv-nsea-brian-lee-dodea",
+   "resolution": "national",
+   "evidence": "Applicant must be a graduate of or have attended a DoDEA high school.",
+   "finalUrl": "https://www.nsea-nv.org/about-nsea/grants-awards-member-benefits/our-scholarships",
+   "note": "Host organization is the Nevada State Education Association, but the page states no Nevada residency or NSEA membership requirement for this scholarship; DoDEA high schools exist worldwide, not in any one state."
+  },
+  {
+   "id": "sc-counties-scholarship",
+   "resolution": "states",
+   "states": [
+    "SC"
+   ],
+   "evidence": "A graduating senior from each of the following counties will be selected to receive a $5,000 Board of Director's scholarship: Abbeville, Anderson, Cherokee, Colleton, Darlington, Dorchester, Fairfield, Greenville, Greenwood, Jasper",
+   "finalUrl": "https://www.sccounties.org/news/2026-scac-scholarship-program-now-open",
+   "note": "Quote truncated for length - the full county list ends ', Marlboro, and McCormick.' All eligible counties are in South Carolina and rotate each cycle; the separate 2026 Presidential Scholarship goes to a Chesterfield County (SC) resident. Matches the who-sentence."
+  },
+  {
+   "id": "cme-group-foundation-scholars",
+   "resolution": "states",
+   "states": [
+    "IL",
+    "NJ"
+   ],
+   "evidence": "Be enrolled or planning to enroll in a full-time undergraduate course of study at one of the following CME Group Foundation partner schools for the entire upcoming academic year",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/cme-scholars/",
+   "note": "13 partner schools listed: 12 in Illinois plus Stevens Institute (Hoboken, NJ), matching the who-sentence. Applications currently closed."
+  },
+  {
+   "id": "dunkin-philadelphia-regional",
+   "resolution": "states",
+   "states": [
+    "DE",
+    "NJ",
+    "PA"
+   ],
+   "evidence": "permanent residents of one of the counties or municipalities listed (can attend school at any location)",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/dunkinphilly/",
+   "note": "Eligible counties: DE - Kent, New Castle; NJ - Atlantic, Burlington, Camden, Cape May, Cumberland, Gloucester, Mercer, Salem; PA - Berks, Bucks, Chester, Delaware, Lehigh, Montgomery, Northampton, Philadelphia. School may be anywhere. Applications currently closed; 2026 info tentative."
+  },
+  {
+   "id": "mn-mssa-undergraduate",
+   "resolution": "national",
+   "evidence": "Preference is given to applicants planning to work in the Midwest—Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
+   "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Undergraduate_Scholarship.aspx",
+   "note": "Midwest work plans are a stated PREFERENCE, not a requirement; hard requirements are free MSSA membership, enrollment in an accredited program at a nonprofit institution (no state named), a declared health/human-services major, and one semester remaining. Landing page at /scholarships loads, but detail pages sit behind a Cloudflare JS wall for plain fetchers (retrieved via rendering browser)."
+  },
+  {
+   "id": "mn-mssa-children-families-impact",
+   "resolution": "national",
+   "states": [
+    "MN"
+   ],
+   "evidence": "Have experience working with (via field practicum, paid employment, or volunteer experience) or plan to work with children and/or families in Minnesota.",
+   "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Children-and-Families-Impact-Scholarship.aspx",
+   "note": "No residency or in-state-school rule; the Minnesota nexus is required experience with / plan to work with children and families in Minnesota — a work-plan bound, not geo."
+  },
+  {
+   "id": "mn-mssa-diversity",
+   "resolution": "national",
+   "evidence": "Preference is given to applicants planning to work in the Midwest—Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
+   "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Diversity_Scholarship.aspx",
+   "note": "Midwest work plans are a stated PREFERENCE, not a requirement; hard requirements are MSSA membership and enrollment in an accredited health/human-services program at a nonprofit institution (no state named). Covers both undergraduate ($2,500 x2) and graduate ($3,000 x3) awards."
+  },
+  {
+   "id": "il-township-officials",
+   "resolution": "states",
+   "states": [
+    "IL"
+   ],
+   "evidence": "Each year, since 1989, the Township Officials of Illinois Scholarship Fund awards funds to graduating high school seniors to continue their education at Illinois colleges/universities.",
+   "finalUrl": "https://www.toi.org/2026-scholarship/",
+   "note": "The page itself states only the Illinois colleges/universities bound; detailed criteria (including the Illinois residency and citizenship rules in the who-sentence) live in the downloadable application, not on the page."
+  },
+  {
+   "id": "de-joseph-pyle-award",
+   "resolution": "states",
+   "states": [
+    "DE"
+   ],
+   "evidence": "High school senior from Wilmington attending a New Castle County high school and planning to enroll in a 2-year or 4-year college, or trade/vocational school",
+   "finalUrl": "https://scholarships.delawarestudentsuccess.org/degree-seeking-associates/?degree=Associate",
+   "note": "Listing (Dr. Joseph P. Pyle Award, deadline March 19, 2026) is also tagged 'Delaware Residents Only'. Wilmington and New Castle County are in Delaware."
+  }
+ ],
+ "eligibility": [
+  {
+   "id": "equitable-excellence",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Applicants must have financial need"
+    }
+   ],
+   "evidence": "Be current high school seniors residing in one of the 50 U.S. states, District of Columbia or Puerto Rico who plan to enroll full-time in an accredited two- or four-year college or university",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/equitableexcellence/",
+   "note": "No niche field/identity/circumstance criteria; page carries an explicit nondiscrimination statement. Employees and immediate family of Equitable or Scholarship America are ineligible. Consistent with who."
+  },
+  {
+   "id": "dream-award",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Demonstrate financial need."
+    }
+   ],
+   "evidence": "Current college undergraduates who have completed at least one year of full-time undergraduate study ... Be studying to obtain their first Associate's or first Bachelor's degree.",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/dreamaward/",
+   "note": "Page confirms 'high school seniors are not eligible' — consistent with who (second year or later). Open to all fields; a separate STEM award category exists but the general award has no field restriction."
+  },
+  {
+   "id": "regeneron-sts",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem",
+     "strength": "required",
+     "quote": "original research in critically important scientific fields of study and full application for holistic review"
+    },
+    {
+     "tag": "basis.talent-competition",
+     "strength": "required",
+     "quote": "original research in critically important scientific fields of study and full application for holistic review"
+    }
+   ],
+   "evidence": "Unique among high school competitions, the Regeneron STS focuses on identifying, inspiring, and engaging the nation's most promising future leaders in STEM.",
+   "finalUrl": "https://www.societyforscience.org/regeneron-sts/",
+   "note": "It is a research competition requiring submission of an original STEM research project. Full Official Rules PDF exceeded fetch size limit; quotes are from the official program homepage."
+  },
+  {
+   "id": "kasf",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.aapi",
+     "strength": "required",
+     "quote": "Students with a Korean heritage studying in the United States regardless of citizenship status (including Korean Nationals)."
+    }
+   ],
+   "evidence": "Undergraduate, graduate and high school students enrolled full time during the scholarship application year.",
+   "finalUrl": "https://www.kasf.org/apply/",
+   "note": "Korean heritage specifically (identity.aapi is the closest taxonomy id). Page adds: 'If extra funds are available, other students (non-Korean) may qualify.' Consistent with who."
+  },
+  {
+   "id": "coolidge-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "a distinguished academic record"
+    },
+    {
+     "tag": "field.public-service",
+     "strength": "preferred",
+     "quote": "seeks young citizens who exhibit an interest in policy"
+    }
+   ],
+   "evidence": "must intend to enroll full-time at an accredited U.S. college or university as an undergraduate for the first time in fall 2028",
+   "finalUrl": "https://coolidgescholars.org/selection-criteria/",
+   "note": "Academic excellence is the stated primary criterion. Interest in public policy/Coolidge values is a secondary selection criterion only — page states the award 'is not restricted to candidates planning to pursue degrees' in government fields, so tagged preferred, not a field restriction. Juniors only; gap years not permitted."
+  },
+  {
+   "id": "excelsior-ny",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Your household combined federal adjusted gross income must be $125,000 or less."
+    },
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "Reside in New York State for a duration equal to the number of years you received the scholarship"
+    }
+   ],
+   "evidence": "Your household combined federal adjusted gross income must be $125,000 or less.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/excelsior-scholarship-program",
+   "note": "Service commitment is a post-award live-in-NY (and if employed, work-in-NY) obligation, not field-specific; non-compliance converts the award to a no-interest loan — matches who. SUNY/CUNY only; no field or identity criteria."
+  },
+  {
+   "id": "nv-millennium-scholarship",
+   "resolution": "general",
+   "evidence": "Graduate with an overall GPA of 3.25 (weighted or unweighted) or earn a qualifying test score on the SAT (1070 or higher) or ACT (21 or higher).",
+   "finalUrl": "https://nvigate.gov/programs/governor-guinn-millennium-scholarship/",
+   "note": "Original treasurer URL is a thin landing page; requirements verified on nvigate.gov (official State of Nevada portal). GPA 3.25/test gate and curriculum treated as academic minimums per rules (flat entitlement, award does not scale with merit). Caution: nevadatreasurer.gov GGMS_Requirements page actually describes the separate Kenny C. Guinn MEMORIAL Scholarship (teaching-restricted) — do not conflate."
+  },
+  {
+   "id": "ak-performance-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "To become APS eligible, you must complete specific rigorous courses during high school."
+    }
+   ],
+   "evidence": "Alaska residents who graduate from an Alaska high school (public, private, or home school)",
+   "finalUrl": "https://acpe.alaska.gov/Funding-Solutions/Alaska-Performance-Scholarship",
+   "note": "Tagged merit because award amount scales with academic performance across three levels (GPA 3.5/3.0/2.5 or ACT 25/23/21 tiers), beyond a simple minimum gate. No field, identity, circumstance, affiliation, or need criteria. Consistent with who."
+  },
+  {
+   "id": "id-launch-grant",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "Prioritization will be based on in-demand careers and financial need."
+    }
+   ],
+   "evidence": "Be a graduate from the current high school graduating class of an Idaho public school, charter school, private school, home school, or GED program (under the age of 21 by April 15 of the current year)",
+   "finalUrl": "https://nextsteps.idaho.gov/launch",
+   "note": "Financial need is a prioritization factor, not a requirement (who correctly says no need requirement). Applications are also ranked by connection to the Idaho Workforce Development Council in-demand careers list — a real preference, but it spans many fields and has no matching taxonomy id; flagging for taxonomy review. Career Pathway Plan required."
+  },
+  {
+   "id": "tn-promise",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.community-service",
+     "strength": "required",
+     "quote": "complete 16 hours of community service each year to be eligible for the award"
+    }
+   ],
+   "evidence": "complete the Tennessee Promise application by November 2 ... complete the FAFSA by April 1 ... attend a mandatory meeting",
+   "finalUrl": "https://www.collegefortn.org/tnpromise/",
+   "note": "tn.gov URL 302-redirects to collegefortn.org (official TN Promise site). Mentoring participation is a program component, not an eligibility niche. No field, identity, need, or merit criteria."
+  },
+  {
+   "id": "ar-academic-challenge",
+   "resolution": "general",
+   "evidence": "Not have previously earned a baccalaureate degree",
+   "finalUrl": "https://sams.adhe.edu/Scholarship/Details/ACST",
+   "note": "FAFSA required but page states income 'is not a determining factor.' Entry pathways (Diploma of Merit, or GPA/ACT-SAT combinations) treated as academic minimums per rules — flat award, does not scale with merit. Also requires applicants to 'Certify to be drug-free' and not be incarcerated (exclusions, no taxonomy ids). Consistent with who."
+  },
+  {
+   "id": "ky-kees",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "For each year you earn a 2.75 or better GPA, you can earn the base amount listed in the chart."
+    }
+   ],
+   "evidence": "Earn at least a 2.75 GPA in any year of high school while meeting the KEES curriculum requirements.",
+   "finalUrl": "https://www.kheaa.com/web/scholarships-grants.faces",
+   "note": "Tagged merit because award amounts scale continuously with GPA ($187 at 2.75 up to $500 at 4.00) plus test-based supplements. Supplemental AP/IB awards only require 'Be eligible for free or reduced-price lunch during any year of high school' (need factor limited to that sub-award; not tagged). 'Not be a convicted felon' exclusion. Consistent with who."
+  },
+  {
+   "id": "wv-invests",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.community-service",
+     "strength": "required",
+     "quote": "Those who receive funds in a term, must complete 2 hours of community service as approved and verified by the institution."
+    },
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "If a recipient moves out of state, they would be required to pay back the WV Invests Grant plus interest and fees."
+    }
+   ],
+   "evidence": "Those with a bachelor's degree or higher are not eligible for the WV Invests Grant, with the exception of those pursing emergency medical services programs under CIP 51.0904.",
+   "finalUrl": "https://www.cfwv.com/financial-aid/wv-invests-grant/faqs/",
+   "note": "Service commitment = live in WV 2 years after completion or repay with interest. Program is restricted to 'certificate or associate degree programs in specific high-demand fields' — a real field restriction, but it spans IT/health/trades etc. and no single taxonomy id covers it; flag for manual field-list mapping. Drug screening requirement appears in institutional docs but not on the official FAQ page."
+  },
+  {
+   "id": "dc-tuition-assistance-grant",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "In compliance with DCTAG maximum income thresholds"
+    }
+   ],
+   "evidence": "Be a District of Columbia resident for at least 12 consecutive months prior to the applicant's first time in college",
+   "finalUrl": "https://osse.dc.gov/dctag",
+   "note": "Income thresholds vary by award year. First undergraduate degree only, credential earned within 15 years — all consistent with who. No field, identity, or circumstance criteria."
+  },
+  {
+   "id": "ma-masseducate",
+   "resolution": "general",
+   "evidence": "have physically resided in Massachusetts for at least one year, as of the start of the enrolled term",
+   "finalUrl": "https://www.mass.edu/osfa/programs/masseducate.asp",
+   "note": "mass.gov URL returns 403 to fetchers; verified on the MA Dept. of Higher Education OSFA page (official program administrator). Universal regardless of income — income affects only a supplemental books/supplies allowance (up to $1,200), so no basis.need tag. No bachelor's degree already earned — consistent with who."
+  },
+  {
+   "id": "ri-promise",
+   "resolution": "general",
+   "evidence": "Be a Rhode Island resident and graduate from high school (public, private, or homeschooled) or earn a GED®.",
+   "finalUrl": "https://www.ccri.edu/ripromise/",
+   "note": "Must enroll the term immediately after graduation and be 18 or younger (19-21 by appeal) — age/timing gates, not niche criteria. No field, identity, need, or merit criteria. Consistent with who."
+  },
+  {
+   "id": "pa-rtss",
+   "resolution": "unclear",
+   "evidence": "No eligibility text retrievable — pheaa.org serves only a JS shell ('PHEAA: One of the Nation's Leading Student Aid Organizations') to non-browser fetchers on every RTSS URL tried.",
+   "finalUrl": "https://www.pheaa.org/funding-opportunities/other-educational-aid/rtss",
+   "note": "Bot-wall/JS-rendered site. CONTRADICTION with who: legislative and PHEAA-derived sources (SB 1150 / Grow PA expansion, effective 2025-26) put the household income limit at $175,000 (raised from $126,000) — not $200,000 — and lowered the GPA requirement from 3.25 to 2.5. Program is merit-with-income-cap (basis.merit-academic + basis.need candidates) but no official-page quotes obtainable; needs browser verification and who-sentence correction."
+  },
+  {
+   "id": "mo-a-plus",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.community-service",
+     "strength": "required",
+     "quote": "Perform at least 50 hours of unpaid tutoring or mentoring, of which up to 25% may include job shadowing prior to graduation"
+    }
+   ],
+   "evidence": "Graduate from an A+ designated high school with an overall unweighted grade point average of 2.5 or higher on a 4.0 scale.",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/a-plus",
+   "note": "Tutoring/mentoring requirement matches who. Exclusions with no taxonomy id: cannot pursue 'a degree or certificate in theology or divinity'; must attend an A+ designated high school (school-based gate); 95% attendance; no disqualifying criminal record."
+  },
+  {
+   "id": "sd-opportunity-scholarship",
+   "resolution": "general",
+   "evidence": "Be a resident of South Dakota at the time of high school graduation",
+   "finalUrl": "https://tdx.sdbor.edu/TDClient/33/Portal/KB/ArticleDet?ID=356",
+   "note": "sdos.sdbor.edu 301-redirects to the SDBOR knowledge base; eligibility confirmed in the 'Initial Eligibility Requirements' article. ACT 24 (or 28 test-only pathway) + curriculum + GPA 3.0 gates treated as academic minimums per rules (flat award). Must attend an in-state SD institution. No field, identity, circumstance, affiliation, or need criteria. Consistent with who."
+  },
+  {
+   "id": "pba-minerva-beauty-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.trades.beauty-cosmetology",
+     "strength": "required",
+     "quote": "Must be a Cosmetology, Nail Tech, Barbering, Esthetics, and Massage student or licensed professional"
+    }
+   ],
+   "evidence": "Must be currently enrolled in school (and in good standing) or a licensed professional currently working as a beauty/wellness professional",
+   "finalUrl": "https://www.probeauty.org/scholarships/",
+   "note": "Taxonomy gap: cosmetology/beauty has no dedicated id; closest parent field.trades used — flag for taxonomy review. No PBA membership or need requirement stated. Minor divergence from who: page as fetched also admits licensed working professionals (not only enrolled students) and does not state the citizenship/age-18 details; page hosts multiple PBA scholarships, so per-award fine print may differ."
+  },
+  {
+   "id": "vausa-fallen-heroes-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.aapi",
+     "strength": "required",
+     "quote": "US Citizens or permanent resident Vietnamese Americans who have never obtained a bachelor's degree."
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "best-qualified applicants who have demonstrated exceptional academic achievement"
+    }
+   ],
+   "evidence": "US Citizens or permanent resident Vietnamese Americans who have never obtained a bachelor's degree.",
+   "finalUrl": "https://www.wearevausa.org/scholarship-program/",
+   "note": "Vietnamese American descent specifically (identity.aapi closest id). Despite the 'Fallen Heroes' name, NO military/veteran-family requirement is stated — name not used to infer criteria. Consistent with who."
+  },
+  {
+   "id": "american-samoa-asg-scholarship",
+   "resolution": "unclear",
+   "evidence": "The ASDOE financial aid page exposes only links ('Public and Private School Criteria', 'ASCC Criteria') to downloadable application/criteria documents; no eligibility text is on the page itself.",
+   "finalUrl": "https://www.amsamoadoe.com/offices/financialaid",
+   "note": "Criteria live in PDFs not readable via fetch. Governing law (A.S.C.A. 16.2508) says the scholarship category is 'awarded to eligible applicants based solely upon the applicant's competitive college entrance examination test scores, TOEFL, and G.P.A.' (basis.merit-academic candidate), while grants-in-aid are tied to Board-designated fields of need and loans to financial need. Needs manual PDF review before tagging."
+  },
+  {
+   "id": "cnmi-eap-base-grant",
+   "resolution": "unclear",
+   "evidence": "EAP Base Grant (EAPBG) is for all eligible full-time applicants regardless what the field of study.",
+   "finalUrl": "https://www.cnmischolarship.net/sec.asp?secID=4",
+   "note": "Page confirms no field restriction but full eligibility rules exist only in a linked Commonwealth Register PDF not readable via fetch. Governing regs (NMIAC Title 75-20.1, per search) indicate a return-to-CNMI work obligation equal to the assistance period (basis.service-commitment candidate) and 2-year residency; who's voter-registration detail was not confirmable on the site. Needs manual PDF review."
+  },
+  {
+   "id": "microsoft-disability-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem.engineering",
+     "strength": "required",
+     "quote": "Pursue a degree in the following eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field"
+    },
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Pursue a degree in the following eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field"
+    },
+    {
+     "tag": "field.business",
+     "strength": "required",
+     "quote": "Pursue a degree in the following eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field"
+    },
+    {
+     "tag": "field.public-service",
+     "strength": "required",
+     "quote": "eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Require financial assistance to attend college"
+    }
+   ],
+   "evidence": "Be a current high school senior ... Pursue a degree in the following eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/microsoft-disability/",
+   "note": "Field tags are DISJUNCTIVE (any one of the listed majors qualifies); Law/Pre-Law/Paralegal also qualify but have no taxonomy id. CONFLICT RESOLUTION for who: the official administrator page (Scholarship America) does NOT list living with a disability as an eligibility requirement — only 'Demonstrate a passion for technology' and leadership; no disability tag reported (no quote exists). The Seattle Foundation description who cites appears outdated."
+  },
+  {
+   "id": "momeni-foundation-scholarships",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.heritage",
+     "strength": "required",
+     "quote": "all graduating high school students and current college students of all levels (undergraduate, graduate and PhD) and of Iranian descent regardless of citizenship or country of residency"
+    }
+   ],
+   "evidence": "all graduating high school students and current college students of all levels (undergraduate, graduate and PhD) and of Iranian descent regardless of citizenship or country of residency",
+   "finalUrl": "https://momenifoundation.org/applications/",
+   "note": "TAXONOMY GAP: Iranian descent is required (verbatim in evidence) for the Financial Assistance Scholarship, but no identity.* id covers Iranian/Middle Eastern descent (not aapi) — cannot tag without stretching taxonomy; flag for taxonomy extension. The Scholastic Achievement application section addresses U.S. HS graduates without restating descent on this page. FAS is need-based and SAS merit-based by program name/structure only — no verbatim basis quotes, so no basis tags. Consistent with who otherwise."
+  },
+  {
+   "id": "chasa-college-scholarships",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "scholarship to college and vocational school students who have a diagnosis of hemiplegia, hemiparesis (from any cause), or pediatric stroke"
+    }
+   ],
+   "evidence": "To qualify, the onset of your diagnosis must have occurred before the age of 18.",
+   "finalUrl": "https://chasa.org/we-can-help/college-scholarships/",
+   "note": "Diagnosis-based criterion; also functions as circumstance.disability.physical (hemiplegia) — single tag used to avoid double counting. Onset must predate age 18. No need/merit basis stated. Consistent with who."
+  },
+  {
+   "id": "rareis-scholarship-fund",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "U.S. residents who have been diagnosed by a physician as having any form of rare disease regardless of treatment status."
+    },
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "Financial need will be considered"
+    }
+   ],
+   "evidence": "17 years old or older (no upper age limit, veterans and non-traditional students are encouraged.)",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/rareis/",
+   "note": "everylifefoundation.org URL 307-redirects in a loop for fetchers; verified on the official administrator page (Scholarship America). Physician Diagnosis Verification Form required. Need is only 'considered' alongside essay/leadership/academics, hence relevant. Consistent with who."
+  },
+  {
+   "id": "vt-802opportunity",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "the student's and/or the family's adjusted gross income is $100,000 or less"
+    }
+   ],
+   "evidence": "they are a Vermont resident ... they are pursuing an associate degree or certificate at CCV ... they do not already have a bachelor's degree",
+   "finalUrl": "https://www.vsac.org/free-tuition-community-college-vermont",
+   "note": "Income cap per FAFSA; students ineligible for FAFSA may use the Vermont Grant Pathway or Advancement Grant Pathway (relevant for undocumented students). No field or identity criteria. Consistent with who."
+  },
+  {
+   "id": "ks-promise-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.health",
+     "strength": "required",
+     "quote": "Information Technology and Security, Mental and Physical Healthcare, Advanced Manufacturing and Building Trades, Early Childhood Education and Development"
+    },
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Information Technology and Security, Mental and Physical Healthcare, Advanced Manufacturing and Building Trades, Early Childhood Education and Development"
+    },
+    {
+     "tag": "field.trades",
+     "strength": "required",
+     "quote": "Information Technology and Security, Mental and Physical Healthcare, Advanced Manufacturing and Building Trades, Early Childhood Education and Development"
+    },
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "Information Technology and Security, Mental and Physical Healthcare, Advanced Manufacturing and Building Trades, Early Childhood Education and Development"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "$100,000 or less for a family of one or two; $150,000 or less for a family of three"
+    },
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "Upon graduating, the recipient will reside and work in Kansas for two consecutive years."
+    }
+   ],
+   "evidence": "Be a United States citizen, AND Be a Kansas resident",
+   "finalUrl": "https://kansasregents.gov/students/student_financial_aid/promise-act-scholarship",
+   "note": "The four field tags are ALTERNATIVES: enrollment in any one promise-eligible field qualifies. Institutions may add fields (agriculture, education/training, law/safety/corrections, distribution/logistics/transportation). Former foster children get an alternative qualification route. Two-year degrees/certificates only."
+  },
+  {
+   "id": "wv-promise-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "merit-based financial aid program"
+    }
+   ],
+   "evidence": "Students who achieve certain academic requirements can receive up to $5,500 in annual awards toward tuition and mandatory fees.",
+   "finalUrl": "https://www.cfwv.com/financial-aid/promise-scholarship/",
+   "note": "Landing page confirms merit-based (3.0 GPA plus ACT/SAT benchmarks) with no niche criteria; full requirement list sits on a linked detail page. Consistent with the who sentence."
+  },
+  {
+   "id": "families-of-freedom-scholarship-fund",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.loss-of-parent",
+     "strength": "required",
+     "quote": "Dependent children, spouses, or domestic partners of 9/11 victims, including airplane crew and passengers; World Trade Center and Pentagon workers and visitors; and relief workers"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "The Families of Freedom Scholarship is a need-based award."
+    }
+   ],
+   "evidence": "The Families of Freedom Scholarship is a need-based award.",
+   "finalUrl": "https://www.familiesoffreedom.org/students-families/families-of-freedom-fund/",
+   "note": "Broader than loss-of-parent: spouses/domestic partners eligible; parents/siblings only if financially dependent on the victim. CONTRADICTION with who sentence: fund now accepts NEW registrations only for victims who died on 9/11 — 'Registration for families of disabled victims is closed.' Undergraduate only; must enroll by age 24."
+  },
+  {
+   "id": "john-edgar-thomson-foundation-grant",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.women",
+     "strength": "required",
+     "quote": "girls throughout the United States"
+    },
+    {
+     "tag": "circumstance.loss-of-parent",
+     "strength": "required",
+     "quote": "The employee must have been actively employed by any United States railroad at the time of his or her death; the cause does not need to be work related."
+    },
+    {
+     "tag": "affiliation.employer",
+     "strength": "required",
+     "quote": "The employee must have been actively employed by any United States railroad at the time of his or her death; the cause does not need to be work related."
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "Family income and expenses are also considered when determining eligibility."
+    }
+   ],
+   "evidence": "The employee must have been actively employed by any United States railroad at the time of his or her death; the cause does not need to be work related.",
+   "finalUrl": "https://utuia.org/john-edgar-thompson-scholarship/",
+   "note": "basis.need marked preferred (not required) because page says income/expenses are 'considered', not a stated must — ambiguous, weaker strength chosen. Additional untaggable rule: 'Eligibility is also dependent on the daughter and the surviving parent remaining unmarried.' Grants daughters only; support can run to age 24 for higher education."
+  },
+  {
+   "id": "jed-student-voice-of-mental-health-awards",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.community-service",
+     "strength": "required",
+     "quote": "advocates raising mental health awareness by leading thoughtful, impactful initiatives; increasing connection and belonging; encouraging their peers to reach out for help"
+    }
+   ],
+   "evidence": "advocates raising mental health awareness by leading thoughtful, impactful initiatives; increasing connection and belonging; encouraging their peers to reach out for help",
+   "finalUrl": "https://jedfoundation.org/jeds-student-voice-of-mental-health-awards/",
+   "note": "Award is defined by mental-health advocacy/leadership on campus (mapped to basis.community-service; no closer taxonomy id). No requirement that the applicant have a mental health condition. 2026 cycle CLOSED: 'The four-week application period for JED's 2026 Student Voice of Mental Health Awards program ended on Friday, February 20, 2026.' One HS + one college winner per year."
+  },
+  {
+   "id": "quell-foundation-fighter-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.recovery",
+     "strength": "required",
+     "quote": "being treated for a diagnosed mental health condition"
+    }
+   ],
+   "evidence": "Documentation from a mental health professional that you are active in services",
+   "finalUrl": "https://thequellfoundation.org/scholarships/",
+   "note": "Applicant themselves must be in active treatment for a diagnosed mental health condition (documentation required). Application also requires Form 1040/Student Aid Report/tax return, suggesting finances are reviewed, but the page states no explicit need-based criterion, so basis.need not tagged. GPA 3.20 minimum (not reported per rules). Sister awards (Survivor, First Responder Legacy) have different criteria — this record is Fighter only."
+  },
+  {
+   "id": "afa-teen-alzheimers-awareness-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.essay-contest",
+     "strength": "required",
+     "quote": "How has Alzheimer's disease changed or impacted your life?"
+    },
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "relevant",
+     "quote": "How has Alzheimer's disease changed or impacted your life?"
+    }
+   ],
+   "evidence": "Must attend an accredited college/university in the US immediately following high school graduation in 2026 (no gap year/semester)",
+   "finalUrl": "https://alzfdn.org/scholarship/",
+   "note": "PARTIAL CONTRADICTION with who sentence: the formal eligibility list does NOT require a family Alzheimer's/dementia connection — connection is implied only through the required essay prompt, hence strength 'relevant' (aimed-at framing). Awarded via judged essay submission. US citizen HS seniors only; deadline April 1, 2026."
+  },
+  {
+   "id": "paul-drury-memorial-cf-sibling-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "Cystic fibrosis siblings and children are people who share in the daily battle against CF."
+    }
+   ],
+   "evidence": "The Boomer Esiason Foundation scholarship program was created in July 2003 to provide financial assistance to students in the cystic fibrosis community who are pursuing higher education opportunities.",
+   "finalUrl": "https://esiason.smapply.us/prog/pd_memorial_scholarship/",
+   "note": "esiason.org page renders detail via JS; quote taken from the foundation's official SurveyMonkey Apply program page. Detailed criteria live behind the application portal. Third-party listings (uncited here) state applicant must be a sibling of someone with CF, must not have CF themselves, and that financial need is considered — recommend manual confirmation of the need component before tagging basis.need."
+  },
+  {
+   "id": "route-79-duchenne-sibling-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "in 2022, we added Duchenne sibling scholarships to the program. Siblings are an integral part of the Duchenne community"
+    }
+   ],
+   "evidence": "in 2022, we added Duchenne sibling scholarships to the program. Siblings are an integral part of the Duchenne community",
+   "finalUrl": "https://www.sarepta.com/about-us/grants-giving/route79",
+   "note": "Program active: 5 sibling scholarships for 2026-27; applications open Feb 27, 2026, deadline May 15, 2026. Full sibling eligibility criteria are in a linked FAQ PDF, not on the page itself. Consistent with who sentence."
+  },
+  {
+   "id": "critical-language-scholarship",
+   "resolution": "general",
+   "evidence": "Be a U.S. citizen or national at the time of application.",
+   "finalUrl": "https://clscholarship.org/applicants/eligibility",
+   "note": "Dedicated eligibility page confirms no field-of-study, identity, circumstance, need, or merit criteria and no diversity-preference statements. Only untaggable exclusion: current/recent U.S. State Department employees, contractors, and their immediate families are ineligible for one year after employment ends."
+  },
+  {
+   "id": "nsli-y-scholarship",
+   "resolution": "general",
+   "evidence": "Be a U.S. citizen currently enrolled in high school",
+   "finalUrl": "https://exchanges.state.gov/us/program/nsliy",
+   "note": "nsliforyouth.org returned 403 (bot-wall) on multiple paths; confirmed instead on the official U.S. State Department program page (program sponsor). No niche criteria: U.S. citizen HS students, 15-18 at program start, 2.5 GPA minimum (not reportable). 'No previous language skills are required.' Page describes awards as 'merit-based scholarships' but states no academic-merit selection criteria beyond the GPA floor."
+  },
+  {
+   "id": "wisconsin-academic-excellence-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "the highest grade point average in each public and private high school throughout the State of Wisconsin"
+    }
+   ],
+   "evidence": "the highest grade point average in each public and private high school throughout the State of Wisconsin",
+   "finalUrl": "https://heab.state.wi.us/features/aes.html",
+   "note": "Pure top-of-class merit designation (homeschoolers qualify via ACT 33 / SAT 1500). No other niche criteria. Consistent with who sentence."
+  },
+  {
+   "id": "lithuanian-foundation-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.heritage",
+     "strength": "required",
+     "quote": "full-time students of Lithuanian heritage"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "academic merit, leadership potential, demonstrated volunteer engagements in their communities, and especially involvement in Lithuanian community activities"
+    },
+    {
+     "tag": "basis.community-service",
+     "strength": "preferred",
+     "quote": "academic merit, leadership potential, demonstrated volunteer engagements in their communities, and especially involvement in Lithuanian community activities"
+    }
+   ],
+   "evidence": "full-time students of Lithuanian heritage",
+   "finalUrl": "https://lithuanianfoundation.org/scholarship-guidelines/",
+   "note": "TAXONOMY GAP: the core criterion is REQUIRED Lithuanian heritage ('full-time students of Lithuanian heritage') — no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. Merit/community-service are selection factors (preferred). Full-time undergrad/grad only; associate/certificate programs excluded."
+  },
+  {
+   "id": "finlandia-foundation-national-scholarship",
+   "resolution": "general",
+   "evidence": "Applicant must have U.S. or Finnish citizenship.",
+   "finalUrl": "https://finlandiafoundation.org/programs/scholarship/",
+   "note": "Confirms who sentence: Finnish heritage NOT required. One untaggable field preference: 'Special consideration may be given to applicants studying subjects related to Finnish culture.' (no matching field taxonomy id). Sophomore year or beyond; 3.0 GPA minimum (not reportable); relatives of FFN trustees excluded; no consecutive-year awards."
+  },
+  {
+   "id": "california-middle-class-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "The Middle Class Scholarship (MCS) provides low-to middle-income undergraduate students, including students pursuing a teaching credential, with a scholarship"
+    },
+    {
+     "tag": "circumstance.foster-care",
+     "strength": "relevant",
+     "quote": "If you are a current or former foster youth, this award can cover the rest of your school costs (Cost of Attendance)"
+    }
+   ],
+   "evidence": "Academic-year specific: Meet income and asset ceilings — Students attending college between July 2026 and June 2027: up to $250,000",
+   "finalUrl": "https://www.csac.ca.gov/middle-class-scholarship",
+   "note": "csac.ca.gov blocks WebFetch (HTTP 405); content captured via browser. Income/asset ceiling ($250,000 for 2026-27) is a means test — tagged basis.need required even though it reaches well beyond low-income. Foster-youth tag is an ENHANCED AWARD level (full remaining cost of attendance), not an eligibility restriction. FAFSA or CADAA (Dream Act) accepted; no GPA requirement — consistent with who sentence."
+  },
+  {
+   "id": "tennessee-hope-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "minimum 21 ACT or a minimum of 1060 SAT"
+    }
+   ],
+   "evidence": "Be a Tennessee resident as classified by the Tennessee Board of Regents",
+   "finalUrl": "https://www.collegefortn.org/tennessee-hope-scholarship-3/",
+   "note": "Merit route is ACT/SAT benchmark OR 'Overall minimum 3.0 grade point average based on a 4.0 scale'. No field, identity, circumstance, affiliation, or need criteria. Must enroll within 16 months of HS graduation. Consistent with who sentence."
+  },
+  {
+   "id": "missouri-bright-flight",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Have a composite score on the ACT or SAT within the top five percent of all Missouri test takers."
+    }
+   ],
+   "evidence": "Be a Missouri resident and a United States citizen or permanent resident.",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/bright-flight",
+   "note": "Untaggable field EXCLUSION: 'Not be pursuing a degree or certificate in theology or divinity.' (taxonomy has no way to express an excluded field). Otherwise no niche criteria; purely test-score merit. Consistent with who sentence."
+  },
+  {
+   "id": "alaska-education-grant",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "a student must have demonstrated financial need"
+    }
+   ],
+   "evidence": "Be an Alaska resident for at least 365 days prior to filing the FAFSA, and be a U.S. citizen or permanent resident",
+   "finalUrl": "https://acpe.alaska.gov/Funding-Solutions/Alaska-Education-Grant",
+   "note": "Explicitly need-based ('provides need-based financial aid to eligible Alaska students'), need measured via FAFSA Student Aid Index; no prior bachelor's degree allowed. No other niche criteria. Consistent with who sentence."
+  },
+  {
+   "id": "delaware-scholarship-incentive-program",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "File a FAFSA by May 15, 2026 to demonstrate financial need"
+    }
+   ],
+   "evidence": "Needs-based scholarship for students enrolled full-time at a Delaware institution or enrolled full-time at an out-of-state accredited institution in a program not offered in the State of Delaware.",
+   "finalUrl": "https://education.delaware.gov/?page_id=14584",
+   "note": "Eligibility text sits inside an accordion the WebFetch summarizer truncated; extracted via browser. MATERIAL ADDITION vs who sentence: ScIP is explicitly needs-based (FAFSA required to demonstrate need) — the who sentence omits this. $1,000/year awards; 5-year lifetime cap; full-time only."
+  },
+  {
+   "id": "south-carolina-hope-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "The SC HOPE Scholarship Program is a merit-based scholarship created for students attending a four-year institution who do not qualify for the LIFE or Palmetto Fellows Scholarship."
+    }
+   ],
+   "evidence": "The SC HOPE Scholarship Program is a merit-based scholarship created for students attending a four-year institution who do not qualify for the LIFE or Palmetto Fellows Scholarship.",
+   "finalUrl": "https://www.che.sc.gov/students-families-and-military/scholarships-and-grants-sc-residents",
+   "note": "Page gives only a summary (merit-based, four-year institutions, freshman year only); detailed criteria are in a linked FAQ PDF. No niche criteria stated. Consistent with who sentence."
+  },
+  {
+   "id": "pepsico-foundation-nextstep-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.business",
+     "strength": "required",
+     "quote": "Business Administration, Professional Sales, Chemical Engineering, Electrical/Electronics Engineering, Industrial Engineering, Supply Chain Management, Computer Engineering, Computer Science"
+    },
+    {
+     "tag": "field.stem.engineering",
+     "strength": "required",
+     "quote": "Business Administration, Professional Sales, Chemical Engineering, Electrical/Electronics Engineering, Industrial Engineering, Supply Chain Management, Computer Engineering, Computer Science"
+    },
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Business Administration, Professional Sales, Chemical Engineering, Electrical/Electronics Engineering, Industrial Engineering, Supply Chain Management, Computer Engineering, Computer Science"
+    },
+    {
+     "tag": "field.transportation-logistics",
+     "strength": "required",
+     "quote": "Business Administration, Professional Sales, Chemical Engineering, Electrical/Electronics Engineering, Industrial Engineering, Supply Chain Management, Computer Engineering, Computer Science"
+    }
+   ],
+   "evidence": "indefinite right to work in the United States without visa sponsorship",
+   "finalUrl": "https://scholarshipamerica.org/scholarship/pepsiconextstep/",
+   "note": "Field tags are ALTERNATIVES: major must be one of the eight listed (supply chain mapped to transportation-logistics). Medical-field studies explicitly ineligible; PepsiCo employees and their children excluded (employer exclusion, not an affiliation criterion). Restricted to named partner community-college campuses in 6 states; ongoing program-engagement obligations (video interview, check-ins, surveys). Consistent with who sentence."
+  },
+  {
+   "id": "ams-freshman-undergraduate-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem.geoscience",
+     "strength": "required",
+     "quote": "plan to pursue a degree in the atmospheric or related oceanic or hydrologic sciences. Marine biology does not meet this requirement."
+    },
+    {
+     "tag": "identity.women",
+     "strength": "relevant",
+     "quote": "The Society encourages applications from women, minorities, and disabled students, traditionally underrepresented in the atmospheric and related oceanic and hydrologic sciences."
+    },
+    {
+     "tag": "circumstance.disability",
+     "strength": "relevant",
+     "quote": "The Society encourages applications from women, minorities, and disabled students, traditionally underrepresented in the atmospheric and related oceanic and hydrologic sciences."
+    }
+   ],
+   "evidence": "Applicants must be entering their freshman year of college in the fall of 2026 as a full-time student and plan to pursue a degree in the atmospheric or related oceanic or hydrologic sciences.",
+   "finalUrl": "https://www.ametsoc.org/ams/information-for/students/ams-scholarships-and-fellowships/ams-first-year-undergraduate-scholarship/",
+   "note": "ametsoc.org blocks WebFetch (403); captured via browser. 'Minorities' also encouraged but unspecified — no single race/ethnicity tag applied ('encouraged to apply' framing = relevant only). US citizens/permanent residents; 3.0 GPA (not reportable). 2026 applications were due 6 February 2026. Consistent with who sentence including marine-biology exclusion."
+  },
+  {
+   "id": "aag-darrel-hess-community-college-geography-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem.geoscience",
+     "strength": "required",
+     "quote": "plan to transfer to a four-year institution as a geography major during the coming academic year"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "Selection will be based on the overall quality of the application, scholastic excellence and academic promise."
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "Financial need will also be considered."
+    }
+   ],
+   "evidence": "currently enrolled at a US community college, junior college, city college, or similar two-year educational institution",
+   "finalUrl": "https://www.aag.org/award-grant/hess/",
+   "note": "Geography mapped to field.stem.geoscience — closest available id; taxonomy has no geography tag (flag if human geography should not count as geoscience). Need and merit are selection considerations, not gates (preferred). Award-count conflict noted in who sentence confirmed: page says both 'Two $1,500 scholarships will be awarded' and 'Two to four awards of $1,500 will be made annually.'"
+  },
+  {
+   "id": "natas-national-scholarships",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.journalism-media",
+     "strength": "required",
+     "quote": "Awarded to a student pursuing a career in television journalism"
+    },
+    {
+     "tag": "field.arts.film-media",
+     "strength": "required",
+     "quote": "Awarded to a student pursuing a career in any aspect of the television industry, with a focus on those who have made a positive impact through community service"
+    },
+    {
+     "tag": "basis.community-service",
+     "strength": "preferred",
+     "quote": "Awarded to a student pursuing a career in any aspect of the television industry, with a focus on those who have made a positive impact through community service"
+    }
+   ],
+   "evidence": "Awarded to a student pursuing a career in any aspect of the television industry, with a focus on those who have made a positive impact through community service",
+   "finalUrl": "https://theemmys.tv/scholarships/",
+   "note": "Umbrella record for three $10,000 awards: Jim McKay (sports broadcasting), Mike Wallace (television journalism), Douglas W. Mummert (any TV career + community-service focus). All require a TV-career path; journalism-media applies to McKay/Wallace, film-media to Mummert. Detailed criteria (GPA, citizenship) live in the application portal, not on this page. 2026 deadline March 2."
+  },
+  {
+   "id": "massachusetts-foster-child-tuition-waiver",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.foster-care",
+     "strength": "required",
+     "quote": "Be a current or former foster child who was placed in the custody of the state by order of the court and not adopted or returned home"
+    }
+   ],
+   "evidence": "Be a current or former foster child who was placed in the custody of the state by order of the court and not adopted or returned home",
+   "finalUrl": "https://www.mass.edu/osfa/programs/dcffoster.asp",
+   "note": "Alternative route: 'a child whose guardianship was sponsored by the Department of Children and Families through age 18.' Must be 24 or under at start of academic year; FAFSA required; no prior bachelor's. Consistent with who sentence."
+  },
+  {
+   "id": "maryland-foster-care-tuition-waiver",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.foster-care",
+     "strength": "required",
+     "quote": "been placed in an out-of-home placement by the Maryland Department of Human Resources"
+    }
+   ],
+   "evidence": "Be enrolled full time or part time for an associate, bachelors, or a vocational certificate at a Maryland public institution of higher education on or before he or she reaches the age of 25.",
+   "finalUrl": "https://mhec.maryland.gov/preparing/pages/financialaid/programdescriptions/prog_fostercare.aspx",
+   "note": "Four qualifying placement scenarios (at HS graduation/GED, at 18th birthday, adopted/guardianship after 13th birthday, or 1+ year placement after 13th birthday with return to parents). Also extends to younger siblings concurrently adopted/placed in guardianship by the same family. Consistent with who sentence."
+  },
+  {
+   "id": "estonian-students-fund-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.heritage",
+     "strength": "required",
+     "quote": "students of Estonian ancestry studying full-time in a Bachelor's or Master's degree program at an accredited academic institution"
+    }
+   ],
+   "evidence": "students of Estonian ancestry studying full-time in a Bachelor's or Master's degree program at an accredited academic institution",
+   "finalUrl": "https://esfusa.org/en/home/",
+   "note": "TAXONOMY GAP: core criterion is REQUIRED Estonian ancestry — no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. MINOR CONTRADICTION with who sentence: page says Bachelor's OR Master's programs, not bachelor's only. Selection also weighs academic excellence, community leadership, commitment to Estonian society (no verbatim quotes available, not tagged)."
+  },
+  {
+   "id": "oklahoma-rising-scholars-award",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "achieving designation as a National Merit Scholar, National Merit Finalist or United States Presidential Scholar"
+    }
+   ],
+   "evidence": "achieving designation as a National Merit Scholar, National Merit Finalist or United States Presidential Scholar",
+   "finalUrl": "https://www.okcollegestart.org/Financial_Aid_Planning/Scholarships/Academic_Scholarships/Academic_Scholars_Program.aspx",
+   "note": "Automatic routes: National Merit/Presidential Scholar designation or 99.5th-percentile ACT/SAT; alternative institutional-nominee route uses 'criteria established by each institution'. No field, identity, circumstance, affiliation, or need criteria. Renewal: 3.25 cumulative GPA, 24 credit hours/year. Consistent with who sentence."
+  },
+  {
+   "id": "vsac-advancement-grant",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "The amount you receive will depend on your: financial situation, total course cost, program type, timing."
+    }
+   ],
+   "evidence": "Vermont residents who: Are not enrolled in high school ... Are enrolled in a non-degree (non-matriculated) course or program that will improve your ability to get a job or that encourages further study",
+   "finalUrl": "https://www.vsac.org/pay/student-aid-options/grants",
+   "note": "Financial need sizes the award but is not stated as an eligibility gate (application collects financial info); no other niche criteria. Consistent with who sentence."
+  },
+  {
+   "id": "maine-free-community-college",
+   "resolution": "general",
+   "evidence": "If you're unable to file the FAFSA due to citizenship status or other reasons, you're still eligible for free community college.",
+   "finalUrl": "https://www.famemaine.com/affording-education/pay-for-school/free-community-college/",
+   "note": "Program active ('Free College is Here!'); covers HS grads/equivalents of 2022-2025 with 2026-and-beyond tuition coverage continuing. No field, identity, circumstance, or affiliation restrictions. FAFSA-exception for citizenship status confirmed verbatim, matching the who sentence."
+  },
+  {
+   "id": "acpa-randall-larossa-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "Have a diagnosis of cleft lip and/or cleft palate or other congenital craniofacial difference."
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "past academic performance, evidence of leadership and/or community and school involvement, indications of future academic success, and the applicant essays"
+    }
+   ],
+   "evidence": "Have a diagnosis of cleft lip and/or cleft palate or other congenital craniofacial difference. ... Be enrolled full-time in an accredited United States post-secondary institution or program in the fall of 2027. ... Postgraduate students are not eligible to apply.",
+   "finalUrl": "https://acpacares.org/college-scholarships",
+   "note": "Merit factors are selection criteria, not gates. 'Preference is given to rising first-year students entering any field.' Matches who sentence (2.5 GPA, no prior ACPA award, postgrads ineligible)."
+  },
+  {
+   "id": "florida-ease-grant",
+   "resolution": "general",
+   "evidence": "Be a Florida resident and a U.S. citizen or eligible non-citizen. ... Not have previously received a baccalaureate degree. ... Not be enrolled in a program of study leading to a degree in theology or divinity.",
+   "finalUrl": "https://www.floridastudentfinancialaidsg.org/PDF/factsheets/EASE.pdf",
+   "note": "2025-26 fact sheet read in full (PDF). Not need-based; no niche criteria. Theology/divinity study is EXCLUDED. Upper-level students in Teaching, Nursing, Allied Health, Agriculture/Vet Science, Cyber Security and Digital Arts/Computer Graphics may get an additional stipend - bonus, not an eligibility criterion. Matches who sentence."
+  },
+  {
+   "id": "alabama-student-grant-program",
+   "resolution": "general",
+   "evidence": "This grant is available only to students at an eligible independent Alabama college or university. ... This is not a need based program.",
+   "finalUrl": "https://www.ache.edu/index.php/alabama-student-grant-program/",
+   "note": "Page confirms no need test (matches who). Page itself does not restate the Alabama-residency requirement, but lists the 11 participating institutions; no field, identity, circumstance, or affiliation criteria."
+  },
+  {
+   "id": "akc-humane-fund-spurling-scholarship",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.agriculture",
+     "strength": "required",
+     "quote": "individuals pursuing studies in veterinary medicine, veterinary technology, physical therapy, animal care, animal behavior, grooming and training may be eligible"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "Scholastic record and academic merit"
+    }
+   ],
+   "evidence": "Applicant must be a full time student enrolled in a degree or certification program at an accredited U.S. institution",
+   "finalUrl": "https://akchumanefund.org/john-d-spurling-scholarship-application/",
+   "note": "TAXONOMY GAP: field of study is veterinary/animal-care - no veterinary tag exists; mapped to field.agriculture as nearest fit. Page phrasing 'may be eligible' scopes the qualifying fields. Selection also weighs 'Community experience with responsible pet ownership'. No need test."
+  },
+  {
+   "id": "boren",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "a one-year federal service requirement"
+    }
+   ],
+   "evidence": "U.S. undergraduate students ... study critical languages ... in world regions critical to U.S. interests",
+   "finalUrl": "https://www.borenawards.org/",
+   "note": "Core niche criterion is the NSEP federal-service payback (application essay: 'Briefly summarize your plans to fulfill federal service'). Critical-language study abroad in Africa/Asia/Eurasia/Latin America/Middle East has no taxonomy tag. STEM majors get a shorter 8-11 week program option - a track, not a preference; most fields qualify. Matches who sentence; grad students use the separate Fellowship."
+  },
+  {
+   "id": "fezana",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "affiliation.religious",
+     "strength": "required",
+     "quote": "provide Zarathushti students in university programs financial assistance to study at institutions in the U.S and Canada"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "relevant",
+     "quote": "The FEZANA Scholarship Program was started in 1998 to recognize academic excellence"
+    }
+   ],
+   "evidence": "The FEZANA Scholarship Program was started in 1998 to recognize academic excellence and provide Zarathushti students in university programs financial assistance to study at institutions in the U.S and Canada.",
+   "finalUrl": "https://fezana.org/scholarships/",
+   "note": "Site is Cloudflare-walled to fetchers; verified via browser. Umbrella program of ~35 endowed awards (some sub-awards are field-specific: religion education, trades, fine/culinary/performing arts, STEAMM). Zarathushti requirement matches who sentence. Portal open April-July 15 annually."
+  },
+  {
+   "id": "california-planning",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.architecture-planning",
+     "strength": "required",
+     "quote": "eligible professional planning degree programs in California"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "academic performance, financial need, increasing diversity in the planning profession, and a commitment to serve"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "academic performance, financial need, increasing diversity in the planning profession, and a commitment to serve"
+    }
+   ],
+   "evidence": "continuing students entering their final year of an eligible undergraduate or graduate degree program",
+   "finalUrl": "https://www.cpfapa.org/information-applications",
+   "note": "Selection also weighs 'increasing diversity in the planning profession' (named diversity scholarships exist) without restricting to a specific identity group - no identity tag assigned. Some sub-awards add PAB-accreditation or institution restrictions. Matches who sentence."
+  },
+  {
+   "id": "avmf-technician-veterinary-zoetis",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.agriculture",
+     "strength": "required",
+     "quote": "veterinary technology, veterinary nursing, or animal health technology program"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "academic excellence and financial need"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "academic excellence and financial need"
+    }
+   ],
+   "evidence": "2nd year of a 2-year program ... 3rd year of a 4-year program at CVTEA-accredited institutions; full-time student in good standing, U.S. or Puerto Rico",
+   "finalUrl": "https://www.avmf.org/grants-and-scholarships/scholarships/the-zoetis-foundation-avmf-veterinary-technician-student-scholarship/",
+   "note": "TAXONOMY GAP: veterinary-technology field has no tag; mapped to field.agriculture as nearest fit (same gap as akc-humane-fund-spurling). Program active - 2026 applications open Oct 1-31, awards Jan 2027. 'Foster diversity' is mission language, no identity criterion stated. Matches who sentence."
+  },
+  {
+   "id": "ar-arkansas-governor-s-scholars",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Graduate high school with a Diploma of Distinction (only public high school students are eligible to earn this);"
+    }
+   ],
+   "evidence": "Be a bona fide resident of Arkansas for 12 months ... Be a graduating high school senior ... Complete the FAFSA",
+   "finalUrl": "https://sams.adhe.edu/Scholarship/Details/GS",
+   "note": "Alternative merit routes confirmed verbatim: earn an associate's degree by end of summer after graduation, or 'Be the highest scoring student by ACT or SAT score, cumulative GPA, and class rank for the county'. FAFSA required but no need test. Renewal needs 3.00 GPA / 27-30 hrs per year. Matches who sentence."
+  },
+  {
+   "id": "il-dependent-displaced-energy-illinois",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "affiliation.employer",
+     "strength": "required",
+     "quote": "provides scholarship assistance to children (including adopted and stepchildren) of eligible displaced energy workers"
+    }
+   ],
+   "evidence": "designed to support students who are deterred from attending or completing an educational program at an Illinois institution because of a parent's layoff from a retiring power plant or a closing coal mine",
+   "finalUrl": "https://www.isac.org/isac-gift-assistance-programs/DEWDTSP/DEWDTSP-overview.html",
+   "note": "TAXONOMY GAP: parent-displaced-energy-worker status has no exact tag; affiliation.employer is an imperfect nearest fit (criterion runs through the parent's former energy-industry employment). Cloudflare-walled; verified via browser. MATERIAL CHANGE: as of July 24, 2026 a federal court ruling ended undocumented students' eligibility for ISAC state aid for 2026-27; the Alternative Application is suspended. Illinois residency NOT required at enrollment (award capped at in-state tuition)."
+  },
+  {
+   "id": "il-gear-illinois-up",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "affiliation.membership.youth-orgs",
+     "strength": "required",
+     "quote": "This scholarship is only open to GEAR UP program participants."
+    }
+   ],
+   "evidence": "you must have participated in your GEAR UP program for your entire senior year of high school or for at least 50% of the program's duration",
+   "finalUrl": "https://isac.org/students/during-college/types-of-financial-aid/scholarships/gear-up-scholarship.html",
+   "note": "Mapping note: GEAR UP is a school-based federal college-readiness program, tagged under membership.youth-orgs as nearest fit. Page: 'The GEAR UP Scholarship does not require you to enroll in a specific program or field of study.' FAFSA required, first use before age 22. Cloudflare-walled; verified via browser. Matches who sentence."
+  },
+  {
+   "id": "mn-care-child-minnesota-postsecondary",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.caregiver",
+     "strength": "required",
+     "quote": "Must have a child 12 years old or younger (or a child 14 years old or younger if the child has a disability)"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "your actual out-of-pocket child care costs, your Student Aid Index (SAI), your term enrollment level"
+    }
+   ],
+   "evidence": "Must be a Minnesota resident student ... Must already be paying out-of-pocket for child care expenses at the time of application ... Must not be a recipient of the Minnesota Family Investment Program (MFIP)",
+   "finalUrl": "https://ohe.mn.gov/grant-scholarship/postsecondary-child-care-grant",
+   "note": "SAI sizes the award (FAFSA or MN Dream Act app required) rather than acting as a stated need cutoff. Radware bot-wall; verified via browser. Who sentence says child age limit is 12; page says 12, or 14 with a disability - minor refinement, not a contradiction."
+  },
+  {
+   "id": "ia-incentive-iowa-workforce",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Have a Student Aid Index at or below 7,000."
+    }
+   ],
+   "evidence": "Iowa residents who are enrolled in eligible undergraduate programs of study at an eligible school. ... Enroll in at least three credit hours per semester",
+   "finalUrl": "https://educate.iowa.gov/higher-ed/financial-aid/scholarships-grants/workforce-grant",
+   "note": "Program of study must be on the 'Workforce Grant Programs of Study' list ('based on job demand and can change every two years') at ISU, U of Iowa, or UNI - a broad multi-field in-demand restriction with no single taxonomy tag; flagged rather than force-tagged. FAFSA by July 1. Matches who sentence."
+  },
+  {
+   "id": "mo-advanced-incentive-placement",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science"
+    },
+    {
+     "tag": "field.stem",
+     "strength": "relevant",
+     "quote": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science"
+    }
+   ],
+   "evidence": "Receive an award under the Access Missouri Student Financial Assistance Program or the A+ Scholarship Program in the academic year in which the Advanced Placement Incentive Grant is awarded.",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/advanced-placement",
+   "note": "field.stem tagged 'relevant' because the math/science restriction applies to the qualifying AP EXAMS, not the college major. Tied to Access Missouri/A+ receipt (need-linked), but students with zero calculated awards from those programs also qualify, so not tagged basis.need. Active; $500 one-time, subject to appropriations; exams taken at a Missouri public high school."
+  },
+  {
+   "id": "mo-chance-kids",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.loss-of-parent",
+     "strength": "required",
+     "quote": "child between the ages of 17 and 22 years of age of an employee who was seriously injured or died in a work related accident"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Have an expected family contribution (EFC) of $12,000 or less as calculated by the United States Department of Education"
+    }
+   ],
+   "evidence": "Be enrolled at least half-time at a participating Missouri school. ... Not be pursuing a degree or certificate in theology or divinity",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/kids-chance",
+   "note": "circumstance.loss-of-parent is broader here: covers children of SERIOUSLY INJURED workers as well as deceased ones (Workers' Compensation cases) - matches who sentence. Page still uses pre-SAI 'EFC' terminology. Theology/divinity excluded."
+  },
+  {
+   "id": "ne-assistance-community-gap",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Eligible students must have a family income at or below 250 percent of federal poverty guidelines."
+    }
+   ],
+   "evidence": "Eligible students must have a family income at or below 250 percent of federal poverty guidelines.",
+   "finalUrl": "https://ccpe.nebraska.gov/gap",
+   "note": "Programs must align with statutorily listed in-demand fields (financial services, transportation/logistics, precision manufacturing, biosciences, renewable energy, agriculture, software, health services, hospitality, construction, education, etc.) - broad multi-field restriction, no single taxonomy tag. Page does not restate a Nebraska-residency requirement (who sentence says residents); community-college enrollment required."
+  },
+  {
+   "id": "ne-at-career-colleges-ne",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Achieved a composite score on a standard college admission test equivalent to a score of at least eighteen out of a maximum score of thirty-six, or had a high school grade-point average of 3.0"
+    },
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Computer Information Systems"
+    },
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "Education"
+    },
+    {
+     "tag": "field.stem.engineering",
+     "strength": "required",
+     "quote": "Engineering"
+    },
+    {
+     "tag": "field.health",
+     "strength": "required",
+     "quote": "Healthcare"
+    },
+    {
+     "tag": "field.stem.math-actuarial",
+     "strength": "required",
+     "quote": "Mathematics"
+    }
+   ],
+   "evidence": "Must live in Nebraska while receiving a scholarship but may be recruited from outside of Nebraska",
+   "finalUrl": "https://ccpe.nebraska.gov/ne-career-scholarship-private-colleges",
+   "note": "The five field tags are ALTERNATIVES - student must pursue ANY ONE of the page's listed fields (quotes are the page's list items). No need test. Colleges may add criteria. Matches who sentence."
+  },
+  {
+   "id": "in-child-heart-indiana-or",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "affiliation.military.family",
+     "strength": "required",
+     "quote": "Received the Purple Heart decoration or was wounded as a result of enemy action"
+    }
+   ],
+   "evidence": "The student must first apply for this tuition and fee exemption before turning thirty-three (33) years old.",
+   "finalUrl": "https://www.in.gov/che/state-financial-aid/state-financial-aid-by-program/tuition-and-fee-exemption-children-of-purple-heart-recipients/",
+   "note": "Benefit runs through the parent: biological or adopted (before 18) child of a veteran who received the Purple Heart or was wounded by enemy action, with other-than-dishonorable discharge and Indiana home-of-record/5-year residence. FAFSA annually; 8 academic years to use; grad/professional study allowed - consistent with who sentence."
+  },
+  {
+   "id": "nd-scholars",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "High school students who score at least a 30 composite score on the ACT or SAT equivalent of all the ND test-takers"
+    }
+   ],
+   "evidence": "The ND Scholars Award provides merit-based, full-tuition scholarships to qualifying North Dakota high school graduates who choose to stay in North Dakota to earn a first bachelor's degree.",
+   "finalUrl": "https://ndus.edu/nd-scholars-program",
+   "note": "Site has a TLS-chain issue for fetchers; content retrieved with cert-tolerant fetch. Awards in descending test-score rank order, ~30 new awards/year; 'not all students who score 30 or higher ... will receive the award'; 'Students who initially attend an out-of-state institution are not eligible for reinstatement' - all matching the who sentence. No separate application."
+  },
+  {
+   "id": "or-care-child-oregon",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.caregiver",
+     "strength": "required",
+     "quote": "Be an Oregon resident with a child or legal dependent age 12 and under in need of child care, or, if over age 12, who satisfies the requirements of special needs."
+    }
+   ],
+   "evidence": "Enrolled or planning to enroll as an undergraduate student at an eligible Oregon postsecondary institution ... Have not earned a bachelor's or higher degree",
+   "finalUrl": "https://oregonstudentaid.gov/grants/oregon-student-child-care-grant/",
+   "note": "Financial need (FAFSA/ORSAA) prioritizes new applicants but is not a stated eligibility gate and no verbatim quote was capturable - not tagged. Provider must be DHS-listed or Child Care Division registered/certified. Matches who sentence."
+  },
+  {
+   "id": "tx-first-texas",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Overall score in at least the 80th percentile on one or more of the following assessments: ACT, SAT, PSAT/NMSQT, TSIA/TSIA2, or GED"
+    }
+   ],
+   "evidence": "Students who graduate two or more semesters before their class receive a two-semester scholarship",
+   "finalUrl": "https://www.highered.texas.gov/the-texas-first-program/",
+   "note": "Texas First Diploma is an academic-mastery credential (3.0+ GPA or top-10% alternative, STAAR EOC exams, mastery in five subject areas incl. a language other than English, 22 credits) earned by graduating early - the early-graduation mechanic itself has no taxonomy tag. No need test; not field-specific. Matches who sentence."
+  },
+  {
+   "id": "ok-donna-george-nigh-oklahoma",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.public-service",
+     "strength": "required",
+     "quote": "Scholarship recipients must be enrolled in a degree program leading to a career in public service as determined by the institution."
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Students receiving the scholarship must demonstrate exceptional academic achievement as evidenced by a number of factors which may include grade point average, class rank, national awards"
+    }
+   ],
+   "evidence": "Scholarship recipients must be enrolled full time in an undergraduate program at a public or private college or university in the state of Oklahoma.",
+   "finalUrl": "https://secure.okcollegestart.org/Financial_Aid_Planning/Scholarships/Career_Scholarships/Nigh_Public_Service_Scholarship.aspx",
+   "note": "Nomination-based: each institution's president submits one nominee before spring semester (matches who sentence). No need test stated."
+  },
+  {
+   "id": "ok-care-child-excellence-oklahoma",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "Agree to be on a child development or early childhood education plan of study at a partnering Community College."
+    },
+    {
+     "tag": "affiliation.employer",
+     "strength": "required",
+     "quote": "Be employed as a teacher, assistant director, director, family child care provider assistant, or family child care provider (caring for children other than my own) working at least 30 hours per week."
+    }
+   ],
+   "evidence": "Be employed in a licensed child care facility participating in the state QRIS program with a rating of two stars or higher. Family Child Care Homes can have a rating of one star or higher.",
+   "finalUrl": "https://okhighered.org/scholars/community-college/",
+   "note": "Detailed criteria live on the community-college sub-page (main /scholars/ page is an overview). Mapping note: the licensed-child-care employment requirement is occupation-based; affiliation.employer is the nearest tag. Employment must predate coursework by 3 months (waived for Certificate of Mastery scholars). Matches who sentence incl. star ratings and 30 hrs/week."
+  },
+  {
+   "id": "ny-enhanced",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Your household combined federal adjusted gross income must be $125,000 or less."
+    },
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "reside in New York State for a duration equal to the number of years you received the scholarship"
+    }
+   ],
+   "evidence": "You are a legal resident of New York State and have resided in New York State for 12 continuous months.",
+   "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/enhanced-tuition-award-eta",
+   "note": "Active (2026-27 deadline 08/31/2026). Income cap is a bright-line test, tagged basis.need. Post-graduation NYS residency/employment obligation converts unmet awards to 'a 10-year no-interest student loan'. Continuous full-time enrollment (12 credits/term, 30/year) at a participating private NYS college. Matches who sentence."
+  },
+  {
+   "id": "academic-excellence-nys",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Awards are based on student grades on certain Regent's exams."
+    }
+   ],
+   "evidence": "There are no income limits for this Scholarship",
+   "finalUrl": "https://hesc.ny.gov/SAE",
+   "note": "School-nominated ('Students are nominated by schools') from Regents performance, matching the who sentence. Explicitly no income limits, so no basis.need. Full-time matriculation at a NYS college; 12-month NYS residency."
+  },
+  {
+   "id": "pa-grow-pa",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "After graduation, you must commit to live and work in Pennsylvania, within an in-demand occupation, for a number of years equal to the number of years in which you received the grant."
+    }
+   ],
+   "evidence": "Be enrolled at least half-time in an eligible associate or bachelor's degree program at an approved Pennsylvania institution ... This degree must lead to a job in an in-demand occupation as determined by PHEAA",
+   "finalUrl": "https://www.pheaa.org/funding-opportunities/grow-pa-scholarship-grant-program",
+   "note": "JS-rendered SPA (empty to plain fetchers); verified via browser. Major must be one of 460+ PHEAA-designated in-demand CIP programs spanning agriculture, business, education, computer science, STEM, nursing, allied health, criminal justice - too broad for a single field tag; flagged instead. FAFSA required but no stated need threshold. Recipients sign an MPN: unmet degree/work requirement converts the grant to repayable debt. Matches who sentence."
+  },
+  {
+   "id": "ma-demand-massachusetts",
+   "resolution": "general",
+   "evidence": "Has declared a major or is currently pursuing a program of study offered and verifiable by the institution that is designated as an in-demand profession",
+   "finalUrl": "https://www.mass.edu/osfa/programs/indemand.asp",
+   "note": "A field restriction exists but only to the state's broad 'in-demand professions' list (designated by MA Executive Office of Labor and Workforce Development), spanning many sectors — no single taxonomy field id applies and the page does not enumerate fields. Annual 3.0 GPA maintenance is a floor, not reported per rules. Matches who sentence."
+  },
+  {
+   "id": "ccsnh-nh-scholars",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "the rigorous curriculum associated with the New Hampshire Scholars Program"
+    }
+   ],
+   "evidence": "While priority will be given to high schools within their regions, Presidents, at their discretion, may offer scholarships to students outside their respective regions.",
+   "finalUrl": "https://www.ccsnh.edu/paying-for-college-new/tuition-waiver-programs-new/",
+   "note": "Eligibility is completion of the NH Scholars college-ready curriculum — a curriculum-designation/merit gate rather than GPA merit; tagged basis.merit-academic as nearest fit. Regional priority is geographic (not taxonomy). Valid only one year after HS graduation. Matches who sentence."
+  },
+  {
+   "id": "md-delegate-maryland",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "based on need, as demonstrated on the student's FAFSA"
+    },
+    {
+     "tag": "identity.immigrant-refugee",
+     "strength": "relevant",
+     "quote": "Undocumented students eligible for in-state tuition"
+    }
+   ],
+   "evidence": "All in-state majors are eligible",
+   "finalUrl": "https://mhec.maryland.gov/Preparing/Pages/FinancialAid/ProgramDescriptions/prog_delegate.aspx",
+   "note": "Need-based selection applies only when a delegate asks OSFA to select recipients (otherwise delegate discretion) — weaker strength per ambiguity rule. Undocumented students are explicitly included (inclusive framing, not a restriction). True gate is nomination by a state delegate — political-constituent nomination has no taxonomy id. Matches who sentence."
+  },
+  {
+   "id": "md-assistance-maryland-shortage-workforce",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "child care, human services, teaching, nursing, physical and occupational therapy, social work, and public service"
+    },
+    {
+     "tag": "field.health.nursing",
+     "strength": "required",
+     "quote": "child care, human services, teaching, nursing, physical and occupational therapy, social work, and public service"
+    },
+    {
+     "tag": "field.health.allied-health",
+     "strength": "required",
+     "quote": "child care, human services, teaching, nursing, physical and occupational therapy, social work, and public service"
+    },
+    {
+     "tag": "field.psychology-social-work",
+     "strength": "required",
+     "quote": "child care, human services, teaching, nursing, physical and occupational therapy, social work, and public service"
+    },
+    {
+     "tag": "field.public-service",
+     "strength": "required",
+     "quote": "Recipients must be employed in Maryland public service to assist in providing legal services to low-income residents in the State."
+    },
+    {
+     "tag": "basis.service-commitment",
+     "strength": "required",
+     "quote": "Recipients must become certified teachers in Maryland in the certification area in which they applied and were awarded"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "Applicants will be ranked by Grade Point Average (GPA) and then by need within each occupational field."
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "Applicants will be ranked by Grade Point Average (GPA) and then by need within each occupational field."
+    }
+   ],
+   "evidence": "Enroll as a degree-seeking student in an eligible major leading to employment in an eligible field",
+   "finalUrl": "https://mhec.maryland.gov/preparing/pages/financialaid/programdescriptions/prog_wssag.aspx",
+   "note": "Must enroll in ONE of the listed shortage fields (multi-field restriction, hence multiple tags). Every field carries its own Maryland employment/service obligation after graduation. FAFSA optional but used for need ranking. Matches who sentence."
+  },
+  {
+   "id": "md-f-jack-maryland-tolbert",
+   "resolution": "general",
+   "evidence": "All majors are eligible",
+   "finalUrl": "https://mhec.maryland.gov/preparing/Pages/FinancialAid/ProgramDescriptions/prog_tolbert.aspx",
+   "note": "Only gates are MD residency and 18+ clock hours/week at an approved Maryland private career school (enrollment level, not reported per rules). Matches who sentence."
+  },
+  {
+   "id": "al-alabama-credential-short-term",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Demonstrate financial need"
+    }
+   ],
+   "evidence": "Must intend to register in an eligible short-term credential program that can be completed in two semesters or less and that will lead to in-demand career opportunities in the region",
+   "finalUrl": "https://www.accs.edu/community-college/pathways-to-prosperity-scholarship/",
+   "note": "Program restriction is to ACCCP-designated regional in-demand short-term credentials — broad, spans academic/technical/health/skills categories, no single taxonomy field id. Financial need is an explicit must (not in who sentence — worth adding). Portal reopens Aug 1, 2026."
+  },
+  {
+   "id": "tn-mcwherter-ned-scholars-tennessee",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "have at least a 3.75 unweighted cumulative high school grade point average on a 4.0 scale, and have a minimum composite score of 32 on the ACT or 1430 on the SAT"
+    }
+   ],
+   "evidence": "be a resident of Tennessee and a U.S. citizen, permanent resident, or eligible non-citizen, attend an eligible Tennessee college or university full-time within 16 months following graduation",
+   "finalUrl": "https://www.collegefortn.org/ned-mcwherter-scholars-program/",
+   "note": "Reported as basis.merit-academic (not a mere GPA floor): high competitive bar (3.75 + ACT 32/SAT 1430) plus extra credit for honors/AP courses and extracurricular leadership. Matches who sentence."
+  },
+  {
+   "id": "tn-hope-nontraditional-tennessee",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.adult-learner",
+     "strength": "required",
+     "quote": "Be an independent student as determined on the FAFSA application"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "required",
+     "quote": "Have an adjusted gross income of $36,000 or less on IRS tax form"
+    }
+   ],
+   "evidence": "Be classified as a Tennessee resident ... enroll in a baccalaureate degree program at an eligible four-year postsecondary institution",
+   "finalUrl": "https://www.collegefortn.org/tennessee-hope-scholarship-nontraditional/",
+   "note": "Nontraditional-track HOPE for independent adult students (who sentence's age-25+/2-years-out detail is the TSAC nontraditional definition; page quote confirms independent-student status). 2.75 continuing GPA is a floor, not reported. Matches who sentence."
+  },
+  {
+   "id": "mo-advanced-incentive-missouri-placement",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem",
+     "strength": "required",
+     "quote": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science while attending a Missouri public high school."
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science while attending a Missouri public high school."
+    },
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "Receive an award under the Access Missouri Student Financial Assistance Program or the A+ Scholarship Program in the academic year in which the Advanced Placement Incentive Grant is awarded."
+    }
+   ],
+   "evidence": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science while attending a Missouri public high school.",
+   "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/advanced-placement",
+   "note": "field.stem applies to the AP exam subjects (math/science), NOT the student's college major — no major restriction. basis.need kept 'relevant': Access Missouri path is need-based but the alternative A+ path is not, so need is not strictly required. Matches who sentence."
+  },
+  {
+   "id": "ne-at-career-colleges-community-2",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.business",
+     "strength": "required",
+     "quote": "Business/Financial/Administrative Operations"
+    },
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Computer & Technology Assistance"
+    },
+    {
+     "tag": "field.stem.engineering",
+     "strength": "required",
+     "quote": "Architecture & Engineering"
+    },
+    {
+     "tag": "field.health",
+     "strength": "required",
+     "quote": "Healthcare Practitioners & Technical"
+    },
+    {
+     "tag": "field.agriculture",
+     "strength": "required",
+     "quote": "Farming/Fishing/Forestry"
+    },
+    {
+     "tag": "field.trades",
+     "strength": "required",
+     "quote": "Construction & Extraction; Installation/Maintenance/Repair; Production"
+    },
+    {
+     "tag": "field.transportation-logistics",
+     "strength": "required",
+     "quote": "Transportation & Material Moving"
+    },
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "Education"
+    }
+   ],
+   "evidence": "Must be enrolled in an eligible program of study offered by a community college that falls within one of the following occupational categories",
+   "finalUrl": "https://ccpe.nebraska.gov/ne-career-scholarship-community-colleges",
+   "note": "Program must fall within ONE of ten broad occupational categories — a multi-field workforce restriction, not a single niche. Also requires registering to obtain a Nebraska-based internship/apprenticeship/clinical/employment in the major field (in-program requirement, not a post-grad service commitment). No need or merit criteria. Matches who sentence."
+  },
+  {
+   "id": "ne-at-career-colleges-nebraska",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem.computer-science",
+     "strength": "required",
+     "quote": "Computer Information Systems"
+    },
+    {
+     "tag": "field.education-teaching",
+     "strength": "required",
+     "quote": "Education"
+    },
+    {
+     "tag": "field.stem.engineering",
+     "strength": "required",
+     "quote": "Engineering"
+    },
+    {
+     "tag": "field.health",
+     "strength": "required",
+     "quote": "Healthcare"
+    },
+    {
+     "tag": "field.stem.math-actuarial",
+     "strength": "required",
+     "quote": "Mathematics"
+    }
+   ],
+   "evidence": "Must be enrolled in an eligible program of study offered by a private college that falls within one of the following occupational categories",
+   "finalUrl": "https://ccpe.nebraska.gov/ne-career-scholarship-private-colleges",
+   "note": "Private-college variant has a narrower five-category list than the community-college variant. ACT-equivalent 18 or 3.0 HS GPA is an entry floor (minimum threshold, not reported per rules). Matches who sentence."
+  },
+  {
+   "id": "oh-buckeyes-forever-ohio",
+   "resolution": "general",
+   "evidence": "The person, while a resident of this state for state subsidy and tuition surcharge purposes, graduated from a high school in this state or completed the final year of education at home",
+   "finalUrl": "https://codes.ohio.gov/ohio-revised-code/section-3333.31",
+   "note": "URL is ORC 3333.31, the residency statute containing the 'Forever Buckeye' provision (F)(1) — an in-state-tuition classification benefit, not a scholarship with its own application. No niche criteria for this provision (Ohio HS graduation + re-established domicile). The statute's separate veteran residency provisions are distinct and not part of this benefit. Matches who sentence."
+  },
+  {
+   "id": "al-alabama-alabama-engage",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.adult-learner",
+     "strength": "required",
+     "quote": "Age, 25 years or older."
+    }
+   ],
+   "evidence": "Has not attended a postsecondary education institution for at least two (2) years (24 consecutive months) prior to their current enrollment.",
+   "finalUrl": "https://www.ache.edu/index.php/reengage/",
+   "note": "Adult-learner program: 25+, 24-month stop-out, no prior associate/bachelor's degree. Program must be 'aligned with Alabama's high demand workforce needs' (broad, no taxonomy id) and excludes theology/divinity/religious-vocation degrees (exclusion, not a preference tag). No need or merit criteria stated. Matches who sentence."
+  },
+  {
+   "id": "in-daniels-early-graduation-mitch",
+   "resolution": "general",
+   "evidence": "Must not have been enrolled in a publicly supported high school for any part of a fourth year (grade 12).",
+   "finalUrl": "https://www.in.gov/che/state-financial-aid/state-financial-aid-by-program/mitch-daniels-early-graduation-scholarship",
+   "note": "Gates are residency, public-school attendance for final two semesters, Core 40 diploma by end of grade 11, early graduation, and full-time enrollment — timing/enrollment rules, no niche criteria. Matches who sentence."
+  },
+  {
+   "id": "family-steiner",
+   "resolution": "unclear",
+   "evidence": "Information for this program has moved. Redirecting now…",
+   "finalUrl": "https://start.scholarsapply.org/?programcycleid=60697",
+   "note": "Official page (learnmore.scholarsapply.org) now only redirects to the login-gated Scholarship America hub; program is not in Scholarship America's public browse list, and I will not create an account to see details. Third-party listings (Petersons/CollegeData/BigFuture) consistently report: 'Preference will be given to children of employees of former AmeriPride, Canadian Linen and Quebec Linge companies' plus a 3.00 GPA minimum — i.e., a likely affiliation.employer PREFERRED criterion missing from the who sentence. Needs manual confirmation inside the hub before publishing."
+  },
+  {
+   "id": "angels-s-thai-u",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "identity.aapi",
+     "strength": "relevant",
+     "quote": "recognize and honor Thai-American students who have demonstrated academic excellence"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "preferred",
+     "quote": "selected by the committee according to a combination of financial need, merit, written essay and academic promise"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "preferred",
+     "quote": "selected by the committee according to a combination of financial need, merit, written essay and academic promise"
+    }
+   ],
+   "evidence": "Have an unweighted cumulative grade point average (GPA) of 3.0 or better",
+   "finalUrl": "https://www.angelswingsfoundation.org/angels-wings-thai-us-scholarship-2025-copy",
+   "note": "identity.aapi kept at 'relevant' per aimed-at-framing rule: the bulleted eligibility list does not state an explicit ancestry must, but the purpose statement targets Thai-American students and the required essay presupposes Thai identity ('How has being Thai and growing up in a multicultural society shaped your identity?') — de facto likely required; who sentence treats it as a requirement. 3.0 GPA floor not reported per rules."
+  },
+  {
+   "id": "scleroderma-warriors",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "circumstance.health.specific-condition",
+     "strength": "required",
+     "quote": "scholarships to degree-seeking children and grandchildren (biological or otherwise), and those afflicted with cutaneous systemic sclerosis."
+    }
+   ],
+   "evidence": "scholarships to degree-seeking children and grandchildren (biological or otherwise), and those afflicted with cutaneous systemic sclerosis.",
+   "finalUrl": "https://sclerodermawarriors.org/scholarship-program/",
+   "note": "Eligible: the diagnosed person OR their children/grandchildren (taxonomy has no family-of-condition subtag outside cancer, so the family route is folded into specific-condition — flagged here). Requires diagnostic confirmation letter from a treatment provider and a 1,000-2,000 word essay on 'How Scleroderma has changed my life.' Matches who sentence."
+  },
+  {
+   "id": "aifd",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.agriculture",
+     "strength": "required",
+     "quote": "full-time or part-time student, enrolled in junior college, college or university pursuing retail floriculture with emphasis on floral design"
+    },
+    {
+     "tag": "field.arts.visual-design",
+     "strength": "required",
+     "quote": "full-time or part-time student, enrolled in junior college, college or university pursuing retail floriculture with emphasis on floral design"
+    }
+   ],
+   "evidence": "full-time or part-time student, enrolled in junior college, college or university pursuing retail floriculture with emphasis on floral design",
+   "finalUrl": "https://www.aifdfoundation.org/scholarship-applications",
+   "note": "Record maps to the AIFD Student Scholarship (page hosts many AIFD Foundation awards; others require CFD credential or professional status). 'Retail floriculture with emphasis on floral design' straddles horticulture (field.agriculture) and design (field.arts.visual-design) — both tagged; taxonomy has no exact floristry id. Matches who sentence."
+  },
+  {
+   "id": "academic-bcsp-qualified",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem",
+     "strength": "required",
+     "quote": "Juniors, seniors, or master's students in good academic standing at one of BCSP's U.S.-based QAPs may apply here when scholarship applications are open."
+    }
+   ],
+   "evidence": "Juniors, seniors, or master's students in good academic standing at one of BCSP's U.S.-based QAPs may apply here when scholarship applications are open.",
+   "finalUrl": "https://www.bcsp.org/grants",
+   "note": "APPROXIMATE TAG: eligibility is enrollment in a BCSP Qualified Academic Program — degree programs in occupational safety/health/environmental (safety sciences); taxonomy has no safety field id and the page itself never names the field, so field.stem is the nearest stand-in — review. Resolves the who-sentence conflict: current public rules state only 'good academic standing'; the former full-time and 3.25 GPA requirements no longer appear."
+  },
+  {
+   "id": "wy-wygeo-undergraduate",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.stem.geoscience",
+     "strength": "required",
+     "quote": "An undergraduate student enrolled half-time or full-time in an associate or bachelor's degree program with GIS as a major emphasis of study"
+    },
+    {
+     "tag": "basis.merit-academic",
+     "strength": "relevant",
+     "quote": "These academic scholarships are designed for students exhibiting academic excellence in geospatial technologies fields"
+    }
+   ],
+   "evidence": "BOTH residency/school location and study focus conditions must be met to qualify",
+   "finalUrl": "https://wygeo.org/wygeo/wp-content/uploads/WyGEO-Scholarship-Application_2026_27.pdf",
+   "note": "GIS/geospatial (GIS, Remote Sensing, GPS) mapped to field.stem.geoscience — closest taxonomy id. Application also requires transcripts and a judged interactive story-map project (portfolio element, noted but not tagged). Residency rule matches who sentence exactly."
+  },
+  {
+   "id": "me-legislative-memorial",
+   "resolution": "general",
+   "evidence": "make scholarship awards available to Maine residents attending any accredited Maine institution of higher education",
+   "finalUrl": "https://legislature.maine.gov/lio/legislative-memorial-scholarship-fund/9083",
+   "note": "Purely geographic: Maine residents at Maine institutions, 16 awards — one per county ('16 students, one from each county in Maine'). No field, identity, circumstance, affiliation, need, or merit criteria on page. Matches who sentence."
+  },
+  {
+   "id": "nj-njrea-fred-aug",
+   "resolution": "general",
+   "evidence": "Has a cumulative grade point average of 2.75 or higher ... Has been accepted by a community college",
+   "finalUrl": "https://www.njea.org/njrea-scholarships/",
+   "note": "Fred E. Aug scholarship: NJ public high school senior + community-college acceptance + 2.75 GPA (floor, not reported per rules). Despite the retired-educators sponsor (NJREA), no NJEA/NJREA family-affiliation requirement and no field-of-study restriction is stated. Matches who sentence."
+  },
+  {
+   "id": "ny-nysir-paul-jensen",
+   "resolution": "criteria",
+   "criteria": [
+    {
+     "tag": "field.arts.visual-design",
+     "strength": "required",
+     "quote": "The Jensen Scholarship is available to a student who has excelled in design in his or her high school career."
+    },
+    {
+     "tag": "basis.essay-contest",
+     "strength": "required",
+     "quote": "Applicants for this scholarship must complete an essay, not to exceed 650 words"
+    }
+   ],
+   "evidence": "These scholarships are for college bound students from NYSIR subscribing districts only.",
+   "finalUrl": "https://www.nysir.org/resource/resmgr/pdf2/2026_scholarship_criteria.pdf",
+   "note": "Design here includes functional/technical design ('shown interest and promise in design and who wishes to pursue this path in college'; namesake examples are canoe/roof-rack craftsmanship) — field.arts.visual-design is the nearest id; who sentence's 'design, building, or related technical skills' confirmed. NYSIR-subscribing-district requirement is an institutional affiliation with no taxonomy id (noted, untagged). Main page was 403 to plain fetch; criteria taken from the official 2026 criteria PDF. Sibling awards on same PDF: Bambino (special-ed IEP/504) and Goncalves (humanitarian service) are separate programs."
+  },
+  {
+   "id": "sc-counties-scholarship",
+   "resolution": "general",
+   "evidence": "awards one $5,000 scholarship to a graduating high school senior who is a resident of the same county as our SCAC President",
+   "finalUrl": "https://www.sccounties.org/scac-scholarship-program",
+   "note": "Purely geographic/rotational: Presidential award (Chesterfield County this cycle) plus 12 Board of Directors awards in rotating counties (2026: Abbeville, Anderson, Cherokee, Colleton, Darlington, Dorchester, Fairfield, Greenville, Greenwood, Jasper, Marlboro, McCormick). Selection is holistic (essay, grades, activities, community involvement per program rules doc) but no niche restriction. Matches who sentence."
+  },
+  {
+   "id": "mo-futurebuilders-student",
+   "resolution": "general",
+   "evidence": "The school board of each MSBA member district is eligible to nominate one high school senior to apply.",
+   "finalUrl": "https://www.mosba.org/page/scholarships",
+   "note": "Gate is nomination by an MSBA member district's school board (institutional/geographic, no taxonomy id) — one senior per district, 17 regional winners plus one state winner. No field, identity, circumstance, need, or merit criteria published. Page is behind a JS challenge for plain fetches; verified via rendered browser. Matches who sentence."
+  }
+ ]
+}
