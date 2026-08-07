@@ -514,24 +514,5 @@
     "statusRules": [
       { "status": "closed", "pattern": "Now CLOSED for the 26-27 Academic Year" }
     ]
-  },
-  {
-    "id": "gloria-barron-prize",
-    "sourceUrl": "https://barronprize.org/faqs/",
-    "fetchUrl": "https://barronprize.org/wp-json/wp/v2/pages?slug=faqs",
-    "requiredPatterns": [
-      "FREQUENTLY ASKED QUESTIONS",
-      "two-step application process",
-      "Beginning with our 2026 awards cycle"
-    ],
-    "statusRules": [],
-    "fixedWindow": {
-      "opensOn": "2026-01-07",
-      "closesOn": "2026-04-15",
-      "evidencePatterns": {
-        "opensOn": "pre-application link is available from January 7 [–-] March 15, 2026",
-        "closesOn": "Beginning with our 2026 awards cycle[\\s\\S]{0,1200}?Step 2 \\(full application\\): April 15"
-      }
-    }
   }
 ]

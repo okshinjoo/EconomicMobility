@@ -33,7 +33,6 @@ if (new Set(configurations.map((configuration) => configuration.id)).size !== co
 for (const configuration of configurations) {
   if (!inventoryIds.has(configuration.id)) throw new Error(`Unknown curated scholarship ID: ${configuration.id}`);
   new URL(configuration.sourceUrl);
-  if (configuration.fetchUrl) new URL(configuration.fetchUrl);
 }
 
 let selected = idArguments.length
@@ -63,19 +62,6 @@ function failureStatus(status) {
   if (status === 429) return "rate-limited";
   if (status >= 500) return "server-error";
   return "unknown";
-}
-
-async function responseContent(response) {
-  const raw = await response.text();
-  if (!/application\/json/i.test(response.headers.get("content-type") ?? "")) return raw;
-  try {
-    const parsed = JSON.parse(raw);
-    const document = Array.isArray(parsed) ? parsed[0] : parsed;
-    if (typeof document?.content?.rendered === "string") return document.content.rendered;
-  } catch {
-    // Preserve the raw body so source-signature checks fail closed.
-  }
-  return raw;
 }
 
 async function throttle(urlValue) {
@@ -115,7 +101,6 @@ async function fetchWithBrowser(urlValue) {
 }
 
 async function fetchOfficialPage(configuration, previous) {
-  const fetchUrl = configuration.fetchUrl ?? configuration.sourceUrl;
   const headers = {
     "user-agent": "EmpowerScholarshipMonitor/1.0 (+https://economicmobilityproject.org/contact)",
     accept: "text/html,application/xhtml+xml,application/json;q=0.8",
@@ -126,9 +111,9 @@ async function fetchOfficialPage(configuration, previous) {
 
   let lastError = null;
   for (let attempt = 0; attempt < 3; attempt++) {
-    await throttle(fetchUrl);
+    await throttle(configuration.sourceUrl);
     try {
-      const response = await fetch(fetchUrl, {
+      const response = await fetch(configuration.sourceUrl, {
         redirect: "follow",
         signal: AbortSignal.timeout(20000),
         headers,
@@ -146,7 +131,7 @@ async function fetchOfficialPage(configuration, previous) {
       if (response.ok) {
         return {
           kind: "content",
-          html: await responseContent(response),
+          html: await response.text(),
           finalUrl: response.url,
           httpStatus: response.status,
           fetchMethod: "http",
@@ -158,13 +143,13 @@ async function fetchOfficialPage(configuration, previous) {
       error.httpStatus = response.status;
       error.sourceStatus = failureStatus(response.status);
       lastError = error;
-      if (response.status === 403 && browserFallback) return await fetchWithBrowser(fetchUrl);
+      if (response.status === 403 && browserFallback) return await fetchWithBrowser(configuration.sourceUrl);
       if (![429, 500, 502, 503, 504].includes(response.status)) break;
     } catch (error) {
       lastError = error;
       if (browserFallback && attempt === 2) {
         try {
-          return await fetchWithBrowser(fetchUrl);
+          return await fetchWithBrowser(configuration.sourceUrl);
         } catch (browserError) {
           lastError = browserError;
         }
@@ -288,7 +273,7 @@ async function inspectUnlocked(configuration) {
 }
 
 async function inspect(configuration) {
-  const domain = new URL(configuration.fetchUrl ?? configuration.sourceUrl).hostname.toLowerCase().replace(/^www\./, "");
+  const domain = new URL(configuration.sourceUrl).hostname.toLowerCase().replace(/^www\./, "");
   const previous = domainQueues.get(domain) ?? Promise.resolve();
   const queued = previous.then(() => inspectUnlocked(configuration));
   domainQueues.set(domain, queued.catch(() => undefined));

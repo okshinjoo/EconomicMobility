@@ -176,20 +176,6 @@ const swe = evaluateOfficialSource({
 });
 assert.equal(swe.applicationStatus, "closed");
 
-const barron = evaluateOfficialSource({
-  configuration: configurationFor("gloria-barron-prize"),
-  html: `<main><h1>FREQUENTLY ASKED QUESTIONS</h1><p>Beginning with our 2026 awards cycle, the Barron Prize has moved to a two-step application process.</p><p>The pre-application link is available from January 7 – March 15, 2026.</p><p>Step 1 (pre-application): March 15. Step 2 (full application): April 15, 5 pm Mountain Time.</p></main>`,
-  finalUrl: configurationFor("gloria-barron-prize").sourceUrl,
-  today: "2026-08-07",
-});
-assert.equal(barron.applicationStatus, "closed");
-assert.equal(barron.opensOn, "2026-01-07");
-assert.equal(barron.closesOn, "2026-04-15");
-assert.equal(
-  new URL(configurationFor("gloria-barron-prize").fetchUrl).hostname,
-  new URL(configurationFor("gloria-barron-prize").sourceUrl).hostname,
-);
-
 const unsupportedFixedOpening = evaluateOfficialSource({
   configuration: {
     id: "unsupported-opening",
