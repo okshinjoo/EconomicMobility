@@ -462,7 +462,7 @@ export default function ScholarshipReviewQueue() {
                       </div>
                       {editedGeography?.scope === "states" ? (
                         <div className="mt-4 max-h-64 overflow-y-auto border-t border-sand pt-3">
-                          <p className="mb-3 text-sm text-stone">Select every location named as a hard residency or attendance requirement.</p>
+                          <p className="mb-3 text-sm text-stone">Select every location that the official source makes a hard applicant eligibility requirement.</p>
                           <div className="grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
                             {GEOGRAPHY_OPTIONS.map(([code, name]) => (
                               <label key={code} className="flex items-center gap-2 text-sm text-ink">
