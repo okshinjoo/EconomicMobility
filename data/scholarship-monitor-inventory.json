@@ -3,7 +3,7 @@
   "catalogVerifiedLabel": "August 2026",
   "publishedCount": 1220,
   "withheldCount": 0,
-  "catalogFingerprint": "12fab9bc5e38af8536755b29124ab745d46e9f6c8bb9ff30749400116903ff16",
+  "catalogFingerprint": "c4ce86885cdc0137e166cae5d923439e496af6ec08786b83647789dba8eabbd1",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -3790,7 +3790,7 @@
     {
       "scholarshipId": "ca-california-dependents-enforcement-law",
       "name": "California Law Enforcement Personnel Dependents Grant (LEPD)",
-      "officialUrl": "https://www.csac.ca.gov/post/law-enforcement-personnel-dependents-grant-program-lepd",
+      "officialUrl": "https://www.csac.ca.gov/faforfirst",
       "sourceDomain": "csac.ca.gov",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
@@ -3802,8 +3802,8 @@
       },
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Qualifying spouses and dependents of California law-enforcement officers or firefighters killed or permanently disabled in the line of duty who meet the program's income, need, and postsecondary eligibility rules.\"",
-      "geoSourceUrl": "https://www.csac.ca.gov/post/law-enforcement-personnel-dependents-grant-program-lepd",
-      "catalogFingerprint": "1cf56c3e9deb60f33ebb8f656e112e6520edd3f15f1d2230d17e3d7e806d86d3"
+      "geoSourceUrl": "https://www.csac.ca.gov/faforfirst",
+      "catalogFingerprint": "5237870a84047141369e5bd00ceff53da4f8a7036833df1713422d1a1317f15b"
     },
     {
       "scholarshipId": "ca-completion-success",
@@ -3826,7 +3826,7 @@
     {
       "scholarshipId": "ca-dependents-enforcement-law-personnel",
       "name": "Law Enforcement Personnel Dependents Grant (LEPD)",
-      "officialUrl": "https://www.csac.ca.gov/law-enforcement-personnel-dependents-grant-program-lepd",
+      "officialUrl": "https://www.csac.ca.gov/faforfirst",
       "sourceDomain": "csac.ca.gov",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
@@ -3838,8 +3838,8 @@
       },
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Dependents/spouses of California peace officers, firefighters, or CDCR employees who died or were totally disabled in the line of duty.\"",
-      "geoSourceUrl": "https://www.csac.ca.gov/law-enforcement-personnel-dependents-grant-program-lepd",
-      "catalogFingerprint": "630d3a6286472367223ba5d73e76819edea598bcb7a546af03702abadc0fa541"
+      "geoSourceUrl": "https://www.csac.ca.gov/faforfirst",
+      "catalogFingerprint": "2ba60fe9ec63de8fd03c41cabe368e1434f5230963622f1e305a130b096d3658"
     },
     {
       "scholarshipId": "ca-golden-state-teacher-grant",

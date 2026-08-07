@@ -90,7 +90,8 @@ The scheduled workers:
 - fetch only curated official program pages, never external directories;
 - uses conditional request headers when the source supplies them;
 - limits concurrency to four and spaces requests to the same domain;
-- retry transient failures; only the 41 source-specific adapters use a browser fallback;
+- retry transient failures; status/candidate adapters and source-health checks
+  that hit a JavaScript challenge or thin shell can retry in a browser;
 - writes append-only observations and deduplicated field-level proposals;
 - update only operational health fields in `scholarship_monitor_state`; and
 - never change application status, dates, eligibility, or the public Finder.

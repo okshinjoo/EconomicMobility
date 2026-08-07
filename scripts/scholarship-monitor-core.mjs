@@ -135,8 +135,9 @@ export function evaluateSourceHealth({ html, sourceUrl, finalUrl }) {
   const crossDomainRedirect = normalizedHost(sourceUrl) !== normalizedHost(finalUrl);
   const loginWall = /asicommon|login\.aspx|\/(?:log|sign)-?in\b/i.test(finalUrl) &&
     !/\/(?:log|sign)-?in\b/i.test(sourceUrl);
+  const botWall = /\b(?:verify that you(?:'re| are) not a robot|checking (?:if the site connection is secure|your browser)|enable javascript and (?:then )?reload|attention required[.!]? cloudflare)\b/i.test(text);
   const thinDocument = text.length < 80;
-  const sourceStatus = loginWall || thinDocument ? "structure-changed" : crossDomainRedirect ? "redirected" : "healthy";
+  const sourceStatus = botWall ? "blocked" : loginWall || thinDocument ? "structure-changed" : crossDomainRedirect ? "redirected" : "healthy";
   return {
     text,
     contentHash: createHash("sha256").update(html).digest("hex"),
@@ -153,6 +154,7 @@ export function evaluateSourceHealth({ html, sourceUrl, finalUrl }) {
     unsafeUndatedOpen: false,
     crossDomainRedirect,
     loginWall,
+    botWall,
     thinDocument,
     evidenceText: text.slice(0, 800),
   };

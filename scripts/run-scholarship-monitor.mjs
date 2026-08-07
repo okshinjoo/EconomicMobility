@@ -320,28 +320,31 @@ async function inspectUnlocked(configuration) {
         ? evaluateGenericCandidateSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today })
         : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
     let resolvedFetch = fetched;
-    if (
-      ["status", "candidate"].includes(configuration.monitorMode) &&
-      browserFallback &&
-      fetched.fetchMethod === "http" &&
-      evaluation.missingRequired.length > 0
-    ) {
+    const needsBrowserFallback = ["status", "candidate"].includes(configuration.monitorMode)
+      ? evaluation.missingRequired.length > 0
+      : configuration.monitorMode === "source-health" && ["blocked", "structure-changed"].includes(evaluation.sourceStatus);
+    if (browserFallback && fetched.fetchMethod === "http" && needsBrowserFallback) {
       try {
         const rendered = await fetchWithBrowser(configuration.sourceUrl);
-        const renderedEvaluation = configuration.monitorMode === "candidate"
-          ? evaluateGenericCandidateSource({
+        const renderedEvaluation = configuration.monitorMode === "source-health"
+          ? evaluateSourceHealth({ html: rendered.html, sourceUrl: configuration.sourceUrl, finalUrl: rendered.finalUrl })
+          : configuration.monitorMode === "candidate"
+            ? evaluateGenericCandidateSource({
               configuration,
               html: rendered.html,
               finalUrl: rendered.finalUrl,
               today,
             })
-          : evaluateOfficialSource({
+            : evaluateOfficialSource({
               configuration,
               html: rendered.html,
               finalUrl: rendered.finalUrl,
               today,
             });
-        if (renderedEvaluation.missingRequired.length < evaluation.missingRequired.length) {
+        const renderedImproved = configuration.monitorMode === "source-health"
+          ? !["blocked", "structure-changed"].includes(renderedEvaluation.sourceStatus)
+          : renderedEvaluation.missingRequired.length < evaluation.missingRequired.length;
+        if (renderedImproved) {
           resolvedFetch = rendered;
           evaluation = renderedEvaluation;
         }

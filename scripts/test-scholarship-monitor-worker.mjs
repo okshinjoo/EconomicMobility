@@ -712,6 +712,13 @@ const redirectedHealth = evaluateSourceHealth({
 });
 assert.equal(redirectedHealth.sourceStatus, "redirected");
 assert.equal(redirectedHealth.crossDomainRedirect, true);
+const botBlockedHealth = evaluateSourceHealth({
+  html: "<main><h1>JavaScript is disabled</h1><p>In order to continue, we need to verify that you're not a robot. Enable JavaScript and then reload the page.</p></main>",
+  sourceUrl: "https://example.gov/scholarship",
+  finalUrl: "https://example.gov/scholarship",
+});
+assert.equal(botBlockedHealth.sourceStatus, "blocked");
+assert.equal(botBlockedHealth.botWall, true);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 0, sourceStatus: "not-found" }), false);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 1, sourceStatus: "not-found" }), false);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 2, sourceStatus: "not-found" }), true);
