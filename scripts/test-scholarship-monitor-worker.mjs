@@ -40,6 +40,31 @@ assert.equal(parseDate("08/31/2026"), "2026-08-31");
 assert.equal(parseDate("September 1st, 2026"), "2026-09-01");
 assert.equal(stableStringify({ b: 2, a: { d: 4, c: 3 } }), stableStringify({ a: { c: 3, d: 4 }, b: 2 }));
 
+const exactDateOnly = evaluateOfficialSource({
+  configuration: {
+    id: "exact-date-only",
+    sourceUrl: "https://example.org/exact-date-only",
+    requiredPatterns: ["Exact Date Scholarship", "September 18, 2026"],
+    statusRules: [],
+    dateRules: { closesOn: ["applications are due ([A-Z][a-z]+ \\d{1,2}, \\d{4})"] },
+  },
+  html: "<main><h1>Exact Date Scholarship</h1><p>Applications are due September 18, 2026.</p></main>",
+  finalUrl: "https://example.org/exact-date-only",
+  today: "2026-08-07",
+});
+assert.equal(exactDateOnly.applicationStatus, "unknown");
+assert.equal(exactDateOnly.closesOn, "2026-09-18");
+assert.equal(exactDateOnly.verificationStatus, "machine-verified");
+assert.deepEqual(
+  buildFieldProposals({
+    scholarshipId: "exact-date-only",
+    current: null,
+    evaluation: exactDateOnly,
+    sourceUrl: "https://example.org/exact-date-only",
+  }).map((proposal) => [proposal.fieldName, proposal.proposedValue]),
+  [["closesOn", "2026-09-18"]],
+);
+
 const drifted = evaluateOfficialSource({
   configuration: source,
   html: "<main><h1>Different Program</h1><p>Applications are now open.</p></main>",

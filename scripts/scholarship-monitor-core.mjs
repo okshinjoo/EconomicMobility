@@ -221,11 +221,12 @@ export function evaluateOfficialSource({ configuration, html, finalUrl, today })
   const crossDomainRedirect = normalizedHost(configuration.sourceUrl) !== normalizedHost(finalUrl);
   if (missingRequired.length || unsafeUndatedOpen) applicationStatus = "unknown";
 
-  const extractionConfidence = missingRequired.length
+  const hasExactDateEvidence = Boolean(dates.opensOn || dates.closesOn || dates.nextOpensOn);
+  const extractionConfidence = missingRequired.length || unsafeUndatedOpen
     ? "low"
-    : applicationStatus === "unknown" || crossDomainRedirect
+    : crossDomainRedirect
       ? "medium"
-      : matchedSignal || windowValidated || dates.closesOn
+      : matchedSignal || windowValidated || hasExactDateEvidence
         ? "high"
         : "medium";
   const verificationStatus = extractionConfidence === "high" ? "machine-verified" : "review-required";
