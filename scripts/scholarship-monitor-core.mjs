@@ -320,22 +320,76 @@ const NATIONAL_GEOGRAPHY_PATTERNS = [
   /\b(?:(?:all|any) (?:of the )?|one of the )?(?:50|fifty) (?:U\.S\. )?states(?:\s*(?:,|and|or)\s*(?:the )?(?:District of Columbia|U\.S\. territories|Puerto Rico))?\b/i,
   /\b(?:nationwide|across the nation|throughout the United States)\b/i,
   /\b(?:open|available|eligible) to (?:students|applicants|residents)[^.]{0,80}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
+  /\b(?:students|applicants|residents)\b[^.]{0,60}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
   /\b(?:legal )?residents? of (?:the )?(?:United States|U\.S\.)\b/i,
   /\b(?:students|applicants) from (?:all|any) U\.S\. states?\b/i,
 ];
 const HARD_GEOGRAPHY_PATTERNS = [
-  /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live|attend|enroll|graduate|be located)\b[^.!?]{0,220}/gi,
-  /\b(?:eligible|open only to|limited to|restricted to)\b[^.!?]{0,90}\b(?:residents?|students? (?:who )?(?:reside|live|attend|enroll|graduate))\b[^.!?]{0,220}/gi,
+  /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live)\b[^.!?]{0,220}/gi,
+  /\b(?:must|required to|shall|need to)\b[^.!?]{0,260}\b(?:resident|residency)\b[^.!?]{0,100}/gi,
+  /\b(?:eligible|open only to|limited to|restricted to)\b[^.!?]{0,90}\b(?:residents?|students? (?:who )?(?:reside|live))\b[^.!?]{0,220}/gi,
   /\b(?:residents?|residency)\b[^.!?]{0,160}\b(?:eligible|required|only|must|qualif(?:y|ied))\b[^.!?]{0,100}/gi,
-  /\b(?:attend|enroll(?:ed)?|graduate(?:d)?|high school)\b[^.!?]{0,100}\b(?:in-state|within|in one of|in the state of)\b[^.!?]{0,180}/gi,
-  /\b(?:service area|service territory|service footprint)\b[^.!?]{0,240}/gi,
 ];
+
+function headingSections(html) {
+  const headings = [...html.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match) => ({
+    level: Number(match[1]),
+    index: match.index ?? 0,
+    label: visibleText(match[2]),
+  }));
+  return headings.map((heading, index) => {
+    const next = headings.slice(index + 1).find((candidate) => candidate.level <= heading.level);
+    return {
+      ...heading,
+      html: html.slice(heading.index, next?.index ?? html.length),
+    };
+  });
+}
+
+function geographyTextScope(html, name) {
+  const sections = headingSections(html);
+  const ranked = sections
+    .map((section) => ({ ...section, identity: identityEvidence(name, section.label) }))
+    .filter((section) => section.identity.matched.length > 0 && section.identity.score >= 0.5)
+    .sort((a, b) => b.identity.score - a.identity.score || b.label.length - a.label.length);
+  if (ranked[0]) return visibleText(ranked[0].html);
+
+  const namedProgramHeadings = sections.filter((section) =>
+    /\b(?:scholarship|grant|award|benefit|fellowship|program)\b/i.test(section.label),
+  );
+  // On a shared directory page, a missing matching heading means that evidence
+  // cannot be safely assigned to this particular scholarship.
+  return namedProgramHeadings.length >= 2 ? "" : visibleText(html);
+}
+
+function isRejectedNationalContext(context, matchIndex) {
+  const before = context.slice(Math.max(0, matchIndex - 28), matchIndex);
+  return /\b(?:not|isn't|is not|never)\s*$/i.test(before) ||
+    /\bnationwide gravesite locator\b/i.test(context);
+}
+
+function nationalEvidence(text) {
+  for (const pattern of NATIONAL_GEOGRAPHY_PATTERNS) {
+    for (const match of text.matchAll(new RegExp(pattern.source, "gi"))) {
+      const index = match.index ?? 0;
+      const context = evidenceAround(text, index, match[0].length);
+      const contextIndex = Math.max(0, Math.min(context.length, index - Math.max(0, index - 120)));
+      if (isRejectedNationalContext(context, contextIndex)) continue;
+      return { match, context };
+    }
+  }
+  return null;
+}
 
 function stateCodesInEvidence(value) {
   const found = new Set();
   for (const match of value.matchAll(new RegExp(`\\b(${GEOGRAPHY_NAME_PATTERN})\\b`, "gi"))) {
     const canonical = Object.keys(GEOGRAPHY_CODES).find((name) => name.toLowerCase() === match[1].toLowerCase());
-    if (canonical) found.add(GEOGRAPHY_CODES[canonical]);
+    if (!canonical) continue;
+    const suffix = value.slice((match.index ?? 0) + match[0].length, (match.index ?? 0) + match[0].length + 24);
+    // Proper names and county names are not state eligibility evidence.
+    if (/^\s+(?:County|Parish|Borough|Life|Foundation)\b/i.test(suffix)) continue;
+    found.add(GEOGRAPHY_CODES[canonical]);
   }
   const singleCode = value.match(/\b(?:state of|resident(?:s)? of|reside in|live in)\s+([A-Z]{2})\b/);
   if (singleCode && GEOGRAPHY_CODE_SET.has(singleCode[1])) found.add(singleCode[1]);
@@ -343,14 +397,14 @@ function stateCodesInEvidence(value) {
 }
 
 /**
- * Extract only explicit nationwide or hard state residency/attendance rules.
+ * Extract only explicit nationwide or hard state residency rules.
  * Country-level citizenship alone is never treated as national geography,
- * preferences and service commitments are not hard geography, and conflicts
- * are withheld for a human rather than guessed.
+ * attendance and event locations are not residency, preferences and service
+ * commitments are not hard geography, and conflicts are withheld for a human.
  */
 export function evaluateGeography({ configuration, html, finalUrl }) {
-  const text = visibleText(html);
-  const identity = identityEvidence(configuration.name ?? "", text);
+  const pageText = visibleText(html);
+  const identity = identityEvidence(configuration.name ?? "", pageText);
   const identityMatched = identity.matched.length > 0 && identity.score >= 0.5;
   const crossDomainRedirect = normalizedHost(configuration.sourceUrl) !== normalizedHost(finalUrl);
   if (!identityMatched || crossDomainRedirect) {
@@ -364,9 +418,20 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
     };
   }
 
-  const nationalMatch = NATIONAL_GEOGRAPHY_PATTERNS
-    .map((pattern) => text.match(pattern))
-    .find(Boolean);
+  const text = geographyTextScope(html, configuration.name ?? "");
+  if (!text) {
+    return {
+      hasCandidate: false,
+      geo: null,
+      evidenceText: "",
+      extractionConfidence: "unknown",
+      verificationStatus: "unverified",
+      conflictingSignals: false,
+    };
+  }
+
+  const national = nationalEvidence(text);
+  const nationalMatch = national?.match ?? null;
   const stateEvidence = [];
   const states = new Set();
   for (const pattern of HARD_GEOGRAPHY_PATTERNS) {
@@ -381,7 +446,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
       // Work-location promises and geographic preferences do not make a
       // student ineligible based on where they live or study.
       if (/\b(?:preference|preferred|priority|commit(?:ment)? to work|agree to work|plan to work|intend to work)\b/i.test(context)) continue;
-      const codes = stateCodesInEvidence(context);
+      const codes = stateCodesInEvidence(match[0]);
       if (!codes.length) continue;
       codes.forEach((code) => states.add(code));
       stateEvidence.push(context);
@@ -394,7 +459,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
       hasCandidate: false,
       geo: null,
       evidenceText: [...new Set([
-        nationalMatch ? evidenceAround(text, nationalMatch.index ?? 0, nationalMatch[0].length) : null,
+        national?.context ?? null,
         ...stateEvidence,
       ].filter(Boolean))].join("\n\n").slice(0, 4000),
       extractionConfidence: conflictingSignals ? "low" : "unknown",
@@ -408,7 +473,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
     : { scope: "national" };
   const evidenceText = states.size
     ? [...new Set(stateEvidence)].join("\n\n")
-    : evidenceAround(text, nationalMatch.index ?? 0, nationalMatch[0].length);
+    : national?.context ?? "";
   return {
     hasCandidate: true,
     geo,

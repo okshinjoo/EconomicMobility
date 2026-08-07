@@ -284,6 +284,111 @@ const citizenshipIsNotGeography = evaluateGeography({
 });
 assert.equal(citizenshipIsNotGeography.hasCandidate, false);
 
+const sharedAwardPageIsScoped = evaluateGeography({
+  configuration: {
+    id: "general-horticulture-award",
+    name: "General Horticulture Scholarship",
+    sourceUrl: "https://example.org/awards",
+  },
+  html: `<main><h1>Scholarships</h1><h2>General Horticulture Scholarship</h2><p>Students across the United States may apply.</p><h2>Florida Growers Award</h2><p>Applicants must reside in Florida.</p></main>`,
+  finalUrl: "https://example.org/awards",
+});
+assert.equal(sharedAwardPageIsScoped.hasCandidate, true);
+assert.deepEqual(sharedAwardPageIsScoped.geo, { scope: "national" });
+
+const unrelatedSharedAwardIsIgnored = evaluateGeography({
+  configuration: {
+    id: "learning-with-love",
+    name: "Learning with Love Scholarship",
+    sourceUrl: "https://example.org/awards",
+  },
+  html: `<main><h1>Scholarships</h1><p>Learning with Love is accepting applications.</p><h2>OG&E Scholarship</h2><p>Applicants must reside in Oklahoma or Arkansas.</p><h2>Community Award</h2><p>Applicants must reside in Texas.</p></main>`,
+  finalUrl: "https://example.org/awards",
+});
+assert.equal(unrelatedSharedAwardIsIgnored.hasCandidate, false);
+
+const attendanceLocationIsNotResidency = evaluateGeography({
+  configuration: {
+    id: "voya-scholars",
+    name: "Voya Scholars",
+    sourceUrl: "https://example.org/voya",
+  },
+  html: `<main><h1>Voya Scholars</h1><p>Eligible students must enroll at a State University of New York campus.</p></main>`,
+  finalUrl: "https://example.org/voya",
+});
+assert.equal(attendanceLocationIsNotResidency.hasCandidate, false);
+
+const eventLocationIsNotResidency = evaluateGeography({
+  configuration: {
+    id: "aifd-scholarship",
+    name: "AIFD Scholarship",
+    sourceUrl: "https://example.org/aifd",
+  },
+  html: `<main><h1>AIFD Scholarship</h1><p>Recipients must attend the symposium in St. Louis, Missouri.</p></main>`,
+  finalUrl: "https://example.org/aifd",
+});
+assert.equal(eventLocationIsNotResidency.hasCandidate, false);
+
+const countyNameIsNotAState = evaluateGeography({
+  configuration: {
+    id: "farm-credit-scholarship",
+    name: "Farm Credit Scholarship",
+    sourceUrl: "https://example.org/farm-credit",
+  },
+  html: `<main><h1>Farm Credit Scholarship</h1><p>Applicants must reside in Washington County, Maryland.</p></main>`,
+  finalUrl: "https://example.org/farm-credit",
+});
+assert.equal(countyNameIsNotAState.hasCandidate, true);
+assert.deepEqual(countyNameIsNotAState.geo, { scope: "states", states: ["MD"] });
+
+const sponsorNameIsNotAState = evaluateGeography({
+  configuration: {
+    id: "community-achievement",
+    name: "Community Achievement Scholarship",
+    sourceUrl: "https://example.org/community-achievement",
+  },
+  html: `<main><h1>Community Achievement Scholarship</h1><p>New York Life Foundation sponsors this award. Applicants must reside in Nevada.</p></main>`,
+  finalUrl: "https://example.org/community-achievement",
+});
+assert.equal(sponsorNameIsNotAState.hasCandidate, true);
+assert.deepEqual(sponsorNameIsNotAState.geo, { scope: "states", states: ["NV"] });
+
+const navigationNationwideIsIgnored = evaluateGeography({
+  configuration: {
+    id: "minnesota-benefit",
+    name: "Minnesota Education Benefit",
+    sourceUrl: "https://example.org/minnesota-benefit",
+  },
+  html: `<nav>Nationwide Gravesite Locator</nav><main><h1>Minnesota Education Benefit</h1><p>Applicants must reside in Minnesota.</p></main>`,
+  finalUrl: "https://example.org/minnesota-benefit",
+});
+assert.equal(navigationNationwideIsIgnored.hasCandidate, true);
+assert.deepEqual(navigationNationwideIsIgnored.geo, { scope: "states", states: ["MN"] });
+
+const negatedNationwideIsIgnored = evaluateGeography({
+  configuration: {
+    id: "incight-scholarship",
+    name: "Incight Scholarship",
+    sourceUrl: "https://example.org/incight",
+  },
+  html: `<main><h1>Incight Scholarship</h1><p>This scholarship is not nationwide. Eligible applicants are residents of Oregon, Washington, or California.</p></main>`,
+  finalUrl: "https://example.org/incight",
+});
+assert.equal(negatedNationwideIsIgnored.hasCandidate, true);
+assert.deepEqual(negatedNationwideIsIgnored.geo, { scope: "states", states: ["CA", "OR", "WA"] });
+
+const stateResidencyBeatsInstitutionLocations = evaluateGeography({
+  configuration: {
+    id: "west-virginia-grant",
+    name: "West Virginia Higher Education Grant",
+    sourceUrl: "https://example.org/wv-grant",
+  },
+  html: `<main><h1>West Virginia Higher Education Grant</h1><p>Applicants must reside in West Virginia. Students may attend approved institutions in Pennsylvania.</p></main>`,
+  finalUrl: "https://example.org/wv-grant",
+});
+assert.equal(stateResidencyBeatsInstitutionLocations.hasCandidate, true);
+assert.deepEqual(stateResidencyBeatsInstitutionLocations.geo, { scope: "states", states: ["WV"] });
+
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",

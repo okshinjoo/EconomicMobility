@@ -123,6 +123,7 @@ export default function ScholarshipCandidateForm() {
           <p className="flex items-center gap-2 font-bold text-forest"><Check className="h-5 w-5" /> Scholarship staged</p>
           <p className="mt-2 break-all text-sm text-stone">Record: {created.scholarshipId}</p>
           <p className="mt-1 text-sm text-stone">Publication: withheld · Geography: unverified</p>
+          <Link href="/admin/scholarships/promotions" className="mt-3 inline-flex text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">Open promotion queue</Link>
         </div>
       ) : null}
       {error ? <p className="mt-6 flex items-center gap-2 text-sm font-semibold text-terracotta" role="alert"><Warning className="h-4 w-4" /> {error}</p> : null}
