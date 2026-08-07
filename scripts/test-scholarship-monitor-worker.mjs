@@ -185,6 +185,10 @@ const barron = evaluateOfficialSource({
 assert.equal(barron.applicationStatus, "closed");
 assert.equal(barron.opensOn, "2026-01-07");
 assert.equal(barron.closesOn, "2026-04-15");
+assert.equal(
+  new URL(configurationFor("gloria-barron-prize").fetchUrl).hostname,
+  new URL(configurationFor("gloria-barron-prize").sourceUrl).hostname,
+);
 
 const unsupportedFixedOpening = evaluateOfficialSource({
   configuration: {

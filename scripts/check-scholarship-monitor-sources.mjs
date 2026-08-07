@@ -44,6 +44,15 @@ for (const configuration of configurations) {
 
   const sourceUrl = new URL(configuration.sourceUrl);
   if (sourceUrl.protocol !== "https:") throw new Error(`${configuration.id}: official source must use HTTPS.`);
+  if (configuration.fetchUrl) {
+    const fetchUrl = new URL(configuration.fetchUrl);
+    if (fetchUrl.protocol !== "https:") throw new Error(`${configuration.id}: fetch URL must use HTTPS.`);
+    const sourceHost = sourceUrl.hostname.toLowerCase().replace(/^www\./, "");
+    const fetchHost = fetchUrl.hostname.toLowerCase().replace(/^www\./, "");
+    if (sourceHost !== fetchHost) {
+      throw new Error(`${configuration.id}: fetch URL must stay on the official source domain.`);
+    }
+  }
   validatePatterns(configuration, "requiredPatterns", configuration.requiredPatterns);
   if (!configuration.requiredPatterns?.length) throw new Error(`${configuration.id}: requiredPatterns cannot be empty.`);
 

@@ -518,6 +518,7 @@
   {
     "id": "gloria-barron-prize",
     "sourceUrl": "https://barronprize.org/faqs/",
+    "fetchUrl": "https://barronprize.org/wp-json/wp/v2/pages?slug=faqs",
     "requiredPatterns": [
       "FREQUENTLY ASKED QUESTIONS",
       "two-step application process",
