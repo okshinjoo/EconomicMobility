@@ -89,10 +89,27 @@ for (const configuration of configurations) {
   }
 }
 
+if (coverage.candidate.length !== coverage.sourceHealth.length) {
+  throw new Error(
+    `Expected every health-only scholarship to receive candidate extraction; found ${coverage.candidate.length} candidate and ${coverage.sourceHealth.length} source-health records.`,
+  );
+}
+const sourceHealthIds = new Set(coverage.sourceHealth.map((configuration) => configuration.id));
+for (const configuration of coverage.candidate) {
+  if (!sourceHealthIds.has(configuration.id)) {
+    throw new Error(`${configuration.id}: candidate extraction must correspond to a health-only curated scholarship.`);
+  }
+  if (!configuration.name?.trim()) throw new Error(`${configuration.id}: candidate extraction requires a scholarship name.`);
+  const inventoryRecord = inventoryDocument.records.find((record) => record.scholarshipId === configuration.id);
+  if (configuration.sourceUrl !== inventoryRecord?.officialUrl) {
+    throw new Error(`${configuration.id}: candidate extraction must use the curated official URL.`);
+  }
+}
+
 const hostCount = new Set(configurations.map((configuration) => new URL(configuration.sourceUrl).hostname)).size;
 if (configurations.length !== coverage.published) {
   throw new Error(`Expected ${coverage.published} total monitored scholarships; found ${configurations.length}.`);
 }
 console.log(
-  `Scholarship monitor sources: ${configurations.length} covered · ${coverage.status.length} status/date · ${coverage.sourceHealth.length} source-health · ${hostCount} official hosts.`,
+  `Scholarship monitor sources: ${configurations.length} covered · ${coverage.status.length} evidence-specific · ${coverage.candidate.length} exact-evidence candidates · ${coverage.sourceHealth.length} source-health · ${hostCount} official hosts.`,
 );

@@ -1,0 +1,43 @@
+name: Scholarship exact-evidence candidate monitor
+
+on:
+  schedule:
+    - cron: "23 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scholarship-candidate-monitor
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate complete monitor coverage
+        run: npm run check:scholarship-monitor-sources
+
+      - name: Test fail-closed behavior
+        run: npm run test:scholarship-monitor-worker
+
+      - name: Record exact-evidence candidates
+        run: npm run monitor:scholarships -- --write --summary-only --mode=candidate --shard-index=${{ matrix.shard }} --shard-count=8

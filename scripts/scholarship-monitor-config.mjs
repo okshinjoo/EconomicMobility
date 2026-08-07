@@ -26,16 +26,28 @@ export function loadScholarshipMonitorConfigurations({ mode = "status" } = {}) {
         monitorMode: "source-health",
       }));
   }
+  if (mode === "candidate") {
+    return inventoryDocument.records
+      .filter((record) => !explicitIds.has(record.scholarshipId))
+      .map((record) => ({
+        id: record.scholarshipId,
+        name: record.name,
+        sourceUrl: record.officialUrl,
+        monitorMode: "candidate",
+      }));
+  }
   throw new Error(`Unsupported scholarship monitor mode: ${mode}`);
 }
 
 export function scholarshipMonitorCoverage() {
   const status = loadScholarshipMonitorConfigurations({ mode: "status" });
   const sourceHealth = loadScholarshipMonitorConfigurations({ mode: "source-health" });
+  const candidate = loadScholarshipMonitorConfigurations({ mode: "candidate" });
   return {
     published: inventoryDocument.publishedCount,
     status,
     sourceHealth,
+    candidate,
     all: [...status, ...sourceHealth],
   };
 }

@@ -1,10 +1,11 @@
 import "./register-scholarship-typescript.mjs";
 
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { createClient } from "@supabase/supabase-js";
 import {
   buildFieldProposals,
+  evaluateGenericCandidateSource,
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
@@ -31,6 +32,7 @@ const idArguments = process.argv.filter((argument) => argument.startsWith("--id=
 const limitArgument = process.argv.find((argument) => argument.startsWith("--limit="));
 const shardIndexArgument = process.argv.find((argument) => argument.startsWith("--shard-index="));
 const shardCountArgument = process.argv.find((argument) => argument.startsWith("--shard-count="));
+const proposalOutputArgument = process.argv.find((argument) => argument.startsWith("--proposal-output="));
 const shardIndex = Number(shardIndexArgument?.slice(14) ?? 0);
 const shardCount = Number(shardCountArgument?.slice(14) ?? 1);
 const today = dateArgument?.slice(7) ?? new Date().toISOString().slice(0, 10);
@@ -134,8 +136,9 @@ async function fetchOfficialPage(configuration, previous) {
   if (previous?.last_modified) headers["if-modified-since"] = previous.last_modified;
 
   let lastError = null;
-  const maximumAttempts = configuration.monitorMode === "source-health" ? 2 : 3;
-  const timeout = configuration.monitorMode === "source-health" ? 12000 : 20000;
+  const lightweightObservation = configuration.monitorMode !== "status";
+  const maximumAttempts = lightweightObservation ? 2 : 3;
+  const timeout = lightweightObservation ? 12000 : 20000;
   for (let attempt = 0; attempt < maximumAttempts; attempt++) {
     await throttle(configuration.sourceUrl);
     try {
@@ -284,7 +287,9 @@ async function inspectUnlocked(configuration) {
     }
     let evaluation = configuration.monitorMode === "source-health"
       ? evaluateSourceHealth({ html: fetched.html, sourceUrl: configuration.sourceUrl, finalUrl: fetched.finalUrl })
-      : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
+      : configuration.monitorMode === "candidate"
+        ? evaluateGenericCandidateSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today })
+        : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
     let resolvedFetch = fetched;
     if (
       configuration.monitorMode === "status" &&
@@ -355,7 +360,7 @@ for (let index = 0; index < selected.length; index += 4) {
 
 let proposals = [];
 for (const result of results) {
-  if (result.evaluation && result.configuration.monitorMode === "status") {
+  if (result.evaluation && ["status", "candidate"].includes(result.configuration.monitorMode)) {
     proposals.push(
       ...buildFieldProposals({
         scholarshipId: result.configuration.id,
@@ -411,6 +416,12 @@ proposals = proposals.filter((proposal) => {
   return true;
 });
 
+if (proposalOutputArgument) {
+  const outputPath = proposalOutputArgument.slice(18);
+  if (!outputPath) throw new Error("--proposal-output requires a file path.");
+  await writeFile(outputPath, `${JSON.stringify(proposals, null, 2)}\n`, "utf8");
+}
+
 if (admin) {
   const observationRows = results.map((result) => ({
     run_id: runId,
@@ -427,7 +438,11 @@ if (admin) {
     last_modified: result.fetched.lastModified,
     content_hash: result.evaluation?.contentHash ?? result.previous?.content_hash ?? null,
     normalized_content_hash: result.evaluation?.normalizedContentHash ?? result.previous?.normalized_content_hash ?? null,
-    extractor_name: result.configuration.monitorMode === "status" ? "configured-html-status" : "official-source-health",
+    extractor_name: result.configuration.monitorMode === "status"
+      ? "configured-html-status"
+      : result.configuration.monitorMode === "candidate"
+        ? "generic-exact-evidence-candidate"
+        : "official-source-health",
     extractor_version: "1",
     evidence_snippet: result.evaluation?.evidenceText ?? null,
     error_kind: result.success ? null : result.sourceStatus,

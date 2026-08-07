@@ -61,6 +61,12 @@ The two monitoring tiers stay deliberately separate:
 - The remaining 1,145 official URLs receive weekly source-health checks. They
   record availability, redirects, login walls, content fingerprints, and
   failures, but never infer application status or dates.
+- Those same 1,145 records also receive a separate weekly exact-evidence scan.
+  It can propose a full date only when the current official page ties that date
+  to explicit deadline or opening language and the page matches the scholarship
+  identity. Generic matches are always review-required, never auto-applied.
+  Language such as “typically,” “usually,” “expected,” “around,” or “to be
+  announced” is rejected rather than converted into a date.
 
 The scheduled workers:
 
@@ -77,6 +83,9 @@ source-health workflow splits the other 1,145 records into eight deterministic
 host-based shards, so requests to one host remain serialized. A source-health
 failure must persist for three runs before an actionable not-found, server,
 redirect, login-wall, or thin-document review can enter the moderation queue.
+The weekly exact-evidence candidate workflow also runs in eight shards and
+creates only private, medium-risk review proposals; it never creates source
+failure proposals and never changes the public Finder.
 Bot blocks, rate limits, and generic timeouts remain operational telemetry and
 do not flood reviewers.
 

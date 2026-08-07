@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   buildFieldProposals,
+  evaluateGenericCandidateSource,
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
@@ -64,6 +65,142 @@ assert.deepEqual(
   }).map((proposal) => [proposal.fieldName, proposal.proposedValue]),
   [["closesOn", "2026-09-18"]],
 );
+
+const genericCandidate = evaluateGenericCandidateSource({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>Applications are now open. The application deadline is October 14, 2026.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+  today: "2026-08-07",
+});
+assert.equal(genericCandidate.applicationStatus, "open");
+assert.equal(genericCandidate.closesOn, "2026-10-14");
+assert.equal(genericCandidate.candidateOnly, true);
+assert.equal(genericCandidate.verificationStatus, "review-required");
+assert.deepEqual(
+  buildFieldProposals({
+    scholarshipId: "future-makers",
+    current: null,
+    evaluation: genericCandidate,
+    sourceUrl: "https://example.org/future-makers",
+  }).map((proposal) => [proposal.fieldName, proposal.proposedValue, proposal.verificationStatus]),
+  [
+    ["applicationStatus", "open", "review-required"],
+    ["closesOn", "2026-10-14", "review-required"],
+  ],
+);
+
+const typicalMonthOnly = evaluateGenericCandidateSource({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>The deadline is typically October 14, 2026.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+  today: "2026-08-07",
+});
+assert.equal(typicalMonthOnly.hasCandidate, false);
+assert.deepEqual(
+  buildFieldProposals({
+    scholarshipId: "future-makers",
+    current: null,
+    evaluation: typicalMonthOnly,
+    sourceUrl: "https://example.org/future-makers",
+  }),
+  [],
+);
+
+const unsafeGenericOpen = evaluateGenericCandidateSource({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>Applications are now open. The deadline is announced later.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+  today: "2026-08-07",
+});
+assert.equal(unsafeGenericOpen.applicationStatus, "unknown");
+assert.equal(unsafeGenericOpen.unsafeUndatedOpen, true);
+assert.equal(unsafeGenericOpen.hasCandidate, false);
+
+const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>Applications open September 15, 2025. The deadline to submit applications is January 14, 2026.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+  today: "2025-08-07",
+});
+assert.equal(separatedOpenAndCloseDates.opensOn, "2025-09-15");
+assert.equal(separatedOpenAndCloseDates.closesOn, "2026-01-14");
+
+const ambiguousProgramDeadlines = evaluateGenericCandidateSource({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>The 2027 deadlines are: fellowship deadline January 20, 2027 and scholarship deadline January 27, 2027.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+  today: "2026-08-07",
+});
+assert.equal(ambiguousProgramDeadlines.closesOn, null);
+assert.equal(ambiguousProgramDeadlines.hasCandidate, false);
+
+const unrelatedProgramOnSharedPage = evaluateGenericCandidateSource({
+  configuration: {
+    id: "kansas-guard",
+    name: "Kansas Guard Educational Assistance",
+    sourceUrl: "https://example.org/kansas-aid",
+  },
+  html: `<main><h1>Kansas financial aid</h1><nav>Guard Educational Assistance</nav><p>${"Program overview. ".repeat(30)}</p><section><h2>Distinguished Scholarship</h2><p>Applicants studying foreign affairs must apply by April 10, 2026.</p></section></main>`,
+  finalUrl: "https://example.org/kansas-aid",
+  today: "2026-08-07",
+});
+assert.equal(unrelatedProgramOnSharedPage.hasCandidate, false);
+
+const administratorSubmissionDeadline = evaluateGenericCandidateSource({
+  configuration: {
+    id: "student-leaders",
+    name: "Student Leaders Scholarship",
+    sourceUrl: "https://example.org/student-leaders",
+  },
+  html: `<main><h1>Student Leaders Scholarship</h1><p>State coordinators must submit delegate selections by December 1, 2026. Student application deadlines are set locally.</p></main>`,
+  finalUrl: "https://example.org/student-leaders",
+  today: "2026-08-07",
+});
+assert.equal(administratorSubmissionDeadline.hasCandidate, false);
+
+const winnerSubmissionDeadline = evaluateGenericCandidateSource({
+  configuration: {
+    id: "community-service",
+    name: "Community Service Scholarship",
+    sourceUrl: "https://example.org/community-service",
+  },
+  html: `<main><h1>Community Service Scholarship</h1><p>Clubs must submit their winner by June 15, 2026. Applicants should contact their local club for its deadline.</p></main>`,
+  finalUrl: "https://example.org/community-service",
+  today: "2026-08-07",
+});
+assert.equal(winnerSubmissionDeadline.hasCandidate, false);
+
+const unrelatedTeacherHonorDeadline = evaluateGenericCandidateSource({
+  configuration: {
+    id: "natas-national-scholarships",
+    name: "NATAS National Scholarships",
+    sourceUrl: "https://example.org/natas-scholarships",
+  },
+  html: `<main><h1>NATAS National Scholarships</h1><section><h2>Teacher Honor</h2><p>Nominate your favorite media teacher. The deadline for entry is March 2, 2026 and the honoree will be announced this spring.</p></section></main>`,
+  finalUrl: "https://example.org/natas-scholarships",
+  today: "2026-08-07",
+});
+assert.equal(unrelatedTeacherHonorDeadline.hasCandidate, false);
 
 const drifted = evaluateOfficialSource({
   configuration: source,
@@ -300,6 +437,11 @@ assert.equal(shouldProposeSourceFailure({ monitorMode: "status", previousFailure
 const coverage = scholarshipMonitorCoverage();
 assert.equal(coverage.status.length, sourceConfigurations.length);
 assert.equal(coverage.sourceHealth.length, coverage.published - sourceConfigurations.length);
+assert.equal(coverage.candidate.length, coverage.sourceHealth.length);
+assert.deepEqual(
+  coverage.candidate.map((configuration) => configuration.id).sort(),
+  coverage.sourceHealth.map((configuration) => configuration.id).sort(),
+);
 assert.equal(coverage.all.length, coverage.published);
 assert.equal(new Set(coverage.all.map((configuration) => configuration.id)).size, coverage.published);
 

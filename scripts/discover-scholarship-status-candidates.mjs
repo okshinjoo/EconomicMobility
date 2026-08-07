@@ -1,6 +1,6 @@
 import "./register-scholarship-typescript.mjs";
 
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { visibleText } from "./scholarship-monitor-core.mjs";
 
 const { scholarships } = await import("../lib/scholarships.ts");
@@ -15,14 +15,29 @@ const idsArgument = process.argv.find((argument) => argument.startsWith("--ids="
 const requestedIds = new Set((idsArgument?.slice(6) ?? "").split(",").filter(Boolean));
 const offsetArgument = process.argv.find((argument) => argument.startsWith("--offset="));
 const limitArgument = process.argv.find((argument) => argument.startsWith("--limit="));
+const concurrencyArgument = process.argv.find((argument) => argument.startsWith("--concurrency="));
+const timeoutArgument = process.argv.find((argument) => argument.startsWith("--timeout="));
+const outputArgument = process.argv.find((argument) => argument.startsWith("--output="));
 const offset = Number(offsetArgument?.slice(9) ?? 0);
 const limit = Number(limitArgument?.slice(8) ?? Number.POSITIVE_INFINITY);
+const concurrency = Number(concurrencyArgument?.slice(14) ?? 6);
+const timeout = Number(timeoutArgument?.slice(10) ?? 20000);
+const includeAll = process.argv.includes("--all");
 const compact = process.argv.includes("--compact");
+
+if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 24) {
+  throw new Error(`Invalid --concurrency: ${concurrency}`);
+}
+if (!Number.isInteger(timeout) || timeout < 1000 || timeout > 60000) {
+  throw new Error(`Invalid --timeout: ${timeout}`);
+}
 
 const cohort = scholarships
   .filter((scholarship) =>
     !configuredIds.has(scholarship.id) &&
-    (requestedIds.size ? requestedIds.has(scholarship.id) : months.has(scholarship.deadlineMonth)),
+    (requestedIds.size
+      ? requestedIds.has(scholarship.id)
+      : includeAll || months.has(scholarship.deadlineMonth)),
   )
   .slice(offset, offset + limit);
 
@@ -35,7 +50,11 @@ const STATUS_PATTERNS = [
   /(?:deadline|due date)\s*(?:is|:)?\s*[^.!?]{0,120}/gi,
   /applications? (?:open|close|begin|end)[^.!?]{0,120}/gi,
 ];
-const DATE_PATTERN = /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?(?:,\s*|\s+)20\d{2}\b/gi;
+const DATE_PATTERNS = [
+  /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?(?:,\s*|\s+)20\d{2}\b/gi,
+  /\b(?:Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)\.?\s+\d{1,2}(?:st|nd|rd|th)?(?:,\s*|\s+)20\d{2}\b/gi,
+  /\b\d{1,2}[/-]\d{1,2}[/-]20\d{2}\b/g,
+];
 
 function context(text, index, length) {
   return text.slice(Math.max(0, index - 160), Math.min(text.length, index + length + 220)).trim();
@@ -57,7 +76,7 @@ async function inspect(scholarship) {
   try {
     const response = await fetch(scholarship.officialUrl, {
       redirect: "follow",
-      signal: AbortSignal.timeout(20000),
+      signal: AbortSignal.timeout(timeout),
       headers: {
         "user-agent": "EmpowerScholarshipMonitor/1.0 (+https://economicmobilityproject.org/contact)",
         accept: "text/html,application/xhtml+xml,application/pdf;q=0.8",
@@ -94,7 +113,7 @@ async function inspect(scholarship) {
       identityScore: nameTokens.length ? Number((matchedTokens.length / nameTokens.length).toFixed(2)) : 0,
       matchedTokens: matchedTokens.slice(0, 8),
       statusEvidence: matches(text, STATUS_PATTERNS),
-      dateEvidence: matches(text, [DATE_PATTERN]),
+      dateEvidence: matches(text, DATE_PATTERNS),
     };
   } catch (error) {
     return {
@@ -112,29 +131,37 @@ async function inspect(scholarship) {
 }
 
 const results = [];
-for (let index = 0; index < cohort.length; index += 6) {
-  results.push(...(await Promise.all(cohort.slice(index, index + 6).map(inspect))));
+for (let index = 0; index < cohort.length; index += concurrency) {
+  results.push(...(await Promise.all(cohort.slice(index, index + concurrency).map(inspect))));
 }
 
-for (const result of results) {
-  if (!compact) {
-    console.log(JSON.stringify(result));
-    continue;
+if (outputArgument) {
+  const outputPath = outputArgument.slice(9);
+  if (!outputPath) throw new Error("--output requires a file path.");
+  await writeFile(outputPath, `${JSON.stringify(results, null, 2)}\n`, "utf8");
+}
+
+if (!outputArgument) {
+  for (const result of results) {
+    if (!compact) {
+      console.log(JSON.stringify(result));
+      continue;
+    }
+    console.log(JSON.stringify({
+      id: result.id,
+      name: result.name,
+      deadline: result.deadline,
+      officialUrl: result.officialUrl,
+      ok: result.ok,
+      kind: result.kind,
+      error: result.error,
+      status: result.status,
+      finalUrl: result.finalUrl,
+      identityScore: result.identityScore,
+      statusEvidence: result.statusEvidence[0]?.slice(0, 500) ?? null,
+      dateEvidence: result.dateEvidence[0]?.slice(0, 500) ?? null,
+    }));
   }
-  console.log(JSON.stringify({
-    id: result.id,
-    name: result.name,
-    deadline: result.deadline,
-    officialUrl: result.officialUrl,
-    ok: result.ok,
-    kind: result.kind,
-    error: result.error,
-    status: result.status,
-    finalUrl: result.finalUrl,
-    identityScore: result.identityScore,
-    statusEvidence: result.statusEvidence[0]?.slice(0, 500) ?? null,
-    dateEvidence: result.dateEvidence[0]?.slice(0, 500) ?? null,
-  }));
 }
 console.error(
   `Discovery: ${results.length} records · ${results.filter((result) => result.ok).length} fetched · ${results.filter((result) => result.statusEvidence.length || result.dateEvidence.length).length} with candidate evidence.`,
