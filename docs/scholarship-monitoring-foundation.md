@@ -136,6 +136,19 @@ to mark a row `published` unless those fields are human-verified and complete.
 The repository build gate independently enforces the same rule for the actual
 Finder, so database and deployment paths both fail closed.
 
+`/admin/scholarships/new` is the private intake for future scholarships. It
+accepts only a name, optional sponsor, and the sponsor's official program URL.
+Every submitted record is created as `withheld` with unverified geography and
+is added to the weekly candidate and source-health monitors. The monitor may
+create evidence proposals, but it cannot publish the record. Human-verified
+official-source geography is a hard prerequisite for later curation.
+
+The daily `scholarship-monitor-alerts.yml` audit reports every withheld record,
+fails after a record has waited 14 days, and fails immediately for three
+consecutive actionable source failures, stale geography, or any published row
+that lacks complete verified geography. GitHub workflow annotations and the
+run summary identify the affected scholarship IDs.
+
 `/api/scholarship-status` is the narrow publication bridge. It returns only
 human-verified application state for IDs that still exist in the curated
 repository catalog. The Finder consumes this after its first render and uses

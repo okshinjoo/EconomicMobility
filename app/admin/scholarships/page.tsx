@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScholarshipReviewQueue from "@/components/ScholarshipReviewQueue";
@@ -18,6 +19,7 @@ export default function ScholarshipReviewPage() {
             <p className="text-sm font-semibold text-terracotta">Private moderation</p>
             <h1 className="mt-2 max-w-3xl font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">Scholarship evidence review</h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-stone">Compare monitored claims with the exact text from each official scholarship page. Decisions update the private monitoring record and audit history; the public Finder remains unchanged.</p>
+            <Link href="/admin/scholarships/new" className="mt-5 inline-flex rounded-md bg-forest px-4 py-2.5 text-sm font-bold text-cream hover:bg-forest-700">Add a scholarship</Link>
           </div>
         </section>
         <section className="bg-paper">

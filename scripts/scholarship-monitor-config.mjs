@@ -8,11 +8,7 @@ const inventoryDocument = JSON.parse(
 );
 
 const explicitIds = new Set(explicitConfigurations.map((configuration) => configuration.id));
-const inventoryById = new Map(
-  inventoryDocument.records.map((record) => [record.scholarshipId, record]),
-);
-
-function withInventory(configuration) {
+function withInventory(configuration, inventoryById) {
   const record = inventoryById.get(configuration.id);
   return {
     ...configuration,
@@ -23,32 +19,41 @@ function withInventory(configuration) {
   };
 }
 
-export function loadScholarshipMonitorConfigurations({ mode = "status" } = {}) {
+export function loadScholarshipMonitorConfigurations({ mode = "status", additionalRecords = [] } = {}) {
+  const records = [...inventoryDocument.records];
+  const recordIds = new Set(records.map((record) => record.scholarshipId));
+  for (const record of additionalRecords) {
+    if (!recordIds.has(record.scholarshipId)) {
+      records.push(record);
+      recordIds.add(record.scholarshipId);
+    }
+  }
+  const inventoryById = new Map(records.map((record) => [record.scholarshipId, record]));
   if (mode === "status") {
     return explicitConfigurations.map((configuration) => withInventory({
       ...configuration,
       monitorMode: "status",
-    }));
+    }, inventoryById));
   }
   if (mode === "source-health") {
-    return inventoryDocument.records
+    return records
       .filter((record) => !explicitIds.has(record.scholarshipId))
       .map((record) => withInventory({
         id: record.scholarshipId,
         name: record.name,
         sourceUrl: record.officialUrl,
         monitorMode: "source-health",
-      }));
+      }, inventoryById));
   }
   if (mode === "candidate") {
-    return inventoryDocument.records
+    return records
       .filter((record) => !explicitIds.has(record.scholarshipId))
       .map((record) => withInventory({
         id: record.scholarshipId,
         name: record.name,
         sourceUrl: record.officialUrl,
         monitorMode: "candidate",
-      }));
+      }, inventoryById));
   }
   throw new Error(`Unsupported scholarship monitor mode: ${mode}`);
 }

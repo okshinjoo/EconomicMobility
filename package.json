@@ -21,6 +21,9 @@
     "check:scholarship-monitor-sources": "node scripts/check-scholarship-monitor-sources.mjs",
     "test:scholarship-monitor-worker": "node scripts/test-scholarship-monitor-worker.mjs",
     "test:scholarship-review": "node scripts/test-scholarship-review.mjs",
+    "test:scholarship-intake": "node scripts/test-scholarship-intake.mjs",
+    "test:scholarship-monitor-alerts": "node scripts/test-scholarship-monitor-alerts.mjs",
+    "check:scholarship-monitor-alerts": "node scripts/check-scholarship-monitor-alerts.mjs",
     "monitor:scholarships": "node scripts/run-scholarship-monitor.mjs"
   },
   "dependencies": {

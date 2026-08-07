@@ -18,8 +18,30 @@ import {
 const sourceConfigurations = JSON.parse(
   readFileSync(new URL("./scholarship-status-sources.json", import.meta.url), "utf8"),
 );
-const { scholarshipMonitorCoverage } = await import("./scholarship-monitor-config.mjs");
+const { loadScholarshipMonitorConfigurations, scholarshipMonitorCoverage } = await import("./scholarship-monitor-config.mjs");
 const configurationFor = (id) => sourceConfigurations.find((configuration) => configuration.id === id);
+
+const stagedCandidate = {
+  scholarshipId: "candidate-future-makers-12345678",
+  name: "Future Makers Scholarship",
+  officialUrl: "https://example.org/future-makers",
+  publicationStatus: "withheld",
+  geo: null,
+  geoVerificationStatus: "unverified",
+};
+const candidateConfigurations = loadScholarshipMonitorConfigurations({ mode: "candidate", additionalRecords: [stagedCandidate] });
+assert.deepEqual(
+  candidateConfigurations.find((configuration) => configuration.id === stagedCandidate.scholarshipId),
+  {
+    id: stagedCandidate.scholarshipId,
+    name: stagedCandidate.name,
+    sourceUrl: stagedCandidate.officialUrl,
+    monitorMode: "candidate",
+    currentGeo: null,
+    geoVerificationStatus: "unverified",
+    publicationStatus: "withheld",
+  },
+);
 
 const source = {
   id: "example",

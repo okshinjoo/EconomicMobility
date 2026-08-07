@@ -20,13 +20,48 @@ const { canAutoApply } = await import("../lib/scholarshipMonitoring.ts");
 
 const modeArgument = process.argv.find((argument) => argument.startsWith("--mode="));
 const monitorMode = modeArgument?.slice(7) ?? "status";
-const configurations = loadScholarshipMonitorConfigurations({ mode: monitorMode });
+const write = process.argv.includes("--write");
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (write && (!url || !serviceKey)) {
+  throw new Error("--write requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
+}
+const admin = write
+  ? createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } })
+  : null;
 const inventoryDocument = JSON.parse(
   await readFile(new URL("../data/scholarship-monitor-inventory.json", import.meta.url), "utf8"),
 );
-const inventoryIds = new Set(inventoryDocument.records.map((record) => record.scholarshipId));
+let additionalRecords = [];
+if (admin && ["candidate", "source-health"].includes(monitorMode)) {
+  const { data: withheldRows, error: withheldError } = await admin
+    .from("scholarship_monitor_inventory")
+    .select("scholarship_id,name,official_url,source_domain,publication_status,catalog_fingerprint,catalog_verified_label,geo_scope,geo_states,geo_verification_status,geo_evidence,geo_source_url")
+    .eq("publication_status", "withheld")
+    .eq("monitor_enabled", true);
+  if (withheldError) throw withheldError;
+  additionalRecords = (withheldRows ?? []).map((record) => ({
+    scholarshipId: record.scholarship_id,
+    name: record.name,
+    officialUrl: record.official_url,
+    sourceDomain: record.source_domain,
+    publicationStatus: record.publication_status,
+    catalogFingerprint: record.catalog_fingerprint,
+    catalogVerifiedLabel: record.catalog_verified_label,
+    geo: record.geo_scope
+      ? { scope: record.geo_scope, ...(record.geo_scope === "states" ? { states: record.geo_states } : {}) }
+      : null,
+    geoVerificationStatus: record.geo_verification_status,
+    geoEvidence: record.geo_evidence ?? "",
+    geoSourceUrl: record.geo_source_url ?? record.official_url,
+  }));
+}
+const configurations = loadScholarshipMonitorConfigurations({ mode: monitorMode, additionalRecords });
+const inventoryIds = new Set([
+  ...inventoryDocument.records.map((record) => record.scholarshipId),
+  ...additionalRecords.map((record) => record.scholarshipId),
+]);
 
-const write = process.argv.includes("--write");
 const browserFallback = process.argv.includes("--browser-fallback");
 const summaryOnly = process.argv.includes("--summary-only");
 const dateArgument = process.argv.find((argument) => argument.startsWith("--date="));
@@ -65,15 +100,6 @@ selected = selected.filter((configuration) => {
 });
 if (limitArgument) selected = selected.slice(0, Number(limitArgument.slice(8)));
 if (selected.length === 0) throw new Error("No scholarship monitor sources selected.");
-
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (write && (!url || !serviceKey)) {
-  throw new Error("--write requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
-}
-const admin = write
-  ? createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } })
-  : null;
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const lastDomainFetch = new Map();

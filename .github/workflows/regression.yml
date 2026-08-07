@@ -39,6 +39,9 @@ jobs:
         if: ${{ github.event.inputs.base_url == '' }}
         run: npm run build
 
+      - name: Test scholarship moderation safeguards
+        run: npm run test:scholarship-review && npm run test:scholarship-intake && npm run test:scholarship-monitor-alerts && npm run test:scholarship-monitor-worker
+
       - name: Run regression suite
         run: npm run test:e2e
         env:
