@@ -367,6 +367,17 @@ function geographyTextScope(html, name) {
   return namedProgramHeadings.length >= 2 ? "" : visibleText(html);
 }
 
+function hasMultipleNamedAwards(text) {
+  const mentions = text.match(/\b(?:(?:[A-Z][A-Za-z0-9’'&.-]*|&)\s+){1,9}(?:Scholarship|Award|Grant|Benefit|Fellowship)\b/g) ?? [];
+  return new Set(mentions.map((mention) => mention.toLowerCase())).size >= 3;
+}
+
+function contextMatchesPrimaryIdentity(context, tokens) {
+  if (!tokens.length) return false;
+  const normalized = context.toLowerCase();
+  return tokens.slice(0, Math.min(2, tokens.length)).every((token) => normalized.includes(token));
+}
+
 function isRejectedNationalContext(context, matchIndex) {
   const before = context.slice(Math.max(0, matchIndex - 28), matchIndex);
   return /\b(?:not|isn't|is not|never)\s*$/i.test(before) ||
@@ -435,8 +446,13 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
     };
   }
 
+  const sharedAwardPage = hasMultipleNamedAwards(text);
+
   const national = nationalEvidence(text);
-  const nationalMatch = national?.match ?? null;
+  const acceptedNational = national && (!sharedAwardPage || contextMatchesPrimaryIdentity(national.context, identity.tokens))
+    ? national
+    : null;
+  const nationalMatch = acceptedNational?.match ?? null;
   const stateEvidence = [];
   const states = new Set();
   for (const pattern of HARD_GEOGRAPHY_PATTERNS) {
@@ -451,6 +467,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
       // Work-location promises and geographic preferences do not make a
       // student ineligible based on where they live or study.
       if (/\b(?:preference|preferred|priority|commit(?:ment)? to work|agree to work|plan to work|intend to work)\b/i.test(context)) continue;
+      if (sharedAwardPage && !contextMatchesPrimaryIdentity(context, identity.tokens)) continue;
       const codes = stateCodesInEvidence(match[0]);
       if (!codes.length) continue;
       codes.forEach((code) => states.add(code));
@@ -464,7 +481,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
       hasCandidate: false,
       geo: null,
       evidenceText: [...new Set([
-        national?.context ?? null,
+        acceptedNational?.context ?? null,
         ...stateEvidence,
       ].filter(Boolean))].join("\n\n").slice(0, 4000),
       extractionConfidence: conflictingSignals ? "low" : "unknown",
@@ -478,7 +495,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
     : { scope: "national" };
   const evidenceText = states.size
     ? [...new Set(stateEvidence)].join("\n\n")
-    : national?.context ?? "";
+    : acceptedNational?.context ?? "";
   return {
     hasCandidate: true,
     geo,

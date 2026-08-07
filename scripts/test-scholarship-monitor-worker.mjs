@@ -401,6 +401,17 @@ const usAndCanadaResidencyIsNationalForFinder = evaluateGeography({
 assert.equal(usAndCanadaResidencyIsNationalForFinder.hasCandidate, true);
 assert.deepEqual(usAndCanadaResidencyIsNationalForFinder.geo, { scope: "national" });
 
+const umbrellaAwardDoesNotInheritSubawardResidency = evaluateGeography({
+  configuration: {
+    id: "horatio-alger-cte",
+    name: "Horatio Alger Career & Technical Scholarship",
+    sourceUrl: "https://example.org/cte-scholarships",
+  },
+  html: `<main><h1>Career & Technical Education Scholarships</h1><p>National Career & Technical Scholarship</p><p>Be a United States citizen.</p><p>John Hardin Hudiburg Career & Technical Scholarship</p><p>John Rollins Career & Technical Scholarship</p><p>Applicants must be a Delaware resident.</p><p>Valencia College Career & Technical Scholarship</p></main>`,
+  finalUrl: "https://example.org/cte-scholarships",
+});
+assert.equal(umbrellaAwardDoesNotInheritSubawardResidency.hasCandidate, false);
+
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",

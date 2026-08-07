@@ -2,9 +2,9 @@
 
 Status: Phases 1–3 implemented and applied to the production Supabase
 project on August 7, 2026. Geography extraction and publication guards were
-added the same day. The live seed contains
-1,220 curated inventory rows, 1,220 active official sources, and 1,220
-current-state rows.
+added the same day. The live seed contains the complete curated Finder
+inventory plus any private, withheld intake records. Counts are reported by
+every seed and alert run rather than being hard-coded here.
 
 This system applies only to the individual awards in Empower's curated
 Scholarship Finder. It never imports, monitors, or publishes records from the
@@ -14,7 +14,7 @@ separate **More places to search** launcher section.
 
 - An idempotent Supabase schema in `docs/scholarship-monitor-schema.sql`.
 - A deterministic inventory generated from the actual curated `scholarships`
-  export, currently 1,220 published records.
+  export.
 - One official source per inventory record, ready for richer source adapters.
 - Tables for runs, domains, sources, observations, current state, recurring
   cycles, field-level proposals, manual locks, and immutable history.
@@ -59,7 +59,8 @@ remove or discontinue a scholarship.
 
 ## Phase 2 official-source monitoring
 
-Monitoring now covers all 1,220 curated scholarships across 792 official hosts.
+Monitoring covers every curated scholarship and every private withheld intake
+record across their official hosts.
 The two monitoring tiers stay deliberately separate:
 
 - 75 scholarship-specific adapters in `scripts/scholarship-status-sources.json`
@@ -75,11 +76,14 @@ The two monitoring tiers stay deliberately separate:
   Language such as “typically,” “usually,” “expected,” “around,” or “to be
   announced” is rejected rather than converted into a date.
 - Every fetched official page also receives conservative geography extraction.
-  It proposes only an explicit nationwide statement or a hard state residency/
-  attendance rule with named states. Citizenship, preferences, work-service
-  commitments, unlisted regions, cross-domain redirects, and conflicting
-  language never become a geography proposal. Every geography proposal is
-  high-risk and requires moderator approval; none can auto-apply.
+  It proposes only an explicit nationwide statement or a hard applicant
+  residency rule with named states. School locations, event locations,
+  citizenship, preferences, work-service commitments, sponsor names, county
+  names, navigation text, unlisted regions, cross-domain redirects, and
+  conflicting language never become geography proposals. Shared award pages
+  are scoped to the heading for the named scholarship before evidence can be
+  used. Every geography proposal is high-risk and requires moderator approval;
+  none can auto-apply.
 
 The scheduled workers:
 
@@ -142,6 +146,16 @@ Every submitted record is created as `withheld` with unverified geography and
 is added to the weekly candidate and source-health monitors. The monitor may
 create evidence proposals, but it cannot publish the record. Human-verified
 official-source geography is a hard prerequisite for later curation.
+
+`/admin/scholarships/promotions` is the controlled handoff from monitoring to
+repository curation. A candidate cannot prepare a catalog packet unless its
+geography is human-verified with official-source evidence, its latest source
+observation is healthy, and it has no pending evidence proposals. The protected
+server route rechecks all three gates, rejects duplicate catalog IDs and source
+URLs, and returns a catalog record, geography overlay, and provenance record.
+It never writes to the public catalog or changes `publication_status`; the
+packet still requires repository review, classification checks, and deployment
+tests before the Finder can change.
 
 The daily `scholarship-monitor-alerts.yml` audit reports every withheld record,
 fails after a record has waited 14 days, and fails immediately for three
