@@ -12506,6 +12506,17 @@ const scholarshipCatalog: Scholarship[] = [
     officialUrl: "https://pas.org/scholarships/",
   },
   {
+    id: "larrie-londin-memorial-scholarship",
+    name: "Larrie Londin Memorial Scholarship",
+    amount: "$500 for drummers age 17 and under; $1,000 for ages 18–24",
+    deadline: "2026 cycle closed; next application window is spring 2027",
+    deadlineMonth: null,
+    who: "Drummers age 24 or younger pursuing drumset study; applicants age 18–24 must use the award for an accredited, structured music education program. PAS membership is not required.",
+    stages: ["high-school", "college"],
+    tags: ["arts", "music", "percussion", "drumset"],
+    officialUrl: "https://pas.org/larrie-londin-memorial-scholarship/",
+  },
+  {
     id: "sousa-foundation-hawkins-scholarship",
     name: "Sousa Foundation Hawkins Memorial Scholarship",
     amount: "$1,000",
@@ -18312,8 +18323,8 @@ const scholarshipCatalog: Scholarship[] = [
 ];
 
 // The full catalog remains above as the frozen, recoverable source set. The
-// public Finder exports both the evidence-passed records and the owner's
-// approved amount-floor exceptions. Confirmed removals and all other unresolved
-// reviews remain withheld until a later decision explicitly clears them.
+// public Finder exports the evidence-passed records and the owner's documented
+// policy resolutions. Confirmed removals and resolved withholds remain preserved
+// here but stay out of the public Finder.
 export const scholarships: Scholarship[] =
   applyScholarshipAuditCuration(scholarshipCatalog);
