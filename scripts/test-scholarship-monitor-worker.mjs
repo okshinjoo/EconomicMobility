@@ -389,6 +389,18 @@ const stateResidencyBeatsInstitutionLocations = evaluateGeography({
 assert.equal(stateResidencyBeatsInstitutionLocations.hasCandidate, true);
 assert.deepEqual(stateResidencyBeatsInstitutionLocations.geo, { scope: "states", states: ["WV"] });
 
+const usAndCanadaResidencyIsNationalForFinder = evaluateGeography({
+  configuration: {
+    id: "dri-foundation-scholarship",
+    name: "DRI Foundation Scholarship Award",
+    sourceUrl: "https://example.org/dri-foundation",
+  },
+  html: `<main><h1>The DRI Foundation Scholarship Award</h1><p>The applicant must reside within the United States or Canada.</p></main>`,
+  finalUrl: "https://example.org/dri-foundation",
+});
+assert.equal(usAndCanadaResidencyIsNationalForFinder.hasCandidate, true);
+assert.deepEqual(usAndCanadaResidencyIsNationalForFinder.geo, { scope: "national" });
+
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",

@@ -282,10 +282,14 @@ const EXPLICIT_OPEN_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently 
 const EXPLICIT_CLOSED_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?closed|application (?:period|window|cycle) (?:is |has )?(?:now |currently )?closed|not (?:currently )?accepting applications)\b/i;
 
 function identityEvidence(name, text) {
-  const tokens = [...new Set(
-    (name.toLowerCase().match(/[a-z0-9]+/g) ?? [])
-      .filter((token) => token.length >= 4 && !IDENTITY_STOP_WORDS.has(token)),
-  )];
+  const words = name.toLowerCase().match(/[a-z0-9]+/g) ?? [];
+  const primaryTokens = words.filter((token) => token.length >= 4 && !IDENTITY_STOP_WORDS.has(token));
+  // Some legitimate awards are identified only by a three-letter sponsor
+  // acronym once generic words such as "foundation" and "scholarship" are
+  // removed (for example, DRI). Use that acronym only as a last resort.
+  const tokens = [...new Set(primaryTokens.length
+    ? primaryTokens
+    : words.filter((token) => token.length >= 3 && !IDENTITY_STOP_WORDS.has(token)))];
   const matched = tokens.filter((token) => text.toLowerCase().includes(token));
   return {
     score: tokens.length ? matched.length / tokens.length : 0,
@@ -322,6 +326,7 @@ const NATIONAL_GEOGRAPHY_PATTERNS = [
   /\b(?:open|available|eligible) to (?:students|applicants|residents)[^.]{0,80}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
   /\b(?:students|applicants|residents)\b[^.]{0,60}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
   /\b(?:legal )?residents? of (?:the )?(?:United States|U\.S\.)\b/i,
+  /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live)\b[^.!?]{0,80}\b(?:United States|U\.S\.)\b/i,
   /\b(?:students|applicants) from (?:all|any) U\.S\. states?\b/i,
 ];
 const HARD_GEOGRAPHY_PATTERNS = [
