@@ -456,5 +456,81 @@
       "opensOn": ["cycle opens on ([A-Z][a-z]+ \\d{1,2}(?:st|nd|rd|th)?, \\d{4})"],
       "closesOn": ["or until ([A-Z][a-z]+ \\d{1,2}(?:st|nd|rd|th)?, \\d{4})"]
     }
+  },
+  {
+    "id": "davidson-fellows",
+    "sourceUrl": "https://www.davidsongifted.org/gifted-programs/fellows-scholarship/eligibility/how-to-apply/",
+    "requiredPatterns": [
+      "Fellows Scholarship",
+      "Application Submission & Deadline",
+      "2027 application will open in Fall of 2026"
+    ],
+    "statusRules": [
+      { "status": "upcoming", "pattern": "2027 application will open in Fall of 2026" },
+      { "status": "closed", "pattern": "2026 application is now closed" }
+    ]
+  },
+  {
+    "id": "coolidge-scholarship",
+    "sourceUrl": "https://coolidgescholars.org/selection-timeline/",
+    "requiredPatterns": [
+      "2026-27 SELECTION TIMELINE",
+      "Coolidge Scholarship",
+      "Summer 2027"
+    ],
+    "statusRules": [
+      {
+        "status": "upcoming",
+        "pattern": "will begin accepting applications for the 2026-27 scholarship cycle in the late summer or early fall of 2026"
+      }
+    ]
+  },
+  {
+    "id": "hagan-scholarship",
+    "sourceUrl": "https://haganscholarships.org/timeline/",
+    "requiredPatterns": [
+      "Scholarship Application Timeline",
+      "For the 2027-2028 Academic Year",
+      "Fall 2026 Applications"
+    ],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-09-01",
+      "closesOn": "2026-12-01",
+      "evidencePatterns": {
+        "opensOn": "Fall 2026 Applications[\\s\\S]{0,200}?Application available September 1, 2026",
+        "closesOn": "Fall 2026 Applications[\\s\\S]{0,300}?Application Submittal Deadline December 1, 2026"
+      }
+    }
+  },
+  {
+    "id": "swe-scholarships",
+    "sourceUrl": "https://swe.org/scholarships/",
+    "requiredPatterns": [
+      "One Application, Endless Opportunities",
+      "Collegiate/Graduate Scholars",
+      "Emerging First Year Scholars"
+    ],
+    "statusRules": [
+      { "status": "closed", "pattern": "Now CLOSED for the 26-27 Academic Year" }
+    ]
+  },
+  {
+    "id": "gloria-barron-prize",
+    "sourceUrl": "https://barronprize.org/faqs/",
+    "requiredPatterns": [
+      "FREQUENTLY ASKED QUESTIONS",
+      "two-step application process",
+      "Beginning with our 2026 awards cycle"
+    ],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-01-07",
+      "closesOn": "2026-04-15",
+      "evidencePatterns": {
+        "opensOn": "pre-application link is available from January 7 [–-] March 15, 2026",
+        "closesOn": "Beginning with our 2026 awards cycle[\\s\\S]{0,1200}?Step 2 \\(full application\\): April 15"
+      }
+    }
   }
 ]

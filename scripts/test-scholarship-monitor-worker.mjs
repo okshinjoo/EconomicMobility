@@ -139,6 +139,53 @@ assert.equal(burgerKing.applicationStatus, "upcoming");
 assert.equal(burgerKing.opensOn, "2026-10-15");
 assert.equal(burgerKing.closesOn, "2026-12-15");
 
+const davidsonFellows = evaluateOfficialSource({
+  configuration: configurationFor("davidson-fellows"),
+  html: `<main><h1>How to Apply for the Fellows Scholarship</h1><h2>Application Submission &amp; Deadline</h2><p>The 2026 application is now closed. The 2027 application will open in Fall of 2026.</p></main>`,
+  finalUrl: configurationFor("davidson-fellows").sourceUrl,
+  today: "2026-08-07",
+});
+assert.equal(davidsonFellows.applicationStatus, "upcoming");
+assert.equal(davidsonFellows.opensOn, null);
+assert.equal(davidsonFellows.closesOn, null);
+
+const coolidge = evaluateOfficialSource({
+  configuration: configurationFor("coolidge-scholarship"),
+  html: `<main><h1>2026-27 SELECTION TIMELINE</h1><p>The Coolidge Scholarship will begin accepting applications for the 2026-27 scholarship cycle in the late summer or early fall of 2026. Once the application is live, the submission deadline will be posted.</p><p>Summer 2027: Newly selected scholars attend orientation.</p></main>`,
+  finalUrl: configurationFor("coolidge-scholarship").sourceUrl,
+  today: "2026-08-07",
+});
+assert.equal(coolidge.applicationStatus, "upcoming");
+assert.equal(coolidge.opensOn, null);
+
+const hagan = evaluateOfficialSource({
+  configuration: configurationFor("hagan-scholarship"),
+  html: `<main><h1>Scholarship Application Timeline</h1><p>For the 2027-2028 Academic Year</p><h2>Fall 2026 Applications</h2><p>1. Application available September 1, 2026.</p><p>2. Application Submittal Deadline December 1, 2026.</p></main>`,
+  finalUrl: configurationFor("hagan-scholarship").sourceUrl,
+  today: "2026-08-07",
+});
+assert.equal(hagan.applicationStatus, "upcoming");
+assert.equal(hagan.opensOn, "2026-09-01");
+assert.equal(hagan.closesOn, "2026-12-01");
+
+const swe = evaluateOfficialSource({
+  configuration: configurationFor("swe-scholarships"),
+  html: `<main><h1>One Application, Endless Opportunities</h1><h2>Collegiate/Graduate Scholars</h2><p>Now CLOSED for the 26-27 Academic Year</p><h2>Emerging First Year Scholars</h2></main>`,
+  finalUrl: configurationFor("swe-scholarships").sourceUrl,
+  today: "2026-08-07",
+});
+assert.equal(swe.applicationStatus, "closed");
+
+const barron = evaluateOfficialSource({
+  configuration: configurationFor("gloria-barron-prize"),
+  html: `<main><h1>FREQUENTLY ASKED QUESTIONS</h1><p>Beginning with our 2026 awards cycle, the Barron Prize has moved to a two-step application process.</p><p>The pre-application link is available from January 7 – March 15, 2026.</p><p>Step 1 (pre-application): March 15. Step 2 (full application): April 15, 5 pm Mountain Time.</p></main>`,
+  finalUrl: configurationFor("gloria-barron-prize").sourceUrl,
+  today: "2026-08-07",
+});
+assert.equal(barron.applicationStatus, "closed");
+assert.equal(barron.opensOn, "2026-01-07");
+assert.equal(barron.closesOn, "2026-04-15");
+
 const unsupportedFixedOpening = evaluateOfficialSource({
   configuration: {
     id: "unsupported-opening",
