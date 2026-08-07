@@ -74,6 +74,11 @@ import {
   type ScholarshipProfile,
   type MatchVerdict,
 } from "@/lib/scholarshipMatch";
+import {
+  isVerifiedClosed,
+  verifiedStatusLabel,
+  type PublicScholarshipStatus,
+} from "@/lib/scholarshipStatus";
 
 const STAGE_LABELS: Record<StudentStage, string> = {
   "high-school": "High school",
@@ -103,7 +108,12 @@ function monthsUntil(s: Scholarship, nowMonth: number): number | null {
 
 /** Closed for this cycle: the deadline passed 1-5 months ago (next one is
  *  7-11 months out). Within 6 months counts as in season. */
-function isClosedCycle(s: Scholarship, nowMonth: number | null): boolean {
+function isClosedCycle(
+  s: Scholarship,
+  nowMonth: number | null,
+  verifiedStatus?: PublicScholarshipStatus,
+): boolean {
+  if (verifiedStatus) return isVerifiedClosed(verifiedStatus);
   if (nowMonth === null) return false;
   const until = monthsUntil(s, nowMonth);
   return until !== null && until >= 7;
@@ -324,9 +334,23 @@ export default function ScholarshipFinder() {
   const [visible, setVisible] = useState(30);
   // The clock, post-mount (see the header comment).
   const [now, setNow] = useState<{ m: number; y: number } | null>(null);
+  const [verifiedStatuses, setVerifiedStatuses] = useState<Map<string, PublicScholarshipStatus>>(new Map());
   useEffect(() => {
     const d = new Date();
     setNow({ m: d.getMonth() + 1, y: d.getFullYear() });
+  }, []);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/scholarship-status")
+      .then((response) => (response.ok ? response.json() : { statuses: [] }))
+      .then((payload: { statuses?: PublicScholarshipStatus[] }) => {
+        if (!active) return;
+        setVerifiedStatuses(new Map((payload.statuses ?? []).map((status) => [status.id, status])));
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
   }, []);
   // When the opening stage came from the person's profile, we say so (subtle,
   // editable) — never a claim of confirmed eligibility, just where we started.
@@ -520,17 +544,17 @@ export default function ScholarshipFinder() {
       const ub = monthsUntil(b, now.m) ?? 6.5;
       return ua - ub;
     };
-    const openList = list.filter((s) => !isClosedCycle(s, now.m));
+    const openList = list.filter((s) => !isClosedCycle(s, now.m, verifiedStatuses.get(s.id)));
     if (sort !== "deadline" || !q) openList.sort(bySort);
     const closedList = list
-      .filter((s) => isClosedCycle(s, now.m))
+      .filter((s) => isClosedCycle(s, now.m, verifiedStatuses.get(s.id)))
       .sort(
         sort === "deadline"
           ? (a, b) => (monthsUntil(a, now.m) ?? 99) - (monthsUntil(b, now.m) ?? 99)
           : bySort
       );
     return { open: openList, closed: closedList };
-  }, [stage, undocOnly, query, now, sort, stateSel, fieldSel, tagFilters, cleanQuery, suggestion, matchingOn]);
+  }, [stage, undocOnly, query, now, sort, stateSel, fieldSel, tagFilters, cleanQuery, suggestion, matchingOn, verifiedStatuses]);
 
   // Verdicts, when matching is on — computed post-mount only (profile is
   // storage-read), so the server render never shows them.
@@ -910,7 +934,7 @@ export default function ScholarshipFinder() {
           </>
         ) : (
           <>
-            {openShown.length} open now
+            {openShown.length} open, opening soon, or in season
             {closed.length > 0 &&
               ` · ${closed.length} between cycles (greyed, at the end)`}
             {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
@@ -971,7 +995,8 @@ export default function ScholarshipFinder() {
       {/* Cards — open cycles first, closed cycles greyed at the end */}
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {shown.slice(0, visible).map((s) => {
-          const closedCycle = now !== null && isClosedCycle(s, now.m);
+          const verifiedStatus = verifiedStatuses.get(s.id);
+          const closedCycle = now !== null && isClosedCycle(s, now.m, verifiedStatus);
           const until = now === null ? null : monthsUntil(s, now.m);
           const thisMonth = until === 0;
           const mark = marks[s.id];
@@ -991,7 +1016,12 @@ export default function ScholarshipFinder() {
               }${mark?.applied ? " ring-2 ring-amber" : ""}`}
             >
               <div className="flex items-start justify-between gap-3">
-                {closedCycle && now !== null ? (
+                {verifiedStatus ? (
+                  <p className={`text-sm font-bold ${closedCycle ? "text-stone" : "text-forest"}`}>
+                    {verifiedStatusLabel(verifiedStatus)}
+                    <span className="ml-1 font-medium">· human-verified</span>
+                  </p>
+                ) : closedCycle && now !== null ? (
                   <p className="text-sm font-bold text-stone">
                     Closed for this cycle · reopens ahead of{" "}
                     {nextDeadlineLabel(s, now.m, now.y)}

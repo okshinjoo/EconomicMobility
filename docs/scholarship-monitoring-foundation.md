@@ -86,3 +86,11 @@ values with exact official-source evidence. Accept, edit, verify, keep-current,
 reject, and optional field-lock decisions update the private monitor state and
 append immutable history in one database transaction. These actions do not
 edit `lib/scholarships.ts` or the public Finder.
+
+`/api/scholarship-status` is the narrow publication bridge. It returns only
+human-verified application state for IDs that still exist in the curated
+repository catalog. The Finder consumes this after its first render and uses
+it in preference to the older month-based season estimate. Machine proposals,
+source evidence, reviewer identities, notes, locks, and unverified state never
+leave the private monitoring system. If the service is unavailable, the route
+returns no monitored statuses rather than exposing uncertain data.
