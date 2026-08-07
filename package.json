@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "check:links": "node scripts/check-internal-links.mjs",
-    "check:freshness": "node scripts/check-freshness.mjs"
+    "check:freshness": "node scripts/check-freshness.mjs",
+    "check:scholarship-tags": "node scripts/check-scholarship-tags.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

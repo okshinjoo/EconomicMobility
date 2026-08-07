@@ -1,4 +1,6 @@
 import { applyScholarshipAuditCuration } from "./scholarshipCuration.generated";
+import { scholarshipGeo } from "./scholarshipGeo.generated";
+import type { EligibilityTag } from "./scholarshipTaxonomy";
 
 // The curated scholarship list (July 2026): real, established, national
 // awards relevant to Empower's audience — first-gen, low-income, immigrant,
@@ -34,7 +36,24 @@ export interface Scholarship {
   /** Optional search keywords (majors, identities, states) — folded into
    *  the finder's fuzzy haystack, never displayed. */
   tags?: string[];
+  /** Structured eligibility, classified from the OFFICIAL page (taxonomy
+   *  ids + required/preferred/relevant strength — see lib/scholarshipTaxonomy
+   *  and docs/scholarship-taxonomy-spec.md). Absent = not yet classified;
+   *  empty array = classified GENERAL (no niche criteria). Assigned via the
+   *  generated overlay below, never hand-edited inline. */
+  eligibility?: EligibilityTag[];
+  /** Structured geography. A state listed here is a HARD residency (or
+   *  in-state attendance) requirement — that's what the field means.
+   *  Absent = not yet classified; { scope: "national" } = verified open
+   *  nationwide. Assigned via the generated overlay below. */
+  geo?: ScholarshipGeo;
   officialUrl: string;
+}
+
+export interface ScholarshipGeo {
+  scope: "national" | "states";
+  /** Two-letter USPS codes, present when scope is "states". */
+  states?: string[];
 }
 
 const scholarshipCatalog: Scholarship[] = [
@@ -18932,5 +18951,15 @@ const scholarshipCatalog: Scholarship[] = [
 // public Finder exports the evidence-passed records and the owner's documented
 // policy resolutions. Confirmed removals and resolved withholds remain preserved
 // here but stay out of the public Finder.
-export const scholarships: Scholarship[] =
-  applyScholarshipAuditCuration(scholarshipCatalog);
+//
+// Classification overlays (geo now, eligibility as waves land) merge here by
+// id — the generated files are produced by the classification pipeline with
+// per-record provenance in data/scholarship-classifications.json, validated
+// by `npm run check:scholarship-tags`. Entries without an overlay record
+// behave exactly as before.
+export const scholarships: Scholarship[] = applyScholarshipAuditCuration(
+  scholarshipCatalog,
+).map((s) => {
+  const geo = scholarshipGeo[s.id];
+  return geo ? { ...s, geo } : s;
+});
