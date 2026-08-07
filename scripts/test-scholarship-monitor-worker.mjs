@@ -462,6 +462,20 @@ const unrelatedProgramOnSharedPage = evaluateGenericCandidateSource({
 });
 assert.equal(unrelatedProgramOnSharedPage.hasCandidate, false);
 
+const adjacentScholarshipDeadlineDoesNotCloseTarget = evaluateGenericCandidateSource({
+  configuration: {
+    id: "hfa-scholarship",
+    name: "HFA Scholarship",
+    sourceUrl: "https://example.org/hfa-scholarships",
+  },
+  html: `<main><h1>HFA Scholarships</h1><p>The HFA Scholarship application will open on April 10, 2026. Please check back for complete program details.</p><section><h2>Medexus B More Scholarship</h2><p>Deadline: April 30, 2026</p></section><section><h2>Optum Infusion Pharmacy & Bleeding Disorders Foundation of North Carolina Scholarships</h2><p>Deadline: May 1, 2026</p></section></main>`,
+  finalUrl: "https://example.org/hfa-scholarships",
+  today: "2026-08-07",
+});
+assert.equal(adjacentScholarshipDeadlineDoesNotCloseTarget.opensOn, "2026-04-10");
+assert.equal(adjacentScholarshipDeadlineDoesNotCloseTarget.closesOn, null);
+assert.equal(adjacentScholarshipDeadlineDoesNotCloseTarget.applicationStatus, "unknown");
+
 const administratorSubmissionDeadline = evaluateGenericCandidateSource({
   configuration: {
     id: "student-leaders",

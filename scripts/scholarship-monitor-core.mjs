@@ -282,6 +282,7 @@ const CLOSE_LANGUAGE = /\b(?:application deadline|applications? (?:are )?due|app
 const OPEN_LANGUAGE = /\b(?:applications? open|application (?:period|window|cycle) (?:opens?|begins?|starts?)|opens? on|opening date|available (?:on|from)|begins? on|starts? on)\b/i;
 const EXPLICIT_OPEN_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?open|application (?:period|window|cycle) (?:is )?(?:now |currently )?open)\b/i;
 const EXPLICIT_CLOSED_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?closed|application (?:period|window|cycle) (?:is |has )?(?:now |currently )?closed|not (?:currently )?accepting applications)\b/i;
+const NAMED_AWARD_PATTERN_SOURCE = "\\b(?:(?:[A-Z][A-Za-z0-9’'&.-]*|&)\\s+){1,9}(?:Scholarships?|Awards?|Grants?|Benefits?|Fellowships?)\\b";
 
 function identityEvidence(name, text) {
   const words = name.toLowerCase().match(/[a-z0-9]+/g) ?? [];
@@ -377,7 +378,7 @@ function geographyTextScope(html, name) {
 }
 
 function hasMultipleNamedAwards(text) {
-  const mentions = text.match(/\b(?:(?:[A-Z][A-Za-z0-9’'&.-]*|&)\s+){1,9}(?:Scholarship|Award|Grant|Benefit|Fellowship)\b/g) ?? [];
+  const mentions = text.match(new RegExp(NAMED_AWARD_PATTERN_SOURCE, "g")) ?? [];
   return new Set(mentions.map((mention) => mention.toLowerCase())).size >= 3;
 }
 
@@ -553,6 +554,12 @@ function contextMatchesIdentity(context, tokens) {
   return tokens.filter((token) => normalized.includes(token)).length >= requiredMatches;
 }
 
+function nearestNamedAward(beforeDate) {
+  const nearby = beforeDate.slice(-220);
+  const matches = [...nearby.matchAll(new RegExp(NAMED_AWARD_PATTERN_SOURCE, "g"))];
+  return matches.at(-1)?.[0] ?? null;
+}
+
 function genericDateMentions(text, identityTokens) {
   const mentions = [];
   for (const pattern of GENERIC_DATE_PATTERNS) {
@@ -566,6 +573,8 @@ function genericDateMentions(text, identityTokens) {
       const context = `${before}${match[0]}${after}`.trim();
       if (UNCERTAIN_DATE_LANGUAGE.test(context)) continue;
       if (NON_APPLICANT_DATE_LANGUAGE.test(context)) continue;
+      const nearestAward = nearestNamedAward(before);
+      if (nearestAward && !contextMatchesIdentity(nearestAward, identityTokens)) continue;
       if (!contextMatchesIdentity(context, identityTokens)) continue;
       const lastBoundary = Math.max(before.lastIndexOf("."), before.lastIndexOf("?"), before.lastIndexOf("!"));
       const nextBoundaryCandidates = [after.indexOf("."), after.indexOf("?"), after.indexOf("!")].filter((position) => position >= 0);
