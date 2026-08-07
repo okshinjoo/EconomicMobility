@@ -451,7 +451,7 @@ export function evaluateGeography({ configuration, html, finalUrl }) {
   const sharedAwardPage = hasMultipleNamedAwards(text);
 
   const national = nationalEvidence(text);
-  const acceptedNational = national && (!sharedAwardPage || contextMatchesPrimaryIdentity(national.context, identity.tokens))
+  const acceptedNational = national && (!sharedAwardPage || contextMatchesIdentity(national.context, identity.tokens))
     ? national
     : null;
   const nationalMatch = acceptedNational?.match ?? null;

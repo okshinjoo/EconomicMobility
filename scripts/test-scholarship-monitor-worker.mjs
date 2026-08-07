@@ -412,6 +412,18 @@ const umbrellaAwardDoesNotInheritSubawardResidency = evaluateGeography({
 });
 assert.equal(umbrellaAwardDoesNotInheritSubawardResidency.hasCandidate, false);
 
+const namedNationalExceptionOverridesSharedPageStates = evaluateGeography({
+  configuration: {
+    id: "unico-alessio-southern-italy",
+    name: "UNICO Alessio Southern Italy Scholarship",
+    sourceUrl: "https://example.org/unico-scholarships",
+  },
+  html: `<main><h1>UNICO Scholarships</h1><p>Applicants must reside in California, Connecticut, Delaware, Florida, or Illinois. Exception: The Maria and Paolo Alessio Southern Italy Scholarship is open to applicants from all 50 states. The DiMattio Scholarship is limited to New Jersey residents.</p></main>`,
+  finalUrl: "https://example.org/unico-scholarships",
+});
+assert.equal(namedNationalExceptionOverridesSharedPageStates.hasCandidate, false);
+assert.equal(namedNationalExceptionOverridesSharedPageStates.conflictingSignals, true);
+
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",
