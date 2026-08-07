@@ -16,11 +16,13 @@ export const SCHOLARSHIP_AUDIT_PASSED = 644;
 export const SCHOLARSHIP_AUDIT_REMOVAL = 409;
 export const SCHOLARSHIP_AUDIT_MANUAL_REVIEW = 578;
 export const SCHOLARSHIP_MANUAL_RESOLVED_PUBLISHED = 4;
-export const SCHOLARSHIP_MANUAL_REVIEW_WITHHELD = 77;
+export const SCHOLARSHIP_OWNER_APPROVED_POLICY_PUBLISHED = 22;
+export const SCHOLARSHIP_MANUAL_REVIEW_WITHHELD = 55;
 export const SCHOLARSHIP_PUBLIC_TOTAL =
   SCHOLARSHIP_AUDIT_PASSED +
   SCHOLARSHIP_AMOUNT_FLOOR_EXCEPTION_COUNT +
-  SCHOLARSHIP_MANUAL_RESOLVED_PUBLISHED;
+  SCHOLARSHIP_MANUAL_RESOLVED_PUBLISHED +
+  SCHOLARSHIP_OWNER_APPROVED_POLICY_PUBLISHED;
 
 const passedIdText = "jkc-transfer jkc-college gates questbridge coca-cola dell horatio-alger dream-us-national dream-us-opportunity hsf ron-brown apia american-indian-college-fund cameron-impact amazon-future-engineer elks-mvs vfw-voice equitable-excellence ge-reagan dream-award regeneron-sts soroptimist-live-your-dream rankin-scholar-grant patsy-mink-education-award davis-putter sme-education aws-welding taco-bell-live-mas hhf-youth-awards cafe-bustelo kasf oca-gold-mountain aises cobell-undergrad league-foundation out-to-innovate aahd-krause lime-pathways foster-love-fellowship burger-king-scholars carson-scholars legion-oratorical afsa-essay optimist-essay davidson-fellows coolidge-scholarship hagan-scholarship smart-dod gmis-stem acs-catalyst nurse-corps aicpa-legacy acfe-ritchie-jennings aiga-worldstudio schoolhouse-connection frs-rural sallie-mae-bridging esperanza-fund ushli-andrade pride-foundation dream-project-va marine-corps-scholarship fisher-house-military-children tillman-scholars amvets-national jack-and-jill islamic-scholarship-fund aief-undergrad first-nations-ag chick-fil-a-community mcdonalds-hacer princess-grace-awards sodexo-stop-hunger regions-riding-forward dennys-hungry-for-education ahla-academic texas-grant terry-foundation florida-bright-futures take-stock-in-children excelsior-ny nys-tap pa-state-grant illinois-map golden-apple-scholars ocog-ohio ohio-governors-merit choose-ohio-first next-nc golden-leaf-nc samsung-legion path-to-pro stacey-milbern uhf-health-care-scholars haz-la-u nm-cancer-survivor nm-cancer-sibling exploravision ncwit-collegiate awg-geoscience hyundai-women-stem point-community-college gamma-mu pfund traub-dicker-rainbow live-out-loud apiqwtc phcc-foundation nawic-founders agc-foundation women-in-hvacr horatio-alger-cte durastak-syngenta naba-national nahj ija-aaja-pacific-islander nfb-scholarship sertoma-hearing anne-ford-ncld rubys-rainbow wa-college-bound or-opportunity-grant or-promise-grant az-promise-program nm-opportunity-scholarship ak-performance-scholarship hi-promise-scholarship mt-honor-scholarship wy-hathaway-scholarship ca-cal-grant tn-tsaa la-tops ms-help ar-academic-challenge ok-promise dc-tuition-assistance-grant nh-governors-scholarship in-21st-century-scholars sd-opportunity-scholarship roothbert-fund-scholarship cofem-mexican-american-dream-scholarship aicpa-two-year-transfer wisp-doris-buffett-grant cybercorps-scholarship-for-service asce-scholarships nih-undergraduate-scholarship-program actuarial-foundation-stem-stars barry-goldwater-scholarship pama-national-scholarships aea-educational-foundation-scholarships pma-educational-foundation-scholarship iec-foundation-scholarship pba-minerva-beauty-scholarship appa-deed-lineworker-scholarship sigma-gamma-rho-nef-scholarships fossi-hbcu-stem-scholars henaac-gmis-scholars aaia-native-scholarship udall-undergraduate-scholarship adc-shaheen-media-scholarship oar-postsecondary-scholarship peo-star-scholarship ncld-allegra-ford-thomas-scholarship paf-scholarship-for-survivors pfef-children-of-incarcerated-scholarship kroger-scholars teamsters-hoffa-scholarship ufcw-charity-foundation-scholarship union-plus-scholarship seiu-1199-joseph-tauber-scholarship knights-of-columbus-scholarships girl-scouts-gold-award-scholarship 4-h-youth-in-action-scholarship becu-foundation-scholarship army-rotc-scholarship navy-marine-rotc-scholarship air-force-space-force-rotc-scholarship coast-guard-cspi fry-scholarship amvets-ladies-auxiliary-scholarship tx-charles-butt-scholarship fl-minority-teacher-education-scholarship r-gene-richter-scholarship nrf-foundation-next-generation-scholarship pmi-founders-scholarship larry-b-sawyer-student-scholarship hsmai-mike-dimond-scholarship appraisal-institute-education-trust-scholarship cas-trust-scholarship jfk-profile-in-courage-essay-contest poetry-out-loud glenn-miller-scholarship-competition unico-alessio-southern-italy-scholarship oca-joe-loanne-chiu-scholarship vausa-fallen-heroes-scholarship nfia-partner-donor-scholarship naahp-haitian-american-leadership-scholarship gbhem-umc-scholarship pcusa-undergraduate-scholarship abhms-baptist-scholarship sharda-hindu-scholarship isna-scholarship vertex-foundation-scd-tdt-scholarship acb-scholarship-program scholastic-tourette-scholarship abbvie-immunology-scholarship boomer-esiason-academic-scholarship 180-medical-scholarship noaa-hollings-scholarship awwa-woodard-curran-scholarship imagine-america-asep imagine-america-high-school-scholarship perry-second-chances-scholarship texas-national-guard-state-tuition-assistance nsa-scholarship-foundation obama-chesky-voyager-scholarship gloria-barron-prize diller-teen-tikkun-olam-awards stamps-scholars horatio-alger-state-scholarships nmcrs-education-assistance nmfa-spouse-scholarship fallen-patriots-scholarship sowf-college-scholarship fashion-scholarship-fund-case-study apf-brehm-undergraduate-psychology-scholarship prsa-foundation-geoffrey-curtis-scholarship apa-foundation-scholarship-in-planning abfse-national-scholarship chick-fil-a-team-member-scholarship kfc-foundation-reach-scholarship publix-carol-jenkins-barnett-scholarship pizza-hut-foundation-scholarship babe-ruth-league-college-scholarship pga-works-lundgren-scholars nff-national-scholar-athlete-award pr-beca-legislativa cnmi-eap-base-grant texas-foster-tuition-waiver florida-foster-tuition-exemption ioof-wirz-scholarship bgca-youth-of-the-year-scholarships sar-knight-essay-contest jci-senate-foundation-scholarship helm-leadership-fellows-scholarship aist-steel-intern-scholarship isc2-undergraduate-scholarship ncwit-aspirations-collegiate-award awg-minority-scholarship nspe-steinman-scholarship choose-aerospace-skillpointe-scholarship nalp-foundation-scholarship alpha-sigma-lambda-scholarship chime-scholars-foundation point-foundation-access-scholarship california-lgbtq-foundation-scholarship pflag-new-orleans-scholarship oar-schwallie-family-scholarship incight-scholarship nbcuniversal-tony-coelho-media-scholarship hemophilia-federation-of-america-scholarship abbvie-cf-scholarship microsoft-disability-scholarship mpower-global-citizen-scholarship lois-britt-memorial-pork-industry-scholarship dst-oleta-lawanda-crain-scholarship momeni-foundation-scholarships kappa-alpha-psi-foundation-achievement-scholarship laef-general-youth-scholarship dow-jones-news-fund nppf-student-scholarships bea-scholarships your-future-is-now-scholarship aiga-worldstudio-dxd-scholarships penguin-random-house-creative-writing-awards wings-over-america-scholarship tall-clubs-international-scholarship bri-myimpact-challenge elie-wiesel-prize-in-ethics us-senate-youth-program ascp-foundation-ring-empowerment-scholarship aotf-lands-banks-memorial-scholarship arthritis-champion-scholarship nsa-krishnan-yegneswaran-scholarship rareis-scholarship-fund nccf-survivor-scholarship nccf-legacy-scholarship lls-blood-cancer-survivors-scholarship asa-norman-beery-memorial-scholarship spencer-educational-foundation-undergraduate-scholarship aierf-college-scholarship ncrf-a-to-z-scholarship asid-foundation-polsky-award aaf-sean-finnegan-memorial-scholarship aaf-mosaic-scholarship home-depot-orange-scholars dav-scholarships-for-student-volunteers coast-guard-foundation-scholarship navy-league-foundation-scholarship iaff-mcclennan-scholarship nm-legislative-lottery-scholarship sc-life-scholarship al-collegecounts-scholarship ms-help-grant wv-promise-scholarship naehcy-scholars-program pitzer-family-education-foundation naacp-empowering-better-tomorrow venus-morris-griffin-scholarship peyton-tuthill-hearts-of-hope-scholarship hep-camp-association-scholarship florida-farmworker-student-scholarship amet-scholarship-program larry-b-sanchez-memorial-scholarship gabriel-gomez-sandoval-farmworker-memorial-scholarship herren-project-go-purple-scholarship jed-student-voice-of-mental-health-awards ron-howell-caregiver-scholarship vertex-foundation-healthy-families-scholarship gabriela-blanco-sibling-scholarship agnes-mccarthy-family-caregiving-scholarship ala-children-of-warriors-scholarship toyota-motor-north-america-scholarship natf-navigate-your-future-scholarship nd-alliance-neurodiversity-scholarship agc-workforce-development-scholarship aci-foundation-scholarship zonta-young-women-in-leadership-award critical-language-scholarship nsli-y-scholarship breakthrough-junior-challenge wisconsin-academic-excellence-scholarship south-dakota-build-dakota-scholarship oklahoma-tuition-aid-grant south-carolina-palmetto-fellows-scholarship fred-scheigert-scholarship afb-scholars-program cochlear-scholarships optimist-ccdhh-scholarship aer-ferrell-scholarship help-america-hear-scholarship american-indian-services-scholarship truman-d-picard-scholarship unity-cook-scholarships student-veterans-of-america-scholarships afcea-war-veterans-scholarship ala-non-traditional-student-scholarship pva-educational-scholarship-program finlandia-foundation-national-scholarship tennessee-hope-scholarship missouri-bright-flight montana-stem-healthcare-scholarship north-dakota-scholarship alaska-education-grant delaware-scholarship-incentive-program south-carolina-hope-scholarship stephen-phillips-memorial-scholarship-fund southwest-airlines-community-scholarship synchrony-scholarship-autistic-students-of-color pepsico-foundation-nextstep-scholarship new-york-life-golden-futures-scholarship firehouse-subs-public-safety-scholarship ahla-american-express-scholarship isna-musa-dakri-scholarship isna-amana-mutual-funds-scholarship elca-rossing-physics-scholarship cma-education-foundation-maritime-scholarship arema-educational-foundation-scholarship league-of-railway-women-scholarships nrc-scholarship-program aptf-scholarship-program comto-national-scholarship-program wts-foundation-scholarships university-of-the-aftermarket-foundation-scholarship izaak-walton-league-national-conservation-scholarship gca-awards-for-summer-environmental-studies asla-council-of-fellows-scholarship owaa-bodie-mcdowell-scholarship distinguished-young-women abwa-sbmef-national-scholarship ams-freshman-undergraduate-scholarship aag-darrel-hess-community-college-geography-scholarship actfl-future-teacher-scholarship-program jw-pepper-music-education-scholarship aslta-nathie-marbury-scholarship dga-student-spotlight-awards natas-national-scholarships cbc-spouses-visual-arts-scholarship ruth-lilly-poetry-fellowships naacp-ldf-herbert-lehman-scholarship hacu-coca-cola-first-generation-scholarship kao-kalia-yang-scholarship chia-family-foundation-scholarship whataburger-feeding-student-success-scholarship costco-employee-scholarship cox-jim-kennedy-scholarship-fund discount-tire-bruce-t-halle-scholarship fred-lena-meijer-scholarship elks-emergency-educational-grants national-space-club-keynote-scholarship national-exchange-club-youth-of-the-year mississippi-eminent-scholars-grant arkansas-governors-distinguished-scholarship texas-armed-services-scholarship-program oklahoma-rising-scholars-award louisiana-tops-tech-award kansas-education-opportunity-scholarship kansas-state-scholarship disabledperson-national-scholarship latin-grammy-cultural-foundation-scholarships van-hipp-heroes-scholarship-fund culvers-foundation-scholarship sc-guard-college-assistance tennessee-future-teacher-scholarship oklahoma-inspired-to-teach teaching-fellows-for-maryland phi-kappa-phi-study-abroad-grant ashrae-undergraduate-engineering-scholarships aiche-mcketta-undergraduate-scholarship asnt-engineering-undergraduate-scholarship asabe-foundation-engineering-scholarship acec-research-institute-scholarships ite-university-scholars-program aisc-scholarships aeg-foundation-scholarships project-sleep-narcolepsy-scholarship hydrocephalus-association-scholarship acpa-randall-larossa-scholarship amputee-coalition-skoski-scholarship minnesota-surviving-children-spouses-benefit bnsf-college-scholarship-program american-airlines-education-foundation-scholarship dominion-energy-educational-equity-scholarship entergy-community-power-scholarship entergy-power-your-future-scholarship aiec-thomas-moore-scholarship florida-ease-grant oklahoma-tuition-equalization-grant arrl-foundation-scholarship-program able-flight-scholarships leroy-homer-flight-scholarship sousa-foundation-hawkins-scholarship akc-humane-fund-spurling-scholarship fellows-smacna association-concrete-precast-undergraduate association-carriers-truckload nuca association-industry-industry-tire-tire supplyhouse-to-track-trades association-contractors-diving-international gas-propane dewalt-trade norfolk-on-southern-track-trades nation-skilled cpa-pennsylvania educational-vscpa njcpa cpa-nc accounting-cpa-washington cpas-educational-georgia-society cpas-educational-england-new-society cpa-ohio future-nacs first-generation-tiaa council-executive-leadership charities-nbaa aaae-aviation-women aapg-camp-field seg association-black-geoscientists affairs-aiche-committee-minority bird-frances-gca-habitat-m ihs forgiveness-loan-minnesota-nurse illinois-nursing boren doodle-google ayn-rand-atlas-shrugged-essay child-kevin educational-joe-pugliese courter-hemophilia-pfizer-soozie gravis-myasthenia-ucb dollars-scholars-um-umhef brethren-care-church-health achievement-coptic-educational-merit-undergraduates 4-h-opportunity-texas 4-h-illinois-state 4-h-iowa nfaa-pro bowl4life-johnny-pba-petraglia california-daniel-fire-terry brands-dependent-fellowes-gen-next corporation-employee-global-waters carolina-children-north-veterans-wartime dependents-military-survivors-virginia benefits-jersey-new-survivor-tuition children-michigan-tuition-veterans 29-dependent-exemption-louisiana-state orphan-virginia-war-west child-disabled-exemption-fee-indiana deceased-dependents-disabled-illinois-mia dependents-kentucky-tuition-veterans-waiver enforcement-firemen-law-mississippi-officers assistance-colorado-dependent-tuition armed-dependent-forces-idaho-officer indigenous-kansas-state-status-tuition fee-foster-nevada-waiver-youth educational-gratuity-pennsylvania-postsecondary california-planning diversity-equity-inclusion-laf-landdesign iida-j-john-legacy-nelson architects-design-diversity-ia-iida competition-design-nkba brand-licensing-nrf avmf-technician-veterinary-zoetis feeding-ift-tomorrow-undergraduate academic-funeral-service application-general-horticulture perennial-plant 1-diabetes-fishman-marc-type administrators-black-forum-public marshall-nabcj-thurgood ecology-tmcf-wildlife creary-drs-family-ludlow-ruth army-association-corps-nurse uspaacc against-artistic-grain american-fish-native-society-wildlife american-native-scholars-vocal fort-future-leaders agri-agriculture-american-american-daughters hourglass-rock-trades-women ostem ar-arkansas-governor-higher-s ar-arkansas-governor-s-scholars la-challenge-go-louisiana-ycp ca-act-alan-pattee oh-adoption-ohio oh-officers-ohio-safety in-children-guard-indiana-indiana in-children-indiana-officers-public in-fee-heart-indiana-purple il-dependent-displaced-energy-illinois mi-incentive-michigan mi-educator-future-mi-stipend ia-blue-d-robert mo-advanced-incentive-placement mo-child-employee-officer-or mo-s-survivors-veteran-wartime in-child-heart-indiana-or nd-scholars corps-dakota hagen-harvey children-deceased-first-responders mt-orphans-war mt-finalist-merit-semi wy-assistance-educational-plan-wyng co-american-colorado-indian-tribes az-academic-all-arizona-team officers-peace-slain heart-purple fighters-fire-officers-peace nm-mexico-new-scholars tx-first-texas ok-donna-george-nigh-oklahoma ok-baccalaureate-oklahoma-regional ok-act-independent-living-oklahoma la-challenge-go-louisiana-youth ca-california-dependents-enforcement-law wa-opportunity-washington tx-leadership-scholars-texas academic-excellence-nys nj-center-jersey-new-trade nj-care-foster-jersey-new ct-chesla-undergraduate ct-children-connecticut-dependent-duty ma-massachusetts-public-service ma-abigail-adams-john ma-certificate-koplik-mastery-stanley ma-paul-tsongas ma-adopted-assistance-child-dcf masstransfer ma-paraprofessional-preparation-teacher ma-demand-massachusetts ma-childhood-early-educators ma-valedictorian higher-nh-orphans-veterans action-ccsnh-children-combatants ccsnh-children-fallen-firefighters ccsnh-children-disabled-nh ccsnh-children-foster nh-ccsnh-hampshire-high-new ccsnh-nh-scholars ccsnh-competition-skillsusa-winners va-transfer-two-virginia-year md-2-2-maryland-transfer md-assistance-maryland-shortage-workforce md-collins-honor-iii-leadership fl-benacquisto-florida al-alabama-assistance-educational-firefighter ms-mississippi-niss tn-helping-heroes-tennessee tn-mcwherter-ned-scholars-tennessee tn-hope-nontraditional-tennessee mo-advanced-incentive-missouri-placement mo-child-employee-missouri-officer mo-missouri-s-survivors-veteran ks-hero-kansas-s ks-kansas-nursing-service ks-kansas-service-teacher ne-attracting-excellence-nebraska-teaching ne-aetp-forgivable-loan-nebraska ca-completion-success ks-adult-kansas-learner ok-oklahoma-ready-regents-workforce al-alabama-alabama-engage in-daniels-early-graduation-mitch c-carl-charitable-trust cla-opportunity ellevation families-frontline ibtta invictus-verus hola-microsoft association-chairs-hydropower-legacy culinary-nicole-reed-v booster-parent-usa pega-scholars america-essential-visionaries america-educators-veteran snc-stem tacp bay-buccaneers-football-is foods-scholars-us health-mental-scholars-voya chubb-worldwide frist-patricia leaders-pedro-young-zamora legacy-swine-uspce dairy-shrine cooperative-english-glenn-leadership competition-gcsaa-scholars christian-legacy-sun-vanna angels-s-thai-u graphics-print aatcc-textile-undergraduate archie-gus-spe academic-assp academic-bcsp-qualified aas-environmental-health-neha american-art-auxiliary-contest";
 
@@ -48,13 +50,64 @@ const scholarshipManualResolvedPublishedIds = new Set([
   "foster-love-fellowship",
 ]);
 
+export const scholarshipOwnerApprovedPolicyIds = new Set([
+  // Verified programs whose legitimate individual benefits can be below $500.
+  "wa-college-grant",
+  "nv-millennium-scholarship",
+  "co-college-opportunity-fund",
+  "al-asap",
+  "ky-kees",
+  "nj-tag",
+  "mn-state-grant",
+  "in-frank-obannon",
+  "ks-comprehensive-grant",
+  "caca-national-essay-contest",
+  "ca-dependents-enforcement-law-personnel",
+  "il-dependents-exonerees-illinois-their",
+  "mn-care-child-minnesota-postsecondary",
+
+  // Verified service-conditioned aid published with repayment warnings.
+  "ms-excellence-in-teaching-program",
+  "ne-attracting-excellence-teaching-to",
+  "ne-attracting-excellence-teaching-teaching",
+  "ma-s-teachers-tomorrow",
+  "ma-aspiring-incentive-teachers",
+  "vt-benefit-health-rural-transformation",
+  "vt-benefit-trades-vermont",
+  "me-educators-maine",
+  "md-agent-maryland-officer-police",
+]);
+
 export const scholarshipPublishedIds = new Set([
   ...scholarshipAuditPassedIds,
   ...scholarshipAmountFloorExceptionIds,
   ...scholarshipManualResolvedPublishedIds,
+  ...scholarshipOwnerApprovedPolicyIds,
 ]);
 
 export const scholarshipAuditSourceOverrides: Readonly<Record<string, string>> = {
+  "wa-college-grant": "https://wsac.wa.gov/wcg-awards",
+  "nv-millennium-scholarship": "https://www.nevadatreasurer.gov/GGMS/GGMS_Info/",
+  "co-college-opportunity-fund": "https://data.highered.colorado.gov/college-opportunity-fund-cof-stipend",
+  "al-asap": "https://www.ache.edu/index.php/alabama-student-assistance-program-asap/",
+  "ky-kees": "https://www.kheaa.com/web/scholarships-grants.faces",
+  "nj-tag": "https://www.hesaa.org/Pages/TAG.aspx",
+  "mn-state-grant": "https://ohe.mn.gov/grant-scholarship/minnesota-state-grant",
+  "in-frank-obannon": "https://www.in.gov/che/state-financial-aid/state-financial-aid-by-program/frank-obannon-grant/",
+  "ks-comprehensive-grant": "https://kansasregents.gov/scholarships_and_grants",
+  "caca-national-essay-contest": "https://www.cacanational.org/programs/education/essay-contest",
+  "ca-dependents-enforcement-law-personnel": "https://www.csac.ca.gov/law-enforcement-personnel-dependents-grant-program-lepd",
+  "il-dependents-exonerees-illinois-their": "https://www.isac.org/isac-gift-assistance-programs/grant-program-for-exonerees.html",
+  "mn-care-child-minnesota-postsecondary": "https://ohe.mn.gov/grant-scholarship/postsecondary-child-care-grant",
+  "ms-excellence-in-teaching-program": "https://www.metp.msstate.edu/",
+  "ne-attracting-excellence-teaching-to": "https://ccpe.nebraska.gov/attracting-excellence-teaching-program",
+  "ne-attracting-excellence-teaching-teaching": "https://ccpe.nebraska.gov/aetp-student-teaching",
+  "ma-s-teachers-tomorrow": "https://www.mass.edu/osfa/programs/tmwteachers.asp",
+  "ma-aspiring-incentive-teachers": "https://www.mass.edu/osfa/programs/aspiringteachers.asp",
+  "vt-benefit-health-rural-transformation": "https://www.vsac.org/ruralhealth",
+  "vt-benefit-trades-vermont": "https://www.vsac.org/pursue-career-skilled-trades-tuition-free",
+  "me-educators-maine": "https://www.famemaine.com/affording-education/pay-for-school/borrowing-student-loans/student-loan-programs/educators-for-maine-program/",
+  "md-agent-maryland-officer-police": "https://mhec.maryland.gov/preparing/Pages/Maryland-Police-Officer-Scholarship-Program.aspx",
   "gates": "https://www.thegatesscholarship.org/scholarship/",
   "questbridge": "https://www.questbridge.org/apply-to-college/programs/national-college-match/the-match-scholarship",
   "coca-cola": "https://www.coca-colascholarsfoundation.org/apply/",
@@ -257,11 +310,147 @@ type ScholarshipAuditOverride = Partial<{
 }>;
 
 // Corrections are added here batch by batch only when the audit evidence
-// supplies an unambiguous replacement value. Application-cycle status belongs
-// in the source-backed status monitor, not in these static descriptions.
+// supplies an unambiguous replacement value. Exact 2026 cycle details below
+// are deliberately time-stamped so they remain honest without implying that a
+// closed deadline or an open window automatically carries into the next cycle.
 export const scholarshipAuditRecordOverrides: Readonly<
   Record<string, ScholarshipAuditOverride>
 > = {
+  "wa-college-grant": {
+    amount: "Varies by income, institution, program, and enrollment; full awards can cover public tuition, while some 2026–27 awards are below $500",
+    deadline: "2025–26 and 2026–27 applications are open through FAFSA or WASFA",
+    deadlineMonth: null,
+    who: "Washington residents with financial need—including eligible undocumented students—pursuing an eligible college, career-training, or apprenticeship program without a prior bachelor's degree; the school or apprenticeship sponsor determines the award.",
+  },
+  "nv-millennium-scholarship": {
+    amount: "Up to $10,000 total; $40–$80 per credit depending on the institution, so some semester payments may be below $500",
+    deadline: "No separate application; qualifying graduates acknowledge the award after school nomination",
+    deadlineMonth: null,
+    who: "Nevada high school graduates who meet the required curriculum and either a 3.25 GPA or qualifying ACT/SAT score; recipients must acknowledge the award and meet enrollment and 2.75 continuing-GPA rules.",
+  },
+  "co-college-opportunity-fund": {
+    amount: "$116 per credit at public colleges and $58 per credit at participating private colleges for 2026–27; smaller course loads can receive less than $500",
+    deadline: "Create a COF account and authorize the stipend through your school each term",
+    deadlineMonth: null,
+    who: "Colorado residents—including students eligible under ASSET—who create a COF account and authorize eligible credits each term; a 145-credit lifetime limit applies, with added Pell and Colorado-high-school rules at private colleges.",
+  },
+  "al-asap": {
+    deadline: "No separate state deadline; file the FAFSA as early as possible",
+    deadlineMonth: null,
+  },
+  "ky-kees": {
+    amount: "$187–$500 per year based on high-school GPA, plus $36–$500 test-score awards and other eligible supplements",
+    deadline: "No separate application; qualifying awards are earned automatically in high school",
+    deadlineMonth: null,
+    who: "Eligible Kentucky high school students earn KEES automatically by completing the required curriculum with at least a 2.75 GPA or through qualifying test and supplemental awards; residency, citizenship, college-use, renewal, and term-limit rules apply.",
+  },
+  "nj-tag": {
+    amount: "Varies by need, school, and enrollment; 2026–27 full- and part-time schedules include some awards below $500",
+    deadline: "New fall applicants: September 15, 2026; other applicant groups have different state deadlines",
+    deadlineMonth: null,
+    who: "Eligible New Jersey residents, including qualifying Dreamers, attending an approved New Jersey institution; applicants must file FAFSA or the NJ Alternative Application and complete any NJFAMS tasks by their category-specific deadlines.",
+  },
+  "mn-state-grant": {
+    amount: "$100 minimum per year; the final award varies with financial need, college cost, and enrollment",
+    deadline: "Apply by the 30th day of the academic term",
+    deadlineMonth: null,
+    who: "Minnesota residents without a prior bachelor's degree who enroll in at least three credits at an eligible school and file FAFSA or the Minnesota Alternative State Financial Aid Application; awards are prorated by enrollment.",
+  },
+  "in-frank-obannon": {
+    amount: "2026–27 awards can begin at $400; maximums depend on institution type and completed credits and reach $10,600 at private colleges",
+    deadline: "2026–27 FAFSA deadline was April 15, 2026",
+    deadlineMonth: null,
+    who: "Eligible Indiana residents with financial need pursuing an approved certificate, associate, or bachelor's program at a participating Indiana institution; award schedules depend on SAI, institution type, and credit completion.",
+  },
+  "ks-comprehensive-grant": {
+    amount: "$100–$4,000 per year at public colleges; $200–$10,000 at private colleges",
+    deadline: "No separate application or statewide deadline; participating schools award limited funds from FAFSA data",
+    deadlineMonth: null,
+    who: "Kansas residents with financial need attending a participating Kansas public or private college; list the school on the FAFSA, and the institution determines awards while funds remain.",
+  },
+  "caca-national-essay-contest": {
+    deadline: "2026 registration closed February 28; the in-person contest was March 14",
+    deadlineMonth: null,
+    who: "Students in grades 9–12 who register through a participating C.A.C.A. lodge or designated site and write the essay there in person; 2026 prizes included three $700–$1,500 awards and ten $100 merit awards.",
+  },
+  "ca-dependents-enforcement-law-personnel": {
+    amount: "Matches the applicable current Cal Grant amount or remaining unmet need, can be as low as $100, and may continue for up to four years",
+    deadline: "Application timing varies; confirm the current filing period with CSAC",
+    deadlineMonth: null,
+  },
+  "il-dependents-exonerees-illinois-their": {
+    deadline: "2026–27 application open; first-come, first-served while funds remain",
+    deadlineMonth: null,
+    who: "Illinois exonerees with a gubernatorial innocence pardon or court certificate of innocence, and their designated dependents, pursuing high-school-equivalency, undergraduate, graduate, or certificate study; reapply annually, and funding is not guaranteed for every qualified applicant.",
+    stages: ["high-school", "college"],
+  },
+  "mn-care-child-minnesota-postsecondary": {
+    deadline: "Open with no universal deadline; submit the provider-completed packet to your campus financial aid office",
+    deadlineMonth: null,
+    who: "Minnesota undergraduate or graduate students enrolled at least one credit who have an eligible child and out-of-pocket child-care costs; complete FAFSA or the Minnesota Dream Act application and have the provider complete its section.",
+  },
+  "ms-excellence-in-teaching-program": {
+    deadline: "MSU applications become available October 1; Ole Miss's next deadline is not yet posted",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients sign annual loan documents, and not completing five years of Mississippi public-school teaching can require repayment with 3% interest. Open to qualifying incoming students and some transfers in approved education majors at Mississippi State or Ole Miss.",
+    stages: ["high-school", "college", "transfer"],
+    tags: ["full-ride", "teacher-pipeline", "mississippi", "service commitment", "repayment risk"],
+  },
+  "ne-attracting-excellence-teaching-to": {
+    amount: "$3,000 forgivable loan per year for up to five consecutive years",
+    deadline: "2026 application closed June 1; applications opened April 15",
+    deadlineMonth: null,
+    who: "Repayment warning: this is a forgivable loan with a contract; students must complete certification and qualifying full-time teaching in Nebraska or repay the unforgiven balance. Open to eligible undergraduate and graduate teacher-education students.",
+    tags: ["nebraska", "teacher", "forgivable loan", "service commitment", "repayment risk"],
+  },
+  "ne-attracting-excellence-teaching-teaching": {
+    amount: "$3,000 one-time forgivable loan during the student-teaching semester",
+    deadline: "2026 application closed June 1; applications opened April 15",
+    deadlineMonth: null,
+    who: "Repayment warning: this is a forgivable loan with a contract; students must complete their program, earn certification, and complete qualifying full-time Nebraska teaching or repay the unforgiven balance. Open to eligible undergraduate and graduate student teachers.",
+    tags: ["nebraska", "teacher", "forgivable loan", "service commitment", "repayment risk"],
+  },
+  "ma-s-teachers-tomorrow": {
+    deadline: "Annual MASSAid application; the next exact deadline is not yet posted",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients sign a promissory note, and each funded year requires one year of Massachusetts public-school teaching; unmet service converts the scholarship to a loan. For eligible full-time undergraduate or post-baccalaureate students in approved public-university teacher-licensure programs.",
+    tags: ["teacher-pipeline", "massachusetts", "service commitment", "repayment risk"],
+  },
+  "ma-aspiring-incentive-teachers": {
+    amount: "Resident tuition only for the third and fourth college years; fees are not included",
+    deadline: "Institution-specific; contact the public college's financial aid office",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients owe one year of Massachusetts public-school teaching for each waiver year; unmet service triggers prorated repayment with interest. For eligible juniors and seniors in shortage-field teacher preparation with a 3.0+ GPA.",
+    stages: ["college"],
+    tags: ["teacher-pipeline", "tuition waiver", "massachusetts", "service commitment", "repayment risk"],
+  },
+  "vt-benefit-health-rural-transformation": {
+    deadline: "2026 deadline passed June 12; awards were considered while funds remained",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients must complete five years of qualifying rural Vermont healthcare work, regardless of years funded; unmet service can require full or prorated repayment. Eligible half-time undergraduate and graduate students in approved health fields must maintain a 2.5+ GPA.",
+    tags: ["healthcare", "rural", "vermont", "service commitment", "repayment risk"],
+  },
+  "vt-benefit-trades-vermont": {
+    amount: "Full tuition plus initial licensing and exam fees, up to $23,000; books, supplies, and other fees are excluded",
+    deadline: "February 11, 2026 priority deadline; applications accepted while funds remain",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients must complete the program and licensure and work full time in Vermont for one year per funded year; unmet conditions require repayment. For students with financial need in eligible certificate or non-degree trade programs.",
+    tags: ["trades", "workforce", "vermont", "service commitment", "repayment risk"],
+  },
+  "me-educators-maine": {
+    name: "Educators for Maine Forgivable Loan Program",
+    deadline: "2026 application closed May 1; the cycle opened February 1",
+    deadlineMonth: null,
+    who: "Repayment warning: this is a competitive forgivable loan, and recipients who do not complete qualifying Maine education service must repay the balance with interest. Open to eligible Maine high school seniors, undergraduate, graduate, and post-baccalaureate students preparing for teaching or child-care careers.",
+    tags: ["forgivable loan", "teaching", "childcare", "maine", "service commitment", "repayment risk"],
+  },
+  "md-agent-maryland-officer-police": {
+    deadline: "Open through October 15, 2026",
+    deadlineMonth: null,
+    who: "Repayment warning: recipients sign a promissory note and must complete at least five years of qualifying Maryland service within eight years after graduation. Open to eligible full- or part-time undergraduate and graduate students pursuing a Maryland police-officer or probation-agent career.",
+    stages: ["college"],
+    tags: ["maryland", "law enforcement", "service commitment", "repayment risk"],
+  },
   "ron-brown": {
     deadline: "Typically December",
     deadlineMonth: 12,
