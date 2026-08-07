@@ -122,6 +122,39 @@ function normalizedHost(url) {
   return new URL(url).hostname.toLowerCase().replace(/^www\./, "");
 }
 
+export function evaluateSourceHealth({ html, sourceUrl, finalUrl }) {
+  const text = visibleText(html);
+  const crossDomainRedirect = normalizedHost(sourceUrl) !== normalizedHost(finalUrl);
+  const loginWall = /asicommon|login\.aspx|\/(?:log|sign)-?in\b/i.test(finalUrl) &&
+    !/\/(?:log|sign)-?in\b/i.test(sourceUrl);
+  const thinDocument = text.length < 80;
+  const sourceStatus = loginWall || thinDocument ? "structure-changed" : crossDomainRedirect ? "redirected" : "healthy";
+  return {
+    text,
+    contentHash: createHash("sha256").update(html).digest("hex"),
+    normalizedContentHash: createHash("sha256").update(text).digest("hex"),
+    sourceStatus,
+    extractionConfidence: "unknown",
+    verificationStatus: "unverified",
+    applicationStatus: "unknown",
+    opensOn: null,
+    closesOn: null,
+    nextOpensOn: null,
+    matchedSignal: null,
+    missingRequired: [],
+    unsafeUndatedOpen: false,
+    crossDomainRedirect,
+    loginWall,
+    thinDocument,
+    evidenceText: text.slice(0, 800),
+  };
+}
+
+export function shouldProposeSourceFailure({ monitorMode, previousFailures = 0, sourceStatus = "unknown" }) {
+  if (monitorMode === "status") return true;
+  return previousFailures >= 2 && ["not-found", "server-error", "redirected", "structure-changed"].includes(sourceStatus);
+}
+
 export function evaluateOfficialSource({ configuration, html, finalUrl, today }) {
   const text = visibleText(html);
   const evidence = [];

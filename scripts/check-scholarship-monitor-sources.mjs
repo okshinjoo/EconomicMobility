@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
+import { scholarshipMonitorCoverage } from "./scholarship-monitor-config.mjs";
 
-const configurations = JSON.parse(
-  await readFile(new URL("./scholarship-status-sources.json", import.meta.url), "utf8"),
-);
+const coverage = scholarshipMonitorCoverage();
+const configurations = coverage.all;
 const inventoryDocument = JSON.parse(
   await readFile(new URL("../data/scholarship-monitor-inventory.json", import.meta.url), "utf8"),
 );
@@ -44,6 +44,13 @@ for (const configuration of configurations) {
 
   const sourceUrl = new URL(configuration.sourceUrl);
   if (sourceUrl.protocol !== "https:") throw new Error(`${configuration.id}: official source must use HTTPS.`);
+  if (configuration.monitorMode === "source-health") {
+    if (configuration.sourceUrl !== inventoryDocument.records.find((record) => record.scholarshipId === configuration.id)?.officialUrl) {
+      throw new Error(`${configuration.id}: source-health monitoring must use the curated official URL.`);
+    }
+    continue;
+  }
+
   validatePatterns(configuration, "requiredPatterns", configuration.requiredPatterns);
   if (!configuration.requiredPatterns?.length) throw new Error(`${configuration.id}: requiredPatterns cannot be empty.`);
 
@@ -83,4 +90,9 @@ for (const configuration of configurations) {
 }
 
 const hostCount = new Set(configurations.map((configuration) => new URL(configuration.sourceUrl).hostname)).size;
-console.log(`Scholarship monitor sources: ${configurations.length} valid configurations across ${hostCount} official hosts.`);
+if (configurations.length !== coverage.published) {
+  throw new Error(`Expected ${coverage.published} total monitored scholarships; found ${configurations.length}.`);
+}
+console.log(
+  `Scholarship monitor sources: ${configurations.length} covered · ${coverage.status.length} status/date · ${coverage.sourceHealth.length} source-health · ${hostCount} official hosts.`,
+);

@@ -1,19 +1,23 @@
 import "./register-scholarship-typescript.mjs";
 
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { createClient } from "@supabase/supabase-js";
 import {
   buildFieldProposals,
   evaluateOfficialSource,
+  evaluateSourceHealth,
   operationalStatePatch,
+  shouldProposeSourceFailure,
   stableStringify,
 } from "./scholarship-monitor-core.mjs";
+import { loadScholarshipMonitorConfigurations } from "./scholarship-monitor-config.mjs";
 
 const { canAutoApply } = await import("../lib/scholarshipMonitoring.ts");
 
-const configurations = JSON.parse(
-  await readFile(new URL("./scholarship-status-sources.json", import.meta.url), "utf8"),
-);
+const modeArgument = process.argv.find((argument) => argument.startsWith("--mode="));
+const monitorMode = modeArgument?.slice(7) ?? "status";
+const configurations = loadScholarshipMonitorConfigurations({ mode: monitorMode });
 const inventoryDocument = JSON.parse(
   await readFile(new URL("../data/scholarship-monitor-inventory.json", import.meta.url), "utf8"),
 );
@@ -21,13 +25,22 @@ const inventoryIds = new Set(inventoryDocument.records.map((record) => record.sc
 
 const write = process.argv.includes("--write");
 const browserFallback = process.argv.includes("--browser-fallback");
+const summaryOnly = process.argv.includes("--summary-only");
 const dateArgument = process.argv.find((argument) => argument.startsWith("--date="));
 const idArguments = process.argv.filter((argument) => argument.startsWith("--id=")).map((argument) => argument.slice(5));
 const limitArgument = process.argv.find((argument) => argument.startsWith("--limit="));
+const shardIndexArgument = process.argv.find((argument) => argument.startsWith("--shard-index="));
+const shardCountArgument = process.argv.find((argument) => argument.startsWith("--shard-count="));
+const shardIndex = Number(shardIndexArgument?.slice(14) ?? 0);
+const shardCount = Number(shardCountArgument?.slice(14) ?? 1);
 const today = dateArgument?.slice(7) ?? new Date().toISOString().slice(0, 10);
 const checkedAt = new Date().toISOString();
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(today)) throw new Error(`Invalid --date: ${today}`);
+if (!Number.isInteger(shardCount) || shardCount < 1) throw new Error(`Invalid --shard-count: ${shardCount}`);
+if (!Number.isInteger(shardIndex) || shardIndex < 0 || shardIndex >= shardCount) {
+  throw new Error(`Invalid --shard-index: ${shardIndex}`);
+}
 if (new Set(configurations.map((configuration) => configuration.id)).size !== configurations.length) {
   throw new Error("Scholarship monitor configuration contains duplicate IDs.");
 }
@@ -39,6 +52,13 @@ for (const configuration of configurations) {
 let selected = idArguments.length
   ? configurations.filter((configuration) => idArguments.includes(configuration.id))
   : configurations;
+selected = selected.filter((configuration) => {
+  const shardKey = configuration.monitorMode === "source-health"
+    ? new URL(configuration.sourceUrl).hostname.toLowerCase().replace(/^www\./, "")
+    : configuration.id;
+  const bucket = Number.parseInt(createHash("sha256").update(shardKey).digest("hex").slice(0, 8), 16) % shardCount;
+  return bucket === shardIndex;
+});
 if (limitArgument) selected = selected.slice(0, Number(limitArgument.slice(8)));
 if (selected.length === 0) throw new Error("No scholarship monitor sources selected.");
 
@@ -55,6 +75,7 @@ const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, mil
 const lastDomainFetch = new Map();
 const domainPolicies = new Map();
 const domainQueues = new Map();
+const sharedSourceHealthFetches = new Map();
 let browserPromise = null;
 
 function failureStatus(status) {
@@ -113,12 +134,14 @@ async function fetchOfficialPage(configuration, previous) {
   if (previous?.last_modified) headers["if-modified-since"] = previous.last_modified;
 
   let lastError = null;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  const maximumAttempts = configuration.monitorMode === "source-health" ? 2 : 3;
+  const timeout = configuration.monitorMode === "source-health" ? 12000 : 20000;
+  for (let attempt = 0; attempt < maximumAttempts; attempt++) {
     await throttle(configuration.sourceUrl);
     try {
       const response = await fetch(configuration.sourceUrl, {
         redirect: "follow",
-        signal: AbortSignal.timeout(20000),
+        signal: AbortSignal.timeout(timeout),
         headers,
       });
       if (response.status === 304) {
@@ -146,11 +169,13 @@ async function fetchOfficialPage(configuration, previous) {
       error.httpStatus = response.status;
       error.sourceStatus = failureStatus(response.status);
       lastError = error;
-      if (response.status === 403 && browserFallback) return await fetchWithBrowser(configuration.sourceUrl);
+      if (response.status === 403 && browserFallback && configuration.monitorMode === "status") {
+        return await fetchWithBrowser(configuration.sourceUrl);
+      }
       if (![429, 500, 502, 503, 504].includes(response.status)) break;
     } catch (error) {
       lastError = error;
-      if (browserFallback && attempt === 2) {
+      if (browserFallback && configuration.monitorMode === "status" && attempt === maximumAttempts - 1) {
         try {
           return await fetchWithBrowser(configuration.sourceUrl);
         } catch (browserError) {
@@ -158,7 +183,7 @@ async function fetchOfficialPage(configuration, previous) {
         }
       }
     }
-    if (attempt < 2) await sleep(attempt === 0 ? 750 : 2000);
+    if (attempt < maximumAttempts - 1) await sleep(attempt === 0 ? 750 : 2000);
   }
   throw lastError ?? new Error("Official source fetch failed.");
 }
@@ -235,7 +260,15 @@ if (admin) {
 async function inspectUnlocked(configuration) {
   const previous = previousByScholarship.get(configuration.id) ?? null;
   try {
-    const fetched = await fetchOfficialPage(configuration, previous);
+    let fetched;
+    if (configuration.monitorMode === "source-health") {
+      if (!sharedSourceHealthFetches.has(configuration.sourceUrl)) {
+        sharedSourceHealthFetches.set(configuration.sourceUrl, fetchOfficialPage(configuration, previous));
+      }
+      fetched = await sharedSourceHealthFetches.get(configuration.sourceUrl);
+    } else {
+      fetched = await fetchOfficialPage(configuration, previous);
+    }
     if (fetched.kind === "not-modified") {
       return {
         configuration,
@@ -249,9 +282,16 @@ async function inspectUnlocked(configuration) {
         evaluation: null,
       };
     }
-    let evaluation = evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
+    let evaluation = configuration.monitorMode === "source-health"
+      ? evaluateSourceHealth({ html: fetched.html, sourceUrl: configuration.sourceUrl, finalUrl: fetched.finalUrl })
+      : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
     let resolvedFetch = fetched;
-    if (browserFallback && fetched.fetchMethod === "http" && evaluation.missingRequired.length > 0) {
+    if (
+      configuration.monitorMode === "status" &&
+      browserFallback &&
+      fetched.fetchMethod === "http" &&
+      evaluation.missingRequired.length > 0
+    ) {
       try {
         const rendered = await fetchWithBrowser(configuration.sourceUrl);
         const renderedEvaluation = evaluateOfficialSource({
@@ -268,9 +308,10 @@ async function inspectUnlocked(configuration) {
         // Keep the original fail-closed evaluation when rendering is unavailable.
       }
     }
+    const sourceHealthIssue = configuration.monitorMode === "source-health" && evaluation.sourceStatus !== "healthy";
     return {
       configuration,
-      success: true,
+      success: !sourceHealthIssue,
       unchanged: evaluation.normalizedContentHash === previous?.normalized_content_hash,
       sourceStatus: evaluation.sourceStatus,
       extractionConfidence: evaluation.extractionConfidence,
@@ -278,6 +319,9 @@ async function inspectUnlocked(configuration) {
       fetched: resolvedFetch,
       previous,
       evaluation,
+      error: sourceHealthIssue
+        ? `Official source health check returned ${evaluation.sourceStatus} at ${resolvedFetch.finalUrl}.`
+        : undefined,
     };
   } catch (error) {
     return {
@@ -310,7 +354,7 @@ for (let index = 0; index < selected.length; index += 4) {
 
 let proposals = [];
 for (const result of results) {
-  if (result.evaluation) {
+  if (result.evaluation && result.configuration.monitorMode === "status") {
     proposals.push(
       ...buildFieldProposals({
         scholarshipId: result.configuration.id,
@@ -325,7 +369,14 @@ for (const result of results) {
         lockedFields: locksByScholarship.get(result.configuration.id) ?? new Set(),
       }),
     );
-  } else if (!result.success) {
+  } else if (
+    !result.success &&
+    shouldProposeSourceFailure({
+      monitorMode: result.configuration.monitorMode,
+      previousFailures: stateByScholarship.get(result.configuration.id)?.consecutive_failures ?? 0,
+      sourceStatus: result.sourceStatus,
+    })
+  ) {
     proposals.push({
       scholarshipId: result.configuration.id,
       fieldName: "sourceReview",
@@ -375,13 +426,14 @@ if (admin) {
     last_modified: result.fetched.lastModified,
     content_hash: result.evaluation?.contentHash ?? result.previous?.content_hash ?? null,
     normalized_content_hash: result.evaluation?.normalizedContentHash ?? result.previous?.normalized_content_hash ?? null,
-    extractor_name: "configured-html-status",
+    extractor_name: result.configuration.monitorMode === "status" ? "configured-html-status" : "official-source-health",
     extractor_version: "1",
     evidence_snippet: result.evaluation?.evidenceText ?? null,
     error_kind: result.success ? null : result.sourceStatus,
     error_message: result.error ?? null,
     metadata: {
       observationOnly: true,
+      monitorMode: result.configuration.monitorMode,
       unchanged: result.unchanged,
       extractionConfidence: result.extractionConfidence,
       verificationStatus: result.verificationStatus,
@@ -394,19 +446,37 @@ if (admin) {
           }
         : null,
       missingRequired: result.evaluation?.missingRequired ?? [],
+      healthIssue: result.evaluation
+        ? {
+            crossDomainRedirect: result.evaluation.crossDomainRedirect,
+            loginWall: result.evaluation.loginWall ?? false,
+            thinDocument: result.evaluation.thinDocument ?? false,
+          }
+        : null,
     },
   }));
-  const { data: observations, error: observationError } = await admin
-    .from("scholarship_monitor_observations")
-    .insert(observationRows)
-    .select("id,scholarship_id");
-  if (observationError) throw observationError;
-  const observationIdByScholarship = new Map(observations.map((observation) => [observation.scholarship_id, observation.id]));
+  const observationIdByScholarship = new Map();
+  for (let index = 0; index < observationRows.length; index += 200) {
+    const { data: observations, error: observationError } = await admin
+      .from("scholarship_monitor_observations")
+      .insert(observationRows.slice(index, index + 200))
+      .select("id,scholarship_id");
+    if (observationError) throw observationError;
+    for (const observation of observations) observationIdByScholarship.set(observation.scholarship_id, observation.id);
+  }
 
-  for (const result of results) {
-    const previousFailures = stateByScholarship.get(result.configuration.id)?.consecutive_failures ?? 0;
-    const patch = operationalStatePatch({ result, previousFailures, checkedAt });
-    const { error } = await admin.from("scholarship_monitor_state").update(patch).eq("scholarship_id", result.configuration.id);
+  const stateRows = results.map((result) => ({
+    scholarship_id: result.configuration.id,
+    ...operationalStatePatch({
+      result,
+      previousFailures: stateByScholarship.get(result.configuration.id)?.consecutive_failures ?? 0,
+      checkedAt,
+    }),
+  }));
+  for (let index = 0; index < stateRows.length; index += 200) {
+    const { error } = await admin
+      .from("scholarship_monitor_state")
+      .upsert(stateRows.slice(index, index + 200), { onConflict: "scholarship_id" });
     if (error) throw error;
   }
 
@@ -425,8 +495,10 @@ if (admin) {
       auto_apply_eligible: proposal.autoApplyEligible,
       status: "pending",
     }));
-    const { error: proposalError } = await admin.from("scholarship_monitor_proposals").insert(proposalRows);
-    if (proposalError) throw proposalError;
+    for (let index = 0; index < proposalRows.length; index += 100) {
+      const { error: proposalError } = await admin.from("scholarship_monitor_proposals").insert(proposalRows.slice(index, index + 100));
+      if (proposalError) throw proposalError;
+    }
   }
 
   const failures = results.filter((result) => !result.success).length;
@@ -440,18 +512,27 @@ if (admin) {
       failure_count: failures,
       proposal_count: proposals.length,
       finished_at: new Date().toISOString(),
-      summary: { observationOnly: true, reviews, unchanged: results.filter((result) => result.unchanged).length },
+      summary: {
+        observationOnly: true,
+        monitorMode,
+        shardIndex,
+        shardCount,
+        reviews,
+        unchanged: results.filter((result) => result.unchanged).length,
+      },
     })
     .eq("id", runId);
   if (finishError) throw finishError;
 }
 
 for (const result of results) {
-  const candidate = result.evaluation?.applicationStatus ?? "none";
-  console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · candidate ${candidate}`);
+  if (!summaryOnly || !result.success) {
+    const candidate = result.evaluation?.applicationStatus ?? "none";
+    console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · candidate ${candidate}`);
+  }
 }
 console.log(
-  `${write ? "Recorded" : "Dry run"}: ${results.length} sources · ${results.filter((result) => result.success).length} fetched · ${proposals.length} new review proposal(s) · no public updates.`,
+  `${write ? "Recorded" : "Dry run"}: ${results.length} ${monitorMode} sources · shard ${shardIndex + 1}/${shardCount} · ${results.filter((result) => result.success).length} fetched · ${proposals.length} new review proposal(s) · no public updates.`,
 );
 
 if (browserPromise) await (await browserPromise).close();

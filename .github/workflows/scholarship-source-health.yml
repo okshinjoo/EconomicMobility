@@ -1,21 +1,25 @@
-name: Scholarship status and deadline monitor
+name: Scholarship official-source health
 
 on:
   schedule:
-    - cron: "17 10 * * *"
+    - cron: "43 11 * * 0"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: scholarship-status-monitor
+  group: scholarship-source-health
   cancel-in-progress: false
 
 jobs:
   observe:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -29,14 +33,11 @@ jobs:
 
       - run: npm ci
 
-      - name: Install the browser fallback
-        run: npx playwright install --with-deps chromium
-
-      - name: Validate monitor rules
+      - name: Validate complete monitor coverage
         run: npm run check:scholarship-monitor-sources
 
       - name: Test fail-closed behavior
         run: npm run test:scholarship-monitor-worker
 
-      - name: Record official-source observations
-        run: npm run monitor:scholarships -- --write --browser-fallback --mode=status
+      - name: Record official-source health
+        run: npm run monitor:scholarships -- --write --summary-only --mode=source-health --shard-index=${{ matrix.shard }} --shard-count=8

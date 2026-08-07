@@ -3,8 +3,10 @@ import { readFileSync } from "node:fs";
 import {
   buildFieldProposals,
   evaluateOfficialSource,
+  evaluateSourceHealth,
   operationalStatePatch,
   recurringDates,
+  shouldProposeSourceFailure,
   stableStringify,
   visibleText,
 } from "./scholarship-monitor-core.mjs";
@@ -12,6 +14,7 @@ import {
 const sourceConfigurations = JSON.parse(
   readFileSync(new URL("./scholarship-status-sources.json", import.meta.url), "utf8"),
 );
+const { scholarshipMonitorCoverage } = await import("./scholarship-monitor-config.mjs");
 const configurationFor = (id) => sourceConfigurations.find((configuration) => configuration.id === id);
 
 const source = {
@@ -229,5 +232,32 @@ assert.deepEqual(failurePatch, {
 });
 assert.equal("application_status" in failurePatch, false);
 assert.equal("closes_on" in failurePatch, false);
+
+const health = evaluateSourceHealth({
+  html: "<main><h1>Example Scholarship</h1><p>This is the official scholarship program page with application details, eligibility requirements, and contact information.</p></main>",
+  sourceUrl: "https://example.org/scholarship",
+  finalUrl: "https://example.org/scholarship",
+});
+assert.equal(health.sourceStatus, "healthy");
+assert.equal(health.applicationStatus, "unknown");
+assert.equal(health.verificationStatus, "unverified");
+const redirectedHealth = evaluateSourceHealth({
+  html: "<main><h1>Example Scholarship</h1><p>This official program page contains enough information to be a real document.</p></main>",
+  sourceUrl: "https://example.org/scholarship",
+  finalUrl: "https://awards.example.edu/scholarship",
+});
+assert.equal(redirectedHealth.sourceStatus, "redirected");
+assert.equal(redirectedHealth.crossDomainRedirect, true);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 0, sourceStatus: "not-found" }), false);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 1, sourceStatus: "not-found" }), false);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 2, sourceStatus: "not-found" }), true);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 4, sourceStatus: "blocked" }), false);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "status", previousFailures: 0 }), true);
+
+const coverage = scholarshipMonitorCoverage();
+assert.equal(coverage.status.length, 41);
+assert.equal(coverage.sourceHealth.length, 1179);
+assert.equal(coverage.all.length, coverage.published);
+assert.equal(new Set(coverage.all.map((configuration) => configuration.id)).size, coverage.published);
 
 console.log("Scholarship observation worker: all assertions passed.");

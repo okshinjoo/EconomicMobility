@@ -50,29 +50,49 @@ remove or discontinue a scholarship.
 - `npm run test:scholarship-monitor-foundation` verifies that risky or
   ambiguous proposals fail closed.
 
-## Phase 2 observation pilot
+## Phase 2 official-source monitoring
 
-The first 37 source-specific rules now live in
-`scripts/scholarship-status-sources.json`. The scheduled worker:
+Monitoring now covers all 1,220 curated scholarships across 792 official hosts.
+The two monitoring tiers stay deliberately separate:
 
-- fetches only those official program pages, never external directories;
+- 41 scholarship-specific adapters in `scripts/scholarship-status-sources.json`
+  can propose status and exact date changes when the official page supplies
+  matching evidence.
+- The remaining 1,179 official URLs receive weekly source-health checks. They
+  record availability, redirects, login walls, content fingerprints, and
+  failures, but never infer application status or dates.
+
+The scheduled workers:
+
+- fetch only curated official program pages, never external directories;
 - uses conditional request headers when the source supplies them;
 - limits concurrency to four and spaces requests to the same domain;
-- retries transient failures and uses a browser only as a fallback;
+- retry transient failures; only the 41 source-specific adapters use a browser fallback;
 - writes append-only observations and deduplicated field-level proposals;
-- updates only operational health fields in `scholarship_monitor_state`; and
-- never changes application status, dates, eligibility, or the public Finder.
+- update only operational health fields in `scholarship_monitor_state`; and
+- never change application status, dates, eligibility, or the public Finder.
+
+The daily status workflow runs the 41 evidence-specific adapters. The weekly
+source-health workflow splits the other 1,179 records into eight deterministic
+host-based shards, so requests to one host remain serialized. A source-health
+failure must persist for three runs before an actionable not-found, server,
+redirect, login-wall, or thin-document review can enter the moderation queue.
+Bot blocks, rate limits, and generic timeouts remain operational telemetry and
+do not flood reviewers.
 
 Run the deterministic worker tests with
-`npm run test:scholarship-monitor-worker`. Preview live extraction without
-database writes with `npm run monitor:scholarships -- --limit=3`. The GitHub
+`npm run test:scholarship-monitor-worker`. Preview status extraction without
+database writes with `npm run monitor:scholarships -- --mode=status --limit=3`.
+Preview one full-catalog shard with
+`npm run monitor:scholarships -- --summary-only --mode=source-health --shard-index=0 --shard-count=8`.
+The GitHub
 Actions workflow requires repository secrets named `SUPABASE_URL` and
 `SUPABASE_SERVICE_ROLE_KEY` before its first manual or scheduled run.
 
-The first production observation run completed successfully on August 7,
-2026: 37 of 37 official sources were fetched, 37 append-only observations and
-85 pending review proposals were recorded, and zero public or editorial state
-fields were changed. The encrypted workflow credentials are configured.
+The first production observation run completed on August 7, 2026. The
+full-catalog source-health expansion was added the same day after an eight-shard
+dry run covered all 1,179 remaining records. The encrypted workflow credentials
+are configured.
 
 ## Phase 3 moderator review
 
