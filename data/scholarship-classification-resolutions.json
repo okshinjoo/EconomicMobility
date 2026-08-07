@@ -16,7 +16,7 @@
     "MD",
     "VA"
    ],
-   "evidence": "Must be a graduating senior at a high school in DC, MD, or VA, ​OR have graduated high school within three (3) years and not yet started college and reside in DC, MD, or VA",
+   "evidence": "Must be a graduating senior at a high school in DC, MD, or VA, \u200bOR have graduated high school within three (3) years and not yet started college and reside in DC, MD, or VA",
    "finalUrl": "https://www.esperanzafund.org/scholarship",
    "note": "Must also plan to enroll full-time at a college in DC, MD, or VA. Household income caps apply ($74,800-$141,000 by household size). Next cycle opens May 1, 2027."
   },
@@ -290,7 +290,7 @@
     "NY",
     "TX"
    ],
-   "evidence": "Westchester Community College, Dallas College, City Colleges of Chicago, Colorado Community College System – Aurora, Denver and Front Range campuses, Valencia College, Los Angeles Community College – LA Trade Tech and LA City College",
+   "evidence": "Westchester Community College, Dallas College, City Colleges of Chicago, Colorado Community College System \u2013 Aurora, Denver and Front Range campuses, Valencia College, Los Angeles Community College \u2013 LA Trade Tech and LA City College",
    "finalUrl": "https://scholarshipamerica.org/scholarship/pepsiconextstep/",
    "note": "Bound is current attendance at one of the named partner campuses in these six states. Program currently closed; page says 2026 program information is tentative and subject to change."
   },
@@ -741,7 +741,7 @@
    ],
    "evidence": "Commit to working in Vermont, as a healthcare professional in a healthcare setting, serving a rural community (minimum of 32 hours per week), for 5 years following completion of your degree and receipt of your license (if applicable)",
    "finalUrl": "https://www.vsac.org/ruralhealth",
-   "note": "Vermont residency NOT required (non-VT residents considered if funding allows); the bound is the 5-year Vermont work commitment — carried by basis.service-commitment, not geo."
+   "note": "Vermont residency NOT required (non-VT residents considered if funding allows); the bound is the 5-year Vermont work commitment \u2014 carried by basis.service-commitment, not geo."
   },
   {
    "id": "vt-benefit-trades-vermont",
@@ -751,7 +751,7 @@
    ],
    "evidence": "Agree to work full-time in Vermont in your profession for a minimum of one year for each year of funding received",
    "finalUrl": "https://www.vsac.org/pursue-career-skilled-trades-tuition-free",
-   "note": "Page: 'Vermont residency is not required'; the bound is the required Vermont work commitment — carried by basis.service-commitment, not geo."
+   "note": "Page: 'Vermont residency is not required'; the bound is the required Vermont work commitment \u2014 carried by basis.service-commitment, not geo."
   },
   {
    "id": "md-collins-honor-iii-leadership",
@@ -890,7 +890,7 @@
   {
    "id": "mn-mssa-undergraduate",
    "resolution": "national",
-   "evidence": "Preference is given to applicants planning to work in the Midwest—Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
+   "evidence": "Preference is given to applicants planning to work in the Midwest\u2014Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
    "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Undergraduate_Scholarship.aspx",
    "note": "Midwest work plans are a stated PREFERENCE, not a requirement; hard requirements are free MSSA membership, enrollment in an accredited program at a nonprofit institution (no state named), a declared health/human-services major, and one semester remaining. Landing page at /scholarships loads, but detail pages sit behind a Cloudflare JS wall for plain fetchers (retrieved via rendering browser)."
   },
@@ -902,12 +902,12 @@
    ],
    "evidence": "Have experience working with (via field practicum, paid employment, or volunteer experience) or plan to work with children and/or families in Minnesota.",
    "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Children-and-Families-Impact-Scholarship.aspx",
-   "note": "No residency or in-state-school rule; the Minnesota nexus is required experience with / plan to work with children and families in Minnesota — a work-plan bound, not geo."
+   "note": "No residency or in-state-school rule; the Minnesota nexus is required experience with / plan to work with children and families in Minnesota \u2014 a work-plan bound, not geo."
   },
   {
    "id": "mn-mssa-diversity",
    "resolution": "national",
-   "evidence": "Preference is given to applicants planning to work in the Midwest—Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
+   "evidence": "Preference is given to applicants planning to work in the Midwest\u2014Minnesota, Wisconsin, Iowa, South Dakota or North Dakota.",
    "finalUrl": "https://www.mnssa.org/MNSSA/MSSA_Scholarship/Diversity_Scholarship.aspx",
    "note": "Midwest work plans are a stated PREFERENCE, not a requirement; hard requirements are MSSA membership and enrollment in an accredited health/human-services program at a nonprofit institution (no state named). Covers both undergraduate ($2,500 x2) and graduate ($3,000 x3) awards."
   },
@@ -959,7 +959,7 @@
    ],
    "evidence": "Current college undergraduates who have completed at least one year of full-time undergraduate study ... Be studying to obtain their first Associate's or first Bachelor's degree.",
    "finalUrl": "https://scholarshipamerica.org/scholarship/dreamaward/",
-   "note": "Page confirms 'high school seniors are not eligible' — consistent with who (second year or later). Open to all fields; a separate STEM award category exists but the general award has no field restriction."
+   "note": "Page confirms 'high school seniors are not eligible' \u2014 consistent with who (second year or later). Open to all fields; a separate STEM award category exists but the general award has no field restriction."
   },
   {
    "id": "regeneron-sts",
@@ -1011,7 +1011,7 @@
    ],
    "evidence": "must intend to enroll full-time at an accredited U.S. college or university as an undergraduate for the first time in fall 2028",
    "finalUrl": "https://coolidgescholars.org/selection-criteria/",
-   "note": "Academic excellence is the stated primary criterion. Interest in public policy/Coolidge values is a secondary selection criterion only — page states the award 'is not restricted to candidates planning to pursue degrees' in government fields, so tagged preferred, not a field restriction. Juniors only; gap years not permitted."
+   "note": "Academic excellence is the stated primary criterion. Interest in public policy/Coolidge values is a secondary selection criterion only \u2014 page states the award 'is not restricted to candidates planning to pursue degrees' in government fields, so tagged preferred, not a field restriction. Juniors only; gap years not permitted."
   },
   {
    "id": "excelsior-ny",
@@ -1030,14 +1030,14 @@
    ],
    "evidence": "Your household combined federal adjusted gross income must be $125,000 or less.",
    "finalUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/excelsior-scholarship-program",
-   "note": "Service commitment is a post-award live-in-NY (and if employed, work-in-NY) obligation, not field-specific; non-compliance converts the award to a no-interest loan — matches who. SUNY/CUNY only; no field or identity criteria."
+   "note": "Service commitment is a post-award live-in-NY (and if employed, work-in-NY) obligation, not field-specific; non-compliance converts the award to a no-interest loan \u2014 matches who. SUNY/CUNY only; no field or identity criteria."
   },
   {
    "id": "nv-millennium-scholarship",
    "resolution": "general",
    "evidence": "Graduate with an overall GPA of 3.25 (weighted or unweighted) or earn a qualifying test score on the SAT (1070 or higher) or ACT (21 or higher).",
    "finalUrl": "https://nvigate.gov/programs/governor-guinn-millennium-scholarship/",
-   "note": "Original treasurer URL is a thin landing page; requirements verified on nvigate.gov (official State of Nevada portal). GPA 3.25/test gate and curriculum treated as academic minimums per rules (flat entitlement, award does not scale with merit). Caution: nevadatreasurer.gov GGMS_Requirements page actually describes the separate Kenny C. Guinn MEMORIAL Scholarship (teaching-restricted) — do not conflate."
+   "note": "Original treasurer URL is a thin landing page; requirements verified on nvigate.gov (official State of Nevada portal). GPA 3.25/test gate and curriculum treated as academic minimums per rules (flat entitlement, award does not scale with merit). Caution: nevadatreasurer.gov GGMS_Requirements page actually describes the separate Kenny C. Guinn MEMORIAL Scholarship (teaching-restricted) \u2014 do not conflate."
   },
   {
    "id": "ak-performance-scholarship",
@@ -1065,7 +1065,7 @@
    ],
    "evidence": "Be a graduate from the current high school graduating class of an Idaho public school, charter school, private school, home school, or GED program (under the age of 21 by April 15 of the current year)",
    "finalUrl": "https://nextsteps.idaho.gov/launch",
-   "note": "Financial need is a prioritization factor, not a requirement (who correctly says no need requirement). Applications are also ranked by connection to the Idaho Workforce Development Council in-demand careers list — a real preference, but it spans many fields and has no matching taxonomy id; flagging for taxonomy review. Career Pathway Plan required."
+   "note": "Financial need is a prioritization factor, not a requirement (who correctly says no need requirement). Applications are also ranked by connection to the Idaho Workforce Development Council in-demand careers list \u2014 a real preference, but it spans many fields and has no matching taxonomy id; flagging for taxonomy review. Career Pathway Plan required."
   },
   {
    "id": "tn-promise",
@@ -1086,7 +1086,7 @@
    "resolution": "general",
    "evidence": "Not have previously earned a baccalaureate degree",
    "finalUrl": "https://sams.adhe.edu/Scholarship/Details/ACST",
-   "note": "FAFSA required but page states income 'is not a determining factor.' Entry pathways (Diploma of Merit, or GPA/ACT-SAT combinations) treated as academic minimums per rules — flat award, does not scale with merit. Also requires applicants to 'Certify to be drug-free' and not be incarcerated (exclusions, no taxonomy ids). Consistent with who."
+   "note": "FAFSA required but page states income 'is not a determining factor.' Entry pathways (Diploma of Merit, or GPA/ACT-SAT combinations) treated as academic minimums per rules \u2014 flat award, does not scale with merit. Also requires applicants to 'Certify to be drug-free' and not be incarcerated (exclusions, no taxonomy ids). Consistent with who."
   },
   {
    "id": "ky-kees",
@@ -1119,7 +1119,7 @@
    ],
    "evidence": "Those with a bachelor's degree or higher are not eligible for the WV Invests Grant, with the exception of those pursing emergency medical services programs under CIP 51.0904.",
    "finalUrl": "https://www.cfwv.com/financial-aid/wv-invests-grant/faqs/",
-   "note": "Service commitment = live in WV 2 years after completion or repay with interest. Program is restricted to 'certificate or associate degree programs in specific high-demand fields' — a real field restriction, but it spans IT/health/trades etc. and no single taxonomy id covers it; flag for manual field-list mapping. Drug screening requirement appears in institutional docs but not on the official FAQ page."
+   "note": "Service commitment = live in WV 2 years after completion or repay with interest. Program is restricted to 'certificate or associate degree programs in specific high-demand fields' \u2014 a real field restriction, but it spans IT/health/trades etc. and no single taxonomy id covers it; flag for manual field-list mapping. Drug screening requirement appears in institutional docs but not on the official FAQ page."
   },
   {
    "id": "dc-tuition-assistance-grant",
@@ -1133,28 +1133,40 @@
    ],
    "evidence": "Be a District of Columbia resident for at least 12 consecutive months prior to the applicant's first time in college",
    "finalUrl": "https://osse.dc.gov/dctag",
-   "note": "Income thresholds vary by award year. First undergraduate degree only, credential earned within 15 years — all consistent with who. No field, identity, or circumstance criteria."
+   "note": "Income thresholds vary by award year. First undergraduate degree only, credential earned within 15 years \u2014 all consistent with who. No field, identity, or circumstance criteria."
   },
   {
    "id": "ma-masseducate",
    "resolution": "general",
    "evidence": "have physically resided in Massachusetts for at least one year, as of the start of the enrolled term",
    "finalUrl": "https://www.mass.edu/osfa/programs/masseducate.asp",
-   "note": "mass.gov URL returns 403 to fetchers; verified on the MA Dept. of Higher Education OSFA page (official program administrator). Universal regardless of income — income affects only a supplemental books/supplies allowance (up to $1,200), so no basis.need tag. No bachelor's degree already earned — consistent with who."
+   "note": "mass.gov URL returns 403 to fetchers; verified on the MA Dept. of Higher Education OSFA page (official program administrator). Universal regardless of income \u2014 income affects only a supplemental books/supplies allowance (up to $1,200), so no basis.need tag. No bachelor's degree already earned \u2014 consistent with who."
   },
   {
    "id": "ri-promise",
    "resolution": "general",
-   "evidence": "Be a Rhode Island resident and graduate from high school (public, private, or homeschooled) or earn a GED®.",
+   "evidence": "Be a Rhode Island resident and graduate from high school (public, private, or homeschooled) or earn a GED\u00ae.",
    "finalUrl": "https://www.ccri.edu/ripromise/",
-   "note": "Must enroll the term immediately after graduation and be 18 or younger (19-21 by appeal) — age/timing gates, not niche criteria. No field, identity, need, or merit criteria. Consistent with who."
+   "note": "Must enroll the term immediately after graduation and be 18 or younger (19-21 by appeal) \u2014 age/timing gates, not niche criteria. No field, identity, need, or merit criteria. Consistent with who."
   },
   {
    "id": "pa-rtss",
-   "resolution": "unclear",
-   "evidence": "No eligibility text retrievable — pheaa.org serves only a JS shell ('PHEAA: One of the Nation's Leading Student Aid Organizations') to non-browser fetchers on every RTSS URL tried.",
+   "resolution": "criteria",
+   "evidence": "No eligibility text retrievable \u2014 pheaa.org serves only a JS shell ('PHEAA: One of the Nation's Leading Student Aid Organizations') to non-browser fetchers on every RTSS URL tried.",
    "finalUrl": "https://www.pheaa.org/funding-opportunities/other-educational-aid/rtss",
-   "note": "Bot-wall/JS-rendered site. CONTRADICTION with who: legislative and PHEAA-derived sources (SB 1150 / Grow PA expansion, effective 2025-26) put the household income limit at $175,000 (raised from $126,000) — not $200,000 — and lowered the GPA requirement from 3.25 to 2.5. Program is merit-with-income-cap (basis.merit-academic + basis.need candidates) but no official-page quotes obtainable; needs browser verification and who-sentence correction."
+   "note": "Resolved manually in a real browser after the agent hit the JS wall. Official page confirms the $200,000 income cap and 2.50 GPA \u2014 the agent's secondary-source $175k correction was WRONG and was not applied.",
+   "criteria": [
+    {
+     "tag": "basis.merit-academic",
+     "strength": "required",
+     "quote": "Demonstrate outstanding academic achievement by attaining a minimum cumulative GPA of 2.50"
+    },
+    {
+     "tag": "basis.need",
+     "strength": "relevant",
+     "quote": "With the exception of financial need, the student must meet all other PA State Grant eligibility requirements"
+    }
+   ]
   },
   {
    "id": "mo-a-plus",
@@ -1189,7 +1201,7 @@
    ],
    "evidence": "Must be currently enrolled in school (and in good standing) or a licensed professional currently working as a beauty/wellness professional",
    "finalUrl": "https://www.probeauty.org/scholarships/",
-   "note": "Taxonomy gap: cosmetology/beauty has no dedicated id; closest parent field.trades used — flag for taxonomy review. No PBA membership or need requirement stated. Minor divergence from who: page as fetched also admits licensed working professionals (not only enrolled students) and does not state the citizenship/age-18 details; page hosts multiple PBA scholarships, so per-award fine print may differ."
+   "note": "Taxonomy gap: cosmetology/beauty has no dedicated id; closest parent field.trades used \u2014 flag for taxonomy review. No PBA membership or need requirement stated. Minor divergence from who: page as fetched also admits licensed working professionals (not only enrolled students) and does not state the citizenship/age-18 details; page hosts multiple PBA scholarships, so per-award fine print may differ."
   },
   {
    "id": "vausa-fallen-heroes-scholarship",
@@ -1208,7 +1220,7 @@
    ],
    "evidence": "US Citizens or permanent resident Vietnamese Americans who have never obtained a bachelor's degree.",
    "finalUrl": "https://www.wearevausa.org/scholarship-program/",
-   "note": "Vietnamese American descent specifically (identity.aapi closest id). Despite the 'Fallen Heroes' name, NO military/veteran-family requirement is stated — name not used to infer criteria. Consistent with who."
+   "note": "Vietnamese American descent specifically (identity.aapi closest id). Despite the 'Fallen Heroes' name, NO military/veteran-family requirement is stated \u2014 name not used to infer criteria. Consistent with who."
   },
   {
    "id": "american-samoa-asg-scholarship",
@@ -1256,7 +1268,7 @@
    ],
    "evidence": "Be a current high school senior ... Pursue a degree in the following eligible majors: Engineering, Computer Science, Computer Information Systems, Law, Business, or related field",
    "finalUrl": "https://scholarshipamerica.org/scholarship/microsoft-disability/",
-   "note": "Field tags are DISJUNCTIVE (any one of the listed majors qualifies); Law/Pre-Law/Paralegal also qualify but have no taxonomy id. CONFLICT RESOLUTION for who: the official administrator page (Scholarship America) does NOT list living with a disability as an eligibility requirement — only 'Demonstrate a passion for technology' and leadership; no disability tag reported (no quote exists). The Seattle Foundation description who cites appears outdated."
+   "note": "Field tags are DISJUNCTIVE (any one of the listed majors qualifies); Law/Pre-Law/Paralegal also qualify but have no taxonomy id. CONFLICT RESOLUTION for who: the official administrator page (Scholarship America) does NOT list living with a disability as an eligibility requirement \u2014 only 'Demonstrate a passion for technology' and leadership; no disability tag reported (no quote exists). The Seattle Foundation description who cites appears outdated."
   },
   {
    "id": "momeni-foundation-scholarships",
@@ -1270,7 +1282,7 @@
    ],
    "evidence": "all graduating high school students and current college students of all levels (undergraduate, graduate and PhD) and of Iranian descent regardless of citizenship or country of residency",
    "finalUrl": "https://momenifoundation.org/applications/",
-   "note": "TAXONOMY GAP: Iranian descent is required (verbatim in evidence) for the Financial Assistance Scholarship, but no identity.* id covers Iranian/Middle Eastern descent (not aapi) — cannot tag without stretching taxonomy; flag for taxonomy extension. The Scholastic Achievement application section addresses U.S. HS graduates without restating descent on this page. FAS is need-based and SAS merit-based by program name/structure only — no verbatim basis quotes, so no basis tags. Consistent with who otherwise."
+   "note": "TAXONOMY GAP: Iranian descent is required (verbatim in evidence) for the Financial Assistance Scholarship, but no identity.* id covers Iranian/Middle Eastern descent (not aapi) \u2014 cannot tag without stretching taxonomy; flag for taxonomy extension. The Scholastic Achievement application section addresses U.S. HS graduates without restating descent on this page. FAS is need-based and SAS merit-based by program name/structure only \u2014 no verbatim basis quotes, so no basis tags. Consistent with who otherwise."
   },
   {
    "id": "chasa-college-scholarships",
@@ -1284,7 +1296,7 @@
    ],
    "evidence": "To qualify, the onset of your diagnosis must have occurred before the age of 18.",
    "finalUrl": "https://chasa.org/we-can-help/college-scholarships/",
-   "note": "Diagnosis-based criterion; also functions as circumstance.disability.physical (hemiplegia) — single tag used to avoid double counting. Onset must predate age 18. No need/merit basis stated. Consistent with who."
+   "note": "Diagnosis-based criterion; also functions as circumstance.disability.physical (hemiplegia) \u2014 single tag used to avoid double counting. Onset must predate age 18. No need/merit basis stated. Consistent with who."
   },
   {
    "id": "rareis-scholarship-fund",
@@ -1389,7 +1401,7 @@
    ],
    "evidence": "The Families of Freedom Scholarship is a need-based award.",
    "finalUrl": "https://www.familiesoffreedom.org/students-families/families-of-freedom-fund/",
-   "note": "Broader than loss-of-parent: spouses/domestic partners eligible; parents/siblings only if financially dependent on the victim. CONTRADICTION with who sentence: fund now accepts NEW registrations only for victims who died on 9/11 — 'Registration for families of disabled victims is closed.' Undergraduate only; must enroll by age 24."
+   "note": "Broader than loss-of-parent: spouses/domestic partners eligible; parents/siblings only if financially dependent on the victim. CONTRADICTION with who sentence: fund now accepts NEW registrations only for victims who died on 9/11 \u2014 'Registration for families of disabled victims is closed.' Undergraduate only; must enroll by age 24."
   },
   {
    "id": "john-edgar-thomson-foundation-grant",
@@ -1418,7 +1430,7 @@
    ],
    "evidence": "The employee must have been actively employed by any United States railroad at the time of his or her death; the cause does not need to be work related.",
    "finalUrl": "https://utuia.org/john-edgar-thompson-scholarship/",
-   "note": "basis.need marked preferred (not required) because page says income/expenses are 'considered', not a stated must — ambiguous, weaker strength chosen. Additional untaggable rule: 'Eligibility is also dependent on the daughter and the surviving parent remaining unmarried.' Grants daughters only; support can run to age 24 for higher education."
+   "note": "basis.need marked preferred (not required) because page says income/expenses are 'considered', not a stated must \u2014 ambiguous, weaker strength chosen. Additional untaggable rule: 'Eligibility is also dependent on the daughter and the surviving parent remaining unmarried.' Grants daughters only; support can run to age 24 for higher education."
   },
   {
    "id": "jed-student-voice-of-mental-health-awards",
@@ -1446,7 +1458,7 @@
    ],
    "evidence": "Documentation from a mental health professional that you are active in services",
    "finalUrl": "https://thequellfoundation.org/scholarships/",
-   "note": "Applicant themselves must be in active treatment for a diagnosed mental health condition (documentation required). Application also requires Form 1040/Student Aid Report/tax return, suggesting finances are reviewed, but the page states no explicit need-based criterion, so basis.need not tagged. GPA 3.20 minimum (not reported per rules). Sister awards (Survivor, First Responder Legacy) have different criteria — this record is Fighter only."
+   "note": "Applicant themselves must be in active treatment for a diagnosed mental health condition (documentation required). Application also requires Form 1040/Student Aid Report/tax return, suggesting finances are reviewed, but the page states no explicit need-based criterion, so basis.need not tagged. GPA 3.20 minimum (not reported per rules). Sister awards (Survivor, First Responder Legacy) have different criteria \u2014 this record is Fighter only."
   },
   {
    "id": "afa-teen-alzheimers-awareness-scholarship",
@@ -1465,7 +1477,7 @@
    ],
    "evidence": "Must attend an accredited college/university in the US immediately following high school graduation in 2026 (no gap year/semester)",
    "finalUrl": "https://alzfdn.org/scholarship/",
-   "note": "PARTIAL CONTRADICTION with who sentence: the formal eligibility list does NOT require a family Alzheimer's/dementia connection — connection is implied only through the required essay prompt, hence strength 'relevant' (aimed-at framing). Awarded via judged essay submission. US citizen HS seniors only; deadline April 1, 2026."
+   "note": "PARTIAL CONTRADICTION with who sentence: the formal eligibility list does NOT require a family Alzheimer's/dementia connection \u2014 connection is implied only through the required essay prompt, hence strength 'relevant' (aimed-at framing). Awarded via judged essay submission. US citizen HS seniors only; deadline April 1, 2026."
   },
   {
    "id": "paul-drury-memorial-cf-sibling-scholarship",
@@ -1479,7 +1491,7 @@
    ],
    "evidence": "The Boomer Esiason Foundation scholarship program was created in July 2003 to provide financial assistance to students in the cystic fibrosis community who are pursuing higher education opportunities.",
    "finalUrl": "https://esiason.smapply.us/prog/pd_memorial_scholarship/",
-   "note": "esiason.org page renders detail via JS; quote taken from the foundation's official SurveyMonkey Apply program page. Detailed criteria live behind the application portal. Third-party listings (uncited here) state applicant must be a sibling of someone with CF, must not have CF themselves, and that financial need is considered — recommend manual confirmation of the need component before tagging basis.need."
+   "note": "esiason.org page renders detail via JS; quote taken from the foundation's official SurveyMonkey Apply program page. Detailed criteria live behind the application portal. Third-party listings (uncited here) state applicant must be a sibling of someone with CF, must not have CF themselves, and that financial need is considered \u2014 recommend manual confirmation of the need component before tagging basis.need."
   },
   {
    "id": "route-79-duchenne-sibling-scholarship",
@@ -1545,7 +1557,7 @@
    ],
    "evidence": "full-time students of Lithuanian heritage",
    "finalUrl": "https://lithuanianfoundation.org/scholarship-guidelines/",
-   "note": "TAXONOMY GAP: the core criterion is REQUIRED Lithuanian heritage ('full-time students of Lithuanian heritage') — no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. Merit/community-service are selection factors (preferred). Full-time undergrad/grad only; associate/certificate programs excluded."
+   "note": "TAXONOMY GAP: the core criterion is REQUIRED Lithuanian heritage ('full-time students of Lithuanian heritage') \u2014 no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. Merit/community-service are selection factors (preferred). Full-time undergrad/grad only; associate/certificate programs excluded."
   },
   {
    "id": "finlandia-foundation-national-scholarship",
@@ -1569,9 +1581,9 @@
      "quote": "If you are a current or former foster youth, this award can cover the rest of your school costs (Cost of Attendance)"
     }
    ],
-   "evidence": "Academic-year specific: Meet income and asset ceilings — Students attending college between July 2026 and June 2027: up to $250,000",
+   "evidence": "Academic-year specific: Meet income and asset ceilings \u2014 Students attending college between July 2026 and June 2027: up to $250,000",
    "finalUrl": "https://www.csac.ca.gov/middle-class-scholarship",
-   "note": "csac.ca.gov blocks WebFetch (HTTP 405); content captured via browser. Income/asset ceiling ($250,000 for 2026-27) is a means test — tagged basis.need required even though it reaches well beyond low-income. Foster-youth tag is an ENHANCED AWARD level (full remaining cost of attendance), not an eligibility restriction. FAFSA or CADAA (Dream Act) accepted; no GPA requirement — consistent with who sentence."
+   "note": "csac.ca.gov blocks WebFetch (HTTP 405); content captured via browser. Income/asset ceiling ($250,000 for 2026-27) is a means test \u2014 tagged basis.need required even though it reaches well beyond low-income. Foster-youth tag is an ENHANCED AWARD level (full remaining cost of attendance), not an eligibility restriction. FAFSA or CADAA (Dream Act) accepted; no GPA requirement \u2014 consistent with who sentence."
   },
   {
    "id": "tennessee-hope-scholarship",
@@ -1627,7 +1639,7 @@
    ],
    "evidence": "Needs-based scholarship for students enrolled full-time at a Delaware institution or enrolled full-time at an out-of-state accredited institution in a program not offered in the State of Delaware.",
    "finalUrl": "https://education.delaware.gov/?page_id=14584",
-   "note": "Eligibility text sits inside an accordion the WebFetch summarizer truncated; extracted via browser. MATERIAL ADDITION vs who sentence: ScIP is explicitly needs-based (FAFSA required to demonstrate need) — the who sentence omits this. $1,000/year awards; 5-year lifetime cap; full-time only."
+   "note": "Eligibility text sits inside an accordion the WebFetch summarizer truncated; extracted via browser. MATERIAL ADDITION vs who sentence: ScIP is explicitly needs-based (FAFSA required to demonstrate need) \u2014 the who sentence omits this. $1,000/year awards; 5-year lifetime cap; full-time only."
   },
   {
    "id": "south-carolina-hope-scholarship",
@@ -1694,7 +1706,7 @@
    ],
    "evidence": "Applicants must be entering their freshman year of college in the fall of 2026 as a full-time student and plan to pursue a degree in the atmospheric or related oceanic or hydrologic sciences.",
    "finalUrl": "https://www.ametsoc.org/ams/information-for/students/ams-scholarships-and-fellowships/ams-first-year-undergraduate-scholarship/",
-   "note": "ametsoc.org blocks WebFetch (403); captured via browser. 'Minorities' also encouraged but unspecified — no single race/ethnicity tag applied ('encouraged to apply' framing = relevant only). US citizens/permanent residents; 3.0 GPA (not reportable). 2026 applications were due 6 February 2026. Consistent with who sentence including marine-biology exclusion."
+   "note": "ametsoc.org blocks WebFetch (403); captured via browser. 'Minorities' also encouraged but unspecified \u2014 no single race/ethnicity tag applied ('encouraged to apply' framing = relevant only). US citizens/permanent residents; 3.0 GPA (not reportable). 2026 applications were due 6 February 2026. Consistent with who sentence including marine-biology exclusion."
   },
   {
    "id": "aag-darrel-hess-community-college-geography-scholarship",
@@ -1718,7 +1730,7 @@
    ],
    "evidence": "currently enrolled at a US community college, junior college, city college, or similar two-year educational institution",
    "finalUrl": "https://www.aag.org/award-grant/hess/",
-   "note": "Geography mapped to field.stem.geoscience — closest available id; taxonomy has no geography tag (flag if human geography should not count as geoscience). Need and merit are selection considerations, not gates (preferred). Award-count conflict noted in who sentence confirmed: page says both 'Two $1,500 scholarships will be awarded' and 'Two to four awards of $1,500 will be made annually.'"
+   "note": "Geography mapped to field.stem.geoscience \u2014 closest available id; taxonomy has no geography tag (flag if human geography should not count as geoscience). Need and merit are selection considerations, not gates (preferred). Award-count conflict noted in who sentence confirmed: page says both 'Two $1,500 scholarships will be awarded' and 'Two to four awards of $1,500 will be made annually.'"
   },
   {
    "id": "natas-national-scholarships",
@@ -1784,7 +1796,7 @@
    ],
    "evidence": "students of Estonian ancestry studying full-time in a Bachelor's or Master's degree program at an accredited academic institution",
    "finalUrl": "https://esfusa.org/en/home/",
-   "note": "TAXONOMY GAP: core criterion is REQUIRED Estonian ancestry — no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. MINOR CONTRADICTION with who sentence: page says Bachelor's OR Master's programs, not bachelor's only. Selection also weighs academic excellence, community leadership, commitment to Estonian society (no verbatim quotes available, not tagged)."
+   "note": "TAXONOMY GAP: core criterion is REQUIRED Estonian ancestry \u2014 no ethnic-heritage identity id exists in the taxonomy, so it cannot be tagged; treat as a required identity restriction. MINOR CONTRADICTION with who sentence: page says Bachelor's OR Master's programs, not bachelor's only. Selection also weighs academic excellence, community leadership, commitment to Estonian society (no verbatim quotes available, not tagged)."
   },
   {
    "id": "oklahoma-rising-scholars-award",
@@ -2266,7 +2278,7 @@
    "resolution": "general",
    "evidence": "Has declared a major or is currently pursuing a program of study offered and verifiable by the institution that is designated as an in-demand profession",
    "finalUrl": "https://www.mass.edu/osfa/programs/indemand.asp",
-   "note": "A field restriction exists but only to the state's broad 'in-demand professions' list (designated by MA Executive Office of Labor and Workforce Development), spanning many sectors — no single taxonomy field id applies and the page does not enumerate fields. Annual 3.0 GPA maintenance is a floor, not reported per rules. Matches who sentence."
+   "note": "A field restriction exists but only to the state's broad 'in-demand professions' list (designated by MA Executive Office of Labor and Workforce Development), spanning many sectors \u2014 no single taxonomy field id applies and the page does not enumerate fields. Annual 3.0 GPA maintenance is a floor, not reported per rules. Matches who sentence."
   },
   {
    "id": "ccsnh-nh-scholars",
@@ -2280,7 +2292,7 @@
    ],
    "evidence": "While priority will be given to high schools within their regions, Presidents, at their discretion, may offer scholarships to students outside their respective regions.",
    "finalUrl": "https://www.ccsnh.edu/paying-for-college-new/tuition-waiver-programs-new/",
-   "note": "Eligibility is completion of the NH Scholars college-ready curriculum — a curriculum-designation/merit gate rather than GPA merit; tagged basis.merit-academic as nearest fit. Regional priority is geographic (not taxonomy). Valid only one year after HS graduation. Matches who sentence."
+   "note": "Eligibility is completion of the NH Scholars college-ready curriculum \u2014 a curriculum-designation/merit gate rather than GPA merit; tagged basis.merit-academic as nearest fit. Regional priority is geographic (not taxonomy). Valid only one year after HS graduation. Matches who sentence."
   },
   {
    "id": "md-delegate-maryland",
@@ -2299,7 +2311,7 @@
    ],
    "evidence": "All in-state majors are eligible",
    "finalUrl": "https://mhec.maryland.gov/Preparing/Pages/FinancialAid/ProgramDescriptions/prog_delegate.aspx",
-   "note": "Need-based selection applies only when a delegate asks OSFA to select recipients (otherwise delegate discretion) — weaker strength per ambiguity rule. Undocumented students are explicitly included (inclusive framing, not a restriction). True gate is nomination by a state delegate — political-constituent nomination has no taxonomy id. Matches who sentence."
+   "note": "Need-based selection applies only when a delegate asks OSFA to select recipients (otherwise delegate discretion) \u2014 weaker strength per ambiguity rule. Undocumented students are explicitly included (inclusive framing, not a restriction). True gate is nomination by a state delegate \u2014 political-constituent nomination has no taxonomy id. Matches who sentence."
   },
   {
    "id": "md-assistance-maryland-shortage-workforce",
@@ -2369,7 +2381,7 @@
    ],
    "evidence": "Must intend to register in an eligible short-term credential program that can be completed in two semesters or less and that will lead to in-demand career opportunities in the region",
    "finalUrl": "https://www.accs.edu/community-college/pathways-to-prosperity-scholarship/",
-   "note": "Program restriction is to ACCCP-designated regional in-demand short-term credentials — broad, spans academic/technical/health/skills categories, no single taxonomy field id. Financial need is an explicit must (not in who sentence — worth adding). Portal reopens Aug 1, 2026."
+   "note": "Program restriction is to ACCCP-designated regional in-demand short-term credentials \u2014 broad, spans academic/technical/health/skills categories, no single taxonomy field id. Financial need is an explicit must (not in who sentence \u2014 worth adding). Portal reopens Aug 1, 2026."
   },
   {
    "id": "tn-mcwherter-ned-scholars-tennessee",
@@ -2426,7 +2438,7 @@
    ],
    "evidence": "Achieve two grades of three or higher on Advanced Placement exams in the fields of math and/or science while attending a Missouri public high school.",
    "finalUrl": "https://dhewd.mo.gov/ppc/grants-scholarships/advanced-placement",
-   "note": "field.stem applies to the AP exam subjects (math/science), NOT the student's college major — no major restriction. basis.need kept 'relevant': Access Missouri path is need-based but the alternative A+ path is not, so need is not strictly required. Matches who sentence."
+   "note": "field.stem applies to the AP exam subjects (math/science), NOT the student's college major \u2014 no major restriction. basis.need kept 'relevant': Access Missouri path is need-based but the alternative A+ path is not, so need is not strictly required. Matches who sentence."
   },
   {
    "id": "ne-at-career-colleges-community-2",
@@ -2475,7 +2487,7 @@
    ],
    "evidence": "Must be enrolled in an eligible program of study offered by a community college that falls within one of the following occupational categories",
    "finalUrl": "https://ccpe.nebraska.gov/ne-career-scholarship-community-colleges",
-   "note": "Program must fall within ONE of ten broad occupational categories — a multi-field workforce restriction, not a single niche. Also requires registering to obtain a Nebraska-based internship/apprenticeship/clinical/employment in the major field (in-program requirement, not a post-grad service commitment). No need or merit criteria. Matches who sentence."
+   "note": "Program must fall within ONE of ten broad occupational categories \u2014 a multi-field workforce restriction, not a single niche. Also requires registering to obtain a Nebraska-based internship/apprenticeship/clinical/employment in the major field (in-program requirement, not a post-grad service commitment). No need or merit criteria. Matches who sentence."
   },
   {
    "id": "ne-at-career-colleges-nebraska",
@@ -2516,7 +2528,7 @@
    "resolution": "general",
    "evidence": "The person, while a resident of this state for state subsidy and tuition surcharge purposes, graduated from a high school in this state or completed the final year of education at home",
    "finalUrl": "https://codes.ohio.gov/ohio-revised-code/section-3333.31",
-   "note": "URL is ORC 3333.31, the residency statute containing the 'Forever Buckeye' provision (F)(1) — an in-state-tuition classification benefit, not a scholarship with its own application. No niche criteria for this provision (Ohio HS graduation + re-established domicile). The statute's separate veteran residency provisions are distinct and not part of this benefit. Matches who sentence."
+   "note": "URL is ORC 3333.31, the residency statute containing the 'Forever Buckeye' provision (F)(1) \u2014 an in-state-tuition classification benefit, not a scholarship with its own application. No niche criteria for this provision (Ohio HS graduation + re-established domicile). The statute's separate veteran residency provisions are distinct and not part of this benefit. Matches who sentence."
   },
   {
    "id": "al-alabama-alabama-engage",
@@ -2537,14 +2549,14 @@
    "resolution": "general",
    "evidence": "Must not have been enrolled in a publicly supported high school for any part of a fourth year (grade 12).",
    "finalUrl": "https://www.in.gov/che/state-financial-aid/state-financial-aid-by-program/mitch-daniels-early-graduation-scholarship",
-   "note": "Gates are residency, public-school attendance for final two semesters, Core 40 diploma by end of grade 11, early graduation, and full-time enrollment — timing/enrollment rules, no niche criteria. Matches who sentence."
+   "note": "Gates are residency, public-school attendance for final two semesters, Core 40 diploma by end of grade 11, early graduation, and full-time enrollment \u2014 timing/enrollment rules, no niche criteria. Matches who sentence."
   },
   {
    "id": "family-steiner",
    "resolution": "unclear",
-   "evidence": "Information for this program has moved. Redirecting now…",
+   "evidence": "Information for this program has moved. Redirecting now\u2026",
    "finalUrl": "https://start.scholarsapply.org/?programcycleid=60697",
-   "note": "Official page (learnmore.scholarsapply.org) now only redirects to the login-gated Scholarship America hub; program is not in Scholarship America's public browse list, and I will not create an account to see details. Third-party listings (Petersons/CollegeData/BigFuture) consistently report: 'Preference will be given to children of employees of former AmeriPride, Canadian Linen and Quebec Linge companies' plus a 3.00 GPA minimum — i.e., a likely affiliation.employer PREFERRED criterion missing from the who sentence. Needs manual confirmation inside the hub before publishing."
+   "note": "Official page (learnmore.scholarsapply.org) now only redirects to the login-gated Scholarship America hub; program is not in Scholarship America's public browse list, and I will not create an account to see details. Third-party listings (Petersons/CollegeData/BigFuture) consistently report: 'Preference will be given to children of employees of former AmeriPride, Canadian Linen and Quebec Linge companies' plus a 3.00 GPA minimum \u2014 i.e., a likely affiliation.employer PREFERRED criterion missing from the who sentence. Needs manual confirmation inside the hub before publishing."
   },
   {
    "id": "angels-s-thai-u",
@@ -2568,7 +2580,7 @@
    ],
    "evidence": "Have an unweighted cumulative grade point average (GPA) of 3.0 or better",
    "finalUrl": "https://www.angelswingsfoundation.org/angels-wings-thai-us-scholarship-2025-copy",
-   "note": "identity.aapi kept at 'relevant' per aimed-at-framing rule: the bulleted eligibility list does not state an explicit ancestry must, but the purpose statement targets Thai-American students and the required essay presupposes Thai identity ('How has being Thai and growing up in a multicultural society shaped your identity?') — de facto likely required; who sentence treats it as a requirement. 3.0 GPA floor not reported per rules."
+   "note": "identity.aapi kept at 'relevant' per aimed-at-framing rule: the bulleted eligibility list does not state an explicit ancestry must, but the purpose statement targets Thai-American students and the required essay presupposes Thai identity ('How has being Thai and growing up in a multicultural society shaped your identity?') \u2014 de facto likely required; who sentence treats it as a requirement. 3.0 GPA floor not reported per rules."
   },
   {
    "id": "scleroderma-warriors",
@@ -2582,7 +2594,7 @@
    ],
    "evidence": "scholarships to degree-seeking children and grandchildren (biological or otherwise), and those afflicted with cutaneous systemic sclerosis.",
    "finalUrl": "https://sclerodermawarriors.org/scholarship-program/",
-   "note": "Eligible: the diagnosed person OR their children/grandchildren (taxonomy has no family-of-condition subtag outside cancer, so the family route is folded into specific-condition — flagged here). Requires diagnostic confirmation letter from a treatment provider and a 1,000-2,000 word essay on 'How Scleroderma has changed my life.' Matches who sentence."
+   "note": "Eligible: the diagnosed person OR their children/grandchildren (taxonomy has no family-of-condition subtag outside cancer, so the family route is folded into specific-condition \u2014 flagged here). Requires diagnostic confirmation letter from a treatment provider and a 1,000-2,000 word essay on 'How Scleroderma has changed my life.' Matches who sentence."
   },
   {
    "id": "aifd",
@@ -2601,7 +2613,7 @@
    ],
    "evidence": "full-time or part-time student, enrolled in junior college, college or university pursuing retail floriculture with emphasis on floral design",
    "finalUrl": "https://www.aifdfoundation.org/scholarship-applications",
-   "note": "Record maps to the AIFD Student Scholarship (page hosts many AIFD Foundation awards; others require CFD credential or professional status). 'Retail floriculture with emphasis on floral design' straddles horticulture (field.agriculture) and design (field.arts.visual-design) — both tagged; taxonomy has no exact floristry id. Matches who sentence."
+   "note": "Record maps to the AIFD Student Scholarship (page hosts many AIFD Foundation awards; others require CFD credential or professional status). 'Retail floriculture with emphasis on floral design' straddles horticulture (field.agriculture) and design (field.arts.visual-design) \u2014 both tagged; taxonomy has no exact floristry id. Matches who sentence."
   },
   {
    "id": "academic-bcsp-qualified",
@@ -2615,7 +2627,7 @@
    ],
    "evidence": "Juniors, seniors, or master's students in good academic standing at one of BCSP's U.S.-based QAPs may apply here when scholarship applications are open.",
    "finalUrl": "https://www.bcsp.org/grants",
-   "note": "APPROXIMATE TAG: eligibility is enrollment in a BCSP Qualified Academic Program — degree programs in occupational safety/health/environmental (safety sciences); taxonomy has no safety field id and the page itself never names the field, so field.stem is the nearest stand-in — review. Resolves the who-sentence conflict: current public rules state only 'good academic standing'; the former full-time and 3.25 GPA requirements no longer appear."
+   "note": "APPROXIMATE TAG: eligibility is enrollment in a BCSP Qualified Academic Program \u2014 degree programs in occupational safety/health/environmental (safety sciences); taxonomy has no safety field id and the page itself never names the field, so field.stem is the nearest stand-in \u2014 review. Resolves the who-sentence conflict: current public rules state only 'good academic standing'; the former full-time and 3.25 GPA requirements no longer appear."
   },
   {
    "id": "wy-wygeo-undergraduate",
@@ -2634,14 +2646,14 @@
    ],
    "evidence": "BOTH residency/school location and study focus conditions must be met to qualify",
    "finalUrl": "https://wygeo.org/wygeo/wp-content/uploads/WyGEO-Scholarship-Application_2026_27.pdf",
-   "note": "GIS/geospatial (GIS, Remote Sensing, GPS) mapped to field.stem.geoscience — closest taxonomy id. Application also requires transcripts and a judged interactive story-map project (portfolio element, noted but not tagged). Residency rule matches who sentence exactly."
+   "note": "GIS/geospatial (GIS, Remote Sensing, GPS) mapped to field.stem.geoscience \u2014 closest taxonomy id. Application also requires transcripts and a judged interactive story-map project (portfolio element, noted but not tagged). Residency rule matches who sentence exactly."
   },
   {
    "id": "me-legislative-memorial",
    "resolution": "general",
    "evidence": "make scholarship awards available to Maine residents attending any accredited Maine institution of higher education",
    "finalUrl": "https://legislature.maine.gov/lio/legislative-memorial-scholarship-fund/9083",
-   "note": "Purely geographic: Maine residents at Maine institutions, 16 awards — one per county ('16 students, one from each county in Maine'). No field, identity, circumstance, affiliation, need, or merit criteria on page. Matches who sentence."
+   "note": "Purely geographic: Maine residents at Maine institutions, 16 awards \u2014 one per county ('16 students, one from each county in Maine'). No field, identity, circumstance, affiliation, need, or merit criteria on page. Matches who sentence."
   },
   {
    "id": "nj-njrea-fred-aug",
@@ -2667,7 +2679,7 @@
    ],
    "evidence": "These scholarships are for college bound students from NYSIR subscribing districts only.",
    "finalUrl": "https://www.nysir.org/resource/resmgr/pdf2/2026_scholarship_criteria.pdf",
-   "note": "Design here includes functional/technical design ('shown interest and promise in design and who wishes to pursue this path in college'; namesake examples are canoe/roof-rack craftsmanship) — field.arts.visual-design is the nearest id; who sentence's 'design, building, or related technical skills' confirmed. NYSIR-subscribing-district requirement is an institutional affiliation with no taxonomy id (noted, untagged). Main page was 403 to plain fetch; criteria taken from the official 2026 criteria PDF. Sibling awards on same PDF: Bambino (special-ed IEP/504) and Goncalves (humanitarian service) are separate programs."
+   "note": "Design here includes functional/technical design ('shown interest and promise in design and who wishes to pursue this path in college'; namesake examples are canoe/roof-rack craftsmanship) \u2014 field.arts.visual-design is the nearest id; who sentence's 'design, building, or related technical skills' confirmed. NYSIR-subscribing-district requirement is an institutional affiliation with no taxonomy id (noted, untagged). Main page was 403 to plain fetch; criteria taken from the official 2026 criteria PDF. Sibling awards on same PDF: Bambino (special-ed IEP/504) and Goncalves (humanitarian service) are separate programs."
   },
   {
    "id": "sc-counties-scholarship",
@@ -2681,7 +2693,7 @@
    "resolution": "general",
    "evidence": "The school board of each MSBA member district is eligible to nominate one high school senior to apply.",
    "finalUrl": "https://www.mosba.org/page/scholarships",
-   "note": "Gate is nomination by an MSBA member district's school board (institutional/geographic, no taxonomy id) — one senior per district, 17 regional winners plus one state winner. No field, identity, circumstance, need, or merit criteria published. Page is behind a JS challenge for plain fetches; verified via rendered browser. Matches who sentence."
+   "note": "Gate is nomination by an MSBA member district's school board (institutional/geographic, no taxonomy id) \u2014 one senior per district, 17 regional winners plus one state winner. No field, identity, circumstance, need, or merit criteria published. Page is behind a JS challenge for plain fetches; verified via rendered browser. Matches who sentence."
   }
  ]
 }

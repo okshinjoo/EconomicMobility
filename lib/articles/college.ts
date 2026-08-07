@@ -516,7 +516,7 @@ export const collegeArticles: Article[] = [
       },
       {
         type: "p",
-        text: "This is the big one, because it varies enormously. Many states offer in-state tuition (a huge discount) and their own financial aid to undocumented students, often through a separate application instead of the FAFSA. Some states offer a lot; some offer nothing. So the first move is to look up your state's specific policy: search your state's name plus 'aid for undocumented students,' or ask a college's financial aid office directly.",
+        text: "This is the big one, because it varies enormously. Many states offer in-state tuition (a huge discount) and their own financial aid to undocumented students, often through a separate application instead of the FAFSA. Some states offer a lot; some offer nothing. So the first move is to look up your state's specific policy: search your state's name plus 'aid for undocumented students,' or ask a college's financial aid office directly. And re-check every application season, because these policies can change fast: a federal court ruling ended undocumented students' eligibility for Illinois state aid for the 2026-27 year, after years of it being available.",
       },
       {
         type: "h2",

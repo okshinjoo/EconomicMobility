@@ -107,7 +107,7 @@ export const freshness: FreshnessEntry[] = [
     cadence: "Yearly.",
     nextDueISO: "2027-07-01",
     recipe:
-      "node scripts/check-scholarships.mjs on every URL; browser-confirm 403 bot-walls and '200 but LOGIN page' hits before cutting (iMIS association sites bounce dead pages to sign-in URLs that return 200); refresh 'Typically <month>' deadlines that shifted; keep the curation bar (no fees, no data harvesting, no aggregator/directory sources); bump VERIFIED_AS_OF. ELIGIBILITY LAYER (Aug 2026): also spot-check the geo/eligibility overlays on entries whose pages changed, work down the needs-review records in data/scholarship-classifications.json against official pages (upgrade method who-derived → agent/manual), and run npm run check:scholarship-tags before shipping.",
+      "node scripts/check-scholarships.mjs on every URL; browser-confirm 403 bot-walls and '200 but LOGIN page' hits before cutting (iMIS association sites bounce dead pages to sign-in URLs that return 200); refresh 'Typically <month>' deadlines that shifted; keep the curation bar (no fees, no data harvesting, no aggregator/directory sources); bump VERIFIED_AS_OF. ELIGIBILITY LAYER (Aug 2026): also spot-check the geo/eligibility overlays on entries whose pages changed, work down the needs-review records in data/scholarship-classifications.json against official pages (upgrade method who-derived → agent/manual), and run npm run check:scholarship-tags before shipping. ILLINOIS/ISAC (time-boxed): the 2027-28 Alternative Application criteria publish ~Oct 1, 2026 (isac.org/AlternativeApp) — if undocumented eligibility returns, restore openToUndocumented on illinois-map + golden-apple-scholars (dated comments in lib/scholarships.ts).",
   },
   {
     id: "state-resources",

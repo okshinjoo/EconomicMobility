@@ -1123,6 +1123,7 @@ export const scholarshipEligibility: Record<string, EligibilityTag[]> = {
   "uncf-toyota-scholars": [{ tag: "field.stem", strength: "required" }, { tag: "identity.black", strength: "required" }],
   "maldef-law-school": [{ tag: "field.public-service", strength: "required" }, { tag: "identity.latino", strength: "required" }, { tag: "basis.need", strength: "relevant" }],
   // Queue resolutions from official pages, 2026-08-07 (method: agent; [] = confirmed GENERAL):
+  "pa-rtss": [{ tag: "basis.merit-academic", strength: "required" }, { tag: "basis.need", strength: "relevant" }],
   "equitable-excellence": [{ tag: "basis.need", strength: "required" }],
   "dream-award": [{ tag: "basis.need", strength: "required" }],
   "regeneron-sts": [{ tag: "field.stem", strength: "required" }, { tag: "basis.talent-competition", strength: "required" }],
