@@ -6,6 +6,7 @@ import {
   buildFieldProposals,
   evaluateOfficialSource,
   operationalStatePatch,
+  stableStringify,
 } from "./scholarship-monitor-core.mjs";
 
 const { canAutoApply } = await import("../lib/scholarshipMonitoring.ts");
@@ -86,6 +87,8 @@ async function fetchWithBrowser(urlValue) {
     const response = await page.goto(urlValue, { waitUntil: "domcontentloaded", timeout: 30000 });
     if (!response) throw new Error("Browser navigation returned no response.");
     if (!response.ok()) throw new Error(`Browser HTTP ${response.status()}`);
+    await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => undefined);
+    await page.waitForTimeout(1000);
     return {
       kind: "content",
       html: await page.content(),
@@ -223,7 +226,9 @@ if (admin) {
     locksByScholarship.get(lock.scholarship_id).add(lock.field_name);
   }
   pendingProposalKeys = new Set(
-    (proposalQuery.data ?? []).map((proposal) => `${proposal.scholarship_id}|${proposal.field_name}|${JSON.stringify(proposal.proposed_value)}`),
+    (proposalQuery.data ?? []).map(
+      (proposal) => `${proposal.scholarship_id}|${proposal.field_name}|${stableStringify(proposal.proposed_value)}`,
+    ),
   );
 }
 
@@ -348,7 +353,7 @@ for (const proposal of proposals) {
   });
 }
 proposals = proposals.filter((proposal) => {
-  const key = `${proposal.scholarshipId}|${proposal.fieldName}|${JSON.stringify(proposal.proposedValue)}`;
+  const key = `${proposal.scholarshipId}|${proposal.fieldName}|${stableStringify(proposal.proposedValue)}`;
   if (proposal.fieldLocked || pendingProposalKeys.has(key)) return false;
   pendingProposalKeys.add(key);
   return true;
