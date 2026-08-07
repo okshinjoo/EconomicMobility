@@ -17,7 +17,10 @@
     "build:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs --write",
     "check:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs",
     "seed:scholarship-monitor": "node scripts/seed-scholarship-monitor.mjs",
-    "test:scholarship-monitor-foundation": "node scripts/test-scholarship-monitor-foundation.mjs"
+    "test:scholarship-monitor-foundation": "node scripts/test-scholarship-monitor-foundation.mjs",
+    "check:scholarship-monitor-sources": "node scripts/check-scholarship-monitor-sources.mjs",
+    "test:scholarship-monitor-worker": "node scripts/test-scholarship-monitor-worker.mjs",
+    "monitor:scholarships": "node scripts/run-scholarship-monitor.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -1,0 +1,427 @@
+[
+  {
+    "id": "jkc-transfer",
+    "sourceUrl": "https://www.jkcf.org/our-scholarships/undergraduate-transfer-scholarship/how-to-apply/",
+    "requiredPatterns": ["Undergraduate Transfer Scholarship", "Who Can Apply"],
+    "statusRules": [
+      { "status": "open", "pattern": "application is now open" },
+      { "status": "upcoming", "pattern": "application will open on" },
+      { "status": "closed", "pattern": "application is (?:now )?closed" }
+    ],
+    "dateRules": {
+      "opensOn": [
+        "([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+Application opens",
+        "application will open on\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"
+      ],
+      "closesOn": ["([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+Application closes"]
+    }
+  },
+  {
+    "id": "jkc-college",
+    "sourceUrl": "https://www.jkcf.org/our-scholarships/college-scholarship-program/how-to-apply/",
+    "requiredPatterns": ["College Scholarship Program", "Eligibility Requirements"],
+    "statusRules": [
+      { "status": "open", "pattern": "application is now open" },
+      { "status": "upcoming", "pattern": "application will open on" },
+      { "status": "closed", "pattern": "application is (?:now )?closed" }
+    ],
+    "dateRules": {
+      "opensOn": [
+        "([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+Application opens",
+        "application will open on\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"
+      ],
+      "closesOn": ["([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+Application submission deadline"]
+    }
+  },
+  {
+    "id": "gates",
+    "sourceUrl": "https://www.thegatesscholarship.org/scholarship/",
+    "requiredPatterns": ["The Gates Scholarship", "Basic Eligibility"],
+    "statusRules": [
+      { "status": "open", "pattern": "Status:\\s*Open" },
+      { "status": "closed", "pattern": "Status:\\s*Closed" }
+    ],
+    "dateRules": {
+      "opensOn": ["Available\\s+([A-Z][a-z]+ \\d{1,2} \\d{4})"],
+      "closesOn": ["Deadline\\s+([A-Z][a-z]+ \\d{1,2} \\d{4})"]
+    }
+  },
+  {
+    "id": "questbridge",
+    "sourceUrl": "https://www.questbridge.org/apply-to-college/programs/national-college-match/the-match-scholarship",
+    "requiredPatterns": ["The Match Scholarship", "National College Match"],
+    "statusRules": [
+      { "status": "open", "pattern": "National College Match is now open" },
+      { "status": "closed", "pattern": "National College Match is (?:now )?closed" }
+    ],
+    "dateRules": {
+      "closesOn": ["(\\d{1,2} \\d{1,2} \\d{4})\\s+National College Match Application Deadline"]
+    }
+  },
+  {
+    "id": "coca-cola",
+    "sourceUrl": "https://www.coca-colascholarsfoundation.org/apply/",
+    "requiredPatterns": ["Coca-Cola Scholars Program", "Selection Process"],
+    "statusRules": [
+      { "status": "open", "pattern": "application is available" },
+      { "status": "closed", "pattern": "application is (?:now )?closed" }
+    ],
+    "dateRules": {
+      "closesOn": ["(?:through|deadline to apply is)[^.!]{0,100}?([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "dell",
+    "sourceUrl": "https://www.dellscholars.org/students/",
+    "requiredPatterns": ["Dell Scholars", "Who Can Apply"],
+    "statusRules": [
+      { "status": "open", "pattern": "applications? (?:are|is) (?:now )?open" },
+      { "status": "closed", "pattern": "applications? (?:are|is) (?:now )?closed" }
+    ],
+    "dateRules": {
+      "opensOn": ["(\\d{4}\\s+[A-Z]{3}\\s+\\d{1,2})\\s+Application Opens"],
+      "closesOn": ["(\\d{4}\\s+[A-Z]{3}\\s+\\d{1,2})\\s+Application Deadline"]
+    }
+  },
+  {
+    "id": "horatio-alger",
+    "sourceUrl": "https://horatioalger.org/scholarships/",
+    "requiredPatterns": ["UNDERGRADUATE SCHOLARSHIPS", "Junior Application Period"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "12-01",
+      "closesMonthDay": "03-01",
+      "validationPattern": "Junior Application Period:\\s*December 1\\s*[–-]\\s*March 1"
+    }
+  },
+  {
+    "id": "dream-us-national",
+    "sourceUrl": "https://www.thedream.us/scholarships/national-scholarship/",
+    "requiredPatterns": ["National Scholarship", "TheDream.US"],
+    "statusRules": [
+      { "status": "upcoming", "pattern": "next scholarship application round opens" },
+      { "status": "open", "pattern": "National Scholarship is now open" },
+      { "status": "closed", "pattern": "National [Ss]cholarship is now closed" }
+    ],
+    "dateRules": {
+      "nextOpensOn": ["next scholarship application round opens\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"],
+      "closesOn": ["Closes:\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "dream-us-opportunity",
+    "sourceUrl": "https://www.thedream.us/scholarships/opportunity-scholarship/",
+    "requiredPatterns": ["Opportunity Scholarship", "locked-out states"],
+    "statusRules": [
+      { "status": "upcoming", "pattern": "next scholarship application round opens" },
+      { "status": "open", "pattern": "Opportunity Scholarship is now open" },
+      { "status": "closed", "pattern": "Opportunity Scholarship is now closed" }
+    ],
+    "dateRules": {
+      "nextOpensOn": ["next scholarship application round opens\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"],
+      "closesOn": ["Closes:[^A-Z]{0,80}([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "hsf",
+    "sourceUrl": "https://www.hsf.net/scholarship/",
+    "requiredPatterns": ["HSF Scholar Program Application", "Eligibility Requirements"],
+    "statusRules": [
+      { "status": "open", "pattern": "Status:\\s*Open" },
+      { "status": "closed", "pattern": "Status:\\s*Closed" }
+    ],
+    "dateRules": {
+      "opensOn": ["Available\\s+([A-Z][a-z]+ \\d{1,2} \\d{4})"],
+      "closesOn": ["Deadline\\s+([A-Z][a-z]+ \\d{1,2} \\d{4})"]
+    }
+  },
+  {
+    "id": "ron-brown",
+    "sourceUrl": "https://ronbrown.org/ron-brown-scholarship/",
+    "requiredPatterns": ["Ron Brown Signature Scholarship", "final deadline of December 1"],
+    "statusRules": [
+      { "status": "open", "pattern": "application (?:window )?(?:for the \\d{4} scholarship competition )?is (?:now )?open" },
+      { "status": "closed", "pattern": "application for the \\d{4} scholarship competition is now closed" }
+    ],
+    "recurringWindow": {
+      "opensMonthDay": "09-03",
+      "closesMonthDay": "12-01",
+      "validationPattern": "begin accepting applications after September 3"
+    }
+  },
+  {
+    "id": "apia",
+    "sourceUrl": "https://apiascholars.org/scholarships/",
+    "requiredPatterns": ["APIA Scholarship", "welcome students from all backgrounds", "January 15\\s*(?:th)?\\s*,\\s*2027"],
+    "statusRules": [
+      { "status": "open", "pattern": "APIA Scholarship application is now open" },
+      { "status": "upcoming", "pattern": "application cycle will open in fall 2026" },
+      { "status": "closed", "pattern": "APIA Scholarship application is now closed" }
+    ],
+    "fixedWindow": {
+      "opensOn": "2026-11-15",
+      "closesOn": "2027-01-15",
+      "validationPattern": "November 15\\s*(?:th)?\\s*,\\s*2026"
+    }
+  },
+  {
+    "id": "american-indian-college-fund",
+    "sourceUrl": "https://collegefund.org/students/scholarships/application-faqs/",
+    "requiredPatterns": ["American Indian College Fund", "When is the scholarship application open"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "02-01",
+      "closesMonthDay": "01-25",
+      "validationPattern": "application opens February 1(?:st)? each year[\\s\\S]{0,180}remains open until January 25(?:th)?"
+    }
+  },
+  {
+    "id": "cameron-impact",
+    "sourceUrl": "https://www.bryancameroneducationfoundation.org/faq",
+    "requiredPatterns": ["Cameron Impact Scholarship", "3,000 completed and eligible applications"],
+    "statusRules": [
+      { "status": "closed", "pattern": "APPLICATIONS ARE CLOSED FOR THE CLASS OF 2027" },
+      { "status": "open", "pattern": "applications are (?:now )?open for the class of \\d{4}" }
+    ],
+    "dateRules": {
+      "closesOn": ["(?:OR|on)\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+- whichever occurs first"]
+    }
+  },
+  {
+    "id": "amazon-future-engineer",
+    "sourceUrl": "https://www.amazonfutureengineer.com/scholarships",
+    "requiredPatterns": ["Amazon Future Engineer", "up to \\$40,000"],
+    "statusRules": [
+      { "status": "open", "pattern": "Applications are now open" },
+      { "status": "closed", "pattern": "Applications are now closed" },
+      { "status": "closed", "pattern": "Applications for 2025[–-]2026 are closed" }
+    ]
+  },
+  {
+    "id": "elks-mvs",
+    "sourceUrl": "https://www.elks.org/scholars/scholarships/mvs.cfm",
+    "requiredPatterns": ["Most Valuable Student", "ElksMVS", "500 four-year scholarships"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-08-01",
+      "closesOn": "2026-11-12",
+      "validationPattern": "2027 application deadline is November 12, 2026"
+    }
+  },
+  {
+    "id": "vfw-voice",
+    "sourceUrl": "https://www.vfw.org/VOD",
+    "requiredPatterns": ["Voice of Democracy", "2026-27 theme", "Download the 2026-2027 entry form"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-04-01",
+      "closesOn": "2026-10-31",
+      "validationPattern": "essays must be turned in by midnight, Oct\\. ?31"
+    }
+  },
+  {
+    "id": "equitable-excellence",
+    "sourceUrl": "https://scholarshipamerica.org/scholarship/equitableexcellence/",
+    "requiredPatterns": ["Equitable Excellence Scholarship", "Award Amount\\s+\\$20,000"],
+    "statusRules": [
+      { "status": "open", "pattern": "Status:\\s*Open" },
+      { "status": "closed", "pattern": "Status:\\s*Closed" }
+    ]
+  },
+  {
+    "id": "ge-reagan",
+    "sourceUrl": "https://www.reaganfoundation.org/education/ge-reagan-foundation-scholarship",
+    "requiredPatterns": ["GE-Reagan Foundation Scholarship Program", "up to \\$40,000"],
+    "statusRules": [
+      { "status": "open", "pattern": "Application is now open" },
+      { "status": "closed", "pattern": "Application is now closed" }
+    ],
+    "dateRules": {
+      "closesOn": ["Application closes\\s+([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "dream-award",
+    "sourceUrl": "https://scholarshipamerica.org/scholarship/dreamaward/",
+    "requiredPatterns": ["Scholarship America Dream Award", "Award Amount\\s+\\$10,000"],
+    "statusRules": [
+      { "status": "open", "pattern": "Status:\\s*Open" },
+      { "status": "closed", "pattern": "Status:\\s*Closed" }
+    ]
+  },
+  {
+    "id": "regeneron-sts",
+    "sourceUrl": "https://www.societyforscience.org/regeneron-sts/",
+    "requiredPatterns": ["Regeneron Science Talent Search", "Application Deadline is November 5, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-06-01",
+      "closesOn": "2026-11-05",
+      "validationPattern": "June 1\\s*[–-]\\s*November 5, 2026"
+    }
+  },
+  {
+    "id": "soroptimist-live-your-dream",
+    "sourceUrl": "https://www.soroptimist.org/our-work/live-your-dream-awards/apply-for-the-live-your-dream-awards.html",
+    "requiredPatterns": ["Live Your Dream", "Start My Application"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "08-01",
+      "closesMonthDay": "11-15",
+      "validationPattern": "application from\\s+August 1\\s+to\\s+November 15"
+    }
+  },
+  {
+    "id": "rankin-scholar-grant",
+    "sourceUrl": "https://rankinfoundation.org/national-scholar-grant/",
+    "requiredPatterns": ["National Scholar Grant", "Grant Cycle is now CLOSED"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2025-11-03",
+      "closesOn": "2026-02-13",
+      "validationPattern": "Application opened:\\s*Nov\\. 3, 2025[\\s\\S]{0,100}Application closed:\\s*Feb\\. 13, 2026"
+    }
+  },
+  {
+    "id": "patsy-mink-education-award",
+    "sourceUrl": "https://www.patsyminkfoundation.org/education-support-application",
+    "requiredPatterns": ["EDUCATION SUPPORT AWARDS", "five Education Support Awards of up to \\$?5000"],
+    "statusRules": [
+      { "status": "closed", "pattern": "application cycle closed on August 1, 2026" }
+    ],
+    "dateRules": {
+      "closesOn": ["application cycle closed on ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "davis-putter",
+    "sourceUrl": "https://www.davisputter.org/apply",
+    "requiredPatterns": ["Davis-Putter Scholarship Fund", "maximum grant available is \\$15,000"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "01-01",
+      "closesMonthDay": "04-01",
+      "validationPattern": "Applications are available in January of each year until April 1"
+    }
+  },
+  {
+    "id": "sme-education",
+    "sourceUrl": "https://www.smeef.org/scholarships/",
+    "requiredPatterns": ["SME Education Foundation", "more than 60 distinct scholarship programs"],
+    "statusRules": [
+      { "status": "closed", "pattern": "application for the 2026[–-]2027 academic year has closed" }
+    ],
+    "recurringWindow": {
+      "opensMonthDay": "11-01",
+      "closesMonthDay": "02-01",
+      "validationPattern": "applications are accepted annually from November 1\\s*[–-]\\s*February 1"
+    }
+  },
+  {
+    "id": "aws-welding",
+    "sourceUrl": "https://scholarship.aws.org/applications/",
+    "requiredPatterns": ["American Welding Society", "Welder Training Scholarship"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-01-01",
+      "closesOn": "2026-11-30",
+      "validationPattern": "2026[–-]2027 Scholarship Programs currently open[\\s\\S]{0,180}deadline is November 30th"
+    }
+  },
+  {
+    "id": "taco-bell-live-mas",
+    "sourceUrl": "https://tacobellfoundation.org/live-mas-scholarship/eligibilityfaq/",
+    "requiredPatterns": ["Live Más Scholarship", "Video \\(30 seconds[–-]2 minutes\\).*Essay \\(250[–-]500 words\\)"],
+    "statusRules": [
+      { "status": "closed", "pattern": "APPLICATIONS NOW CLOSED" }
+    ],
+    "fixedWindow": {
+      "opensOn": "2025-10-14",
+      "closesOn": "2026-01-06",
+      "validationPattern": "Application window \\(NOW CLOSED\\): October 14, 2025 to January 6, 2026"
+    }
+  },
+  {
+    "id": "hhf-youth-awards",
+    "sourceUrl": "https://hispanicheritage.org/youth-awards/",
+    "requiredPatterns": ["Youth Awards", "graduating in the spring of 2027"],
+    "statusRules": [
+      { "status": "closed", "pattern": "Application Closed" }
+    ]
+  },
+  {
+    "id": "cafe-bustelo",
+    "sourceUrl": "https://hacu.net/hacu-accepting-applications-for-el-cafe-del-futuro-scholarships/",
+    "requiredPatterns": ["El Café del Futuro Scholarships", "twenty-five \\$5,000"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["deadline to submit applications is ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "kasf",
+    "sourceUrl": "https://www.kasf.org/",
+    "requiredPatterns": ["Korean American Scholarship Foundation", "undergraduate and graduate students"],
+    "statusRules": [
+      { "status": "closed", "pattern": "2026[–-]2027 scholarship applications are currently CLOSED" }
+    ]
+  },
+  {
+    "id": "cobell-undergrad",
+    "sourceUrl": "https://www.cobellscholar.org/scholarships/undergraduate",
+    "requiredPatterns": ["Undergraduate Scholarship", "Up to \\$5,000 new", "Deadline\\s+March 31"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-12-15",
+      "closesOn": "2027-03-31",
+      "validationPattern": "Opens Dec 15, 2026"
+    }
+  },
+  {
+    "id": "league-foundation",
+    "sourceUrl": "https://www.leaguefoundation.org/index.php/application/how-to-apply",
+    "requiredPatterns": ["How To Apply", "supporters of the Lesbian, Gay, Bisexual, Transgender community"],
+    "statusRules": [
+      { "status": "upcoming", "pattern": "Available January 2027" }
+    ]
+  },
+  {
+    "id": "out-to-innovate",
+    "sourceUrl": "https://www.outtoinnovate.org/scholarships",
+    "requiredPatterns": ["Out to Innovate", "LGBTQ\\+ / ally undergraduate students"],
+    "statusRules": [
+      { "status": "closed", "pattern": "application portal for the 2026/2027 academic year has closed" }
+    ],
+    "dateRules": {
+      "closesOn": ["application portal for the 2026/2027 academic year closed ([A-Z][a-z]+ \\d{1,2}),? \\d{4}"]
+    }
+  },
+  {
+    "id": "aahd-krause",
+    "sourceUrl": "https://aahd.us/initiatives/scholarship/",
+    "requiredPatterns": ["Frederick J\\. Krause Scholarship", "undergraduate or graduate studies"],
+    "statusRules": [
+      { "status": "upcoming", "pattern": "will open by November 2026" },
+      { "status": "closed", "pattern": "2025[–-]2026 application period is now closed" }
+    ]
+  },
+  {
+    "id": "lime-pathways",
+    "sourceUrl": "https://limeconnect.com/awards/lime-connect-pathways-scholarship-for-high-school-seniors/",
+    "requiredPatterns": ["Pathways Scholarship", "13\\s+Students Selected"],
+    "statusRules": [
+      { "status": "closed", "pattern": "2026 applications are now closed" }
+    ]
+  },
+  {
+    "id": "burger-king-scholars",
+    "sourceUrl": "https://www.burgerkingfoundation.org/programs/burger-king-sm-scholars",
+    "requiredPatterns": ["BK Scholars Program", "scholarships to deserving high school seniors and Burger King"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2025-10-15",
+      "closesOn": "2025-12-15",
+      "validationPattern": "2026[–-]2027 cycle opens on October 15th, 2025[\\s\\S]{0,120}until December 15th, 2025"
+    }
+  }
+]

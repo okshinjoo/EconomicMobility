@@ -49,9 +49,24 @@ remove or discontinue a scholarship.
 - `npm run test:scholarship-monitor-foundation` verifies that risky or
   ambiguous proposals fail closed.
 
-## Next phase
+## Phase 2 observation pilot
 
-Convert the preserved 37-source prototype into a worker that writes
-observations and proposals to this schema. Run it in observation-only mode;
-then build the moderator review actions before any monitored status is shown
-publicly.
+The first 37 source-specific rules now live in
+`scripts/scholarship-status-sources.json`. The scheduled worker:
+
+- fetches only those official program pages, never external directories;
+- uses conditional request headers when the source supplies them;
+- limits concurrency to four and spaces requests to the same domain;
+- retries transient failures and uses a browser only as a fallback;
+- writes append-only observations and deduplicated field-level proposals;
+- updates only operational health fields in `scholarship_monitor_state`; and
+- never changes application status, dates, eligibility, or the public Finder.
+
+Run the deterministic worker tests with
+`npm run test:scholarship-monitor-worker`. Preview live extraction without
+database writes with `npm run monitor:scholarships -- --limit=3`. The GitHub
+Actions workflow requires repository secrets named `SUPABASE_URL` and
+`SUPABASE_SERVICE_ROLE_KEY` before its first manual or scheduled run.
+
+The next phase is the moderator review interface and protected accept/reject,
+edit, verify, keep-existing, open-source, and field-lock actions.
