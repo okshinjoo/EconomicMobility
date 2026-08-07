@@ -5,6 +5,7 @@ import {
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
+  parseDate,
   recurringDates,
   shouldProposeSourceFailure,
   stableStringify,
@@ -35,6 +36,8 @@ assert.equal(open.closesOn, "2026-11-12");
 assert.equal(open.extractionConfidence, "high");
 assert.equal(open.verificationStatus, "machine-verified");
 assert.match(open.evidenceText, /Applications are now open/i);
+assert.equal(parseDate("08/31/2026"), "2026-08-31");
+assert.equal(parseDate("September 1st, 2026"), "2026-09-01");
 assert.equal(stableStringify({ b: 2, a: { d: 4, c: 3 } }), stableStringify({ a: { c: 3, d: 4 }, b: 2 }));
 
 const drifted = evaluateOfficialSource({
@@ -124,6 +127,7 @@ assert.match(
   /January 1: applications open, April 1: applications closed/,
 );
 assert.equal(visibleText("<main>Official\u0000 scholarship page</main>"), "Official scholarship page");
+assert.equal(visibleText("<main>Current text<!-- stale applications are closed --></main>"), "Current text");
 
 const davisPutter = evaluateOfficialSource({
   configuration: configurationFor("davis-putter"),
@@ -269,8 +273,8 @@ assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previous
 assert.equal(shouldProposeSourceFailure({ monitorMode: "status", previousFailures: 0 }), true);
 
 const coverage = scholarshipMonitorCoverage();
-assert.equal(coverage.status.length, 41);
-assert.equal(coverage.sourceHealth.length, 1179);
+assert.equal(coverage.status.length, sourceConfigurations.length);
+assert.equal(coverage.sourceHealth.length, coverage.published - sourceConfigurations.length);
 assert.equal(coverage.all.length, coverage.published);
 assert.equal(new Set(coverage.all.map((configuration) => configuration.id)).size, coverage.published);
 

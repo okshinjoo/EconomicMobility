@@ -26,6 +26,7 @@ export function stableStringify(value) {
 export function visibleText(html) {
   return decodeHtml(
     html
+      .replace(/<!--[\s\S]*?-->/g, " ")
       .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
       .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
       .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ")
@@ -48,6 +49,9 @@ export function parseDate(value) {
     .trim();
 
   let match = cleaned.match(/^(\d{1,2}) (\d{1,2}) (\d{4})$/);
+  if (match) return dateKey(Number(match[3]), Number(match[1]), Number(match[2]));
+
+  match = cleaned.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (match) return dateKey(Number(match[3]), Number(match[1]), Number(match[2]));
 
   match = cleaned.match(/^(\d{4}) ([A-Za-z]{3,9}) (\d{1,2})$/);

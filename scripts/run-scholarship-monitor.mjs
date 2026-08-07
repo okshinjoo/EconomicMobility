@@ -536,8 +536,15 @@ if (admin) {
 
 for (const result of results) {
   if (!summaryOnly || !result.success) {
-    const candidate = result.evaluation?.applicationStatus ?? "none";
-    console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · candidate ${candidate}`);
+    const candidate = result.evaluation
+      ? [
+          `status=${result.evaluation.applicationStatus ?? "unknown"}`,
+          `opens=${result.evaluation.opensOn ?? "unknown"}`,
+          `closes=${result.evaluation.closesOn ?? "unknown"}`,
+          `next=${result.evaluation.nextOpensOn ?? "unknown"}`,
+        ].join(" · ")
+      : "no candidate";
+    console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · ${candidate}`);
   }
 }
 console.log(

@@ -514,5 +514,421 @@
     "statusRules": [
       { "status": "closed", "pattern": "Now CLOSED for the 26-27 Academic Year" }
     ]
+  },
+  {
+    "id": "excelsior-ny",
+    "sourceUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/excelsior-scholarship-program",
+    "requiredPatterns": ["Excelsior Scholarship Program", "Application Deadline\\s+08/31/2026", "For the 2026-2027 Academic Term"],
+    "statusRules": [
+      { "status": "open", "pattern": "Application Deadline\\s+08/31/2026[\\s\\S]{0,100}?Apply Now" }
+    ],
+    "dateRules": {
+      "closesOn": ["Application Deadline\\s+(\\d{2}/\\d{2}/\\d{4})"]
+    }
+  },
+  {
+    "id": "uhf-health-care-scholars",
+    "sourceUrl": "https://scholarshipamerica.org/scholarship/unitedhealthfoundation/",
+    "requiredPatterns": ["United Health Foundation", "When is the deadline to apply", "September 18, 2026 at 3:00 PM CT"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["Applications must be submitted by ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "tn-promise",
+    "sourceUrl": "https://www.collegefortn.org/tnpromise/",
+    "requiredPatterns": ["Tennessee Promise", "Class of 2027", "By November 2, 2026"],
+    "statusRules": [
+      { "status": "open", "pattern": "Tennessee Promise application is now open for the Class of 2027" }
+    ],
+    "dateRules": {
+      "closesOn": ["By ([A-Z][a-z]+ \\d{1,2}, \\d{4})\\s+The application for the class of 2027"]
+    }
+  },
+  {
+    "id": "dc-tuition-assistance-grant",
+    "sourceUrl": "https://osse.dc.gov/dctag",
+    "requiredPatterns": ["DC Tuition Assistance Grant", "DC OneApp", "Feb\\. 2, 2026", "Aug\\. 21, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-02-02",
+      "closesOn": "2026-08-21",
+      "evidencePatterns": {
+        "opensOn": "will open on Feb\\. 2, 2026",
+        "closesOn": "remain open until Aug\\. 21, 2026"
+      }
+    }
+  },
+  {
+    "id": "cofem-mexican-american-dream-scholarship",
+    "sourceUrl": "https://www.cofem.org/scholarships",
+    "requiredPatterns": ["Mexican American Dream Scholarship", "MADS Scholarship", "2025-2026 MADS Application"],
+    "statusRules": [
+      { "status": "closed", "pattern": "2025-2026 MADS Application is now closed" }
+    ]
+  },
+  {
+    "id": "pba-minerva-beauty-scholarship",
+    "sourceUrl": "https://www.probeauty.org/scholarships/",
+    "requiredPatterns": ["PBA Minerva Beauty Scholarship", "Application deadline:\\s*October 15, 2026", "One \\(1\\) [–-] \\$2,000 scholarship"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["PBA Minerva Beauty Scholarship\\s+Application deadline:\\s*([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "nfia-partner-donor-scholarship",
+    "sourceUrl": "https://nfiaweb.org/scholarship",
+    "requiredPatterns": ["NFIA-Partner/Donor Scholarship", "Deadline to receive completed application", "Aug 15, 2026"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["Deadline to receive completed application[^.]{0,80}?is ([A-Z][a-z]{2} \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "perry-second-chances-scholarship",
+    "sourceUrl": "https://theperryscholarship.org/scholarship/",
+    "requiredPatterns": ["Perry .Second Chances. Scholarship", "2026 Scholarship Cycle is now closed", "2027 PSCS round"],
+    "statusRules": [
+      { "status": "closed", "pattern": "2026 Scholarship Cycle is now closed" }
+    ],
+    "dateRules": {
+      "nextOpensOn": ["will begin accepting online applications on ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "cgma-supplemental-education-grant",
+    "sourceUrl": "https://mycgma.org/programs/seg/",
+    "requiredPatterns": ["Supplemental Education Grant \\(SEG\\)", "Applications open June 1, 2026", "Deadline:\\s*September 30, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-06-01",
+      "closesOn": "2026-09-30",
+      "evidencePatterns": {
+        "opensOn": "Applications open June 1, 2026",
+        "closesOn": "Deadline:\\s*September 30, 2026"
+      }
+    }
+  },
+  {
+    "id": "fashion-scholarship-fund-case-study",
+    "sourceUrl": "https://www.fashionscholarshipfund.org/fsf-case-study-scholarship",
+    "requiredPatterns": ["Fashion Scholarship Fund", "2027 FSF Scholarship competition", "October 12th, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-02-02",
+      "closesOn": "2026-10-12",
+      "evidencePatterns": {
+        "opensOn": "competition officially began on February 2, 2026",
+        "closesOn": "deadline to apply is October 12th, 2026"
+      }
+    }
+  },
+  {
+    "id": "pizza-hut-foundation-scholarship",
+    "sourceUrl": "https://www.pizzahutfoundation.org/programs/",
+    "requiredPatterns": ["Pizza Hut Foundation", "scholarship platform provider", "August 31, 2026 at 4:00pm CT"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-07-01",
+      "closesOn": "2026-08-31",
+      "evidencePatterns": {
+        "opensOn": "program period for scholarships is July 1, 2026",
+        "closesOn": "ends on August 31, 2026 at 4:00pm CT"
+      }
+    }
+  },
+  {
+    "id": "choose-aerospace-skillpointe-scholarship",
+    "sourceUrl": "https://www.chooseaerospace.org/scholarship.html",
+    "requiredPatterns": ["Choose Aerospace", "SKILLED Nation Scholarship", "Scholarship opens November 1, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-11-01",
+      "evidencePatterns": {
+        "opensOn": "Scholarship opens November 1, 2026"
+      }
+    }
+  },
+  {
+    "id": "bea-scholarships",
+    "sourceUrl": "https://beaweb.org/wp/scholarships/",
+    "requiredPatterns": ["Scholarships in Broadcasting & Electronic Media", "Deadline:\\s*October 16, 2026", "Broadcast Education Association"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["Deadline:\\s*([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "chasa-college-scholarships",
+    "sourceUrl": "https://chasa.org/we-can-help/college-scholarships/",
+    "requiredPatterns": ["CHASA College Scholarships", "Attending College Fall 2026", "May 1, 2026 and August 31, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-05-01",
+      "closesOn": "2026-08-31",
+      "evidencePatterns": {
+        "opensOn": "Fall 2026:[^.!]{0,100}?between May 1, 2026",
+        "closesOn": "Fall 2026:[^.!]{0,140}?August 31, 2026"
+      }
+    }
+  },
+  {
+    "id": "ks-promise-scholarship",
+    "sourceUrl": "https://kansasregents.gov/students/student_financial_aid/promise-act-scholarship",
+    "requiredPatterns": ["Kansas Promise Scholarship", "Fall 26", "Fall 2026 application deadline"],
+    "statusRules": [
+      { "status": "open", "pattern": "Application for Summer 26, Fall 26, and Spring 27 semesters are available online" }
+    ],
+    "dateRules": {
+      "closesOn": ["Fall 2026 application deadline\\s*[-–]\\s*([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "aci-foundation-scholarship",
+    "sourceUrl": "https://www.acifoundation.org/scholarships/undergrad-scholarship.aspx",
+    "requiredPatterns": ["ACI Foundation", "Applications are currently open for the 2027-2028 academic year", "November 1, 2026"],
+    "statusRules": [
+      { "status": "open", "pattern": "Applications are currently open for the 2027-2028 academic year" }
+    ],
+    "dateRules": {
+      "closesOn": ["deadline for this application period is ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "breakthrough-junior-challenge",
+    "sourceUrl": "https://breakthroughjuniorchallenge.org/enter",
+    "requiredPatterns": ["Breakthrough Junior Challenge", "Applications will be taken starting May 11, 2026", "Submissions are due no later than September 15, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-05-11",
+      "closesOn": "2026-09-15",
+      "evidencePatterns": {
+        "opensOn": "Applications will be taken starting May 11, 2026",
+        "closesOn": "Submissions are due no later than September 15, 2026"
+      }
+    }
+  },
+  {
+    "id": "mississippi-tuition-assistance-grant",
+    "sourceUrl": "https://www.msfinancialaid.org/programs/mtag-mississippi-tuition-assistance-grant/",
+    "requiredPatterns": ["Mississippi Tuition Assistance Grant", "MTAG Rules and Regulations", "Application Dates:\\s*October 1 [–-] September 15"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "10-01",
+      "closesMonthDay": "09-15",
+      "evidencePatterns": {
+        "opensOn": "Application Dates:\\s*October 1 [–-] September 15",
+        "closesOn": "Application Dates:\\s*October 1 [–-] September 15"
+      }
+    }
+  },
+  {
+    "id": "cochlear-scholarships",
+    "sourceUrl": "https://www.cochlear.com/us/en/home/ongoing-care-and-support/connect-with-us/scholarships",
+    "requiredPatterns": ["Cochlear scholarship", "Graeme Clark", "September 30th of each year"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "03-31",
+      "closesMonthDay": "09-30",
+      "evidencePatterns": {
+        "opensOn": "applications will open approximately March 31st of each year",
+        "closesOn": "submitted online by September 30th of each year"
+      }
+    }
+  },
+  {
+    "id": "lithuanian-foundation-scholarship",
+    "sourceUrl": "https://lithuanianfoundation.org/scholarship-guidelines/",
+    "requiredPatterns": ["Lithuanian Foundation", "2026-2027 academic year", "August 1 to October 1, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-08-01",
+      "closesOn": "2026-10-01",
+      "evidencePatterns": {
+        "opensOn": "accepted from August 1 to October 1, 2026",
+        "closesOn": "accepted from August 1 to October 1, 2026"
+      }
+    }
+  },
+  {
+    "id": "nrc-scholarship-program",
+    "sourceUrl": "https://nrcma.org/scholarship-program",
+    "requiredPatterns": ["NRC Scholarship", "Deadline [–-] August 14, 2026", "rail industry"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["Deadline [–-] ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "aag-darrel-hess-community-college-geography-scholarship",
+    "sourceUrl": "https://www.aag.org/award-grant/hess/",
+    "requiredPatterns": ["Darrel Hess Community College Geography Scholarship", "Deadline:\\s*November 15, 2026", "American Association of Geographers"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["Deadline:\\s*([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "national-space-club-keynote-scholarship",
+    "sourceUrl": "https://www.spaceclub.org/scholarship/index.html",
+    "requiredPatterns": ["National Space Club", "Keynote Scholarship", "October 30, 2026"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["uploaded[^.]{0,100}?by Friday, ([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "mississippi-eminent-scholars-grant",
+    "sourceUrl": "https://www.msfinancialaid.org/programs/mesg-mississippi-eminent-scholars-grant/",
+    "requiredPatterns": ["Mississippi Eminent Scholars Grant", "MESG Rules and Regulations", "Application Dates:\\s*October 1 [–-] September 15"],
+    "statusRules": [],
+    "recurringWindow": {
+      "opensMonthDay": "10-01",
+      "closesMonthDay": "09-15",
+      "evidencePatterns": {
+        "opensOn": "Application Dates:\\s*October 1 [–-] September 15",
+        "closesOn": "Application Dates:\\s*October 1 [–-] September 15"
+      }
+    }
+  },
+  {
+    "id": "ny-stem-incentive-program",
+    "sourceUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/nys-science-technology-engineering-and-mathematics-stem-incentive",
+    "requiredPatterns": ["STEM Incentive", "Application Deadline\\s+08/15/2026", "For the 2026-27 Academic Year"],
+    "statusRules": [
+      { "status": "open", "pattern": "Application Deadline\\s+08/15/2026[\\s\\S]{0,100}?Apply Now" }
+    ],
+    "dateRules": {
+      "closesOn": ["Application Deadline\\s+(\\d{2}/\\d{2}/\\d{4})"]
+    }
+  },
+  {
+    "id": "sousa-foundation-hawkins-scholarship",
+    "sourceUrl": "https://sousafoundation.net/sub_menu_items/12",
+    "requiredPatterns": ["Dr\\. Robert Hawkins Memorial Scholarship", "Sept 6, 2026", "Nov 22, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-09-06",
+      "closesOn": "2026-11-22",
+      "evidencePatterns": {
+        "opensOn": "open from Sept 6, 2026 [–-] Nov 22, 2026",
+        "closesOn": "open from Sept 6, 2026 [–-] Nov 22, 2026"
+      }
+    }
+  },
+  {
+    "id": "norfolk-on-southern-track-trades",
+    "sourceUrl": "https://www.norfolksouthern.com/en/commitments/in-your-community/community-impact/ns-scholarship-programs",
+    "requiredPatterns": ["Trades on Track Scholarship", "Applications open May 6 through September 1, 2026", "skilled trades workforce"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-05-06",
+      "closesOn": "2026-09-01",
+      "evidencePatterns": {
+        "opensOn": "Applications open May 6 through September 1, 2026",
+        "closesOn": "Applications open May 6 through September 1, 2026"
+      }
+    }
+  },
+  {
+    "id": "cpa-nc",
+    "sourceUrl": "https://www.ncacpa.org/nc-cpa-foundation-scholarships/",
+    "requiredPatterns": ["NC CPA Foundation Scholarships", "2026 Scholarship Application Opens August 10", "Applications are open August 10 [–-] October 24"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-08-10",
+      "evidencePatterns": {
+        "opensOn": "2026 Scholarship Application Opens August 10"
+      }
+    }
+  },
+  {
+    "id": "california-daniel-fire-terry",
+    "sourceUrl": "https://www.cafirefoundation.org/what-we-do/for-firefighters-and-families/dat-scholarship",
+    "requiredPatterns": ["Daniel A\\. Terry Scholarship", "deadline for 2026 applications", "September 1st, 2026"],
+    "statusRules": [],
+    "dateRules": {
+      "closesOn": ["deadline for 2026 applications.{0,120}?is ([A-Z][a-z]+ \\d{1,2}(?:st|nd|rd|th)?, \\d{4})"]
+    }
+  },
+  {
+    "id": "iida-j-john-legacy-nelson",
+    "sourceUrl": "https://iida.org/foundation/john-j-nelson-sr-legacy-scholarship-fund",
+    "requiredPatterns": ["John J\\. Nelson Sr\\. Legacy Scholarship", "Applications are now open", "October 2, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-08-04",
+      "closesOn": "2026-10-02",
+      "evidencePatterns": {
+        "opensOn": "Opens:\\s*Tuesday, August 4, 2026",
+        "closesOn": "Closes:\\s*Friday, October 2, 2026"
+      }
+    }
+  },
+  {
+    "id": "avmf-technician-veterinary-zoetis",
+    "sourceUrl": "https://www.avmf.org/grants-and-scholarships/scholarships/the-zoetis-foundation-avmf-veterinary-technician-student-scholarship/",
+    "requiredPatterns": ["Zoetis Foundation", "Veterinary Technician Student Scholarship", "Applications accepted:\\s*October 1 [–-] October 31, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-10-01",
+      "closesOn": "2026-10-31",
+      "evidencePatterns": {
+        "opensOn": "Applications accepted:\\s*October 1 [–-] October 31, 2026",
+        "closesOn": "Applications accepted:\\s*October 1 [–-] October 31, 2026"
+      }
+    }
+  },
+  {
+    "id": "1-diabetes-fishman-marc-type",
+    "sourceUrl": "https://www.t1dscholarships.org/",
+    "requiredPatterns": ["Marc and Valerie Fishman", "2026-2027 school year", "August 15, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2026-01-01",
+      "closesOn": "2026-08-15",
+      "evidencePatterns": {
+        "opensOn": "open on January 1, 2026",
+        "closesOn": "CLOSE at midnight, August 15, 2026"
+      }
+    }
+  },
+  {
+    "id": "american-fish-native-society-wildlife",
+    "sourceUrl": "https://www.nafws.org/scholarships/",
+    "requiredPatterns": ["NAFWS Scholarship", "2026 NAFWS Scholarship Applications", "August 14, 2026"],
+    "statusRules": [
+      { "status": "open", "pattern": "2026 NAFWS Scholarship Applications [–-] OPEN" }
+    ],
+    "dateRules": {
+      "closesOn": ["Due Date:\\s*([A-Z][a-z]+ \\d{1,2}, \\d{4})"]
+    }
+  },
+  {
+    "id": "or-oregon-tribal",
+    "sourceUrl": "https://oregonstudentaid.gov/grants/oregon-tribal-student-grant/",
+    "requiredPatterns": ["Oregon Tribal Student Grant", "2026-27 application is currently open", "September 30, 2026"],
+    "statusRules": [],
+    "fixedWindow": {
+      "opensOn": "2025-12-01",
+      "closesOn": "2026-09-30",
+      "evidencePatterns": {
+        "opensOn": "2026-2027 application[^.]{0,100}?opened December 1, 2025",
+        "closesOn": "2026-27 priority deadline is September 30, 2026"
+      }
+    }
+  },
+  {
+    "id": "ny-enhanced",
+    "sourceUrl": "https://hesc.ny.gov/find-aid/nys-grants-scholarships/enhanced-tuition-award-eta",
+    "requiredPatterns": ["Enhanced Tuition Award", "Application Deadline\\s+08/31/2026", "2026-2027 Academic Year"],
+    "statusRules": [
+      { "status": "open", "pattern": "Application Deadline\\s+08/31/2026[\\s\\S]{0,100}?Apply Now" }
+    ],
+    "dateRules": {
+      "closesOn": ["Application Deadline\\s+(\\d{2}/\\d{2}/\\d{4})"]
+    }
   }
 ]
