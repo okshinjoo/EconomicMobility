@@ -1,7 +1,8 @@
 # Scholarship monitoring foundation
 
-Status: Phases 1 and 2 implemented and applied to the production Supabase
-project on August 7, 2026; public Finder unchanged. The live seed contains
+Status: Phases 1–3 implemented and applied to the production Supabase
+project on August 7, 2026. Geography extraction and publication guards were
+added the same day. The live seed contains
 1,220 curated inventory rows, 1,220 active official sources, and 1,220
 current-state rows.
 
@@ -20,6 +21,9 @@ separate **More places to search** launcher section.
 - No anonymous database policies and no direct browser-write policies.
 - A central fail-closed auto-apply policy. Amount, eligibility, geography,
   stage, URLs, program status, and publication decisions always require review.
+- A staged-candidate intake in `data/scholarship-monitor-candidates.json`.
+  Candidate records are monitored while withheld and never enter the Finder
+  merely because the monitor found them.
 
 The repository catalog remains authoritative in this phase. The database is an
 operational mirror and review foundation; the public Finder does not read it.
@@ -38,7 +42,8 @@ operational mirror and review foundation; the public Finder does not read it.
 
    `npm run seed:scholarship-monitor -- --write`
 
-The seed is additive and idempotent. It does not delete database rows missing
+The seed is additive and idempotent. Published rows carry their verified
+national/state classification, official source, and evidence. It does not delete database rows missing
 from the current catalog; those require review so a sync can never silently
 remove or discontinue a scholarship.
 
@@ -49,6 +54,8 @@ remove or discontinue a scholarship.
   generated inventory differ.
 - `npm run test:scholarship-monitor-foundation` verifies that risky or
   ambiguous proposals fail closed.
+- `npm run build` begins with the full classification integrity gate. A newly
+  curated record with missing or unverified geography cannot deploy.
 
 ## Phase 2 official-source monitoring
 
@@ -67,6 +74,12 @@ The two monitoring tiers stay deliberately separate:
   identity. Generic matches are always review-required, never auto-applied.
   Language such as “typically,” “usually,” “expected,” “around,” or “to be
   announced” is rejected rather than converted into a date.
+- Every fetched official page also receives conservative geography extraction.
+  It proposes only an explicit nationwide statement or a hard state residency/
+  attendance rule with named states. Citizenship, preferences, work-service
+  commitments, unlisted regions, cross-domain redirects, and conflicting
+  language never become a geography proposal. Every geography proposal is
+  high-risk and requires moderator approval; none can auto-apply.
 
 The scheduled workers:
 
@@ -115,6 +128,13 @@ values with exact official-source evidence. Accept, edit, verify, keep-current,
 reject, and optional field-lock decisions update the private monitor state and
 append immutable history in one database transaction. These actions do not
 edit `lib/scholarships.ts` or the public Finder.
+
+Geography review has a dedicated National / Specific states control. An
+accepted decision stores the verified scope, state codes, official source, and
+evidence on the private inventory row. A database trigger rejects any attempt
+to mark a row `published` unless those fields are human-verified and complete.
+The repository build gate independently enforces the same rule for the actual
+Finder, so database and deployment paths both fail closed.
 
 `/api/scholarship-status` is the narrow publication bridge. It returns only
 human-verified application state for IDs that still exist in the curated

@@ -8,10 +8,24 @@ const inventoryDocument = JSON.parse(
 );
 
 const explicitIds = new Set(explicitConfigurations.map((configuration) => configuration.id));
+const inventoryById = new Map(
+  inventoryDocument.records.map((record) => [record.scholarshipId, record]),
+);
+
+function withInventory(configuration) {
+  const record = inventoryById.get(configuration.id);
+  return {
+    ...configuration,
+    name: configuration.name ?? record?.name,
+    currentGeo: record?.geo ?? null,
+    geoVerificationStatus: record?.geoVerificationStatus ?? "unverified",
+    publicationStatus: record?.publicationStatus ?? "withheld",
+  };
+}
 
 export function loadScholarshipMonitorConfigurations({ mode = "status" } = {}) {
   if (mode === "status") {
-    return explicitConfigurations.map((configuration) => ({
+    return explicitConfigurations.map((configuration) => withInventory({
       ...configuration,
       monitorMode: "status",
     }));
@@ -19,7 +33,7 @@ export function loadScholarshipMonitorConfigurations({ mode = "status" } = {}) {
   if (mode === "source-health") {
     return inventoryDocument.records
       .filter((record) => !explicitIds.has(record.scholarshipId))
-      .map((record) => ({
+      .map((record) => withInventory({
         id: record.scholarshipId,
         name: record.name,
         sourceUrl: record.officialUrl,
@@ -29,7 +43,7 @@ export function loadScholarshipMonitorConfigurations({ mode = "status" } = {}) {
   if (mode === "candidate") {
     return inventoryDocument.records
       .filter((record) => !explicitIds.has(record.scholarshipId))
-      .map((record) => ({
+      .map((record) => withInventory({
         id: record.scholarshipId,
         name: record.name,
         sourceUrl: record.officialUrl,
@@ -45,6 +59,8 @@ export function scholarshipMonitorCoverage() {
   const candidate = loadScholarshipMonitorConfigurations({ mode: "candidate" });
   return {
     published: inventoryDocument.publishedCount,
+    withheld: inventoryDocument.withheldCount ?? 0,
+    inventory: inventoryDocument.records.length,
     status,
     sourceHealth,
     candidate,

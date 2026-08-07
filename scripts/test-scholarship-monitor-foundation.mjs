@@ -23,6 +23,7 @@ assert.equal(
 assert.equal(canAutoApply({ ...base, fieldName: "closesOn", proposedValue: "2026-11-12" }), true);
 assert.equal(canAutoApply({ ...base, fieldName: "closesOn", proposedValue: "November" }), false);
 assert.equal(canAutoApply({ ...base, fieldName: "amount", proposedValue: "$10,000" }), false);
+assert.equal(canAutoApply({ ...base, fieldName: "geo", proposedValue: { scope: "national" } }), false);
 assert.equal(
   canAutoApply({ ...base, fieldName: "eligibility", proposedValue: [], fieldLocked: true }),
   false,
@@ -46,4 +47,3 @@ assert.equal(
 );
 
 console.log("Scholarship monitoring fail-closed policy: all assertions passed.");
-

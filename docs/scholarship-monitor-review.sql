@@ -55,19 +55,72 @@ begin
     from public.scholarship_monitor_state where scholarship_id = proposal.scholarship_id;
   elsif proposal.field_name = 'sourceReview' then
     previous_value := proposal.current_value;
+  elsif proposal.field_name = 'geo' then
+    select case
+      when geo_scope is null then null
+      when geo_scope = 'national' then jsonb_build_object('scope', 'national')
+      else jsonb_build_object('scope', 'states', 'states', to_jsonb(geo_states))
+    end into previous_value
+    from public.scholarship_monitor_inventory
+    where scholarship_id = proposal.scholarship_id;
   else
     raise exception 'Field requires a separate curated-catalog workflow';
   end if;
 
   if p_action = 'edit' then
-    chosen_value := to_jsonb(p_edited_value);
+    if proposal.field_name = 'geo' then
+      begin
+        chosen_value := p_edited_value::jsonb;
+      exception when others then
+        raise exception 'Edited geography must be valid JSON';
+      end;
+    else
+      chosen_value := to_jsonb(p_edited_value);
+    end if;
   elsif p_action in ('accept', 'verify') then
     chosen_value := proposal.proposed_value;
   else
     chosen_value := previous_value;
   end if;
 
-  if p_action in ('accept', 'edit', 'verify') and proposal.field_name <> 'sourceReview' then
+  if p_action in ('accept', 'edit', 'verify') and proposal.field_name = 'geo' then
+    if chosen_value is null or jsonb_typeof(chosen_value) <> 'object' then
+      raise exception 'Reviewed geography must be an object';
+    end if;
+    if chosen_value->>'scope' not in ('national', 'states') then
+      raise exception 'Invalid geography scope';
+    end if;
+    if chosen_value->>'scope' = 'national' and chosen_value ? 'states' then
+      raise exception 'National geography cannot list states';
+    end if;
+    if chosen_value->>'scope' = 'states' and (
+      not (chosen_value ? 'states') or
+      jsonb_typeof(chosen_value->'states') <> 'array' or
+      jsonb_array_length(chosen_value->'states') = 0 or
+      exists (
+        select 1 from jsonb_array_elements_text(chosen_value->'states') as state_codes(code)
+        where code !~ '^(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC|PR|GU|AS|VI|MP)$'
+      )
+    ) then
+      raise exception 'State-bound geography requires valid state codes';
+    end if;
+
+    update public.scholarship_monitor_inventory
+    set geo_scope = chosen_value->>'scope',
+        geo_states = case
+          when chosen_value->>'scope' = 'states'
+            then array(
+              select distinct state_code
+              from jsonb_array_elements_text(chosen_value->'states') as state_codes(state_code)
+              order by state_code
+            )
+          else '{}'::text[]
+        end,
+        geo_verification_status = 'human-verified',
+        geo_evidence = proposal.evidence_text,
+        geo_source_url = proposal.source_url
+    where scholarship_id = proposal.scholarship_id;
+  elsif p_action in ('accept', 'edit', 'verify') and proposal.field_name <> 'sourceReview' then
     if chosen_value is null or jsonb_typeof(chosen_value) <> 'string' then
       raise exception 'Reviewed value must be text';
     end if;

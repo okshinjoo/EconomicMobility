@@ -14,6 +14,7 @@ import {
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import type { ScholarshipReviewAction } from "@/lib/scholarshipReview";
+import { STATE_NAMES } from "@/lib/scholarshipMatch";
 
 interface ProposalRow {
   id: string;
@@ -40,17 +41,55 @@ interface FieldLockRow {
   field_name: string;
 }
 
-type QueueFilter = "all" | "status" | "dates" | "source";
+type QueueFilter = "all" | "status" | "dates" | "geography" | "source";
 
 const FIELD_LABELS: Record<string, string> = {
   applicationStatus: "Application status",
   opensOn: "Opening date",
   closesOn: "Deadline",
   nextOpensOn: "Next opening date",
+  geo: "Geography",
   sourceReview: "Source review",
 };
 
 const STATUS_OPTIONS = ["open", "upcoming", "closed", "between-cycles", "rolling", "unknown"];
+const GEOGRAPHY_OPTIONS = Object.entries(STATE_NAMES).sort((a, b) => a[1].localeCompare(b[1]));
+
+interface GeographyValue {
+  scope: "national" | "states";
+  states?: string[];
+}
+
+function geographyValue(value: unknown): GeographyValue | null {
+  if (!value || typeof value !== "object") return null;
+  const candidate = value as { scope?: unknown; states?: unknown };
+  if (candidate.scope === "national") return { scope: "national" };
+  if (candidate.scope === "states" && Array.isArray(candidate.states)) {
+    const states = candidate.states.filter(
+      (state): state is string => typeof state === "string" && STATE_NAMES[state] !== undefined,
+    );
+    return states.length ? { scope: "states", states: [...new Set(states)].sort() } : null;
+  }
+  return null;
+}
+
+function geographyEditorValue(value: string): GeographyValue | null {
+  try {
+    const candidate = JSON.parse(value) as { scope?: unknown; states?: unknown };
+    if (candidate.scope === "national") return { scope: "national" };
+    if (candidate.scope === "states" && Array.isArray(candidate.states)) {
+      return {
+        scope: "states",
+        states: candidate.states.filter(
+          (state): state is string => typeof state === "string" && STATE_NAMES[state] !== undefined,
+        ),
+      };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 function fieldLabel(field: string) {
   return FIELD_LABELS[field] ?? field;
@@ -63,6 +102,12 @@ function plainValue(value: unknown) {
 }
 
 function displayValue(value: unknown, field: string) {
+  if (field === "geo") {
+    const geo = geographyValue(value);
+    if (!geo) return "Not set";
+    if (geo.scope === "national") return "National";
+    return (geo.states ?? []).map((state) => STATE_NAMES[state] ?? state).join(", ");
+  }
   const raw = plainValue(value);
   if (raw === "Not set") return raw;
   if (["opensOn", "closesOn", "nextOpensOn"].includes(field) && /^\d{4}-\d{2}-\d{2}$/.test(raw)) {
@@ -79,6 +124,7 @@ function displayValue(value: unknown, field: string) {
 function filterMatches(row: ProposalRow, filter: QueueFilter) {
   if (filter === "status") return row.field_name === "applicationStatus";
   if (filter === "dates") return ["opensOn", "closesOn", "nextOpensOn"].includes(row.field_name);
+  if (filter === "geography") return row.field_name === "geo";
   if (filter === "source") return row.field_name === "sourceReview";
   return true;
 }
@@ -173,6 +219,7 @@ export default function ScholarshipReviewQueue() {
       all: rows.length,
       status: rows.filter((row) => filterMatches(row, "status")).length,
       dates: rows.filter((row) => filterMatches(row, "dates")).length,
+      geography: rows.filter((row) => filterMatches(row, "geography")).length,
       source: rows.filter((row) => filterMatches(row, "source")).length,
     };
   }, [proposals]);
@@ -192,6 +239,21 @@ export default function ScholarshipReviewQueue() {
   const selected = visible.find((row) => row.id === selectedId) ?? null;
   const selectedScholarship = selected ? inventory.get(selected.scholarship_id) : null;
   const selectedLocked = selected ? locks.has(`${selected.scholarship_id}|${selected.field_name}`) : false;
+  const editedGeography = selected?.field_name === "geo" ? geographyEditorValue(editedValue) : null;
+  const editedValueReady = selected?.field_name === "geo"
+    ? editedGeography?.scope === "national" || Boolean(editedGeography?.states?.length)
+    : Boolean(editedValue);
+
+  function setGeographyScope(scope: GeographyValue["scope"]) {
+    setEditedValue(JSON.stringify(scope === "national" ? { scope } : { scope, states: editedGeography?.states ?? [] }));
+  }
+
+  function toggleGeographyState(code: string) {
+    const selectedStates = new Set(editedGeography?.states ?? []);
+    if (selectedStates.has(code)) selectedStates.delete(code);
+    else selectedStates.add(code);
+    setEditedValue(JSON.stringify({ scope: "states", states: [...selectedStates].sort() }));
+  }
 
   function selectProposal(row: ProposalRow | null) {
     setSelectedId(row?.id ?? null);
@@ -284,17 +346,18 @@ export default function ScholarshipReviewQueue() {
   return (
     <div>
       <div className="border-y border-sand py-5">
-        <dl className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-5">
           <div><dt className="text-sm text-stone">Pending fields</dt><dd className="mt-1 font-display text-3xl font-bold text-ink">{counts.all}</dd></div>
           <div><dt className="text-sm text-stone">Status</dt><dd className="mt-1 font-display text-3xl font-bold text-ink">{counts.status}</dd></div>
           <div><dt className="text-sm text-stone">Dates</dt><dd className="mt-1 font-display text-3xl font-bold text-ink">{counts.dates}</dd></div>
+          <div><dt className="text-sm text-stone">Geography</dt><dd className="mt-1 font-display text-3xl font-bold text-ink">{counts.geography}</dd></div>
           <div><dt className="text-sm text-stone">Source checks</dt><dd className="mt-1 font-display text-3xl font-bold text-ink">{counts.source}</dd></div>
         </dl>
       </div>
 
       <div className="mt-7 flex flex-col gap-4 border-b border-sand pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex gap-5 overflow-x-auto" aria-label="Filter proposals">
-          {(["all", "status", "dates", "source"] as QueueFilter[]).map((value) => (
+          {(["all", "status", "dates", "geography", "source"] as QueueFilter[]).map((value) => (
             <button
               key={value}
               type="button"
@@ -381,7 +444,41 @@ export default function ScholarshipReviewQueue() {
               {selected.field_name !== "sourceReview" ? (
                 <div className="mt-6">
                   <label htmlFor="review-edited-value" className="text-sm font-bold text-ink">Edit before applying</label>
-                  {selected.field_name === "applicationStatus" ? (
+                  {selected.field_name === "geo" ? (
+                    <fieldset className="mt-2 border border-sand bg-paper p-4">
+                      <legend className="px-1 text-sm font-bold text-ink">Verified scope</legend>
+                      <div className="flex flex-wrap gap-x-5 gap-y-2">
+                        {(["national", "states"] as const).map((scope) => (
+                          <label key={scope} className="flex items-center gap-2 text-base text-ink">
+                            <input
+                              type="radio"
+                              name="geography-scope"
+                              checked={editedGeography?.scope === scope}
+                              onChange={() => setGeographyScope(scope)}
+                            />
+                            {scope === "national" ? "National" : "Specific states or territories"}
+                          </label>
+                        ))}
+                      </div>
+                      {editedGeography?.scope === "states" ? (
+                        <div className="mt-4 max-h-64 overflow-y-auto border-t border-sand pt-3">
+                          <p className="mb-3 text-sm text-stone">Select every location named as a hard residency or attendance requirement.</p>
+                          <div className="grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                            {GEOGRAPHY_OPTIONS.map(([code, name]) => (
+                              <label key={code} className="flex items-center gap-2 text-sm text-ink">
+                                <input
+                                  type="checkbox"
+                                  checked={editedGeography.states?.includes(code) ?? false}
+                                  onChange={() => toggleGeographyState(code)}
+                                />
+                                {name}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                    </fieldset>
+                  ) : selected.field_name === "applicationStatus" ? (
                     <select id="review-edited-value" value={editedValue} onChange={(event) => setEditedValue(event.target.value)} className="mt-2 w-full rounded-md border border-sand bg-paper px-3 py-2.5 text-base text-ink focus:border-amber focus:outline-none">
                       {STATUS_OPTIONS.map((option) => <option key={option} value={option}>{option.replaceAll("-", " ")}</option>)}
                     </select>
@@ -411,7 +508,7 @@ export default function ScholarshipReviewQueue() {
                 ) : (
                   <>
                     <button type="button" disabled={Boolean(busy)} onClick={() => review("accept")} className="inline-flex items-center gap-1.5 rounded-md bg-forest px-4 py-2.5 text-sm font-bold text-cream hover:bg-forest-700 disabled:opacity-50">{busy === "accept" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />} Accept proposed</button>
-                    <button type="button" disabled={Boolean(busy) || !editedValue} onClick={() => review("edit")} className="rounded-md border border-ink bg-cream px-4 py-2.5 text-sm font-bold text-ink hover:bg-paper disabled:opacity-50">{busy === "edit" ? "Saving…" : "Edit and apply"}</button>
+                    <button type="button" disabled={Boolean(busy) || !editedValueReady} onClick={() => review("edit")} className="rounded-md border border-ink bg-cream px-4 py-2.5 text-sm font-bold text-ink hover:bg-paper disabled:opacity-50">{busy === "edit" ? "Saving…" : "Edit and apply"}</button>
                   </>
                 )}
                 <button type="button" disabled={Boolean(busy)} onClick={() => review("keep")} className="rounded-md border border-sand bg-paper px-4 py-2.5 text-sm font-bold text-stone hover:border-ink hover:text-ink disabled:opacity-50">Keep current</button>

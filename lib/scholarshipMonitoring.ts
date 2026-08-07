@@ -50,6 +50,10 @@ export interface ScholarshipMonitorInventoryRecord {
   publicationStatus: "published" | "withheld" | "removed" | "duplicate" | "discontinued";
   catalogFingerprint: string;
   catalogVerifiedLabel: string;
+  geo: { scope: "national" | "states"; states?: string[] } | null;
+  geoVerificationStatus: "unverified" | "review-required" | "human-verified" | "stale";
+  geoEvidence: string;
+  geoSourceUrl: string;
 }
 
 export interface AutoApplyCandidate {
@@ -115,4 +119,3 @@ export function canAutoApply(candidate: AutoApplyCandidate): boolean {
   }
   return isIsoDate(candidate.proposedValue);
 }
-

@@ -6,7 +6,10 @@ const inventory = JSON.parse(
   await readFile(new URL("../data/scholarship-monitor-inventory.json", import.meta.url), "utf8"),
 );
 
-if (!Array.isArray(inventory.records) || inventory.records.length !== inventory.publishedCount) {
+if (
+  !Array.isArray(inventory.records) ||
+  inventory.records.length !== inventory.publishedCount + (inventory.withheldCount ?? 0)
+) {
   throw new Error("Invalid scholarship monitoring inventory.");
 }
 
@@ -36,6 +39,11 @@ if (!write) {
       publication_status: record.publicationStatus,
       catalog_fingerprint: record.catalogFingerprint,
       catalog_verified_label: record.catalogVerifiedLabel,
+      geo_scope: record.geo?.scope ?? null,
+      geo_states: record.geo?.states ?? [],
+      geo_verification_status: record.geoVerificationStatus,
+      geo_evidence: record.geoEvidence || null,
+      geo_source_url: record.geoSourceUrl || record.officialUrl,
     }));
     const { error: inventoryError } = await admin
       .from("scholarship_monitor_inventory")

@@ -47,9 +47,58 @@ create table if not exists public.scholarship_monitor_inventory (
   next_check_at timestamptz,
   catalog_fingerprint text not null,
   catalog_verified_label text not null default '',
+  geo_scope text check (geo_scope is null or geo_scope in ('national', 'states')),
+  geo_states text[] not null default '{}',
+  geo_verification_status text not null default 'unverified'
+    check (geo_verification_status in ('unverified', 'review-required', 'human-verified', 'stale')),
+  geo_evidence text,
+  geo_source_url text check (geo_source_url is null or geo_source_url ~ '^https?://'),
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  check (
+    (geo_scope is null and cardinality(geo_states) = 0) or
+    (geo_scope = 'national' and cardinality(geo_states) = 0) or
+    (geo_scope = 'states' and cardinality(geo_states) > 0)
+  )
 );
+
+-- Upgrade existing Phase 1 installations in place.
+alter table public.scholarship_monitor_inventory add column if not exists geo_scope text;
+alter table public.scholarship_monitor_inventory add column if not exists geo_states text[] not null default '{}';
+alter table public.scholarship_monitor_inventory add column if not exists geo_verification_status text not null default 'unverified';
+alter table public.scholarship_monitor_inventory add column if not exists geo_evidence text;
+alter table public.scholarship_monitor_inventory add column if not exists geo_source_url text;
+
+create or replace function public.enforce_scholarship_monitor_publication_geography()
+returns trigger language plpgsql as $$
+begin
+  if new.geo_verification_status not in ('unverified', 'review-required', 'human-verified', 'stale') then
+    raise exception 'Invalid scholarship geography verification status';
+  end if;
+  if new.geo_scope is not null and new.geo_scope not in ('national', 'states') then
+    raise exception 'Invalid scholarship geography scope';
+  end if;
+  if new.geo_scope = 'national' and cardinality(coalesce(new.geo_states, '{}')) <> 0 then
+    raise exception 'National scholarship geography cannot list states';
+  end if;
+  if new.geo_scope = 'states' and cardinality(coalesce(new.geo_states, '{}')) = 0 then
+    raise exception 'State-bound scholarship geography must list at least one state';
+  end if;
+  if new.publication_status = 'published' and (
+    new.geo_scope is null or
+    new.geo_verification_status <> 'human-verified' or
+    nullif(trim(coalesce(new.geo_evidence, '')), '') is null or
+    new.geo_source_url is null
+  ) then
+    raise exception 'Published scholarships require verified geography with official-source evidence';
+  end if;
+  return new;
+end $$;
+
+drop trigger if exists scholarship_monitor_publication_geography on public.scholarship_monitor_inventory;
+create trigger scholarship_monitor_publication_geography
+  before insert or update on public.scholarship_monitor_inventory
+  for each row execute function public.enforce_scholarship_monitor_publication_geography();
 
 create table if not exists public.scholarship_monitor_domains (
   domain text primary key,
@@ -299,4 +348,3 @@ begin
     );
   end loop;
 end $$;
-

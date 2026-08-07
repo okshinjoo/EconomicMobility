@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   buildFieldProposals,
+  buildGeographyProposal,
   evaluateGenericCandidateSource,
+  evaluateGeography,
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
@@ -149,6 +151,92 @@ assert.deepEqual(
   }),
   [],
 );
+
+const nationalGeography = evaluateGeography({
+  configuration: {
+    id: "future-makers",
+    name: "Future Makers Scholarship",
+    sourceUrl: "https://example.org/future-makers",
+  },
+  html: `<main><h1>Future Makers Scholarship</h1><p>Open to legal residents of the United States.</p></main>`,
+  finalUrl: "https://example.org/future-makers",
+});
+assert.equal(nationalGeography.hasCandidate, true);
+assert.deepEqual(nationalGeography.geo, { scope: "national" });
+assert.equal(nationalGeography.verificationStatus, "review-required");
+assert.deepEqual(
+  buildGeographyProposal({
+    scholarshipId: "future-makers",
+    currentGeo: null,
+    evaluation: nationalGeography,
+    sourceUrl: "https://example.org/future-makers",
+  })?.proposedValue,
+  { scope: "national" },
+);
+assert.equal(
+  buildGeographyProposal({
+    scholarshipId: "future-makers",
+    currentGeo: { scope: "national" },
+    evaluation: nationalGeography,
+    sourceUrl: "https://example.org/future-makers",
+  }),
+  null,
+);
+
+const stateGeography = evaluateGeography({
+  configuration: {
+    id: "community-builders",
+    name: "Community Builders Scholarship",
+    sourceUrl: "https://example.org/community-builders",
+  },
+  html: `<main><h1>Community Builders Scholarship</h1><p>Applicants must reside in California, Oregon, or Washington.</p></main>`,
+  finalUrl: "https://example.org/community-builders",
+});
+assert.equal(stateGeography.hasCandidate, true);
+assert.deepEqual(stateGeography.geo, { scope: "states", states: ["CA", "OR", "WA"] });
+assert.equal(
+  buildGeographyProposal({
+    scholarshipId: "community-builders",
+    currentGeo: null,
+    evaluation: stateGeography,
+    sourceUrl: "https://example.org/community-builders",
+  })?.risk,
+  "high",
+);
+
+const conflictingGeography = evaluateGeography({
+  configuration: {
+    id: "community-builders",
+    name: "Community Builders Scholarship",
+    sourceUrl: "https://example.org/community-builders",
+  },
+  html: `<main><h1>Community Builders Scholarship</h1><p>Students apply nationwide.</p><p>Applicants must reside in California.</p></main>`,
+  finalUrl: "https://example.org/community-builders",
+});
+assert.equal(conflictingGeography.hasCandidate, false);
+assert.equal(conflictingGeography.conflictingSignals, true);
+
+const preferenceIsNotGeography = evaluateGeography({
+  configuration: {
+    id: "community-builders",
+    name: "Community Builders Scholarship",
+    sourceUrl: "https://example.org/community-builders",
+  },
+  html: `<main><h1>Community Builders Scholarship</h1><p>Preference is given to students who plan to work in Minnesota.</p></main>`,
+  finalUrl: "https://example.org/community-builders",
+});
+assert.equal(preferenceIsNotGeography.hasCandidate, false);
+
+const citizenshipIsNotGeography = evaluateGeography({
+  configuration: {
+    id: "community-builders",
+    name: "Community Builders Scholarship",
+    sourceUrl: "https://example.org/community-builders",
+  },
+  html: `<main><h1>Community Builders Scholarship</h1><p>Applicants must be U.S. citizens.</p></main>`,
+  finalUrl: "https://example.org/community-builders",
+});
+assert.equal(citizenshipIsNotGeography.hasCandidate, false);
 
 const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
   configuration: {

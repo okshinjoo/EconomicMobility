@@ -23,7 +23,7 @@ export function parseScholarshipReviewRequest(value: unknown): ScholarshipReview
   const body = value as Record<string, unknown>;
   const proposalId = typeof body.proposalId === "string" ? body.proposalId.trim() : "";
   const action = typeof body.action === "string" ? body.action : "";
-  const editedValue = typeof body.editedValue === "string" ? body.editedValue.trim().slice(0, 100) : null;
+  const editedValue = typeof body.editedValue === "string" ? body.editedValue.trim().slice(0, 500) : null;
   const note = typeof body.note === "string" ? body.note.trim().slice(0, 1000) : "";
 
   if (!UUID.test(proposalId)) return null;

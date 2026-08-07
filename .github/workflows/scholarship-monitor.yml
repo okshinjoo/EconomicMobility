@@ -38,5 +38,8 @@ jobs:
       - name: Test fail-closed behavior
         run: npm run test:scholarship-monitor-worker
 
+      - name: Sync verified monitor inventory
+        run: npm run seed:scholarship-monitor -- --write
+
       - name: Record official-source observations
         run: npm run monitor:scholarships -- --write --browser-fallback --mode=status

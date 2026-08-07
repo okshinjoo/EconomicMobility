@@ -9,6 +9,21 @@ const inventoryDocument = JSON.parse(
 const inventoryIds = new Set(inventoryDocument.records.map((record) => record.scholarshipId));
 const seenIds = new Set();
 
+for (const record of inventoryDocument.records) {
+  if (record.publicationStatus === "published") {
+    if (!record.geo || record.geoVerificationStatus !== "human-verified") {
+      throw new Error(`${record.scholarshipId}: published monitor inventory requires human-verified geography.`);
+    }
+    if (!record.geoEvidence?.trim() || !record.geoSourceUrl) {
+      throw new Error(`${record.scholarshipId}: published geography requires official-source evidence.`);
+    }
+  } else if (record.publicationStatus === "withheld" && record.geoVerificationStatus === "human-verified") {
+    // A verified geography is allowed while a record remains withheld for
+    // other curation checks; publication is still a separate decision.
+    if (!record.geo) throw new Error(`${record.scholarshipId}: verified withheld geography is missing its value.`);
+  }
+}
+
 function validatePatterns(configuration, label, patterns = []) {
   if (!Array.isArray(patterns)) throw new Error(`${configuration.id}: ${label} must be an array.`);
   for (const pattern of patterns) {
@@ -107,9 +122,9 @@ for (const configuration of coverage.candidate) {
 }
 
 const hostCount = new Set(configurations.map((configuration) => new URL(configuration.sourceUrl).hostname)).size;
-if (configurations.length !== coverage.published) {
-  throw new Error(`Expected ${coverage.published} total monitored scholarships; found ${configurations.length}.`);
+if (configurations.length !== coverage.inventory) {
+  throw new Error(`Expected ${coverage.inventory} total monitored scholarships; found ${configurations.length}.`);
 }
 console.log(
-  `Scholarship monitor sources: ${configurations.length} covered · ${coverage.status.length} evidence-specific · ${coverage.candidate.length} exact-evidence candidates · ${coverage.sourceHealth.length} source-health · ${hostCount} official hosts.`,
+  `Scholarship monitor sources: ${configurations.length} covered (${coverage.published} published · ${coverage.withheld} withheld) · ${coverage.status.length} evidence-specific · ${coverage.candidate.length} exact-evidence candidates · ${coverage.sourceHealth.length} source-health · ${hostCount} official hosts.`,
 );

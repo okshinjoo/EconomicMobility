@@ -294,6 +294,159 @@ function identityEvidence(name, text) {
   };
 }
 
+const GEOGRAPHY_CODES = {
+  Alabama: "AL", Alaska: "AK", Arizona: "AZ", Arkansas: "AR", California: "CA",
+  Colorado: "CO", Connecticut: "CT", Delaware: "DE", Florida: "FL", Georgia: "GA",
+  Hawaii: "HI", "Hawaiʻi": "HI", Idaho: "ID", Illinois: "IL", Indiana: "IN",
+  Iowa: "IA", Kansas: "KS", Kentucky: "KY", Louisiana: "LA", Maine: "ME",
+  Maryland: "MD", Massachusetts: "MA", Michigan: "MI", Minnesota: "MN",
+  Mississippi: "MS", Missouri: "MO", Montana: "MT", Nebraska: "NE", Nevada: "NV",
+  "New Hampshire": "NH", "New Jersey": "NJ", "New Mexico": "NM", "New York": "NY",
+  "North Carolina": "NC", "North Dakota": "ND", Ohio: "OH", Oklahoma: "OK",
+  Oregon: "OR", Pennsylvania: "PA", "Rhode Island": "RI", "South Carolina": "SC",
+  "South Dakota": "SD", Tennessee: "TN", Texas: "TX", Utah: "UT", Vermont: "VT",
+  Virginia: "VA", Washington: "WA", "West Virginia": "WV", Wisconsin: "WI",
+  Wyoming: "WY", "District of Columbia": "DC", "Washington, D.C.": "DC",
+  "Puerto Rico": "PR", Guam: "GU", "American Samoa": "AS",
+  "U.S. Virgin Islands": "VI", "Virgin Islands": "VI",
+  "Northern Mariana Islands": "MP", "Commonwealth of the Northern Mariana Islands": "MP",
+};
+const GEOGRAPHY_CODE_SET = new Set(Object.values(GEOGRAPHY_CODES));
+const GEOGRAPHY_NAME_PATTERN = Object.keys(GEOGRAPHY_CODES)
+  .sort((a, b) => b.length - a.length)
+  .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+  .join("|");
+const NATIONAL_GEOGRAPHY_PATTERNS = [
+  /\b(?:all|any) (?:of the )?(?:50|fifty) (?:U\.S\. )?states(?: and (?:the )?(?:District of Columbia|U\.S\. territories|Puerto Rico))?\b/i,
+  /\b(?:nationwide|across the nation|throughout the United States)\b/i,
+  /\b(?:open|available|eligible) to (?:students|applicants|residents)[^.]{0,80}\b(?:across|throughout|anywhere in) the (?:United States|U\.S\.)\b/i,
+  /\b(?:legal )?residents? of (?:the )?(?:United States|U\.S\.)\b/i,
+  /\b(?:students|applicants) from (?:all|any) U\.S\. states?\b/i,
+];
+const HARD_GEOGRAPHY_PATTERNS = [
+  /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live|attend|enroll|graduate|be located)\b[^.!?]{0,220}/gi,
+  /\b(?:eligible|open only to|limited to|restricted to)\b[^.!?]{0,90}\b(?:residents?|students? (?:who )?(?:reside|live|attend|enroll|graduate))\b[^.!?]{0,220}/gi,
+  /\b(?:residents?|residency)\b[^.!?]{0,160}\b(?:eligible|required|only|must|qualif(?:y|ied))\b[^.!?]{0,100}/gi,
+  /\b(?:attend|enroll(?:ed)?|graduate(?:d)?|high school)\b[^.!?]{0,100}\b(?:in-state|within|in one of|in the state of)\b[^.!?]{0,180}/gi,
+  /\b(?:service area|service territory|service footprint)\b[^.!?]{0,240}/gi,
+];
+
+function stateCodesInEvidence(value) {
+  const found = new Set();
+  for (const match of value.matchAll(new RegExp(`\\b(${GEOGRAPHY_NAME_PATTERN})\\b`, "gi"))) {
+    const canonical = Object.keys(GEOGRAPHY_CODES).find((name) => name.toLowerCase() === match[1].toLowerCase());
+    if (canonical) found.add(GEOGRAPHY_CODES[canonical]);
+  }
+  const uppercaseCodes = [...value.matchAll(/\b[A-Z]{2}\b/g)]
+    .map((match) => match[0])
+    .filter((code) => GEOGRAPHY_CODE_SET.has(code));
+  if (uppercaseCodes.length >= 2) for (const code of uppercaseCodes) found.add(code);
+  const singleCode = value.match(/\b(?:state of|resident(?:s)? of|reside in|live in)\s+([A-Z]{2})\b/);
+  if (singleCode && GEOGRAPHY_CODE_SET.has(singleCode[1])) found.add(singleCode[1]);
+  return [...found].sort();
+}
+
+/**
+ * Extract only explicit nationwide or hard state residency/attendance rules.
+ * Country-level citizenship alone is never treated as national geography,
+ * preferences and service commitments are not hard geography, and conflicts
+ * are withheld for a human rather than guessed.
+ */
+export function evaluateGeography({ configuration, html, finalUrl }) {
+  const text = visibleText(html);
+  const identity = identityEvidence(configuration.name ?? "", text);
+  const identityMatched = identity.matched.length > 0 && identity.score >= 0.5;
+  const crossDomainRedirect = normalizedHost(configuration.sourceUrl) !== normalizedHost(finalUrl);
+  if (!identityMatched || crossDomainRedirect) {
+    return {
+      hasCandidate: false,
+      geo: null,
+      evidenceText: "",
+      extractionConfidence: "unknown",
+      verificationStatus: "unverified",
+      conflictingSignals: false,
+    };
+  }
+
+  const nationalMatch = NATIONAL_GEOGRAPHY_PATTERNS
+    .map((pattern) => text.match(pattern))
+    .find(Boolean);
+  const stateEvidence = [];
+  const states = new Set();
+  for (const pattern of HARD_GEOGRAPHY_PATTERNS) {
+    pattern.lastIndex = 0;
+    for (const match of text.matchAll(pattern)) {
+      const context = evidenceAround(text, match.index ?? 0, match[0].length);
+      // Work-location promises and geographic preferences do not make a
+      // student ineligible based on where they live or study.
+      if (/\b(?:preference|preferred|priority|commit(?:ment)? to work|agree to work|plan to work|intend to work)\b/i.test(context)) continue;
+      const codes = stateCodesInEvidence(context);
+      if (!codes.length) continue;
+      codes.forEach((code) => states.add(code));
+      stateEvidence.push(context);
+    }
+  }
+
+  const conflictingSignals = Boolean(nationalMatch && states.size);
+  if (conflictingSignals || (!nationalMatch && states.size === 0)) {
+    return {
+      hasCandidate: false,
+      geo: null,
+      evidenceText: [...new Set([
+        nationalMatch ? evidenceAround(text, nationalMatch.index ?? 0, nationalMatch[0].length) : null,
+        ...stateEvidence,
+      ].filter(Boolean))].join("\n\n").slice(0, 4000),
+      extractionConfidence: conflictingSignals ? "low" : "unknown",
+      verificationStatus: conflictingSignals ? "review-required" : "unverified",
+      conflictingSignals,
+    };
+  }
+
+  const geo = states.size
+    ? { scope: "states", states: [...states].sort() }
+    : { scope: "national" };
+  const evidenceText = states.size
+    ? [...new Set(stateEvidence)].join("\n\n")
+    : evidenceAround(text, nationalMatch.index ?? 0, nationalMatch[0].length);
+  return {
+    hasCandidate: true,
+    geo,
+    evidenceText: evidenceText.slice(0, 4000),
+    extractionConfidence: "high",
+    verificationStatus: "review-required",
+    conflictingSignals: false,
+  };
+}
+
+function normalizedGeo(value) {
+  if (!value || typeof value !== "object") return null;
+  if (value.scope === "national") return { scope: "national" };
+  if (value.scope === "states" && Array.isArray(value.states) && value.states.length) {
+    return { scope: "states", states: [...new Set(value.states)].sort() };
+  }
+  return null;
+}
+
+export function buildGeographyProposal({ scholarshipId, currentGeo, evaluation, sourceUrl, fieldLocked = false }) {
+  if (!evaluation?.hasCandidate || fieldLocked) return null;
+  const proposedValue = normalizedGeo(evaluation.geo);
+  if (!proposedValue) return null;
+  const currentValue = normalizedGeo(currentGeo);
+  if (stableStringify(currentValue) === stableStringify(proposedValue)) return null;
+  return {
+    scholarshipId,
+    fieldName: "geo",
+    currentValue,
+    proposedValue,
+    sourceUrl,
+    evidenceText: evaluation.evidenceText,
+    extractionConfidence: evaluation.extractionConfidence,
+    risk: "high",
+    verificationStatus: "review-required",
+    fieldLocked,
+  };
+}
+
 function contextMatchesIdentity(context, tokens) {
   const normalized = context.toLowerCase();
   const requiredMatches = Math.min(2, tokens.length);

@@ -5,7 +5,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createClient } from "@supabase/supabase-js";
 import {
   buildFieldProposals,
+  buildGeographyProposal,
   evaluateGenericCandidateSource,
+  evaluateGeography,
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
@@ -283,6 +285,7 @@ async function inspectUnlocked(configuration) {
         fetched,
         previous,
         evaluation: null,
+        geographyEvaluation: null,
       };
     }
     let evaluation = configuration.monitorMode === "source-health"
@@ -321,6 +324,11 @@ async function inspectUnlocked(configuration) {
       }
     }
     const sourceHealthIssue = configuration.monitorMode === "source-health" && evaluation.sourceStatus !== "healthy";
+    const geographyEvaluation = evaluateGeography({
+      configuration,
+      html: resolvedFetch.html,
+      finalUrl: resolvedFetch.finalUrl,
+    });
     return {
       configuration,
       success: !sourceHealthIssue,
@@ -331,6 +339,7 @@ async function inspectUnlocked(configuration) {
       fetched: resolvedFetch,
       previous,
       evaluation,
+      geographyEvaluation,
       error: sourceHealthIssue
         ? `Official source health check returned ${evaluation.sourceStatus} at ${resolvedFetch.finalUrl}.`
         : undefined,
@@ -347,6 +356,7 @@ async function inspectUnlocked(configuration) {
       fetched: { finalUrl: configuration.sourceUrl, httpStatus: error.httpStatus ?? null, fetchMethod: "http", etag: null, lastModified: null },
       previous,
       evaluation: null,
+      geographyEvaluation: null,
       error: errorMessage,
     };
   }
@@ -403,6 +413,15 @@ for (const result of results) {
       fieldLocked: (locksByScholarship.get(result.configuration.id) ?? new Set()).has("sourceReview"),
     });
   }
+
+  const geographyProposal = buildGeographyProposal({
+    scholarshipId: result.configuration.id,
+    currentGeo: result.configuration.currentGeo ?? null,
+    evaluation: result.geographyEvaluation,
+    sourceUrl: result.configuration.sourceUrl,
+    fieldLocked: (locksByScholarship.get(result.configuration.id) ?? new Set()).has("geo"),
+  });
+  if (geographyProposal) proposals.push(geographyProposal);
 }
 
 for (const proposal of proposals) {
@@ -451,7 +470,10 @@ if (admin) {
         ? "generic-exact-evidence-candidate"
         : "official-source-health",
     extractor_version: "1",
-    evidence_snippet: result.evaluation?.evidenceText ?? null,
+    evidence_snippet: [result.evaluation?.evidenceText, result.geographyEvaluation?.evidenceText]
+      .filter(Boolean)
+      .join("\n\n")
+      .slice(0, 4000) || null,
     error_kind: result.success ? null : result.sourceStatus,
     error_message: result.error ?? null,
     metadata: {
@@ -474,6 +496,14 @@ if (admin) {
             crossDomainRedirect: result.evaluation.crossDomainRedirect,
             loginWall: result.evaluation.loginWall ?? false,
             thinDocument: result.evaluation.thinDocument ?? false,
+          }
+        : null,
+      geography: result.geographyEvaluation
+        ? {
+            candidate: result.geographyEvaluation.geo,
+            hasCandidate: result.geographyEvaluation.hasCandidate,
+            conflictingSignals: result.geographyEvaluation.conflictingSignals,
+            verificationStatus: result.geographyEvaluation.verificationStatus,
           }
         : null,
     },
@@ -566,7 +596,10 @@ for (const result of results) {
           `next=${result.evaluation.nextOpensOn ?? "unknown"}`,
         ].join(" · ")
       : "no candidate";
-    console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · ${candidate}`);
+    const geography = result.geographyEvaluation?.hasCandidate
+      ? `geo=${stableStringify(result.geographyEvaluation.geo)}`
+      : "geo=unverified";
+    console.log(`${result.success ? "OK" : "FAIL"} ${result.configuration.id} · ${result.sourceStatus} · ${candidate} · ${geography}`);
   }
 }
 console.log(

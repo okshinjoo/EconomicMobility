@@ -42,7 +42,21 @@ assert.match(reviewSql, /proposal\.status <> 'pending'/i);
 assert.match(reviewSql, /from public\.moderators where user_id = p_actor_user_id/i);
 assert.match(reviewSql, /revoke all .* from authenticated/i);
 assert.match(reviewSql, /grant execute .* to service_role/i);
-assert.doesNotMatch(reviewSql, /update\s+public\.scholarship_monitor_inventory/i);
+assert.match(reviewSql, /proposal\.field_name = 'geo'/i);
+assert.match(reviewSql, /update\s+public\.scholarship_monitor_inventory/i);
+assert.match(reviewSql, /geo_verification_status = 'human-verified'/i);
+
+const schemaSql = await readFile(
+  new URL("../docs/scholarship-monitor-schema.sql", import.meta.url),
+  "utf8",
+);
+assert.match(schemaSql, /enforce_scholarship_monitor_publication_geography/i);
+assert.match(schemaSql, /Published scholarships require verified geography with official-source evidence/i);
+const timestampTriggerFunction = schemaSql.match(
+  /create or replace function public\.touch_scholarship_monitor_updated_at\(\)[\s\S]*?end \$\$;/i,
+)?.[0];
+assert.ok(timestampTriggerFunction);
+assert.doesNotMatch(timestampTriggerFunction, /geo_/i);
 
 const statusBase = {
   id: "example",
