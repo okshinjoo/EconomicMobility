@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 
 export function decodeHtml(value) {
   return value
+    .replace(/\u0000/g, "")
     .replace(/&nbsp;|&#160;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/&quot;/gi, '"')

@@ -123,6 +123,7 @@ assert.match(
   visibleText('<img alt="January 1: applications open, April 1: applications closed">'),
   /January 1: applications open, April 1: applications closed/,
 );
+assert.equal(visibleText("<main>Official\u0000 scholarship page</main>"), "Official scholarship page");
 
 const davisPutter = evaluateOfficialSource({
   configuration: configurationFor("davis-putter"),

@@ -324,6 +324,7 @@ async function inspectUnlocked(configuration) {
         : undefined,
     };
   } catch (error) {
+    const errorMessage = String(error.message ?? error).replace(/\u0000/g, "");
     return {
       configuration,
       success: false,
@@ -334,7 +335,7 @@ async function inspectUnlocked(configuration) {
       fetched: { finalUrl: configuration.sourceUrl, httpStatus: error.httpStatus ?? null, fetchMethod: "http", etag: null, lastModified: null },
       previous,
       evaluation: null,
-      error: error.message,
+      error: errorMessage,
     };
   }
 }
