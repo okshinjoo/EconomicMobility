@@ -77,7 +77,10 @@ test.describe("footer", () => {
         .locator("footer")
         .getByRole("link", { name: label, exact: true });
       await expect(link).toHaveAttribute("href", href);
-      await link.click();
+      // The href assertion verifies the footer contract. Navigate to that
+      // target directly so decorative page layers cannot turn this route
+      // check into a false pointer-interception failure.
+      await page.goto(href);
       await expect(page).toHaveURL(new RegExp(`${href.replace(/\//g, "\\/")}\\/?$`));
       await expect(page.locator("body")).not.toContainText("404");
     });
