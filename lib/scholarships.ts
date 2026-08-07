@@ -1,5 +1,6 @@
 import { applyScholarshipAuditCuration } from "./scholarshipCuration.generated";
 import { scholarshipGeo } from "./scholarshipGeo.generated";
+import { scholarshipEligibility } from "./scholarshipEligibility.generated";
 import type { EligibilityTag } from "./scholarshipTaxonomy";
 
 // The curated scholarship list (July 2026): real, established, national
@@ -18961,5 +18962,7 @@ export const scholarships: Scholarship[] = applyScholarshipAuditCuration(
   scholarshipCatalog,
 ).map((s) => {
   const geo = scholarshipGeo[s.id];
-  return geo ? { ...s, geo } : s;
+  const eligibility = scholarshipEligibility[s.id];
+  if (!geo && !eligibility) return s;
+  return { ...s, ...(geo && { geo }), ...(eligibility && { eligibility }) };
 });

@@ -19,6 +19,20 @@ export interface SiteNote {
 
 export const siteNotes: SiteNote[] = [
   {
+    date: "August 7, 2026",
+    title: "Find scholarships by state, field, and life story — and an optional matcher",
+    body: "The finder grew three quiet superpowers. First, real filters: pick your state and awards locked to other states drop away (about 500 of our entries are state programs — an Ohio student was scrolling past Texas-only money every day). Pick a field of study, or open More filters for the deeper cuts: military families, foster care experience, first-generation students, specific health conditions, and more — each with an honest count of how many awards it actually unlocks. Second, the search box got smarter: it now understands what awards are about, not just the words on their cards, so 'piano' finds the music competitions and 'children of veterans' finds the survivor programs, with a one-tap suggestion when your search matches a category. Third — and completely optional — Match me with scholarships: tell it as much or as little as you like and the list re-sorts around you, with a plain-English reason on every card. What doesn't fit sinks to the bottom, greyed, with the reason stated — never hidden, because our data can be wrong and the official page is always the final word. Behind all of it, we classified the eligibility rules of over 1,100 awards, and we kept our oldest promise: no forms, no account, nothing required to just look. We also never ask about race or ethnicity — awards with those criteria simply say so on the card.",
+    href: "/students/scholarships",
+    hrefLabel: "Try the new finder",
+  },
+  {
+    date: "August 6, 2026",
+    title: "A stricter quality audit: 1,642 becomes 1,222",
+    body: "We re-screened the entire scholarship list against a tougher bar — does the program verifiably still run, is every award at least $500, is each entry truly distinct, does the evidence hold up. Just over 400 entries came out, and a few dozen more are parked until we can verify them properly; a group of legitimate programs whose smallest awards can dip under $500 stayed in by explicit decision, because the programs themselves are real and worth your time. A smaller number we can stand behind completely beats a bigger number we can't.",
+    href: "/students/scholarships",
+    hrefLabel: "Open the finder",
+  },
+  {
     date: "July 19, 2026",
     title: "A source audit of all 1,672 scholarships — now 1,642, every link checked",
     body: "We promised every scholarship here links straight to its official source, so we audited all 1,672 links in one pass to hold ourselves to it. The result: not one entry sourced from the scholarship directories and aggregator sites we warn about — with a single exception we cut, an award that exists only inside one of those platforms, behind its account wall. We also cut a program whose website now redirects to a spam page (the charity is real, but there's no official page left to send you to), one that quietly ended in 2021, and — applying our own no-regional rule — a well-known program that narrowed from national to three states. Two entries turned out to be the same scholarship wearing two names; they're one now. About a dozen professional-association links had rotted into member-login pages or moved, so we chased down each program's current public page and re-pointed them. And the audit surfaced two dozen single-city and single-county awards that had slipped past our national-or-state rule — city promise programs, metro foundations, awards tied to one or two campuses. Real money, but money most visitors can never touch, so they're gone too; local scholarships live behind the community-foundation doors instead, one per state, where they belong. The count on the page comes straight from the list, so it now reads 1,642 — smaller and truer.",

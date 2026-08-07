@@ -1,11 +1,27 @@
 # Scholarship Finder — eligibility taxonomy & discovery redesign (PROPOSAL)
 
-Status: **approved by the owner August 7, 2026 — phase 1 SHIPPED same day**
-(taxonomy registry `lib/scholarshipTaxonomy.ts`, `eligibility`/`geo` schema
-fields, geo overlay `lib/scholarshipGeo.generated.ts` — 504 state-bound + 11
-national from the audited who sentences, 97 queued needs-review — provenance
-sidecar `data/scholarship-classifications.json`, gate
-`npm run check:scholarship-tags`). Phases 2–5 pending; UI unchanged so far.
+Status: **ALL PHASES SHIPPED August 7, 2026** (owner approved the spec, then
+directed all phases run in one pass, waiving the interim review gates).
+- Phase 1: taxonomy registry `lib/scholarshipTaxonomy.ts` (94 nodes),
+  `eligibility`/`geo` schema fields, provenance sidecar
+  `data/scholarship-classifications.json`, gate `npm run check:scholarship-tags`.
+- Phase 2: geo overlay 502 state-bound + 11 national (99 queued needs-review);
+  eligibility overlay 1,111 entries / 1,619 required · 25 preferred · 437
+  relevant assignments (111 queued). METHOD NOTE: classified from the
+  officially-verified who sentences (the 2026-08-05 audit is the verification
+  chain), method `who-derived` in provenance — re-fetching 1,222 official
+  pages is the standing upgrade path, per-record, prioritizing the
+  needs-review queue and spot-checks of `required` strengths.
+- Phase 3: synonym-expanded fuzzy haystacks, query boilerplate stripping,
+  one "Filter by X" suggestion chip, strength-boosted ranking.
+- Phase 4: Your-state select (hard geo filter while browsing), field-of-study
+  select, More-filters panel (counts, OR-within/AND-across dimensions),
+  removable pills, deep links (`?state/?field/?tag`), card chips (For: /
+  Preference:).
+- Phase 5: optional Match Me (`lib/scholarshipMatch.ts`,
+  `empower:scholarship-profile:v1`) — deterministic verdicts; with matching ON
+  the state/field selects become profile answers and nothing is excluded
+  (mismatches sink greyed with reasons). Ethnicity is never asked.
 Date: August 7, 2026. Dataset analyzed: 1,222 published entries
 (post the 2026-08-05 QC audit, commit 63972a3).
 

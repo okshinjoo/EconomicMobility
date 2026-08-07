@@ -105,7 +105,7 @@ export const SCHOLARSHIP_TAXONOMY: TaxonomyNode[] = [
   { id: "circumstance.health", label: "Health conditions", parent: "circumstance", synonyms: ["illness", "medical condition"], sensitive: true },
   { id: "circumstance.health.cancer-survivor", label: "Cancer survivors & patients", parent: "circumstance.health", synonyms: ["cancer"], sensitive: true },
   { id: "circumstance.health.cancer-family", label: "Family affected by cancer", parent: "circumstance.health", synonyms: ["parent with cancer"], sensitive: true },
-  { id: "circumstance.health.specific-condition", label: "Specific conditions", parent: "circumstance.health", synonyms: ["hemophilia", "cystic fibrosis", "diabetes", "epilepsy", "sickle cell", "tourette", "arthritis", "narcolepsy", "hydrocephalus"], sensitive: true },
+  { id: "circumstance.health.specific-condition", label: "Specific health conditions", parent: "circumstance.health", synonyms: ["hemophilia", "cystic fibrosis", "diabetes", "epilepsy", "sickle cell", "tourette", "arthritis", "narcolepsy", "hydrocephalus"], sensitive: true },
   { id: "circumstance.loss-of-parent", label: "Lost a parent or guardian", parent: "circumstance", synonyms: ["deceased parent", "orphan", "surviving child"], sensitive: true },
   { id: "circumstance.caregiver", label: "Student caregivers", parent: "circumstance", synonyms: ["caregiving", "caring for family"], sensitive: true },
   { id: "circumstance.homeless", label: "Housing insecurity", parent: "circumstance", synonyms: ["homeless", "unaccompanied youth"], sensitive: true },
@@ -167,4 +167,77 @@ export function descendantsOf(id: string): TaxonomyNode[] {
 /** Top-level dimension of a tag id ("field.arts.music" → "field"). */
 export function dimensionOf(id: string): string {
   return id.split(".")[0];
+}
+
+/** Ancestor chain from the top down, excluding the bare dimension root
+ *  ("field.arts.music" → ["field.arts", "field.arts.music"]). */
+export function ancestryOf(id: string): string[] {
+  const parts = id.split(".");
+  const out: string[] = [];
+  for (let i = 2; i <= parts.length; i++) out.push(parts.slice(0, i).join("."));
+  return out;
+}
+
+// ── Search integration (phase 3) ──────────────────────────────────────────
+// The finder folds each classified entry's tag labels + synonyms + ancestor
+// labels into its fuzzy haystack, so "piano" finds every award tagged
+// anywhere under Music even when the word never appears in its prose.
+
+import { queryTokensOf, tokenMatch, tokensOf } from "./fuzzy";
+
+/** Search-only text for a set of assigned tags: labels, synonyms, and
+ *  ancestor labels/synonyms. Never displayed. */
+export function searchExpansion(tags: EligibilityTag[]): string {
+  const words = new Set<string>();
+  for (const t of tags) {
+    for (const id of ancestryOf(t.tag)) {
+      const n = byId.get(id);
+      if (!n) continue;
+      words.add(n.label);
+      for (const syn of n.synonyms ?? []) words.add(syn);
+    }
+    // Natural-phrasing filler so "Economics majors" / "piano players" land
+    // both tokens (short fuzzy queries must fully land, house contract).
+    if (t.tag.startsWith("field.")) words.add("major majors students studying");
+    if (isWithin(t.tag, "field.arts.music") || isWithin(t.tag, "basis.athletics"))
+      words.add("player players");
+  }
+  return [...words].join(" ");
+}
+
+// Pre-tokenized node index for query→filter suggestions.
+const NODE_TOKENS: { node: TaxonomyNode; tokens: string[] }[] =
+  SCHOLARSHIP_TAXONOMY.filter((n) => n.id.includes(".")).map((n) => ({
+    node: n,
+    tokens: tokensOf([n.label, ...(n.synonyms ?? [])].join(" ")),
+  }));
+
+/** The single best taxonomy node a query is talking about, if any — used to
+ *  offer a "Filter by X" chip. A node wins when a query token lands hard
+ *  (≥0.8) on one of its label/synonym tokens; among winners, prefer the
+ *  shallowest (an ancestor beats its descendants, so "music" suggests Music,
+ *  not Instrumental music), then the strongest score. */
+export function suggestNode(query: string): TaxonomyNode | null {
+  const qs = queryTokensOf(query);
+  if (qs.length === 0) return null;
+  let best: { node: TaxonomyNode; score: number } | null = null;
+  const strongQs = qs.filter((q) => q.length >= 3); // "of"/"in" carry no intent
+  for (const { node, tokens } of NODE_TOKENS) {
+    let score = 0;
+    for (const q of strongQs) for (const t of tokens) {
+      if (t.length < 3) continue;
+      const m = tokenMatch(q, t);
+      if (m >= 0.8 && m > score) score = m;
+    }
+    if (score === 0) continue;
+    if (
+      !best ||
+      isWithin(best.node.id, node.id) || // ancestor of current best wins
+      (!isWithin(node.id, best.node.id) && score > best.score)
+    ) {
+      if (best && isWithin(node.id, best.node.id) && score <= best.score) continue;
+      best = { node, score };
+    }
+  }
+  return best?.node ?? null;
 }

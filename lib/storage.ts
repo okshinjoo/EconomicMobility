@@ -37,6 +37,9 @@ export const STORAGE_KEYS = {
   // "hs" | "cc" | "uni" — the signed-out student-stage answer (the signed-in
   // copy lives on the profile). Whole-snapshot synced like everything else.
   studentStage: "empower:student-stage:v1",
+  // Optional scholarship-match answers (state/field/opt-in groups) — the
+  // finder works identically without it; one click clears it.
+  scholarshipProfile: "empower:scholarship-profile:v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {
