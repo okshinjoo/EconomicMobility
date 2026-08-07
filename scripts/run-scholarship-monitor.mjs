@@ -244,7 +244,25 @@ async function inspectUnlocked(configuration) {
         evaluation: null,
       };
     }
-    const evaluation = evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
+    let evaluation = evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
+    let resolvedFetch = fetched;
+    if (browserFallback && fetched.fetchMethod === "http" && evaluation.missingRequired.length > 0) {
+      try {
+        const rendered = await fetchWithBrowser(configuration.sourceUrl);
+        const renderedEvaluation = evaluateOfficialSource({
+          configuration,
+          html: rendered.html,
+          finalUrl: rendered.finalUrl,
+          today,
+        });
+        if (renderedEvaluation.missingRequired.length < evaluation.missingRequired.length) {
+          resolvedFetch = rendered;
+          evaluation = renderedEvaluation;
+        }
+      } catch {
+        // Keep the original fail-closed evaluation when rendering is unavailable.
+      }
+    }
     return {
       configuration,
       success: true,
@@ -252,7 +270,7 @@ async function inspectUnlocked(configuration) {
       sourceStatus: evaluation.sourceStatus,
       extractionConfidence: evaluation.extractionConfidence,
       verificationStatus: evaluation.verificationStatus,
-      fetched,
+      fetched: resolvedFetch,
       previous,
       evaluation,
     };
