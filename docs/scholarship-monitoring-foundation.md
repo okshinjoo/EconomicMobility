@@ -1,8 +1,9 @@
 # Scholarship monitoring foundation
 
-Status: Phase 1 implemented and applied to the production Supabase project on
-August 7, 2026; public Finder unchanged. The live seed contains 1,220 curated
-inventory rows, 1,220 active official sources, and 1,220 current-state rows.
+Status: Phases 1 and 2 implemented and applied to the production Supabase
+project on August 7, 2026; public Finder unchanged. The live seed contains
+1,220 curated inventory rows, 1,220 active official sources, and 1,220
+current-state rows.
 
 This system applies only to the individual awards in Empower's curated
 Scholarship Finder. It never imports, monitors, or publishes records from the
@@ -67,6 +68,11 @@ Run the deterministic worker tests with
 database writes with `npm run monitor:scholarships -- --limit=3`. The GitHub
 Actions workflow requires repository secrets named `SUPABASE_URL` and
 `SUPABASE_SERVICE_ROLE_KEY` before its first manual or scheduled run.
+
+The first production observation run completed successfully on August 7,
+2026: 37 of 37 official sources were fetched, 37 append-only observations and
+85 pending review proposals were recorded, and zero public or editorial state
+fields were changed. The encrypted workflow credentials are configured.
 
 The next phase is the moderator review interface and protected accept/reject,
 edit, verify, keep-existing, open-source, and field-lock actions.
