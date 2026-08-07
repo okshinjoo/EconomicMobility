@@ -71,9 +71,9 @@
    "kind": "geo",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.chick-fil-a.com/community-scholars",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "state mention without clear residency phrasing (queue-unclear: PR) \u2014 no geo shipped; resolve against the official page. who: \"Residents of the United States, Puerto Rico, or Canada planning or pursuing undergraduate, graduate, or vocational-technical study, evaluated on academics, community service, leadership, and financial need; Chick-fil-A employees are not eligible.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Chick-fil-A materials describe Community Scholars as unaffiliated community leaders from across the country; no state-residency restriction is stated."
   },
   {
    "id": "texas-grant",
@@ -1437,9 +1437,9 @@
    "kind": "geo",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://learnmore.scholarsapply.org/toyotamle/",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "state mention without clear residency phrasing (queue-unclear: DC, PR, WA) \u2014 no geo shipped; resolve against the official page. who: \"Undergraduate and graduate students affiliated with a listed Toyota partner organization in one of fourteen eligible states, Washington, D.C., or Puerto Rico; applicants need a signed partner-verification form and proof of financial need.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Scholarship America eligibility requires affiliation with a listed nonprofit partner, not residence in the partner's state; no applicant-residency rule is stated."
   },
   {
    "id": "nj-stars",
@@ -5783,9 +5783,9 @@
    "kind": "geo",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://oklahoma.gov/careertech/about/foundation/scholarships.html",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "state mention without clear residency phrasing (queue-unclear: OK, WA) \u2014 no geo shipped; resolve against the official page. who: \"Full-time students attending an Oklahoma CareerTech program or accredited college who meet the foundation's current application requirements.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Oklahoma CareerTech page allows enrollment at an Oklahoma Career and Technology Center OR any accredited institution of higher learning; the official application states no residency requirement."
   },
   {
    "id": "pa-pasfaa-student",
@@ -6627,9 +6627,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.fontanatransportincscholarsprogram.com/scholarship-requirements",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "identity.first-gen=required(who) identity.immigrant-refugee=relevant(tag) basis.merit-academic=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"First-generation, underrepresented high school seniors nationwide with a 3.5+ GPA entering select majors; U.S. citizenship not required.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"First-generation, underrepresented high school seniors nationwide with a 3.5+ GPA entering select majors; U.S. citizenship not required.\" Final overlay: [{\"tag\":\"identity.first-gen\",\"strength\":\"required\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "ushli-andrade",
@@ -6744,18 +6744,18 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.chick-fil-a.com/community-scholars",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=required(who) affiliation.employer=required(who) basis.need=required(who) basis.community-service=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Residents of the United States, Puerto Rico, or Canada planning or pursuing undergraduate, graduate, or vocational-technical study, evaluated on academics, community service, leadership, and financial need; Chick-fil-A employees are not eligible.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Residents of the United States, Puerto Rico, or Canada planning or pursuing undergraduate, graduate, or vocational-technical study, evaluated on academics, community service, leadership, and financial need; Chick-fil-A employees are not eligible.\" Final overlay: [{\"tag\":\"basis.need\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"relevant\"},{\"tag\":\"basis.community-service\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "mcdonalds-hacer",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.mcdonalds.com/us/en-us/community/hacer.html",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=required(who) identity.latino=required(who) basis.need=required(who) basis.merit-academic=required(who) basis.community-service=relevant(tag) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"High school seniors under 21 with a 2.8+ GPA who will attend full-time college, university, or vocational-technical school; selection considers academics, financial need, community involvement, personal qualities, and commitment to the Hispanic/Latino community.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"High school seniors under 21 who are legal U.S. residents, U.S. citizens, or DREAMER/DACA recipients, carry at least a 2.8 GPA, and will attend an eligible school full time; selection considers academics, financial need, community involvement, and personal qualities.\" Final overlay: [{\"tag\":\"basis.need\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"relevant\"},{\"tag\":\"basis.community-service\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "princess-grace-awards",
@@ -7230,9 +7230,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.sertoma.org/what-we-do/scholarships/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=relevant(who) circumstance.disability.deaf-hoh=required(who) basis.merit-academic=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"U.S. citizens with at least 40dB bilateral hearing loss pursuing a full-time bachelor's degree with a 3.2+ GPA; graduate, associate, community-college, vocational, and technical programs are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"U.S. citizens with at least 40dB bilateral hearing loss pursuing a full-time bachelor's degree with a 3.2+ GPA; graduate, associate, community-college, vocational, and technical programs are excluded.\" Final overlay: [{\"tag\":\"circumstance.disability.deaf-hoh\",\"strength\":\"required\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"required\"}]."
   },
   {
    "id": "anne-ford-ncld",
@@ -7365,9 +7365,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://hed.nm.gov/free-college-for-new-mexico",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "identity.immigrant-refugee=relevant(tag) circumstance.adult-learner=required(who) basis.merit-academic=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"New Mexico residents, regardless of immigration status, pursuing a first eligible certificate or degree at one of 29 public institutions with at least six credits; there is no separate scholarship application, returning adults and summer study can qualify, and first-degree credit limits apply. A 2.5 GPA is not a universal entry rule.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"New Mexico residents, regardless of immigration status, pursuing a first eligible certificate or degree at one of 29 public institutions with at least six credits; there is no separate scholarship application, returning adults and summer study can qualify, and first-degree credit limits apply. A 2.5 GPA is not a universal entry rule.\" Final overlay: []."
   },
   {
    "id": "ak-performance-scholarship",
@@ -8670,18 +8670,18 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.esiason.org/assistance/scholarships/bef-academic-scholarship/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "circumstance.disability=relevant(tag) basis.need=required(who) basis.community-service=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"U.S. citizens or permanent residents with a confirmed cystic-fibrosis diagnosis who are enrolled in or accepted to an undergraduate or graduate program and are evaluated on academics, character, leadership, service, financial need, documentation, and a semifinalist interview.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"U.S. citizens or permanent residents with a confirmed cystic-fibrosis diagnosis who are enrolled in or accepted to an undergraduate or graduate program and are evaluated on academics, character, leadership, service, financial need, documentation, and a semifinalist interview.\" Final overlay: [{\"tag\":\"circumstance.health.specific-condition\",\"strength\":\"required\"},{\"tag\":\"basis.need\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"relevant\"},{\"tag\":\"basis.community-service\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "180-medical-scholarship",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.180medical.com/scholarships/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.health.medicine-prehealth=required(who) circumstance.disability.physical=required(who) circumstance.health.specific-condition=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Legal U.S. residents under a physician's care for spina bifida, spinal-cord injury, transverse myelitis, neurogenic bladder, bladder exstrophy, or an ostomy who attend a full-time two-year, four-year, or graduate program; medical school is excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Legal U.S. residents under a physician's care for spina bifida, spinal-cord injury, transverse myelitis, neurogenic bladder, bladder exstrophy, or an ostomy who attend a full-time two-year, four-year, or graduate program; medical school is excluded.\" Final overlay: [{\"tag\":\"circumstance.disability.physical\",\"strength\":\"required\"},{\"tag\":\"circumstance.health.specific-condition\",\"strength\":\"required\"}]."
   },
   {
    "id": "national-garden-clubs-college-scholarship",
@@ -9003,9 +9003,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.chick-fil-a.com/remarkable-futures-scholarships/types-of-scholarships",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.business.hospitality=required(who) field.trades=required(who) affiliation.employer=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Eligible Chick-fil-A restaurant Team Members in the United States, Canada, and Puerto Rico, with no minimum tenure or hours requirement; recipients may attend accredited two- or four-year, online, or vocational-technical institutions full- or part-time.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Eligible Chick-fil-A restaurant Team Members in the United States, Canada, and Puerto Rico, with no minimum tenure or hours requirement; recipients may attend accredited two- or four-year, online, or vocational-technical institutions full- or part-time.\" Final overlay: [{\"tag\":\"affiliation.employer\",\"strength\":\"required\"},{\"tag\":\"basis.need\",\"strength\":\"required\"},{\"tag\":\"basis.community-service\",\"strength\":\"required\"}]."
   },
   {
    "id": "kfc-foundation-reach-scholarship",
@@ -9120,18 +9120,18 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.amsamoadoe.com/offices/financialaid",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "no niche criteria detected in the who sentence \u2014 likely GENERAL; confirm against the official page before recording eligibility: []. who: \"American Samoa high school and community college graduates selected by the ASG Scholarship Board for local or off-island college study.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official ASDOE criteria require a 3.80 CGPA plus qualifying SAT/ACT scores for the off-island scholarship, and a 3.50 CGPA plus qualifying scores for the ASCC scholarship; basis.merit-academic is required."
   },
   {
    "id": "cnmi-eap-base-grant",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.cnmischolarship.net/default.asp?secID=5",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "no niche criteria detected in the who sentence \u2014 likely GENERAL; confirm against the official page before recording eligibility: []. who: \"U.S. citizens with three years of CNMI residency who meet voter-registration rules and enroll full time in eligible postsecondary study through the CNMI Scholarship Office.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official CNMI page: \"EAP Base Grant (EAPBG) is for all eligible full-time applicants regardless what the field of study.\" Residency, citizenship, and enrollment rules live outside the niche taxonomy; classified GENERAL []."
   },
   {
    "id": "federal-etv-program",
@@ -9336,9 +9336,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://alsiglam.org/scholarships/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "affiliation.membership.honor-society=required(who) basis.merit-academic=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Adult undergraduate and post-baccalaureate students with at least a 3.5 GPA and master's students with at least a 3.8 GPA at institutions with active Alpha Sigma Lambda chapters; applications go through a chapter counselor, but individual membership is not required.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Adult undergraduate and post-baccalaureate students with at least a 3.5 GPA and master's students with at least a 3.8 GPA at institutions with active Alpha Sigma Lambda chapters; applications go through a chapter counselor, but individual membership is not required.\" Final overlay: [{\"tag\":\"affiliation.membership.honor-society\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"required\"}]."
   },
   {
    "id": "aauw-career-development-grant",
@@ -10911,9 +10911,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://apply-ghcf.smapply.io/prog/southwest_airlines_community_scholarship/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "affiliation.employer=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Applicants age 24 or younger with at least a 3.5 unweighted GPA who pursue a first postsecondary credential full-time and demonstrate airline-career interest and service; Southwest employees, their dependents, and company officers are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Applicants age 24 or younger with at least a 3.5 unweighted GPA who pursue a first postsecondary credential full-time and demonstrate airline-career interest and service; Southwest employees, their dependents, and company officers are excluded.\" Final overlay: []."
   },
   {
    "id": "synchrony-scholarship-autistic-students-of-color",
@@ -12234,9 +12234,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.phikappaphi.org/grants-awards/study-abroad",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "affiliation.membership.honor-society=required(who) basis.merit-academic=relevant(tag) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"For undergraduates with a 3.75+ GPA at a college with an active Phi Kappa Phi chapter who are accepted into a study abroad program; 50 grants awarded annually and applicants need not already be Society members.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"For undergraduates with a 3.75+ GPA at a college with an active Phi Kappa Phi chapter who are accepted into a study abroad program; 50 grants awarded annually and applicants need not already be Society members.\" Final overlay: [{\"tag\":\"affiliation.membership.honor-society\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "sigma-nursing-rn-to-bsn-scholarship",
@@ -12801,9 +12801,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://learnmore.scholarsapply.org/poweryourfuture/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=relevant(who) affiliation.employer=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Students in eligible technology programs at Entergy's designated four-year HBCUs and other universities or designated two-year vocational and process-technology schools; four-year students must enroll full time, two-year students may enroll part or full time, and Entergy employees and immediate family are ineligible.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Students in eligible technology programs at Entergy's designated four-year HBCUs and other universities or designated two-year vocational and process-technology schools; four-year students must enroll full time, two-year students may enroll part or full time, and Entergy employees and immediate family are ineligible.\" Final overlay: [{\"tag\":\"field.trades\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "pge-better-together-stem-scholarship",
@@ -13062,9 +13062,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.norfolksouthern.com/en/commitments/in-your-community/community-impact/ns-scholarship-programs",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=required(who) field.trades.welding=relevant(tag) field.trades.electrical=relevant(tag) field.transportation-logistics=required(who) affiliation.employer=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"New, current, and career-changing students pursuing rail-related skilled trades in Norfolk Southern's service states; Norfolk Southern employees and their families are ineligible.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"New, current, and career-changing students pursuing rail-related skilled trades in Norfolk Southern's service states; Norfolk Southern employees and their families are ineligible.\" Final overlay: [{\"tag\":\"field.trades\",\"strength\":\"required\"},{\"tag\":\"field.trades.welding\",\"strength\":\"relevant\"},{\"tag\":\"field.trades.electrical\",\"strength\":\"relevant\"},{\"tag\":\"field.transportation-logistics\",\"strength\":\"required\"}]."
   },
   {
    "id": "nation-skilled",
@@ -15294,9 +15294,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.mass.edu/osfa/programs/dcfadopted.asp",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.health=relevant(who) circumstance.foster-care=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Massachusetts students age 24 or younger who were adopted through DCF, have no prior bachelor's degree, file the FAFSA, and pursue eligible undergraduate public-institution study; graduate and medical programs are excluded and funding is subject to appropriation.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Massachusetts students age 24 or younger who were adopted through DCF, have no prior bachelor's degree, file the FAFSA, and pursue eligible undergraduate public-institution study; graduate and medical programs are excluded and funding is subject to appropriation.\" Final overlay: [{\"tag\":\"circumstance.foster-care\",\"strength\":\"required\"}]."
   },
   {
    "id": "ma-child-dcf-foster-massachusetts",
@@ -16149,9 +16149,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://scholarshipamerica.org/scholarship/ellevationeducation/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.trades=relevant(who) affiliation.employer=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"High-school seniors with signed verification of prior K\u201312 English Learner enrollment who enter full-time undergraduate or trade study; awards are one-time and employee children and past recipients are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"High-school seniors with signed verification of prior K\u201312 English Learner enrollment who enter full-time undergraduate or trade study; awards are one-time and employee children and past recipients are excluded.\" Final overlay: [{\"tag\":\"field.trades\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "families-frontline",
@@ -16194,9 +16194,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://scholarshipamerica.org/scholarship/hola-at-microsoft/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.business=relevant(tag) identity.latino=required(who) affiliation.employer=relevant(who) basis.merit-academic=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Eligible U.S.-based Hispanic or Latinx high-school seniors entering full-time study in approved majors with at least a 3.0 GPA; specified Microsoft employee-family applicants are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Eligible U.S.-based Hispanic or Latinx high-school seniors entering full-time study in approved majors with at least a 3.0 GPA; specified Microsoft employee-family applicants are excluded.\" Final overlay: [{\"tag\":\"field.business\",\"strength\":\"relevant\"},{\"tag\":\"identity.latino\",\"strength\":\"required\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"required\"}]."
   },
   {
    "id": "association-chairs-hydropower-legacy",
@@ -16230,9 +16230,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://scholarshipamerica.org/scholarship/pegascholars/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "affiliation.employer=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Qualifying technology students in Australia, Brazil, Canada, India, Poland, Singapore, the Netherlands, the United Kingdom, or the United States who remain continuously enrolled part or full time; past recipients and employee families are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Qualifying technology students in Australia, Brazil, Canada, India, Poland, Singapore, the Netherlands, the United Kingdom, or the United States who remain continuously enrolled part or full time; past recipients and employee families are excluded.\" Final overlay: []."
   },
   {
    "id": "america-essential-visionaries",
@@ -16266,9 +16266,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://learnmore.scholarsapply.org/steinerfamilyscholarship/",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "no niche criteria detected in the who sentence \u2014 likely GENERAL; confirm against the official page before recording eligibility: []. who: \"Students age 26 and under, HS seniors/grads or already-enrolled undergrads, residing in the U.S. or Canada\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Scholarship America 2025 guidelines: \"La pr\u00e9f\u00e9rence sera accord\u00e9e aux enfants d'employ\u00e9s des anciennes entreprises AmeriPride, Canadian Linen et Qu\u00e9bec Linge...\" Academic performance, leadership, and community activity are selection factors; financial need is not considered."
   },
   {
    "id": "tacp",
@@ -16293,18 +16293,18 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://scholarshipamerica.org/scholarship/usfoods/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.business.hospitality=required(who) affiliation.employer=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Eligible students age 18 or older entering full-time undergraduate hospitality or related study who demonstrate need and participate in required development programming; specified US Foods employee families are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Eligible students age 18 or older entering full-time undergraduate hospitality or related study who demonstrate need and participate in required development programming; specified US Foods employee families are excluded.\" Final overlay: [{\"tag\":\"field.business.hospitality\",\"strength\":\"required\"}]."
   },
   {
    "id": "health-mental-scholars-voya",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://scholarshipamerica.org/scholarship/voya-scholars-mh/",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.health.nursing=relevant(tag) field.psychology-social-work=relevant(tag) affiliation.employer=relevant(who) basis.merit-academic=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Eligible SUNY mental-health students with at least a 2.5 GPA and demonstrated need; up to five nonrenewable awards are made, applicants may reapply, and specified Voya employees and children are excluded.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Eligible SUNY mental-health students with at least a 2.5 GPA and demonstrated need; up to five nonrenewable awards are made, applicants may reapply, and specified Voya employees and children are excluded.\" Final overlay: [{\"tag\":\"field.health.nursing\",\"strength\":\"relevant\"},{\"tag\":\"field.psychology-social-work\",\"strength\":\"relevant\"},{\"tag\":\"basis.merit-academic\",\"strength\":\"required\"}]."
   },
   {
    "id": "emergency-fargo-veterans-wells",
@@ -16608,9 +16608,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://www.nsea-nv.org/about-nsea/grants-awards-member-benefits/our-scholarships",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.education-teaching=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Graduates of Nevada public high schools attending a Nevada college, university, or career/technical program; education majors are encouraged, but all majors may apply.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"Graduates of Nevada public high schools attending a Nevada college, university, or career/technical program; education majors are encouraged, but all majors may apply.\" Final overlay: [{\"tag\":\"field.education-teaching\",\"strength\":\"relevant\"}]."
   },
   {
    "id": "nv-nsea-brian-lee-dodea",
@@ -16689,9 +16689,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://oklahoma.gov/careertech/about/foundation/scholarships.html",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "no niche criteria detected in the who sentence \u2014 likely GENERAL; confirm against the official page before recording eligibility: []. who: \"Full-time students attending an Oklahoma CareerTech program or accredited college who meet the foundation's current application requirements.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Oklahoma CareerTech page requires full-time enrollment at an Oklahoma Career and Technology Center or an accredited institution of higher learning; the application states no taxonomy-level identity, field, affiliation, or award-basis restriction. Classified GENERAL []."
   },
   {
    "id": "pa-pasfaa-student",
@@ -16815,9 +16815,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://info.isoa.org/iso-us-journey-spotlight-scholarship",
-   "method": "who-derived",
+   "method": "manual",
    "confidence": "verified",
-   "evidence": "field.business.insurance-risk=relevant(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"International students age 18 or older with a valid student visa who are enrolled full time in a degree program at an accredited U.S. school; buying ISO insurance is not required.\""
+   "evidence": "Manual semantic QC against the officially verified eligibility sentence removed criteria caused only by exclusions, non-required affiliations, or school-type options. Verified who: \"International students age 18 or older with a valid student visa who are enrolled full time in a degree program at an accredited U.S. school; buying ISO insurance is not required.\" Final overlay: []."
   },
   {
    "id": "american-water-impact",
@@ -16869,9 +16869,9 @@
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
    "sourceUrl": "https://brownscholarship.virginia.gov/application.asp",
-   "method": "who-derived",
-   "confidence": "needs-review",
-   "evidence": "no niche criteria detected in the who sentence \u2014 likely GENERAL; confirm against the official page before recording eligibility: []. who: \"Virginia residents directly affected by the 1954\u20131964 public-school closings, or their eligible descendants, pursuing an approved Virginia education or training program.\""
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Virginia policy limits eligibility to people directly affected by 1954\u20131964 public-school closings to avoid desegregation, or their lineal/collateral descendants; circumstance.historical-school-closure is required."
   },
   {
    "id": "auid-undergraduate",
@@ -17016,6 +17016,123 @@
    "method": "who-derived",
    "confidence": "verified",
    "evidence": "field.public-service=required(who) identity.latino=required(who) basis.need=relevant(tag) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Full-time students pursuing their first law degree at an accredited U.S. law school who demonstrate a commitment to advancing Latino civil rights.\""
+  },
+  {
+   "id": "cnmi-eap-base-grant",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.cnmischolarship.net/default.asp?secID=5",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official CNMI page limits EAPBG to eligible CNMI residents; MP is the applicable USPS territory code."
+  },
+  {
+   "id": "family-steiner",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://learnmore.scholarsapply.org/steinerfamilyscholarship/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Scholarship America guidelines allow qualifying students residing in the United States or Canada; there is no U.S. state-specific restriction."
+  },
+  {
+   "id": "regions-riding-forward",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.regions.com/about-regions/inclusion-belonging-impact/supporting-communities/essay-contest-scholarship",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Regions rules: legal U.S. residents of AL, AR, FL, GA, IA, IL, IN, KY, LA, MS, MO, NC, SC, TN, or TX."
+  },
+  {
+   "id": "stephen-phillips-memorial-scholarship-fund",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://phillips-scholarship.org/apply/new-applicants/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official criteria require permanent residence in Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, or Vermont."
+  },
+  {
+   "id": "dominion-energy-educational-equity-scholarship",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.dominionenergy.com/about/our-company/charitable-foundation/educational-equity-scholarships",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official eligibility requires residence in CT, VA, MD, NC, SC, or WV."
+  },
+  {
+   "id": "norfolk-on-southern-track-trades",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.norfolksouthern.com/en/commitments/in-your-community/community-impact/ns-scholarship-programs",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official 2026 eligibility PDF lists AL, DE, FL, GA, IL, IN, IA, KY, LA, MD, MI, MS, MO, NJ, NY, NC, OH, PA, SC, TN, VA, and WV."
+  },
+  {
+   "id": "american-water-impact",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://scholarshipamerica.org/scholarship/american-water/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official Scholarship America page requires residence and/or college attendance in AL, CA, FL, GA, HI, IL, IN, IA, KS, KY, LA, MD, MO, NJ, NY, OH, OK, PA, TN, TX, UT, VA, WA, or WV."
+  },
+  {
+   "id": "america-community-service-zakat",
+   "kind": "stage",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.zakat.org/get-involved/scholarships",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official 2026 eligibility says applicants must be U.S. high-school seniors graduating and entering a two- or four-year college; the applicant stage is high school."
+  },
+  {
+   "id": "achievement-coptic-educational-merit-undergraduates",
+   "kind": "stage",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.copticedu.org/merit-achievement-scholarship-for-undergraduates",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official 2026 eligibility explicitly accepts graduating high-school seniors and community-college transfer students."
+  },
+  {
+   "id": "career-exploration-rid",
+   "kind": "stage",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://rid.org/scholarships-and-awards/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "The official RID page and application explicitly accept high-school seniors, recent graduates, and currently enrolled college students."
+  },
+  {
+   "id": "marshall-nabcj-thurgood",
+   "kind": "stage",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://nabcj.org/thurgood-marshall-scholarship/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "The official NABCJ application accepts both high-school students and current undergraduates."
+  },
+  {
+   "id": "obama-chesky-voyager-scholarship",
+   "kind": "stage",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.obama.org/programs/voyager-scholarship/faq/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "The official 2026 FAQ explicitly includes sophomores transferring from a two-year to a four-year college for their junior year."
+  },
+  {
+   "id": "mpower-global-citizen-scholarship",
+   "kind": "citizenship",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://www.mpowerfinancing.com/scholarships/global-citizen",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Official eligibility explicitly accepts DACA recipients, so the canonical undocumented/DACA openness flag must remain enabled even though other immigration-status rules apply."
   }
  ]
 }

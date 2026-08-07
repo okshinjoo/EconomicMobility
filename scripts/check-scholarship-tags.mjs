@@ -102,6 +102,89 @@ for (const id of eligIds) {
     problems.push(`eligibility: "${id}" ships with no verified provenance record`);
 }
 
+// ── 6 · Semantic regression checks ───────────────────────────────────────
+// Structural validity is not enough: the original who-derived pass exposed
+// several ways a keyword can say the opposite of the real rule ("employees
+// are ineligible", "membership is not required", or vocational school as
+// an allowed institution rather than a field requirement). Validate the
+// published merge so those contradictions cannot silently return.
+await import("./register-scholarship-typescript.mjs");
+const { scholarships } = await import("../lib/scholarships.ts");
+
+const missingEligibility = scholarships.filter((s) => s.eligibility === undefined);
+for (const s of missingEligibility)
+  problems.push(`eligibility: published "${s.id}" is unclassified (undefined, not confirmed GENERAL [])`);
+
+for (const s of scholarships) {
+  const who = s.who;
+  const tags = s.eligibility ?? [];
+  const has = (id) => tags.some((tag) => tag.tag === id);
+  const required = (id) => tags.some((tag) => tag.tag === id && tag.strength === "required");
+
+  const employerExcluded = /(?:employee|associate|team member|staff|famil)[^.;]{0,100}(?:not eligible|ineligible|excluded)|(?:not eligible|ineligible|excluded)[^.;]{0,100}(?:employee|associate|team member|staff|famil)/i.test(who);
+  const employerRequired = /(?:eligible|qualifying|current|former)[^.;]{0,45}(?:employee|associate|team member)|(?:child|dependent|parent|spouse)[^.;]{0,70}(?:employee|associate|employed|works?)/i.test(who);
+  if (has("affiliation.employer") && employerExcluded && !employerRequired)
+    problems.push(`semantic: "${s.id}" tags employer affiliation even though its verified rule only excludes employees/families`);
+
+  if (
+    tags.some((tag) => tag.tag.startsWith("affiliation.membership") && tag.strength === "required") &&
+    /membership (?:is )?not required|need not (?:already )?be (?:a )?(?:society )?member|individual membership is not required|open regardless of .*membership/i.test(who)
+  ) problems.push(`semantic: "${s.id}" requires membership while its verified rule says membership is not required`);
+
+  if (
+    has("field.trades") &&
+    /(?:vocational|trade|technical)[^.;]{0,45}(?:excluded|not eligible)|(?:excluded|not eligible)[^.;]{0,45}(?:vocational|trade|technical)/i.test(who)
+  ) problems.push(`semantic: "${s.id}" tags skilled trades even though vocational/technical study is excluded`);
+
+  if (
+    has("field.health.medicine-prehealth") &&
+    /medical (?:school|programs?)[^.;]{0,25}(?:excluded|not eligible)|(?:excluded|not eligible)[^.;]{0,25}medical (?:school|programs?)/i.test(who)
+  ) problems.push(`semantic: "${s.id}" tags medicine/pre-health even though medical study is excluded`);
+
+  if (
+    required("field.education-teaching") &&
+    /education majors? (?:are )?encouraged[^.;]{0,60}all majors may apply/i.test(who)
+  ) problems.push(`semantic: "${s.id}" requires education study while its verified rule says all majors may apply`);
+
+  if (has("basis.merit-academic") && /GPA[^.;]{0,50}not (?:a )?(?:universal )?(?:entry )?rule/i.test(who))
+    problems.push(`semantic: "${s.id}" tags academic merit despite an explicit no-universal-GPA rule`);
+
+  if (
+    has("identity.immigrant-refugee") &&
+    /U\.S\. citizenship (?:is )?not required/i.test(who) &&
+    !/(?:immigrant|refugee|DACA|undocumented|foreign-born|international student|visa|asylum|TPS)/i.test(who.replace(/U\.S\. citizenship (?:is )?not required/ig, ""))
+  ) problems.push(`semantic: "${s.id}" mistakes citizenship openness for immigrant/refugee targeting`);
+
+  if (
+    !s.geo &&
+    /one of \w+ eligible states|New England residents?|service footprint|service states|CNMI residency/i.test(who)
+  ) problems.push(`geo: published "${s.id}" states an explicit regional bound but has no geo overlay`);
+
+  if (
+    /(?:high school|secondary school) seniors?|graduating (?:high school|secondary)/i.test(who) &&
+    !s.stages.includes("high-school")
+  ) problems.push(`stage: published "${s.id}" explicitly accepts high-school seniors but omits the high-school stage`);
+
+  if (
+    /community.?college transfer students?|two.?year students? transferring|students? transferring from (?:a )?community college/i.test(who) &&
+    !s.stages.includes("transfer")
+  ) problems.push(`stage: published "${s.id}" explicitly accepts transfer applicants but omits the transfer stage`);
+
+  const citizenshipRuleText = who.replace(
+    /(?:U\.S\. )?citizenship (?:is )?not required|no citizenship requirement/gi,
+    "citizenship-open",
+  );
+  const citizenshipRestricted =
+    /(?:must be|only)[^.;]{0,80}(?:U\.S\. (?:citizen|national)|citizenship|permanent resident|legal resident|lawful permanent)|(?:U\.S\. citizens?|citizenship|permanent residents?|legal residents?|lawful permanent residents?)[^.;]{0,70}(?:only|required|must)/i.test(citizenshipRuleText);
+  if (s.openToUndocumented && citizenshipRestricted)
+    problems.push(`citizenship: published "${s.id}" is marked undocumented/DACA eligible but its verified rule requires citizenship or qualifying legal residence`);
+
+  if (
+    !s.openToUndocumented &&
+    (s.tags ?? []).some((tag) => /^(?:undocumented(?:-eligible)?|daca|no.?citizenship.?required|dreamers?)$/i.test(tag))
+  ) problems.push(`citizenship: published "${s.id}" has an explicit undocumented/DACA eligibility tag but the canonical flag is off`);
+}
+
 // ── Report ────────────────────────────────────────────────────────────────
 const nr = records.filter((r) => r.confidence === "needs-review").length;
 console.log(`taxonomy: ${nodes.length} nodes · catalog: ${catalogIds.size} ids · geo overlay: ${geoIds.size} (${geoEntries.filter((g) => g.scope === "states").length} state-bound, ${geoEntries.filter((g) => g.scope === "national").length} national) · eligibility overlay: ${eligIds.size} · provenance: ${records.length} records (${nr} needs-review)`);

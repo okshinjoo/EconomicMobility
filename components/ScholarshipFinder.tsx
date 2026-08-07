@@ -223,6 +223,7 @@ const FILTER_GROUPS: { label: string; ids: string[] }[] = [
       "circumstance.migrant-farmworker",
       "circumstance.recovery",
       "circumstance.adult-learner",
+      "circumstance.historical-school-closure",
     ],
   },
   {
@@ -651,7 +652,7 @@ export default function ScholarshipFinder() {
             onChange={(e) => setUndocOnly(e.target.checked)}
             className="h-4 w-4 accent-forest"
           />
-          No citizenship requirement
+          Open to undocumented / DACA students
         </label>
       </div>
 
@@ -930,7 +931,7 @@ export default function ScholarshipFinder() {
           <>
             {results.length} of {scholarships.length} scholarships
             {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
-            {undocOnly && " · no citizenship requirement"}
+            {undocOnly && " · open to undocumented / DACA students"}
           </>
         ) : (
           <>
@@ -938,7 +939,7 @@ export default function ScholarshipFinder() {
             {closed.length > 0 &&
               ` · ${closed.length} between cycles (greyed, at the end)`}
             {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
-            {undocOnly && " · no citizenship requirement"}
+            {undocOnly && " · open to undocumented / DACA students"}
             {stateSel && !matchCounts && ` · national + ${STATE_NAMES[stateSel]}`}
           </>
         )}
@@ -1044,7 +1045,7 @@ export default function ScholarshipFinder() {
                       dimmed ? "bg-stone/30 text-ink/60" : "bg-forest text-cream"
                     }`}
                   >
-                    No citizenship req.
+                    Undocumented / DACA eligible
                   </span>
                 )}
               </div>

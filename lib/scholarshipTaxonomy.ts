@@ -118,6 +118,7 @@ export const SCHOLARSHIP_TAXONOMY: TaxonomyNode[] = [
   { id: "circumstance.migrant-farmworker", label: "Migrant & farmworker families", parent: "circumstance", synonyms: ["migrant", "farmworker"], sensitive: true },
   { id: "circumstance.recovery", label: "Recovery & mental health", parent: "circumstance", synonyms: ["addiction", "sobriety", "mental health"], sensitive: true },
   { id: "circumstance.adult-learner", label: "Adult & returning students", parent: "circumstance", synonyms: ["nontraditional", "returning to school", "adult student"] },
+  { id: "circumstance.historical-school-closure", label: "Families affected by school closures", parent: "circumstance", synonyms: ["brown v board", "massive resistance", "school closing descendants"], sensitive: true },
 
   // ── Service & affiliation ──────────────────────────────────────────────
   { id: "affiliation", label: "Family & affiliations" },

@@ -701,7 +701,7 @@ export const scholarshipAuditRecordOverrides: Readonly<
     openToUndocumented: false,
   },
   "mcdonalds-hacer": {
-    who: "High school seniors under 21 with a 2.8+ GPA who will attend full-time college, university, or vocational-technical school; selection considers academics, financial need, community involvement, personal qualities, and commitment to the Hispanic/Latino community.",
+    who: "High school seniors under 21 who are legal U.S. residents, U.S. citizens, or DREAMER/DACA recipients, carry at least a 2.8 GPA, and will attend an eligible school full time; selection considers academics, financial need, community involvement, and personal qualities.",
     tags: ["community service", "financial need", "large award"],
   },
   "princess-grace-awards": {
@@ -1667,7 +1667,7 @@ export const scholarshipAuditRecordOverrides: Readonly<
     deadlineMonth: 12,
     who: "International students with a study-authorizing visa, DACA recipients, and permanent residents enrolled full time at MPOWER-supported U.S. or Canadian institutions; U.S. citizens studying in the U.S. and Canadian citizens studying in Canada are ineligible.",
     stages: ["college", "transfer"],
-    openToUndocumented: false,
+    openToUndocumented: true,
     tags: ["immigrants", "international-students", "daca", "permanent-residents", "canada", "graduate-students"],
   },
   "dst-oleta-lawanda-crain-scholarship": {

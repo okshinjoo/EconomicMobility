@@ -619,4 +619,15 @@ export const scholarshipGeo: Record<string, ScholarshipGeo> = {
   "mn-mssa-diversity": { scope: "national" },
   "il-township-officials": { scope: "states", states: ["IL"] },
   "de-joseph-pyle-award": { scope: "states", states: ["DE"] },
+  // Official-source manual resolutions, 2026-08-07.
+  "chick-fil-a-community": { scope: "national" },
+  "toyota-motor-north-america-scholarship": { scope: "national" },
+  "cnmi-eap-base-grant": { scope: "states", states: ["MP"] },
+  "family-steiner": { scope: "national" },
+  "ok-careertech-washington-dubose": { scope: "national" },
+  "regions-riding-forward": { scope: "states", states: ["AL", "AR", "FL", "GA", "IA", "IL", "IN", "KY", "LA", "MS", "MO", "NC", "SC", "TN", "TX"] },
+  "stephen-phillips-memorial-scholarship-fund": { scope: "states", states: ["CT", "ME", "MA", "NH", "RI", "VT"] },
+  "dominion-energy-educational-equity-scholarship": { scope: "states", states: ["CT", "VA", "MD", "NC", "SC", "WV"] },
+  "norfolk-on-southern-track-trades": { scope: "states", states: ["AL", "DE", "FL", "GA", "IL", "IN", "IA", "KY", "LA", "MD", "MI", "MS", "MO", "NJ", "NY", "NC", "OH", "PA", "SC", "TN", "VA", "WV"] },
+  "american-water-impact": { scope: "states", states: ["AL", "CA", "FL", "GA", "HI", "IL", "IN", "IA", "KS", "KY", "LA", "MD", "MO", "NJ", "NY", "OH", "OK", "PA", "TN", "TX", "UT", "VA", "WA", "WV"] },
 };
