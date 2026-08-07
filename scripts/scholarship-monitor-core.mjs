@@ -17,6 +17,7 @@ export function visibleText(html) {
       .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
       .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
       .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ")
+      .replace(/<img\b[^>]*\balt=(["'])(.*?)\1[^>]*>/gi, " $2 ")
       .replace(/<[^>]+>/g, " "),
   )
     .replace(/\s+/g, " ")
@@ -91,6 +92,21 @@ function evidenceAround(text, index, length = 0) {
   return text.slice(start, end).trim();
 }
 
+function applyWindowDates({ window, candidates, text, dates, evidence }) {
+  let matched = false;
+  for (const fieldName of ["opensOn", "closesOn", "nextOpensOn"]) {
+    const candidate = candidates?.[fieldName];
+    const pattern = window?.evidencePatterns?.[fieldName];
+    if (!candidate || !pattern) continue;
+    const match = text.match(new RegExp(pattern, "i"));
+    if (!match) continue;
+    dates[fieldName] = candidate;
+    evidence.push(evidenceAround(text, match.index ?? 0, match[0].length));
+    matched = true;
+  }
+  return matched;
+}
+
 function normalizedHost(url) {
   return new URL(url).hostname.toLowerCase().replace(/^www\./, "");
 }
@@ -132,23 +148,23 @@ export function evaluateOfficialSource({ configuration, html, finalUrl, today })
 
   let windowValidated = false;
   if (configuration.recurringWindow) {
-    const match = text.match(new RegExp(configuration.recurringWindow.validationPattern, "i"));
-    if (!match) missingRequired.push(configuration.recurringWindow.validationPattern);
-    else {
-      Object.assign(dates, recurringDates(configuration.recurringWindow, today));
-      evidence.push(evidenceAround(text, match.index ?? 0, match[0].length));
-      windowValidated = true;
-    }
+    windowValidated = applyWindowDates({
+      window: configuration.recurringWindow,
+      candidates: recurringDates(configuration.recurringWindow, today),
+      text,
+      dates,
+      evidence,
+    });
   }
   if (configuration.fixedWindow) {
-    const match = text.match(new RegExp(configuration.fixedWindow.validationPattern, "i"));
-    if (!match) missingRequired.push(configuration.fixedWindow.validationPattern);
-    else {
-      dates.opensOn = configuration.fixedWindow.opensOn;
-      dates.closesOn = configuration.fixedWindow.closesOn;
-      evidence.push(evidenceAround(text, match.index ?? 0, match[0].length));
-      windowValidated = true;
-    }
+    windowValidated =
+      applyWindowDates({
+        window: configuration.fixedWindow,
+        candidates: configuration.fixedWindow,
+        text,
+        dates,
+        evidence,
+      }) || windowValidated;
   }
 
   let applicationStatus = statusFromDatesAndSignal({ today, ...dates, signalStatus });
@@ -247,4 +263,3 @@ export function operationalStatePatch({ result, previousFailures = 0, checkedAt 
     ...(result.verificationStatus === "machine-verified" ? { last_verified_at: checkedAt } : {}),
   };
 }
-

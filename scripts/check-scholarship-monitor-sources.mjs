@@ -19,6 +19,22 @@ function validatePatterns(configuration, label, patterns = []) {
   }
 }
 
+function validateWindowEvidence(configuration, label, window, fields) {
+  if ("validationPattern" in window) {
+    throw new Error(`${configuration.id}: ${label}.validationPattern is obsolete; use field-specific evidencePatterns.`);
+  }
+  const patterns = window.evidencePatterns;
+  if (!patterns || typeof patterns !== "object" || Array.isArray(patterns)) {
+    throw new Error(`${configuration.id}: ${label}.evidencePatterns is required.`);
+  }
+  for (const field of fields) {
+    validatePatterns(configuration, `${label}.evidencePatterns.${field}`, [patterns[field]]);
+  }
+  for (const field of Object.keys(patterns)) {
+    if (!fields.includes(field)) throw new Error(`${configuration.id}: unsupported ${label} evidence field ${field}.`);
+  }
+}
+
 for (const configuration of configurations) {
   if (!configuration.id || seenIds.has(configuration.id)) {
     throw new Error(`Duplicate or missing scholarship ID: ${configuration.id ?? "(missing)"}`);
@@ -50,15 +66,19 @@ for (const configuration of configurations) {
         throw new Error(`${configuration.id}: invalid recurring ${field}.`);
       }
     }
-    validatePatterns(configuration, "recurringWindow.validationPattern", [configuration.recurringWindow.validationPattern]);
+    validateWindowEvidence(configuration, "recurringWindow", configuration.recurringWindow, ["opensOn", "closesOn"]);
   }
   if (configuration.fixedWindow) {
-    for (const field of ["opensOn", "closesOn"]) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(configuration.fixedWindow[field] ?? "")) {
+    const fixedFields = ["opensOn", "closesOn", "nextOpensOn"].filter(
+      (field) => configuration.fixedWindow[field] != null,
+    );
+    if (!fixedFields.length) throw new Error(`${configuration.id}: fixedWindow must define at least one date.`);
+    for (const field of fixedFields) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(configuration.fixedWindow[field])) {
         throw new Error(`${configuration.id}: invalid fixed ${field}.`);
       }
     }
-    validatePatterns(configuration, "fixedWindow.validationPattern", [configuration.fixedWindow.validationPattern]);
+    validateWindowEvidence(configuration, "fixedWindow", configuration.fixedWindow, fixedFields);
   }
 }
 

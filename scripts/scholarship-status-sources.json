@@ -91,7 +91,10 @@
     "recurringWindow": {
       "opensMonthDay": "12-01",
       "closesMonthDay": "03-01",
-      "validationPattern": "Junior Application Period:\\s*December 1\\s*[–-]\\s*March 1"
+      "evidencePatterns": {
+        "opensOn": "Junior Application Period:\\s*December 1\\s*[–-]\\s*March 1",
+        "closesOn": "Junior Application Period:\\s*December 1\\s*[–-]\\s*March 1"
+      }
     }
   },
   {
@@ -140,14 +143,9 @@
     "sourceUrl": "https://ronbrown.org/ron-brown-scholarship/",
     "requiredPatterns": ["Ron Brown Signature Scholarship", "final deadline of December 1"],
     "statusRules": [
-      { "status": "open", "pattern": "application (?:window )?(?:for the \\d{4} scholarship competition )?is (?:now )?open" },
-      { "status": "closed", "pattern": "application for the \\d{4} scholarship competition is now closed" }
-    ],
-    "recurringWindow": {
-      "opensMonthDay": "09-03",
-      "closesMonthDay": "12-01",
-      "validationPattern": "begin accepting applications after September 3"
-    }
+      { "status": "between-cycles", "pattern": "application for the \\d{4} scholarship competition is now closed" },
+      { "status": "open", "pattern": "application (?:window )?(?:for the \\d{4} scholarship competition )?is (?:now )?open" }
+    ]
   },
   {
     "id": "apia",
@@ -161,7 +159,10 @@
     "fixedWindow": {
       "opensOn": "2026-11-15",
       "closesOn": "2027-01-15",
-      "validationPattern": "November 15\\s*(?:th)?\\s*,\\s*2026"
+      "evidencePatterns": {
+        "opensOn": "November 15\\s*(?:th)?\\s*,\\s*2026",
+        "closesOn": "January 15\\s*(?:th)?\\s*,\\s*2027"
+      }
     }
   },
   {
@@ -172,7 +173,10 @@
     "recurringWindow": {
       "opensMonthDay": "02-01",
       "closesMonthDay": "01-25",
-      "validationPattern": "application opens February 1(?:st)? each year[\\s\\S]{0,180}remains open until January 25(?:th)?"
+      "evidencePatterns": {
+        "opensOn": "application opens February 1(?:st)? each year",
+        "closesOn": "remains open until January 25(?:th)?"
+      }
     }
   },
   {
@@ -201,22 +205,28 @@
     "id": "elks-mvs",
     "sourceUrl": "https://www.elks.org/scholars/scholarships/mvs.cfm",
     "requiredPatterns": ["Most Valuable Student", "ElksMVS", "500 four-year scholarships"],
-    "statusRules": [],
+    "statusRules": [
+      { "status": "open", "pattern": "Apply to the 2027 MVS Contest" }
+    ],
     "fixedWindow": {
-      "opensOn": "2026-08-01",
       "closesOn": "2026-11-12",
-      "validationPattern": "2027 application deadline is November 12, 2026"
+      "evidencePatterns": {
+        "closesOn": "2027 application deadline is November 12, 2026"
+      }
     }
   },
   {
     "id": "vfw-voice",
     "sourceUrl": "https://www.vfw.org/VOD",
     "requiredPatterns": ["Voice of Democracy", "2026-27 theme", "Download the 2026-2027 entry form"],
-    "statusRules": [],
+    "statusRules": [
+      { "status": "open", "pattern": "Download the 2026-2027 entry form" }
+    ],
     "fixedWindow": {
-      "opensOn": "2026-04-01",
       "closesOn": "2026-10-31",
-      "validationPattern": "essays must be turned in by midnight, Oct\\. ?31"
+      "evidencePatterns": {
+        "closesOn": "Download the 2026-2027 entry form[\\s\\S]{0,240}essays must be turned in by midnight, Oct\\. ?31"
+      }
     }
   },
   {
@@ -257,7 +267,10 @@
     "fixedWindow": {
       "opensOn": "2026-06-01",
       "closesOn": "2026-11-05",
-      "validationPattern": "June 1\\s*[–-]\\s*November 5, 2026"
+      "evidencePatterns": {
+        "opensOn": "June 1\\s*[–-]\\s*November 5, 2026",
+        "closesOn": "June 1\\s*[–-]\\s*November 5, 2026"
+      }
     }
   },
   {
@@ -268,7 +281,10 @@
     "recurringWindow": {
       "opensMonthDay": "08-01",
       "closesMonthDay": "11-15",
-      "validationPattern": "application from\\s+August 1\\s+to\\s+November 15"
+      "evidencePatterns": {
+        "opensOn": "application from\\s+August 1\\s+to\\s+November 15",
+        "closesOn": "application from\\s+August 1\\s+to\\s+November 15"
+      }
     }
   },
   {
@@ -279,7 +295,10 @@
     "fixedWindow": {
       "opensOn": "2025-11-03",
       "closesOn": "2026-02-13",
-      "validationPattern": "Application opened:\\s*Nov\\. 3, 2025[\\s\\S]{0,100}Application closed:\\s*Feb\\. 13, 2026"
+      "evidencePatterns": {
+        "opensOn": "Application opened:\\s*Nov\\. 3, 2025",
+        "closesOn": "Application closed:\\s*Feb\\. 13, 2026"
+      }
     }
   },
   {
@@ -301,7 +320,10 @@
     "recurringWindow": {
       "opensMonthDay": "01-01",
       "closesMonthDay": "04-01",
-      "validationPattern": "Applications are available in January of each year until April 1"
+      "evidencePatterns": {
+        "opensOn": "January 1:\\s*applications open",
+        "closesOn": "April 1:\\s*applications closed"
+      }
     }
   },
   {
@@ -314,18 +336,24 @@
     "recurringWindow": {
       "opensMonthDay": "11-01",
       "closesMonthDay": "02-01",
-      "validationPattern": "applications are accepted annually from November 1\\s*[–-]\\s*February 1"
+      "evidencePatterns": {
+        "opensOn": "applications are accepted annually from November 1\\s*[–-]\\s*February 1",
+        "closesOn": "applications are accepted annually from November 1\\s*[–-]\\s*February 1"
+      }
     }
   },
   {
     "id": "aws-welding",
     "sourceUrl": "https://scholarship.aws.org/applications/",
     "requiredPatterns": ["American Welding Society", "Welder Training Scholarship"],
-    "statusRules": [],
+    "statusRules": [
+      { "status": "open", "pattern": "2026[–-]2027 Scholarship Programs currently open" }
+    ],
     "fixedWindow": {
-      "opensOn": "2026-01-01",
       "closesOn": "2026-11-30",
-      "validationPattern": "2026[–-]2027 Scholarship Programs currently open[\\s\\S]{0,180}deadline is November 30th"
+      "evidencePatterns": {
+        "closesOn": "2026[–-]2027 Scholarship Programs currently open[\\s\\S]{0,180}deadline is November 30th"
+      }
     }
   },
   {
@@ -338,7 +366,10 @@
     "fixedWindow": {
       "opensOn": "2025-10-14",
       "closesOn": "2026-01-06",
-      "validationPattern": "Application window \\(NOW CLOSED\\): October 14, 2025 to January 6, 2026"
+      "evidencePatterns": {
+        "opensOn": "Application window \\(NOW CLOSED\\): October 14, 2025 to January 6, 2026",
+        "closesOn": "Application window \\(NOW CLOSED\\): October 14, 2025 to January 6, 2026"
+      }
     }
   },
   {
@@ -374,7 +405,10 @@
     "fixedWindow": {
       "opensOn": "2026-12-15",
       "closesOn": "2027-03-31",
-      "validationPattern": "Opens Dec 15, 2026"
+      "evidencePatterns": {
+        "opensOn": "Opens Dec 15, 2026",
+        "closesOn": "Deadline\\s+March 31"
+      }
     }
   },
   {
@@ -418,10 +452,9 @@
     "sourceUrl": "https://www.burgerkingfoundation.org/programs/burger-king-sm-scholars",
     "requiredPatterns": ["BK Scholars Program", "scholarships to deserving high school seniors and Burger King"],
     "statusRules": [],
-    "fixedWindow": {
-      "opensOn": "2025-10-15",
-      "closesOn": "2025-12-15",
-      "validationPattern": "2026[–-]2027 cycle opens on October 15th, 2025[\\s\\S]{0,120}until December 15th, 2025"
+    "dateRules": {
+      "opensOn": ["cycle opens on ([A-Z][a-z]+ \\d{1,2}(?:st|nd|rd|th)?, \\d{4})"],
+      "closesOn": ["or until ([A-Z][a-z]+ \\d{1,2}(?:st|nd|rd|th)?, \\d{4})"]
     }
   }
 ]
