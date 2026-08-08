@@ -332,6 +332,7 @@ const IDENTITY_STOP_WORDS = new Set([
 ]);
 const UNCERTAIN_DATE_LANGUAGE = /\b(?:approximately|anticipated|around|expected|generally|often|typically|usually|tentative|to be announced|tbd)\b/i;
 const NON_APPLICANT_DATE_LANGUAGE = /\b(?:clubs? to submit (?:a |their )?winner|delegate selections|district deadline|national deadline for all states|public voting|voting (?:period|window)|winners? will be notified|nominate your favorite (?:media )?teacher|teacher[^.]{0,80}(?:honor|honoree))\b/i;
+const NON_CLOSING_DEADLINE_LANGUAGE = /\b(?:priority deadline|applications? (?:will )?(?:still )?be accepted after)\b/i;
 const CLOSE_LANGUAGE = /\b(?:application deadline|applications? (?:are )?due|applications? close|closing date|deadline|due date|apply by|submit(?:ted)? by|must be (?:received|submitted) by|ends? on|closes? on)\b/i;
 const OPEN_LANGUAGE = /\b(?:applications? open|application (?:period|window|cycle) (?:opens?|begins?|starts?)|opens? on|opening date|available (?:on|from)|begins? on|starts? on)\b/i;
 const EXPLICIT_OPEN_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?open|application (?:period|window|cycle) (?:is )?(?:now |currently )?open)\b/i;
@@ -633,6 +634,7 @@ function genericDateMentions(text, identityTokens) {
       const context = `${before}${match[0]}${after}`.trim();
       if (UNCERTAIN_DATE_LANGUAGE.test(context)) continue;
       if (NON_APPLICANT_DATE_LANGUAGE.test(context)) continue;
+      if (NON_CLOSING_DEADLINE_LANGUAGE.test(context)) continue;
       const nearestAward = nearestNamedAward(before);
       if (
         nearestAward &&

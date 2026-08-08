@@ -163,6 +163,20 @@ assert.deepEqual(
   [["closesOn", "2026-09-18"]],
 );
 
+const priorityDeadlineOnly = evaluateGenericCandidateSource({
+  configuration: {
+    id: "mn-public-safety-survivor",
+    name: "Minnesota Public Safety Officer's Survivor Grant",
+    sourceUrl: "https://example.org/mn-public-safety-survivor",
+  },
+  html: `<main><h1>Minnesota Public Safety Officer's Survivor Grant</h1><p>Applications will still be accepted after the priority deadline, but students may be placed on a waitlist depending on available funds.</p><p>2026-2027 Public Safety Officer's Survivor Grant Application Priority Deadline: August 31, 2026.</p></main>`,
+  finalUrl: "https://example.org/mn-public-safety-survivor",
+  today: "2026-08-07",
+});
+assert.equal(priorityDeadlineOnly.closesOn, null);
+assert.equal(priorityDeadlineOnly.applicationStatus, "unknown");
+assert.equal(priorityDeadlineOnly.hasCandidate, false);
+
 const genericCandidate = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",
