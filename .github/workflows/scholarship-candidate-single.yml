@@ -1,0 +1,43 @@
+name: Scholarship single-candidate verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      scholarship_id:
+        description: Withheld scholarship candidate ID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scholarship-candidate-${{ inputs.scholarship_id }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SCHOLARSHIP_ID: ${{ inputs.scholarship_id }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install the browser fallback
+        run: npx playwright install --with-deps chromium
+
+      - name: Test fail-closed behavior
+        run: npm run test:scholarship-monitor-worker
+
+      - name: Verify one withheld scholarship
+        run: npm run monitor:scholarships -- --write --browser-fallback --summary-only --mode=candidate --withheld-only --trigger=manual --id="$SCHOLARSHIP_ID"

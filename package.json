@@ -23,6 +23,7 @@
     "test:scholarship-review": "node scripts/test-scholarship-review.mjs",
     "test:scholarship-intake": "node scripts/test-scholarship-intake.mjs",
     "test:scholarship-promotion": "node scripts/test-scholarship-promotion.mjs",
+    "test:scholarship-verification": "node scripts/test-scholarship-verification.mjs",
     "test:scholarship-monitor-alerts": "node scripts/test-scholarship-monitor-alerts.mjs",
     "check:scholarship-monitor-alerts": "node scripts/check-scholarship-monitor-alerts.mjs",
     "monitor:scholarships": "node scripts/run-scholarship-monitor.mjs"

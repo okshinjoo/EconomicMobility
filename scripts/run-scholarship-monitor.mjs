@@ -24,6 +24,9 @@ const { canAutoApply } = await import("../lib/scholarshipMonitoring.ts");
 const modeArgument = process.argv.find((argument) => argument.startsWith("--mode="));
 const monitorMode = modeArgument?.slice(7) ?? "status";
 const write = process.argv.includes("--write");
+const withheldOnly = process.argv.includes("--withheld-only");
+const triggerArgument = process.argv.find((argument) => argument.startsWith("--trigger="));
+const triggerKind = triggerArgument?.slice(10) ?? "scheduled";
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (write && (!url || !serviceKey)) {
@@ -86,6 +89,9 @@ function extractorNameForMode(mode) {
 }
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(today)) throw new Error(`Invalid --date: ${today}`);
+if (!new Set(["scheduled", "manual", "retry", "inventory-sync"]).has(triggerKind)) {
+  throw new Error(`Invalid --trigger: ${triggerKind}`);
+}
 if (!Number.isInteger(shardCount) || shardCount < 1) throw new Error(`Invalid --shard-count: ${shardCount}`);
 if (!Number.isInteger(shardIndex) || shardIndex < 0 || shardIndex >= shardCount) {
   throw new Error(`Invalid --shard-index: ${shardIndex}`);
@@ -101,6 +107,7 @@ for (const configuration of configurations) {
 let selected = idArguments.length
   ? configurations.filter((configuration) => idArguments.includes(configuration.id))
   : configurations;
+if (withheldOnly) selected = selected.filter((configuration) => configuration.publicationStatus === "withheld");
 selected = selected.filter((configuration) => {
   const shardKey = configuration.monitorMode === "source-health"
     ? new URL(configuration.sourceUrl).hostname.toLowerCase().replace(/^www\./, "")
@@ -261,7 +268,7 @@ if (admin) {
 
   const { data: run, error: runError } = await admin
     .from("scholarship_monitor_runs")
-    .insert({ trigger_kind: "scheduled", worker_version: "observation-pilot-v1", due_count: selected.length })
+    .insert({ trigger_kind: triggerKind, worker_version: "observation-pilot-v1", due_count: selected.length })
     .select("id")
     .single();
   if (runError) throw runError;

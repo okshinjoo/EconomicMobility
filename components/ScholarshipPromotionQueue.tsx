@@ -14,6 +14,7 @@ import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { STATE_NAMES } from "@/lib/scholarshipMatch";
 import type { StudentStage } from "@/lib/scholarships";
+import RunScholarshipVerificationButton from "@/components/RunScholarshipVerificationButton";
 
 interface PromotionCandidate {
   scholarshipId: string;
@@ -236,6 +237,12 @@ export default function ScholarshipPromotionQueue() {
             <Gate passed={selected.readiness.officialSourceHealthy}>Latest official-source check is healthy</Gate>
             <Gate passed={selected.readiness.evidenceQueueClear}>{selected.pendingProposalCount ? `${selected.pendingProposalCount} proposal(s) still pending` : "Evidence queue is clear"}</Gate>
           </ul>
+
+          {session ? (
+            <div className="mt-5 border-y border-sand py-5">
+              <RunScholarshipVerificationButton key={selected.scholarshipId} accessToken={session.access_token} scholarshipId={selected.scholarshipId} />
+            </div>
+          ) : null}
 
           {selected.geoEvidence ? <blockquote className="mt-5 border-l-4 border-amber bg-paper px-4 py-3 text-sm leading-6 text-ink">{selected.geoEvidence}</blockquote> : null}
 
