@@ -168,8 +168,9 @@ Both the intake confirmation and the promotion queue include a moderator-only
 monitor run as manual, and applies the same exact-evidence and geography rules
 as the weekly sweep. The protected route rechecks the moderator, withheld
 publication state, and enabled monitor before dispatch. Production requires a
-server-only `SCHOLARSHIP_MONITOR_GITHUB_TOKEN` with permission to run Actions
-in `okshinjoo/EconomicMobility`; without it the action fails closed.
+server-only `SCHOLARSHIP_MONITOR_GITHUB_TOKEN` scoped to
+`okshinjoo/EconomicMobility` with **Actions: write** repository permission;
+without it the action fails closed.
 
 The daily `scholarship-monitor-alerts.yml` audit reports every withheld record,
 fails after a record has waited 14 days, and fails immediately for three

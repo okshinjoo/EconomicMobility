@@ -73,7 +73,7 @@ export async function POST(request: Request) {
           authorization: `Bearer ${dispatchToken}`,
           "content-type": "application/json",
           "user-agent": "Empower-Scholarship-Moderator",
-          "x-github-api-version": "2022-11-28",
+          "x-github-api-version": "2026-03-10",
         },
         body: JSON.stringify(scholarshipVerificationDispatchBody(verification.scholarshipId)),
         signal: AbortSignal.timeout(10_000),

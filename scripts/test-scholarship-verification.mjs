@@ -26,6 +26,7 @@ assert.match(route, /publication_status", "withheld"/);
 assert.match(route, /monitor_enabled", true/);
 assert.match(route, /SCHOLARSHIP_MONITOR_GITHUB_TOKEN/);
 assert.match(route, /AbortSignal\.timeout\(10_000\)/);
+assert.match(route, /"x-github-api-version": "2026-03-10"/);
 
 const workflow = await readFile(new URL("../.github/workflows/scholarship-candidate-single.yml", import.meta.url), "utf8");
 assert.match(workflow, /workflow_dispatch:/);
