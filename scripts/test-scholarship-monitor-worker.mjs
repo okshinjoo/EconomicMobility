@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import {
   buildFieldProposals,
   buildGeographyProposal,
+  canReuseObservationForConditionalFetch,
   evaluateGenericCandidateSource,
   evaluateGeography,
   evaluateOfficialSource,
@@ -14,6 +15,40 @@ import {
   stableStringify,
   visibleText,
 } from "./scholarship-monitor-core.mjs";
+
+assert.equal(canReuseObservationForConditionalFetch({
+  previous: {
+    success: true,
+    extractor_name: "official-source-health",
+    extractor_version: "2",
+    metadata: { monitorMode: "source-health" },
+  },
+  monitorMode: "candidate",
+  extractorName: "generic-exact-evidence-candidate",
+  extractorVersion: "2",
+}), false);
+assert.equal(canReuseObservationForConditionalFetch({
+  previous: {
+    success: true,
+    extractor_name: "generic-exact-evidence-candidate",
+    extractor_version: "2",
+    metadata: { monitorMode: "candidate" },
+  },
+  monitorMode: "candidate",
+  extractorName: "generic-exact-evidence-candidate",
+  extractorVersion: "2",
+}), true);
+assert.equal(canReuseObservationForConditionalFetch({
+  previous: {
+    success: true,
+    extractor_name: "generic-exact-evidence-candidate",
+    extractor_version: "1",
+    metadata: { monitorMode: "candidate" },
+  },
+  monitorMode: "candidate",
+  extractorName: "generic-exact-evidence-candidate",
+  extractorVersion: "2",
+}), false);
 
 const sourceConfigurations = JSON.parse(
   readFileSync(new URL("./scholarship-status-sources.json", import.meta.url), "utf8"),

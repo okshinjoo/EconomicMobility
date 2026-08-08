@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import {
   buildFieldProposals,
   buildGeographyProposal,
+  canReuseObservationForConditionalFetch,
   evaluateGenericCandidateSource,
   evaluateGeography,
   evaluateOfficialSource,
@@ -74,6 +75,13 @@ const shardIndex = Number(shardIndexArgument?.slice(14) ?? 0);
 const shardCount = Number(shardCountArgument?.slice(14) ?? 1);
 const today = dateArgument?.slice(7) ?? new Date().toISOString().slice(0, 10);
 const checkedAt = new Date().toISOString();
+const EXTRACTOR_VERSION = "2";
+
+function extractorNameForMode(mode) {
+  if (mode === "status") return "configured-html-status";
+  if (mode === "candidate") return "generic-exact-evidence-candidate";
+  return "official-source-health";
+}
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(today)) throw new Error(`Invalid --date: ${today}`);
 if (!Number.isInteger(shardCount) || shardCount < 1) throw new Error(`Invalid --shard-count: ${shardCount}`);
@@ -160,8 +168,14 @@ async function fetchOfficialPage(configuration, previous) {
     accept: "text/html,application/xhtml+xml,application/json;q=0.8",
     "accept-language": "en-US,en;q=0.9",
   };
-  if (previous?.etag) headers["if-none-match"] = previous.etag;
-  if (previous?.last_modified) headers["if-modified-since"] = previous.last_modified;
+  const mayReusePrevious = canReuseObservationForConditionalFetch({
+    previous,
+    monitorMode: configuration.monitorMode,
+    extractorName: extractorNameForMode(configuration.monitorMode),
+    extractorVersion: EXTRACTOR_VERSION,
+  });
+  if (mayReusePrevious && previous?.etag) headers["if-none-match"] = previous.etag;
+  if (mayReusePrevious && previous?.last_modified) headers["if-modified-since"] = previous.last_modified;
 
   let lastError = null;
   const lightweightObservation = configuration.monitorMode !== "status";
@@ -493,12 +507,8 @@ if (admin) {
     last_modified: result.fetched.lastModified,
     content_hash: result.evaluation?.contentHash ?? result.previous?.content_hash ?? null,
     normalized_content_hash: result.evaluation?.normalizedContentHash ?? result.previous?.normalized_content_hash ?? null,
-    extractor_name: result.configuration.monitorMode === "status"
-      ? "configured-html-status"
-      : result.configuration.monitorMode === "candidate"
-        ? "generic-exact-evidence-candidate"
-        : "official-source-health",
-    extractor_version: "1",
+    extractor_name: extractorNameForMode(result.configuration.monitorMode),
+    extractor_version: EXTRACTOR_VERSION,
     evidence_snippet: [result.evaluation?.evidenceText, result.geographyEvaluation?.evidenceText]
       .filter(Boolean)
       .join("\n\n")

@@ -105,6 +105,20 @@ export function statusFromDatesAndSignal({ today, opensOn, closesOn, nextOpensOn
   return signalStatus ?? "unknown";
 }
 
+export function canReuseObservationForConditionalFetch({
+  previous,
+  monitorMode,
+  extractorName,
+  extractorVersion,
+}) {
+  return Boolean(
+    previous?.success &&
+    previous.extractor_name === extractorName &&
+    String(previous.extractor_version ?? "") === String(extractorVersion) &&
+    previous.metadata?.monitorMode === monitorMode,
+  );
+}
+
 function evidenceAround(text, index, length = 0) {
   const start = Math.max(0, index - 120);
   const end = Math.min(text.length, index + Math.max(length, 1) + 180);
