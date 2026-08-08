@@ -175,6 +175,8 @@ async function fetchOfficialPage(configuration, previous) {
     monitorMode: configuration.monitorMode,
     extractorName: extractorNameForMode(configuration.monitorMode),
     extractorVersion: EXTRACTOR_VERSION,
+    publicationStatus: configuration.publicationStatus,
+    geoVerificationStatus: configuration.geoVerificationStatus,
   });
   if (mayReusePrevious && previous?.etag) headers["if-none-match"] = previous.etag;
   if (mayReusePrevious && previous?.last_modified) headers["if-modified-since"] = previous.last_modified;

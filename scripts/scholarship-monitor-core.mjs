@@ -110,7 +110,14 @@ export function canReuseObservationForConditionalFetch({
   monitorMode,
   extractorName,
   extractorVersion,
+  publicationStatus,
+  geoVerificationStatus,
 }) {
+  if (
+    monitorMode === "candidate" &&
+    publicationStatus === "withheld" &&
+    geoVerificationStatus !== "human-verified"
+  ) return false;
   return Boolean(
     previous?.success &&
     previous.extractor_name === extractorName &&

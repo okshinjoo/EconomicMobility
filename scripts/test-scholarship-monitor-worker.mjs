@@ -67,6 +67,19 @@ assert.equal(canReuseObservationForConditionalFetch({
   previous: {
     success: true,
     extractor_name: "generic-exact-evidence-candidate",
+    extractor_version: "2",
+    metadata: { monitorMode: "candidate" },
+  },
+  monitorMode: "candidate",
+  extractorName: "generic-exact-evidence-candidate",
+  extractorVersion: "2",
+  publicationStatus: "withheld",
+  geoVerificationStatus: "unverified",
+}), false);
+assert.equal(canReuseObservationForConditionalFetch({
+  previous: {
+    success: true,
+    extractor_name: "generic-exact-evidence-candidate",
     extractor_version: "1",
     metadata: { monitorMode: "candidate" },
   },
