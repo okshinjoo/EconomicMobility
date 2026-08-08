@@ -12,7 +12,9 @@ import {
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
+  renderedObservationImproved,
   shouldProposeSourceFailure,
+  shouldUseBrowserFallback,
   stableStringify,
 } from "./scholarship-monitor-core.mjs";
 import { loadScholarshipMonitorConfigurations } from "./scholarship-monitor-config.mjs";
@@ -333,10 +335,19 @@ async function inspectUnlocked(configuration) {
       : configuration.monitorMode === "candidate"
         ? evaluateGenericCandidateSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today })
         : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
+    let geographyEvaluation = evaluateGeography({
+      configuration,
+      html: fetched.html,
+      finalUrl: fetched.finalUrl,
+    });
     let resolvedFetch = fetched;
-    const needsBrowserFallback = ["status", "candidate"].includes(configuration.monitorMode)
-      ? evaluation.missingRequired.length > 0
-      : configuration.monitorMode === "source-health" && ["blocked", "structure-changed"].includes(evaluation.sourceStatus);
+    const needsBrowserFallback = shouldUseBrowserFallback({
+      monitorMode: configuration.monitorMode,
+      evaluation,
+      geographyEvaluation,
+      publicationStatus: configuration.publicationStatus,
+      geoVerificationStatus: configuration.geoVerificationStatus,
+    });
     if (browserFallback && fetched.fetchMethod === "http" && needsBrowserFallback) {
       try {
         const rendered = await fetchWithBrowser(configuration.sourceUrl);
@@ -355,23 +366,28 @@ async function inspectUnlocked(configuration) {
               finalUrl: rendered.finalUrl,
               today,
             });
-        const renderedImproved = configuration.monitorMode === "source-health"
-          ? !["blocked", "structure-changed"].includes(renderedEvaluation.sourceStatus)
-          : renderedEvaluation.missingRequired.length < evaluation.missingRequired.length;
+        const renderedGeography = evaluateGeography({
+          configuration,
+          html: rendered.html,
+          finalUrl: rendered.finalUrl,
+        });
+        const renderedImproved = renderedObservationImproved({
+          monitorMode: configuration.monitorMode,
+          initialEvaluation: evaluation,
+          renderedEvaluation,
+          initialGeography: geographyEvaluation,
+          renderedGeography,
+        });
         if (renderedImproved) {
           resolvedFetch = rendered;
           evaluation = renderedEvaluation;
+          geographyEvaluation = renderedGeography;
         }
       } catch {
         // Keep the original fail-closed evaluation when rendering is unavailable.
       }
     }
     const sourceHealthIssue = configuration.monitorMode === "source-health" && evaluation.sourceStatus !== "healthy";
-    const geographyEvaluation = evaluateGeography({
-      configuration,
-      html: resolvedFetch.html,
-      finalUrl: resolvedFetch.finalUrl,
-    });
     return {
       configuration,
       success: !sourceHealthIssue,

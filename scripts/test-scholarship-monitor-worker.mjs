@@ -11,7 +11,9 @@ import {
   operationalStatePatch,
   parseDate,
   recurringDates,
+  renderedObservationImproved,
   shouldProposeSourceFailure,
+  shouldUseBrowserFallback,
   stableStringify,
   visibleText,
 } from "./scholarship-monitor-core.mjs";
@@ -27,6 +29,29 @@ assert.equal(canReuseObservationForConditionalFetch({
   extractorName: "generic-exact-evidence-candidate",
   extractorVersion: "2",
 }), false);
+
+const thinCandidateEvaluation = { sourceStatus: "structure-changed", missingRequired: [] };
+assert.equal(shouldUseBrowserFallback({
+  monitorMode: "candidate",
+  evaluation: thinCandidateEvaluation,
+  geographyEvaluation: { hasCandidate: false },
+  publicationStatus: "withheld",
+  geoVerificationStatus: "unverified",
+}), true);
+assert.equal(shouldUseBrowserFallback({
+  monitorMode: "candidate",
+  evaluation: thinCandidateEvaluation,
+  geographyEvaluation: { hasCandidate: false },
+  publicationStatus: "published",
+  geoVerificationStatus: "human-verified",
+}), false);
+assert.equal(renderedObservationImproved({
+  monitorMode: "candidate",
+  initialEvaluation: thinCandidateEvaluation,
+  renderedEvaluation: { sourceStatus: "healthy", missingRequired: [] },
+  initialGeography: { hasCandidate: false },
+  renderedGeography: { hasCandidate: true },
+}), true);
 assert.equal(canReuseObservationForConditionalFetch({
   previous: {
     success: true,

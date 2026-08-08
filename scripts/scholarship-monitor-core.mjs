@@ -119,6 +119,39 @@ export function canReuseObservationForConditionalFetch({
   );
 }
 
+export function shouldUseBrowserFallback({
+  monitorMode,
+  evaluation,
+  geographyEvaluation,
+  publicationStatus,
+  geoVerificationStatus,
+}) {
+  if (monitorMode === "source-health") {
+    return ["blocked", "structure-changed"].includes(evaluation.sourceStatus);
+  }
+  if (!["status", "candidate"].includes(monitorMode)) return false;
+  if (evaluation.missingRequired.length > 0) return true;
+  return monitorMode === "candidate" &&
+    publicationStatus === "withheld" &&
+    geoVerificationStatus !== "human-verified" &&
+    !geographyEvaluation?.hasCandidate;
+}
+
+export function renderedObservationImproved({
+  monitorMode,
+  initialEvaluation,
+  renderedEvaluation,
+  initialGeography,
+  renderedGeography,
+}) {
+  if (monitorMode === "source-health") {
+    return !["blocked", "structure-changed"].includes(renderedEvaluation.sourceStatus);
+  }
+  return renderedEvaluation.missingRequired.length < initialEvaluation.missingRequired.length ||
+    (!initialGeography?.hasCandidate && Boolean(renderedGeography?.hasCandidate)) ||
+    (initialEvaluation.sourceStatus !== "healthy" && renderedEvaluation.sourceStatus === "healthy");
+}
+
 function evidenceAround(text, index, length = 0) {
   const start = Math.max(0, index - 120);
   const end = Math.min(text.length, index + Math.max(length, 1) + 180);
