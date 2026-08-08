@@ -1237,4 +1237,5 @@ export const scholarshipEligibility: Record<string, EligibilityTag[]> = {
   "ok-careertech-washington-dubose": [],
   "va-brown-board-education": [{ tag: "circumstance.historical-school-closure", strength: "required" }],
   "dri-foundation-scholarship": [{ tag: "affiliation.membership", strength: "required" }, { tag: "basis.essay-contest", strength: "required" }],
+  "maude-alexander-hadden-scholarship": [{ tag: "basis.need", strength: "required" }, { tag: "basis.merit-academic", strength: "required" }, { tag: "basis.community-service", strength: "relevant" }],
 };

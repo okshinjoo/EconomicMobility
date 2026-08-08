@@ -22578,6 +22578,24 @@
    "method": "manual",
    "confidence": "verified",
    "evidence": "The applicant or the applicant's parent or legal guardian must be a DRI International Certified Professional in good standing, and applicants are asked to write an essay."
+  },
+  {
+   "id": "maude-alexander-hadden-scholarship",
+   "kind": "geo",
+   "classifiedAt": "2026-08-08",
+   "sourceUrl": "https://youth-foundation.org/application/faqs/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "Hadden scholars come from all over the United States and attend a wide variety of colleges and universities."
+  },
+  {
+   "id": "maude-alexander-hadden-scholarship",
+   "kind": "eligibility",
+   "classifiedAt": "2026-08-08",
+   "sourceUrl": "https://youth-foundation.org/application/guidelines/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "U.S. citizen high school seniors must demonstrate financial need, have at least a 3.5 unweighted GPA, submit SAT or ACT scores, and plan to attend an accredited four-year U.S. college or university."
   }
  ]
 }

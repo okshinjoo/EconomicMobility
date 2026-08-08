@@ -18964,6 +18964,17 @@ const scholarshipCatalog: Scholarship[] = [
     tags: ["disaster preparedness", "resilience", "dri certified professional", "high school senior", "undergraduate"],
     officialUrl: "https://foundation.drii.org/scholarship-award/",
   },
+  {
+    id: "maude-alexander-hadden-scholarship",
+    name: "Maude and Alexander Hadden Scholarship",
+    amount: "Up to $10,000, renewable for up to 4 years",
+    deadline: "May 15 (2026 cycle closed; next cycle not yet announced)",
+    deadlineMonth: 5,
+    who: "U.S. citizen high school seniors with demonstrated financial need, a minimum 3.5 unweighted GPA, and SAT or ACT scores who plan to attend an accredited four-year U.S. college or university.",
+    stages: ["high-school"],
+    tags: ["financial need", "academic merit", "leadership", "high school senior"],
+    officialUrl: "https://youth-foundation.org/application/guidelines/",
+  },
 ];
 
 // The full catalog remains above as the frozen, recoverable source set. The

@@ -20,7 +20,7 @@ export const SCHOLARSHIP_OWNER_APPROVED_POLICY_PUBLISHED = 22;
 export const SCHOLARSHIP_FINAL_POLICY_RESOLVED_PUBLISHED = 2;
 export const SCHOLARSHIP_COVERAGE_AUDIT_PUBLISHED = 38;
 export const SCHOLARSHIP_COVERAGE_REVIEW_RESOLVED_PUBLISHED = 17;
-export const SCHOLARSHIP_MODERATOR_PROMOTED_PUBLISHED = 1;
+export const SCHOLARSHIP_MODERATOR_PROMOTED_PUBLISHED = 2;
 export const SCHOLARSHIP_MANUAL_REVIEW_WITHHELD = 43;
 export const SCHOLARSHIP_NO_REGIONALS_POST_AUDIT_REMOVED = 2;
 export const SCHOLARSHIP_PUBLIC_TOTAL =
@@ -164,6 +164,7 @@ export const scholarshipCoverageReviewResolvedPublishedIds = new Set([
 // audit and coverage passes were completed.
 export const scholarshipModeratorPromotedIds = new Set([
   "dri-foundation-scholarship",
+  "maude-alexander-hadden-scholarship",
 ]);
 
 // No-regionals rule applied 2026-08-07 (the owner's standing July 2026 rule:

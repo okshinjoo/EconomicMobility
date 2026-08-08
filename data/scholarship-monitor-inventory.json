@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "catalogVerifiedLabel": "August 2026",
-  "publishedCount": 1221,
+  "publishedCount": 1222,
   "withheldCount": 0,
-  "catalogFingerprint": "55f4dbe69bdf094a228f1fa779f0cea9d5397fbf1492e727dca8c7d6b4797682",
+  "catalogFingerprint": "127ee13cb16cb55cd6fad3de4e667a72032ef1834644e5de96b00184d67def1b",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -11213,6 +11213,21 @@
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Students completing a mapped MassTransfer A2B associate pathway at a Massachusetts community college with at least a 3.0 GPA who transfer to a participating public bachelor's program within one year.\"",
       "geoSourceUrl": "https://www.mass.edu/osfa/programs/masstransfer.asp",
       "catalogFingerprint": "3c74537b0dc85443cd9c13d030395cfa84ffa478f1908c589be2abb02dc378cb"
+    },
+    {
+      "scholarshipId": "maude-alexander-hadden-scholarship",
+      "name": "Maude and Alexander Hadden Scholarship",
+      "officialUrl": "https://youth-foundation.org/application/guidelines/",
+      "sourceDomain": "youth-foundation.org",
+      "publicationStatus": "published",
+      "catalogVerifiedLabel": "August 2026",
+      "geo": {
+        "scope": "national"
+      },
+      "geoVerificationStatus": "human-verified",
+      "geoEvidence": "Hadden scholars come from all over the United States and attend a wide variety of colleges and universities.",
+      "geoSourceUrl": "https://youth-foundation.org/application/faqs/",
+      "catalogFingerprint": "899081bd88f70fcd1c0536849a396d0d8ae6e5e49bd63e0a4c63bb0bdcedf960"
     },
     {
       "scholarshipId": "mcdonalds-hacer",
