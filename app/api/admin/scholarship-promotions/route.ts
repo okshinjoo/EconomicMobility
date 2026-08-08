@@ -189,6 +189,7 @@ export async function POST(request: Request) {
     candidate: { name: row.name, sponsor: row.sponsor, officialUrl: row.official_url },
     geo,
     evidence: row.geo_evidence ?? "",
+    geographySourceUrl: row.geo_source_url ?? row.official_url,
     preparedAt: new Date().toISOString(),
   });
   return NextResponse.json({ packet });

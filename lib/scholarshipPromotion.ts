@@ -69,12 +69,14 @@ export function buildScholarshipPromotionPacket({
   candidate,
   geo,
   evidence,
+  geographySourceUrl,
   preparedAt,
 }: {
   request: ScholarshipPromotionRequest;
   candidate: { name: string; sponsor: string | null; officialUrl: string };
   geo: ScholarshipGeo;
   evidence: string;
+  geographySourceUrl: string;
   preparedAt: string;
 }) {
   return {
@@ -95,7 +97,7 @@ export function buildScholarshipPromotionPacket({
       id: request.catalogId,
       kind: "geo",
       classifiedAt: preparedAt.slice(0, 10),
-      sourceUrl: candidate.officialUrl,
+      sourceUrl: geographySourceUrl,
       method: "manual",
       confidence: "verified",
       evidence,

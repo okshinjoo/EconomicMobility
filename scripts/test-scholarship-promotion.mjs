@@ -48,6 +48,7 @@ const packet = buildScholarshipPromotionPacket({
   },
   geo: { scope: "national" },
   evidence: "Open to students throughout the United States.",
+  geographySourceUrl: "https://example.org/future-makers/eligibility",
   preparedAt: "2026-08-07T12:00:00.000Z",
 });
 assert.equal(packet.catalogRecord.id, "future-makers");
@@ -55,6 +56,7 @@ assert.equal(packet.catalogRecord.officialUrl, "https://example.org/future-maker
 assert.deepEqual(packet.geographyOverlay, { "future-makers": { scope: "national" } });
 assert.equal(packet.provenanceRecord.classifiedAt, "2026-08-07");
 assert.equal(packet.provenanceRecord.method, "manual");
+assert.equal(packet.provenanceRecord.sourceUrl, "https://example.org/future-makers/eligibility");
 
 const route = await readFile(new URL("../app/api/admin/scholarship-promotions/route.ts", import.meta.url), "utf8");
 assert.match(route, /Moderator access required/);
@@ -62,6 +64,7 @@ assert.match(route, /publication_status", "withheld"/);
 assert.match(route, /geo_verification_status === "human-verified"/);
 assert.match(route, /observation\.source_status === "healthy"/);
 assert.match(route, /status", "pending"/);
+assert.match(route, /geographySourceUrl: row\.geo_source_url \?\? row\.official_url/);
 assert.doesNotMatch(route, /publication_status:\s*"published"/);
 
 console.log("Scholarship promotion gate: all assertions passed.");
