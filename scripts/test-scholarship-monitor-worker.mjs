@@ -204,6 +204,48 @@ assert.deepEqual(
   ],
 );
 
+const exactApplicationRange = evaluateGenericCandidateSource({
+  configuration: {
+    id: "hadden-scholarship",
+    name: "Maude and Alexander Hadden Scholarship",
+    sourceUrl: "https://example.org/hadden",
+  },
+  html: `<main><h1>Maude and Alexander Hadden Scholarship</h1><p>The Hadden Scholarship application is open from February 1, 2026 — May 15, 2026.</p></main>`,
+  finalUrl: "https://example.org/hadden",
+  today: "2026-08-07",
+});
+assert.equal(exactApplicationRange.applicationStatus, "closed");
+assert.equal(exactApplicationRange.opensOn, "2026-02-01");
+assert.equal(exactApplicationRange.closesOn, "2026-05-15");
+assert.equal(exactApplicationRange.unsafeUndatedOpen, false);
+assert.deepEqual(
+  buildFieldProposals({
+    scholarshipId: "hadden-scholarship",
+    current: null,
+    evaluation: exactApplicationRange,
+    sourceUrl: "https://example.org/hadden",
+  }).map((proposal) => [proposal.fieldName, proposal.proposedValue]),
+  [
+    ["applicationStatus", "closed"],
+    ["opensOn", "2026-02-01"],
+    ["closesOn", "2026-05-15"],
+  ],
+);
+
+const uncertainApplicationRange = evaluateGenericCandidateSource({
+  configuration: {
+    id: "hadden-scholarship",
+    name: "Maude and Alexander Hadden Scholarship",
+    sourceUrl: "https://example.org/hadden",
+  },
+  html: `<main><h1>Maude and Alexander Hadden Scholarship</h1><p>The application is typically open from February 1, 2026 — May 15, 2026.</p></main>`,
+  finalUrl: "https://example.org/hadden",
+  today: "2026-08-07",
+});
+assert.equal(uncertainApplicationRange.opensOn, null);
+assert.equal(uncertainApplicationRange.closesOn, null);
+assert.equal(uncertainApplicationRange.hasCandidate, false);
+
 const typicalMonthOnly = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",
@@ -273,6 +315,18 @@ const nationalGeography = evaluateGeography({
 assert.equal(nationalGeography.hasCandidate, true);
 assert.deepEqual(nationalGeography.geo, { scope: "national" });
 assert.equal(nationalGeography.verificationStatus, "review-required");
+
+const nationalScholarReach = evaluateGeography({
+  configuration: {
+    id: "hadden-scholarship",
+    name: "Maude and Alexander Hadden Scholarship",
+    sourceUrl: "https://example.org/hadden",
+  },
+  html: `<main><h1>Maude and Alexander Hadden Scholarship</h1><p>Hadden scholars come from all over the United States.</p></main>`,
+  finalUrl: "https://example.org/hadden",
+});
+assert.deepEqual(nationalScholarReach.geo, { scope: "national" });
+assert.equal(nationalScholarReach.hasCandidate, true);
 assert.deepEqual(
   buildGeographyProposal({
     scholarshipId: "future-makers",

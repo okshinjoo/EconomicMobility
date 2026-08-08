@@ -334,7 +334,7 @@ const UNCERTAIN_DATE_LANGUAGE = /\b(?:approximately|anticipated|around|expected|
 const NON_APPLICANT_DATE_LANGUAGE = /\b(?:clubs? to submit (?:a |their )?winner|delegate selections|district deadline|national deadline for all states|public voting|voting (?:period|window)|winners? will be notified|nominate your favorite (?:media )?teacher|teacher[^.]{0,80}(?:honor|honoree))\b/i;
 const NON_CLOSING_DEADLINE_LANGUAGE = /\b(?:priority deadline|applications? (?:will )?(?:still )?be accepted after)\b/i;
 const CLOSE_LANGUAGE = /\b(?:application deadline|applications? (?:are )?due|applications? close|closing date|deadline|due date|apply by|submit(?:ted)? by|must be (?:received|submitted) by|ends? on|closes? on)\b/i;
-const OPEN_LANGUAGE = /\b(?:applications? open|application (?:period|window|cycle) (?:opens?|begins?|starts?)|opens? on|opening date|available (?:on|from)|begins? on|starts? on)\b/i;
+const OPEN_LANGUAGE = /\b(?:applications? (?:are |is )?open|application (?:period|window|cycle) (?:opens?|begins?|starts?)|opens? on|opening date|available (?:on|from)|begins? on|starts? on)\b/i;
 const EXPLICIT_OPEN_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?open|application (?:period|window|cycle) (?:is )?(?:now |currently )?open)\b/i;
 const EXPLICIT_CLOSED_LANGUAGE = /\b(?:applications? (?:are|is) (?:now |currently )?closed|application (?:period|window|cycle) (?:is |has )?(?:now |currently )?closed|not (?:currently )?accepting applications)\b/i;
 const NAMED_AWARD_PATTERN_SOURCE = "\\b(?:(?:[A-Z][A-Za-z0-9’'&.-]*|&)\\s+){1,9}(?:Scholarships?|Awards?|Grants?|Benefits?|Fellowships?)\\b";
@@ -386,6 +386,7 @@ const NATIONAL_GEOGRAPHY_PATTERNS = [
   /\b(?:legal )?residents? of (?:the )?(?:United States|U\.S\.)\b/i,
   /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live)\b[^.!?]{0,80}\b(?:United States|U\.S\.)\b/i,
   /\b(?:students|applicants) from (?:all|any) U\.S\. states?\b/i,
+  /\b(?:scholars|students|applicants|recipients) (?:come|are) from all over the (?:United States|U\.S\.)\b/i,
 ];
 const HARD_GEOGRAPHY_PATTERNS = [
   /\b(?:must|required to|shall|need to)\b[^.!?]{0,90}\b(?:reside|live)\b[^.!?]{0,220}/gi,
@@ -665,9 +666,11 @@ function genericDateMentions(text, identityTokens) {
       const openAfter = distanceTo(afterClause, OPEN_LANGUAGE, false);
       let close = false;
       let open = false;
-      const rangeEnd =
-        /\b(?:through|to|until)\s*$/i.test(beforeClause.slice(-24)) &&
-        /\b(?:application|apply|competition|entry|submission|window)\b/i.test(beforeClause);
+      const rangeEndConnector = /\b(?:through|to|until)\s*$/i.test(beforeClause.slice(-24)) ||
+        /(?:—|–|-)\s*$/.test(beforeClause.slice(-8));
+      const rangeEnd = rangeEndConnector &&
+        /\b(?:application|apply|competition|entry|submission|window)\b/i.test(beforeClause) &&
+        OPEN_LANGUAGE.test(beforeClause);
       if (rangeEnd) close = true;
       else if (Math.min(closeBefore, openBefore) <= 30) {
         close = closeBefore <= openBefore;

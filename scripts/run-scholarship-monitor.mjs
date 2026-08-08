@@ -80,7 +80,7 @@ const shardIndex = Number(shardIndexArgument?.slice(14) ?? 0);
 const shardCount = Number(shardCountArgument?.slice(14) ?? 1);
 const today = dateArgument?.slice(7) ?? new Date().toISOString().slice(0, 10);
 const checkedAt = new Date().toISOString();
-const EXTRACTOR_VERSION = "2";
+const EXTRACTOR_VERSION = "3";
 
 function extractorNameForMode(mode) {
   if (mode === "status") return "configured-html-status";
