@@ -73,8 +73,8 @@ const records = [...publishedRecords, ...candidateRecords]
 
 const ids = new Set(records.map((record) => record.scholarshipId));
 if (ids.size !== records.length) throw new Error("Curated scholarship IDs are not unique.");
-if (publishedRecords.length !== 1220) {
-  throw new Error(`Expected 1,220 current published scholarships; found ${publishedRecords.length}.`);
+if (publishedRecords.length !== 1221) {
+  throw new Error(`Expected 1,221 current published scholarships; found ${publishedRecords.length}.`);
 }
 
 const catalogFingerprint = createHash("sha256")

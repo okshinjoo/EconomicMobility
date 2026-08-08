@@ -54,6 +54,7 @@ assert.equal(packet.catalogRecord.id, "future-makers");
 assert.equal(packet.catalogRecord.officialUrl, "https://example.org/future-makers");
 assert.deepEqual(packet.geographyOverlay, { "future-makers": { scope: "national" } });
 assert.equal(packet.provenanceRecord.classifiedAt, "2026-08-07");
+assert.equal(packet.provenanceRecord.method, "manual");
 
 const route = await readFile(new URL("../app/api/admin/scholarship-promotions/route.ts", import.meta.url), "utf8");
 assert.match(route, /Moderator access required/);

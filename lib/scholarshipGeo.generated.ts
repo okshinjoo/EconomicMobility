@@ -1233,4 +1233,5 @@ export const scholarshipGeo: Record<string, ScholarshipGeo> = {
   "aorn-foundation-academic": { scope: "national" },
   "uncf-toyota-scholars": { scope: "national" },
   "maldef-law-school": { scope: "national" },
+  "dri-foundation-scholarship": { scope: "national" },
 };

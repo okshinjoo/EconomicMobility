@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "catalogVerifiedLabel": "August 2026",
-  "publishedCount": 1220,
+  "publishedCount": 1221,
   "withheldCount": 0,
-  "catalogFingerprint": "c4ce86885cdc0137e166cae5d923439e496af6ec08786b83647789dba8eabbd1",
+  "catalogFingerprint": "55f4dbe69bdf094a228f1fa779f0cea9d5397fbf1492e727dca8c7d6b4797682",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -6096,6 +6096,21 @@
       "geoEvidence": "Undocumented students in states that lock them out of in-state tuition.",
       "geoSourceUrl": "https://www.thedream.us/scholarships/opportunity-scholarship/",
       "catalogFingerprint": "142f35b2e5cf3e4e0bc616d9f95a16e94925b7e240ed4bf85f1907d051ef737d"
+    },
+    {
+      "scholarshipId": "dri-foundation-scholarship",
+      "name": "DRI Foundation Scholarship Award",
+      "officialUrl": "https://foundation.drii.org/scholarship-award/",
+      "sourceDomain": "foundation.drii.org",
+      "publicationStatus": "published",
+      "catalogVerifiedLabel": "August 2026",
+      "geo": {
+        "scope": "national"
+      },
+      "geoVerificationStatus": "human-verified",
+      "geoEvidence": "The applicant must reside within the United States or Canada.",
+      "geoSourceUrl": "https://foundation.drii.org/scholarship-award/",
+      "catalogFingerprint": "7a3ded14c1ed2c85a19977c5c1bd54c77fd5e395c83ea104694d7b973c915129"
     },
     {
       "scholarshipId": "dst-oleta-lawanda-crain-scholarship",

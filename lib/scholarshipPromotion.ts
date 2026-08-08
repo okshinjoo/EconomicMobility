@@ -96,7 +96,7 @@ export function buildScholarshipPromotionPacket({
       kind: "geo",
       classifiedAt: preparedAt.slice(0, 10),
       sourceUrl: candidate.officialUrl,
-      method: "moderator-promotion",
+      method: "manual",
       confidence: "verified",
       evidence,
     },

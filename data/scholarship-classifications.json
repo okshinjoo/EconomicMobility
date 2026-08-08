@@ -22560,6 +22560,24 @@
    "method": "who-derived",
    "confidence": "verified",
    "evidence": "Full-time students pursuing their first law degree at an accredited U.S. law school who demonstrate a commitment to advancing Latino civil rights."
+  },
+  {
+   "id": "dri-foundation-scholarship",
+   "kind": "geo",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://foundation.drii.org/scholarship-award/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "The applicant must reside within the United States or Canada."
+  },
+  {
+   "id": "dri-foundation-scholarship",
+   "kind": "eligibility",
+   "classifiedAt": "2026-08-07",
+   "sourceUrl": "https://foundation.drii.org/scholarship-award/",
+   "method": "manual",
+   "confidence": "verified",
+   "evidence": "The applicant or the applicant's parent or legal guardian must be a DRI International Certified Professional in good standing, and applicants are asked to write an essay."
   }
  ]
 }

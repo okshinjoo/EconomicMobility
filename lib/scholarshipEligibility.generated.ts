@@ -1236,4 +1236,5 @@ export const scholarshipEligibility: Record<string, EligibilityTag[]> = {
   "family-steiner": [{ tag: "affiliation.employer", strength: "preferred" }, { tag: "basis.merit-academic", strength: "relevant" }, { tag: "basis.community-service", strength: "relevant" }],
   "ok-careertech-washington-dubose": [],
   "va-brown-board-education": [{ tag: "circumstance.historical-school-closure", strength: "required" }],
+  "dri-foundation-scholarship": [{ tag: "affiliation.membership", strength: "required" }, { tag: "basis.essay-contest", strength: "required" }],
 };

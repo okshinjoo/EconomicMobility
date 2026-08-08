@@ -18953,6 +18953,17 @@ const scholarshipCatalog: Scholarship[] = [
     tags: ["law school", "latino", "civil rights", "financial need", "graduate"],
     officialUrl: "https://www.maldef.org/resources/leadership-programs/",
   },
+  {
+    id: "dri-foundation-scholarship",
+    name: "DRI Foundation Scholarship Award",
+    amount: "$5,000 each",
+    deadline: "May 29, 2026; current cycle closed",
+    deadlineMonth: 5,
+    who: "High school seniors and college undergraduates residing in the United States or Canada who are enrolled in or entering a four-year undergraduate program and who, or whose parent or legal guardian, is a DRI International Certified Professional in good standing.",
+    stages: ["high-school", "college"],
+    tags: ["disaster preparedness", "resilience", "dri certified professional", "high school senior", "undergraduate"],
+    officialUrl: "https://foundation.drii.org/scholarship-award/",
+  },
 ];
 
 // The full catalog remains above as the frozen, recoverable source set. The
