@@ -88,17 +88,21 @@ The two monitoring tiers stay deliberately separate:
 The scheduled workers:
 
 - fetch only curated official program pages, never external directories;
-- uses conditional request headers when the source supplies them;
+- uses conditional request headers only when the previous observation came
+  from the same extractor and extractor version;
 - limits concurrency to four and spaces requests to the same domain;
 - retry transient failures; status/candidate adapters and source-health checks
   that hit a JavaScript challenge or thin shell can retry in a browser;
+- always fully fetch and, when needed, render a withheld candidate until its
+  geography has been human-verified, so an earlier health-only observation
+  cannot silently satisfy the publication gate;
 - writes append-only observations and deduplicated field-level proposals;
 - update only operational health fields in `scholarship_monitor_state`; and
 - never change application status, dates, eligibility, or the public Finder.
 
-The daily status workflow runs the 75 evidence-specific adapters. The weekly
-source-health workflow splits the other 1,145 records into eight deterministic
-host-based shards, so requests to one host remain serialized. A source-health
+The daily status workflow runs the evidence-specific adapters. The weekly
+source-health workflow splits all other monitored records into eight
+deterministic host-based shards, so requests to one host remain serialized. A source-health
 failure must persist for three runs before an actionable not-found, server,
 redirect, login-wall, or thin-document review can enter the moderation queue.
 The weekly exact-evidence candidate workflow also runs in eight shards and
