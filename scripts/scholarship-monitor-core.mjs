@@ -614,6 +614,12 @@ function nearestNamedAward(beforeDate) {
   return matches.at(-1)?.[0] ?? null;
 }
 
+function namedAwardMatchesIdentity(namedAward, identityTokens) {
+  const namedTokens = (namedAward.toLowerCase().match(/[a-z0-9]+/g) ?? [])
+    .filter((token) => token.length >= 4 && !IDENTITY_STOP_WORDS.has(token));
+  return namedTokens.length > 0 && namedTokens.every((token) => identityTokens.includes(token));
+}
+
 function genericDateMentions(text, identityTokens) {
   const mentions = [];
   for (const pattern of GENERIC_DATE_PATTERNS) {
@@ -628,7 +634,11 @@ function genericDateMentions(text, identityTokens) {
       if (UNCERTAIN_DATE_LANGUAGE.test(context)) continue;
       if (NON_APPLICANT_DATE_LANGUAGE.test(context)) continue;
       const nearestAward = nearestNamedAward(before);
-      if (nearestAward && !contextMatchesIdentity(nearestAward, identityTokens)) continue;
+      if (
+        nearestAward &&
+        !contextMatchesIdentity(nearestAward, identityTokens) &&
+        !namedAwardMatchesIdentity(nearestAward, identityTokens)
+      ) continue;
       if (!contextMatchesIdentity(context, identityTokens)) continue;
       const lastBoundary = Math.max(before.lastIndexOf("."), before.lastIndexOf("?"), before.lastIndexOf("!"));
       const nextBoundaryCandidates = [after.indexOf("."), after.indexOf("?"), after.indexOf("!")].filter((position) => position >= 0);

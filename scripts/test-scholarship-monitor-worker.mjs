@@ -228,10 +228,10 @@ assert.equal(unsafeGenericOpen.hasCandidate, false);
 const staleClosedCycleWithLaterOpening = evaluateGenericCandidateSource({
   configuration: {
     id: "paraprofessional-teacher-preparation-grant",
-    name: "Paraprofessional Teacher Preparation Grant",
+    name: "Paraprofessional Teacher Preparation Grant (Massachusetts)",
     sourceUrl: "https://example.org/paraprofessional-teacher-preparation-grant",
   },
-  html: `<main><h1>Paraprofessional Teacher Preparation Grant</h1><p>The 2025-2026 application is closed. The 2026-2027 application will become available on April 1, 2026.</p></main>`,
+  html: `<main><h1>Paraprofessional Teacher Preparation Grant</h1><p>The 2025-2026 Paraprofessional Grant application is now closed. The 2026-2027 Paraprofessional Grant application will become available on April 1, 2026.</p><p>PDF Paraprofessional Teacher Preparation Grant Program Guidelines</p></main>`,
   finalUrl: "https://example.org/paraprofessional-teacher-preparation-grant",
   today: "2026-08-07",
 });
