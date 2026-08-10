@@ -3,7 +3,7 @@
   "catalogVerifiedLabel": "August 2026",
   "publishedCount": 1223,
   "withheldCount": 0,
-  "catalogFingerprint": "e51315ec5c1c61f192e3d688ee4916302cf5ba92a426da4d1866ef4646068a1e",
+  "catalogFingerprint": "d3872e8a7f89846e62477cd36abf2d7716a76617ce8335475966a5e279d200eb",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -4120,7 +4120,7 @@
     {
       "scholarshipId": "carson-scholars",
       "name": "Carson Scholars Fund Scholarship",
-      "officialUrl": "https://carsonscholars.org/scholarships/",
+      "officialUrl": "https://carsonscholars.org/",
       "sourceDomain": "carsonscholars.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
@@ -4129,8 +4129,8 @@
       },
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "Students in grades 4 to 11 with a 3.75+ GPA and strong community service, nominated by an educator.",
-      "geoSourceUrl": "https://carsonscholars.org/scholarships/",
-      "catalogFingerprint": "213016137cfe805a1e2ee07b26c2593c446e449109bb048f9d37505ecde877f6"
+      "geoSourceUrl": "https://carsonscholars.org/",
+      "catalogFingerprint": "3a8bb304e80c8120bdadd0ed2fd52cc6655d38a5753dc093e52a1a78213b44d4"
     },
     {
       "scholarshipId": "cas-trust-scholarship",
@@ -19995,7 +19995,7 @@
     {
       "scholarshipId": "wv-ruth-eden-bailey",
       "name": "Ruth Eden Bailey Scholarship",
-      "officialUrl": "https://childhswv.org/2026-ruth-eden-bailey-scholarship/",
+      "officialUrl": "https://childhswv.org/wp-content/uploads/2025/11/2025-Annual-Report-Heart-of-a-Masterpiece.pdf",
       "sourceDomain": "childhswv.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
@@ -20007,8 +20007,8 @@
       },
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Current or former Children’s Home Society of West Virginia foster or adopted youth pursuing college, university, trade, or technical education.\"",
-      "geoSourceUrl": "https://childhswv.org/2026-ruth-eden-bailey-scholarship/",
-      "catalogFingerprint": "58e50060deb1b6255c4d4c219caee02436e9a18150d9ab063bf6c4e2f8cac1e7"
+      "geoSourceUrl": "https://childhswv.org/wp-content/uploads/2025/11/2025-Annual-Report-Heart-of-a-Masterpiece.pdf",
+      "catalogFingerprint": "b0f57541e30750b0484dbe520c80ce465271f98e12753fe53820b5be691cfa91"
     },
     {
       "scholarshipId": "wv-water-environment-association",

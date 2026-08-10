@@ -5908,7 +5908,7 @@
    "id": "wv-ruth-eden-bailey",
    "kind": "geo",
    "classifiedAt": "2026-08-07",
-   "sourceUrl": "https://childhswv.org/2026-ruth-eden-bailey-scholarship/",
+   "sourceUrl": "https://childhswv.org/wp-content/uploads/2025/11/2025-Annual-Report-Heart-of-a-Masterpiece.pdf",
    "method": "who-derived",
    "confidence": "verified",
    "rule": "family-of-state",
@@ -6419,7 +6419,7 @@
    "id": "carson-scholars",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
-   "sourceUrl": "https://carsonscholars.org/scholarships/",
+   "sourceUrl": "https://carsonscholars.org/",
    "method": "who-derived",
    "confidence": "verified",
    "evidence": "basis.community-service=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Students in grades 4 to 11 with a 3.75+ GPA and strong community service, nominated by an educator.\""
@@ -16886,7 +16886,7 @@
    "id": "wv-ruth-eden-bailey",
    "kind": "eligibility",
    "classifiedAt": "2026-08-07",
-   "sourceUrl": "https://childhswv.org/2026-ruth-eden-bailey-scholarship/",
+   "sourceUrl": "https://childhswv.org/wp-content/uploads/2025/11/2025-Annual-Report-Heart-of-a-Masterpiece.pdf",
    "method": "who-derived",
    "confidence": "verified",
    "evidence": "field.trades=relevant(tag) circumstance.foster-care=required(who) \u2014 who (verified against the official page in the 2026-08-05 catalog audit): \"Current or former Children\u2019s Home Society of West Virginia foster or adopted youth pursuing college, university, trade, or technical education.\""
@@ -17525,7 +17525,7 @@
    "id": "carson-scholars",
    "kind": "geo",
    "classifiedAt": "2026-08-07",
-   "sourceUrl": "https://carsonscholars.org/scholarships/",
+   "sourceUrl": "https://carsonscholars.org/",
    "method": "who-derived",
    "confidence": "verified",
    "evidence": "Students in grades 4 to 11 with a 3.75+ GPA and strong community service, nominated by an educator."

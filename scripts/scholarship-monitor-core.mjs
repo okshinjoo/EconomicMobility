@@ -222,6 +222,11 @@ export function evaluateSourceHealth({ html, sourceUrl, finalUrl, contentType = 
   };
 }
 
+export function browserDownloadIsHealthyPdf({ url, errorMessage }) {
+  return /\.pdf(?:$|[?#])/i.test(url) &&
+    /(?:download is starting|net::err_aborted)/i.test(errorMessage);
+}
+
 export function shouldProposeSourceFailure({ monitorMode, previousFailures = 0, sourceStatus = "unknown" }) {
   if (monitorMode === "status") return true;
   if (monitorMode === "candidate") return false;

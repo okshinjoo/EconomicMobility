@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import {
   buildFieldProposals,
   buildGeographyProposal,
+  browserDownloadIsHealthyPdf,
   canReuseObservationForConditionalFetch,
   evaluateGenericCandidateSource,
   evaluateGeography,
@@ -162,7 +163,25 @@ async function fetchWithBrowser(urlValue) {
     locale: "en-US",
   });
   try {
-    const response = await page.goto(urlValue, { waitUntil: "domcontentloaded", timeout: 30000 });
+    let response;
+    try {
+      response = await page.goto(urlValue, { waitUntil: "domcontentloaded", timeout: 30000 });
+    } catch (error) {
+      const errorMessage = String(error.message ?? error);
+      if (browserDownloadIsHealthyPdf({ url: urlValue, errorMessage })) {
+        return {
+          kind: "content",
+          html: "%PDF browser download started",
+          finalUrl: urlValue,
+          httpStatus: 200,
+          fetchMethod: "browser",
+          contentType: "application/pdf",
+          etag: null,
+          lastModified: null,
+        };
+      }
+      throw sourceFetchError(errorMessage, { fetchMethod: "browser" });
+    }
     if (!response) throw sourceFetchError("Browser navigation returned no response.", { fetchMethod: "browser" });
     if (!response.ok()) {
       throw sourceFetchError(`Browser HTTP ${response.status()}`, {

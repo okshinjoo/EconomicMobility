@@ -194,6 +194,8 @@ export const scholarshipPublishedIds = new Set(
 );
 
 export const scholarshipAuditSourceOverrides: Readonly<Record<string, string>> = {
+  "carson-scholars": "https://carsonscholars.org/",
+  "wv-ruth-eden-bailey": "https://childhswv.org/wp-content/uploads/2025/11/2025-Annual-Report-Heart-of-a-Masterpiece.pdf",
   "nhs-scholarship": "https://www.nationalhonorsociety.org/the-nhs-scholarship/",
   "larrie-londin-memorial-scholarship": "https://pas.org/larrie-londin-memorial-scholarship/",
   "wa-college-grant": "https://wsac.wa.gov/wcg-awards",

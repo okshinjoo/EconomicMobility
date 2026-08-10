@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import {
   buildFieldProposals,
   buildGeographyProposal,
+  browserDownloadIsHealthyPdf,
   canReuseObservationForConditionalFetch,
   evaluateGenericCandidateSource,
   evaluateGeography,
@@ -23,6 +24,14 @@ import {
 assert.equal(sourceKindForMonitorMode("candidate"), "official");
 assert.equal(sourceKindForMonitorMode("source-health"), "official");
 assert.equal(sourceKindForMonitorMode("status"), "application");
+assert.equal(browserDownloadIsHealthyPdf({
+  url: "https://example.gov/award.pdf",
+  errorMessage: "page.goto: Download is starting",
+}), true);
+assert.equal(browserDownloadIsHealthyPdf({
+  url: "https://example.gov/award",
+  errorMessage: "page.goto: Download is starting",
+}), false);
 
 const failedModePatch = operationalModeStatePatch({
   result: { configuration: { id: "one", monitorMode: "source-health" }, sourceStatus: "not-found", success: false, error: "HTTP 404" },
