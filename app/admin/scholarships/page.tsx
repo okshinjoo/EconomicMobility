@@ -22,6 +22,7 @@ export default function ScholarshipReviewPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/admin/scholarships/new" className="inline-flex rounded-md bg-forest px-4 py-2.5 text-sm font-bold text-cream hover:bg-forest-700">Add a scholarship</Link>
               <Link href="/admin/scholarships/promotions" className="inline-flex rounded-md border border-ink bg-cream px-4 py-2.5 text-sm font-bold text-ink hover:bg-paper">Promotion queue</Link>
+              <Link href="/admin/scholarships/health" className="inline-flex rounded-md border border-sand bg-cream px-4 py-2.5 text-sm font-bold text-ink hover:border-ink">Scholarship health</Link>
             </div>
           </div>
         </section>
