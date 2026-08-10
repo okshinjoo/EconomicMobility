@@ -876,3 +876,16 @@ export function operationalStatePatch({ result, previousFailures = 0, checkedAt 
     ...(result.verificationStatus === "machine-verified" ? { last_verified_at: checkedAt } : {}),
   };
 }
+
+/** Failure streaks must be scoped to one monitor mode. */
+export function operationalModeStatePatch({ result, previousFailures = 0, checkedAt, observationId = null }) {
+  return {
+    scholarship_id: result.configuration.id,
+    monitor_mode: result.configuration.monitorMode,
+    source_status: result.sourceStatus,
+    consecutive_failures: result.success ? 0 : previousFailures + 1,
+    last_checked_at: checkedAt,
+    last_observation_id: observationId,
+    ...(result.success ? { last_success_at: checkedAt } : {}),
+  };
+}

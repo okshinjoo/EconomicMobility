@@ -9,6 +9,7 @@ import {
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
+  operationalModeStatePatch,
   parseDate,
   recurringDates,
   renderedObservationImproved,
@@ -22,6 +23,18 @@ import {
 assert.equal(sourceKindForMonitorMode("candidate"), "official");
 assert.equal(sourceKindForMonitorMode("source-health"), "official");
 assert.equal(sourceKindForMonitorMode("status"), "application");
+
+assert.equal(operationalModeStatePatch({
+  result: { configuration: { id: "one", monitorMode: "source-health" }, sourceStatus: "not-found", success: false },
+  previousFailures: 2,
+  checkedAt: "2026-08-10T12:00:00Z",
+  observationId: "observation-one",
+}).consecutive_failures, 3);
+assert.equal(operationalModeStatePatch({
+  result: { configuration: { id: "one", monitorMode: "candidate" }, sourceStatus: "healthy", success: true },
+  previousFailures: 8,
+  checkedAt: "2026-08-10T12:01:00Z",
+}).consecutive_failures, 0);
 
 assert.equal(canReuseObservationForConditionalFetch({
   previous: {

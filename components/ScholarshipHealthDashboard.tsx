@@ -16,6 +16,8 @@ import {
   buildScholarshipHealthSummary,
   type ScholarshipHealthDeadline,
   type ScholarshipHealthInventoryRow,
+  type ScholarshipHealthFilter,
+  type ScholarshipHealthModeStateRow,
   type ScholarshipHealthRunRow,
   type ScholarshipHealthStateRow,
   type ScholarshipHealthSummary,
@@ -27,6 +29,18 @@ interface AuditDispatchResult {
   total?: number;
   workflows?: Array<{ id: string; name: string; url: string; started: boolean }>;
 }
+
+const HEALTH_FILTERS: Array<{
+  id: ScholarshipHealthFilter;
+  label: string;
+  description: string;
+}> = [
+  { id: "healthy", label: "Healthy", description: "Official page fetched normally." },
+  { id: "redirected", label: "Redirected", description: "Reached a working page at a different URL." },
+  { id: "temporary", label: "Temporary or inconclusive", description: "Needs another same-type check before escalation." },
+  { id: "repeated", label: "Repeatedly failing", description: "Failed at least three same-type checks and needs manual review." },
+  { id: "awaiting", label: "Awaiting first check", description: "Published record has no completed health observation yet." },
+];
 
 interface QueryPage<T> {
   data: T[] | null;
@@ -116,6 +130,7 @@ export default function ScholarshipHealthDashboard() {
   const [summary, setSummary] = useState<ScholarshipHealthSummary | null>(null);
   const [loading, setLoading] = useState(false);
   const [running, setRunning] = useState(false);
+  const [activeHealthFilter, setActiveHealthFilter] = useState<ScholarshipHealthFilter>("repeated");
   const [refreshedAt, setRefreshedAt] = useState<string | null>(null);
   const [message, setMessage] = useState<{ kind: "success" | "error"; text: string; workflows?: AuditDispatchResult["workflows"] } | null>(null);
 
@@ -124,11 +139,11 @@ export default function ScholarshipHealthDashboard() {
     setLoading(true);
     setMessage(null);
     try {
-      const [inventory, states, runs, proposalResult] = await Promise.all([
+      const [inventory, states, modeStates, runs, proposalResult] = await Promise.all([
         loadEveryRow<ScholarshipHealthInventoryRow>(async (from, to) => {
           const result = await supabase
             .from("scholarship_monitor_inventory")
-            .select("scholarship_id,name,publication_status,monitor_enabled,geo_verification_status")
+            .select("scholarship_id,name,official_url,publication_status,monitor_enabled,geo_verification_status")
             .order("scholarship_id")
             .range(from, to);
           return result as QueryPage<ScholarshipHealthInventoryRow>;
@@ -140,6 +155,14 @@ export default function ScholarshipHealthDashboard() {
             .order("scholarship_id")
             .range(from, to);
           return result as QueryPage<ScholarshipHealthStateRow>;
+        }),
+        loadEveryRow<ScholarshipHealthModeStateRow>(async (from, to) => {
+          const result = await supabase
+            .from("scholarship_monitor_mode_state")
+            .select("scholarship_id,monitor_mode,source_status,consecutive_failures,last_checked_at")
+            .order("scholarship_id")
+            .range(from, to);
+          return result as QueryPage<ScholarshipHealthModeStateRow>;
         }),
         loadEveryRow<ScholarshipHealthRunRow>(async (from, to) => {
           if (from >= 300) return { data: [], error: null };
@@ -156,13 +179,16 @@ export default function ScholarshipHealthDashboard() {
           .eq("status", "pending"),
       ]);
       if (proposalResult.error) throw proposalResult.error;
-      setSummary(buildScholarshipHealthSummary({
+      const nextSummary = buildScholarshipHealthSummary({
         inventory,
         states,
+        modeStates,
         runs,
         pendingDecisions: proposalResult.count ?? 0,
         today: todayISO(),
-      }));
+      });
+      setSummary(nextSummary);
+      setActiveHealthFilter(nextSummary.repeatedlyFailing ? "repeated" : "temporary");
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
       setSummary(null);
@@ -314,13 +340,49 @@ export default function ScholarshipHealthDashboard() {
                 </div>
                 <p className="text-sm font-semibold text-stone">Last check {dateTimeLabel(summary.lastCheckedAt)}</p>
               </div>
-              <dl className="mt-2 divide-y divide-sand">
-                <div className="grid grid-cols-[1fr_auto] gap-4 py-4"><div><dt className="font-bold text-ink">Healthy</dt><p className="mt-1 text-sm text-stone">Official page fetched normally.</p></div><dd className="font-display text-2xl font-bold tabular-nums text-forest">{summary.healthy.toLocaleString()}</dd></div>
-                <div className="grid grid-cols-[1fr_auto] gap-4 py-4"><div><dt className="font-bold text-ink">Redirected</dt><p className="mt-1 text-sm text-stone">Reached a working page at a different URL.</p></div><dd className="font-display text-2xl font-bold tabular-nums text-ink">{summary.redirected.toLocaleString()}</dd></div>
-                <div className="grid grid-cols-[1fr_auto] gap-4 py-4"><div><dt className="font-bold text-ink">Temporary or inconclusive</dt><p className="mt-1 text-sm text-stone">Needs another automatic check before escalation.</p></div><dd className="font-display text-2xl font-bold tabular-nums text-ink">{summary.temporarilyUnreachable.toLocaleString()}</dd></div>
-                <div className="grid grid-cols-[1fr_auto] gap-4 py-4"><div><dt className="font-bold text-ink">Repeatedly failing</dt><p className="mt-1 text-sm text-stone">Failed at least three checks and needs manual review.</p></div><dd className={`font-display text-2xl font-bold tabular-nums ${summary.repeatedlyFailing ? "text-terracotta" : "text-forest"}`}>{summary.repeatedlyFailing.toLocaleString()}</dd></div>
-                <div className="grid grid-cols-[1fr_auto] gap-4 py-4"><div><dt className="font-bold text-ink">Awaiting first check</dt><p className="mt-1 text-sm text-stone">Published record has no completed observation yet.</p></div><dd className="font-display text-2xl font-bold tabular-nums text-ink">{summary.awaitingFirstCheck.toLocaleString()}</dd></div>
-              </dl>
+              <div className="mt-2 divide-y divide-sand">
+                {HEALTH_FILTERS.map((filter) => {
+                  const count = summary.healthGroups[filter.id].length;
+                  const active = filter.id === activeHealthFilter;
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      onClick={() => setActiveHealthFilter(filter.id)}
+                      aria-expanded={active}
+                      className={`grid w-full grid-cols-[1fr_auto] gap-4 border-l-4 py-4 pl-3 text-left transition-colors ${active ? "border-amber bg-paper" : "border-transparent hover:bg-paper/70"}`}
+                    >
+                      <span><span className="block font-bold text-ink">{filter.label}</span><span className="mt-1 block text-sm text-stone">{filter.description}</span></span>
+                      <span className={`font-display text-2xl font-bold tabular-nums ${filter.id === "repeated" && count ? "text-terracotta" : filter.id === "healthy" ? "text-forest" : "text-ink"}`}>{count.toLocaleString()}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mt-5 border-t border-sand pt-4">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-sm font-bold text-ink">{HEALTH_FILTERS.find((filter) => filter.id === activeHealthFilter)?.label}</h3>
+                  <span className="text-sm font-semibold text-stone">{summary.healthGroups[activeHealthFilter].length.toLocaleString()} awards</span>
+                </div>
+                {summary.healthGroups[activeHealthFilter].length ? (
+                  <ol className="mt-3 max-h-80 divide-y divide-sand overflow-y-auto border-y border-sand">
+                    {summary.healthGroups[activeHealthFilter].map((record) => (
+                      <li key={record.scholarshipId} className="flex items-start justify-between gap-4 py-3 text-sm">
+                        <div>
+                          <p className="font-bold leading-5 text-ink">{record.name}</p>
+                          <p className="mt-1 text-xs text-stone">
+                            {record.sourceStatus.replaceAll("-", " ")}
+                            {record.consecutiveFailures ? ` · ${record.consecutiveFailures} same-type failures` : ""}
+                            {record.lastCheckedAt ? ` · ${dateTimeLabel(record.lastCheckedAt)}` : ""}
+                          </p>
+                        </div>
+                        <a href={record.officialUrl} target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-1 font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4">
+                          Official source <ArrowSquareOut className="h-3.5 w-3.5" />
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                ) : <p className="mt-3 text-sm font-semibold text-forest">No scholarships in this group.</p>}
+              </div>
               <Link href="/admin/scholarships" className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">
                 Open evidence review queue <ArrowRight className="h-4 w-4" />
               </Link>

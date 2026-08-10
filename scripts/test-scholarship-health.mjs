@@ -16,13 +16,21 @@ const inventory = [
   { scholarship_id: "repeated", name: "Repeated Award", publication_status: "published", monitor_enabled: true, geo_verification_status: "human-verified" },
   { scholarship_id: "waiting", name: "Waiting Award", publication_status: "published", monitor_enabled: false, geo_verification_status: "human-verified" },
   { scholarship_id: "staged", name: "Staged Award", publication_status: "withheld", monitor_enabled: true, geo_verification_status: "unverified" },
-];
+].map((row) => ({ ...row, official_url: `https://example.org/${row.scholarship_id}` }));
 
 const states = [
   { scholarship_id: "healthy", application_status: "open", source_status: "healthy", verification_status: "machine-verified", closes_on: "2026-08-20", last_checked_at: "2026-08-10T15:00:00Z", last_verified_at: "2026-08-10T15:00:00Z", consecutive_failures: 0 },
   { scholarship_id: "redirected", application_status: "open", source_status: "redirected", verification_status: "human-verified", closes_on: "2026-09-19", last_checked_at: "2026-08-10T14:00:00Z", last_verified_at: "2026-08-10T14:00:00Z", consecutive_failures: 0 },
   { scholarship_id: "temporary", application_status: "unknown", source_status: "blocked", verification_status: "stale", closes_on: "2026-10-19", last_checked_at: "2026-08-10T13:00:00Z", last_verified_at: null, consecutive_failures: 2 },
   { scholarship_id: "repeated", application_status: "unknown", source_status: "server-error", verification_status: "review-required", closes_on: null, last_checked_at: "2026-08-10T12:00:00Z", last_verified_at: null, consecutive_failures: 3 },
+];
+
+const modeStates = [
+  { scholarship_id: "healthy", monitor_mode: "source-health", source_status: "healthy", consecutive_failures: 0, last_checked_at: "2026-08-10T15:00:00Z" },
+  { scholarship_id: "redirected", monitor_mode: "source-health", source_status: "redirected", consecutive_failures: 2, last_checked_at: "2026-08-10T14:00:00Z" },
+  { scholarship_id: "temporary", monitor_mode: "source-health", source_status: "blocked", consecutive_failures: 2, last_checked_at: "2026-08-10T13:00:00Z" },
+  { scholarship_id: "repeated", monitor_mode: "source-health", source_status: "server-error", consecutive_failures: 3, last_checked_at: "2026-08-10T12:00:00Z" },
+  { scholarship_id: "repeated", monitor_mode: "candidate", source_status: "healthy", consecutive_failures: 0, last_checked_at: "2026-08-10T16:00:00Z" },
 ];
 
 const runs = [
@@ -34,7 +42,7 @@ const runs = [
   { id: "source-1", status: "completed", checked_count: 2, success_count: 2, failure_count: 0, proposal_count: 0, started_at: "2026-08-10T12:00:00Z", finished_at: "2026-08-10T12:31:00Z", summary: { monitorMode: "source-health", shardIndex: 1, shardCount: 2 } },
 ];
 
-const summary = buildScholarshipHealthSummary({ inventory, states, runs, pendingDecisions: 3, today: "2026-08-10" });
+const summary = buildScholarshipHealthSummary({ inventory, states, modeStates, runs, pendingDecisions: 3, today: "2026-08-10" });
 assert.equal(summary.totalPublished, 5);
 assert.equal(summary.monitored, 4);
 assert.equal(summary.healthy, 1);
@@ -42,6 +50,8 @@ assert.equal(summary.redirected, 1);
 assert.equal(summary.temporarilyUnreachable, 1);
 assert.equal(summary.repeatedlyFailing, 1);
 assert.equal(summary.awaitingFirstCheck, 1);
+assert.equal(summary.healthGroups.repeated[0].scholarshipId, "repeated");
+assert.equal(summary.healthGroups.repeated[0].monitorMode, "source-health");
 assert.equal(summary.pendingDecisions, 3);
 assert.deepEqual(summary.staleVerifications, [{ scholarshipId: "temporary", name: "Temporary Award" }]);
 assert.equal(summary.deadlines.within30[0].scholarshipId, "healthy");

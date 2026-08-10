@@ -191,6 +191,25 @@ create table if not exists public.scholarship_monitor_state (
   check (opens_on is null or closes_on is null or opens_on <= closes_on)
 );
 
+-- Failure streaks are isolated by monitor mode so one full audit cannot turn
+-- three different checks into three "consecutive" failures.
+create table if not exists public.scholarship_monitor_mode_state (
+  scholarship_id text not null references public.scholarship_monitor_inventory(scholarship_id)
+    on delete restrict,
+  monitor_mode text not null
+    check (monitor_mode in ('status', 'candidate', 'source-health')),
+  source_status text not null default 'unknown'
+    check (source_status in ('healthy', 'redirected', 'rate-limited', 'blocked', 'not-found', 'server-error', 'structure-changed', 'unknown')),
+  consecutive_failures integer not null default 0 check (consecutive_failures >= 0),
+  last_checked_at timestamptz,
+  last_success_at timestamptz,
+  last_observation_id uuid references public.scholarship_monitor_observations(id)
+    on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (scholarship_id, monitor_mode)
+);
+
 create table if not exists public.scholarship_monitor_cycles (
   id uuid primary key default gen_random_uuid(),
   scholarship_id text not null references public.scholarship_monitor_inventory(scholarship_id)
@@ -299,6 +318,9 @@ create trigger scholarship_monitor_sources_touch before update on public.scholar
 drop trigger if exists scholarship_monitor_state_touch on public.scholarship_monitor_state;
 create trigger scholarship_monitor_state_touch before update on public.scholarship_monitor_state
   for each row execute function public.touch_scholarship_monitor_updated_at();
+drop trigger if exists scholarship_monitor_mode_state_touch on public.scholarship_monitor_mode_state;
+create trigger scholarship_monitor_mode_state_touch before update on public.scholarship_monitor_mode_state
+  for each row execute function public.touch_scholarship_monitor_updated_at();
 drop trigger if exists scholarship_monitor_proposals_touch on public.scholarship_monitor_proposals;
 create trigger scholarship_monitor_proposals_touch before update on public.scholarship_monitor_proposals
   for each row execute function public.touch_scholarship_monitor_updated_at();
@@ -312,6 +334,7 @@ alter table public.scholarship_monitor_domains enable row level security;
 alter table public.scholarship_monitor_sources enable row level security;
 alter table public.scholarship_monitor_observations enable row level security;
 alter table public.scholarship_monitor_state enable row level security;
+alter table public.scholarship_monitor_mode_state enable row level security;
 alter table public.scholarship_monitor_cycles enable row level security;
 alter table public.scholarship_monitor_proposals enable row level security;
 alter table public.scholarship_monitor_field_locks enable row level security;
@@ -333,6 +356,7 @@ begin
     'scholarship_monitor_sources',
     'scholarship_monitor_observations',
     'scholarship_monitor_state',
+    'scholarship_monitor_mode_state',
     'scholarship_monitor_cycles',
     'scholarship_monitor_proposals',
     'scholarship_monitor_field_locks',

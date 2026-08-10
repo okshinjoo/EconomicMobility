@@ -3,7 +3,7 @@
   "catalogVerifiedLabel": "August 2026",
   "publishedCount": 1223,
   "withheldCount": 0,
-  "catalogFingerprint": "4c14dea253ede90d95a4b61d8b3a461d08bcf1243f46755635d6b3ef96f6a06d",
+  "catalogFingerprint": "482e793433383d51d2897d5df47cbd064931ed42077e07be9a3d59d59c1136aa",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -16594,8 +16594,8 @@
     {
       "scholarshipId": "r-gene-richter-scholarship",
       "name": "R. Gene Richter Scholarship",
-      "officialUrl": "https://www.ismworld.org/for-individuals/scholarships-and-awards/richter-scholarship-award/",
-      "sourceDomain": "ismworld.org",
+      "officialUrl": "https://www.richterfoundation.org/copy-of-mentoring",
+      "sourceDomain": "richterfoundation.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -16604,7 +16604,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "Full-time undergraduate seniors pursuing supply management, supply chain, or procurement who are U.S. or Canadian citizens or green-card holders, will attend the 2027 ISM conference, and pledge to use the award for educational expenses.",
       "geoSourceUrl": "https://www.ismworld.org/for-individuals/scholarships-and-awards/richter-scholarship-award/",
-      "catalogFingerprint": "67318eab7bdae30a55677ebeae1d81e1ef04fe3e7ec736456d02b7e4caf4d702"
+      "catalogFingerprint": "4cd1bc44a841ded511306d6e904471717dec03040998471bbace59c64f9424cf"
     },
     {
       "scholarshipId": "rankin-scholar-grant",

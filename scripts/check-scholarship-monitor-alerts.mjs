@@ -7,16 +7,16 @@ const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !serviceKey) throw new Error("Scholarship alerts require Supabase URL and service-role credentials.");
 
 const admin = createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
-const [inventoryResult, stateResult] = await Promise.all([
+const [inventoryResult, modeStateResult] = await Promise.all([
   admin.from("scholarship_monitor_inventory").select("scholarship_id,name,official_url,publication_status,geo_scope,geo_verification_status,geo_evidence,geo_source_url,created_at"),
-  admin.from("scholarship_monitor_state").select("scholarship_id,source_status,consecutive_failures,last_checked_at"),
+  admin.from("scholarship_monitor_mode_state").select("scholarship_id,monitor_mode,source_status,consecutive_failures,last_checked_at"),
 ]);
 if (inventoryResult.error) throw inventoryResult.error;
-if (stateResult.error) throw stateResult.error;
+if (modeStateResult.error) throw modeStateResult.error;
 
 const alerts = classifyScholarshipMonitorAlerts({
   inventory: inventoryResult.data ?? [],
-  states: stateResult.data ?? [],
+  modeStates: modeStateResult.data ?? [],
 });
 
 function annotation(kind, title, record, detail) {

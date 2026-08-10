@@ -268,7 +268,7 @@ export const scholarshipAuditSourceOverrides: Readonly<Record<string, string>> =
   "4-h-youth-in-action-scholarship": "https://4-h.org/programs/4-h-youth-in-action-program/",
   "navy-marine-rotc-scholarship": "https://www.netc.navy.mil/Commands/Naval-Service-Training-Command/NROTC/Prospective-Midshipmen/Scholarship-and-Non-Scholarship-Options/Four-Year-National-Scholarship/",
   "fl-minority-teacher-education-scholarship": "https://www.ffmt.org/index.cfm?e=inner4&itemcategory=93711",
-  "r-gene-richter-scholarship": "https://www.ismworld.org/for-individuals/scholarships-and-awards/richter-scholarship-award/",
+  "r-gene-richter-scholarship": "https://www.richterfoundation.org/copy-of-mentoring",
   "appraisal-institute-education-trust-scholarship": "https://aierf.org/aierf-college-scholarship/",
   "poetry-out-loud": "https://poetryoutloud.org/about-poetry-out-loud/",
   "nsa-scholarship-foundation": "https://nsacct.org/nsaf-scholarships/",

@@ -3865,7 +3865,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Full-time undergraduate seniors pursuing a career in supply management, supply chain management, or procurement.",
     stages: ["college"],
     tags: ["supply-chain", "procurement", "logistics", "business"],
-    officialUrl: "https://www.richterfoundation.org/",
+    officialUrl: "https://www.richterfoundation.org/copy-of-mentoring",
   },
   {
     id: "cpcu-society-nextgen-scholarship",

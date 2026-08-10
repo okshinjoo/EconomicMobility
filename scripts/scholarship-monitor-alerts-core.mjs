@@ -5,8 +5,13 @@ function ageInDays(value, now) {
   return Number.isFinite(timestamp) ? Math.floor((now.getTime() - timestamp) / 86_400_000) : 0;
 }
 
-export function classifyScholarshipMonitorAlerts({ inventory, states, now = new Date(), withheldAgeDays = 14, failureThreshold = 3 }) {
-  const stateById = new Map(states.map((state) => [state.scholarship_id, state]));
+export function classifyScholarshipMonitorAlerts({ inventory, modeStates, now = new Date(), withheldAgeDays = 14, failureThreshold = 3 }) {
+  const stateById = new Map();
+  for (const state of modeStates) {
+    if (!["source-health", "status"].includes(state.monitor_mode)) continue;
+    const current = stateById.get(state.scholarship_id);
+    if (!current || state.monitor_mode === "source-health") stateById.set(state.scholarship_id, state);
+  }
   const withheld = inventory
     .filter((record) => record.publication_status === "withheld")
     .map((record) => ({ ...record, ageDays: ageInDays(record.created_at, now) }));

@@ -12,6 +12,7 @@ import {
   evaluateOfficialSource,
   evaluateSourceHealth,
   operationalStatePatch,
+  operationalModeStatePatch,
   renderedObservationImproved,
   shouldProposeSourceFailure,
   shouldUseBrowserFallback,
@@ -249,6 +250,7 @@ let runId = null;
 let sourceIdByScholarship = new Map();
 let previousByScholarship = new Map();
 let stateByScholarship = new Map();
+let modeStateByScholarship = new Map();
 let locksByScholarship = new Map();
 let pendingProposalKeys = new Set();
 
@@ -292,17 +294,21 @@ if (admin) {
   sourceIdByScholarship = new Map(sources.map((source) => [source.scholarship_id, source.id]));
 
   const ids = selected.map((configuration) => configuration.id);
-  const [observationQuery, stateQuery, lockQuery, proposalQuery] = await Promise.all([
+  const [observationQuery, stateQuery, modeStateQuery, lockQuery, proposalQuery] = await Promise.all([
     admin.from("scholarship_monitor_observations").select("*").in("scholarship_id", ids).order("fetched_at", { ascending: false }).limit(5000),
     admin.from("scholarship_monitor_state").select("*").in("scholarship_id", ids),
+    admin.from("scholarship_monitor_mode_state").select("*").in("scholarship_id", ids),
     admin.from("scholarship_monitor_field_locks").select("scholarship_id,field_name").in("scholarship_id", ids),
     admin.from("scholarship_monitor_proposals").select("scholarship_id,field_name,proposed_value").in("scholarship_id", ids).eq("status", "pending"),
   ]);
-  for (const query of [observationQuery, stateQuery, lockQuery, proposalQuery]) if (query.error) throw query.error;
+  for (const query of [observationQuery, stateQuery, modeStateQuery, lockQuery, proposalQuery]) if (query.error) throw query.error;
   for (const observation of observationQuery.data ?? []) {
     if (!previousByScholarship.has(observation.scholarship_id)) previousByScholarship.set(observation.scholarship_id, observation);
   }
   stateByScholarship = new Map((stateQuery.data ?? []).map((state) => [state.scholarship_id, state]));
+  modeStateByScholarship = new Map(
+    (modeStateQuery.data ?? []).map((state) => [`${state.scholarship_id}|${state.monitor_mode}`, state]),
+  );
   for (const lock of lockQuery.data ?? []) {
     if (!locksByScholarship.has(lock.scholarship_id)) locksByScholarship.set(lock.scholarship_id, new Set());
     locksByScholarship.get(lock.scholarship_id).add(lock.field_name);
@@ -465,7 +471,9 @@ for (const result of results) {
     !result.success &&
     shouldProposeSourceFailure({
       monitorMode: result.configuration.monitorMode,
-      previousFailures: stateByScholarship.get(result.configuration.id)?.consecutive_failures ?? 0,
+      previousFailures: modeStateByScholarship.get(
+        `${result.configuration.id}|${result.configuration.monitorMode}`,
+      )?.consecutive_failures ?? 0,
       sourceStatus: result.sourceStatus,
     })
   ) {
@@ -587,7 +595,9 @@ if (admin) {
     scholarship_id: result.configuration.id,
     ...operationalStatePatch({
       result,
-      previousFailures: stateByScholarship.get(result.configuration.id)?.consecutive_failures ?? 0,
+      previousFailures: modeStateByScholarship.get(
+        `${result.configuration.id}|${result.configuration.monitorMode}`,
+      )?.consecutive_failures ?? 0,
       checkedAt,
     }),
   }));
@@ -604,6 +614,21 @@ if (admin) {
         .upsert(rows.slice(index, index + 200), { onConflict: "scholarship_id" });
       if (error) throw error;
     }
+  }
+
+  const modeStateRows = results.map((result) => operationalModeStatePatch({
+    result,
+    previousFailures: modeStateByScholarship.get(
+      `${result.configuration.id}|${result.configuration.monitorMode}`,
+    )?.consecutive_failures ?? 0,
+    checkedAt,
+    observationId: observationIdByScholarship.get(result.configuration.id) ?? null,
+  }));
+  for (let index = 0; index < modeStateRows.length; index += 200) {
+    const { error } = await admin
+      .from("scholarship_monitor_mode_state")
+      .upsert(modeStateRows.slice(index, index + 200), { onConflict: "scholarship_id,monitor_mode" });
+    if (error) throw error;
   }
 
   if (proposals.length) {

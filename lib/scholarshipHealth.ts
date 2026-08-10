@@ -24,9 +24,18 @@ export type ScholarshipAuditMode = (typeof SCHOLARSHIP_AUDIT_WORKFLOWS)[number][
 export interface ScholarshipHealthInventoryRow {
   scholarship_id: string;
   name: string;
+  official_url: string;
   publication_status: string;
   monitor_enabled: boolean;
   geo_verification_status: string;
+}
+
+export interface ScholarshipHealthModeStateRow {
+  scholarship_id: string;
+  monitor_mode: ScholarshipAuditMode;
+  source_status: string;
+  consecutive_failures: number;
+  last_checked_at: string | null;
 }
 
 export interface ScholarshipHealthStateRow {
@@ -74,6 +83,18 @@ export interface ScholarshipHealthAuditLane {
   complete: boolean;
 }
 
+export type ScholarshipHealthFilter = "healthy" | "redirected" | "temporary" | "repeated" | "awaiting";
+
+export interface ScholarshipSourceHealthRecord {
+  scholarshipId: string;
+  name: string;
+  officialUrl: string;
+  monitorMode: "status" | "source-health" | null;
+  sourceStatus: string;
+  consecutiveFailures: number;
+  lastCheckedAt: string | null;
+}
+
 export interface ScholarshipHealthSummary {
   totalPublished: number;
   monitored: number;
@@ -82,6 +103,7 @@ export interface ScholarshipHealthSummary {
   temporarilyUnreachable: number;
   repeatedlyFailing: number;
   awaitingFirstCheck: number;
+  healthGroups: Record<ScholarshipHealthFilter, ScholarshipSourceHealthRecord[]>;
   pendingDecisions: number;
   staleVerifications: Array<{ scholarshipId: string; name: string }>;
   deadlines: {
@@ -95,6 +117,7 @@ export interface ScholarshipHealthSummary {
 }
 
 const COMPLETE_RUN_STATUSES = new Set(["completed", "completed-with-errors"]);
+const REPEATED_FAILURE_STATUSES = new Set(["blocked", "not-found", "server-error", "structure-changed"]);
 
 function isoDayNumber(value: string) {
   const [year, month, day] = value.slice(0, 10).split("-").map(Number);
@@ -144,38 +167,67 @@ function summarizeAuditLane(
 export function buildScholarshipHealthSummary({
   inventory,
   states,
+  modeStates,
   runs,
   pendingDecisions,
   today,
 }: {
   inventory: ScholarshipHealthInventoryRow[];
   states: ScholarshipHealthStateRow[];
+  modeStates: ScholarshipHealthModeStateRow[];
   runs: ScholarshipHealthRunRow[];
   pendingDecisions: number;
   today: string;
 }): ScholarshipHealthSummary {
   const published = inventory.filter((row) => row.publication_status === "published");
   const stateByScholarship = new Map(states.map((row) => [row.scholarship_id, row]));
-  const publishedWithState = published.map((row) => ({ inventory: row, state: stateByScholarship.get(row.scholarship_id) }));
+  const modeStateByScholarship = new Map<string, ScholarshipHealthModeStateRow>();
+  for (const row of modeStates) {
+    if (!["source-health", "status"].includes(row.monitor_mode)) continue;
+    const current = modeStateByScholarship.get(row.scholarship_id);
+    if (!current || row.monitor_mode === "source-health") modeStateByScholarship.set(row.scholarship_id, row);
+  }
+  const publishedWithState = published.map((row) => ({
+    inventory: row,
+    state: stateByScholarship.get(row.scholarship_id),
+    modeState: modeStateByScholarship.get(row.scholarship_id),
+  }));
 
-  let healthy = 0;
-  let redirected = 0;
-  let temporarilyUnreachable = 0;
-  let repeatedlyFailing = 0;
-  let awaitingFirstCheck = 0;
+  const healthGroups: ScholarshipHealthSummary["healthGroups"] = {
+    healthy: [],
+    redirected: [],
+    temporary: [],
+    repeated: [],
+    awaiting: [],
+  };
   let lastCheckedAt: string | null = null;
   const staleVerifications: ScholarshipHealthSummary["staleVerifications"] = [];
   const deadlines: ScholarshipHealthSummary["deadlines"] = { within30: [], days31To60: [], days61To90: [] };
   const todayNumber = isoDayNumber(today);
 
-  for (const { inventory: scholarship, state } of publishedWithState) {
-    if (!state?.last_checked_at) awaitingFirstCheck += 1;
-    else if (!lastCheckedAt || state.last_checked_at > lastCheckedAt) lastCheckedAt = state.last_checked_at;
-
-    if (state?.source_status === "healthy") healthy += 1;
-    else if (state?.source_status === "redirected") redirected += 1;
-    else if (state && state.consecutive_failures >= 3) repeatedlyFailing += 1;
-    else if (state) temporarilyUnreachable += 1;
+  for (const { inventory: scholarship, state, modeState } of publishedWithState) {
+    if (modeState?.last_checked_at && (!lastCheckedAt || modeState.last_checked_at > lastCheckedAt)) {
+      lastCheckedAt = modeState.last_checked_at;
+    }
+    const healthRecord: ScholarshipSourceHealthRecord = {
+      scholarshipId: scholarship.scholarship_id,
+      name: scholarship.name,
+      officialUrl: scholarship.official_url,
+      monitorMode: modeState?.monitor_mode === "source-health" || modeState?.monitor_mode === "status"
+        ? modeState.monitor_mode
+        : null,
+      sourceStatus: modeState?.source_status ?? "not-checked",
+      consecutiveFailures: modeState?.consecutive_failures ?? 0,
+      lastCheckedAt: modeState?.last_checked_at ?? null,
+    };
+    if (!modeState?.last_checked_at) healthGroups.awaiting.push(healthRecord);
+    else if (modeState.source_status === "healthy") healthGroups.healthy.push(healthRecord);
+    else if (modeState.source_status === "redirected") healthGroups.redirected.push(healthRecord);
+    else if (
+      REPEATED_FAILURE_STATUSES.has(modeState.source_status) &&
+      modeState.consecutive_failures >= 3
+    ) healthGroups.repeated.push(healthRecord);
+    else healthGroups.temporary.push(healthRecord);
 
     if (state?.verification_status === "stale" || scholarship.geo_verification_status === "stale") {
       staleVerifications.push({ scholarshipId: scholarship.scholarship_id, name: scholarship.name });
@@ -203,6 +255,9 @@ export function buildScholarshipHealthSummary({
   for (const bucket of Object.values(deadlines)) {
     bucket.sort((a, b) => a.closesOn.localeCompare(b.closesOn) || a.name.localeCompare(b.name));
   }
+  for (const group of Object.values(healthGroups)) {
+    group.sort((a, b) => b.consecutiveFailures - a.consecutiveFailures || a.name.localeCompare(b.name));
+  }
   staleVerifications.sort((a, b) => a.name.localeCompare(b.name));
 
   const auditLanes = SCHOLARSHIP_AUDIT_WORKFLOWS.map((workflow) =>
@@ -216,11 +271,12 @@ export function buildScholarshipHealthSummary({
   return {
     totalPublished: published.length,
     monitored: published.filter((row) => row.monitor_enabled).length,
-    healthy,
-    redirected,
-    temporarilyUnreachable,
-    repeatedlyFailing,
-    awaitingFirstCheck,
+    healthy: healthGroups.healthy.length,
+    redirected: healthGroups.redirected.length,
+    temporarilyUnreachable: healthGroups.temporary.length,
+    repeatedlyFailing: healthGroups.repeated.length,
+    awaitingFirstCheck: healthGroups.awaiting.length,
+    healthGroups,
     pendingDecisions,
     staleVerifications,
     deadlines,

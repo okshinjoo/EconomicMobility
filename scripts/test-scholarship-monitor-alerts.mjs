@@ -8,11 +8,12 @@ const inventory = [
   { scholarship_id: "stale", name: "Stale", publication_status: "withheld", created_at: "2026-08-05", geo_scope: "states", geo_verification_status: "stale", geo_evidence: "Residents of Maine.", geo_source_url: "https://example.org/stale" },
   { scholarship_id: "invalid", name: "Invalid", publication_status: "published", created_at: "2026-01-01", geo_scope: null, geo_verification_status: "unverified" },
 ];
-const states = [
-  { scholarship_id: "failed", source_status: "not-found", consecutive_failures: 3 },
-  { scholarship_id: "new", source_status: "blocked", consecutive_failures: 2 },
+const modeStates = [
+  { scholarship_id: "failed", monitor_mode: "source-health", source_status: "not-found", consecutive_failures: 3 },
+  { scholarship_id: "new", monitor_mode: "source-health", source_status: "blocked", consecutive_failures: 2 },
+  { scholarship_id: "new", monitor_mode: "candidate", source_status: "blocked", consecutive_failures: 9 },
 ];
-const alerts = classifyScholarshipMonitorAlerts({ inventory, states, now: new Date("2026-08-07T12:00:00Z") });
+const alerts = classifyScholarshipMonitorAlerts({ inventory, modeStates, now: new Date("2026-08-07T12:00:00Z") });
 assert.equal(alerts.withheld.length, 3);
 assert.deepEqual(alerts.overdueWithheld.map((record) => record.scholarship_id), ["old"]);
 assert.deepEqual(alerts.failedSources.map((record) => record.scholarship_id), ["failed"]);
