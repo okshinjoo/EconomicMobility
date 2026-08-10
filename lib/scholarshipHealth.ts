@@ -36,6 +36,8 @@ export interface ScholarshipHealthModeStateRow {
   source_status: string;
   consecutive_failures: number;
   last_checked_at: string | null;
+  last_error_kind: string | null;
+  last_error_message: string | null;
 }
 
 export interface ScholarshipHealthStateRow {
@@ -83,7 +85,7 @@ export interface ScholarshipHealthAuditLane {
   complete: boolean;
 }
 
-export type ScholarshipHealthFilter = "healthy" | "redirected" | "temporary" | "repeated" | "awaiting";
+export type ScholarshipHealthFilter = "healthy" | "redirected" | "access-limited" | "temporary" | "repeated" | "awaiting";
 
 export interface ScholarshipSourceHealthRecord {
   scholarshipId: string;
@@ -93,6 +95,8 @@ export interface ScholarshipSourceHealthRecord {
   sourceStatus: string;
   consecutiveFailures: number;
   lastCheckedAt: string | null;
+  errorKind: string | null;
+  errorMessage: string | null;
 }
 
 export interface ScholarshipHealthSummary {
@@ -100,6 +104,7 @@ export interface ScholarshipHealthSummary {
   monitored: number;
   healthy: number;
   redirected: number;
+  automationLimited: number;
   temporarilyUnreachable: number;
   repeatedlyFailing: number;
   awaitingFirstCheck: number;
@@ -117,7 +122,8 @@ export interface ScholarshipHealthSummary {
 }
 
 const COMPLETE_RUN_STATUSES = new Set(["completed", "completed-with-errors"]);
-const REPEATED_FAILURE_STATUSES = new Set(["blocked", "not-found", "server-error", "structure-changed"]);
+const REPEATED_FAILURE_STATUSES = new Set(["not-found", "server-error", "structure-changed"]);
+const ACCESS_LIMITED_STATUSES = new Set(["blocked", "rate-limited"]);
 
 function isoDayNumber(value: string) {
   const [year, month, day] = value.slice(0, 10).split("-").map(Number);
@@ -196,6 +202,7 @@ export function buildScholarshipHealthSummary({
   const healthGroups: ScholarshipHealthSummary["healthGroups"] = {
     healthy: [],
     redirected: [],
+    "access-limited": [],
     temporary: [],
     repeated: [],
     awaiting: [],
@@ -219,10 +226,16 @@ export function buildScholarshipHealthSummary({
       sourceStatus: modeState?.source_status ?? "not-checked",
       consecutiveFailures: modeState?.consecutive_failures ?? 0,
       lastCheckedAt: modeState?.last_checked_at ?? null,
+      errorKind: modeState?.last_error_kind ?? null,
+      errorMessage: modeState?.last_error_message ?? null,
     };
     if (!modeState?.last_checked_at) healthGroups.awaiting.push(healthRecord);
     else if (modeState.source_status === "healthy") healthGroups.healthy.push(healthRecord);
     else if (modeState.source_status === "redirected") healthGroups.redirected.push(healthRecord);
+    else if (
+      ACCESS_LIMITED_STATUSES.has(modeState.source_status) ||
+      (modeState.source_status === "unknown" && modeState.consecutive_failures >= 3)
+    ) healthGroups["access-limited"].push(healthRecord);
     else if (
       REPEATED_FAILURE_STATUSES.has(modeState.source_status) &&
       modeState.consecutive_failures >= 3
@@ -273,6 +286,7 @@ export function buildScholarshipHealthSummary({
     monitored: published.filter((row) => row.monitor_enabled).length,
     healthy: healthGroups.healthy.length,
     redirected: healthGroups.redirected.length,
+    automationLimited: healthGroups["access-limited"].length,
     temporarilyUnreachable: healthGroups.temporary.length,
     repeatedlyFailing: healthGroups.repeated.length,
     awaitingFirstCheck: healthGroups.awaiting.length,

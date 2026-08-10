@@ -37,8 +37,9 @@ const HEALTH_FILTERS: Array<{
 }> = [
   { id: "healthy", label: "Healthy", description: "Official page fetched normally." },
   { id: "redirected", label: "Redirected", description: "Reached a working page at a different URL." },
-  { id: "temporary", label: "Temporary or inconclusive", description: "Needs another same-type check before escalation." },
-  { id: "repeated", label: "Repeatedly failing", description: "Failed at least three same-type checks and needs manual review." },
+  { id: "access-limited", label: "Automation limited", description: "Official site blocks or repeatedly times out for automated checks; human verification remains in force." },
+  { id: "temporary", label: "Retrying", description: "One or two inconclusive checks; the monitor will retry before classifying it." },
+  { id: "repeated", label: "Source needs review", description: "A conclusive source problem repeated three times and needs manual review." },
   { id: "awaiting", label: "Awaiting first check", description: "Published record has no completed health observation yet." },
 ];
 
@@ -94,6 +95,19 @@ function deadlineDistance(daysAway: number) {
   if (daysAway === 0) return "Today";
   if (daysAway === 1) return "Tomorrow";
   return `${daysAway} days`;
+}
+
+function sourceHealthReason(record: ScholarshipHealthSummary["healthGroups"][ScholarshipHealthFilter][number]) {
+  const detail = `${record.errorKind ?? ""} ${record.errorMessage ?? ""}`.toLowerCase();
+  if (record.sourceStatus === "blocked") return "Official site denied automated access";
+  if (record.sourceStatus === "rate-limited") return "Official site rate-limited the monitor";
+  if (detail.includes("timeout") || detail.includes("timed out")) return "Automated request timed out";
+  if (detail.includes("protocol")) return "Automated connection protocol failed";
+  if (detail.includes("reset")) return "Official site reset the automated connection";
+  if (record.sourceStatus === "not-found") return "Official source returned not found";
+  if (record.sourceStatus === "server-error") return "Official source returned a server error";
+  if (record.sourceStatus === "structure-changed") return "Official page no longer exposes the expected content";
+  return record.sourceStatus.replaceAll("-", " ");
 }
 
 function DeadlineBucket({ label, rows }: { label: string; rows: ScholarshipHealthDeadline[] }) {
@@ -159,7 +173,7 @@ export default function ScholarshipHealthDashboard() {
         loadEveryRow<ScholarshipHealthModeStateRow>(async (from, to) => {
           const result = await supabase
             .from("scholarship_monitor_mode_state")
-            .select("scholarship_id,monitor_mode,source_status,consecutive_failures,last_checked_at")
+            .select("scholarship_id,monitor_mode,source_status,consecutive_failures,last_checked_at,last_error_kind,last_error_message")
             .order("scholarship_id")
             .range(from, to);
           return result as QueryPage<ScholarshipHealthModeStateRow>;
@@ -188,7 +202,7 @@ export default function ScholarshipHealthDashboard() {
         today: todayISO(),
       });
       setSummary(nextSummary);
-      setActiveHealthFilter(nextSummary.repeatedlyFailing ? "repeated" : "temporary");
+      setActiveHealthFilter(nextSummary.repeatedlyFailing ? "repeated" : nextSummary.automationLimited ? "access-limited" : "temporary");
       setRefreshedAt(new Date().toISOString());
     } catch (error) {
       setSummary(null);
@@ -280,7 +294,7 @@ export default function ScholarshipHealthDashboard() {
           <p className="text-sm font-semibold text-stone">
             {refreshedAt ? `Dashboard refreshed ${dateTimeLabel(refreshedAt)}` : "Production monitoring data"}
           </p>
-          <p className="mt-1 text-sm leading-6 text-stone">A scholarship enters the manual failure queue only after three consecutive failed checks.</p>
+          <p className="mt-1 text-sm leading-6 text-stone">Three repeated, conclusive source failures enter review. Sites that block automation stay in a separate human-verified list.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
@@ -370,7 +384,7 @@ export default function ScholarshipHealthDashboard() {
                         <div>
                           <p className="font-bold leading-5 text-ink">{record.name}</p>
                           <p className="mt-1 text-xs text-stone">
-                            {record.sourceStatus.replaceAll("-", " ")}
+                            {sourceHealthReason(record)}
                             {record.consecutiveFailures ? ` · ${record.consecutiveFailures} same-type failures` : ""}
                             {record.lastCheckedAt ? ` · ${dateTimeLabel(record.lastCheckedAt)}` : ""}
                           </p>

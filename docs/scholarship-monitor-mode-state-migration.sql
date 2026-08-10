@@ -13,10 +13,16 @@ create table if not exists public.scholarship_monitor_mode_state (
   last_success_at timestamptz,
   last_observation_id uuid references public.scholarship_monitor_observations(id)
     on delete set null,
+  last_error_kind text,
+  last_error_message text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   primary key (scholarship_id, monitor_mode)
 );
+
+alter table public.scholarship_monitor_mode_state
+  add column if not exists last_error_kind text,
+  add column if not exists last_error_message text;
 
 drop trigger if exists scholarship_monitor_mode_state_touch on public.scholarship_monitor_mode_state;
 create trigger scholarship_monitor_mode_state_touch before update on public.scholarship_monitor_mode_state

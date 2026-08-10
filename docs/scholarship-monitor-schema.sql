@@ -205,6 +205,8 @@ create table if not exists public.scholarship_monitor_mode_state (
   last_success_at timestamptz,
   last_observation_id uuid references public.scholarship_monitor_observations(id)
     on delete set null,
+  last_error_kind text,
+  last_error_message text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   primary key (scholarship_id, monitor_mode)

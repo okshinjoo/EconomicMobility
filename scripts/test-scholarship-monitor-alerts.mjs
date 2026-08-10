@@ -12,6 +12,7 @@ const modeStates = [
   { scholarship_id: "failed", monitor_mode: "source-health", source_status: "not-found", consecutive_failures: 3 },
   { scholarship_id: "new", monitor_mode: "source-health", source_status: "blocked", consecutive_failures: 2 },
   { scholarship_id: "new", monitor_mode: "candidate", source_status: "blocked", consecutive_failures: 9 },
+  { scholarship_id: "old", monitor_mode: "source-health", source_status: "blocked", consecutive_failures: 9 },
 ];
 const alerts = classifyScholarshipMonitorAlerts({ inventory, modeStates, now: new Date("2026-08-07T12:00:00Z") });
 assert.equal(alerts.withheld.length, 3);

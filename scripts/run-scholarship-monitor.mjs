@@ -128,11 +128,19 @@ const sharedSourceHealthFetches = new Map();
 let browserPromise = null;
 
 function failureStatus(status) {
-  if (status === 403) return "blocked";
+  if ([401, 403, 405, 406].includes(status)) return "blocked";
   if (status === 404 || status === 410) return "not-found";
   if (status === 429) return "rate-limited";
   if (status >= 500) return "server-error";
   return "unknown";
+}
+
+function sourceFetchError(message, { httpStatus = null, sourceStatus = "unknown", fetchMethod = "http" } = {}) {
+  const error = new Error(message);
+  error.httpStatus = httpStatus;
+  error.sourceStatus = sourceStatus;
+  error.fetchMethod = fetchMethod;
+  return error;
 }
 
 async function throttle(urlValue) {
@@ -155,8 +163,14 @@ async function fetchWithBrowser(urlValue) {
   });
   try {
     const response = await page.goto(urlValue, { waitUntil: "domcontentloaded", timeout: 30000 });
-    if (!response) throw new Error("Browser navigation returned no response.");
-    if (!response.ok()) throw new Error(`Browser HTTP ${response.status()}`);
+    if (!response) throw sourceFetchError("Browser navigation returned no response.", { fetchMethod: "browser" });
+    if (!response.ok()) {
+      throw sourceFetchError(`Browser HTTP ${response.status()}`, {
+        httpStatus: response.status(),
+        sourceStatus: failureStatus(response.status()),
+        fetchMethod: "browser",
+      });
+    }
     await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => undefined);
     await page.waitForTimeout(1000);
     return {
@@ -165,6 +179,7 @@ async function fetchWithBrowser(urlValue) {
       finalUrl: page.url(),
       httpStatus: response.status(),
       fetchMethod: "browser",
+      contentType: response.headers()["content-type"] ?? "text/html",
       etag: null,
       lastModified: null,
     };
@@ -176,7 +191,7 @@ async function fetchWithBrowser(urlValue) {
 async function fetchOfficialPage(configuration, previous) {
   const headers = {
     "user-agent": "EmpowerScholarshipMonitor/1.0 (+https://economicmobilityproject.org/contact)",
-    accept: "text/html,application/xhtml+xml,application/json;q=0.8",
+    accept: "text/html,application/xhtml+xml,application/pdf,application/json;q=0.8",
     "accept-language": "en-US,en;q=0.9",
   };
   const mayReusePrevious = canReuseObservationForConditionalFetch({
@@ -208,6 +223,7 @@ async function fetchOfficialPage(configuration, previous) {
           finalUrl: previous?.final_url ?? configuration.sourceUrl,
           httpStatus: 304,
           fetchMethod: "http",
+          contentType: previous?.content_type ?? "",
           etag: response.headers.get("etag") ?? previous?.etag ?? null,
           lastModified: response.headers.get("last-modified") ?? previous?.last_modified ?? null,
         };
@@ -219,21 +235,35 @@ async function fetchOfficialPage(configuration, previous) {
           finalUrl: response.url,
           httpStatus: response.status,
           fetchMethod: "http",
+          contentType: response.headers.get("content-type") ?? "",
           etag: response.headers.get("etag"),
           lastModified: response.headers.get("last-modified"),
         };
       }
-      const error = new Error(`HTTP ${response.status}`);
-      error.httpStatus = response.status;
-      error.sourceStatus = failureStatus(response.status);
+      const error = sourceFetchError(`HTTP ${response.status}`, {
+        httpStatus: response.status,
+        sourceStatus: failureStatus(response.status),
+      });
       lastError = error;
-      if ([403, 404, 405].includes(response.status) && browserFallback) {
-        return await fetchWithBrowser(configuration.sourceUrl);
+      if ([401, 403, 404, 405, 406, 410].includes(response.status) && browserFallback) {
+        try {
+          return await fetchWithBrowser(configuration.sourceUrl);
+        } catch (browserError) {
+          if (error.sourceStatus === "blocked") {
+            error.message = `${error.message}; browser fallback: ${String(browserError.message ?? browserError)}`;
+            error.fetchMethod = "browser";
+            error.terminal = true;
+            throw error;
+          }
+          browserError.terminal = true;
+          throw browserError;
+        }
       }
       if (![429, 500, 502, 503, 504].includes(response.status)) break;
     } catch (error) {
       lastError = error;
-      if (browserFallback && attempt === maximumAttempts - 1) {
+      if (error.terminal) break;
+      if (browserFallback && attempt === maximumAttempts - 1 && error.fetchMethod !== "browser") {
         try {
           return await fetchWithBrowser(configuration.sourceUrl);
         } catch (browserError) {
@@ -347,7 +377,7 @@ async function inspectUnlocked(configuration) {
       };
     }
     let evaluation = configuration.monitorMode === "source-health"
-      ? evaluateSourceHealth({ html: fetched.html, sourceUrl: configuration.sourceUrl, finalUrl: fetched.finalUrl })
+      ? evaluateSourceHealth({ html: fetched.html, sourceUrl: configuration.sourceUrl, finalUrl: fetched.finalUrl, contentType: fetched.contentType })
       : configuration.monitorMode === "candidate"
         ? evaluateGenericCandidateSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today })
         : evaluateOfficialSource({ configuration, html: fetched.html, finalUrl: fetched.finalUrl, today });
@@ -368,7 +398,7 @@ async function inspectUnlocked(configuration) {
       try {
         const rendered = await fetchWithBrowser(configuration.sourceUrl);
         const renderedEvaluation = configuration.monitorMode === "source-health"
-          ? evaluateSourceHealth({ html: rendered.html, sourceUrl: configuration.sourceUrl, finalUrl: rendered.finalUrl })
+          ? evaluateSourceHealth({ html: rendered.html, sourceUrl: configuration.sourceUrl, finalUrl: rendered.finalUrl, contentType: rendered.contentType })
           : configuration.monitorMode === "candidate"
             ? evaluateGenericCandidateSource({
               configuration,
@@ -403,7 +433,8 @@ async function inspectUnlocked(configuration) {
         // Keep the original fail-closed evaluation when rendering is unavailable.
       }
     }
-    const sourceHealthIssue = configuration.monitorMode === "source-health" && evaluation.sourceStatus !== "healthy";
+    const sourceHealthIssue = configuration.monitorMode === "source-health" &&
+      !["healthy", "redirected"].includes(evaluation.sourceStatus);
     return {
       configuration,
       success: !sourceHealthIssue,
@@ -428,7 +459,7 @@ async function inspectUnlocked(configuration) {
       sourceStatus: error.sourceStatus ?? "unknown",
       extractionConfidence: "low",
       verificationStatus: "review-required",
-      fetched: { finalUrl: configuration.sourceUrl, httpStatus: error.httpStatus ?? null, fetchMethod: "http", etag: null, lastModified: null },
+      fetched: { finalUrl: configuration.sourceUrl, httpStatus: error.httpStatus ?? null, fetchMethod: error.fetchMethod ?? "http", contentType: null, etag: null, lastModified: null },
       previous,
       evaluation: null,
       geographyEvaluation: null,

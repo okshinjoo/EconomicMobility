@@ -1,4 +1,4 @@
-const FAILED_SOURCE_STATUSES = new Set(["blocked", "not-found", "server-error", "structure-changed"]);
+const FAILED_SOURCE_STATUSES = new Set(["not-found", "server-error", "structure-changed"]);
 
 function ageInDays(value, now) {
   const timestamp = new Date(value).getTime();

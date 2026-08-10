@@ -188,14 +188,17 @@ function normalizedHost(url) {
   return new URL(url).hostname.toLowerCase().replace(/^www\./, "");
 }
 
-export function evaluateSourceHealth({ html, sourceUrl, finalUrl }) {
+export function evaluateSourceHealth({ html, sourceUrl, finalUrl, contentType = "" }) {
   const text = visibleText(html);
   const crossDomainRedirect = normalizedHost(sourceUrl) !== normalizedHost(finalUrl);
+  const pdfDocument = /application\/pdf/i.test(contentType) || /\.pdf(?:$|[?#])/i.test(finalUrl);
   const loginWall = /asicommon|login\.aspx|\/(?:log|sign)-?in\b/i.test(finalUrl) &&
     !/\/(?:log|sign)-?in\b/i.test(sourceUrl);
   const botWall = /\b(?:verify that you(?:'re| are) not a robot|checking (?:if the site connection is secure|your browser)|enable javascript and (?:then )?reload|attention required[.!]? cloudflare)\b/i.test(text);
-  const thinDocument = text.length < 80;
-  const sourceStatus = botWall ? "blocked" : loginWall || thinDocument ? "structure-changed" : crossDomainRedirect ? "redirected" : "healthy";
+  const thinDocument = !pdfDocument && text.length < 80;
+  // Generic health checks have no page-specific signature, so a login wall or
+  // a shell-only document proves limited automation access, not a dead award.
+  const sourceStatus = botWall || loginWall || thinDocument ? "blocked" : crossDomainRedirect ? "redirected" : "healthy";
   return {
     text,
     contentHash: createHash("sha256").update(html).digest("hex"),
@@ -214,14 +217,15 @@ export function evaluateSourceHealth({ html, sourceUrl, finalUrl }) {
     loginWall,
     botWall,
     thinDocument,
-    evidenceText: text.slice(0, 800),
+    pdfDocument,
+    evidenceText: pdfDocument ? "PDF document returned successfully." : text.slice(0, 800),
   };
 }
 
 export function shouldProposeSourceFailure({ monitorMode, previousFailures = 0, sourceStatus = "unknown" }) {
   if (monitorMode === "status") return true;
   if (monitorMode === "candidate") return false;
-  return previousFailures >= 2 && ["not-found", "server-error", "redirected", "structure-changed"].includes(sourceStatus);
+  return previousFailures >= 2 && ["not-found", "server-error", "structure-changed"].includes(sourceStatus);
 }
 
 export function evaluateOfficialSource({ configuration, html, finalUrl, today }) {
@@ -886,6 +890,8 @@ export function operationalModeStatePatch({ result, previousFailures = 0, checke
     consecutive_failures: result.success ? 0 : previousFailures + 1,
     last_checked_at: checkedAt,
     last_observation_id: observationId,
+    last_error_kind: result.success ? null : result.sourceStatus,
+    last_error_message: result.success ? null : result.error ?? null,
     ...(result.success ? { last_success_at: checkedAt } : {}),
   };
 }

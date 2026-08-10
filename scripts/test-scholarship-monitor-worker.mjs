@@ -24,17 +24,22 @@ assert.equal(sourceKindForMonitorMode("candidate"), "official");
 assert.equal(sourceKindForMonitorMode("source-health"), "official");
 assert.equal(sourceKindForMonitorMode("status"), "application");
 
-assert.equal(operationalModeStatePatch({
-  result: { configuration: { id: "one", monitorMode: "source-health" }, sourceStatus: "not-found", success: false },
+const failedModePatch = operationalModeStatePatch({
+  result: { configuration: { id: "one", monitorMode: "source-health" }, sourceStatus: "not-found", success: false, error: "HTTP 404" },
   previousFailures: 2,
   checkedAt: "2026-08-10T12:00:00Z",
   observationId: "observation-one",
-}).consecutive_failures, 3);
-assert.equal(operationalModeStatePatch({
+});
+assert.equal(failedModePatch.consecutive_failures, 3);
+assert.equal(failedModePatch.last_error_kind, "not-found");
+assert.equal(failedModePatch.last_error_message, "HTTP 404");
+const successfulModePatch = operationalModeStatePatch({
   result: { configuration: { id: "one", monitorMode: "candidate" }, sourceStatus: "healthy", success: true },
   previousFailures: 8,
   checkedAt: "2026-08-10T12:01:00Z",
-}).consecutive_failures, 0);
+});
+assert.equal(successfulModePatch.consecutive_failures, 0);
+assert.equal(successfulModePatch.last_error_kind, null);
 
 assert.equal(canReuseObservationForConditionalFetch({
   previous: {
@@ -918,10 +923,26 @@ const botBlockedHealth = evaluateSourceHealth({
 });
 assert.equal(botBlockedHealth.sourceStatus, "blocked");
 assert.equal(botBlockedHealth.botWall, true);
+const thinHealth = evaluateSourceHealth({
+  html: "<main>Loading…</main>",
+  sourceUrl: "https://example.gov/scholarship",
+  finalUrl: "https://example.gov/scholarship",
+});
+assert.equal(thinHealth.sourceStatus, "blocked");
+assert.equal(thinHealth.thinDocument, true);
+const pdfHealth = evaluateSourceHealth({
+  html: "%PDF-1.7 scholarship program document",
+  sourceUrl: "https://example.gov/scholarship.pdf",
+  finalUrl: "https://example.gov/scholarship.pdf",
+  contentType: "application/pdf",
+});
+assert.equal(pdfHealth.sourceStatus, "healthy");
+assert.equal(pdfHealth.pdfDocument, true);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 0, sourceStatus: "not-found" }), false);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 1, sourceStatus: "not-found" }), false);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 2, sourceStatus: "not-found" }), true);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 4, sourceStatus: "blocked" }), false);
+assert.equal(shouldProposeSourceFailure({ monitorMode: "source-health", previousFailures: 4, sourceStatus: "redirected" }), false);
 assert.equal(shouldProposeSourceFailure({ monitorMode: "status", previousFailures: 0 }), true);
 
 const coverage = scholarshipMonitorCoverage();
