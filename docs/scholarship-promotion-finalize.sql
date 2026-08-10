@@ -50,12 +50,14 @@ begin
   if geo_scope_value is distinct from candidate_row.geo_scope then raise exception 'Packet geography does not match the verified candidate'; end if;
 
   if exists (
-    select 1 from public.scholarship_monitor_inventory
-    where scholarship_id = public_id and official_url <> candidate_row.official_url
+    select 1 from public.scholarship_monitor_inventory existing_inventory
+    where existing_inventory.scholarship_id = public_id
+      and existing_inventory.official_url <> candidate_row.official_url
   ) then raise exception 'The public scholarship ID belongs to another source'; end if;
   if exists (
-    select 1 from public.scholarship_monitor_inventory
-    where official_url = candidate_row.official_url and scholarship_id not in (p_candidate_id, public_id)
+    select 1 from public.scholarship_monitor_inventory existing_inventory
+    where existing_inventory.official_url = candidate_row.official_url
+      and existing_inventory.scholarship_id not in (p_candidate_id, public_id)
   ) then raise exception 'The official source is already registered under another scholarship'; end if;
   if exists (
     select 1 from public.scholarship_monitor_proposals
@@ -64,10 +66,8 @@ begin
   if not coalesce((
     select observation.success and observation.source_status = 'healthy'
     from public.scholarship_monitor_observations observation
-    join public.scholarship_monitor_sources source on source.id = observation.source_id
     where observation.scholarship_id = p_candidate_id
-      and source.source_kind = 'official'
-      and source.url = candidate_row.official_url
+      and observation.requested_url = candidate_row.official_url
     order by observation.fetched_at desc
     limit 1
   ), false) then raise exception 'The latest official source is not verified healthy'; end if;

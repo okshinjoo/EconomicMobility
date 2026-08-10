@@ -124,7 +124,10 @@ const finalizeSql = await readFile(new URL("../docs/scholarship-promotion-finali
 assert.match(finalizeSql, /security definer/i);
 assert.match(finalizeSql, /Evidence proposals remain unresolved/);
 assert.match(finalizeSql, /latest official source is not verified healthy/i);
+assert.match(finalizeSql, /observation\.requested_url\s*=\s*candidate_row\.official_url/i);
 assert.match(finalizeSql, /exact official deadline is required/i);
+assert.match(finalizeSql, /existing_inventory\.official_url\s*<>\s*candidate_row\.official_url/i);
+assert.match(finalizeSql, /existing_inventory\.official_url\s*=\s*candidate_row\.official_url/i);
 assert.match(finalizeSql, /publication_status = 'duplicate', monitor_enabled = false/);
 assert.match(finalizeSql, /grant execute on function public\.finalize_scholarship_promotion.*service_role/i);
 
