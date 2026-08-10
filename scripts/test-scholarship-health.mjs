@@ -27,6 +27,7 @@ const states = [
 
 const runs = [
   { id: "status", status: "completed", checked_count: 75, success_count: 75, failure_count: 0, proposal_count: 0, started_at: "2026-08-10T10:00:00Z", finished_at: "2026-08-10T10:30:00Z", summary: { monitorMode: "status", shardIndex: 0, shardCount: 1 } },
+  { id: "candidate-previous", status: "completed", checked_count: 99, success_count: 99, failure_count: 0, proposal_count: 0, started_at: "2026-08-10T09:30:00Z", finished_at: "2026-08-10T10:10:00Z", summary: { monitorMode: "candidate", shardIndex: 0, shardCount: 2 } },
   { id: "candidate-0", status: "completed", checked_count: 2, success_count: 2, failure_count: 0, proposal_count: 0, started_at: "2026-08-10T11:00:00Z", finished_at: "2026-08-10T11:30:00Z", summary: { monitorMode: "candidate", shardIndex: 0, shardCount: 2 } },
   { id: "candidate-1", status: "completed-with-errors", checked_count: 2, success_count: 1, failure_count: 1, proposal_count: 1, started_at: "2026-08-10T11:00:00Z", finished_at: "2026-08-10T11:31:00Z", summary: { monitorMode: "candidate", shardIndex: 1, shardCount: 2 } },
   { id: "source-0", status: "completed", checked_count: 2, success_count: 2, failure_count: 0, proposal_count: 0, started_at: "2026-08-10T12:00:00Z", finished_at: "2026-08-10T12:30:00Z", summary: { monitorMode: "source-health", shardIndex: 0, shardCount: 2 } },

@@ -115,12 +115,18 @@ function summarizeAuditLane(
   }
 
   const expectedShards = Math.max(1, latest.summary?.shardCount ?? 1);
-  const latestTime = Date.parse(latest.finished_at);
-  const batch = matching.filter((run) => {
-    const finishedTime = Date.parse(run.finished_at ?? "");
-    return run.summary?.shardCount === latest.summary?.shardCount &&
-      Math.abs(latestTime - finishedTime) <= 3 * 60 * 60 * 1000;
-  });
+  const latestStartTime = Date.parse(latest.started_at);
+  const runByShard = new Map<number, ScholarshipHealthRunRow>();
+  for (const run of matching) {
+    const startedTime = Date.parse(run.started_at);
+    if (
+      run.summary?.shardCount !== latest.summary?.shardCount ||
+      Math.abs(latestStartTime - startedTime) > 45 * 60 * 1000
+    ) continue;
+    const shardIndex = run.summary?.shardIndex ?? 0;
+    if (!runByShard.has(shardIndex)) runByShard.set(shardIndex, run);
+  }
+  const batch = [...runByShard.values()];
   const shardIndexes = new Set(batch.map((run) => run.summary?.shardIndex ?? 0));
 
   return {
