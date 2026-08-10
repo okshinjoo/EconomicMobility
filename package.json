@@ -13,6 +13,11 @@
     "test:e2e:headed": "playwright test --headed",
     "check:links": "node scripts/check-internal-links.mjs",
     "check:freshness": "node scripts/check-freshness.mjs",
+    "check:colleges": "node --experimental-strip-types scripts/check-college-profiles.mjs",
+    "check:careers": "node --experimental-strip-types scripts/check-careers.mjs",
+    "build:career-enrichment": "node --experimental-strip-types scripts/build-career-enrichment.mjs",
+    "build:career-state-wages": "node --experimental-strip-types scripts/build-career-state-wages.mjs",
+    "build:college-catalog": "node --experimental-strip-types scripts/build-college-catalog.mjs --write",
     "check:scholarship-tags": "node scripts/check-scholarship-tags.mjs",
     "build:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs --write",
     "check:scholarship-monitor-inventory": "node scripts/export-scholarship-monitor-inventory.mjs",
@@ -48,6 +53,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
     "exceljs": "^4.4.0",
+    "mdb-reader": "^3.2.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

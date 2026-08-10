@@ -1,32 +1,34 @@
 "use client";
 
-// Career Explorer (July 16, 2026 — the last parked preview goes live).
-// 100 careers on public BLS data; the audience-defining filter is
-// "Earn while you train" — paid apprenticeships, academies, and
-// employer-funded paths, first-class per the original spec. Facts only,
-// no rankings (house rule). No Date() — deterministic render.
+// Career Explorer. Facts only, no rankings. The catalog is intentionally
+// paged so hundreds of useful careers remain fast to browse.
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HandCoins, CaretDown, ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import { fuzzyScore } from "@/lib/fuzzy";
+import { fuzzyScore, normalize } from "@/lib/fuzzy";
 import {
   careers,
+  careerPayLabel,
+  careerPayPeriod,
   growthLabel,
-  payLabel,
   CAREER_DATA_VINTAGE,
   FIELD_LABELS,
   EDUCATION_LABELS,
   type CareerField,
 } from "@/lib/careers";
 import { getCareerDetail } from "@/lib/careerDetails";
+import { CAREER_SEARCH_TERMS } from "@/lib/careerSearchTerms";
+import CareerSaveButton from "@/components/CareerSaveButton";
+import CareerSavedTray from "@/components/CareerSavedTray";
 
 type EduFilter = "all" | "nodegree" | "certificate" | "associate" | "bachelor";
-type PayFilter = "all" | "under50" | "50to80" | "80to120" | "over120";
+type PayFilter = "all" | "under50" | "50to80" | "80to120" | "over120" | "hourly";
 type GrowthFilter = "all" | "fast" | "steady" | "shrinking";
-type Sort = "pay" | "growth" | "az";
+type Sort = "openings" | "pay" | "growth" | "az";
 
 const FIELD_IDS = Object.keys(FIELD_LABELS) as CareerField[];
+const SHOW_STEP = 48;
 
 const usd = (n: number) => `$${n.toLocaleString()}`;
 
@@ -62,8 +64,9 @@ export default function CareerExplorer() {
   const [pay, setPay] = useState<PayFilter>("all");
   const [growthF, setGrowthF] = useState<GrowthFilter>("all");
   const [earnOnly, setEarnOnly] = useState(false);
-  const [sort, setSort] = useState<Sort>("pay");
+  const [sort, setSort] = useState<Sort>("openings");
   const [openId, setOpenId] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(SHOW_STEP);
 
   const results = useMemo(() => {
     let list = [...careers];
@@ -78,10 +81,20 @@ export default function CareerExplorer() {
       list = list.filter((c) =>
         ["bachelor", "master", "doctoral"].includes(c.education)
       );
-    if (pay === "under50") list = list.filter((c) => c.medianPay < 50000);
-    if (pay === "50to80") list = list.filter((c) => c.medianPay >= 50000 && c.medianPay < 80000);
-    if (pay === "80to120") list = list.filter((c) => c.medianPay >= 80000 && c.medianPay < 120000);
-    if (pay === "over120") list = list.filter((c) => c.medianPay >= 120000);
+    if (pay === "under50")
+      list = list.filter((c) => c.medianPay != null && c.medianPay < 50000);
+    if (pay === "50to80")
+      list = list.filter(
+        (c) => c.medianPay != null && c.medianPay >= 50000 && c.medianPay < 80000
+      );
+    if (pay === "80to120")
+      list = list.filter(
+        (c) => c.medianPay != null && c.medianPay >= 80000 && c.medianPay < 120000
+      );
+    if (pay === "over120")
+      list = list.filter((c) => c.medianPay != null && c.medianPay >= 120000);
+    if (pay === "hourly")
+      list = list.filter((c) => c.medianPay == null && c.medianHourlyPay != null);
     if (growthF === "fast") list = list.filter((c) => c.growth >= 9);
     if (growthF === "steady") list = list.filter((c) => c.growth >= 2 && c.growth < 9);
     if (growthF === "shrinking") list = list.filter((c) => c.growth < 2);
@@ -89,35 +102,73 @@ export default function CareerExplorer() {
 
     const q = query.trim();
     if (q) {
-      list = list
+      const normalizedQuery = normalize(q).trim();
+      const matched = list
         .map((c) => {
           const d = getCareerDetail(c.id);
+          const normalizedTitle = normalize(c.title).trim();
+          const titleMatch =
+            ` ${normalizedTitle} `.includes(` ${normalizedQuery} `) ||
+            (!normalizedQuery.includes(" ") &&
+              normalizedTitle.split(/\s+/).some((word) => word.startsWith(normalizedQuery)));
           return {
             c,
-            score: fuzzyScore(
-              q,
-              `${c.title} ${FIELD_LABELS[c.field]} ${c.trainingNote} ${c.note} ${
+            score:
+              (titleMatch ? 2 : 0) +
+              fuzzyScore(
+                q,
+                `${c.title} ${FIELD_LABELS[c.field]} ${c.trainingNote} ${c.note} ${
                 d?.whatTheyDo ?? ""
-              } ${d?.skills.join(" ") ?? ""}`
-            ),
+              } ${d?.skills.join(" ") ?? ""} ${CAREER_SEARCH_TERMS[c.id] ?? ""}`
+              ),
           };
         })
         .filter((r) => r.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .map((r) => r.c);
-      return list;
+        .sort((a, b) => b.score - a.score);
+      const titleMatches = matched.filter((result) => result.score >= 2);
+      return (titleMatches.length > 0 ? titleMatches : matched).map((result) => result.c);
     }
 
-    if (sort === "pay") list.sort((a, b) => b.medianPay - a.medianPay);
+    if (sort === "openings")
+      list.sort(
+        (a, b) =>
+          (getCareerDetail(b.id)?.annualOpenings ?? -1) -
+          (getCareerDetail(a.id)?.annualOpenings ?? -1)
+      );
+    if (sort === "pay")
+      list.sort((a, b) => (b.medianPay ?? -1) - (a.medianPay ?? -1));
     if (sort === "growth") list.sort((a, b) => b.growth - a.growth);
     if (sort === "az") list.sort((a, b) => a.title.localeCompare(b.title));
     return list;
   }, [query, field, edu, pay, growthF, earnOnly, sort]);
 
+  const visibleResults = results.slice(0, visibleCount);
+  const hasActiveFilters =
+    query.trim() !== "" ||
+    field !== "all" ||
+    edu !== "all" ||
+    pay !== "all" ||
+    growthF !== "all" ||
+    earnOnly;
+
+  function clearFilters() {
+    setQuery("");
+    setField("all");
+    setEdu("all");
+    setPay("all");
+    setGrowthF("all");
+    setEarnOnly(false);
+    setVisibleCount(SHOW_STEP);
+  }
+
   return (
     <div>
       <div className="space-y-3">
+        <label htmlFor="career-search" className="sr-only">
+          Search careers
+        </label>
         <input
+          id="career-search"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -174,6 +225,7 @@ export default function CareerExplorer() {
           <Chip active={pay === "50to80"} onClick={() => setPay(pay === "50to80" ? "all" : "50to80")}>$50–80k</Chip>
           <Chip active={pay === "80to120"} onClick={() => setPay(pay === "80to120" ? "all" : "80to120")}>$80–120k</Chip>
           <Chip active={pay === "over120"} onClick={() => setPay(pay === "over120" ? "all" : "over120")}>$120k+</Chip>
+          <Chip active={pay === "hourly"} onClick={() => setPay(pay === "hourly" ? "all" : "hourly")}>Hourly-only</Chip>
           <span className="ml-2 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
             Outlook
           </span>
@@ -183,22 +235,36 @@ export default function CareerExplorer() {
           <span className="ml-2 text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
             Sort
           </span>
+          <Chip active={sort === "openings"} onClick={() => setSort("openings")}>Annual openings</Chip>
           <Chip active={sort === "pay"} onClick={() => setSort("pay")}>Pay</Chip>
           <Chip active={sort === "growth"} onClick={() => setSort("growth")}>Growth</Chip>
           <Chip active={sort === "az"} onClick={() => setSort("az")}>A–Z</Chip>
         </div>
+        {hasActiveFilters && (
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Clear all filters
+          </button>
+        )}
       </div>
 
-      <p className="mt-4 text-sm font-medium text-stone">
+      <p className="mt-4 text-sm font-medium text-stone" aria-live="polite">
         {results.length} of {careers.length} careers · {CAREER_DATA_VINTAGE}.
         Median means half earn more, half less — your city and experience move
         it a lot.
       </p>
 
+      <CareerSavedTray />
+
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {results.map((c) => {
+        {visibleResults.map((c) => {
           const d = getCareerDetail(c.id);
-          const hasRange = Boolean(d?.payLow && d?.payHigh);
+          const hasAnnualRange = d?.payLow != null && d?.payHigh != null;
+          const hasHourlyRange =
+            !hasAnnualRange && d?.hourlyPayLow != null && d?.hourlyPayHigh != null;
           const open = openId === c.id;
           return (
             <div key={c.id} className="card-ink flex flex-col rounded-2xl bg-cream p-5">
@@ -213,19 +279,26 @@ export default function CareerExplorer() {
                 </div>
                 <div className="text-right">
                   <div className="font-display text-2xl font-bold tabular-nums text-forest">
-                    {payLabel(c.medianPay)}
+                    {careerPayLabel(c)}
                   </div>
                   <div className="text-[11px] font-semibold text-stone">
-                    median pay / year
+                    {careerPayPeriod(c)}
                   </div>
+                  {c.medianPay != null && d?.hourlyMedian != null && (
+                    <div className="mt-0.5 text-[11px] font-semibold tabular-nums text-stone">
+                      ${d.hourlyMedian.toFixed(2)}/hour
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {hasRange && (
+              {(hasAnnualRange || hasHourlyRange) && (
                 <p className="mt-2 text-[13px] font-semibold text-ink/75">
                   Most earn{" "}
                   <span className="tabular-nums">
-                    {usd(d!.payLow!)}–{usd(d!.payHigh!)}
+                    {hasAnnualRange
+                      ? `${usd(d!.payLow!)}–${usd(d!.payHigh!)}`
+                      : `$${d!.hourlyPayLow!.toFixed(2)}–$${d!.hourlyPayHigh!.toFixed(2)}/hour`}
                   </span>{" "}
                   <span className="font-medium text-stone">
                     (10th–90th percentile)
@@ -261,6 +334,12 @@ export default function CareerExplorer() {
                 Path: {c.trainingNote}.
               </p>
 
+              {d?.annualOpenings != null && (
+                <p className="mt-1 text-[13px] font-semibold text-ink/75">
+                  ~{d.annualOpenings.toLocaleString()} openings a year
+                </p>
+              )}
+
               <p className="mt-2 text-sm italic leading-6 text-stone">{c.note}</p>
 
               {/* Inline "quick look" panel */}
@@ -293,23 +372,24 @@ export default function CareerExplorer() {
               )}
 
               {/* Actions */}
-              <div className="mt-3 flex flex-1 items-end justify-between gap-3 pt-1">
-                {d ? (
-                  <button
-                    type="button"
-                    onClick={() => setOpenId(open ? null : c.id)}
-                    aria-expanded={open}
-                    className="inline-flex items-center gap-1 text-[13px] font-bold text-forest hover:text-ink"
-                  >
-                    <CaretDown
-                      className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
-                      weight="bold"
-                    />
-                    {open ? "Less" : "Quick look"}
-                  </button>
-                ) : (
-                  <span />
-                )}
+              <div className="mt-3 flex flex-1 flex-wrap items-end justify-between gap-3 pt-1">
+                <div className="flex items-center gap-3">
+                  <CareerSaveButton careerId={c.id} compact />
+                  {d && (
+                    <button
+                      type="button"
+                      onClick={() => setOpenId(open ? null : c.id)}
+                      aria-expanded={open}
+                      className="inline-flex items-center gap-1 text-[13px] font-bold text-forest hover:text-ink"
+                    >
+                      <CaretDown
+                        className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+                        weight="bold"
+                      />
+                      {open ? "Less" : "Quick look"}
+                    </button>
+                  )}
+                </div>
                 <Link
                   href={`/students/career-explorer/${c.id}`}
                   className="inline-flex items-center gap-1 text-[13px] font-bold text-ink underline decoration-amber decoration-2 underline-offset-4 hover:text-forest"
@@ -323,14 +403,25 @@ export default function CareerExplorer() {
         })}
       </div>
 
+      {visibleCount < results.length && (
+        <div className="mt-7 text-center">
+          <button
+            type="button"
+            onClick={() => setVisibleCount((count) => count + SHOW_STEP)}
+            className="rounded-md border-2 border-ink bg-amber px-5 py-2.5 text-sm font-bold text-ink shadow-[3px_3px_0_#11211c] transition-transform hover:-translate-y-0.5"
+          >
+            Show {Math.min(SHOW_STEP, results.length - visibleCount)} more careers
+          </button>
+        </div>
+      )}
+
       {results.length === 0 && (
         <div className="mt-6 rounded-2xl border-2 border-ink/15 bg-cream p-8 text-center">
           <p className="font-display text-lg font-bold text-ink">
             No career matches those filters.
           </p>
           <p className="mt-1 text-sm text-stone">
-            Loosen one — $120k+ with no degree is a short list (it&apos;s the
-            elevator technicians).
+            Try clearing one filter or searching for a broader skill or field.
           </p>
         </div>
       )}

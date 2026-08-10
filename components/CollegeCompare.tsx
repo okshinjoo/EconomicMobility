@@ -15,6 +15,7 @@ import { fuzzyScore } from "@/lib/fuzzy";
 import {
   colleges,
   COLLEGE_DATA_VINTAGE,
+  FACTOR_IDS,
   FACTOR_LABELS,
   RATING_LABELS,
   type CollegeProfile,
@@ -28,6 +29,7 @@ type BandFilter = "all" | "reach" | "very" | "selective" | "accessible";
 type Sort = "az" | "selective" | "accessible";
 
 const MAX_COMPARE = 3;
+const PAGE_SIZE = 60;
 
 /** Selectivity band from the admit rate — plain words, not a ranking. */
 function band(rate: number): { id: BandFilter; label: string } {
@@ -59,22 +61,18 @@ const TEST_LABEL: Record<NonNullable<CollegeProfile["testPolicy"]>, string> = {
 };
 
 /** The factor rows the compare table shows, in reading order. */
-const TABLE_FACTORS: FactorId[] = [
-  "rigor",
-  "gpa",
-  "rank",
-  "essay",
-  "recs",
-  "interview",
-  "ecs",
-  "talent",
-  "character",
-  "firstGen",
-  "legacy",
-  "interest",
-  "religion",
-  "work",
-];
+const TABLE_FACTORS: FactorId[] = [...FACTOR_IDS];
+
+function stateCode(c: CollegeProfile) {
+  return c.place.split(", ").at(-1) ?? "";
+}
+
+function religiousLabel(c: CollegeProfile) {
+  if (c.religious === null) return "Not encoded";
+  return c.religious ?? "None";
+}
+
+const STATE_OPTIONS = [...new Set(colleges.map(stateCode))].sort();
 
 function Chip({
   active,
@@ -103,6 +101,7 @@ function Chip({
 
 export default function CollegeCompare() {
   const [query, setQuery] = useState("");
+  const [state, setState] = useState("all");
   const [need, setNeed] = useState<NeedFilter>("all");
   const [fullNeed, setFullNeed] = useState(false);
   const [religion, setReligion] = useState<ReligionFilter>("all");
@@ -111,18 +110,22 @@ export default function CollegeCompare() {
   const [transferDoor, setTransferDoor] = useState(false);
   const [sort, setSort] = useState<Sort>("az");
   const [compare, setCompare] = useState<string[]>([]);
+  const [pagination, setPagination] = useState({ key: "", count: PAGE_SIZE });
   // The open full-profile panel (owner, July 17: "you should be able to
   // click into the college's tab and see more details").
   const [detail, setDetail] = useState<string | null>(null);
 
   const results = useMemo(() => {
     let list = [...colleges];
+    if (state !== "all") list = list.filter((c) => stateCode(c) === state);
     if (need === "blind")
       list = list.filter((c) => c.needBlind === "all" || c.needBlind === "domestic");
     if (need === "blind-intl") list = list.filter((c) => c.needBlind === "all");
     if (fullNeed) list = list.filter((c) => c.meetsFullNeed);
-    if (religion === "secular") list = list.filter((c) => !c.religious);
-    if (religion === "religious") list = list.filter((c) => c.religious);
+    if (religion === "secular") list = list.filter((c) => c.religious === undefined);
+    if (religion === "religious") {
+      list = list.filter((c) => typeof c.religious === "string");
+    }
     if (test !== "all") list = list.filter((c) => c.testPolicy === test);
     if (bandF !== "all") list = list.filter((c) => band(c.admitRate).id === bandF);
     // Wider door for transfers: a published transfer admit rate ABOVE the
@@ -139,7 +142,7 @@ export default function CollegeCompare() {
           c,
           score: fuzzyScore(
             q,
-            `${c.name} ${c.place} ${c.religious ?? ""} ${c.note}`
+            `${c.name} ${c.aliases?.join(" ") ?? ""} ${c.tags?.join(" ") ?? ""} ${c.place} ${c.religious ?? ""} ${c.format ?? ""} ${c.note}`
           ),
         }))
         .filter((r) => r.score > 0)
@@ -152,7 +155,21 @@ export default function CollegeCompare() {
     if (sort === "selective") list.sort((a, b) => a.admitRate - b.admitRate);
     if (sort === "accessible") list.sort((a, b) => b.admitRate - a.admitRate);
     return list;
-  }, [query, need, fullNeed, religion, test, bandF, transferDoor, sort]);
+  }, [query, state, need, fullNeed, religion, test, bandF, transferDoor, sort]);
+
+  const resultKey = [
+    query,
+    state,
+    need,
+    fullNeed,
+    religion,
+    test,
+    bandF,
+    transferDoor,
+    sort,
+  ].join("|");
+  const visibleCount = pagination.key === resultKey ? pagination.count : PAGE_SIZE;
+  const visibleResults = results.slice(0, visibleCount);
 
   const compared = colleges.filter((c) => compare.includes(c.id));
 
@@ -170,13 +187,31 @@ export default function CollegeCompare() {
     <div>
       {/* ---- controls ---- */}
       <div className="space-y-3">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search: a college, a state, “Jesuit”, “HBCU”…"
-          className="w-full rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-        />
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem]">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search: a college, a state, “Jesuit”, “HBCU”…"
+            aria-label="Search colleges"
+            className="w-full rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+          />
+          <label className="flex items-center gap-2 rounded-lg border-2 border-ink/15 bg-cream px-3 focus-within:border-ink">
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
+              State
+            </span>
+            <select
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              className="min-w-0 flex-1 bg-transparent py-2.5 text-sm font-semibold text-ink focus:outline-none"
+            >
+              <option value="all">Everywhere</option>
+              {STATE_OPTIONS.map((code) => (
+                <option key={code} value={code}>{code}</option>
+              ))}
+            </select>
+          </label>
+        </div>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">
             Aid
@@ -216,8 +251,10 @@ export default function CollegeCompare() {
 
       <p className="mt-4 text-sm font-medium text-stone">
         {results.length} of {colleges.length}{" "}colleges · figures from each
-        college&apos;s Common Data Set and admissions pages, {COLLEGE_DATA_VINTAGE}.
-        A missing value means the college doesn&apos;t publish it.
+        college&apos;s Common Data Set where available and federal college data, {COLLEGE_DATA_VINTAGE}.
+        The full list covers all 50 states, DC, Puerto Rico, and the US Virgin
+        Islands. A missing value means it was not reported or could not be
+        extracted reliably.
       </p>
 
       {/* ---- compare tray ---- */}
@@ -282,7 +319,7 @@ export default function CollegeCompare() {
                     (c: CollegeProfile) =>
                       c.gradRate != null ? `${c.gradRate}%` : "—",
                   ],
-                  ["Religious affiliation", (c: CollegeProfile) => c.religious ?? "None"],
+                  ["Religious affiliation", religiousLabel],
                   ["Aid note", (c: CollegeProfile) => c.aidNote ?? "—"],
                   [
                     "Transfer admit rate",
@@ -333,7 +370,7 @@ export default function CollegeCompare() {
 
       {/* ---- compact cards: scan here, click for the full profile ---- */}
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {results.map((c) => {
+        {visibleResults.map((c) => {
           const b = band(c.admitRate);
           const inCompare = compare.includes(c.id);
           return (
@@ -398,6 +435,19 @@ export default function CollegeCompare() {
                     Wider transfer door
                   </span>
                 )}
+                {c.format === "online-and-campus" && (
+                  <span className="rounded-full bg-ink/[0.06] px-2.5 py-1 text-[11px] font-bold text-ink/70">
+                    Online + campus
+                  </span>
+                )}
+                {c.tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-ink/[0.06] px-2.5 py-1 text-[11px] font-bold text-ink/70"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
 
               <p className="mt-3 flex-1 text-[13px] italic leading-5 text-stone [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
@@ -438,6 +488,23 @@ export default function CollegeCompare() {
           );
         })}
       </div>
+
+      {visibleResults.length < results.length && (
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={() =>
+              setPagination({ key: resultKey, count: visibleCount + PAGE_SIZE })
+            }
+            className="btn-ink rounded-md bg-cream px-5 py-2.5 text-sm font-bold text-ink"
+          >
+            Show {Math.min(PAGE_SIZE, results.length - visibleResults.length)} more
+          </button>
+          <p className="mt-2 text-xs text-stone">
+            Showing {visibleResults.length} of {results.length} matches
+          </p>
+        </div>
+      )}
 
       {/* ---- full profile panel ---- */}
       {detail && (
@@ -538,6 +605,8 @@ function ProfilePanel({
             <p className="mt-1 text-sm font-medium text-stone">
               {c.place} · {c.control === "public" ? "Public" : "Private"}
               {c.religious ? ` · ${c.religious}` : ""}
+              {c.format === "online-and-campus" ? " · Online + campus" : ""}
+              {c.tags?.length ? ` · ${c.tags.join(" · ")}` : ""}
               {c.undergrads != null ? ` · ≈${c.undergrads.toLocaleString()} undergrads` : ""}
             </p>
           </div>
@@ -567,6 +636,47 @@ function ProfilePanel({
         </div>
 
         <p className="mt-3 text-sm italic leading-6 text-stone">{c.note}</p>
+
+        {c.cds && (
+          <p className="mt-2 text-[13px] leading-5 text-stone">
+            <a
+              href={c.cds.url}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              Common Data Set source ({c.cds.year})
+            </a>{" "}
+            · checked {c.cds.verified}
+            {c.cds.archiveUrl && c.cds.archiveUrl !== c.cds.url && (
+              <>
+                {" · "}
+                <a
+                  href={c.cds.archiveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Source record
+                </a>
+              </>
+            )}
+          </p>
+        )}
+
+        {c.federal && (
+          <p className="mt-1 text-[13px] leading-5 text-stone">
+            <a
+              href={c.federal.url}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              NCES College Navigator source ({c.federal.year})
+            </a>{" "}
+            · checked {c.federal.verified}
+          </p>
+        )}
 
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           <div>
@@ -629,7 +739,20 @@ function ProfilePanel({
             )}
             {groups.every(([, , fs]) => fs.length === 0) && (
               <p className="text-[13px] text-stone">
-                This college&apos;s factor table isn&apos;t encoded yet.
+                {c.cds?.c7Status === "not-reported"
+                  ? "This college left its official C7 factor table blank."
+                  : c.cds?.c7Status === "not-extracted"
+                    ? "The source archive does not yet have a reliable C7 factor extract for this document."
+                    : c.cds?.c7Status === "not-encoded"
+                      ? "The college publishes a CDS, but its C7 factor table has not been encoded yet."
+                      : c.cdsSearchStatus === "not-found"
+                        ? "A current school-published Common Data Set was not located during this update; federal admissions and outcome figures are still shown above."
+                    : "This college's factor table isn't encoded yet."}
+              </p>
+            )}
+            {c.cds?.c7Status === "partial" && (
+              <p className="text-[13px] text-stone">
+                {FACTOR_IDS.length - Object.keys(c.factors).length} C7 {FACTOR_IDS.length - Object.keys(c.factors).length === 1 ? "field is" : "fields are"} blank or unclear in the college&apos;s published sheet; {FACTOR_IDS.length - Object.keys(c.factors).length === 1 ? "it stays" : "they stay"} shown as —.
               </p>
             )}
           </div>

@@ -46,7 +46,10 @@ const idsIn = (file) => new Set([...read(file).matchAll(/^\s{4}id:\s*"([a-z0-9-]
 const courseIds = idsIn("lib/courses.ts");
 const journeyIds = idsIn("lib/journeys.ts");
 const challengeIds = idsIn("lib/challenges.ts");
-const careerIds = idsIn("lib/careers.ts");
+const careerIds = new Set([
+  ...idsIn("lib/careers.ts"),
+  ...idsIn("lib/careerAdditions.ts"),
+]);
 const blogSlugs = new Set([...read("lib/blog.ts").matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
 const postIds = new Set([...read("lib/communityFeed.ts").matchAll(/id:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
 const glossarySlugs = new Set([...read("lib/glossary.ts").matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((m) => m[1]));
@@ -75,7 +78,8 @@ const staticPages = new Set([
   "/privacy", "/account", "/account/reset", "/skills", "/admin/comments",
   "/students", "/students/scholarships", "/students/opportunities",
   "/students/deadlines", "/students/tracker", "/students/careers",
-  "/students/career-explorer", "/students/careers/interview-practice",
+  "/students/career-explorer", "/students/career-explorer/compare",
+  "/students/careers/interview-practice",
   "/students/careers/mock-interview",
   "/students/guides", "/students/path",
   "/students/compare-colleges",
@@ -168,8 +172,11 @@ for (const f of dataFiles) {
 
   // 3. bare slug references that must be real articles
   const relatedIsTopics = f === "lib/learnContent.ts";
-  // careerDetails.related holds CAREER ids (cross-links between profiles), not article slugs.
-  const relatedIsCareers = f === "lib/careerDetails.ts";
+  // Career profile related fields hold CAREER ids (cross-links between profiles),
+  // not article slugs. Additions live separately so the generated catalog stays
+  // reviewable, but both files share the same reference contract.
+  const relatedIsCareers =
+    f === "lib/careerDetails.ts" || f === "lib/careerAdditions.ts";
   for (const m of s.matchAll(/(related|articleSlugs|STARTER_SLUGS|STUDENT_LIFE_SLUGS|ROADMAP_SLUGS):?\s*(?:=\s*)?\[([^\]]*)\]/gs)) {
     if (relatedIsTopics && m[1] === "related") continue;
     if (relatedIsCareers && m[1] === "related") {

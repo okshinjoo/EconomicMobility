@@ -1,15 +1,10 @@
-// Career profile — one SSG page per career (July 18, 2026 owner ask: "more
-// info about each job"). Renders the richer BLS profile from lib/careers.ts +
-// lib/careerDetails.ts: what the work is, the real pay RANGE (10th–90th
-// percentile, not just the median), how many people do it, how you get in,
-// the skills it takes, and similar careers. Numbers are BLS May 2025 (OEWS);
-// a range shown as an em dash is pending the next data pull, never invented.
-// Student-native page — the layout provides StudentHeader.
+// Career profile — one statically generated page per catalog career. Pay and
+// employment are May 2025 OEWS; projections are 2024–34 BLS data.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { HandCoins, ArrowLeft } from "@phosphor-icons/react/dist/ssr";
+import { HandCoins, ArrowLeft, ArrowSquareOut } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
 import HeroRecede from "@/components/HeroRecede";
@@ -17,14 +12,19 @@ import TopicMark from "@/components/TopicMark";
 import type { TopicId } from "@/lib/topics";
 import {
   careers,
+  careerPayLabel,
+  careerPayPeriod,
   growthLabel,
-  payLabel,
+  CAREER_SOURCE_URLS,
   CAREER_DATA_VINTAGE,
   FIELD_LABELS,
   EDUCATION_LABELS,
   type Career,
 } from "@/lib/careers";
 import { getCareerDetail } from "@/lib/careerDetails";
+import { getCareerEnrichment, ONET_DATA_VINTAGE } from "@/lib/careerEnrichment";
+import CareerSaveButton from "@/components/CareerSaveButton";
+import CareerLocalPay from "@/components/CareerLocalPay";
 
 const usd = (n: number) => `$${n.toLocaleString()}`;
 
@@ -38,6 +38,23 @@ const FIELD_MARK: Record<Career["field"], TopicId> = {
   public: "money-safety",
   engineering: "government-aid",
   service: "budgeting",
+};
+
+const INTEREST_COPY: Record<string, string> = {
+  Realistic: "working with tools, equipment, materials, or the physical world",
+  Investigative: "solving problems, analyzing evidence, and figuring out how things work",
+  Artistic: "creating, designing, performing, or working without a rigid script",
+  Social: "helping, teaching, caring for, or supporting other people",
+  Enterprising: "leading, persuading, selling, or turning an idea into action",
+  Conventional: "organizing information, following systems, and getting details right",
+};
+
+const JOB_ZONE_COPY: Record<number, string> = {
+  1: "Little or no preparation is usually needed.",
+  2: "Some preparation—often a high school credential and on-the-job learning—is usually needed.",
+  3: "Medium preparation—often vocational training, an associate degree, or substantial experience—is usually needed.",
+  4: "High preparation—usually a four-year degree plus experience—is common.",
+  5: "Extensive preparation—often graduate education and significant experience—is common.",
 };
 
 export function generateStaticParams() {
@@ -54,14 +71,20 @@ export async function generateMetadata({
   if (!c) return { title: "Career not found | Empower" };
   const d = getCareerDetail(c.id);
   const range =
-    d?.payLow && d?.payHigh
+    d?.payLow != null && d?.payHigh != null
       ? ` Most earn ${usd(d.payLow)}–${usd(d.payHigh)}.`
+      : d?.hourlyPayLow != null && d?.hourlyPayHigh != null
+        ? ` Most earn $${d.hourlyPayLow.toFixed(2)}–$${d.hourlyPayHigh.toFixed(2)} an hour.`
       : "";
+  const payFact =
+    c.medianPay != null
+      ? `median ${careerPayLabel(c)} a year`
+      : c.medianHourlyPay != null
+        ? `median ${careerPayLabel(c)} an hour`
+        : "BLS does not publish a wage estimate";
   return {
     title: `${c.title} — pay, training & outlook | Empower Career Explorer`,
-    description: `What a ${c.title.toLowerCase()} does, real BLS numbers (median ${usd(
-      c.medianPay
-    )}/year), the training it takes, and similar careers.${range} Facts, not rankings.`,
+    description: `What a ${c.title.toLowerCase()} does, real BLS numbers (${payFact}), the training it takes, and similar careers.${range} Facts, not rankings.`,
   };
 }
 
@@ -103,7 +126,15 @@ export default async function CareerProfilePage({
   if (!career) notFound();
   const c = career as Career;
   const d = getCareerDetail(c.id);
-  const hasRange = Boolean(d?.payLow && d?.payHigh);
+  const enrichment = getCareerEnrichment(c.id);
+  const hasAnnualRange = d?.payLow != null && d?.payHigh != null;
+  const hasHourlyRange =
+    !hasAnnualRange && d?.hourlyPayLow != null && d?.hourlyPayHigh != null;
+  const rangeValue = hasAnnualRange
+    ? `${usd(d!.payLow!)} – ${usd(d!.payHigh!)}`
+    : hasHourlyRange
+      ? `$${d!.hourlyPayLow!.toFixed(2)} – $${d!.hourlyPayHigh!.toFixed(2)}`
+      : "Not published";
 
   const related = (d?.related ?? [])
     .map((rid) => careers.find((x) => x.id === rid))
@@ -138,23 +169,29 @@ export default async function CareerProfilePage({
             {c.title}
           </h1>
 
+          <div className="mt-5">
+            <CareerSaveButton careerId={c.id} inverse />
+          </div>
+
           <div className="mt-7 flex flex-wrap items-end gap-x-10 gap-y-4">
             <div>
               <div className="font-display text-4xl font-bold tabular-nums text-cream sm:text-5xl">
-                {payLabel(c.medianPay)}
+                {careerPayLabel(c)}
               </div>
               <div className="mt-1 text-sm font-semibold text-cream/60">
-                median pay per year
+                {careerPayPeriod(c)}
               </div>
             </div>
             <div>
               <div className="font-display text-2xl font-bold tabular-nums text-amber">
-                {hasRange ? `${usd(d!.payLow!)} – ${usd(d!.payHigh!)}` : "—"}
+                {rangeValue}
               </div>
               <div className="mt-1 text-sm font-semibold text-cream/60">
-                {hasRange
-                  ? "what most earn (10th–90th percentile)"
-                  : "full range coming in the next data update"}
+                {hasAnnualRange
+                  ? "what most earn per year (10th–90th percentile)"
+                  : hasHourlyRange
+                    ? "what most earn per hour (10th–90th percentile)"
+                    : "BLS does not publish wage data for this occupation"}
               </div>
             </div>
           </div>
@@ -171,6 +208,12 @@ export default async function CareerProfilePage({
             <p className="mt-3 max-w-3xl text-lg leading-8 text-ink/90">
               {d.whatTheyDo}
             </p>
+            {enrichment && enrichment.alternateTitles.length > 0 && (
+              <p className="mt-3 max-w-4xl text-sm leading-6 text-stone">
+                <span className="font-bold text-ink/75">You may also see this posted as:</span>{" "}
+                {enrichment.alternateTitles.join(", ")}.
+              </p>
+            )}
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="rounded-xl border-2 border-ink/12 bg-cream p-4">
                 <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-terracotta">
@@ -189,22 +232,109 @@ export default async function CareerProfilePage({
         </section>
       )}
 
+      {/* Day-to-day fit, from O*NET */}
+      {enrichment && (
+        <section className="border-b-2 border-ink bg-cream">
+          <div className="mx-auto max-w-5xl px-6 py-10">
+            <div className="grid grid-cols-1 gap-9 lg:grid-cols-5">
+              <div className="lg:col-span-3">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">The day to day</span>
+                <h2 className="mt-2 font-display text-2xl font-bold text-ink">What you&apos;d actually spend time doing</h2>
+                {enrichment.coreTasks.length > 0 ? (
+                  <ul className="mt-4 space-y-3">
+                    {enrichment.coreTasks.map((task) => (
+                      <li key={task} className="flex gap-3 text-sm leading-6 text-ink/85">
+                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-amber ring-1 ring-ink" />
+                        {task}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-4 text-sm leading-6 text-stone">O*NET has not designated core tasks for this occupation.</p>
+                )}
+              </div>
+              <div className="lg:col-span-2">
+                <h2 className="font-display text-2xl font-bold text-ink">Good fit if you like…</h2>
+                <div className="mt-4 divide-y-2 divide-ink/10 border-y-2 border-ink/15">
+                  {enrichment.interests.map((interest) => (
+                    <div key={interest} className="py-3">
+                      <p className="text-sm font-bold text-forest">{interest}</p>
+                      <p className="mt-0.5 text-[13px] leading-5 text-stone">{INTEREST_COPY[interest] ?? "work that uses this interest"}</p>
+                    </div>
+                  ))}
+                </div>
+                {enrichment.jobZone && (
+                  <div className="mt-5 border-l-4 border-amber pl-4">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">O*NET job zone {enrichment.jobZone} of 5</p>
+                    <p className="mt-1 text-sm leading-6 text-ink/85">{JOB_ZONE_COPY[enrichment.jobZone]}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {(enrichment.workStyles.length > 0 || enrichment.software.length > 0) && (
+              <div className="mt-9 grid grid-cols-1 gap-7 border-t-2 border-ink/15 pt-7 sm:grid-cols-2">
+                {enrichment.workStyles.length > 0 && (
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">Work styles that matter most</h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {enrichment.workStyles.map((style) => (
+                        <span key={style} className="rounded-md border-2 border-ink/15 bg-paper px-3 py-1.5 text-sm font-bold text-ink/75">{style}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {enrichment.software.length > 0 && (
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">Software that shows up in the work</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-stone">Examples employers report—not a checklist you must already know.</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {enrichment.software.map((software) => (
+                        <span key={software} className="rounded-md border-2 border-ink/15 bg-paper px-3 py-1.5 text-sm font-bold text-ink/75">{software}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* By the numbers */}
       <section className="bg-paper-deep">
         <div className="mx-auto max-w-5xl px-6 py-10">
           <h2 className="font-display text-2xl font-bold text-ink">By the numbers</h2>
           <p className="mt-1 text-sm text-stone">{CAREER_DATA_VINTAGE}.</p>
-          <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            <Stat label="Median pay" value={payLabel(c.medianPay)} sub="per year" tone="forest" />
+          <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            <Stat
+              label="Median pay"
+              value={careerPayLabel(c)}
+              sub={careerPayPeriod(c).replace("median / ", "per ")}
+              tone="forest"
+            />
+            {c.medianPay != null && d?.hourlyMedian != null && (
+              <Stat
+                label="Hourly median"
+                value={`$${d.hourlyMedian.toFixed(2)}`}
+                sub="per hour"
+              />
+            )}
             <Stat
               label="What most earn"
-              value={hasRange ? `${usd(d!.payLow!)}–${usd(d!.payHigh!)}` : "—"}
-              sub={hasRange ? "10th to 90th percentile" : "range coming soon"}
+              value={rangeValue.replace(" – ", "–")}
+              sub={
+                hasAnnualRange
+                  ? "yearly, 10th to 90th percentile"
+                  : hasHourlyRange
+                    ? "hourly, 10th to 90th percentile"
+                    : "not collected by OEWS"
+              }
             />
             <Stat
               label="Openings a year"
-              value={d?.annualOpenings ? `~${d.annualOpenings.toLocaleString()}` : "—"}
-              sub={d?.annualOpenings ? "projected, 2024–34" : "—"}
+              value={d?.annualOpenings != null ? `~${d.annualOpenings.toLocaleString()}` : "—"}
+              sub={d?.annualOpenings != null ? "projected, 2024–34" : "—"}
               tone="forest"
             />
             <Stat
@@ -215,8 +345,8 @@ export default async function CareerProfilePage({
             />
             <Stat
               label="Working in the U.S."
-              value={d?.numJobs ? d.numJobs.toLocaleString() : "—"}
-              sub={d?.numJobs ? "people, nationwide" : "coming soon"}
+              value={d?.numJobs != null ? d.numJobs.toLocaleString() : "—"}
+              sub={d?.numJobs != null ? "people, nationwide" : "not published"}
             />
           </div>
           <p className="mt-3 text-[13px] leading-6 text-stone">
@@ -224,11 +354,24 @@ export default async function CareerProfilePage({
             new jobs plus the ones that open when people retire or move on — a truer
             picture of your odds than growth alone.
           </p>
-          <p className="mt-4 text-[13px] leading-6 text-stone">
-            &ldquo;Median&rdquo; means half earn more and half earn less. Your
-            city, employer, and years on the job move it a lot — that is what the
-            10th-to-90th range shows.
-          </p>
+          {(c.medianPay != null || c.medianHourlyPay != null) && (
+            <p className="mt-4 text-[13px] leading-6 text-stone">
+              &ldquo;Median&rdquo; means half earn more and half earn less. Your
+              city, employer, and years on the job move it a lot — that is what the
+              10th-to-90th range shows.
+            </p>
+          )}
+          {d?.selfEmployedPercent != null && (
+            <p className="mt-2 text-[13px] leading-6 text-stone">
+              BLS estimates {d.selfEmployedPercent}% of workers in this occupation are
+              self-employed.
+            </p>
+          )}
+          <CareerLocalPay
+            careerId={c.id}
+            nationalAnnual={c.medianPay}
+            nationalHourly={c.medianHourlyPay ?? d?.hourlyMedian}
+          />
         </div>
       </section>
 
@@ -247,6 +390,16 @@ export default async function CareerProfilePage({
               <p className="mt-1 text-sm leading-6 text-stone">
                 Training path: {c.trainingNote}.
               </p>
+              {d?.workExperience && (
+                <p className="mt-2 text-sm leading-6 text-stone">
+                  Related work experience: {d.workExperience}.
+                </p>
+              )}
+              {d?.onJobTraining && (
+                <p className="text-sm leading-6 text-stone">
+                  On-the-job training: {d.onJobTraining}.
+                </p>
+              )}
             </div>
             {d?.license ? (
               <div className="rounded-xl border-2 border-ink/12 bg-cream p-4">
@@ -278,6 +431,44 @@ export default async function CareerProfilePage({
               </p>
             </div>
           )}
+
+          <div className="mt-7 border-t-2 border-ink/15 pt-6">
+            <h3 className="font-display text-lg font-bold text-ink">Check the path where you live</h3>
+            <p className="mt-1 max-w-3xl text-sm leading-6 text-stone">
+              Licensing rules and available programs change by state. These federal tools take you to the current official listings.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+              <a
+                href={`https://www.careeronestop.org/Toolkit/Training/find-licenses.aspx?keyword=${encodeURIComponent(enrichment?.onetTitle ?? c.title)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                Find state licenses
+                <ArrowSquareOut className="h-4 w-4" weight="bold" />
+              </a>
+              <a
+                href={`https://www.careeronestop.org/Toolkit/Training/find-certifications.aspx?keyword=${encodeURIComponent(enrichment?.onetTitle ?? c.title)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              >
+                Find recognized certifications
+                <ArrowSquareOut className="h-4 w-4" weight="bold" />
+              </a>
+              {c.earnWhileTraining && (
+                <a
+                  href="https://www.apprenticeship.gov/apprenticeship-job-finder"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Search paid apprenticeships
+                  <ArrowSquareOut className="h-4 w-4" weight="bold" />
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -335,10 +526,10 @@ export default async function CareerProfilePage({
                     {FIELD_LABELS[r.field]}
                   </p>
                   <div className="mt-3 font-display text-xl font-bold tabular-nums text-forest">
-                    {payLabel(r.medianPay)}
+                    {careerPayLabel(r)}
                   </div>
                   <div className="text-[11px] font-semibold text-stone">
-                    median / year
+                    {careerPayPeriod(r)}
                   </div>
                 </Link>
               ))}
@@ -407,9 +598,57 @@ export default async function CareerProfilePage({
                 <span className="font-semibold text-ink/70">{d.soc}</span>.{" "}
               </>
             )}
-            Pay, employment, and outlook from the U.S. Bureau of Labor Statistics
-            (OEWS wage survey and 2024–34 employment projections). See something
-            off?{" "}
+            {c.medianPay != null || c.medianHourlyPay != null ? (
+              <>
+                Pay and employment from the{" "}
+                <a
+                  href={CAREER_SOURCE_URLS.wages}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  BLS May 2025 OEWS survey
+                </a>
+                ; outlook and openings from the{" "}
+              </>
+            ) : (
+              <>BLS does not publish an OEWS wage for this occupation; employment, outlook, and openings come from the{" "}</>
+            )}
+            <a
+              href={CAREER_SOURCE_URLS.projections}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              2024–34 employment projections
+            </a>
+            {d?.oohUrl && (
+              <>
+                ; job context from the{" "}
+                <a
+                  href={d.oohUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  Occupational Outlook Handbook
+                </a>
+              </>
+            )}
+            {enrichment && (
+              <>
+                ; tasks, interests, work styles, software examples, and job zone from{" "}
+                <a
+                  href={enrichment.onetUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+                >
+                  {ONET_DATA_VINTAGE}
+                </a>
+              </>
+            )}
+            . See something off?{" "}
             <Link
               href="/contact"
               className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"

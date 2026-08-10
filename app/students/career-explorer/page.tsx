@@ -1,9 +1,5 @@
-// Career Explorer — LIVE (July 16, 2026; the last parked preview ships,
-// same path Compare Colleges took). 100 careers on public BLS data: median
-// pay, growth outlook, training path, and the audience-defining
-// "earn while you train" filter (paid apprenticeships/academies/employer
-// training). Data in lib/careers.ts (vintage-tagged, re-verify when BLS
-// refreshes). Student-native page — the layout provides StudentHeader.
+// Career Explorer — a curated catalog audited against the full BLS detailed
+// occupation table. Student-native page; the layout provides StudentHeader.
 
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -13,7 +9,12 @@ import HeroRecede from "@/components/HeroRecede";
 import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CareerExplorer from "@/components/CareerExplorer";
-import { careers, CAREER_DATA_VINTAGE } from "@/lib/careers";
+import {
+  careers,
+  CAREER_COVERAGE_AUDIT_TOTAL,
+  CAREER_DATA_VINTAGE,
+  CAREER_SOURCE_URLS,
+} from "@/lib/careers";
 import { opportunities } from "@/lib/opportunities";
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ export default function CareerExplorerPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/75">
-            Real numbers for {careers.length} careers: the median paycheck,
+            Real numbers for {careers.length} distinct careers: the median paycheck,
             whether the field is growing, what training it truly requires —
             and the paths that <em>pay you</em>{" "}while you learn, from union
             apprenticeships to the FAA&apos;s academy. No rankings, no
@@ -62,15 +63,41 @@ export default function CareerExplorerPage() {
         <div className="mx-auto max-w-6xl px-6 py-6">
           <p className="max-w-3xl text-sm leading-6 text-stone">
             <span className="font-bold text-ink">How to read this:</span>{" "}
-            every figure comes from the Bureau of Labor Statistics — median pay
-            from the wage survey (May 2025 for most; the newest additions use
-            the May 2024 figures until we refresh them), growth and yearly
-            openings from the official 2024–34 projections.
+            pay and national employment come from the Bureau of Labor
+            Statistics&apos; May 2025 wage survey; growth, yearly openings, and
+            typical entry education come from the official 2024–34 projections.
+            Detailed tasks, interests, work styles, and alternate job titles come
+            from O*NET 30.3. Choose a state on any profile for the statewide BLS
+            median, or save careers to compare up to four side by side.
             &ldquo;Median&rdquo; means half earn more and half earn less; big
             cities and experience push it up. &ldquo;Earn while you train&rdquo;
             is strict: it marks only paths with a genuinely paid route in —
             apprenticeships, academies, employer-funded or on-the-job training —
             not just &ldquo;no degree required.&rdquo;
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b-2 border-ink bg-cream">
+        <div className="mx-auto max-w-6xl px-6 py-8">
+          <h2 className="font-display text-xl font-bold text-ink">
+            Broad coverage, without padding the count
+          </h2>
+          <p className="mt-2 max-w-4xl text-sm leading-6 text-stone">
+            We reviewed all {CAREER_COVERAGE_AUDIT_TOTAL} detailed occupations in the{" "}
+            <a
+              href={CAREER_SOURCE_URLS.projections}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+            >
+              federal projections table
+            </a>
+            . The explorer includes jobs that are distinct and useful to search,
+            while consolidating near-identical machine specialties,
+            subject-by-subject professor codes, and catch-all &ldquo;all other&rdquo;
+            categories. When BLS publishes hourly pay but not annual pay, we show
+            it that way instead of guessing.
           </p>
         </div>
       </section>

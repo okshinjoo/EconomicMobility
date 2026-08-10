@@ -40,6 +40,8 @@ export const STORAGE_KEYS = {
   // Optional scholarship-match answers (state/field/opt-in groups) — the
   // finder works identically without it; one click clears it.
   scholarshipProfile: "empower:scholarship-profile:v1",
+  savedCareers: "empower:saved-careers:v1",
+  careerState: "empower:career-state:v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {

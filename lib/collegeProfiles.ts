@@ -1,4 +1,4 @@
-// Compare Colleges data (July 2026 — the parked preview goes live; owner ask:
+// Compare Colleges data (expanded August 2026; owner ask:
 // "some are need blind, some aren't — some consider religious affiliation,
 // some are more holistic than others").
 //
@@ -15,28 +15,39 @@
 // Re-verify each cycle like article figures. To add a college: fill what its
 // CDS actually says and leave the rest null.
 
+import { expandedCollegeProfiles } from "./collegeProfilesExpanded.ts";
+
 export type C7Rating = "very" | "important" | "considered" | "no";
 
-export type FactorId =
-  | "rigor"
-  | "gpa"
-  | "rank"
-  | "essay"
-  | "recs"
-  | "interview"
-  | "ecs"
-  | "talent"
-  | "character"
-  | "firstGen"
-  | "legacy"
-  | "interest"
-  | "religion"
-  | "work";
+/** Current CDS C7 factors, in the order they appear on the form. */
+export const FACTOR_IDS = [
+  "rigor",
+  "rank",
+  "gpa",
+  "tests",
+  "essay",
+  "recs",
+  "interview",
+  "ecs",
+  "talent",
+  "character",
+  "firstGen",
+  "legacy",
+  "geography",
+  "residency",
+  "religion",
+  "volunteer",
+  "work",
+  "interest",
+] as const;
+
+export type FactorId = (typeof FACTOR_IDS)[number];
 
 export const FACTOR_LABELS: Record<FactorId, string> = {
   rigor: "Course rigor",
-  gpa: "GPA",
   rank: "Class rank",
+  gpa: "GPA",
+  tests: "Test scores",
   essay: "Essays",
   recs: "Recommendations",
   interview: "Interview",
@@ -45,9 +56,12 @@ export const FACTOR_LABELS: Record<FactorId, string> = {
   character: "Character",
   firstGen: "First-gen status",
   legacy: "Legacy (family ties)",
-  interest: "Demonstrated interest",
+  geography: "Geographic residence",
+  residency: "State residency",
   religion: "Religious affiliation",
+  volunteer: "Volunteer work",
   work: "Work experience",
+  interest: "Demonstrated interest",
 };
 
 export const RATING_LABELS: Record<C7Rating, string> = {
@@ -63,8 +77,15 @@ export interface CollegeProfile {
   /** "Cambridge, MA" */
   place: string;
   control: "public" | "private";
+  /** Familiar acronyms and campus names used only to improve search. */
+  aliases?: string[];
+  /** Student-useful classifications such as HBCU or service academy. */
+  tags?: string[];
+  /** Distinguishes a national online/adult-facing institution from the
+   *  campus-first profiles without removing it from the same comparison. */
+  format?: "online-and-campus";
   /** Religious affiliation, when the college has one. */
-  religious?: string;
+  religious?: string | null;
   /** Undergraduate enrollment, rounded (render with ≈); null = not encoded. */
   undergrads: number | null;
   /** SAT middle 50% of enrolled first-years (CDS C9); null = not published
@@ -90,6 +111,28 @@ export interface CollegeProfile {
   aidNote?: string;
   /** CDS C7 extract — ONLY the cells we're confident of; missing = unknown. */
   factors: Partial<Record<FactorId, C7Rating>>;
+  /** Direct official CDS source for profiles added in the all-state expansion. */
+  cds?: {
+    year: string;
+    url: string;
+    verified: string;
+    c7Status?:
+      | "complete"
+      | "partial"
+      | "not-reported"
+      | "not-extracted"
+      | "not-encoded";
+    /** Transparent extraction/provenance record, when separate from the source file. */
+    archiveUrl?: string;
+  };
+  /** NCES College Navigator profile used for generated baseline facts. */
+  federal?: {
+    year: string;
+    url: string;
+    verified: string;
+  };
+  /** The source audit did not locate a current school-published CDS. */
+  cdsSearchStatus?: "not-found";
   /** One honest line of personality/context. */
   note: string;
   /** Transfer admission (CDS section D) — absent = not encoded yet.
@@ -106,9 +149,10 @@ export interface CollegeProfile {
 }
 
 /** The cycle most figures come from — shown publicly, re-verify yearly. */
-export const COLLEGE_DATA_VINTAGE = "2024–25 admissions cycle";
+export const COLLEGE_DATA_VINTAGE =
+  "latest available school-published CDS, with 2024 federal baseline facts for gaps";
 
-export const colleges: CollegeProfile[] = [
+export const coreColleges: CollegeProfile[] = [
   {
     id: "harvard",
     undergrads: 7100,
@@ -2263,4 +2307,643 @@ export const colleges: CollegeProfile[] = [
       note: "No transfer credit — all midshipmen start from year one.",
     },
   },
+  {
+    id: "alaska-fairbanks",
+    name: "University of Alaska Fairbanks",
+    place: "Fairbanks, AK",
+    control: "public",
+    undergrads: null,
+    satRange: "1050–1280",
+    actRange: "17–28",
+    gradRate: null,
+    admitRate: 64.2,
+    admitYear: "fall 2025",
+    testPolicy: "blind",
+    testNote: "UAF does not use SAT or ACT scores in admission decisions",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "no", rank: "no", gpa: "very", tests: "considered",
+      essay: "no", recs: "no", interview: "no", ecs: "no",
+      talent: "no", character: "no", firstGen: "no", legacy: "no",
+      geography: "no", residency: "no", religion: "no", volunteer: "no",
+      work: "no", interest: "no",
+    },
+    note: "GPA is the only factor UAF calls very important; it reports every nonacademic C7 factor as not considered.",
+    cds: {
+      year: "2025–26",
+      url: "https://www.uaf.edu/pair/pair_reports/common-data-set/index.php",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "arkansas",
+    name: "University of Arkansas",
+    place: "Fayetteville, AR",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 74.3,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "considered", rank: "considered", gpa: "very", tests: "important",
+      essay: "considered", recs: "considered", interview: "no", ecs: "considered",
+      talent: "considered", character: "considered", firstGen: "considered",
+      legacy: "considered", geography: "considered", residency: "considered",
+      religion: "no", volunteer: "considered", work: "considered", interest: "no",
+    },
+    note: "Arkansas puts GPA at the top, calls test scores important, and considers a broad range of academic and life-experience factors.",
+    cds: {
+      year: "2024–25",
+      url: "https://osai.uark.edu/datasets/cds/",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "colorado-state",
+    name: "Colorado State University",
+    place: "Fort Collins, CO",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 88.6,
+    admitYear: "fall 2025",
+    testPolicy: "blind",
+    testNote: "CSU reports that scores are not considered even when submitted",
+    gpaNote: "Average 3.70 (CDS C12, fall 2025)",
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "no",
+      essay: "important", recs: "considered", interview: "no", ecs: "considered",
+      talent: "considered", character: "considered", firstGen: "considered",
+      legacy: "no", geography: "considered", residency: "considered",
+      religion: "no", volunteer: "considered", work: "considered", interest: "no",
+    },
+    note: "CSU centers course rigor and GPA, reads the essay, and does not count test scores or legacy ties.",
+    cds: {
+      year: "2025–26",
+      url: "https://www.ir.colostate.edu/wp-content/uploads/sites/21/2026/03/CSU_CDS_FY2026_Access.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "delaware",
+    name: "University of Delaware",
+    place: "Newark, DE",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 69.2,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "considered",
+      essay: "important", recs: "important", interview: "considered", ecs: "important",
+      talent: "important", character: "important", firstGen: "considered", legacy: "no",
+      geography: "considered", residency: "very", religion: "no",
+      volunteer: "important", work: "important", interest: "considered",
+    },
+    note: "Delaware reports a broad read: rigor, GPA, and state residency lead, while essays, recommendations, activities, work, and service all matter.",
+    cds: {
+      year: "2024–25",
+      url: "https://ire.udel.edu/common-data-set/",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "hawaii-manoa",
+    name: "University of Hawaiʻi at Mānoa",
+    place: "Honolulu, HI",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 86.6,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "considered",
+      essay: "considered", recs: "considered", interview: "no", ecs: "considered",
+      talent: "considered", character: "no", firstGen: "no", legacy: "no",
+      geography: "considered", residency: "important", religion: "no",
+      volunteer: "no", work: "no", interest: "no",
+    },
+    note: "Mānoa leads with rigor and GPA; residency matters, while legacy, interest, work, and volunteer experience do not count in its general review.",
+    cds: {
+      year: "2024–25",
+      url: "https://manoa.hawaii.edu/miro/wp-content/uploads/2025/07/Common_Data_Set_2024-2025.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "idaho",
+    name: "University of Idaho",
+    place: "Moscow, ID",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 79.1,
+    admitYear: "fall 2023",
+    testPolicy: "required",
+    gpaNote: "Average 3.40 (CDS C12, fall 2023)",
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "no", rank: "no", gpa: "very", tests: "very", essay: "no",
+      recs: "no", interview: "no", ecs: "no", talent: "no", character: "no",
+      firstGen: "no", legacy: "no", geography: "no", residency: "no",
+      religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "In its latest available CDS, Idaho reports a focused formula: GPA and test scores are the only C7 factors that count.",
+    cds: {
+      year: "2023–24",
+      url: "https://content-hub.uidaho.edu/api/public/content/bf62e21cc0114b06bed65dc2a5e6c633?v=aee281dc",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "kansas",
+    name: "University of Kansas",
+    place: "Lawrence, KS",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 93.5,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "no", rank: "no", gpa: "very", tests: "considered", essay: "no",
+      recs: "no", interview: "no", ecs: "no", talent: "no", character: "no",
+      firstGen: "no", legacy: "no", geography: "no", residency: "no",
+      religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "KU's C7 table is unusually direct: GPA is very important, scores are considered, and every other listed factor is not considered.",
+    cds: {
+      year: "2024–25",
+      url: "https://aire.ku.edu/sites/air/files/files/CDS/KUCDS_2024_2025.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "minnesota-twin-cities",
+    name: "University of Minnesota Twin Cities",
+    place: "Minneapolis, MN",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 79.7,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "very", gpa: "very", tests: "considered",
+      essay: "considered", recs: "considered", interview: "no", ecs: "considered",
+      talent: "considered", character: "considered", firstGen: "considered",
+      legacy: "no", geography: "considered", residency: "considered",
+      religion: "no", volunteer: "considered", work: "considered", interest: "no",
+    },
+    note: "Minnesota puts the academic record first, then considers the essay, recommendations, activities, context, work, and service without counting legacy or interest.",
+    cds: {
+      year: "2024–25",
+      url: "https://idr.umn.edu/sites/idr.umn.edu/files/cds_2024_2025_tc_2.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "ole-miss",
+    name: "University of Mississippi",
+    place: "Oxford, MS",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 96.6,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "considered", rank: "considered", gpa: "important", tests: "important",
+      essay: "no", recs: "no", interview: "no", ecs: "no", talent: "no",
+      character: "no", firstGen: "no", legacy: "no", geography: "no",
+      residency: "no", religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "Ole Miss reports an academic-first decision: GPA and scores are important, rigor and rank are considered, and the nonacademic C7 factors do not count.",
+    cds: {
+      year: "2024–25",
+      url: "https://olemiss.app.box.com/shared/static/9snucizya6vnscaq9l9tusadqqawtfmt.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "central-missouri",
+    name: "University of Central Missouri",
+    place: "Warrensburg, MO",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 63.8,
+    admitYear: "fall 2024",
+    testPolicy: "blind",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "considered", rank: "very", gpa: "very", tests: "important",
+      essay: "considered", recs: "no", interview: "no", ecs: "no", talent: "no",
+      character: "no", firstGen: "no", legacy: "no", geography: "no",
+      residency: "no", religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "UCM centers class rank and GPA, with course rigor and the essay in view; its CDS reports no nonacademic C7 factor as part of the general decision.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.ucmo.edu/offices/university-analytics-and-institutional-research/common-data-set/common-data-set-2024-2025.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "montana",
+    name: "University of Montana",
+    place: "Missoula, MT",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 85,
+    admitYear: "fall 2024",
+    testPolicy: "blind",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "no",
+      essay: "no", recs: "no", interview: "no", ecs: "important",
+      talent: "important", character: "no", firstGen: "no", legacy: "no",
+      geography: "no", residency: "no", religion: "no", volunteer: "no",
+      work: "no", interest: "no",
+    },
+    note: "Montana leads with rigor and GPA, gives activities and talent real weight, and reports that test scores, essays, and recommendations do not count.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.umt.edu/institutional-research/data_reports/common_data_set_files/cds_2024-25-with-data.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "nebraska-lincoln",
+    name: "University of Nebraska–Lincoln",
+    place: "Lincoln, NE",
+    control: "public",
+    undergrads: null,
+    satRange: "1100–1310",
+    actRange: "22–28",
+    gradRate: null,
+    admitRate: 87.5,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: "Average 3.54 (CDS C12, fall 2024)",
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "important", rank: "important", gpa: "important", tests: "important",
+      essay: "no", recs: "no", interview: "no", ecs: "no", talent: "no",
+      character: "no", firstGen: "no", legacy: "no", geography: "no",
+      residency: "no", religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "Nebraska gives equal importance to rigor, rank, GPA, and scores, while every nonacademic factor in C7 is marked not considered.",
+    cds: {
+      year: "2024–25",
+      url: "https://iea.unl.edu/common-data-set-2024-2025/",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "new-mexico",
+    name: "University of New Mexico",
+    place: "Albuquerque, NM",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 79.3,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {},
+    note: "UNM's 2024–25 CDS leaves the entire C7 factor table blank, so this profile does not guess at how it weighs applications.",
+    cds: {
+      year: "2024–25",
+      url: "https://oia.unm.edu/resources/cds_24-25_pdf.pdf",
+      verified: "August 2026",
+      c7Status: "not-reported",
+    },
+  },
+  {
+    id: "nevada-reno",
+    name: "University of Nevada, Reno",
+    place: "Reno, NV",
+    control: "public",
+    undergrads: 18895,
+    satRange: "1070–1270",
+    actRange: "19–26",
+    gradRate: 61,
+    admitRate: 73.7,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: "Average 3.44 (CDS C12, fall 2024)",
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "considered",
+      essay: "considered", recs: "considered", interview: "considered",
+      ecs: "considered", talent: "considered", character: "considered",
+      firstGen: "considered", legacy: "considered", geography: "considered",
+      residency: "considered", religion: "considered", volunteer: "considered",
+      work: "considered", interest: "considered",
+    },
+    note: "Reno puts rigor and GPA first, then marks every other current C7 factor as considered rather than dismissing it.",
+    cds: {
+      year: "2024–25",
+      url: "https://dataden.unr.edu/Resources/CDS/CDS_2024-2025.pdf",
+      verified: "August 2026",
+    },
+    transfer: {
+      admitRate: 63.6,
+      admitYear: "fall 2024",
+      gpaNote: null,
+    },
+  },
+  {
+    id: "north-dakota-state",
+    name: "North Dakota State University",
+    place: "Fargo, ND",
+    control: "public",
+    undergrads: null,
+    satRange: "1130–1430",
+    actRange: "19–25",
+    gradRate: null,
+    admitRate: 95,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: "Average 3.52 (CDS C12, fall 2024)",
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "no", rank: "no", gpa: "very", tests: "considered", essay: "no",
+      recs: "no", interview: "no", ecs: "no", talent: "no", character: "no",
+      firstGen: "no", legacy: "no", residency: "no", religion: "no",
+      volunteer: "no", work: "no", interest: "no",
+    },
+    note: "NDSU's sheet makes GPA the clear lead and scores a secondary consideration; its geographical-residence cell is not reliably reported, so that one field stays blank.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.ndsu.edu/sites/default/files/fileadmin/oira/Common_Data_Set/NDSU_CDS_2024-2025.xlsx",
+      verified: "August 2026",
+      c7Status: "partial",
+    },
+  },
+  {
+    id: "oklahoma",
+    name: "University of Oklahoma",
+    place: "Norman, OK",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 76.6,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "important", gpa: "very", tests: "very",
+      essay: "important", recs: "important", interview: "considered", ecs: "considered",
+      talent: "considered", character: "considered", firstGen: "considered",
+      legacy: "considered", geography: "considered", residency: "considered",
+      religion: "no", volunteer: "considered", work: "considered", interest: "considered",
+    },
+    note: "OU reports a genuinely broad review: the record and scores lead, essays and recommendations matter, and most context and experience factors are considered.",
+    cds: {
+      year: "2024–25",
+      url: "https://ou.edu/content/dam/irr/docs/Common%20Data%20Sets/Norman%20Campus%20Only/2024-25-nc/CDS-C.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "oregon-state",
+    name: "Oregon State University",
+    place: "Corvallis, OR",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 77.3,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "considered",
+      essay: "important", recs: "considered", interview: "no", ecs: "considered",
+      talent: "considered", character: "very", firstGen: "no", legacy: "no",
+      geography: "no", residency: "no", religion: "no", volunteer: "considered",
+      work: "considered", interest: "considered",
+    },
+    note: "Oregon State puts rigor, GPA, and character at the top; the essay matters, while first-gen status, legacy, geography, and residency do not count in C7.",
+    cds: {
+      year: "2024–25",
+      url: "https://institutionalresearch.oregonstate.edu/sites/institutionalresearch.oregonstate.edu/files/2025-07/cds_2024-25.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "clemson",
+    name: "Clemson University",
+    place: "Clemson, SC",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 38.3,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "very", gpa: "very", tests: "important", essay: "no",
+      recs: "considered", interview: "no", ecs: "considered", talent: "considered",
+      character: "no", firstGen: "considered", legacy: "considered",
+      geography: "considered", residency: "very", religion: "no",
+      volunteer: "no", work: "no", interest: "no",
+    },
+    note: "Clemson leads with rigor, rank, GPA, and state residency; scores matter, but essays, interviews, service, work, and interest do not count in C7.",
+    cds: {
+      year: "2024–25",
+      url: "https://open.clemson.edu/cds/17/",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "south-dakota",
+    name: "University of South Dakota",
+    place: "Vermillion, SD",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 98.8,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "very", gpa: "very", tests: "very",
+      essay: "considered", recs: "considered", interview: "no", ecs: "no",
+      talent: "no", character: "no", firstGen: "no", legacy: "no",
+      geography: "no", residency: "no", religion: "no", volunteer: "no",
+      work: "no", interest: "no",
+    },
+    note: "USD says the academic record and scores carry the decision; essays and recommendations are considered, while its nonacademic C7 factors are not.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.usd.edu/-/media/Project/USD/DotEdu/About/Departments-Offices-and-Resources/Institutional-Research-Planning-and-Assessment/USD-Common-Data-Set.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "vermont",
+    name: "University of Vermont",
+    place: "Burlington, VT",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 65.3,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "considered", gpa: "very", tests: "considered",
+      essay: "important", recs: "important", interview: "no", ecs: "very",
+      talent: "important", character: "very", firstGen: "important", legacy: "no",
+      geography: "important", residency: "important", religion: "no",
+      volunteer: "important", work: "important", interest: "considered",
+    },
+    note: "UVM's CDS shows a deep holistic read: activities and character sit beside rigor and GPA, with context, service, and work all carrying weight.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.uvm.edu/d10-files/documents/2025-10/2024-2025-Common_Data_Set_2025_10_14.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "west-virginia",
+    name: "West Virginia University",
+    place: "Morgantown, WV",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 85.1,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "no", rank: "no", gpa: "very", tests: "considered", essay: "no",
+      recs: "no", interview: "no", ecs: "no", talent: "no", character: "no",
+      firstGen: "no", legacy: "no", geography: "no", residency: "no",
+      religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "WVU's C7 table is a short formula: GPA is very important, scores are considered, and every other listed factor is not considered.",
+    cds: {
+      year: "2024–25",
+      url: "https://dataoffice.wvu.edu/files/d/d0809710-b583-4b08-8214-e297d97326d5/cds-2024-2025-wvu-final.pdf",
+      verified: "August 2026",
+    },
+  },
+  {
+    id: "wyoming",
+    name: "University of Wyoming",
+    place: "Laramie, WY",
+    control: "public",
+    undergrads: null,
+    satRange: null,
+    actRange: null,
+    gradRate: null,
+    admitRate: 96.9,
+    admitYear: "fall 2024",
+    testPolicy: "optional",
+    gpaNote: null,
+    needBlind: null,
+    meetsFullNeed: null,
+    factors: {
+      rigor: "very", rank: "no", gpa: "very", tests: "no", essay: "considered",
+      recs: "no", interview: "no", ecs: "no", talent: "no", character: "no",
+      firstGen: "no", legacy: "no", geography: "no", residency: "no",
+      religion: "no", volunteer: "no", work: "no", interest: "no",
+    },
+    note: "Wyoming emphasizes course rigor and GPA, considers the essay, and marks every other current C7 factor as not considered.",
+    cds: {
+      year: "2024–25",
+      url: "https://www.uwyo.edu/oia/_files/cds/cds2024-2025.pdf",
+      verified: "August 2026",
+    },
+  },
+];
+
+export const colleges: CollegeProfile[] = [
+  ...coreColleges,
+  ...expandedCollegeProfiles,
 ];

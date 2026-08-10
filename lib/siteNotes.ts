@@ -19,6 +19,20 @@ export interface SiteNote {
 
 export const siteNotes: SiteNote[] = [
   {
+    date: "August 10, 2026",
+    title: "The Career Explorer becomes a real decision tool",
+    body: "We went back to the source and reconciled all 474 careers to current Bureau of Labor Statistics pay, employment, openings, training, and outlook data, after reviewing all 832 detailed occupations in the federal projections table. Then we built the layer a salary list was missing. Choose any state to see the official statewide median; save up to eight paths and compare four side by side; search by real job titles and software; and open a profile to see the tasks, interests, work styles, and preparation level reported in O*NET 30.3. The licensing, certification, and paid-apprenticeship links now go to the federal finders where those rules and openings stay current. We still refuse to fill blanks with guesses: suppressed state wages remain blank, and ten broad or residual careers omit O*NET details because choosing one narrower specialty—or displaying an empty profile—would be misleading.",
+    href: "/students/career-explorer",
+    hrefLabel: "Explore careers",
+  },
+  {
+    date: "August 10, 2026",
+    title: "Compare Colleges now covers 553 schools",
+    body: "We expanded the comparison from 100 colleges to a 553-school catalog across all 50 states, DC, Puerto Rico, and the US Virgin Islands. The latest 53 additions close the biggest application-volume gaps and add more regional publics, CUNY campuses, HBCUs, Tribal Colleges, arts schools, service academies, and an explicitly labeled online-and-campus option. A useful college search cannot be a prestige list. Four hundred twenty-three profiles link to a school-published Common Data Set, and every generated profile links to its federal College Navigator record for baseline enrollment, admissions, testing, and graduation figures. The current C7 model covers all 18 admissions factors, but we only show a factor when the source is clear; partial, blank, hard-to-read, unencoded, or unavailable tables stay visibly incomplete. Familiar searches such as CSUN, UTEP, SCAD, HBCU, and service academy now work, and the list still loads in manageable groups of 60 so it stays fast on a phone.",
+    href: "/students/compare-colleges",
+    hrefLabel: "Compare colleges",
+  },
+  {
     date: "August 7, 2026",
     title: "We re-checked 200 official pages — and hard news from Illinois",
     body: "The eligibility classifications behind the finder's new filters started from our own verified summaries; this pass went back to the official pages themselves for every record we weren't fully certain about — about 200 of them — and we only accepted an answer when the page said it in so many words. Most of it confirmed what we had. Some of it didn't, and we fixed what we found: a dozen summaries corrected (a program that opened to out-of-state study, one whose registration quietly narrowed, one whose income figures we double-checked against the official page rather than trusting second-hand reports of a law change — the page was right, the reports weren't), and two awards removed under our own no-local-awards rule after the geography check showed they serve a single city and a single metro area. The hard news: Illinois. A federal court ruling on July 24, 2026 ended undocumented students' eligibility for Illinois state financial aid for the 2026-27 year, and the state's Alternative Application is suspended. Two Illinois programs on our list carried our 'no citizenship requirement' mark because of that application; the mark is now off both, because showing it would be a lie this year. Illinois says the 2027-28 application criteria will be published around October 2026 — we'll re-check then, and we hope to put the mark back. If this affects you: your state's rules are your state's rules, and many states' aid remains open regardless of status — our guide to aid without papers walks through the landscape.",

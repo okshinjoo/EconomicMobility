@@ -1,4 +1,4 @@
-// Compare Colleges — LIVE (July 16, 2026; the July 13 parked preview ships).
+// Compare Colleges — expanded to a 553-school national catalog in August 2026.
 // Owner ask: "some are need blind, some aren't — some consider religious
 // affiliation, some are more holistic than others" — a tool around exactly
 // that. Facts only, no rankings (house rule): CDS C7 factors, admit rates,
@@ -74,8 +74,8 @@ export default function CompareCollegesPage() {
             for nothing. Compare what each college actually says it looks for.
           </p>
           <p className="mt-4 text-sm font-semibold text-cream/60">
-            {colleges.length}{" "}colleges · built from each school&apos;s own
-            Common Data Set · no rankings, just published facts
+            {colleges.length}{" "}colleges · all 50 states, DC, Puerto Rico, and
+            the US Virgin Islands · school CDS and federal sources · no rankings
           </p>
         </HeroRecede>
       </section>
@@ -85,14 +85,17 @@ export default function CompareCollegesPage() {
         <div className="mx-auto max-w-6xl px-6 py-6">
           <p className="max-w-3xl text-sm leading-6 text-stone">
             <span className="font-bold text-ink">How to read this:</span>{" "}
-            figures come from each college&apos;s Common Data Set (the form
-            nearly every college files — section C7 is &ldquo;what we
-            weigh&rdquo;), admissions releases, and aid pages, from the{" "}
+            figures come from school-published Common Data Sets (section C7
+            is &ldquo;what we weigh&rdquo;), admissions releases, and federal
+            college data, from the{" "}
             {COLLEGE_DATA_VINTAGE}{" "}unless noted. Admit rates drift every year;
-            treat a point or two as noise. A &ldquo;—&rdquo; means the college
-            doesn&apos;t publish that number, not that it doesn&apos;t matter.{" "}
-            Every school's figures were re-verified against official sources
-            (CDS filings, .edu pages, federal College Scorecard) in July 2026.
+            treat a point or two as noise. A &ldquo;—&rdquo; means a value was not
+            reported or could not be extracted reliably, not that it
+            doesn&apos;t matter. We show the 18 current C7 factors only where a
+            school source or archive extract is reliable; blank, unclear, or
+            failed cells stay blank here instead of becoming guesses. Every
+            generated profile links to NCES College Navigator. When a current
+            school-published CDS could not be located, the profile says so.
           </p>
         </div>
       </section>
