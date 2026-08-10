@@ -1,4 +1,70 @@
 {
   "schemaVersion": 1,
-  "records": []
+  "records": [
+    {
+      "catalogRecord": {
+        "id": "wilsonart-student-essay-competition",
+        "name": "Wilsonart Student Essay Competition",
+        "amount": "$1,000",
+        "deadline": "April 13, 2026",
+        "deadlineMonth": 4,
+        "who": "College students who participated in the 2026 IIDA Student Mentoring program and completed the required mentorship sessions.",
+        "stages": [
+          "college"
+        ],
+        "tags": [
+          "interior design",
+          "essay",
+          "mentorship",
+          "iida",
+          "wilsonart"
+        ],
+        "officialUrl": "https://iida.org/foundation/wilsonart-essay-competition"
+      },
+      "geographyOverlay": {
+        "wilsonart-student-essay-competition": {
+          "scope": "national"
+        }
+      },
+      "eligibilityOverlay": {
+        "wilsonart-student-essay-competition": [
+          {
+            "tag": "basis.essay-contest",
+            "strength": "required"
+          },
+          {
+            "tag": "affiliation.membership",
+            "strength": "required"
+          },
+          {
+            "tag": "field.arts.visual-design",
+            "strength": "relevant"
+          }
+        ]
+      },
+      "provenanceRecords": [
+        {
+          "id": "wilsonart-student-essay-competition",
+          "kind": "geo",
+          "classifiedAt": "2026-08-10",
+          "sourceUrl": "https://iida.org/foundation/wilsonart-essay-competition",
+          "method": "manual",
+          "confidence": "verified",
+          "evidence": "The official eligibility criterion is participation in the IIDA Student Mentoring program; it states no state residency restriction, so the award is not state-bound."
+        },
+        {
+          "id": "wilsonart-student-essay-competition",
+          "kind": "eligibility",
+          "classifiedAt": "2026-08-10",
+          "sourceUrl": "https://iida.org/foundation/wilsonart-essay-competition",
+          "method": "manual",
+          "confidence": "verified",
+          "evidence": "College students who participated in the 2026 IIDA Student Mentoring program and completed the required mentorship sessions."
+        }
+      ],
+      "sourceCandidateId": "candidate-wilsonart-student-essay-competition-163b7b4b",
+      "preparedAt": "2026-08-10T14:36:47.809Z",
+      "sponsor": "IIDA Foundation and Wilsonart"
+    }
+  ]
 }
