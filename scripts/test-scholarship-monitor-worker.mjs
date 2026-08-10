@@ -583,6 +583,20 @@ const separatedOpenAndCloseDates = evaluateGenericCandidateSource({
 assert.equal(separatedOpenAndCloseDates.opensOn, "2025-09-15");
 assert.equal(separatedOpenAndCloseDates.closesOn, "2026-01-14");
 
+const registrationPortalIsNotApplicationOpening = evaluateGenericCandidateSource({
+  configuration: {
+    id: "ruth-lilly-poetry-fellowships",
+    name: "Ruth Lilly and Dorothy Sargent Rosenberg Poetry Fellowships",
+    sourceUrl: "https://www.poetryfoundation.org/awards/prizes-fellowship",
+  },
+  html: `<main><h1>2027 Ruth Lilly and Dorothy Sargent Rosenberg Poetry Fellowships</h1><h2>Application Timeline</h2><p>The registration request portal for access to the application will open on January 4, 2027.</p><ul><li>January 15 - Applications open</li><li>March 1, 5:00PM (CT) - Deadline to submit application</li></ul></main>`,
+  finalUrl: "https://www.poetryfoundation.org/awards/prizes-fellowship",
+  today: "2026-08-10",
+});
+assert.equal(registrationPortalIsNotApplicationOpening.opensOn, null);
+assert.equal(registrationPortalIsNotApplicationOpening.applicationStatus, "unknown");
+assert.equal(registrationPortalIsNotApplicationOpening.hasCandidate, false);
+
 const ambiguousProgramDeadlines = evaluateGenericCandidateSource({
   configuration: {
     id: "future-makers",
