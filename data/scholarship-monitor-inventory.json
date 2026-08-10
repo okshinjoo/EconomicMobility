@@ -3,7 +3,7 @@
   "catalogVerifiedLabel": "August 2026",
   "publishedCount": 1223,
   "withheldCount": 0,
-  "catalogFingerprint": "482e793433383d51d2897d5df47cbd064931ed42077e07be9a3d59d59c1136aa",
+  "catalogFingerprint": "e51315ec5c1c61f192e3d688ee4916302cf5ba92a426da4d1866ef4646068a1e",
   "records": [
     {
       "scholarshipId": "1-diabetes-fishman-marc-type",
@@ -3415,8 +3415,8 @@
     {
       "scholarshipId": "blacks-at-microsoft",
       "name": "Blacks at Microsoft (BAM) Scholarship",
-      "officialUrl": "https://www.microsoft.com/en-us/diversity/bam-scholarship",
-      "sourceDomain": "microsoft.com",
+      "officialUrl": "https://learnmore.scholarsapply.org/blacks-at-microsoft/",
+      "sourceDomain": "learnmore.scholarsapply.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -3425,7 +3425,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "Black/African American high school seniors headed to a four-year U.S. college in engineering, computer science, computer information systems, or select business programs; 3.0+ GPA and financial need.",
       "geoSourceUrl": "https://www.microsoft.com/en-us/diversity/bam-scholarship",
-      "catalogFingerprint": "fd6dd1a43fe3c02743f60d5fac746e79e0b4bb813d09b949d671e6742d58275a"
+      "catalogFingerprint": "3f7c400f24ca352a5df8478e15c2825616cbbfa61525c74b520e27266963448d"
     },
     {
       "scholarshipId": "bmi-foundation-john-lennon-scholarship",
@@ -9075,8 +9075,8 @@
     {
       "scholarshipId": "in-21st-century-scholars",
       "name": "21st Century Scholars",
-      "officialUrl": "https://scholars.in.gov/parents/enroll",
-      "sourceDomain": "scholars.in.gov",
+      "officialUrl": "https://learnmoreindiana.org/scholars/enrollment-eligibility/",
+      "sourceDomain": "learnmoreindiana.org",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -9088,7 +9088,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Eligible Indiana seventh- and eighth-graders—including qualifying Free and Reduced Price Lunch students automatically enrolled unless they opt out—who meet current income, citizenship, school, or foster-care rules, complete ScholarTrack/parent-account steps, the Scholar Pledge and success activities, file FAFSA, and satisfy renewal requirements.\"",
       "geoSourceUrl": "https://scholars.in.gov/parents/enroll",
-      "catalogFingerprint": "b6ffd22ef654210aafe6356439fe00930ffd1ab7e6f9b83f940ed3bb374ad821"
+      "catalogFingerprint": "3779737a0d2465f3141c7f8a7d531b9d6e27a1e7b3e9c696d852a80888ecec28"
     },
     {
       "scholarshipId": "in-adult-indiana",
@@ -9476,8 +9476,8 @@
     {
       "scholarshipId": "isna-amana-mutual-funds-scholarship",
       "name": "Amana Mutual Funds Scholarship (ISNA)",
-      "officialUrl": "https://hq.isna.net/scholarships",
-      "sourceDomain": "hq.isna.net",
+      "officialUrl": "https://isna.net/scholarships/",
+      "sourceDomain": "isna.net",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -9486,13 +9486,13 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "U.S.-citizen or permanent-resident students entering college as freshmen who hold an admission letter, will be enrolled at disbursement, meet ISNA's need criteria, and are active in Muslim community-development work; current public rules do not impose a specific major or 3.5 GPA.",
       "geoSourceUrl": "https://hq.isna.net/scholarships",
-      "catalogFingerprint": "4661a723ec06078a26ee30ddc430f20e1520789bc6553a8f729f2578cc918588"
+      "catalogFingerprint": "7d5f28c4f269fe6573c5459238c1c356834c5ab030f5c823fefff77479972422"
     },
     {
       "scholarshipId": "isna-musa-dakri-scholarship",
       "name": "Musa Dakri Scholarship (ISNA)",
-      "officialUrl": "https://hq.isna.net/scholarships",
-      "sourceDomain": "hq.isna.net",
+      "officialUrl": "https://isna.net/scholarships/",
+      "sourceDomain": "isna.net",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -9501,12 +9501,12 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "U.S.-citizen or permanent-resident students entering college as freshmen in fall 2026 who hold an admission letter, will be enrolled at disbursement, demonstrate need, and are active in Muslim community-development work.",
       "geoSourceUrl": "https://hq.isna.net/scholarships",
-      "catalogFingerprint": "f5be86476716135ba28df89f6fbaae8ffd59a37921b3bbce087d439ed7758917"
+      "catalogFingerprint": "d3b5d153e68e3496a8f03b69fd62d49e1809d71a069cc7218a74f189c2554058"
     },
     {
       "scholarshipId": "isna-scholarship",
       "name": "ISNA Scholarships",
-      "officialUrl": "https://isna.net/scholarships",
+      "officialUrl": "https://isna.net/scholarships/",
       "sourceDomain": "isna.net",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
@@ -9516,7 +9516,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "Muslim U.S. citizens or permanent residents admitted to begin college as freshmen in the applicable fall term; each named scholarship category has additional award-specific criteria.",
       "geoSourceUrl": "https://isna.net/scholarships",
-      "catalogFingerprint": "5fe087f196e732844a9cb9046997cc90404d18226859581d70e1d08bbffa3550"
+      "catalogFingerprint": "a8ce859e708a70e5818fc57bbffce72364ea438a744945495b74135b2a78876b"
     },
     {
       "scholarshipId": "iso-us-journey-spotlight",
@@ -17058,8 +17058,8 @@
     {
       "scholarshipId": "sd-opportunity-scholarship",
       "name": "South Dakota Opportunity Scholarship",
-      "officialUrl": "https://sdos.sdbor.edu/",
-      "sourceDomain": "sdos.sdbor.edu",
+      "officialUrl": "https://tdx.sdbor.edu/TDClient/33/Portal/KB/Category/35/South-Dakota-Opportunity-Scholarship",
+      "sourceDomain": "tdx.sdbor.edu",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -17071,7 +17071,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"South Dakota high school graduates who complete the required curriculum and meet a qualifying ACT/SAT and GPA pathway, apply to an eligible South Dakota institution, and maintain the program's credit-load, 3.0 college GPA, and continuous-enrollment requirements.\"",
       "geoSourceUrl": "https://sdos.sdbor.edu/",
-      "catalogFingerprint": "cafc21356ee220bfb4e2e20f8a113d255822d8bd07ba1b03c54ecd62609a1ade"
+      "catalogFingerprint": "5944232fef768e46824765fa9c875eb50979ee752400fce25ab4365690124c5e"
     },
     {
       "scholarshipId": "sealaska-heritage-scholarship",
@@ -18032,8 +18032,8 @@
     {
       "scholarshipId": "texas-hazlewood-legacy",
       "name": "Hazlewood Act Legacy Program",
-      "officialUrl": "https://tvc.texas.gov/wp-content/uploads/2025/03/Hazlewood-Act-Policy-Procedure-Manual-25-Mar-2025.pdf",
-      "sourceDomain": "tvc.texas.gov",
+      "officialUrl": "https://tmd.texas.gov/hazlewood",
+      "sourceDomain": "tmd.texas.gov",
       "publicationStatus": "published",
       "catalogVerifiedLabel": "August 2026",
       "geo": {
@@ -18045,7 +18045,7 @@
       "geoVerificationStatus": "human-verified",
       "geoEvidence": "who (verified against the official page in the 2026-08-05 catalog audit): \"Texas veterans can transfer their unused Hazlewood tuition exemption to a child 25 or younger, covering tuition and most fees at Texas public colleges.\"",
       "geoSourceUrl": "https://tvc.texas.gov/wp-content/uploads/2025/03/Hazlewood-Act-Policy-Procedure-Manual-25-Mar-2025.pdf",
-      "catalogFingerprint": "ecedd87716bb3932875309d591a5b2fe0da590856ad45364550fc94ddbe653fc"
+      "catalogFingerprint": "dcf51bace42ab4500c735d51d3e0b2dc2fabb03bc7ec0b0c4c84bcbf20c50107"
     },
     {
       "scholarshipId": "texas-national-guard-state-tuition-assistance",

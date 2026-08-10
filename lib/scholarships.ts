@@ -2075,7 +2075,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Black/African American high school seniors headed to a four-year U.S. college in engineering, computer science, computer information systems, or select business programs; 3.0+ GPA and financial need.",
     stages: ["high-school"],
     tags: ["Black", "STEM", "business", "corporate"],
-    officialUrl: "https://scholarshipamerica.org/scholarship/blacks-at-microsoft",
+    officialUrl: "https://learnmore.scholarsapply.org/blacks-at-microsoft/",
   },
   {
     id: "telacu",
@@ -2625,7 +2625,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Indiana students from lower-income families who sign up in 7th or 8th grade and keep the Scholar Pledge can get full or partial college tuition covered.",
     stages: ["high-school", "college"],
     tags: ["indiana", "promise-program", "free-tuition", "need-based", "21st-century-scholars"],
-    officialUrl: "https://learnmoreindiana.org/scholars/",
+    officialUrl: "https://learnmoreindiana.org/scholars/enrollment-eligibility/",
   },
   {
     id: "in-frank-obannon",
@@ -2713,7 +2713,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "South Dakota's top high school graduates who meet ACT and GPA requirements can get up to $7,500 over four years at a South Dakota college or technical school.",
     stages: ["high-school"],
     tags: ["south-dakota", "merit-based", "act-score", "college-affordability", "opportunity-scholarship"],
-    officialUrl: "https://sdbor.edu/cost-aid/scholarships/",
+    officialUrl: "https://tdx.sdbor.edu/TDClient/33/Portal/KB/Category/35/South-Dakota-Opportunity-Scholarship",
   },
 
   // ── Open to undocumented students (batch 2) ──
@@ -4421,7 +4421,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Muslim students who are U.S. citizens or permanent residents enrolled at an accredited U.S. college and engaged in community development work.",
     stages: ["college"],
     tags: ["muslim", "community-service", "merit-based", "need-based"],
-    officialUrl: "https://isna.net/scholarships",
+    officialUrl: "https://isna.net/scholarships/",
   },
 
   // ── Medical conditions & disabilities (batch 3) ──
@@ -9431,7 +9431,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "For Muslim American undergraduates of any major \u2014 one of several named funds the Islamic Society of North America distributes, with 28 awards a year.",
     stages: ["college"],
     tags: ["faith"],
-    officialUrl: "https://isna.net/scholarships",
+    officialUrl: "https://isna.net/scholarships/",
   },
   {
     id: "isna-amana-mutual-funds-scholarship",
@@ -9442,7 +9442,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "For Muslim American students majoring in finance, economics, or math with a 3.5+ GPA and financial need.",
     stages: ["college"],
     tags: ["faith"],
-    officialUrl: "https://isna.net/scholarships",
+    officialUrl: "https://isna.net/scholarships/",
   },
   {
     id: "knights-of-peter-claver-memorial-scholarships",
@@ -12109,7 +12109,7 @@ const scholarshipCatalog: Scholarship[] = [
     who: "Texas veterans can transfer their unused Hazlewood tuition exemption to a child 25 or younger, covering tuition and most fees at Texas public colleges.",
     stages: ["high-school", "college"],
     tags: ["state-program", "military-family"],
-    officialUrl: "https://tvc.texas.gov/education/hazlewood/",
+    officialUrl: "https://tmd.texas.gov/hazlewood",
   },
   {
     id: "washington-tuition-waiver-dependents-veterans",
