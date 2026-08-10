@@ -165,3 +165,47 @@ test("no malformed public copy", async ({ page }) => {
       expect(heading.trim().length, `empty heading on ${route}`).toBeGreaterThan(0);
   }
 });
+
+test.describe("Scholarship Finder", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/students/scholarships");
+    await expect(page.getByRole("searchbox", { name: "Search scholarships" })).toBeVisible();
+  });
+
+  test("uses evidence-backed status language and valid interactive semantics", async ({ page }) => {
+    await expect(page.locator("a button, a input, a select, a textarea")).toHaveCount(0);
+    await expect(page.getByRole("status")).toContainText(/scholarships match/i);
+    await expect(page.getByRole("status")).toContainText(/typical timing only/i);
+    await expect(page.locator("body")).not.toContainText(/Deadline: typically [A-Z][a-z]+ \d{4}/);
+    await expect(page.getByText(/Typical deadline month:/).first()).toBeVisible();
+  });
+
+  test("search, state filtering, and personal list controls remain usable", async ({ page }) => {
+    const finder = page.getByRole("region", { name: "Search the verified scholarship list" });
+    const search = finder.getByRole("searchbox", { name: "Search scholarships" });
+    await finder.getByRole("combobox", { name: "Your state", exact: true }).selectOption("OH");
+    await search.fill("Ohio College Opportunity Grant");
+    await expect(
+      page.getByRole("heading", { name: "Ohio College Opportunity Grant (OCOG)", exact: true })
+    ).toBeVisible();
+
+    const urlBeforeSave = page.url();
+    const save = page.getByRole("button", { name: /^Save Ohio College Opportunity Grant/ });
+    await save.click();
+    await expect(
+      page.getByRole("button", { name: /^Remove Ohio College Opportunity Grant/ })
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(page.url()).toBe(urlBeforeSave);
+  });
+
+  test("fits the mobile viewport without horizontal overflow", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+    await expect(page.getByRole("searchbox", { name: "Search scholarships" })).toBeVisible();
+    const dimensions = await page.evaluate(() => ({
+      viewport: window.innerWidth,
+      document: document.documentElement.scrollWidth,
+    }));
+    expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport);
+  });
+});

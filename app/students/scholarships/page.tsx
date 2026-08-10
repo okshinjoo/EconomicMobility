@@ -26,6 +26,8 @@ export const metadata: Metadata = {
 };
 
 export default function ScholarshipsPage() {
+  const awardCount = scholarships.length.toLocaleString("en-US");
+
   return (
     <div className="min-h-screen bg-paper text-ink">
 
@@ -46,19 +48,18 @@ export default function ScholarshipsPage() {
             / Scholarships
           </nav>
           <span className="mt-5 inline-block -rotate-1 rounded-md border-2 border-ink bg-amber px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-[3px_3px_0_#11211c]">
-            {scholarships.length} awards · hand-verified · zero fees
+            {awardCount} awards · hand-verified · zero fees
           </span>
           <h1 className="mt-4 font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight sm:text-6xl">
             The scholarship{" "}
-            <span className="italic text-amber">starting lineup.</span>
+            <span className="text-amber">starting lineup.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/80">
-            {scholarships.length} real, established awards, each one verified
-            by us, linked straight to its official site, and ordered by
-            whichever deadline comes next — awards between application
-            cycles wait at the end, greyed, with the month they come back.
-            No fees, no data harvesting, no sweepstakes dressed up as
-            scholarships.
+            {awardCount}{" "}real, established awards, each one verified by us
+            and linked straight to its official site. Current dates appear
+            only when the official source supports them; otherwise we show
+            the program&apos;s typical deadline month and ask you to confirm.
+            No fees, no data harvesting, no sweepstakes dressed up as scholarships.
           </p>
           <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-cream">
             And no forms about you: other sites make you hand over your
@@ -81,11 +82,11 @@ export default function ScholarshipsPage() {
               </Link>
             ))}
           </div>
-          <p className="mt-4 text-sm font-semibold text-forest">
+          <p className="mt-4 text-sm font-semibold text-cream/80">
             First time scholarship hunting?{" "}
             <Link
               href={frameHref("/learn/college/finding-scholarships", "student")}
-              className="underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+              className="text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
             >
               Read how to actually win these
             </Link>{" "}
@@ -96,9 +97,23 @@ export default function ScholarshipsPage() {
 
       <section className="bg-paper">
         <div className="mx-auto max-w-5xl px-6 py-10">
-          <Suspense>
-            <ScholarshipFinder />
-          </Suspense>
+          <section aria-labelledby="scholarship-finder-heading">
+            <h2
+              id="scholarship-finder-heading"
+              className="font-display text-2xl font-semibold text-ink sm:text-3xl"
+            >
+              Search the verified scholarship list
+            </h2>
+            <p className="mt-2 max-w-2xl text-base leading-7 text-stone">
+              Search, filter, or simply browse. You never need an account or
+              profile to see every award.
+            </p>
+            <div className="mt-6">
+              <Suspense>
+                <ScholarshipFinder />
+              </Suspense>
+            </div>
+          </section>
           <div className="mt-6">
             <SuggestScholarship />
           </div>

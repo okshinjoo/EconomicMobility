@@ -3,16 +3,11 @@
 // The scholarship finder (July 2026): filter the curated list by stage,
 // citizenship-openness, and a fuzzy search box (lib/fuzzy, house rule).
 //
-// DEADLINE AWARENESS (July 17, owner: "include deadlines, and don't show
-// any with deadlines that are already closed — show them greyed out with
-// when applications open again"): month granularity is all the data has,
-// so the honest model is cycles. An award is IN SEASON when its next
-// deadline is within 6 months (windows open a few months ahead); 7-11
-// months out means this year's cycle just closed — those grey out, sink
-// below the open ones, and name the next cycle's typical deadline month
-// + year. The clock arrives POST-MOUNT (nowMonth state), so the server
-// render (season order, nothing greyed) and the client's first paint
-// still agree — same hydration discipline as the rest of the site.
+// DEADLINE AWARENESS: exact dates and open/closed claims come only from
+// human-verified official-source evidence. The catalog's month-level data
+// remains useful for approximate ordering, but it never becomes an exact
+// year or an inferred application status. The clock arrives POST-MOUNT so
+// the server render and the client's first paint still agree.
 //
 // ELIGIBILITY LAYER (Aug 7 2026, docs/scholarship-taxonomy-spec.md phases
 // 3-5): classified tags power three additions, all riding the same
@@ -106,17 +101,9 @@ function monthsUntil(s: Scholarship, nowMonth: number): number | null {
   return (s.deadlineMonth - nowMonth + 12) % 12;
 }
 
-/** Closed for this cycle: the deadline passed 1-5 months ago (next one is
- *  7-11 months out). Within 6 months counts as in season. */
-function isClosedCycle(
-  s: Scholarship,
-  nowMonth: number | null,
-  verifiedStatus?: PublicScholarshipStatus,
-): boolean {
-  if (verifiedStatus) return isVerifiedClosed(verifiedStatus);
-  if (nowMonth === null) return false;
-  const until = monthsUntil(s, nowMonth);
-  return until !== null && until >= 7;
+/** Closed only when current official-source evidence says so. */
+function isClosedCycle(verifiedStatus?: PublicScholarshipStatus): boolean {
+  return isVerifiedClosed(verifiedStatus);
 }
 
 /** Largest dollar figure in the display amount, for amount sorting.
@@ -131,12 +118,17 @@ function amountValue(s: Scholarship): number {
 
 type SortKey = "deadline" | "amount" | "name";
 
-/** "January 2027" for the next occurrence of the deadline month. */
-function nextDeadlineLabel(s: Scholarship, nowMonth: number, nowYear: number): string {
-  const until = monthsUntil(s, nowMonth);
-  if (until === null || s.deadlineMonth === null) return s.deadline;
-  const year = s.deadlineMonth >= nowMonth ? nowYear : nowYear + 1;
-  return `${MONTH_NAMES[s.deadlineMonth - 1]} ${year}`;
+function typicalDeadlineLabel(s: Scholarship): string {
+  if (s.deadlineMonth === null) return `Application timing: ${s.deadline}`;
+  return `Typical deadline month: ${MONTH_NAMES[s.deadlineMonth - 1]}`;
+}
+
+function verifiedDateValue(status: PublicScholarshipStatus | undefined): number | null {
+  if (!status) return null;
+  const iso = status.closesOn ?? status.opensOn ?? status.nextOpensOn;
+  if (!iso) return null;
+  const value = Date.parse(`${iso}T12:00:00Z`);
+  return Number.isNaN(value) ? null : value;
 }
 
 const STAGE_VALUES: (StudentStage | "all")[] = [
@@ -334,11 +326,14 @@ export default function ScholarshipFinder() {
   const [query, setQuery] = useState("");
   const [visible, setVisible] = useState(30);
   // The clock, post-mount (see the header comment).
-  const [now, setNow] = useState<{ m: number; y: number } | null>(null);
+  const [now, setNow] = useState<{ m: number } | null>(null);
   const [verifiedStatuses, setVerifiedStatuses] = useState<Map<string, PublicScholarshipStatus>>(new Map());
   useEffect(() => {
-    const d = new Date();
-    setNow({ m: d.getMonth() + 1, y: d.getFullYear() });
+    const timer = window.setTimeout(() => {
+      const d = new Date();
+      setNow({ m: d.getMonth() + 1 });
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
   useEffect(() => {
     let active = true;
@@ -369,12 +364,15 @@ export default function ScholarshipFinder() {
   const [profile, setProfile] = useState<ScholarshipProfile | null>(null);
   const [matchOpen, setMatchOpen] = useState(false);
   useEffect(() => {
-    const p = readScholarshipProfile();
-    if (p) {
-      setProfile(p);
-      if (p.state) setStateSel((cur) => cur || p.state!);
-      if (p.field) setFieldSel((cur) => cur || p.field!);
-    }
+    const timer = window.setTimeout(() => {
+      const p = readScholarshipProfile();
+      if (p) {
+        setProfile(p);
+        if (p.state) setStateSel((cur) => cur || p.state!);
+        if (p.field) setFieldSel((cur) => cur || p.field!);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   function updateProfile(patch: Partial<ScholarshipProfile>) {
@@ -406,7 +404,8 @@ export default function ScholarshipFinder() {
   const [marks, setMarks] = useState<SavedScholarshipMap>({});
   const [view, setView] = useState<"all" | "saved" | "applied">("all");
   useEffect(() => {
-    setMarks(readSavedScholarships());
+    const timer = window.setTimeout(() => setMarks(readSavedScholarships()), 0);
+    return () => window.clearTimeout(timer);
   }, []);
   const summary = useMemo(() => summarizeSavedScholarships(marks), [marks]);
 
@@ -421,20 +420,23 @@ export default function ScholarshipFinder() {
   // / ?state / ?field / ?tag — applied on mount and on every client-side
   // param change.
   useEffect(() => {
-    const s = searchParams.get("stage");
-    if (s && STAGE_VALUES.includes(s as StudentStage | "all")) {
-      setStage(s as StudentStage | "all");
-      setAutoNote(""); // an explicit deep-link is a manual choice, not a guess
-    }
-    if (searchParams.get("undoc") === "1") setUndocOnly(true);
-    const q = searchParams.get("q");
-    if (q) setQuery(q);
-    const st = searchParams.get("state");
-    if (st && STATE_NAMES[st.toUpperCase()]) setStateSel(st.toUpperCase());
-    const f = searchParams.get("field");
-    if (f && taxonomyNode(f)) setFieldSel(f);
-    const tg = searchParams.get("tag");
-    if (tg && taxonomyNode(tg)) setTagFilters((cur) => (cur.includes(tg) ? cur : [...cur, tg]));
+    const timer = window.setTimeout(() => {
+      const s = searchParams.get("stage");
+      if (s && STAGE_VALUES.includes(s as StudentStage | "all")) {
+        setStage(s as StudentStage | "all");
+        setAutoNote(""); // an explicit deep-link is a manual choice, not a guess
+      }
+      if (searchParams.get("undoc") === "1") setUndocOnly(true);
+      const q = searchParams.get("q");
+      if (q) setQuery(q);
+      const st = searchParams.get("state");
+      if (st && STATE_NAMES[st.toUpperCase()]) setStateSel(st.toUpperCase());
+      const f = searchParams.get("field");
+      if (f && taxonomyNode(f)) setFieldSel(f);
+      const tg = searchParams.get("tag");
+      if (tg && taxonomyNode(tg)) setTagFilters((cur) => (cur.includes(tg) ? cur : [...cur, tg]));
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [searchParams]);
 
   // Profile-based default (mount-once). Skipped when the URL already names a
@@ -442,11 +444,14 @@ export default function ScholarshipFinder() {
   // profile points, with an editable "Started with X" note.
   useEffect(() => {
     if (searchParams.get("stage")) return;
-    const { stage: guess, reason } = scholarshipDefault(readContext());
-    if (guess) {
-      setStage(guess);
-      setAutoNote(`Started with ${STAGE_LABELS[guess]} because ${reason}.`);
-    }
+    const timer = window.setTimeout(() => {
+      const { stage: guess, reason } = scholarshipDefault(readContext());
+      if (guess) {
+        setStage(guess);
+        setAutoNote(`Started with ${STAGE_LABELS[guess]} because ${reason}.`);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -457,7 +462,8 @@ export default function ScholarshipFinder() {
   }
 
   useEffect(() => {
-    setVisible(30);
+    const timer = window.setTimeout(() => setVisible(30), 0);
+    return () => window.clearTimeout(timer);
   }, [stage, undocOnly, query, sort, view, stateSel, fieldSel, tagFilters]);
 
   // One taxonomy suggestion for the current query — an offer, not a takeover.
@@ -541,21 +547,22 @@ export default function ScholarshipFinder() {
     const bySort = (a: Scholarship, b: Scholarship): number => {
       if (sort === "amount") return amountValue(b) - amountValue(a);
       if (sort === "name") return a.name.localeCompare(b.name);
+      const exactA = verifiedDateValue(verifiedStatuses.get(a.id));
+      const exactB = verifiedDateValue(verifiedStatuses.get(b.id));
+      if (exactA !== null && exactB !== null) return exactA - exactB;
+      if (exactA !== null) return -1;
+      if (exactB !== null) return 1;
       const ua = monthsUntil(a, now.m) ?? 6.5;
       const ub = monthsUntil(b, now.m) ?? 6.5;
       return ua - ub;
     };
-    const openList = list.filter((s) => !isClosedCycle(s, now.m, verifiedStatuses.get(s.id)));
+    const openList = list.filter((s) => !isClosedCycle(verifiedStatuses.get(s.id)));
     if (sort !== "deadline" || !q) openList.sort(bySort);
     const closedList = list
-      .filter((s) => isClosedCycle(s, now.m, verifiedStatuses.get(s.id)))
-      .sort(
-        sort === "deadline"
-          ? (a, b) => (monthsUntil(a, now.m) ?? 99) - (monthsUntil(b, now.m) ?? 99)
-          : bySort
-      );
+      .filter((s) => isClosedCycle(verifiedStatuses.get(s.id)))
+      .sort(bySort);
     return { open: openList, closed: closedList };
-  }, [stage, undocOnly, query, now, sort, stateSel, fieldSel, tagFilters, cleanQuery, suggestion, matchingOn, verifiedStatuses]);
+  }, [stage, undocOnly, now, sort, stateSel, fieldSel, tagFilters, cleanQuery, suggestion, matchingOn, verifiedStatuses]);
 
   // Verdicts, when matching is on — computed post-mount only (profile is
   // storage-read), so the server render never shows them.
@@ -601,6 +608,17 @@ export default function ScholarshipFinder() {
     return c;
   }, [verdicts, openShown]);
 
+  const statusCounts = useMemo(() => {
+    const counts = { current: 0, closed: 0, typicalOnly: 0 };
+    for (const scholarship of results) {
+      const status = verifiedStatuses.get(scholarship.id);
+      if (!status) counts.typicalOnly++;
+      else if (isClosedCycle(status)) counts.closed++;
+      else counts.current++;
+    }
+    return counts;
+  }, [results, verifiedStatuses]);
+
   const activePills: { key: string; label: string; clear: () => void }[] = [
     ...(stateSel
       ? [{ key: "state", label: STATE_NAMES[stateSel] ?? stateSel, clear: () => pickState("") }]
@@ -623,28 +641,31 @@ export default function ScholarshipFinder() {
     <div>
       {/* Controls */}
       <div className="flex flex-wrap items-center gap-2">
-        {(
-          [
-            ["all", "All"],
-            ["high-school", STAGE_LABELS["high-school"]],
-            ["college", STAGE_LABELS.college],
-            ["transfer", STAGE_LABELS.transfer],
-          ] as const
-        ).map(([value, label]) => (
-          <button
-            key={value}
-            type="button"
-            onClick={() => pickStage(value)}
-            aria-pressed={stage === value}
-            className={`rounded-md border-2 px-3.5 py-1.5 text-sm font-bold transition-colors ${
-              stage === value
-                ? "border-ink bg-amber text-ink shadow-[2px_2px_0_#11211c]"
-                : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+        <fieldset className="contents">
+          <legend className="sr-only">Your current student stage</legend>
+          {(
+            [
+              ["all", "All"],
+              ["high-school", STAGE_LABELS["high-school"]],
+              ["college", STAGE_LABELS.college],
+              ["transfer", STAGE_LABELS.transfer],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => pickStage(value)}
+              aria-pressed={stage === value}
+              className={`rounded-md border-2 px-3.5 py-1.5 text-sm font-bold transition-colors ${
+                stage === value
+                  ? "border-ink bg-amber text-ink shadow-[2px_2px_0_#11211c]"
+                  : "border-ink/15 bg-cream text-stone hover:border-ink/40 hover:text-ink"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </fieldset>
         <label className="ml-1 flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink">
           <input
             type="checkbox"
@@ -657,19 +678,23 @@ export default function ScholarshipFinder() {
       </div>
 
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <label htmlFor="scholarship-search" className="sr-only">
+          Search scholarships
+        </label>
         <input
+          id="scholarship-search"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search: piano, nursing, children of veterans, transfer…"
-          className="w-full flex-1 rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+          className="w-full flex-1 rounded-lg border-2 border-ink/15 bg-cream px-4 py-2.5 text-base text-ink placeholder:text-stone/60 focus:border-ink"
         />
         <label className="flex shrink-0 items-center gap-2 text-sm font-semibold text-ink">
           Sort by
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="rounded-lg border-2 border-ink/15 bg-cream px-3 py-2.5 text-base font-semibold text-ink focus:border-ink focus:outline-none"
+            className="rounded-lg border-2 border-ink/15 bg-cream px-3 py-2.5 text-base font-semibold text-ink focus:border-ink"
           >
             <option value="deadline">Next deadline</option>
             <option value="amount">Biggest amount</option>
@@ -686,7 +711,7 @@ export default function ScholarshipFinder() {
           <select
             value={stateSel}
             onChange={(e) => pickState(e.target.value)}
-            className="max-w-[11rem] rounded-lg border-2 border-ink/15 bg-cream px-2.5 py-2 text-sm font-semibold text-ink focus:border-ink focus:outline-none"
+            className="max-w-[11rem] rounded-lg border-2 border-ink/15 bg-cream px-2.5 py-2 text-sm font-semibold text-ink focus:border-ink"
           >
             <option value="">Anywhere</option>
             {ACTIVE_STATES.map((c) => (
@@ -701,7 +726,7 @@ export default function ScholarshipFinder() {
           <select
             value={fieldSel}
             onChange={(e) => pickField(e.target.value)}
-            className="max-w-[13rem] rounded-lg border-2 border-ink/15 bg-cream px-2.5 py-2 text-sm font-semibold text-ink focus:border-ink focus:outline-none"
+            className="max-w-[13rem] rounded-lg border-2 border-ink/15 bg-cream px-2.5 py-2 text-sm font-semibold text-ink focus:border-ink"
           >
             <option value="">Any field</option>
             {FIELD_GROUPS.map((g) => (
@@ -719,6 +744,7 @@ export default function ScholarshipFinder() {
           type="button"
           onClick={() => setMoreOpen((v) => !v)}
           aria-expanded={moreOpen}
+          aria-controls="scholarship-more-filters"
           className={`inline-flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-sm font-bold transition-colors ${
             moreOpen || tagFilters.length
               ? "border-ink bg-cream text-ink"
@@ -737,16 +763,16 @@ export default function ScholarshipFinder() {
 
       {/* More filters — expands in place, desktop and mobile alike. */}
       {moreOpen && (
-        <div className="mt-3 rounded-xl border-2 border-ink/15 bg-cream p-4">
+        <div id="scholarship-more-filters" className="mt-3 rounded-xl border-2 border-ink/15 bg-cream p-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FILTER_GROUPS.map((g) => {
               const opts = g.ids.filter((id) => TAG_COUNTS.has(id));
               if (!opts.length) return null;
               return (
-                <div key={g.label}>
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-stone">
+                <fieldset key={g.label}>
+                  <legend className="text-xs font-bold uppercase tracking-[0.14em] text-stone">
                     {g.label}
-                  </p>
+                  </legend>
                   <div className="mt-2 space-y-1.5">
                     {opts.map((id) => (
                       <label
@@ -768,7 +794,7 @@ export default function ScholarshipFinder() {
                       </label>
                     ))}
                   </div>
-                </div>
+                </fieldset>
               );
             })}
           </div>
@@ -802,10 +828,11 @@ export default function ScholarshipFinder() {
               key={p.key}
               type="button"
               onClick={p.clear}
+              aria-label={`Remove ${p.label} filter`}
               className="inline-flex items-center gap-1.5 rounded-md border-2 border-ink bg-amber px-2.5 py-1 text-xs font-bold text-ink shadow-[2px_2px_0_#11211c] transition-transform hover:-translate-y-0.5"
             >
               {p.label}
-              <XIcon className="h-3 w-3" />
+              <XIcon aria-hidden className="h-3 w-3" />
             </button>
           ))}
           <button
@@ -829,6 +856,7 @@ export default function ScholarshipFinder() {
           type="button"
           onClick={() => setMatchOpen((v) => !v)}
           aria-expanded={matchOpen}
+          aria-controls="scholarship-match-panel"
           className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
         >
           <span className="text-sm font-bold text-ink">
@@ -847,7 +875,7 @@ export default function ScholarshipFinder() {
           </span>
         </button>
         {matchOpen && (
-          <div className="border-t border-sand px-4 py-4">
+          <div id="scholarship-match-panel" className="border-t border-sand px-4 py-4">
             <p className="text-sm leading-6 text-stone">
               Tell us as much or as little as you like and we&apos;ll sort this
               list for you — what fits rises, what appears out of reach sinks
@@ -855,7 +883,8 @@ export default function ScholarshipFinder() {
               field picks above already count. Answers stay on this device
               (and your account if you sign in), and only sort this list.
             </p>
-            <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
+            <fieldset className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
+              <legend className="sr-only">Details used to sort scholarship matches</legend>
               <label className="flex cursor-pointer items-center gap-2 text-sm text-ink">
                 <input
                   type="checkbox"
@@ -882,7 +911,7 @@ export default function ScholarshipFinder() {
                   {g.label}
                 </label>
               ))}
-            </div>
+            </fieldset>
             <p className="mt-2.5 text-xs leading-5 text-stone">
               All of these are optional offers, not questions you owe anyone.
               Skipping one never marks you ineligible — it just means we
@@ -918,7 +947,7 @@ export default function ScholarshipFinder() {
         )}
       </div>
 
-      <p className="mt-3 text-sm font-medium text-stone">
+      <p className="mt-3 text-sm font-medium text-stone" role="status" aria-live="polite">
         {view === "saved" ? (
           <>
             {shown.length} on your list to apply for
@@ -935,9 +964,10 @@ export default function ScholarshipFinder() {
           </>
         ) : (
           <>
-            {openShown.length} open, opening soon, or in season
-            {closed.length > 0 &&
-              ` · ${closed.length} between cycles (greyed, at the end)`}
+            {results.length} scholarships match
+            {statusCounts.current > 0 && ` · ${statusCounts.current} with a verified current status`}
+            {statusCounts.closed > 0 && ` · ${statusCounts.closed} verified between cycles`}
+            {statusCounts.typicalOnly > 0 && ` · ${statusCounts.typicalOnly} showing typical timing only`}
             {stage !== "all" && ` · ${STAGE_LABELS[stage as StudentStage]}`}
             {undocOnly && " · open to undocumented / DACA students"}
             {stateSel && !matchCounts && ` · national + ${STATE_NAMES[stateSel]}`}
@@ -946,7 +976,9 @@ export default function ScholarshipFinder() {
         {matchCounts
           ? `, sorted by fit: ${matchCounts.strong} strong · ${matchCounts.likely} likely · ${matchCounts.possibly} worth checking · ${matchCounts.not} likely not.`
           : sort === "deadline"
-            ? ", ordered by next deadline."
+            ? cleanQuery
+              ? ", ordered by search relevance."
+              : ", verified dates first; otherwise typical month."
             : sort === "amount"
               ? ", biggest amounts first (full rides on top, unlisted amounts last)."
               : ", alphabetical."}
@@ -997,46 +1029,37 @@ export default function ScholarshipFinder() {
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {shown.slice(0, visible).map((s) => {
           const verifiedStatus = verifiedStatuses.get(s.id);
-          const closedCycle = now !== null && isClosedCycle(s, now.m, verifiedStatus);
-          const until = now === null ? null : monthsUntil(s, now.m);
-          const thisMonth = until === 0;
+          const closedCycle = isClosedCycle(verifiedStatus);
           const mark = marks[s.id];
           const verdict = verdicts?.get(s.id) ?? null;
           const dimmed = closedCycle || verdict?.level === "not";
           const chips = cardChips(s);
           return (
-            <a
+            <article
               key={s.id}
-              href={s.officialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className={`${
                 dimmed
                   ? "group flex h-full flex-col rounded-xl border-2 border-sand bg-cream/50 p-5 opacity-75 transition-opacity hover:opacity-100"
                   : "card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
               }${mark?.applied ? " ring-2 ring-amber" : ""}`}
             >
+              <a
+                href={s.officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${s.name} official scholarship page (opens in a new tab)`}
+                className="flex flex-1 flex-col rounded-md"
+              >
               <div className="flex items-start justify-between gap-3">
                 {verifiedStatus ? (
                   <p className={`text-sm font-bold ${closedCycle ? "text-stone" : "text-forest"}`}>
                     {verifiedStatusLabel(verifiedStatus)}
-                    <span className="ml-1 font-medium">· human-verified</span>
-                  </p>
-                ) : closedCycle && now !== null ? (
-                  <p className="text-sm font-bold text-stone">
-                    Closed for this cycle · reopens ahead of{" "}
-                    {nextDeadlineLabel(s, now.m, now.y)}
+                    <span className="ml-1 font-medium">{" "}· human-verified</span>
                   </p>
                 ) : (
                   <p className="font-display text-sm font-bold text-terracotta">
-                    {now !== null && s.deadlineMonth !== null
-                      ? `Deadline: typically ${nextDeadlineLabel(s, now.m, now.y)}`
-                      : s.deadline}
-                    {thisMonth && (
-                      <span className="ml-2 rounded-full bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
-                        This month
-                      </span>
-                    )}
+                    {typicalDeadlineLabel(s)}
+                    <span className="ml-1 font-medium text-stone">{" "}· confirm current status</span>
                   </p>
                 )}
                 {s.openToUndocumented && (
@@ -1108,22 +1131,20 @@ export default function ScholarshipFinder() {
                   }`}
                 >
                   Official site
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                  <ExternalLink aria-hidden className="h-3.5 w-3.5" />
                 </span>
               </p>
+              </a>
               {/* Save / applied — personal, saved to this device (and your
-                  account if you sign in). Buttons live inside the card link,
-                  so they stop the click from opening the official site. */}
+                  account if you sign in). These controls are siblings of the
+                  official link so keyboard and screen-reader semantics stay valid. */}
               <div className="mt-3 flex items-center gap-2 border-t border-sand pt-3">
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onToggleSave(s.id);
-                  }}
+                  onClick={() => onToggleSave(s.id)}
                   aria-pressed={!!mark?.saved}
-                  aria-label={mark?.saved ? "Remove from your list" : "Save to your list"}
+                  aria-label={mark?.saved ? `Remove ${s.name} from your list` : `Save ${s.name} to your list`}
                   className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-xs font-bold transition-colors ${
                     mark?.saved
                       ? "border-forest bg-forest text-cream"
@@ -1131,6 +1152,7 @@ export default function ScholarshipFinder() {
                   }`}
                 >
                   <BookmarkSimple
+                    aria-hidden
                     weight={mark?.saved ? "fill" : "regular"}
                     className="h-3.5 w-3.5"
                   />
@@ -1138,13 +1160,9 @@ export default function ScholarshipFinder() {
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onToggleApplied(s.id, !mark?.applied);
-                  }}
+                  onClick={() => onToggleApplied(s.id, !mark?.applied)}
                   aria-pressed={!!mark?.applied}
-                  aria-label={mark?.applied ? "Unmark as applied" : "Mark as applied"}
+                  aria-label={mark?.applied ? `Unmark ${s.name} as applied` : `Mark ${s.name} as applied`}
                   className={`inline-flex items-center gap-1.5 rounded-md border-2 px-2.5 py-1 text-xs font-bold transition-colors ${
                     mark?.applied
                       ? "border-amber bg-amber text-ink"
@@ -1152,13 +1170,14 @@ export default function ScholarshipFinder() {
                   }`}
                 >
                   <CheckCircle
+                    aria-hidden
                     weight={mark?.applied ? "fill" : "regular"}
                     className="h-3.5 w-3.5"
                   />
                   {mark?.applied ? "Applied" : "Mark applied"}
                 </button>
               </div>
-            </a>
+            </article>
           );
         })}
       </div>
