@@ -165,7 +165,11 @@ async function fetchWithBrowser(urlValue) {
   try {
     let response;
     try {
-      response = await page.goto(urlValue, { waitUntil: "domcontentloaded", timeout: 30000 });
+      // Some official scholarship sites keep DOMContentLoaded open indefinitely
+      // even after the document has committed and usable evidence is present.
+      // Capture the committed response, then give the DOM a bounded grace period;
+      // the evidence evaluators below still reject thin or incomplete content.
+      response = await page.goto(urlValue, { waitUntil: "commit", timeout: 30000 });
     } catch (error) {
       const errorMessage = String(error.message ?? error);
       if (browserDownloadIsHealthyPdf({ url: urlValue, errorMessage })) {
@@ -190,6 +194,7 @@ async function fetchWithBrowser(urlValue) {
         fetchMethod: "browser",
       });
     }
+    await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => undefined);
     await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => undefined);
     await page.waitForTimeout(1000);
     return {
