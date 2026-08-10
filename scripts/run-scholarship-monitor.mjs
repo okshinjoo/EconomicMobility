@@ -15,6 +15,7 @@ import {
   renderedObservationImproved,
   shouldProposeSourceFailure,
   shouldUseBrowserFallback,
+  sourceKindForMonitorMode,
   stableStringify,
 } from "./scholarship-monitor-core.mjs";
 import { loadScholarshipMonitorConfigurations } from "./scholarship-monitor-config.mjs";
@@ -276,7 +277,7 @@ if (admin) {
 
   const sourceRows = selected.map((configuration) => ({
     scholarship_id: configuration.id,
-    source_kind: "application",
+    source_kind: sourceKindForMonitorMode(configuration.monitorMode),
     url: configuration.sourceUrl,
     source_domain: new URL(configuration.sourceUrl).hostname.toLowerCase().replace(/^www\./, ""),
     extraction_strategy: "html",

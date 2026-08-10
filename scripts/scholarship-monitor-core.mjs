@@ -23,6 +23,10 @@ export function stableStringify(value) {
   return JSON.stringify(value);
 }
 
+export function sourceKindForMonitorMode(mode) {
+  return ["candidate", "source-health"].includes(mode) ? "official" : "application";
+}
+
 export function visibleText(html) {
   return decodeHtml(
     html

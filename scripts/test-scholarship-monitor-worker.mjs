@@ -14,9 +14,14 @@ import {
   renderedObservationImproved,
   shouldProposeSourceFailure,
   shouldUseBrowserFallback,
+  sourceKindForMonitorMode,
   stableStringify,
   visibleText,
 } from "./scholarship-monitor-core.mjs";
+
+assert.equal(sourceKindForMonitorMode("candidate"), "official");
+assert.equal(sourceKindForMonitorMode("source-health"), "official");
+assert.equal(sourceKindForMonitorMode("status"), "application");
 
 assert.equal(canReuseObservationForConditionalFetch({
   previous: {
