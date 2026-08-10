@@ -9,6 +9,7 @@ import {
   scholarshipAmountFloorExceptionIds,
   scholarshipAmountFloorSourceOverrides,
 } from "./scholarshipAmountFloorExceptions.generated";
+import { scholarshipAutomatedPromotedIds } from "./scholarshipPromotions.generated";
 
 export const SCHOLARSHIP_AUDIT_DATE = "2026-08-05";
 export const SCHOLARSHIP_AUDIT_TOTAL = 1_635;
@@ -20,7 +21,7 @@ export const SCHOLARSHIP_OWNER_APPROVED_POLICY_PUBLISHED = 22;
 export const SCHOLARSHIP_FINAL_POLICY_RESOLVED_PUBLISHED = 2;
 export const SCHOLARSHIP_COVERAGE_AUDIT_PUBLISHED = 38;
 export const SCHOLARSHIP_COVERAGE_REVIEW_RESOLVED_PUBLISHED = 17;
-export const SCHOLARSHIP_MODERATOR_PROMOTED_PUBLISHED = 2;
+export const SCHOLARSHIP_MODERATOR_PROMOTED_PUBLISHED = 2 + scholarshipAutomatedPromotedIds.length;
 export const SCHOLARSHIP_MANUAL_REVIEW_WITHHELD = 43;
 export const SCHOLARSHIP_NO_REGIONALS_POST_AUDIT_REMOVED = 2;
 export const SCHOLARSHIP_PUBLIC_TOTAL =
@@ -165,6 +166,7 @@ export const scholarshipCoverageReviewResolvedPublishedIds = new Set([
 export const scholarshipModeratorPromotedIds = new Set([
   "dri-foundation-scholarship",
   "maude-alexander-hadden-scholarship",
+  ...scholarshipAutomatedPromotedIds,
 ]);
 
 // No-regionals rule applied 2026-08-07 (the owner's standing July 2026 rule:

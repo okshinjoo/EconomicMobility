@@ -1,0 +1,84 @@
+name: Publish verified scholarship
+
+on:
+  workflow_dispatch:
+    inputs:
+      packet_base64:
+        description: Validated base64url curation packet
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  statuses: read
+
+concurrency:
+  group: scholarship-promotion-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SCHOLARSHIP_PROMOTION_PACKET_BASE64: ${{ inputs.packet_base64 }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SCHOLARSHIP_PRODUCTION_URL: https://economicmobilityproject.org
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Add the verified promotion to the catalog source
+        run: node scripts/publish-scholarship-promotion.mjs --write
+
+      - name: Rebuild the monitoring inventory
+        run: npm run build:scholarship-monitor-inventory
+
+      - name: Run scholarship publication gates
+        run: |
+          npm run check:scholarship-tags
+          npm run check:scholarship-monitor-inventory
+          npm run test:scholarship-promotion
+          npm run test:scholarship-monitor-foundation
+          npm run test:scholarship-review
+
+      - name: Build the production site
+        run: npm run build
+
+      - name: Commit the verified catalog update
+        run: |
+          git config user.name "Empower Scholarship Publisher"
+          git config user.email "scholarships@economicmobilityproject.org"
+          git add data/scholarship-promotions.json data/scholarship-monitor-inventory.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified scholarship promotion"
+            git push origin HEAD:main
+          fi
+
+      - name: Record the publication commit
+        id: publication
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          node -e 'const p=JSON.parse(Buffer.from(process.env.SCHOLARSHIP_PROMOTION_PACKET_BASE64,"base64url")); console.log(`public_id=${p.catalogRecord.id}`)' >> "$GITHUB_OUTPUT"
+
+      - name: Wait for and verify the production deployment
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SCHOLARSHIP_PROMOTION_COMMIT_SHA: ${{ steps.publication.outputs.sha }}
+          SCHOLARSHIP_PROMOTION_PUBLIC_ID: ${{ steps.publication.outputs.public_id }}
+        run: node scripts/wait-for-scholarship-publication.mjs
+
+      - name: Transfer monitoring and retire the staging record
+        env:
+          SCHOLARSHIP_PROMOTION_COMMIT_SHA: ${{ steps.publication.outputs.sha }}
+        run: node scripts/finalize-scholarship-promotion.mjs --write

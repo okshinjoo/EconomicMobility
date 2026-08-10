@@ -14,6 +14,11 @@ import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { accountsEnabled, getSupabase } from "@/lib/supabase";
 import { STATE_NAMES } from "@/lib/scholarshipMatch";
 import type { StudentStage } from "@/lib/scholarships";
+import {
+  SCHOLARSHIP_TAXONOMY,
+  type CriterionStrength,
+  type EligibilityTag,
+} from "@/lib/scholarshipTaxonomy";
 import RunScholarshipVerificationButton from "@/components/RunScholarshipVerificationButton";
 
 interface PromotionCandidate {
@@ -36,6 +41,8 @@ interface PromotionCandidate {
     geographyVerified: boolean;
     officialSourceHealthy: boolean;
     evidenceQueueClear: boolean;
+    statusVerified: boolean;
+    deadlineVerified: boolean;
   };
   ready: boolean;
 }
@@ -44,6 +51,14 @@ const STAGE_OPTIONS: Array<{ value: StudentStage; label: string }> = [
   { value: "high-school", label: "High school" },
   { value: "college", label: "College" },
   { value: "transfer", label: "Transfer" },
+];
+
+const ELIGIBILITY_OPTIONS = SCHOLARSHIP_TAXONOMY.filter((node) => node.parent);
+const ELIGIBILITY_LABELS = new Map(SCHOLARSHIP_TAXONOMY.map((node) => [node.id, node.label]));
+const STRENGTH_OPTIONS: Array<{ value: CriterionStrength; label: string }> = [
+  { value: "required", label: "Required" },
+  { value: "preferred", label: "Preferred" },
+  { value: "relevant", label: "Relevant" },
 ];
 
 function publicId(name: string) {
@@ -85,8 +100,15 @@ export default function ScholarshipPromotionQueue() {
   const [stages, setStages] = useState<StudentStage[]>([]);
   const [tags, setTags] = useState("");
   const [openToUndocumented, setOpenToUndocumented] = useState(false);
-  const [busy, setBusy] = useState(false);
+  const [eligibility, setEligibility] = useState<EligibilityTag[]>([]);
+  const [eligibilityTag, setEligibilityTag] = useState(ELIGIBILITY_OPTIONS[0]?.id ?? "");
+  const [eligibilityStrength, setEligibilityStrength] = useState<CriterionStrength>("required");
+  const [eligibilityReviewed, setEligibilityReviewed] = useState(false);
+  const [curationVerified, setCurationVerified] = useState(false);
+  const [confirmPublish, setConfirmPublish] = useState(false);
+  const [busy, setBusy] = useState<"prepare" | "publish" | null>(null);
   const [packet, setPacket] = useState("");
+  const [workflowUrl, setWorkflowUrl] = useState("");
   const [message, setMessage] = useState<{ kind: "success" | "error"; text: string } | null>(null);
 
   const loadCandidates = useCallback(async (activeSession: Session) => {
@@ -137,8 +159,13 @@ export default function ScholarshipPromotionQueue() {
     setWho("");
     setStages([]);
     setTags("");
+    setEligibility([]);
+    setEligibilityReviewed(false);
+    setCurationVerified(false);
+    setConfirmPublish(false);
     setOpenToUndocumented(false);
     setPacket("");
+    setWorkflowUrl("");
     setMessage(null);
   }
 
@@ -146,12 +173,31 @@ export default function ScholarshipPromotionQueue() {
     setStages((current) => current.includes(stage) ? current.filter((value) => value !== stage) : [...current, stage]);
   }
 
-  async function prepare(event: React.FormEvent<HTMLFormElement>) {
+  function addEligibility() {
+    if (!eligibilityTag) return;
+    setEligibility((current) => [
+      ...current.filter((value) => value.tag !== eligibilityTag),
+      { tag: eligibilityTag, strength: eligibilityStrength },
+    ]);
+  }
+
+  function removeEligibility(tag: string) {
+    setEligibility((current) => current.filter((value) => value.tag !== tag));
+  }
+
+  async function submitPromotion(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!selected || !session) return;
-    setBusy(true);
+    const submitter = (event.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const action = submitter?.value === "publish" ? "publish" : "prepare";
+    if (action === "publish" && !confirmPublish) {
+      setMessage({ kind: "error", text: "Confirm that this record should be published to the live Finder." });
+      return;
+    }
+    setBusy(action);
     setMessage(null);
     setPacket("");
+    setWorkflowUrl("");
     try {
       const response = await fetch("/api/admin/scholarship-promotions", {
         method: "POST",
@@ -168,17 +214,29 @@ export default function ScholarshipPromotionQueue() {
           who,
           stages,
           tags: tags.split(","),
+          eligibility,
+          eligibilityReviewed,
+          curationVerified,
           openToUndocumented,
+          action,
+          confirmPublish,
         }),
       });
-      const result = (await response.json()) as { packet?: unknown; error?: string };
-      if (!response.ok || !result.packet) throw new Error(result.error || "The curation packet could not be prepared.");
-      setPacket(JSON.stringify(result.packet, null, 2));
-      setMessage({ kind: "success", text: "Curation packet prepared. The Finder is still unchanged until repository review and tests pass." });
+      const result = (await response.json()) as { packet?: unknown; error?: string; started?: boolean; workflowUrl?: string };
+      if (!response.ok) throw new Error(result.error || "The scholarship could not be processed.");
+      if (action === "publish") {
+        if (!result.started) throw new Error("The publication workflow did not start.");
+        setWorkflowUrl(result.workflowUrl ?? "");
+        setMessage({ kind: "success", text: "Publication started. The workflow will test and deploy the Finder before it retires this staging record." });
+      } else {
+        if (!result.packet) throw new Error("The curation packet could not be prepared.");
+        setPacket(JSON.stringify(result.packet, null, 2));
+        setMessage({ kind: "success", text: "Curation packet prepared. The Finder is unchanged until you publish it." });
+      }
     } catch (preparationError) {
       setMessage({ kind: "error", text: preparationError instanceof Error ? preparationError.message : "The curation packet could not be prepared." });
     } finally {
-      setBusy(false);
+      setBusy(null);
     }
   }
 
@@ -232,10 +290,12 @@ export default function ScholarshipPromotionQueue() {
             <a href={selected.officialUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">Open official source <ArrowSquareOut className="h-4 w-4" /></a>
           </div>
 
-          <ul className="mt-5 grid gap-2 sm:grid-cols-3">
+          <ul className="mt-5 grid gap-2 sm:grid-cols-2">
             <Gate passed={selected.readiness.geographyVerified}>Verified geography: {geoLabel(selected)}</Gate>
             <Gate passed={selected.readiness.officialSourceHealthy}>Latest official-source check is healthy</Gate>
             <Gate passed={selected.readiness.evidenceQueueClear}>{selected.pendingProposalCount ? `${selected.pendingProposalCount} proposal(s) still pending` : "Evidence queue is clear"}</Gate>
+            <Gate passed={selected.readiness.statusVerified}>Application status is human-verified</Gate>
+            <Gate passed={selected.readiness.deadlineVerified}>An exact official deadline is verified</Gate>
           </ul>
 
           {session ? (
@@ -246,8 +306,8 @@ export default function ScholarshipPromotionQueue() {
 
           {selected.geoEvidence ? <blockquote className="mt-5 border-l-4 border-amber bg-paper px-4 py-3 text-sm leading-6 text-ink">{selected.geoEvidence}</blockquote> : null}
 
-          <form onSubmit={prepare} className="mt-7 border-t border-sand pt-6">
-            <fieldset disabled={!selected.ready || busy} className="space-y-5 disabled:opacity-55">
+          <form onSubmit={submitPromotion} className="mt-7 border-t border-sand pt-6">
+            <fieldset disabled={!selected.ready || busy !== null} className="space-y-5 disabled:opacity-55">
               <legend className="font-display text-xl font-bold text-ink">Curated Finder record</legend>
               <p className="text-sm leading-6 text-stone">Complete only claims confirmed on the official source. Preparing a packet does not publish it.</p>
               <div className="grid gap-5 sm:grid-cols-2">
@@ -262,12 +322,31 @@ export default function ScholarshipPromotionQueue() {
                 <legend className="text-sm font-bold text-ink">Student stages</legend>
                 <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">{STAGE_OPTIONS.map((stage) => <label key={stage.value} className="flex items-center gap-2 text-base text-ink"><input type="checkbox" checked={stages.includes(stage.value)} onChange={() => toggleStage(stage.value)} />{stage.label}</label>)}</div>
               </fieldset>
+              <fieldset className="border-y border-sand py-5">
+                <legend className="text-sm font-bold text-ink">Eligibility filters</legend>
+                <p className="mt-1 text-sm leading-6 text-stone">Add only criteria explicitly supported by the official page. Leave the list empty for a genuinely general award.</p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-[minmax(0,1fr)_10rem_auto] sm:items-end">
+                  <label className="text-sm font-bold text-ink">Criterion<select value={eligibilityTag} onChange={(event) => setEligibilityTag(event.target.value)} className="mt-2 w-full rounded-md border border-sand bg-paper px-3 py-2.5 text-base font-normal text-ink focus:border-amber focus:outline-none">{ELIGIBILITY_OPTIONS.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}</select></label>
+                  <label className="text-sm font-bold text-ink">Strength<select value={eligibilityStrength} onChange={(event) => setEligibilityStrength(event.target.value as CriterionStrength)} className="mt-2 w-full rounded-md border border-sand bg-paper px-3 py-2.5 text-base font-normal text-ink focus:border-amber focus:outline-none">{STRENGTH_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+                  <button type="button" onClick={addEligibility} className="rounded-md border border-forest px-4 py-2.5 text-sm font-bold text-forest hover:bg-paper">Add filter</button>
+                </div>
+                {eligibility.length ? <ul className="mt-4 divide-y divide-sand border-y border-sand">{eligibility.map((item) => <li key={item.tag} className="flex items-center justify-between gap-4 py-2.5 text-sm"><span><strong>{ELIGIBILITY_LABELS.get(item.tag) ?? item.tag}</strong> · {item.strength}</span><button type="button" onClick={() => removeEligibility(item.tag)} className="font-bold text-terracotta underline decoration-amber decoration-2 underline-offset-4">Remove</button></li>)}</ul> : <p className="mt-3 text-sm text-stone">No specialized eligibility filters added.</p>}
+              </fieldset>
               <label className="flex items-start gap-3 text-sm leading-6 text-ink"><input type="checkbox" checked={openToUndocumented} onChange={(event) => setOpenToUndocumented(event.target.checked)} className="mt-1" /><span>Official source explicitly confirms undocumented/DACA/TPS applicants can qualify.</span></label>
-              <button type="submit" className="inline-flex items-center gap-1.5 rounded-md bg-forest px-4 py-2.5 text-sm font-bold text-cream hover:bg-forest-700 disabled:opacity-50">{busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null} Prepare curation packet</button>
+              <label className="flex items-start gap-3 text-sm leading-6 text-ink"><input required type="checkbox" checked={eligibilityReviewed} onChange={(event) => setEligibilityReviewed(event.target.checked)} className="mt-1" /><span>I verified the eligibility summary and filters against the official source.</span></label>
+              <label className="flex items-start gap-3 text-sm leading-6 text-ink"><input required type="checkbox" checked={curationVerified} onChange={(event) => setCurationVerified(event.target.checked)} className="mt-1" /><span>I verified the amount, deadline label, student stages, and applicant description against the official source.</span></label>
+              <div className="border-t border-sand pt-5">
+                <label className="flex items-start gap-3 text-sm leading-6 text-ink"><input type="checkbox" checked={confirmPublish} onChange={(event) => setConfirmPublish(event.target.checked)} className="mt-1" /><span>Publish this verified record to the live Scholarship Finder after automated tests and deployment checks pass.</span></label>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <button type="submit" name="action" value="publish" className="inline-flex items-center gap-1.5 rounded-md bg-forest px-4 py-2.5 text-sm font-bold text-cream hover:bg-forest-700 disabled:opacity-50">{busy === "publish" ? <Loader2 className="h-4 w-4 animate-spin" /> : null} Publish to Finder</button>
+                  <button type="submit" name="action" value="prepare" className="inline-flex items-center gap-1.5 rounded-md border border-forest px-4 py-2.5 text-sm font-bold text-forest hover:bg-paper disabled:opacity-50">{busy === "prepare" ? <Loader2 className="h-4 w-4 animate-spin" /> : null} Preview packet</button>
+                </div>
+              </div>
             </fieldset>
           </form>
 
           {message ? <p className={`mt-5 flex items-start gap-2 text-sm font-semibold ${message.kind === "error" ? "text-terracotta" : "text-forest"}`}>{message.kind === "error" ? <Warning className="mt-0.5 h-4 w-4 shrink-0" /> : <Check className="mt-0.5 h-4 w-4 shrink-0" />}{message.text}</p> : null}
+          {workflowUrl ? <a href={workflowUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4">Open publication workflow <ArrowSquareOut className="h-4 w-4" /></a> : null}
           {packet ? (
             <div className="mt-5">
               <div className="flex items-center justify-between gap-4"><p className="text-sm font-bold text-ink">Validated curation packet</p><button type="button" onClick={() => void copyPacket()} className="inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4"><Clipboard className="h-4 w-4" /> Copy</button></div>

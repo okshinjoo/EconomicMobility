@@ -12,6 +12,11 @@ import { readFileSync, existsSync } from "node:fs";
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const problems = [];
 const warn = [];
+const promotionDocument = JSON.parse(read("data/scholarship-promotions.json"));
+const promotedRecords = promotionDocument.records ?? [];
+if (promotionDocument.schemaVersion !== 1 || !Array.isArray(promotedRecords)) {
+  problems.push("promotions: registry must use schemaVersion 1 with a records array");
+}
 
 // ── 1 · Taxonomy registry ─────────────────────────────────────────────────
 const taxSrc = read("lib/scholarshipTaxonomy.ts");
@@ -41,6 +46,12 @@ for (const n of nodes) {
 // ── 2 · Scholarship catalog ids ───────────────────────────────────────────
 const scholSrc = read("lib/scholarships.ts");
 const catalogIds = new Set([...scholSrc.matchAll(/^    id: "([^"]+)",$/gm)].map((m) => m[1]));
+for (const promotion of promotedRecords) {
+  const id = promotion.catalogRecord?.id;
+  if (!id) problems.push("promotions: catalog record is missing an id");
+  else if (catalogIds.has(id)) problems.push(`promotions: duplicate catalog id "${id}"`);
+  else catalogIds.add(id);
+}
 if (catalogIds.size < 1000) problems.push(`scholarships: only ${catalogIds.size} ids parsed — parser drift?`);
 
 // ── 3 · Geo overlay ───────────────────────────────────────────────────────
@@ -48,6 +59,11 @@ const VALID_CODES = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY 
 const geoSrc = read("lib/scholarshipGeo.generated.ts");
 const geoEntries = [...geoSrc.matchAll(/"([^"]+)": \{ scope: "(states|national)"(?:, states: \[([^\]]*)\])? \},/g)]
   .map((m) => ({ id: m[1], scope: m[2], states: m[3] ? m[3].split(",").map((s) => s.trim().replace(/"/g, "")) : undefined }));
+for (const promotion of promotedRecords) {
+  const id = promotion.catalogRecord?.id;
+  const geo = promotion.geographyOverlay?.[id];
+  if (id && geo) geoEntries.push({ id, scope: geo.scope, states: geo.states });
+}
 const geoIds = new Set();
 for (const g of geoEntries) {
   if (geoIds.has(g.id)) problems.push(`geo: duplicate entry "${g.id}"`);
@@ -73,11 +89,28 @@ if (existsSync(eligPath)) {
       if (!["required", "preferred", "relevant"].includes(t[2])) problems.push(`eligibility: "${id}" invalid strength "${t[2]}"`);
     }
   }
+  for (const promotion of promotedRecords) {
+    const id = promotion.catalogRecord?.id;
+    const assignments = promotion.eligibilityOverlay?.[id];
+    if (!id || !Array.isArray(assignments)) {
+      problems.push(`promotions: "${id ?? "unknown"}" is missing its eligibility overlay`);
+      continue;
+    }
+    if (eligIds.has(id)) problems.push(`eligibility: duplicate entry "${id}"`);
+    eligIds.add(id);
+    for (const assignment of assignments) {
+      if (!ids.has(assignment.tag)) problems.push(`eligibility: "${id}" uses unknown tag "${assignment.tag}"`);
+      if (!["required", "preferred", "relevant"].includes(assignment.strength)) problems.push(`eligibility: "${id}" invalid strength "${assignment.strength}"`);
+    }
+  }
 }
 
 // ── 5 · Provenance sidecar coverage, both directions ──────────────────────
 const sidecar = JSON.parse(read("data/scholarship-classifications.json"));
-const records = sidecar.records ?? [];
+const records = [
+  ...(sidecar.records ?? []),
+  ...promotedRecords.flatMap((promotion) => promotion.provenanceRecords ?? []),
+];
 const verifiedGeo = new Set();
 for (const r of records) {
   if (!r.id || !r.kind || !r.classifiedAt || !r.method || !r.confidence)

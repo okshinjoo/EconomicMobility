@@ -7,6 +7,7 @@
 // as needs-review. Validated by `npm run check:scholarship-tags`.
 // Do not hand-edit inline — regenerate or append via the pipeline.
 import type { ScholarshipGeo } from "./scholarships";
+import { scholarshipAutomatedPromotedGeo } from "./scholarshipPromotions.generated";
 
 export const scholarshipGeo: Record<string, ScholarshipGeo> = {
   "fontana-scholars": { scope: "national" },
@@ -1235,4 +1236,5 @@ export const scholarshipGeo: Record<string, ScholarshipGeo> = {
   "maldef-law-school": { scope: "national" },
   "dri-foundation-scholarship": { scope: "national" },
   "maude-alexander-hadden-scholarship": { scope: "national" },
+  ...scholarshipAutomatedPromotedGeo,
 };

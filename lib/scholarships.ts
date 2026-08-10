@@ -1,6 +1,7 @@
 import { applyScholarshipAuditCuration } from "./scholarshipCuration.generated";
 import { scholarshipGeo } from "./scholarshipGeo.generated";
 import { scholarshipEligibility } from "./scholarshipEligibility.generated";
+import { scholarshipAutomatedPromotedCatalog } from "./scholarshipPromotions.generated";
 import type { EligibilityTag } from "./scholarshipTaxonomy";
 
 // The curated scholarship list (July 2026): real, established, national
@@ -18975,6 +18976,7 @@ const scholarshipCatalog: Scholarship[] = [
     tags: ["financial need", "academic merit", "leadership", "high school senior"],
     officialUrl: "https://youth-foundation.org/application/guidelines/",
   },
+  ...scholarshipAutomatedPromotedCatalog,
 ];
 
 // The full catalog remains above as the frozen, recoverable source set. The

@@ -1,7 +1,14 @@
 import type { ScholarshipGeo, StudentStage } from "./scholarships";
+import {
+  SCHOLARSHIP_TAXONOMY,
+  type CriterionStrength,
+  type EligibilityTag,
+} from "./scholarshipTaxonomy";
 
 const STAGES = new Set<StudentStage>(["high-school", "college", "transfer"]);
 const CATALOG_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const ELIGIBILITY_TAGS = new Set(SCHOLARSHIP_TAXONOMY.map((node) => node.id));
+const ELIGIBILITY_STRENGTHS = new Set<CriterionStrength>(["required", "preferred", "relevant"]);
 
 function cleanText(value: unknown, maximum: number) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, maximum) : "";
@@ -16,6 +23,9 @@ export interface ScholarshipPromotionRequest {
   who: string;
   stages: StudentStage[];
   tags: string[];
+  eligibility: EligibilityTag[];
+  eligibilityReviewed: boolean;
+  curationVerified: boolean;
   openToUndocumented: boolean;
 }
 
@@ -23,6 +33,8 @@ export interface ScholarshipPromotionReadiness {
   geographyVerified: boolean;
   officialSourceHealthy: boolean;
   evidenceQueueClear: boolean;
+  statusVerified: boolean;
+  deadlineVerified: boolean;
 }
 
 export function parseScholarshipPromotionRequest(value: unknown): ScholarshipPromotionRequest | null {
@@ -42,10 +54,22 @@ export function parseScholarshipPromotionRequest(value: unknown): ScholarshipPro
   const tags = Array.isArray(body.tags)
     ? [...new Set(body.tags.map((tag) => cleanText(tag, 60).toLowerCase()).filter(Boolean))].slice(0, 24)
     : [];
+  const eligibility = Array.isArray(body.eligibility)
+    ? body.eligibility.flatMap((value) => {
+      if (!value || typeof value !== "object") return [];
+      const candidate = value as Record<string, unknown>;
+      const tag = cleanText(candidate.tag, 100);
+      const strength = cleanText(candidate.strength, 20) as CriterionStrength;
+      if (!ELIGIBILITY_TAGS.has(tag) || !ELIGIBILITY_STRENGTHS.has(strength)) return [];
+      return [{ tag, strength }];
+    })
+    : [];
+  const uniqueEligibility = [...new Map(eligibility.map((value) => [value.tag, value])).values()];
 
   if (!candidateId.startsWith("candidate-") || !CATALOG_ID.test(catalogId)) return null;
   if (amount.length < 2 || deadline.length < 2 || who.length < 20 || stages.length === 0) return null;
   if (deadlineMonth !== null && (!Number.isInteger(deadlineMonth) || deadlineMonth < 1 || deadlineMonth > 12)) return null;
+  if (body.eligibilityReviewed !== true || body.curationVerified !== true) return null;
 
   return {
     candidateId,
@@ -56,12 +80,19 @@ export function parseScholarshipPromotionRequest(value: unknown): ScholarshipPro
     who,
     stages,
     tags,
+    eligibility: uniqueEligibility,
+    eligibilityReviewed: true,
+    curationVerified: true,
     openToUndocumented: body.openToUndocumented === true,
   };
 }
 
 export function canPrepareScholarshipPromotion(readiness: ScholarshipPromotionReadiness) {
-  return readiness.geographyVerified && readiness.officialSourceHealthy && readiness.evidenceQueueClear;
+  return readiness.geographyVerified &&
+    readiness.officialSourceHealthy &&
+    readiness.evidenceQueueClear &&
+    readiness.statusVerified &&
+    readiness.deadlineVerified;
 }
 
 export function buildScholarshipPromotionPacket({
@@ -93,15 +124,27 @@ export function buildScholarshipPromotionPacket({
       officialUrl: candidate.officialUrl,
     },
     geographyOverlay: { [request.catalogId]: geo },
-    provenanceRecord: {
-      id: request.catalogId,
-      kind: "geo",
-      classifiedAt: preparedAt.slice(0, 10),
-      sourceUrl: geographySourceUrl,
-      method: "manual",
-      confidence: "verified",
-      evidence,
-    },
+    eligibilityOverlay: { [request.catalogId]: request.eligibility },
+    provenanceRecords: [
+      {
+        id: request.catalogId,
+        kind: "geo",
+        classifiedAt: preparedAt.slice(0, 10),
+        sourceUrl: geographySourceUrl,
+        method: "manual",
+        confidence: "verified",
+        evidence,
+      },
+      {
+        id: request.catalogId,
+        kind: "eligibility",
+        classifiedAt: preparedAt.slice(0, 10),
+        sourceUrl: candidate.officialUrl,
+        method: "manual",
+        confidence: "verified",
+        evidence: request.who,
+      },
+    ],
     sourceCandidateId: request.candidateId,
     preparedAt,
     sponsor: candidate.sponsor,

@@ -9,6 +9,7 @@
 // `npm run check:scholarship-tags`. Do not hand-edit inline — regenerate
 // or append via the pipeline.
 import type { EligibilityTag } from "./scholarshipTaxonomy";
+import { scholarshipAutomatedPromotedEligibility } from "./scholarshipPromotions.generated";
 
 export const scholarshipEligibility: Record<string, EligibilityTag[]> = {
   "jkc-transfer": [{ tag: "basis.need", strength: "required" }, { tag: "basis.merit-academic", strength: "required" }],
@@ -1238,4 +1239,5 @@ export const scholarshipEligibility: Record<string, EligibilityTag[]> = {
   "va-brown-board-education": [{ tag: "circumstance.historical-school-closure", strength: "required" }],
   "dri-foundation-scholarship": [{ tag: "affiliation.membership", strength: "required" }, { tag: "basis.essay-contest", strength: "required" }],
   "maude-alexander-hadden-scholarship": [{ tag: "basis.need", strength: "required" }, { tag: "basis.merit-academic", strength: "required" }, { tag: "basis.community-service", strength: "relevant" }],
+  ...scholarshipAutomatedPromotedEligibility,
 };

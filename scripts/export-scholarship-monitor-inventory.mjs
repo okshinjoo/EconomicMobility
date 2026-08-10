@@ -10,11 +10,14 @@ const write = process.argv.includes("--write");
 const classificationDocument = JSON.parse(
   await readFile(new URL("../data/scholarship-classifications.json", import.meta.url), "utf8"),
 );
+const promotionDocument = JSON.parse(
+  await readFile(new URL("../data/scholarship-promotions.json", import.meta.url), "utf8"),
+);
 const candidateDocument = JSON.parse(
   await readFile(new URL("../data/scholarship-monitor-candidates.json", import.meta.url), "utf8"),
 );
 const verifiedGeoById = new Map(
-  classificationDocument.records
+  [...classificationDocument.records, ...(promotionDocument.records ?? []).flatMap((record) => record.provenanceRecords ?? [])]
     .filter((record) => record.kind === "geo" && record.confidence === "verified")
     .map((record) => [record.id, record]),
 );
@@ -73,8 +76,9 @@ const records = [...publishedRecords, ...candidateRecords]
 
 const ids = new Set(records.map((record) => record.scholarshipId));
 if (ids.size !== records.length) throw new Error("Curated scholarship IDs are not unique.");
-if (publishedRecords.length !== 1222) {
-  throw new Error(`Expected 1,222 current published scholarships; found ${publishedRecords.length}.`);
+const expectedPublishedCount = 1222 + (promotionDocument.records?.length ?? 0);
+if (publishedRecords.length !== expectedPublishedCount) {
+  throw new Error(`Expected ${expectedPublishedCount.toLocaleString()} current published scholarships; found ${publishedRecords.length}.`);
 }
 
 const catalogFingerprint = createHash("sha256")
