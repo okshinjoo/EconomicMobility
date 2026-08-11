@@ -40,6 +40,11 @@ const metricNames = new Set([
   "Spend Time Using Your Hands to Handle, Control, or Feel Objects, Tools, or Controls",
   "Spend Time Bending or Twisting Your Body",
   "Time Pressure",
+  "Freedom to Make Decisions",
+  "Impact of Decisions on Co-workers or Company Results",
+  "Consequence of Error",
+  "Conflict Situations",
+  "Unpleasant, Angry, or Discourteous People",
 ]);
 
 const scheduleName = "Work Schedules";
@@ -77,6 +82,10 @@ for await (const worksheet of workbook) {
 }
 
 const get = (metrics, name, fallback = 3) => Number(metrics[name] ?? fallback);
+const getOptional = (metrics, name) => {
+  const value = Number(metrics[name]);
+  return Number.isFinite(value) ? Number(value.toFixed(2)) : null;
+};
 const average = (values) => values.reduce((sum, value) => sum + value, 0) / values.length;
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const largestCategory = (categories) => {
@@ -127,10 +136,18 @@ for (const [careerId, record] of raw) {
     scheduleType,
     weeklyHours,
     timePressure: Number(get(metrics, "Time Pressure").toFixed(2)),
+    peopleContact: getOptional(metrics, "Contact With Others"),
+    decisionFreedom: getOptional(metrics, "Freedom to Make Decisions"),
+    consequenceOfError: getOptional(metrics, "Consequence of Error"),
+    conflictExposure: getOptional(metrics, "Conflict Situations"),
+    difficultPeople: getOptional(metrics, "Unpleasant, Angry, or Discourteous People"),
+    sitting: getOptional(metrics, "Spend Time Sitting"),
+    standing: getOptional(metrics, "Spend Time Standing"),
+    outdoors: getOptional(metrics, "Outdoors, Exposed to All Weather Conditions"),
   };
 }
 
-const source = `// GENERATED FILE — do not hand edit.\n// Built from O*NET 30.3 Work Context data. Remote compatibility is an\n// Empower heuristic based on work setting, posture, tools, and in-person contact;\n// it is not an employer policy or observed telework percentage.\n\nexport type CareerDemandLevel = "Lower" | "Moderate" | "Higher";\nexport type CareerRemoteCompatibility = "Lower" | "Mixed" | "Higher";\n\nexport interface CareerWorkContext {\n  physicalDemand: CareerDemandLevel;\n  physicalScore: number;\n  remoteCompatibility: CareerRemoteCompatibility;\n  remoteScore: number;\n  scheduleType: "Regular" | "Irregular" | "Seasonal" | null;\n  weeklyHours: string | null;\n  timePressure: number;\n}\n\nexport const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = ${JSON.stringify(result, null, 2)};\n\nexport function getCareerWorkContext(id: string): CareerWorkContext | undefined {\n  return CAREER_WORK_CONTEXT[id];\n}\n`;
+const source = `// GENERATED FILE — do not hand edit.\n// Built from O*NET 30.3 Work Context data. Remote compatibility is an\n// Empower heuristic based on work setting, posture, tools, and in-person contact;\n// it is not an employer policy or observed telework percentage.\n\nexport type CareerDemandLevel = "Lower" | "Moderate" | "Higher";\nexport type CareerRemoteCompatibility = "Lower" | "Mixed" | "Higher";\n\nexport interface CareerWorkContext {\n  physicalDemand: CareerDemandLevel;\n  physicalScore: number;\n  remoteCompatibility: CareerRemoteCompatibility;\n  remoteScore: number;\n  scheduleType: "Regular" | "Irregular" | "Seasonal" | null;\n  weeklyHours: string | null;\n  timePressure: number;\n  peopleContact: number | null;\n  decisionFreedom: number | null;\n  consequenceOfError: number | null;\n  conflictExposure: number | null;\n  difficultPeople: number | null;\n  sitting: number | null;\n  standing: number | null;\n  outdoors: number | null;\n}\n\nexport const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = ${JSON.stringify(result, null, 2)};\n\nexport function getCareerWorkContext(id: string): CareerWorkContext | undefined {\n  return CAREER_WORK_CONTEXT[id];\n}\n`;
 
 await fs.writeFile(output, source);
 console.log(`Wrote ${Object.keys(result).length} O*NET work-context profiles to ${output}.`);

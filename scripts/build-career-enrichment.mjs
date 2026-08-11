@@ -25,6 +25,8 @@ const MAX = {
   coreTasks: 5,
   interests: 3,
   workStyles: 4,
+  transferableSkills: 5,
+  knowledge: 5,
   software: 6,
 };
 
@@ -124,11 +126,22 @@ const careerCodes = new Map(careers.map((career) => [career.id, matchCode(career
 const targetCodes = new Set([...careerCodes.values()].filter(Boolean));
 
 console.log(`Matched ${targetCodes.size} O*NET occupations. Reading profile tables…`);
-const [titleRows, taskRows, interestRows, styleRows, softwareRows, zoneRows] = await Promise.all([
+const [
+  titleRows,
+  taskRows,
+  interestRows,
+  styleRows,
+  transferableSkillRows,
+  knowledgeRows,
+  softwareRows,
+  zoneRows,
+] = await Promise.all([
   rowsFrom("Sample of Reported Titles.xlsx"),
   rowsFrom("Task Statements.xlsx"),
   rowsFrom("Career Interest Types.xlsx"),
   rowsFrom("Work Styles.xlsx"),
+  rowsFrom("Transferable Skills.xlsx"),
+  rowsFrom("Knowledge.xlsx"),
   rowsFrom("Software Skills.xlsx"),
   rowsFrom("Job Zones.xlsx"),
 ]);
@@ -137,6 +150,12 @@ const titlesByCode = groupByCode(titleRows.filter((row) => targetCodes.has(row["
 const tasksByCode = groupByCode(taskRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"])));
 const interestsByCode = groupByCode(interestRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"])));
 const stylesByCode = groupByCode(styleRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"])));
+const transferableSkillsByCode = groupByCode(
+  transferableSkillRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"]))
+);
+const knowledgeByCode = groupByCode(
+  knowledgeRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"]))
+);
 const softwareByCode = groupByCode(softwareRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"])));
 const zonesByCode = groupByCode(zoneRows.filter((row) => targetCodes.has(row["O*NET-SOC Code"])));
 
@@ -167,6 +186,18 @@ for (const career of careers) {
     .sort((a, b) => Number(b["Data Value"]) - Number(a["Data Value"]))
     .slice(0, MAX.workStyles)
     .map((row) => row["Element Name"]);
+  const transferableSkills = unique(
+    (transferableSkillsByCode.get(code) ?? [])
+      .filter((row) => row["Scale ID"] === "IM" && row["Recommend Suppress"] !== "Y")
+      .sort((a, b) => Number(b["Data Value"]) - Number(a["Data Value"]))
+      .map((row) => row["Element Name"])
+  ).slice(0, MAX.transferableSkills);
+  const knowledge = unique(
+    (knowledgeByCode.get(code) ?? [])
+      .filter((row) => row["Scale ID"] === "IM" && row["Recommend Suppress"] !== "Y")
+      .sort((a, b) => Number(b["Data Value"]) - Number(a["Data Value"]))
+      .map((row) => row["Element Name"])
+  ).slice(0, MAX.knowledge);
   const software = unique(
     (softwareByCode.get(code) ?? [])
       .sort((a, b) => {
@@ -192,6 +223,8 @@ for (const career of careers) {
     coreTasks,
     interests,
     workStyles,
+    transferableSkills,
+    knowledge,
     software,
     jobZone: zone,
     onetUrl: `https://www.onetonline.org/link/summary/${code}`,
@@ -199,7 +232,7 @@ for (const career of careers) {
 }
 
 const header = `// GENERATED FILE — do not hand edit.\n// Built from ${RELEASE}, downloaded from https://www.onetcenter.org/database.html\n\n`;
-const typeBlock = `export interface CareerEnrichment {\n  onetSoc: string;\n  onetTitle: string;\n  description: string;\n  alternateTitles: string[];\n  coreTasks: string[];\n  interests: string[];\n  workStyles: string[];\n  software: string[];\n  jobZone: number | null;\n  onetUrl: string;\n}\n\nexport const ONET_DATA_VINTAGE = ${quote(RELEASE)};\n\n`;
+const typeBlock = `export interface CareerEnrichment {\n  onetSoc: string;\n  onetTitle: string;\n  description: string;\n  alternateTitles: string[];\n  coreTasks: string[];\n  interests: string[];\n  workStyles: string[];\n  transferableSkills: string[];\n  knowledge: string[];\n  software: string[];\n  jobZone: number | null;\n  onetUrl: string;\n}\n\nexport const ONET_DATA_VINTAGE = ${quote(RELEASE)};\n\n`;
 const dataBlock = `export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = ${JSON.stringify(generated, null, 2)};\n\n`;
 const helperBlock = `export function getCareerEnrichment(id: string): CareerEnrichment | undefined {\n  return CAREER_ENRICHMENT[id];\n}\n`;
 await fs.writeFile(outputPath, header + typeBlock + dataBlock + helperBlock);
@@ -213,6 +246,8 @@ const searchTerms = Object.fromEntries(
       ...profile.alternateTitles,
       ...profile.interests,
       ...profile.workStyles,
+      ...profile.transferableSkills,
+      ...profile.knowledge,
       ...profile.software,
     ].join(" "),
   ])

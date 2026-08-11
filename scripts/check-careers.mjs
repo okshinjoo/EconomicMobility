@@ -5,6 +5,11 @@ import { careers, CAREER_SOURCE_URLS } from "../lib/careers.ts";
 import { CAREER_DETAILS } from "../lib/careerDetails.ts";
 import { CAREER_ENRICHMENT, ONET_DATA_VINTAGE } from "../lib/careerEnrichment.ts";
 import { CAREER_WORK_CONTEXT } from "../lib/careerWorkContext.ts";
+import {
+  CAREER_INDUSTRIES,
+  CAREER_INDUSTRY_SOURCE_URL,
+  CAREER_INDUSTRY_VINTAGE,
+} from "../lib/careerIndustries.ts";
 import { CAREER_FIT_QUESTIONS, CAREER_INTERESTS } from "../lib/careerFit.ts";
 import { CAREER_COST_SOURCE } from "../lib/careerDecisionFacts.ts";
 
@@ -12,6 +17,7 @@ const EXPECTED_CAREERS = 474;
 const NO_PUBLISHED_WAGE = new Set(["commercial-fisher"]);
 const EXPECTED_ONET_PROFILES = 464;
 const EXPECTED_WORK_CONTEXT_PROFILES = 450;
+const EXPECTED_INDUSTRY_PROFILES = 473;
 const problems = [];
 
 function require(condition, message) {
@@ -72,14 +78,22 @@ require(
   `Expected ${EXPECTED_ONET_PROFILES} specific O*NET profiles; found ${Object.keys(CAREER_ENRICHMENT).length}.`
 );
 require(ONET_DATA_VINTAGE === "O*NET 30.3", `Unexpected O*NET vintage ${ONET_DATA_VINTAGE}.`);
+let transferableSkillProfiles = 0;
+let knowledgeProfiles = 0;
 for (const [id, profile] of Object.entries(CAREER_ENRICHMENT)) {
   require(careerIds.has(id), `${id}: O*NET profile has no catalog career.`);
   require(/^\d{2}-\d{4}\.\d{2}$/.test(profile.onetSoc), `${id}: invalid O*NET-SOC ${profile.onetSoc}.`);
   require(profile.coreTasks.length > 0, `${id}: O*NET profile has no task statements.`);
   require(profile.interests.length > 0, `${id}: O*NET profile has no interest data.`);
   require(profile.workStyles.length > 0, `${id}: O*NET profile has no work-style data.`);
+  if (profile.transferableSkills.length > 0) transferableSkillProfiles++;
+  if (profile.knowledge.length > 0) knowledgeProfiles++;
+  require(profile.transferableSkills.length <= 5, `${id}: too many O*NET transferable skills.`);
+  require(profile.knowledge.length <= 5, `${id}: too many O*NET knowledge areas.`);
   require(profile.onetUrl.startsWith("https://www.onetonline.org/"), `${id}: invalid O*NET source URL.`);
 }
+require(transferableSkillProfiles >= 450, `Only ${transferableSkillProfiles} O*NET profiles have transferable skills.`);
+require(knowledgeProfiles >= 450, `Only ${knowledgeProfiles} O*NET profiles have knowledge areas.`);
 
 require(
   Object.keys(CAREER_WORK_CONTEXT).length === EXPECTED_WORK_CONTEXT_PROFILES,
@@ -91,10 +105,46 @@ for (const [id, context] of Object.entries(CAREER_WORK_CONTEXT)) {
   require(["Lower", "Mixed", "Higher"].includes(context.remoteCompatibility), `${id}: invalid remote-compatibility band.`);
   require(context.physicalScore >= 1 && context.physicalScore <= 5, `${id}: physical score is out of range.`);
   require(context.remoteScore >= 0 && context.remoteScore <= 100, `${id}: remote score is out of range.`);
+  for (const metric of [
+    context.peopleContact,
+    context.decisionFreedom,
+    context.consequenceOfError,
+    context.conflictExposure,
+    context.difficultPeople,
+    context.sitting,
+    context.standing,
+    context.outdoors,
+  ]) {
+    require(metric == null || (metric >= 1 && metric <= 5), `${id}: work-reality score is out of range.`);
+  }
 }
 require(CAREER_WORK_CONTEXT.carpenter?.physicalDemand === "Higher", "Carpenter physical-demand benchmark changed.");
 require(CAREER_WORK_CONTEXT.rn?.remoteCompatibility === "Lower", "Registered nurse remote benchmark changed.");
 require(CAREER_WORK_CONTEXT["software-developer"]?.remoteCompatibility === "Higher", "Software developer remote benchmark changed.");
+
+require(
+  Object.keys(CAREER_INDUSTRIES).length === EXPECTED_INDUSTRY_PROFILES,
+  `Expected ${EXPECTED_INDUSTRY_PROFILES} BLS industry profiles; found ${Object.keys(CAREER_INDUSTRIES).length}.`
+);
+require(CAREER_INDUSTRY_VINTAGE === "May 2025", `Unexpected industry vintage ${CAREER_INDUSTRY_VINTAGE}.`);
+require(/^https:\/\/(www\.)?bls\.gov\//.test(CAREER_INDUSTRY_SOURCE_URL), "Industry source is not an official BLS URL.");
+for (const [id, industries] of Object.entries(CAREER_INDUSTRIES)) {
+  require(careerIds.has(id), `${id}: industry profile has no catalog career.`);
+  require(industries.length > 0 && industries.length <= 3, `${id}: invalid number of industry sectors.`);
+  for (let index = 0; index < industries.length; index++) {
+    const industry = industries[index];
+    require(industry.employment > 0, `${id}/${industry.name}: invalid industry employment.`);
+    require(industry.share == null || (industry.share >= 0 && industry.share <= 100), `${id}/${industry.name}: invalid occupation share.`);
+    if (index > 0) {
+      require(
+        industries[index - 1].employment >= industry.employment,
+        `${id}: industry sectors are not sorted by employment.`
+      );
+    }
+  }
+}
+require(CAREER_INDUSTRIES.electrician?.[0]?.name === "Construction", "Electrician top industry changed.");
+require(CAREER_INDUSTRIES.electrician?.[0]?.employment === 599700, "Electrician construction employment does not match May 2025 OEWS.");
 
 require(CAREER_FIT_QUESTIONS.length === 12, `Expected 12 fit prompts; found ${CAREER_FIT_QUESTIONS.length}.`);
 require(new Set(CAREER_FIT_QUESTIONS.map((question) => question.id)).size === 12, "Career-fit prompt ids are not unique.");
@@ -242,5 +292,5 @@ const hourlyOnly = careers.filter(
   (career) => career.medianPay == null && career.medianHourlyPay != null
 ).length;
 console.log(
-  `Career catalog OK: ${careers.length} careers, ${annual} annual medians, ${hourlyOnly} hourly-only medians, ${socs.length} unique SOC profiles, ${Object.keys(CAREER_ENRICHMENT).length} O*NET fit profiles, ${Object.keys(CAREER_WORK_CONTEXT).length} O*NET work-context profiles, ${stateRecords.toLocaleString()} state wage records, ${uniqueMetroAreas.size} metro areas with ${metroRecords.toLocaleString()} state-area-career wage records, ${pathwayTotals.licenses.toLocaleString()} license matches, ${pathwayTotals.programs.toLocaleString()} public-program matches, and ${pathwayTotals.sponsors.toLocaleString()} registered-sponsor matches.`
+  `Career catalog OK: ${careers.length} careers, ${annual} annual medians, ${hourlyOnly} hourly-only medians, ${socs.length} unique SOC profiles, ${Object.keys(CAREER_ENRICHMENT).length} O*NET fit profiles, ${Object.keys(CAREER_WORK_CONTEXT).length} O*NET work-context profiles, ${Object.keys(CAREER_INDUSTRIES).length} BLS industry profiles, ${stateRecords.toLocaleString()} state wage records, ${uniqueMetroAreas.size} metro areas with ${metroRecords.toLocaleString()} state-area-career wage records, ${pathwayTotals.licenses.toLocaleString()} license matches, ${pathwayTotals.programs.toLocaleString()} public-program matches, and ${pathwayTotals.sponsors.toLocaleString()} registered-sponsor matches.`
 );

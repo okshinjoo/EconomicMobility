@@ -14,6 +14,14 @@ export interface CareerWorkContext {
   scheduleType: "Regular" | "Irregular" | "Seasonal" | null;
   weeklyHours: string | null;
   timePressure: number;
+  peopleContact: number | null;
+  decisionFreedom: number | null;
+  consequenceOfError: number | null;
+  conflictExposure: number | null;
+  difficultPeople: number | null;
+  sitting: number | null;
+  standing: number | null;
+  outdoors: number | null;
 }
 
 export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
@@ -24,7 +32,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.16
+    "timePressure": 4.16,
+    "peopleContact": 4.58,
+    "decisionFreedom": 4.95,
+    "consequenceOfError": 3.02,
+    "conflictExposure": 3.86,
+    "difficultPeople": null,
+    "sitting": 4.18,
+    "standing": 2.13,
+    "outdoors": 2.12
   },
   "operations-manager": {
     "physicalDemand": "Moderate",
@@ -33,7 +49,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 35,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.63,
+    "decisionFreedom": 4.81,
+    "consequenceOfError": 2.52,
+    "conflictExposure": 3.35,
+    "difficultPeople": null,
+    "sitting": 3.09,
+    "standing": 2.9,
+    "outdoors": 2.93
   },
   "marketing-manager": {
     "physicalDemand": "Lower",
@@ -42,7 +66,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 77,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.21
+    "timePressure": 4.21,
+    "peopleContact": 4.61,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.76,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 4.36,
+    "standing": 2.09,
+    "outdoors": 1.38
   },
   "sales-manager": {
     "physicalDemand": "Lower",
@@ -51,7 +83,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 73,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 4.86,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 2,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 4.1,
+    "standing": 2.4,
+    "outdoors": 1.85
   },
   "fundraising-manager": {
     "physicalDemand": "Lower",
@@ -60,7 +100,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 86,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.97
+    "timePressure": 3.97,
+    "peopleContact": 4.96,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 2.79,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 4.88,
+    "standing": 1.9,
+    "outdoors": 1.53
   },
   "admin-services-manager": {
     "physicalDemand": "Lower",
@@ -69,7 +117,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 56,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.7
+    "timePressure": 3.7,
+    "peopleContact": 4.5,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.77,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 3.66,
+    "standing": 2.49,
+    "outdoors": 1.79
   },
   "facilities-manager": {
     "physicalDemand": "Moderate",
@@ -78,7 +134,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 36,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 4.72,
+    "decisionFreedom": 4.28,
+    "consequenceOfError": 2.73,
+    "conflictExposure": 3.32,
+    "difficultPeople": null,
+    "sitting": 3.34,
+    "standing": 2.93,
+    "outdoors": 2.66
   },
   "it-manager": {
     "physicalDemand": "Lower",
@@ -87,7 +151,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 74,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.37
+    "timePressure": 3.37,
+    "peopleContact": 4.58,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 3.72,
+    "conflictExposure": 3.3,
+    "difficultPeople": null,
+    "sitting": 4.58,
+    "standing": 1.57,
+    "outdoors": 1.17
   },
   "financial-manager": {
     "physicalDemand": "Lower",
@@ -96,7 +168,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 87,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.54
+    "timePressure": 4.54,
+    "peopleContact": 4.19,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.99,
+    "conflictExposure": 3.09,
+    "difficultPeople": null,
+    "sitting": 4.42,
+    "standing": 1.98,
+    "outdoors": 1.39
   },
   "industrial-production-manager": {
     "physicalDemand": "Moderate",
@@ -105,7 +185,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 12,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 4.69,
+    "decisionFreedom": 4.39,
+    "consequenceOfError": 3.02,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 2.73,
+    "standing": 3.47,
+    "outdoors": 2.32
   },
   "purchasing-manager": {
     "physicalDemand": "Lower",
@@ -114,7 +202,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 85,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.16
+    "timePressure": 4.16,
+    "peopleContact": 4.58,
+    "decisionFreedom": 4.21,
+    "consequenceOfError": 2.16,
+    "conflictExposure": 3.32,
+    "difficultPeople": null,
+    "sitting": 4.53,
+    "standing": 1.84,
+    "outdoors": 1.74
   },
   "logistics-manager": {
     "physicalDemand": "Lower",
@@ -123,7 +219,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 32,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 4.38
+    "timePressure": 4.38,
+    "peopleContact": 4.62,
+    "decisionFreedom": 4.16,
+    "consequenceOfError": 3.04,
+    "conflictExposure": 3.63,
+    "difficultPeople": null,
+    "sitting": 3.6,
+    "standing": 2.52,
+    "outdoors": 2.77
   },
   "hr-manager": {
     "physicalDemand": "Lower",
@@ -132,7 +236,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.68,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 2.95,
+    "conflictExposure": 4.05,
+    "difficultPeople": null,
+    "sitting": 4.23,
+    "standing": 2.3,
+    "outdoors": 1.55
   },
   "training-development-manager": {
     "physicalDemand": "Lower",
@@ -141,7 +253,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 86,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.64
+    "timePressure": 3.64,
+    "peopleContact": 4.5,
+    "decisionFreedom": 4.36,
+    "consequenceOfError": 1.68,
+    "conflictExposure": 2.86,
+    "difficultPeople": null,
+    "sitting": 4.39,
+    "standing": 2.25,
+    "outdoors": 1.25
   },
   "farmer": {
     "physicalDemand": "Moderate",
@@ -150,7 +270,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 3.49
+    "timePressure": 3.49,
+    "peopleContact": 4.27,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 3.04,
+    "conflictExposure": 2.61,
+    "difficultPeople": null,
+    "sitting": 2.36,
+    "standing": 3.42,
+    "outdoors": 4.78
   },
   "construction-manager": {
     "physicalDemand": "Moderate",
@@ -159,7 +287,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.25
+    "timePressure": 4.25,
+    "peopleContact": 4.6,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 3.5,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 2.65,
+    "standing": 3.6,
+    "outdoors": 3.85
   },
   "childcare-director": {
     "physicalDemand": "Lower",
@@ -168,7 +304,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 43,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.98,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 3.69,
+    "difficultPeople": null,
+    "sitting": 3.6,
+    "standing": 2.53,
+    "outdoors": 2.3
   },
   "school-administrator": {
     "physicalDemand": "Moderate",
@@ -177,7 +321,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 26,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.46
+    "timePressure": 3.46,
+    "peopleContact": 4.87,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 1.92,
+    "conflictExposure": 3.81,
+    "difficultPeople": null,
+    "sitting": 2.27,
+    "standing": 3.95,
+    "outdoors": 2.41
   },
   "college-administrator": {
     "physicalDemand": "Lower",
@@ -186,7 +338,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 75,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 4.51,
+    "decisionFreedom": 4.63,
+    "consequenceOfError": 2.35,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 3.81,
+    "standing": 2.4,
+    "outdoors": 1.64
   },
   "engineering-manager": {
     "physicalDemand": "Lower",
@@ -195,7 +355,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 61,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.79
+    "timePressure": 3.79,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.53,
+    "consequenceOfError": 2.52,
+    "conflictExposure": 3.29,
+    "difficultPeople": null,
+    "sitting": 3.96,
+    "standing": 2.16,
+    "outdoors": 1.76
   },
   "food-service-manager": {
     "physicalDemand": "Moderate",
@@ -204,7 +372,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 13,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 4.84,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 2.83,
+    "conflictExposure": 3.63,
+    "difficultPeople": null,
+    "sitting": 1.96,
+    "standing": 4.46,
+    "outdoors": 2.03
   },
   "lodging-manager": {
     "physicalDemand": "Lower",
@@ -213,7 +389,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.35
+    "timePressure": 4.35,
+    "peopleContact": 4.89,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 2.6,
+    "conflictExposure": 3.72,
+    "difficultPeople": null,
+    "sitting": 3.4,
+    "standing": 3.12,
+    "outdoors": 1.45
   },
   "health-services-manager": {
     "physicalDemand": "Lower",
@@ -222,7 +406,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 85,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.82,
+    "decisionFreedom": 3.89,
+    "consequenceOfError": 2.41,
+    "conflictExposure": 3.71,
+    "difficultPeople": null,
+    "sitting": 4.25,
+    "standing": 2.25,
+    "outdoors": 1
   },
   "natural-sciences-manager": {
     "physicalDemand": "Lower",
@@ -231,7 +423,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.28
+    "timePressure": 3.28,
+    "peopleContact": 4.05,
+    "decisionFreedom": 4.13,
+    "consequenceOfError": 3.12,
+    "conflictExposure": 2.28,
+    "difficultPeople": null,
+    "sitting": 4.08,
+    "standing": 2.4,
+    "outdoors": 1.51
   },
   "property-manager": {
     "physicalDemand": "Lower",
@@ -240,7 +440,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 42,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 4.7,
+    "decisionFreedom": 4.25,
+    "consequenceOfError": 2.6,
+    "conflictExposure": 3.6,
+    "difficultPeople": null,
+    "sitting": 3.79,
+    "standing": 2.35,
+    "outdoors": 3.05
   },
   "community-service-manager": {
     "physicalDemand": "Lower",
@@ -249,7 +457,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.35,
+    "consequenceOfError": 2.92,
+    "conflictExposure": 3.51,
+    "difficultPeople": null,
+    "sitting": 4.03,
+    "standing": 2.46,
+    "outdoors": 1.68
   },
   "emergency-management-director": {
     "physicalDemand": "Lower",
@@ -258,7 +474,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 52,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.45
+    "timePressure": 3.45,
+    "peopleContact": 4.41,
+    "decisionFreedom": 4.36,
+    "consequenceOfError": 2.68,
+    "conflictExposure": 3.09,
+    "difficultPeople": null,
+    "sitting": 3.68,
+    "standing": 2.73,
+    "outdoors": 2.86
   },
   "talent-agent": {
     "physicalDemand": "Lower",
@@ -267,7 +491,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 83,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.65
+    "timePressure": 4.65,
+    "peopleContact": 4.88,
+    "decisionFreedom": 4.22,
+    "consequenceOfError": 2.78,
+    "conflictExposure": 3.33,
+    "difficultPeople": null,
+    "sitting": 4.6,
+    "standing": 1.75,
+    "outdoors": 1.18
   },
   "claims-adjuster": {
     "physicalDemand": "Lower",
@@ -276,7 +508,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.39
+    "timePressure": 4.39,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.51,
+    "consequenceOfError": 2.71,
+    "conflictExposure": 4.03,
+    "difficultPeople": null,
+    "sitting": 4.62,
+    "standing": 1.71,
+    "outdoors": 1.67
   },
   "compliance-officer": {
     "physicalDemand": "Moderate",
@@ -285,7 +525,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 28,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 3.53
+    "timePressure": 3.53,
+    "peopleContact": 4.79,
+    "decisionFreedom": 3.68,
+    "consequenceOfError": 3.51,
+    "conflictExposure": 3.57,
+    "difficultPeople": null,
+    "sitting": 3.83,
+    "standing": 2.47,
+    "outdoors": 3.52
   },
   "cost-estimator": {
     "physicalDemand": "Lower",
@@ -294,7 +542,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 3.68,
+    "decisionFreedom": 3.91,
+    "consequenceOfError": 2.36,
+    "conflictExposure": 2.45,
+    "difficultPeople": null,
+    "sitting": 4.59,
+    "standing": 1.81,
+    "outdoors": 1.52
   },
   "hr-specialist": {
     "physicalDemand": "Lower",
@@ -303,7 +559,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 4.77,
+    "decisionFreedom": 4.36,
+    "consequenceOfError": 2.93,
+    "conflictExposure": 3.93,
+    "difficultPeople": null,
+    "sitting": 4.18,
+    "standing": 1.94,
+    "outdoors": 1.46
   },
   "labor-relations-specialist": {
     "physicalDemand": "Lower",
@@ -312,7 +576,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 82,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.71
+    "timePressure": 3.71,
+    "peopleContact": 4.48,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 2.84,
+    "conflictExposure": 4,
+    "difficultPeople": null,
+    "sitting": 4.1,
+    "standing": 2.32,
+    "outdoors": 1.42
   },
   "logistician": {
     "physicalDemand": "Lower",
@@ -321,7 +593,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 63,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.42
+    "timePressure": 4.42,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 2.58,
+    "conflictExposure": 3.08,
+    "difficultPeople": null,
+    "sitting": 3.92,
+    "standing": 2.25,
+    "outdoors": 2.12
   },
   "management-analyst": {
     "physicalDemand": "Lower",
@@ -330,7 +610,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 79,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4.25,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.79,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 4.19,
+    "standing": 1.95,
+    "outdoors": 1.75
   },
   "event-planner": {
     "physicalDemand": "Moderate",
@@ -339,7 +627,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.57
+    "timePressure": 4.57,
+    "peopleContact": 4.91,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 1.87,
+    "conflictExposure": 3.53,
+    "difficultPeople": null,
+    "sitting": 3.67,
+    "standing": 3.08,
+    "outdoors": 2.32
   },
   "fundraiser": {
     "physicalDemand": "Lower",
@@ -348,7 +644,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 60,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 4.62,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 2.52,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 4.05,
+    "standing": 2.24,
+    "outdoors": 1.76
   },
   "compensation-benefits-specialist": {
     "physicalDemand": "Lower",
@@ -357,7 +661,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 90,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 4.38,
+    "decisionFreedom": 3.81,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 4.71,
+    "standing": 2,
+    "outdoors": 1.24
   },
   "training-development-specialist": {
     "physicalDemand": "Lower",
@@ -366,7 +678,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 75,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.7
+    "timePressure": 3.7,
+    "peopleContact": 4.57,
+    "decisionFreedom": 4.35,
+    "consequenceOfError": 2.04,
+    "conflictExposure": 3.22,
+    "difficultPeople": null,
+    "sitting": 3.9,
+    "standing": 2.65,
+    "outdoors": 1.48
   },
   "market-research-analyst": {
     "physicalDemand": "Lower",
@@ -375,7 +695,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 4.22,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 2.45,
+    "conflictExposure": 2.7,
+    "difficultPeople": null,
+    "sitting": 4.65,
+    "standing": 1.87,
+    "outdoors": 1.43
   },
   "accountant": {
     "physicalDemand": "Lower",
@@ -384,7 +712,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 91,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 4.19
+    "timePressure": 4.19,
+    "peopleContact": 4.55,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 2.75,
+    "conflictExposure": 2.75,
+    "difficultPeople": null,
+    "sitting": 4.5,
+    "standing": 1.8,
+    "outdoors": 1.27
   },
   "budget-analyst": {
     "physicalDemand": "Lower",
@@ -393,7 +729,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 79,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.26
+    "timePressure": 4.26,
+    "peopleContact": 4.42,
+    "decisionFreedom": 4.25,
+    "consequenceOfError": 2.8,
+    "conflictExposure": 3.01,
+    "difficultPeople": null,
+    "sitting": 4.82,
+    "standing": 1.8,
+    "outdoors": 1.15
   },
   "credit-analyst": {
     "physicalDemand": "Lower",
@@ -402,7 +746,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 3.7,
+    "decisionFreedom": 3.75,
+    "consequenceOfError": 2.6,
+    "conflictExposure": 2.5,
+    "difficultPeople": null,
+    "sitting": 4.85,
+    "standing": 1.63,
+    "outdoors": 1.16
   },
   "financial-advisor": {
     "physicalDemand": "Lower",
@@ -411,7 +763,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.69
+    "timePressure": 3.69,
+    "peopleContact": 3.92,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.08,
+    "conflictExposure": 2.32,
+    "difficultPeople": null,
+    "sitting": 4.42,
+    "standing": 1.56,
+    "outdoors": 1.08
   },
   "insurance-underwriter": {
     "physicalDemand": "Lower",
@@ -420,7 +780,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 97,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.57
+    "timePressure": 4.57,
+    "peopleContact": 4.5,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 2.9,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 4.93,
+    "standing": 1.73,
+    "outdoors": 1.2
   },
   "financial-examiner": {
     "physicalDemand": "Lower",
@@ -429,7 +797,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.61
+    "timePressure": 3.61,
+    "peopleContact": 4.61,
+    "decisionFreedom": 3.52,
+    "consequenceOfError": 2.35,
+    "conflictExposure": 2.74,
+    "difficultPeople": null,
+    "sitting": 4.78,
+    "standing": 1.83,
+    "outdoors": 1
   },
   "credit-counselor": {
     "physicalDemand": "Lower",
@@ -438,7 +814,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 89,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.84
+    "timePressure": 3.84,
+    "peopleContact": 4.48,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 2.44,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 4.64,
+    "standing": 1.8,
+    "outdoors": 1.36
   },
   "loan-officer": {
     "physicalDemand": "Lower",
@@ -447,7 +831,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 66,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 4.83,
+    "decisionFreedom": 4.43,
+    "consequenceOfError": 3.01,
+    "conflictExposure": 3.19,
+    "difficultPeople": null,
+    "sitting": 4.61,
+    "standing": 2.16,
+    "outdoors": 1.92
   },
   "tax-examiner": {
     "physicalDemand": "Lower",
@@ -456,7 +848,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.52,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.91,
+    "conflictExposure": 2.77,
+    "difficultPeople": null,
+    "sitting": 4.72,
+    "standing": 1.59,
+    "outdoors": 1.12
   },
   "tax-preparer": {
     "physicalDemand": "Lower",
@@ -465,7 +865,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Seasonal",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.05
+    "timePressure": 4.05,
+    "peopleContact": 4,
+    "decisionFreedom": 3.85,
+    "consequenceOfError": 2.74,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 4.45,
+    "standing": 1.95,
+    "outdoors": 1.05
   },
   "systems-analyst": {
     "physicalDemand": "Lower",
@@ -474,7 +882,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 84,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.17
+    "timePressure": 4.17,
+    "peopleContact": 4.49,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 2.99,
+    "conflictExposure": 2.36,
+    "difficultPeople": null,
+    "sitting": 4.18,
+    "standing": 2.38,
+    "outdoors": 1.13
   },
   "infosec-analyst": {
     "physicalDemand": "Lower",
@@ -483,7 +899,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.6
+    "timePressure": 3.6,
+    "peopleContact": 4.32,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.45,
+    "conflictExposure": 2.92,
+    "difficultPeople": null,
+    "sitting": 4.23,
+    "standing": 2.3,
+    "outdoors": 1.52
   },
   "ai-researcher": {
     "physicalDemand": "Lower",
@@ -492,7 +916,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.71
+    "timePressure": 3.71,
+    "peopleContact": 4.44,
+    "decisionFreedom": 4.17,
+    "consequenceOfError": 2.61,
+    "conflictExposure": 2.59,
+    "difficultPeople": null,
+    "sitting": 4.53,
+    "standing": 1.77,
+    "outdoors": 1.06
   },
   "network-support-specialist": {
     "physicalDemand": "Lower",
@@ -501,7 +933,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 4.72,
+    "decisionFreedom": 4.26,
+    "consequenceOfError": 3.29,
+    "conflictExposure": 2.58,
+    "difficultPeople": null,
+    "sitting": 3.72,
+    "standing": 2.45,
+    "outdoors": 1.51
   },
   "it-support": {
     "physicalDemand": "Lower",
@@ -510,7 +950,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.65
+    "timePressure": 3.65,
+    "peopleContact": 4.38,
+    "decisionFreedom": 4.57,
+    "consequenceOfError": 3.46,
+    "conflictExposure": 2.33,
+    "difficultPeople": null,
+    "sitting": 3.93,
+    "standing": 2.18,
+    "outdoors": 1.63
   },
   "network-architect": {
     "physicalDemand": "Lower",
@@ -519,7 +967,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 84,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.6
+    "timePressure": 3.6,
+    "peopleContact": 4.15,
+    "decisionFreedom": 3.75,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 4.3,
+    "standing": 2.55,
+    "outdoors": 1.6
   },
   "database-admin": {
     "physicalDemand": "Lower",
@@ -528,7 +984,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.99
+    "timePressure": 2.99,
+    "peopleContact": 4.13,
+    "decisionFreedom": 4.49,
+    "consequenceOfError": 3.88,
+    "conflictExposure": 2.44,
+    "difficultPeople": null,
+    "sitting": 4.33,
+    "standing": 3,
+    "outdoors": 1.12
   },
   "database-architect": {
     "physicalDemand": "Lower",
@@ -537,7 +1001,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.62
+    "timePressure": 3.62,
+    "peopleContact": 3.81,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 3.24,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 4.81,
+    "standing": 1.9,
+    "outdoors": 1.1
   },
   "sysadmin": {
     "physicalDemand": "Lower",
@@ -546,7 +1018,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 88,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.79
+    "timePressure": 3.79,
+    "peopleContact": 4.46,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 2.72,
+    "conflictExposure": 2.41,
+    "difficultPeople": null,
+    "sitting": 4.27,
+    "standing": 2.02,
+    "outdoors": 1.43
   },
   "computer-programmer": {
     "physicalDemand": "Lower",
@@ -555,7 +1035,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 91,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 4.15,
+    "decisionFreedom": 3.43,
+    "consequenceOfError": 2.54,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 4.84,
+    "standing": 1.62,
+    "outdoors": 1.19
   },
   "software-developer": {
     "physicalDemand": "Lower",
@@ -564,7 +1052,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.5
+    "timePressure": 3.5,
+    "peopleContact": 3.88,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 2.76,
+    "conflictExposure": 1.72,
+    "difficultPeople": null,
+    "sitting": 4.95,
+    "standing": 1.47,
+    "outdoors": 1.01
   },
   "qa-analyst": {
     "physicalDemand": "Lower",
@@ -573,7 +1069,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.88
+    "timePressure": 3.88,
+    "peopleContact": 4,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.79,
+    "conflictExposure": 3.03,
+    "difficultPeople": null,
+    "sitting": 4.68,
+    "standing": 1.94,
+    "outdoors": 1.12
   },
   "web-developer": {
     "physicalDemand": "Lower",
@@ -582,7 +1086,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 3.88,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.88,
+    "conflictExposure": 2.88,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.67,
+    "outdoors": 1.04
   },
   "actuary": {
     "physicalDemand": "Lower",
@@ -591,7 +1103,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.46
+    "timePressure": 3.46,
+    "peopleContact": 3.79,
+    "decisionFreedom": 3.86,
+    "consequenceOfError": 2.37,
+    "conflictExposure": 2.21,
+    "difficultPeople": null,
+    "sitting": 4.93,
+    "standing": 1.59,
+    "outdoors": 1
   },
   "mathematician": {
     "physicalDemand": "Lower",
@@ -600,7 +1120,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 99,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.15
+    "timePressure": 3.15,
+    "peopleContact": 3.35,
+    "decisionFreedom": 4.5,
+    "consequenceOfError": 2.26,
+    "conflictExposure": 1.9,
+    "difficultPeople": null,
+    "sitting": 3.89,
+    "standing": 2.1,
+    "outdoors": 1.1
   },
   "operations-research-analyst": {
     "physicalDemand": "Lower",
@@ -609,7 +1137,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.57
+    "timePressure": 3.57,
+    "peopleContact": 3.62,
+    "decisionFreedom": 3.76,
+    "consequenceOfError": 2.35,
+    "conflictExposure": 2.29,
+    "difficultPeople": null,
+    "sitting": 4.43,
+    "standing": 1.9,
+    "outdoors": 1.38
   },
   "statistician": {
     "physicalDemand": "Lower",
@@ -618,7 +1154,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.29
+    "timePressure": 3.29,
+    "peopleContact": 3.38,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 2.5,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 4.71,
+    "standing": 1.9,
+    "outdoors": 1.1
   },
   "architect": {
     "physicalDemand": "Lower",
@@ -627,7 +1171,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.62
+    "timePressure": 3.62,
+    "peopleContact": 4.57,
+    "decisionFreedom": 3.86,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 4.4,
+    "standing": 2.05,
+    "outdoors": 2.65
   },
   "landscape-architect": {
     "physicalDemand": "Lower",
@@ -636,7 +1188,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 70,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.85
+    "timePressure": 3.85,
+    "peopleContact": 4.05,
+    "decisionFreedom": 3.7,
+    "consequenceOfError": 2.4,
+    "conflictExposure": 2.65,
+    "difficultPeople": null,
+    "sitting": 4.25,
+    "standing": 2.2,
+    "outdoors": 2.9
   },
   "cartographer": {
     "physicalDemand": "Lower",
@@ -645,7 +1205,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.97
+    "timePressure": 3.97,
+    "peopleContact": 4.2,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 2.5,
+    "conflictExposure": 2.58,
+    "difficultPeople": null,
+    "sitting": 4.83,
+    "standing": 1.83,
+    "outdoors": 2.02
   },
   "surveyor": {
     "physicalDemand": "Moderate",
@@ -654,7 +1222,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 1,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.3
+    "timePressure": 4.3,
+    "peopleContact": 4.35,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.5,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 3.1,
+    "standing": 3.3,
+    "outdoors": 4.45
   },
   "aerospace-engineer": {
     "physicalDemand": "Lower",
@@ -663,7 +1239,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.56
+    "timePressure": 3.56,
+    "peopleContact": 4.24,
+    "decisionFreedom": 4.35,
+    "consequenceOfError": 2.76,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 4.25,
+    "standing": 1.95,
+    "outdoors": 1.56
   },
   "agricultural-engineer": {
     "physicalDemand": "Lower",
@@ -672,7 +1256,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 59,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.4
+    "timePressure": 3.4,
+    "peopleContact": 3.75,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.05,
+    "conflictExposure": 2.6,
+    "difficultPeople": null,
+    "sitting": 3.68,
+    "standing": 2.5,
+    "outdoors": 3.5
   },
   "biomedical-engineer": {
     "physicalDemand": "Lower",
@@ -681,7 +1273,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 90,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.48
+    "timePressure": 3.48,
+    "peopleContact": 3.78,
+    "decisionFreedom": 4,
+    "consequenceOfError": 2.61,
+    "conflictExposure": 2.35,
+    "difficultPeople": null,
+    "sitting": 4,
+    "standing": 2.17,
+    "outdoors": 1.35
   },
   "chemical-engineer": {
     "physicalDemand": "Lower",
@@ -690,7 +1290,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 65,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.57
+    "timePressure": 3.57,
+    "peopleContact": 3.96,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 3.96,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 4,
+    "standing": 2.05,
+    "outdoors": 2.87
   },
   "civil-engineer": {
     "physicalDemand": "Lower",
@@ -699,7 +1307,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 60,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4.19,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 3.43,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 4.14,
+    "standing": 2.19,
+    "outdoors": 2.81
   },
   "computer-hardware-engineer": {
     "physicalDemand": "Lower",
@@ -708,7 +1324,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 94,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.66
+    "timePressure": 3.66,
+    "peopleContact": 3.97,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 2.64,
+    "conflictExposure": 2.55,
+    "difficultPeople": null,
+    "sitting": 4.5,
+    "standing": 2.07,
+    "outdoors": 1.37
   },
   "electrical-engineer": {
     "physicalDemand": "Lower",
@@ -717,7 +1341,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 61,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.34,
+    "decisionFreedom": 4.47,
+    "consequenceOfError": 3.03,
+    "conflictExposure": 3.23,
+    "difficultPeople": null,
+    "sitting": 4.06,
+    "standing": 2.38,
+    "outdoors": 2.21
   },
   "electronics-engineer": {
     "physicalDemand": "Lower",
@@ -726,7 +1358,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.06
+    "timePressure": 3.06,
+    "peopleContact": 3.72,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 2.67,
+    "conflictExposure": 2.02,
+    "difficultPeople": null,
+    "sitting": 4.18,
+    "standing": 2.11,
+    "outdoors": 1.14
   },
   "environmental-engineer": {
     "physicalDemand": "Lower",
@@ -735,7 +1375,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.81
+    "timePressure": 3.81,
+    "peopleContact": 4.05,
+    "decisionFreedom": 3.81,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 2.62,
+    "difficultPeople": null,
+    "sitting": 3.95,
+    "standing": 2.4,
+    "outdoors": 3.2
   },
   "industrial-engineer": {
     "physicalDemand": "Lower",
@@ -744,7 +1392,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 52,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.79
+    "timePressure": 3.79,
+    "peopleContact": 4.53,
+    "decisionFreedom": 4.29,
+    "consequenceOfError": 3.43,
+    "conflictExposure": 3.36,
+    "difficultPeople": null,
+    "sitting": 3.48,
+    "standing": 2.65,
+    "outdoors": 1.76
   },
   "marine-engineer": {
     "physicalDemand": "Moderate",
@@ -753,7 +1409,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 32,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 3.95,
+    "decisionFreedom": 3.78,
+    "consequenceOfError": 3.71,
+    "conflictExposure": 2.35,
+    "difficultPeople": null,
+    "sitting": 3.44,
+    "standing": 2.83,
+    "outdoors": 3.42
   },
   "materials-engineer": {
     "physicalDemand": "Lower",
@@ -762,7 +1426,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 72,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.52
+    "timePressure": 3.52,
+    "peopleContact": 3.86,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 2.76,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 3.6,
+    "standing": 2.57,
+    "outdoors": 1.67
   },
   "mechanical-engineer": {
     "physicalDemand": "Lower",
@@ -771,7 +1443,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 66,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.51
+    "timePressure": 3.51,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.25,
+    "consequenceOfError": 2.99,
+    "conflictExposure": 2.79,
+    "difficultPeople": null,
+    "sitting": 3.81,
+    "standing": 2.4,
+    "outdoors": 1.96
   },
   "nuclear-engineer": {
     "physicalDemand": "Lower",
@@ -780,7 +1460,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 78,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.57
+    "timePressure": 3.57,
+    "peopleContact": 3.67,
+    "decisionFreedom": 3.48,
+    "consequenceOfError": 3.65,
+    "conflictExposure": 2.6,
+    "difficultPeople": null,
+    "sitting": 3.86,
+    "standing": 2,
+    "outdoors": 2.1
   },
   "petroleum-engineer": {
     "physicalDemand": "Lower",
@@ -789,7 +1477,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 60,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 4.54,
+    "decisionFreedom": 3.92,
+    "consequenceOfError": 2.76,
+    "conflictExposure": 2.83,
+    "difficultPeople": null,
+    "sitting": 4.22,
+    "standing": 2.16,
+    "outdoors": 2.21
   },
   "drafter": {
     "physicalDemand": "Lower",
@@ -798,7 +1494,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 72,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 4.38
+    "timePressure": 4.38,
+    "peopleContact": 4,
+    "decisionFreedom": 3.69,
+    "consequenceOfError": 2.74,
+    "conflictExposure": 2.47,
+    "difficultPeople": null,
+    "sitting": 4.52,
+    "standing": 2.14,
+    "outdoors": 2.36
   },
   "aerospace-engineering-tech": {
     "physicalDemand": "Moderate",
@@ -807,7 +1511,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 54,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.47
+    "timePressure": 4.47,
+    "peopleContact": 4.02,
+    "decisionFreedom": 4.06,
+    "consequenceOfError": 3.78,
+    "conflictExposure": 2.8,
+    "difficultPeople": null,
+    "sitting": 3.12,
+    "standing": 2.94,
+    "outdoors": 1.72
   },
   "civil-engineering-tech": {
     "physicalDemand": "Moderate",
@@ -816,7 +1528,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 36,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.39
+    "timePressure": 3.39,
+    "peopleContact": 4.54,
+    "decisionFreedom": 3.92,
+    "consequenceOfError": 2.42,
+    "conflictExposure": 2.83,
+    "difficultPeople": null,
+    "sitting": 3.71,
+    "standing": 2.43,
+    "outdoors": 3.52
   },
   "electrical-engineering-tech": {
     "physicalDemand": "Moderate",
@@ -825,7 +1545,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 51,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 3.56
+    "timePressure": 3.56,
+    "peopleContact": 4.03,
+    "decisionFreedom": 4.43,
+    "consequenceOfError": 3.15,
+    "conflictExposure": 2.62,
+    "difficultPeople": null,
+    "sitting": 3.6,
+    "standing": 2.61,
+    "outdoors": 2.45
   },
   "mechatronics-tech": {
     "physicalDemand": "Moderate",
@@ -834,7 +1562,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 24,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.35
+    "timePressure": 4.35,
+    "peopleContact": 4.31,
+    "decisionFreedom": 3.55,
+    "consequenceOfError": 3.73,
+    "conflictExposure": 3.37,
+    "difficultPeople": null,
+    "sitting": 3.29,
+    "standing": 2.98,
+    "outdoors": 2.35
   },
   "industrial-engineering-tech": {
     "physicalDemand": "Moderate",
@@ -843,7 +1579,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 41,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.51,
+    "decisionFreedom": 4.32,
+    "consequenceOfError": 3.29,
+    "conflictExposure": 3.07,
+    "difficultPeople": null,
+    "sitting": 3.09,
+    "standing": 3.11,
+    "outdoors": 1.74
   },
   "mechanical-engineering-tech": {
     "physicalDemand": "Moderate",
@@ -852,7 +1596,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 30,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 2.77,
+    "difficultPeople": null,
+    "sitting": 3.1,
+    "standing": 3.25,
+    "outdoors": 2.19
   },
   "surveying-mapping-tech": {
     "physicalDemand": "Moderate",
@@ -861,7 +1613,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 28,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 3.7
+    "timePressure": 3.7,
+    "peopleContact": 4.02,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 2.74,
+    "conflictExposure": 2.38,
+    "difficultPeople": null,
+    "sitting": 3.29,
+    "standing": 2.92,
+    "outdoors": 3.31
   },
   "animal-scientist": {
     "physicalDemand": "Lower",
@@ -870,7 +1630,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 43,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.65
+    "timePressure": 3.65,
+    "peopleContact": 4.22,
+    "decisionFreedom": 4.39,
+    "consequenceOfError": 2.96,
+    "conflictExposure": 2.65,
+    "difficultPeople": null,
+    "sitting": 3.43,
+    "standing": 2.73,
+    "outdoors": 3.26
   },
   "food-scientist": {
     "physicalDemand": "Moderate",
@@ -879,7 +1647,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 3.91,
+    "decisionFreedom": 3.95,
+    "consequenceOfError": 3.19,
+    "conflictExposure": 2.86,
+    "difficultPeople": null,
+    "sitting": 3.05,
+    "standing": 3.38,
+    "outdoors": 1.71
   },
   "agronomist": {
     "physicalDemand": "Moderate",
@@ -888,7 +1664,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 29,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.33
+    "timePressure": 3.33,
+    "peopleContact": 3.95,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 2.67,
+    "conflictExposure": 2.5,
+    "difficultPeople": null,
+    "sitting": 2.9,
+    "standing": 2.9,
+    "outdoors": 3.9
   },
   "biochemist": {
     "physicalDemand": "Lower",
@@ -897,7 +1681,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 82,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.3
+    "timePressure": 3.3,
+    "peopleContact": 3.75,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 3.37,
+    "conflictExposure": 2.55,
+    "difficultPeople": null,
+    "sitting": 3.58,
+    "standing": 2.68,
+    "outdoors": 1.05
   },
   "microbiologist": {
     "physicalDemand": "Lower",
@@ -906,7 +1698,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 68,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.14
+    "timePressure": 4.14,
+    "peopleContact": 3.77,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.86,
+    "conflictExposure": 2.68,
+    "difficultPeople": null,
+    "sitting": 3.48,
+    "standing": 2.77,
+    "outdoors": 1.82
   },
   "wildlife-biologist": {
     "physicalDemand": "Moderate",
@@ -915,7 +1715,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 39,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.3
+    "timePressure": 3.3,
+    "peopleContact": 4.36,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.87,
+    "conflictExposure": 2.47,
+    "difficultPeople": null,
+    "sitting": 3.62,
+    "standing": 2.63,
+    "outdoors": 3.39
   },
   "conservation-scientist": {
     "physicalDemand": "Lower",
@@ -924,7 +1732,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 33,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.3
+    "timePressure": 3.3,
+    "peopleContact": 3.91,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 2.48,
+    "conflictExposure": 2.13,
+    "difficultPeople": null,
+    "sitting": 3.17,
+    "standing": 2.52,
+    "outdoors": 3.87
   },
   "forester": {
     "physicalDemand": "Moderate",
@@ -933,7 +1749,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.11
+    "timePressure": 3.11,
+    "peopleContact": 4.44,
+    "decisionFreedom": 4.64,
+    "consequenceOfError": 3.26,
+    "conflictExposure": 2.54,
+    "difficultPeople": null,
+    "sitting": 2.95,
+    "standing": 2.92,
+    "outdoors": 4.05
   },
   "epidemiologist": {
     "physicalDemand": "Lower",
@@ -942,7 +1766,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 85,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.58
+    "timePressure": 3.58,
+    "peopleContact": 4.21,
+    "decisionFreedom": 4.58,
+    "consequenceOfError": 2.28,
+    "conflictExposure": 2.68,
+    "difficultPeople": null,
+    "sitting": 4.21,
+    "standing": 2.33,
+    "outdoors": 1.63
   },
   "medical-scientist": {
     "physicalDemand": "Lower",
@@ -951,7 +1783,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 59,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.69
+    "timePressure": 3.69,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.41,
+    "consequenceOfError": 3.43,
+    "conflictExposure": 2.79,
+    "difficultPeople": null,
+    "sitting": 3.28,
+    "standing": 2.83,
+    "outdoors": 1.14
   },
   "astronomer": {
     "physicalDemand": "Lower",
@@ -960,7 +1800,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 2.91
+    "timePressure": 2.91,
+    "peopleContact": 3.57,
+    "decisionFreedom": 4.83,
+    "consequenceOfError": 2.04,
+    "conflictExposure": 2.04,
+    "difficultPeople": null,
+    "sitting": 4.35,
+    "standing": 2.09,
+    "outdoors": 1.7
   },
   "physicist": {
     "physicalDemand": "Lower",
@@ -969,7 +1817,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.05
+    "timePressure": 3.05,
+    "peopleContact": 3.39,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.13,
+    "conflictExposure": 2.13,
+    "difficultPeople": null,
+    "sitting": 4.62,
+    "standing": 1.76,
+    "outdoors": 1.11
   },
   "meteorologist": {
     "physicalDemand": "Lower",
@@ -978,7 +1834,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 84,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 3.9,
+    "decisionFreedom": 3.95,
+    "consequenceOfError": 2.25,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 4.4,
+    "standing": 1.95,
+    "outdoors": 2.2
   },
   "chemist": {
     "physicalDemand": "Lower",
@@ -987,7 +1851,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 75,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.79
+    "timePressure": 3.79,
+    "peopleContact": 3.82,
+    "decisionFreedom": 4.44,
+    "consequenceOfError": 3.42,
+    "conflictExposure": 2.45,
+    "difficultPeople": null,
+    "sitting": 3.09,
+    "standing": 2.9,
+    "outdoors": 1.13
   },
   "materials-scientist": {
     "physicalDemand": "Lower",
@@ -996,7 +1868,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 82,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.38
+    "timePressure": 3.38,
+    "peopleContact": 3.81,
+    "decisionFreedom": 3.76,
+    "consequenceOfError": 3.05,
+    "conflictExposure": 2.24,
+    "difficultPeople": null,
+    "sitting": 3.8,
+    "standing": 2.24,
+    "outdoors": 1.71
   },
   "environmental-scientist": {
     "physicalDemand": "Lower",
@@ -1005,7 +1885,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 67,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.79
+    "timePressure": 3.79,
+    "peopleContact": 4.05,
+    "decisionFreedom": 3.71,
+    "consequenceOfError": 2.56,
+    "conflictExposure": 2.94,
+    "difficultPeople": null,
+    "sitting": 4.4,
+    "standing": 1.95,
+    "outdoors": 2.52
   },
   "geoscientist": {
     "physicalDemand": "Lower",
@@ -1014,7 +1902,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 55,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.44
+    "timePressure": 3.44,
+    "peopleContact": 3.75,
+    "decisionFreedom": 4.22,
+    "consequenceOfError": 2.38,
+    "conflictExposure": 2.38,
+    "difficultPeople": null,
+    "sitting": 3.56,
+    "standing": 2.56,
+    "outdoors": 3.03
   },
   "hydrologist": {
     "physicalDemand": "Lower",
@@ -1023,7 +1919,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.35
+    "timePressure": 3.35,
+    "peopleContact": 3.91,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.48,
+    "conflictExposure": 2.22,
+    "difficultPeople": null,
+    "sitting": 3.86,
+    "standing": 2.26,
+    "outdoors": 3.09
   },
   "economist": {
     "physicalDemand": "Lower",
@@ -1032,7 +1936,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.62
+    "timePressure": 3.62,
+    "peopleContact": 3.5,
+    "decisionFreedom": 4.61,
+    "consequenceOfError": 2.33,
+    "conflictExposure": 2.25,
+    "difficultPeople": null,
+    "sitting": 4.71,
+    "standing": 1.92,
+    "outdoors": 1.08
   },
   "io-psychologist": {
     "physicalDemand": "Lower",
@@ -1041,7 +1953,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 94,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.73
+    "timePressure": 3.73,
+    "peopleContact": 4.23,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.88,
+    "conflictExposure": 2.73,
+    "difficultPeople": null,
+    "sitting": 4.42,
+    "standing": 2.04,
+    "outdoors": 1.2
   },
   "psychologist": {
     "physicalDemand": "Lower",
@@ -1050,7 +1970,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 89,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.56
+    "timePressure": 3.56,
+    "peopleContact": 4.52,
+    "decisionFreedom": 4.64,
+    "consequenceOfError": 3.64,
+    "conflictExposure": 3.28,
+    "difficultPeople": null,
+    "sitting": 4.78,
+    "standing": 1.78,
+    "outdoors": 1.33
   },
   "school-psychologist": {
     "physicalDemand": "Lower",
@@ -1059,7 +1987,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.1
+    "timePressure": 4.1,
+    "peopleContact": 4.38,
+    "decisionFreedom": 4.62,
+    "consequenceOfError": 2.18,
+    "conflictExposure": 2.87,
+    "difficultPeople": null,
+    "sitting": 3.68,
+    "standing": 2,
+    "outdoors": 1.38
   },
   "sociologist": {
     "physicalDemand": "Lower",
@@ -1068,7 +2004,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 98,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.3
+    "timePressure": 3.3,
+    "peopleContact": 3.65,
+    "decisionFreedom": 4.7,
+    "consequenceOfError": 1.89,
+    "conflictExposure": 2.89,
+    "difficultPeople": null,
+    "sitting": 4.3,
+    "standing": 2.32,
+    "outdoors": 1.21
   },
   "urban-planner": {
     "physicalDemand": "Lower",
@@ -1077,7 +2021,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.52
+    "timePressure": 3.52,
+    "peopleContact": 4.04,
+    "decisionFreedom": 3.79,
+    "consequenceOfError": 1.92,
+    "conflictExposure": 3.17,
+    "difficultPeople": null,
+    "sitting": 4.08,
+    "standing": 2,
+    "outdoors": 2.24
   },
   "anthropologist-archaeologist": {
     "physicalDemand": "Lower",
@@ -1086,7 +2038,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 64,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.7
+    "timePressure": 3.7,
+    "peopleContact": 4,
+    "decisionFreedom": 4.45,
+    "consequenceOfError": 2.17,
+    "conflictExposure": 2.55,
+    "difficultPeople": null,
+    "sitting": 3.8,
+    "standing": 2.58,
+    "outdoors": 2.42
   },
   "historian": {
     "physicalDemand": "Lower",
@@ -1095,7 +2055,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.21
+    "timePressure": 3.21,
+    "peopleContact": 4.04,
+    "decisionFreedom": 4,
+    "consequenceOfError": 1.91,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 3.65,
+    "standing": 2.59,
+    "outdoors": 2
   },
   "political-scientist": {
     "physicalDemand": "Lower",
@@ -1104,7 +2072,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.27
+    "timePressure": 3.27,
+    "peopleContact": 3.92,
+    "decisionFreedom": 4.85,
+    "consequenceOfError": 2.08,
+    "conflictExposure": 2.5,
+    "difficultPeople": null,
+    "sitting": 4.04,
+    "standing": 2.4,
+    "outdoors": 1.16
   },
   "agricultural-tech": {
     "physicalDemand": "Moderate",
@@ -1113,7 +2089,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.21
+    "timePressure": 3.21,
+    "peopleContact": 3.95,
+    "decisionFreedom": 3.84,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 2.55,
+    "difficultPeople": null,
+    "sitting": 2.66,
+    "standing": 3.42,
+    "outdoors": 4.32
   },
   "biological-technician": {
     "physicalDemand": "Lower",
@@ -1122,7 +2106,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 54,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.33
+    "timePressure": 3.33,
+    "peopleContact": 4.15,
+    "decisionFreedom": 3.85,
+    "consequenceOfError": 2.72,
+    "conflictExposure": 1.92,
+    "difficultPeople": null,
+    "sitting": 3.2,
+    "standing": 2.81,
+    "outdoors": 1.46
   },
   "chemical-technician": {
     "physicalDemand": "Moderate",
@@ -1131,7 +2123,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 34,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.35
+    "timePressure": 4.35,
+    "peopleContact": 3.9,
+    "decisionFreedom": 3.84,
+    "consequenceOfError": 3.84,
+    "conflictExposure": 2.46,
+    "difficultPeople": null,
+    "sitting": 2.4,
+    "standing": 3.67,
+    "outdoors": 1.9
   },
   "environmental-science-tech": {
     "physicalDemand": "Moderate",
@@ -1140,7 +2140,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 39,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.27
+    "timePressure": 4.27,
+    "peopleContact": 3.91,
+    "decisionFreedom": 3.77,
+    "consequenceOfError": 2.91,
+    "conflictExposure": 3,
+    "difficultPeople": null,
+    "sitting": 3.23,
+    "standing": 3.05,
+    "outdoors": 3.59
   },
   "nuclear-technician": {
     "physicalDemand": "Moderate",
@@ -1149,7 +2157,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 3.54
+    "timePressure": 3.54,
+    "peopleContact": 4.33,
+    "decisionFreedom": 3.15,
+    "consequenceOfError": 4.19,
+    "conflictExposure": 3.22,
+    "difficultPeople": null,
+    "sitting": 2.57,
+    "standing": 3.08,
+    "outdoors": 3.92
   },
   "forensic-science-tech": {
     "physicalDemand": "Moderate",
@@ -1158,7 +2174,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 22,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.2,
+    "decisionFreedom": 3.89,
+    "consequenceOfError": 3.81,
+    "conflictExposure": 3.14,
+    "difficultPeople": null,
+    "sitting": 3.12,
+    "standing": 3.02,
+    "outdoors": 3.93
   },
   "occupational-safety-specialist": {
     "physicalDemand": "Moderate",
@@ -1167,7 +2191,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 33,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.57
+    "timePressure": 3.57,
+    "peopleContact": 4.26,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 3.35,
+    "conflictExposure": 3.04,
+    "difficultPeople": null,
+    "sitting": 3.13,
+    "standing": 2.78,
+    "outdoors": 3.35
   },
   "occupational-safety-tech": {
     "physicalDemand": "Moderate",
@@ -1176,7 +2208,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 4.43,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 3.95,
+    "conflictExposure": 3.05,
+    "difficultPeople": null,
+    "sitting": 3.1,
+    "standing": 2.95,
+    "outdoors": 3.5
   },
   "school-counselor": {
     "physicalDemand": "Lower",
@@ -1185,7 +2225,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 73,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 4.87,
+    "decisionFreedom": 4.01,
+    "consequenceOfError": 2.96,
+    "conflictExposure": 4.11,
+    "difficultPeople": null,
+    "sitting": 4.27,
+    "standing": 2.26,
+    "outdoors": 1.32
   },
   "marriage-family-therapist": {
     "physicalDemand": "Lower",
@@ -1194,7 +2242,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 83,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.58
+    "timePressure": 4.58,
+    "peopleContact": 4.66,
+    "decisionFreedom": 4.4,
+    "consequenceOfError": 2.43,
+    "conflictExposure": 3.65,
+    "difficultPeople": null,
+    "sitting": 4.31,
+    "standing": 2.66,
+    "outdoors": 1.18
   },
   "rehabilitation-counselor": {
     "physicalDemand": "Lower",
@@ -1203,7 +2259,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 65,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.16
+    "timePressure": 4.16,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 2.42,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 3.98,
+    "standing": 2.42,
+    "outdoors": 1.98
   },
   "social-worker": {
     "physicalDemand": "Lower",
@@ -1212,7 +2276,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 40,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.33
+    "timePressure": 4.33,
+    "peopleContact": 4.95,
+    "decisionFreedom": 4.44,
+    "consequenceOfError": 3.64,
+    "conflictExposure": 4.53,
+    "difficultPeople": null,
+    "sitting": 3.5,
+    "standing": 2.43,
+    "outdoors": 2.83
   },
   "healthcare-social-worker": {
     "physicalDemand": "Lower",
@@ -1221,7 +2293,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 60,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4.81,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 2.7,
+    "conflictExposure": 3.93,
+    "difficultPeople": null,
+    "sitting": 3.7,
+    "standing": 2.52,
+    "outdoors": 1.73
   },
   "mental-health-social-worker": {
     "physicalDemand": "Lower",
@@ -1230,7 +2310,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 64,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.39
+    "timePressure": 4.39,
+    "peopleContact": 4.79,
+    "decisionFreedom": 4.34,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 4.09,
+    "standing": 2.18,
+    "outdoors": 2.04
   },
   "health-education-specialist": {
     "physicalDemand": "Lower",
@@ -1239,7 +2327,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.81
+    "timePressure": 3.81,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.46,
+    "conflictExposure": 3.51,
+    "difficultPeople": null,
+    "sitting": 3.56,
+    "standing": 2.34,
+    "outdoors": 1.66
   },
   "probation-officer": {
     "physicalDemand": "Lower",
@@ -1248,7 +2344,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 26,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.4
+    "timePressure": 4.4,
+    "peopleContact": 4.96,
+    "decisionFreedom": 4.16,
+    "consequenceOfError": 3.56,
+    "conflictExposure": 4.47,
+    "difficultPeople": null,
+    "sitting": 3.75,
+    "standing": 2.47,
+    "outdoors": 3.49
   },
   "human-service-assistant": {
     "physicalDemand": "Lower",
@@ -1257,7 +2361,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 42,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 4.88,
+    "decisionFreedom": 3.94,
+    "consequenceOfError": 2.71,
+    "conflictExposure": 3.79,
+    "difficultPeople": null,
+    "sitting": 3.4,
+    "standing": 2.33,
+    "outdoors": 2.29
   },
   "community-health-worker": {
     "physicalDemand": "Moderate",
@@ -1266,7 +2378,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 35,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.42
+    "timePressure": 3.42,
+    "peopleContact": 4.58,
+    "decisionFreedom": 3.97,
+    "consequenceOfError": 2.44,
+    "conflictExposure": 3.03,
+    "difficultPeople": null,
+    "sitting": 2.94,
+    "standing": 3.2,
+    "outdoors": 2.03
   },
   "clergy": {
     "physicalDemand": "Lower",
@@ -1275,7 +2395,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 73,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.87
+    "timePressure": 3.87,
+    "peopleContact": 4.59,
+    "decisionFreedom": 4.51,
+    "consequenceOfError": 2.74,
+    "conflictExposure": 3.41,
+    "difficultPeople": null,
+    "sitting": 4.06,
+    "standing": 2.31,
+    "outdoors": 1.99
   },
   "lawyer": {
     "physicalDemand": "Lower",
@@ -1284,7 +2412,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 93,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.18
+    "timePressure": 4.18,
+    "peopleContact": 4.75,
+    "decisionFreedom": 4.67,
+    "consequenceOfError": 3.81,
+    "conflictExposure": 3.44,
+    "difficultPeople": null,
+    "sitting": 4.55,
+    "standing": 1.95,
+    "outdoors": 1.22
   },
   "mediator": {
     "physicalDemand": "Lower",
@@ -1293,7 +2429,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.8
+    "timePressure": 3.8,
+    "peopleContact": 3.65,
+    "decisionFreedom": 4.75,
+    "consequenceOfError": 2.4,
+    "conflictExposure": 3.85,
+    "difficultPeople": null,
+    "sitting": 4.75,
+    "standing": 1.6,
+    "outdoors": 1.2
   },
   "judge": {
     "physicalDemand": "Lower",
@@ -1302,7 +2446,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 94,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.73
+    "timePressure": 4.73,
+    "peopleContact": 4.68,
+    "decisionFreedom": 4.99,
+    "consequenceOfError": 3.65,
+    "conflictExposure": 4.68,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.59,
+    "outdoors": 1.31
   },
   "paralegal": {
     "physicalDemand": "Lower",
@@ -1311,7 +2463,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.36
+    "timePressure": 4.36,
+    "peopleContact": 4.53,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.92,
+    "conflictExposure": 2.14,
+    "difficultPeople": null,
+    "sitting": 4.77,
+    "standing": 1.7,
+    "outdoors": 1.29
   },
   "title-examiner": {
     "physicalDemand": "Lower",
@@ -1320,7 +2480,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 95,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.41
+    "timePressure": 4.41,
+    "peopleContact": 3.65,
+    "decisionFreedom": 4.64,
+    "consequenceOfError": 3.46,
+    "conflictExposure": 2.59,
+    "difficultPeople": null,
+    "sitting": 4.45,
+    "standing": 1.91,
+    "outdoors": 1.45
   },
   "nursing-instructor": {
     "physicalDemand": "Moderate",
@@ -1329,7 +2497,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 54,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.8
+    "timePressure": 3.8,
+    "peopleContact": 4.65,
+    "decisionFreedom": 4.15,
+    "consequenceOfError": 3.63,
+    "conflictExposure": 3.44,
+    "difficultPeople": null,
+    "sitting": 3.15,
+    "standing": 3.07,
+    "outdoors": 1.23
   },
   "trade-school-instructor": {
     "physicalDemand": "Moderate",
@@ -1338,7 +2514,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 48,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.52
+    "timePressure": 3.52,
+    "peopleContact": 4.65,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 2.48,
+    "conflictExposure": 2.68,
+    "difficultPeople": null,
+    "sitting": 2.5,
+    "standing": 3.64,
+    "outdoors": 1.38
   },
   "preschool-teacher": {
     "physicalDemand": "Moderate",
@@ -1347,7 +2531,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.07
+    "timePressure": 3.07,
+    "peopleContact": 4.8,
+    "decisionFreedom": 3.55,
+    "consequenceOfError": 3.08,
+    "conflictExposure": 3.43,
+    "difficultPeople": null,
+    "sitting": 2.06,
+    "standing": 3.63,
+    "outdoors": 3.11
   },
   "kindergarten-teacher": {
     "physicalDemand": "Moderate",
@@ -1356,7 +2548,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 22,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.64,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.15,
+    "conflictExposure": 3.3,
+    "difficultPeople": null,
+    "sitting": 2.12,
+    "standing": 4.07,
+    "outdoors": 2.49
   },
   "teacher-elementary": {
     "physicalDemand": "Moderate",
@@ -1365,7 +2565,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 26,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 4.89,
+    "decisionFreedom": 3.99,
+    "consequenceOfError": 1.86,
+    "conflictExposure": 4.05,
+    "difficultPeople": null,
+    "sitting": 2.32,
+    "standing": 4.21,
+    "outdoors": 2.52
   },
   "middle-school-teacher": {
     "physicalDemand": "Moderate",
@@ -1374,7 +2582,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 28,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.32
+    "timePressure": 3.32,
+    "peopleContact": 4.77,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 1.85,
+    "conflictExposure": 3.15,
+    "difficultPeople": null,
+    "sitting": 2.5,
+    "standing": 3.59,
+    "outdoors": 2.45
   },
   "teacher-hs": {
     "physicalDemand": "Moderate",
@@ -1383,7 +2599,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 45,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.28
+    "timePressure": 3.28,
+    "peopleContact": 4.78,
+    "decisionFreedom": 4.25,
+    "consequenceOfError": 2.22,
+    "conflictExposure": 3.43,
+    "difficultPeople": null,
+    "sitting": 3,
+    "standing": 3.28,
+    "outdoors": 2.12
   },
   "cte-teacher": {
     "physicalDemand": "Moderate",
@@ -1392,7 +2616,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 31,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 4.53,
+    "decisionFreedom": 4.07,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 3.51,
+    "difficultPeople": null,
+    "sitting": 2.78,
+    "standing": 3.24,
+    "outdoors": 2.23
   },
   "self-enrichment-teacher": {
     "physicalDemand": "Lower",
@@ -1401,7 +2633,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 52,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.76
+    "timePressure": 2.76,
+    "peopleContact": 4.75,
+    "decisionFreedom": 4.79,
+    "consequenceOfError": 1.84,
+    "conflictExposure": 2.14,
+    "difficultPeople": null,
+    "sitting": 3.24,
+    "standing": 2.53,
+    "outdoors": 1.72
   },
   "substitute-teacher": {
     "physicalDemand": "Moderate",
@@ -1410,7 +2650,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 33,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.92
+    "timePressure": 2.92,
+    "peopleContact": 4.63,
+    "decisionFreedom": 4.26,
+    "consequenceOfError": 1.33,
+    "conflictExposure": 2.94,
+    "difficultPeople": null,
+    "sitting": 2.72,
+    "standing": 3.48,
+    "outdoors": 2.12
   },
   "tutor": {
     "physicalDemand": "Lower",
@@ -1419,7 +2667,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 94,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.5
+    "timePressure": 3.5,
+    "peopleContact": 4.59,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 1.38,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 4.86,
+    "standing": 2.19,
+    "outdoors": 1.1
   },
   "archivist": {
     "physicalDemand": "Moderate",
@@ -1428,7 +2684,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.94
+    "timePressure": 2.94,
+    "peopleContact": 4.1,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 2.72,
+    "conflictExposure": 2.06,
+    "difficultPeople": null,
+    "sitting": 4.03,
+    "standing": 2.43,
+    "outdoors": 1.25
   },
   "curator": {
     "physicalDemand": "Lower",
@@ -1437,7 +2701,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 63,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.24
+    "timePressure": 3.24,
+    "peopleContact": 4.31,
+    "decisionFreedom": 4.48,
+    "consequenceOfError": 2.28,
+    "conflictExposure": 2.69,
+    "difficultPeople": null,
+    "sitting": 3.54,
+    "standing": 2.46,
+    "outdoors": 2.03
   },
   "art-conservator": {
     "physicalDemand": "Moderate",
@@ -1446,7 +2718,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 41,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.45
+    "timePressure": 3.45,
+    "peopleContact": 3.76,
+    "decisionFreedom": 4.6,
+    "consequenceOfError": 2.97,
+    "conflictExposure": 2.3,
+    "difficultPeople": null,
+    "sitting": 2.65,
+    "standing": 3.49,
+    "outdoors": 1.92
   },
   "librarian": {
     "physicalDemand": "Moderate",
@@ -1455,7 +2735,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 56,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.53
+    "timePressure": 3.53,
+    "peopleContact": 4.44,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 2.04,
+    "conflictExposure": 3.1,
+    "difficultPeople": null,
+    "sitting": 3.37,
+    "standing": 2.94,
+    "outdoors": 1.4
   },
   "library-technician": {
     "physicalDemand": "Moderate",
@@ -1464,7 +2752,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 67,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.48
+    "timePressure": 3.48,
+    "peopleContact": 4.05,
+    "decisionFreedom": 4.16,
+    "consequenceOfError": 2.03,
+    "conflictExposure": 3.25,
+    "difficultPeople": null,
+    "sitting": 3.59,
+    "standing": 2.65,
+    "outdoors": 1.5
   },
   "instructional-coordinator": {
     "physicalDemand": "Lower",
@@ -1473,7 +2769,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 68,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.63
+    "timePressure": 3.63,
+    "peopleContact": 4.83,
+    "decisionFreedom": 4.02,
+    "consequenceOfError": 1.71,
+    "conflictExposure": 3.05,
+    "difficultPeople": null,
+    "sitting": 3.59,
+    "standing": 2.92,
+    "outdoors": 1.81
   },
   "art-director": {
     "physicalDemand": "Lower",
@@ -1482,7 +2786,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.76
+    "timePressure": 4.76,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.17,
+    "consequenceOfError": 1.92,
+    "conflictExposure": 2.27,
+    "difficultPeople": null,
+    "sitting": 4.76,
+    "standing": 1.83,
+    "outdoors": 1.22
   },
   "fine-artist": {
     "physicalDemand": "Lower",
@@ -1491,7 +2803,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 88,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.34
+    "timePressure": 3.34,
+    "peopleContact": 3.04,
+    "decisionFreedom": 4.82,
+    "consequenceOfError": 2.27,
+    "conflictExposure": 1.95,
+    "difficultPeople": null,
+    "sitting": 3.4,
+    "standing": 3,
+    "outdoors": 1.87
   },
   "animator": {
     "physicalDemand": "Lower",
@@ -1500,7 +2820,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 79,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.45
+    "timePressure": 4.45,
+    "peopleContact": 4.06,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 3.13,
+    "conflictExposure": 2.16,
+    "difficultPeople": null,
+    "sitting": 4.56,
+    "standing": 1.72,
+    "outdoors": 1.61
   },
   "industrial-designer": {
     "physicalDemand": "Lower",
@@ -1509,7 +2837,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.03
+    "timePressure": 4.03,
+    "peopleContact": 4.38,
+    "decisionFreedom": 3.71,
+    "consequenceOfError": 2.92,
+    "conflictExposure": 2.75,
+    "difficultPeople": null,
+    "sitting": 4.38,
+    "standing": 2.03,
+    "outdoors": 1.46
   },
   "fashion-designer": {
     "physicalDemand": "Moderate",
@@ -1518,7 +2854,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 78,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.09
+    "timePressure": 4.09,
+    "peopleContact": 3.95,
+    "decisionFreedom": 3.59,
+    "consequenceOfError": 1.85,
+    "conflictExposure": 2.41,
+    "difficultPeople": null,
+    "sitting": 3.96,
+    "standing": 2.64,
+    "outdoors": 1.56
   },
   "floral-designer": {
     "physicalDemand": "Moderate",
@@ -1527,7 +2871,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.13
+    "timePressure": 4.13,
+    "peopleContact": 4.53,
+    "decisionFreedom": 4.23,
+    "consequenceOfError": 2.23,
+    "conflictExposure": 2.79,
+    "difficultPeople": null,
+    "sitting": 1.75,
+    "standing": 4.2,
+    "outdoors": 3.28
   },
   "graphic-designer": {
     "physicalDemand": "Lower",
@@ -1536,7 +2888,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 88,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.65
+    "timePressure": 4.65,
+    "peopleContact": 4.25,
+    "decisionFreedom": 4.1,
+    "consequenceOfError": 2,
+    "conflictExposure": 2.45,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.89,
+    "outdoors": 1.37
   },
   "interior-designer": {
     "physicalDemand": "Lower",
@@ -1545,7 +2905,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.16
+    "timePressure": 4.16,
+    "peopleContact": 4.52,
+    "decisionFreedom": 3.88,
+    "consequenceOfError": 2.29,
+    "conflictExposure": 2.92,
+    "difficultPeople": null,
+    "sitting": 4.08,
+    "standing": 2.75,
+    "outdoors": 1.79
   },
   "visual-merchandiser": {
     "physicalDemand": "Higher",
@@ -1554,7 +2922,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 4.57,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 1.85,
+    "conflictExposure": 2.93,
+    "difficultPeople": null,
+    "sitting": 1.87,
+    "standing": 4.48,
+    "outdoors": 1.71
   },
   "set-designer": {
     "physicalDemand": "Moderate",
@@ -1563,7 +2939,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 51,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.19
+    "timePressure": 4.19,
+    "peopleContact": 4.05,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 2.33,
+    "conflictExposure": 2.81,
+    "difficultPeople": null,
+    "sitting": 3.67,
+    "standing": 2.62,
+    "outdoors": 2
   },
   "actor": {
     "physicalDemand": "Moderate",
@@ -1572,7 +2956,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 47,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.59
+    "timePressure": 4.59,
+    "peopleContact": 4.71,
+    "decisionFreedom": 3.45,
+    "consequenceOfError": 1.97,
+    "conflictExposure": 2.7,
+    "difficultPeople": null,
+    "sitting": 2.16,
+    "standing": 3.83,
+    "outdoors": 1.76
   },
   "producer-director": {
     "physicalDemand": "Lower",
@@ -1581,7 +2973,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 68,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.36
+    "timePressure": 4.36,
+    "peopleContact": 4.79,
+    "decisionFreedom": 4.33,
+    "consequenceOfError": 2.65,
+    "conflictExposure": 3.42,
+    "difficultPeople": null,
+    "sitting": 4.14,
+    "standing": 2.38,
+    "outdoors": 1.67
   },
   "athlete": {
     "physicalDemand": "Moderate",
@@ -1590,7 +2990,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Seasonal",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.87
+    "timePressure": 3.87,
+    "peopleContact": 4.32,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.51,
+    "conflictExposure": 3.1,
+    "difficultPeople": null,
+    "sitting": 2.32,
+    "standing": 4.07,
+    "outdoors": 4.2
   },
   "coach": {
     "physicalDemand": "Moderate",
@@ -1599,7 +3007,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 28,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 4.75,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 2.65,
+    "conflictExposure": 3.67,
+    "difficultPeople": null,
+    "sitting": 2.61,
+    "standing": 3.75,
+    "outdoors": 3.26
   },
   "sports-referee": {
     "physicalDemand": "Moderate",
@@ -1608,7 +3024,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 10,
     "scheduleType": "Seasonal",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.05
+    "timePressure": 3.05,
+    "peopleContact": 3.9,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 2.19,
+    "conflictExposure": 3.19,
+    "difficultPeople": null,
+    "sitting": 2.1,
+    "standing": 4,
+    "outdoors": 3.45
   },
   "dancer": {
     "physicalDemand": "Higher",
@@ -1617,7 +3041,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 30,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.94
+    "timePressure": 2.94,
+    "peopleContact": 4.76,
+    "decisionFreedom": 3.45,
+    "consequenceOfError": 2.56,
+    "conflictExposure": 3.04,
+    "difficultPeople": null,
+    "sitting": 2.32,
+    "standing": 4.33,
+    "outdoors": 1.72
   },
   "choreographer": {
     "physicalDemand": "Higher",
@@ -1626,7 +3058,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 27,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 4.71,
+    "decisionFreedom": 4.05,
+    "consequenceOfError": 1.9,
+    "conflictExposure": 3.14,
+    "difficultPeople": null,
+    "sitting": 1.71,
+    "standing": 4.43,
+    "outdoors": 1.76
   },
   "music-director": {
     "physicalDemand": "Lower",
@@ -1635,7 +3075,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.17,
+    "decisionFreedom": 4.7,
+    "consequenceOfError": 2.06,
+    "conflictExposure": 2.7,
+    "difficultPeople": null,
+    "sitting": 3.44,
+    "standing": 2.89,
+    "outdoors": 1.5
   },
   "musician-singer": {
     "physicalDemand": "Lower",
@@ -1644,7 +3092,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 73,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 4.23,
+    "decisionFreedom": 3.2,
+    "consequenceOfError": 2.36,
+    "conflictExposure": 2.11,
+    "difficultPeople": null,
+    "sitting": 4.07,
+    "standing": 2.09,
+    "outdoors": 1.37
   },
   "broadcast-announcer": {
     "physicalDemand": "Lower",
@@ -1653,7 +3109,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.85
+    "timePressure": 4.85,
+    "peopleContact": 4.39,
+    "decisionFreedom": 4.17,
+    "consequenceOfError": 3.36,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 4.1,
+    "standing": 2.55,
+    "outdoors": 2.96
   },
   "journalist": {
     "physicalDemand": "Lower",
@@ -1662,7 +3126,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": null,
     "weeklyHours": null,
-    "timePressure": 4.89
+    "timePressure": 4.89,
+    "peopleContact": 4.63,
+    "decisionFreedom": 4.56,
+    "consequenceOfError": 2.62,
+    "conflictExposure": 2.8,
+    "difficultPeople": null,
+    "sitting": 4.15,
+    "standing": 2.17,
+    "outdoors": 2.66
   },
   "pr-specialist": {
     "physicalDemand": "Lower",
@@ -1671,7 +3143,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.55
+    "timePressure": 4.55,
+    "peopleContact": 4.43,
+    "decisionFreedom": 3.81,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 3.14,
+    "difficultPeople": null,
+    "sitting": 3.9,
+    "standing": 2.32,
+    "outdoors": 1.86
   },
   "editor": {
     "physicalDemand": "Lower",
@@ -1680,7 +3160,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 81,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.57
+    "timePressure": 4.57,
+    "peopleContact": 4.55,
+    "decisionFreedom": 4.07,
+    "consequenceOfError": 2.43,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 4.4,
+    "standing": 1.88,
+    "outdoors": 1.63
   },
   "technical-writer": {
     "physicalDemand": "Lower",
@@ -1689,7 +3177,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 86,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.23
+    "timePressure": 4.23,
+    "peopleContact": 4.13,
+    "decisionFreedom": 4.4,
+    "consequenceOfError": 2.37,
+    "conflictExposure": 2.75,
+    "difficultPeople": null,
+    "sitting": 4.55,
+    "standing": 1.68,
+    "outdoors": 1.15
   },
   "writer": {
     "physicalDemand": "Lower",
@@ -1698,7 +3194,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 50,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.7
+    "timePressure": 4.7,
+    "peopleContact": 4.88,
+    "decisionFreedom": 3.56,
+    "consequenceOfError": 1.85,
+    "conflictExposure": 3.1,
+    "difficultPeople": null,
+    "sitting": 4.39,
+    "standing": 1.98,
+    "outdoors": 2.18
   },
   "interpreter": {
     "physicalDemand": "Lower",
@@ -1707,7 +3211,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 61,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.02
+    "timePressure": 4.02,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.06,
+    "consequenceOfError": 3.56,
+    "conflictExposure": 2.92,
+    "difficultPeople": null,
+    "sitting": 3.61,
+    "standing": 2.72,
+    "outdoors": 1.92
   },
   "court-reporter": {
     "physicalDemand": "Lower",
@@ -1716,7 +3228,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 79,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.43
+    "timePressure": 4.43,
+    "peopleContact": 4.81,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 2.29,
+    "conflictExposure": 2.57,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.72,
+    "outdoors": 1
   },
   "av-technician": {
     "physicalDemand": "Moderate",
@@ -1725,7 +3245,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 61,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.88
+    "timePressure": 3.88,
+    "peopleContact": 3.86,
+    "decisionFreedom": 4.45,
+    "consequenceOfError": 2.25,
+    "conflictExposure": 2.8,
+    "difficultPeople": null,
+    "sitting": 3.7,
+    "standing": 2.45,
+    "outdoors": 1.43
   },
   "broadcast-technician": {
     "physicalDemand": "Lower",
@@ -1734,7 +3262,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 62,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.2,
+    "decisionFreedom": 3.84,
+    "consequenceOfError": 3.17,
+    "conflictExposure": 2.37,
+    "difficultPeople": null,
+    "sitting": 4.09,
+    "standing": 2.43,
+    "outdoors": 2.43
   },
   "sound-engineer": {
     "physicalDemand": "Lower",
@@ -1743,7 +3279,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 69,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 4.08,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 2.62,
+    "conflictExposure": 2.83,
+    "difficultPeople": null,
+    "sitting": 4.28,
+    "standing": 2.21,
+    "outdoors": 1.96
   },
   "photographer": {
     "physicalDemand": "Moderate",
@@ -1752,7 +3296,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.45,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.27,
+    "conflictExposure": 2.5,
+    "difficultPeople": null,
+    "sitting": 3.29,
+    "standing": 2.95,
+    "outdoors": 3.27
   },
   "camera-operator": {
     "physicalDemand": "Moderate",
@@ -1761,7 +3313,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.7,
+    "decisionFreedom": 3.45,
+    "consequenceOfError": 3.44,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 2.91,
+    "standing": 3.1,
+    "outdoors": 3.1
   },
   "film-video-editor": {
     "physicalDemand": "Lower",
@@ -1770,7 +3330,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 80,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.7
+    "timePressure": 4.7,
+    "peopleContact": 4.1,
+    "decisionFreedom": 4.06,
+    "consequenceOfError": 2.57,
+    "conflictExposure": 2.68,
+    "difficultPeople": null,
+    "sitting": 4.56,
+    "standing": 1.84,
+    "outdoors": 2.07
   },
   "chiropractor": {
     "physicalDemand": "Moderate",
@@ -1779,7 +3347,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 36,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.58
+    "timePressure": 3.58,
+    "peopleContact": 5,
+    "decisionFreedom": 4.96,
+    "consequenceOfError": 3.66,
+    "conflictExposure": 2.99,
+    "difficultPeople": null,
+    "sitting": 2.51,
+    "standing": 3.55,
+    "outdoors": 1.09
   },
   "dentist": {
     "physicalDemand": "Moderate",
@@ -1788,7 +3364,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 52,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 4.75,
+    "decisionFreedom": 4.67,
+    "consequenceOfError": 4.21,
+    "conflictExposure": 3.53,
+    "difficultPeople": null,
+    "sitting": 4.26,
+    "standing": 2.3,
+    "outdoors": 1.07
   },
   "orthodontist": {
     "physicalDemand": "Lower",
@@ -1797,7 +3381,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.34
+    "timePressure": 4.34,
+    "peopleContact": 4.96,
+    "decisionFreedom": 4.81,
+    "consequenceOfError": 2.71,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 3.46,
+    "standing": 2.64,
+    "outdoors": 1.02
   },
   "dietitian": {
     "physicalDemand": "Lower",
@@ -1806,7 +3398,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 77,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.83
+    "timePressure": 3.83,
+    "peopleContact": 4.59,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 2.34,
+    "conflictExposure": 2.57,
+    "difficultPeople": null,
+    "sitting": 3.63,
+    "standing": 2.43,
+    "outdoors": 1.17
   },
   "optometrist": {
     "physicalDemand": "Lower",
@@ -1815,7 +3415,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.05
+    "timePressure": 4.05,
+    "peopleContact": 4.76,
+    "decisionFreedom": 4.71,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 3.43,
+    "difficultPeople": null,
+    "sitting": 3.71,
+    "standing": 2.5,
+    "outdoors": 1
   },
   "pharmacist": {
     "physicalDemand": "Moderate",
@@ -1824,7 +3432,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.67
+    "timePressure": 4.67,
+    "peopleContact": 4.91,
+    "decisionFreedom": 4.59,
+    "consequenceOfError": 4.83,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 1.78,
+    "standing": 4.36,
+    "outdoors": 1.03
   },
   "physician-assistant": {
     "physicalDemand": "Moderate",
@@ -1833,7 +3449,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 46,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.35
+    "timePressure": 4.35,
+    "peopleContact": 4.92,
+    "decisionFreedom": 4.73,
+    "consequenceOfError": 4.46,
+    "conflictExposure": 3.65,
+    "difficultPeople": null,
+    "sitting": 3.19,
+    "standing": 3.33,
+    "outdoors": 1.25
   },
   "podiatrist": {
     "physicalDemand": "Moderate",
@@ -1842,7 +3466,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 33,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.38
+    "timePressure": 4.38,
+    "peopleContact": 4.84,
+    "decisionFreedom": 5,
+    "consequenceOfError": 3.68,
+    "conflictExposure": 3.55,
+    "difficultPeople": null,
+    "sitting": 3.38,
+    "standing": 3.18,
+    "outdoors": 1.1
   },
   "occupational-therapist": {
     "physicalDemand": "Moderate",
@@ -1851,7 +3483,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 35,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 4.82,
+    "decisionFreedom": 4.41,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 2.77,
+    "difficultPeople": null,
+    "sitting": 2.82,
+    "standing": 2.91,
+    "outdoors": 1.86
   },
   "physical-therapist": {
     "physicalDemand": "Moderate",
@@ -1860,7 +3500,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 34,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.24
+    "timePressure": 4.24,
+    "peopleContact": 4.94,
+    "decisionFreedom": 4.75,
+    "consequenceOfError": 3.75,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 2.34,
+    "standing": 3.8,
+    "outdoors": 1.34
   },
   "radiation-therapist": {
     "physicalDemand": "Moderate",
@@ -1869,7 +3517,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 20,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.46
+    "timePressure": 4.46,
+    "peopleContact": 4.97,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 4.53,
+    "conflictExposure": 3.43,
+    "difficultPeople": null,
+    "sitting": 2.27,
+    "standing": 3.89,
+    "outdoors": 1.05
   },
   "recreational-therapist": {
     "physicalDemand": "Moderate",
@@ -1878,7 +3534,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.68
+    "timePressure": 3.68,
+    "peopleContact": 4.82,
+    "decisionFreedom": 4.26,
+    "consequenceOfError": 2.47,
+    "conflictExposure": 3.45,
+    "difficultPeople": null,
+    "sitting": 2.51,
+    "standing": 3.23,
+    "outdoors": 2.84
   },
   "respiratory-therapist": {
     "physicalDemand": "Moderate",
@@ -1887,7 +3551,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.09
+    "timePressure": 4.09,
+    "peopleContact": 4.85,
+    "decisionFreedom": 3.89,
+    "consequenceOfError": 4.52,
+    "conflictExposure": 3.4,
+    "difficultPeople": null,
+    "sitting": 2.11,
+    "standing": 3.99,
+    "outdoors": 1.05
   },
   "speech-language-pathologist": {
     "physicalDemand": "Lower",
@@ -1896,7 +3568,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 47,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.59
+    "timePressure": 4.59,
+    "peopleContact": 4.99,
+    "decisionFreedom": 4.61,
+    "consequenceOfError": 3.18,
+    "conflictExposure": 2.78,
+    "difficultPeople": null,
+    "sitting": 3.88,
+    "standing": 2.69,
+    "outdoors": 1.37
   },
   "exercise-physiologist": {
     "physicalDemand": "Moderate",
@@ -1905,7 +3585,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.14
+    "timePressure": 3.14,
+    "peopleContact": 4.82,
+    "decisionFreedom": 4.25,
+    "consequenceOfError": 2.86,
+    "conflictExposure": 2.68,
+    "difficultPeople": null,
+    "sitting": 2.55,
+    "standing": 3.59,
+    "outdoors": 2
   },
   "veterinarian": {
     "physicalDemand": "Moderate",
@@ -1914,7 +3602,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 26,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.21
+    "timePressure": 4.21,
+    "peopleContact": 4.86,
+    "decisionFreedom": 4.76,
+    "consequenceOfError": 4.09,
+    "conflictExposure": 3.59,
+    "difficultPeople": null,
+    "sitting": 2.3,
+    "standing": 3.96,
+    "outdoors": 1.55
   },
   "rn": {
     "physicalDemand": "Moderate",
@@ -1923,7 +3619,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 39,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.99
+    "timePressure": 3.99,
+    "peopleContact": 4.89,
+    "decisionFreedom": 4.1,
+    "consequenceOfError": 3.94,
+    "conflictExposure": 3.82,
+    "difficultPeople": null,
+    "sitting": 2.93,
+    "standing": 3.01,
+    "outdoors": 1.05
   },
   "nurse-anesthetist": {
     "physicalDemand": "Moderate",
@@ -1932,7 +3636,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 43,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.11
+    "timePressure": 4.11,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.7,
+    "consequenceOfError": 4.77,
+    "conflictExposure": 3.78,
+    "difficultPeople": null,
+    "sitting": 3.11,
+    "standing": 3.2,
+    "outdoors": 1.19
   },
   "nurse-midwife": {
     "physicalDemand": "Moderate",
@@ -1941,7 +3653,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.82
+    "timePressure": 3.82,
+    "peopleContact": 4.91,
+    "decisionFreedom": 4.67,
+    "consequenceOfError": 4.69,
+    "conflictExposure": 3.73,
+    "difficultPeople": null,
+    "sitting": 2.88,
+    "standing": 3.16,
+    "outdoors": 1.06
   },
   "nurse-practitioner": {
     "physicalDemand": "Moderate",
@@ -1950,7 +3670,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 39,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.09
+    "timePressure": 4.09,
+    "peopleContact": 4.74,
+    "decisionFreedom": 4.7,
+    "consequenceOfError": 4.39,
+    "conflictExposure": 3.3,
+    "difficultPeople": null,
+    "sitting": 2.83,
+    "standing": 3.13,
+    "outdoors": 1.3
   },
   "audiologist": {
     "physicalDemand": "Lower",
@@ -1959,7 +3687,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 63,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.55
+    "timePressure": 3.55,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.59,
+    "consequenceOfError": 2.59,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 3.82,
+    "standing": 2.43,
+    "outdoors": 1
   },
   "anesthesiologist": {
     "physicalDemand": "Lower",
@@ -1968,7 +3704,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 51,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4.8,
+    "decisionFreedom": 4.73,
+    "consequenceOfError": 4.53,
+    "conflictExposure": 3.21,
+    "difficultPeople": null,
+    "sitting": 3.16,
+    "standing": 3.21,
+    "outdoors": 1.01
   },
   "dermatologist": {
     "physicalDemand": "Moderate",
@@ -1977,7 +3721,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.81
+    "timePressure": 3.81,
+    "peopleContact": 4.88,
+    "decisionFreedom": 4.99,
+    "consequenceOfError": 4.19,
+    "conflictExposure": 2.89,
+    "difficultPeople": null,
+    "sitting": 2.44,
+    "standing": 4.08,
+    "outdoors": 1
   },
   "emergency-physician": {
     "physicalDemand": "Moderate",
@@ -1986,7 +3738,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 46,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 4.97,
+    "decisionFreedom": 4.93,
+    "consequenceOfError": 4.93,
+    "conflictExposure": 4.5,
+    "difficultPeople": null,
+    "sitting": 2.93,
+    "standing": 3.2,
+    "outdoors": 1.2
   },
   "physician": {
     "physicalDemand": "Lower",
@@ -1995,7 +3755,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 46,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.72
+    "timePressure": 4.72,
+    "peopleContact": 5,
+    "decisionFreedom": 4.98,
+    "consequenceOfError": 4.97,
+    "conflictExposure": 3.57,
+    "difficultPeople": null,
+    "sitting": 3.05,
+    "standing": 2.92,
+    "outdoors": 1
   },
   "neurologist": {
     "physicalDemand": "Lower",
@@ -2004,7 +3772,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 63,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.27
+    "timePressure": 4.27,
+    "peopleContact": 4.91,
+    "decisionFreedom": 4.92,
+    "consequenceOfError": 4.56,
+    "conflictExposure": 3.02,
+    "difficultPeople": null,
+    "sitting": 3.5,
+    "standing": 2.69,
+    "outdoors": 1.08
   },
   "obgyn": {
     "physicalDemand": "Moderate",
@@ -2013,7 +3789,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 39,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.98,
+    "decisionFreedom": 4.82,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 3.27,
+    "difficultPeople": null,
+    "sitting": 2.6,
+    "standing": 3.52,
+    "outdoors": 1
   },
   "pediatrician": {
     "physicalDemand": "Moderate",
@@ -2022,7 +3806,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 41,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.14
+    "timePressure": 3.14,
+    "peopleContact": 4.95,
+    "decisionFreedom": 4.85,
+    "consequenceOfError": 3.64,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 2.75,
+    "standing": 3.74,
+    "outdoors": 1
   },
   "pathologist": {
     "physicalDemand": "Lower",
@@ -2031,7 +3823,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 74,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.9
+    "timePressure": 4.9,
+    "peopleContact": 4.1,
+    "decisionFreedom": 4.61,
+    "consequenceOfError": 4.42,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 4.56,
+    "standing": 2.1,
+    "outdoors": 1.01
   },
   "psychiatrist": {
     "physicalDemand": "Lower",
@@ -2040,7 +3840,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 94,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.05
+    "timePressure": 4.05,
+    "peopleContact": 4.47,
+    "decisionFreedom": 4.87,
+    "consequenceOfError": 3.9,
+    "conflictExposure": 3.89,
+    "difficultPeople": null,
+    "sitting": 4.08,
+    "standing": 2.07,
+    "outdoors": 1.04
   },
   "radiologist": {
     "physicalDemand": "Lower",
@@ -2049,7 +3857,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 65,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.43
+    "timePressure": 4.43,
+    "peopleContact": 4.04,
+    "decisionFreedom": 4.49,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 2.84,
+    "difficultPeople": null,
+    "sitting": 3.52,
+    "standing": 2.83,
+    "outdoors": 1
   },
   "ophthalmologist": {
     "physicalDemand": "Moderate",
@@ -2058,7 +3874,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 67,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.61
+    "timePressure": 4.61,
+    "peopleContact": 4.99,
+    "decisionFreedom": 5,
+    "consequenceOfError": 4.91,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 4.12,
+    "standing": 3.17,
+    "outdoors": null
   },
   "dental-hygienist": {
     "physicalDemand": "Moderate",
@@ -2067,7 +3891,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.97,
+    "decisionFreedom": 3.98,
+    "consequenceOfError": 3.34,
+    "conflictExposure": 2.06,
+    "difficultPeople": null,
+    "sitting": 4.09,
+    "standing": 2.24,
+    "outdoors": 1
   },
   "clinical-lab-tech": {
     "physicalDemand": "Moderate",
@@ -2076,7 +3908,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 51,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 4.42,
+    "decisionFreedom": 3.88,
+    "consequenceOfError": 3.76,
+    "conflictExposure": 2.87,
+    "difficultPeople": null,
+    "sitting": 3.07,
+    "standing": 3.28,
+    "outdoors": 1.04
   },
   "cardiovascular-tech": {
     "physicalDemand": "Moderate",
@@ -2085,7 +3925,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.3
+    "timePressure": 4.3,
+    "peopleContact": 4.94,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 3.77,
+    "conflictExposure": 3.38,
+    "difficultPeople": null,
+    "sitting": 3.24,
+    "standing": 3.08,
+    "outdoors": 1
   },
   "sonographer": {
     "physicalDemand": "Moderate",
@@ -2094,7 +3942,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 43,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.02
+    "timePressure": 4.02,
+    "peopleContact": 4.85,
+    "decisionFreedom": 4.18,
+    "consequenceOfError": 3.5,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 3.36,
+    "standing": 3.04,
+    "outdoors": 1.05
   },
   "nuclear-med-tech": {
     "physicalDemand": "Moderate",
@@ -2103,7 +3959,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 36,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.1
+    "timePressure": 4.1,
+    "peopleContact": 4.83,
+    "decisionFreedom": 4.45,
+    "consequenceOfError": 4.41,
+    "conflictExposure": 3.22,
+    "difficultPeople": null,
+    "sitting": 2.69,
+    "standing": 3.16,
+    "outdoors": 1.02
   },
   "radiologic-tech": {
     "physicalDemand": "Moderate",
@@ -2112,7 +3976,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 28,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.66
+    "timePressure": 3.66,
+    "peopleContact": 4.97,
+    "decisionFreedom": 4.01,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 3.13,
+    "difficultPeople": null,
+    "sitting": 2.59,
+    "standing": 3.63,
+    "outdoors": 1.05
   },
   "mri-tech": {
     "physicalDemand": "Moderate",
@@ -2121,7 +3993,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 59,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.61,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 4,
+    "conflictExposure": 3.09,
+    "difficultPeople": null,
+    "sitting": 3.74,
+    "standing": 2.57,
+    "outdoors": 1.26
   },
   "medical-dosimetrist": {
     "physicalDemand": "Lower",
@@ -2130,7 +4010,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 91,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 5
+    "timePressure": 5,
+    "peopleContact": 3.9,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 4.5,
+    "conflictExposure": 2.6,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.8,
+    "outdoors": 1
   },
   "pharmacy-tech": {
     "physicalDemand": "Moderate",
@@ -2139,7 +4027,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 31,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.26
+    "timePressure": 4.26,
+    "peopleContact": 4.84,
+    "decisionFreedom": 3.28,
+    "consequenceOfError": 4.01,
+    "conflictExposure": 3.63,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.54,
+    "outdoors": 1.05
   },
   "psychiatric-technician": {
     "physicalDemand": "Moderate",
@@ -2148,7 +4044,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 27,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.46
+    "timePressure": 3.46,
+    "peopleContact": 4.68,
+    "decisionFreedom": 3.76,
+    "consequenceOfError": 2.77,
+    "conflictExposure": 4.17,
+    "difficultPeople": null,
+    "sitting": 2.98,
+    "standing": 3.62,
+    "outdoors": 2.52
   },
   "surgical-tech": {
     "physicalDemand": "Moderate",
@@ -2157,7 +4061,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 24,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.82
+    "timePressure": 3.82,
+    "peopleContact": 4.67,
+    "decisionFreedom": 3.78,
+    "consequenceOfError": 4.26,
+    "conflictExposure": 2.99,
+    "difficultPeople": null,
+    "sitting": 2.15,
+    "standing": 4.27,
+    "outdoors": 1.01
   },
   "vet-tech": {
     "physicalDemand": "Moderate",
@@ -2166,7 +4078,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 17,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.96
+    "timePressure": 3.96,
+    "peopleContact": 4.67,
+    "decisionFreedom": 3.6,
+    "consequenceOfError": 3.84,
+    "conflictExposure": 2.98,
+    "difficultPeople": null,
+    "sitting": 2.08,
+    "standing": 4.26,
+    "outdoors": 2.03
   },
   "ophthalmic-tech": {
     "physicalDemand": "Moderate",
@@ -2175,7 +4095,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 41,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.32
+    "timePressure": 3.32,
+    "peopleContact": 4.91,
+    "decisionFreedom": 3.91,
+    "consequenceOfError": 3.14,
+    "conflictExposure": 2.76,
+    "difficultPeople": null,
+    "sitting": 2.73,
+    "standing": 3.23,
+    "outdoors": 1
   },
   "lpn": {
     "physicalDemand": "Moderate",
@@ -2184,7 +4112,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 26,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.38
+    "timePressure": 4.38,
+    "peopleContact": 4.83,
+    "decisionFreedom": 3.77,
+    "consequenceOfError": 3.42,
+    "conflictExposure": 3.48,
+    "difficultPeople": null,
+    "sitting": 2.42,
+    "standing": 3.75,
+    "outdoors": 1.16
   },
   "optician": {
     "physicalDemand": "Lower",
@@ -2193,7 +4129,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 45,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 4.79,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.21,
+    "conflictExposure": 3,
+    "difficultPeople": null,
+    "sitting": 3.17,
+    "standing": 2.92,
+    "outdoors": 1.12
   },
   "orthotist-prosthetist": {
     "physicalDemand": "Moderate",
@@ -2202,7 +4146,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 36,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.29
+    "timePressure": 4.29,
+    "peopleContact": 4.52,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 2.81,
+    "conflictExposure": 2.86,
+    "difficultPeople": null,
+    "sitting": 2.67,
+    "standing": 3.43,
+    "outdoors": 1.29
   },
   "hearing-aid-specialist": {
     "physicalDemand": "Lower",
@@ -2211,7 +4163,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 84,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.94
+    "timePressure": 3.94,
+    "peopleContact": 4.68,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 2.37,
+    "conflictExposure": 3.09,
+    "difficultPeople": null,
+    "sitting": 4.11,
+    "standing": 2.24,
+    "outdoors": 1
   },
   "athletic-trainer": {
     "physicalDemand": "Moderate",
@@ -2220,7 +4180,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 2,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.6
+    "timePressure": 3.6,
+    "peopleContact": 4.87,
+    "decisionFreedom": 4.43,
+    "consequenceOfError": 3.89,
+    "conflictExposure": 3.59,
+    "difficultPeople": null,
+    "sitting": 2.61,
+    "standing": 3.6,
+    "outdoors": 4.18
   },
   "genetic-counselor": {
     "physicalDemand": "Lower",
@@ -2229,7 +4197,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 86,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.57,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 3.26,
+    "conflictExposure": 2.65,
+    "difficultPeople": null,
+    "sitting": 4.3,
+    "standing": 1.78,
+    "outdoors": 1
   },
   "surgical-assistant": {
     "physicalDemand": "Moderate",
@@ -2238,7 +4214,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 35,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.33
+    "timePressure": 3.33,
+    "peopleContact": 4.76,
+    "decisionFreedom": 3.51,
+    "consequenceOfError": 4.26,
+    "conflictExposure": 3.33,
+    "difficultPeople": null,
+    "sitting": 1.96,
+    "standing": 4.32,
+    "outdoors": 1.01
   },
   "home-health-aide": {
     "physicalDemand": "Moderate",
@@ -2247,7 +4231,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 23,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.43
+    "timePressure": 3.43,
+    "peopleContact": 4.37,
+    "decisionFreedom": 3.47,
+    "consequenceOfError": 3.68,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 2.22,
+    "standing": 3.61,
+    "outdoors": 1.27
   },
   "nursing-assistant": {
     "physicalDemand": "Higher",
@@ -2256,7 +4248,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 10,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.71
+    "timePressure": 3.71,
+    "peopleContact": 4.83,
+    "decisionFreedom": 3.11,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 1.69,
+    "standing": 4.41,
+    "outdoors": 1.84
   },
   "psychiatric-aide": {
     "physicalDemand": "Moderate",
@@ -2265,7 +4265,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 23,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.71
+    "timePressure": 3.71,
+    "peopleContact": 4.81,
+    "decisionFreedom": 3.65,
+    "consequenceOfError": 3.79,
+    "conflictExposure": 4.06,
+    "difficultPeople": null,
+    "sitting": 3.05,
+    "standing": 3.22,
+    "outdoors": 2.79
   },
   "ota": {
     "physicalDemand": "Moderate",
@@ -2274,7 +4282,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 20,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.7
+    "timePressure": 4.7,
+    "peopleContact": 4.85,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 2.72,
+    "conflictExposure": 3.37,
+    "difficultPeople": null,
+    "sitting": 2.15,
+    "standing": 4.16,
+    "outdoors": 1.29
   },
   "pta": {
     "physicalDemand": "Moderate",
@@ -2283,7 +4299,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 24,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.52
+    "timePressure": 3.52,
+    "peopleContact": 4.95,
+    "decisionFreedom": 3.91,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 3.25,
+    "difficultPeople": null,
+    "sitting": 2.23,
+    "standing": 3.82,
+    "outdoors": 1.08
   },
   "pt-aide": {
     "physicalDemand": "Moderate",
@@ -2292,7 +4316,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 22,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.04
+    "timePressure": 3.04,
+    "peopleContact": 4.8,
+    "decisionFreedom": 3.85,
+    "consequenceOfError": 2.97,
+    "conflictExposure": 2.53,
+    "difficultPeople": null,
+    "sitting": 2.01,
+    "standing": 4.09,
+    "outdoors": 1.01
   },
   "massage-therapist": {
     "physicalDemand": "Moderate",
@@ -2301,7 +4333,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 40,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.28
+    "timePressure": 2.28,
+    "peopleContact": 4.62,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 2.62,
+    "conflictExposure": 2.31,
+    "difficultPeople": null,
+    "sitting": 2.04,
+    "standing": 4.23,
+    "outdoors": 1.2
   },
   "dental-assistant": {
     "physicalDemand": "Moderate",
@@ -2310,7 +4350,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 22,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.44
+    "timePressure": 3.44,
+    "peopleContact": 4.81,
+    "decisionFreedom": 3.52,
+    "consequenceOfError": 3,
+    "conflictExposure": 3.54,
+    "difficultPeople": null,
+    "sitting": 2.58,
+    "standing": 3.69,
+    "outdoors": 1
   },
   "medical-assistant": {
     "physicalDemand": "Moderate",
@@ -2319,7 +4367,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.8
+    "timePressure": 3.8,
+    "peopleContact": 5,
+    "decisionFreedom": 3.22,
+    "consequenceOfError": 4,
+    "conflictExposure": 3.19,
+    "difficultPeople": null,
+    "sitting": 3.1,
+    "standing": 2.94,
+    "outdoors": 1
   },
   "medical-equipment-preparer": {
     "physicalDemand": "Moderate",
@@ -2328,7 +4384,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.28
+    "timePressure": 4.28,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 3.76,
+    "conflictExposure": 3.04,
+    "difficultPeople": null,
+    "sitting": 1.87,
+    "standing": 4.13,
+    "outdoors": 1
   },
   "veterinary-assistant": {
     "physicalDemand": "Higher",
@@ -2337,7 +4401,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 7,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 4.48,
+    "decisionFreedom": 3.46,
+    "consequenceOfError": 3.75,
+    "conflictExposure": 3.24,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.78,
+    "outdoors": 2.66
   },
   "phlebotomist": {
     "physicalDemand": "Moderate",
@@ -2346,7 +4418,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 11,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.45
+    "timePressure": 4.45,
+    "peopleContact": 4.82,
+    "decisionFreedom": 3.82,
+    "consequenceOfError": 4.48,
+    "conflictExposure": 3.64,
+    "difficultPeople": null,
+    "sitting": 2.23,
+    "standing": 4.27,
+    "outdoors": 1.27
   },
   "police-supervisor": {
     "physicalDemand": "Moderate",
@@ -2355,7 +4435,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.5
+    "timePressure": 3.5,
+    "peopleContact": 4.7,
+    "decisionFreedom": 4.43,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 4.23,
+    "difficultPeople": null,
+    "sitting": 3.48,
+    "standing": 2.82,
+    "outdoors": 4.32
   },
   "firefighter": {
     "physicalDemand": "Moderate",
@@ -2364,7 +4452,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.6
+    "timePressure": 3.6,
+    "peopleContact": 4.73,
+    "decisionFreedom": 3.94,
+    "consequenceOfError": 4.19,
+    "conflictExposure": 3.39,
+    "difficultPeople": null,
+    "sitting": 2.49,
+    "standing": 3.43,
+    "outdoors": 4.47
   },
   "fire-inspector": {
     "physicalDemand": "Moderate",
@@ -2373,7 +4469,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.94
+    "timePressure": 3.94,
+    "peopleContact": 4.92,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 3.11,
+    "conflictExposure": 3.43,
+    "difficultPeople": null,
+    "sitting": 2.51,
+    "standing": 3.25,
+    "outdoors": 4.33
   },
   "correctional-officer": {
     "physicalDemand": "Moderate",
@@ -2382,7 +4486,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 19,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.45
+    "timePressure": 4.45,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.22,
+    "consequenceOfError": 3.79,
+    "conflictExposure": 4.37,
+    "difficultPeople": null,
+    "sitting": 3.28,
+    "standing": 3.43,
+    "outdoors": 2.87
   },
   "detective": {
     "physicalDemand": "Moderate",
@@ -2391,7 +4503,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 20,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 4.82,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 4.3,
+    "conflictExposure": 4.17,
+    "difficultPeople": null,
+    "sitting": 3.5,
+    "standing": 2.77,
+    "outdoors": 4.1
   },
   "fish-game-warden": {
     "physicalDemand": "Moderate",
@@ -2400,7 +4520,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.94
+    "timePressure": 3.94,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.76,
+    "consequenceOfError": 4.26,
+    "conflictExposure": 3.94,
+    "difficultPeople": null,
+    "sitting": 3.16,
+    "standing": 3,
+    "outdoors": 4.87
   },
   "police-officer": {
     "physicalDemand": "Moderate",
@@ -2409,7 +4537,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.96
+    "timePressure": 3.96,
+    "peopleContact": 4.76,
+    "decisionFreedom": 4.5,
+    "consequenceOfError": 3.62,
+    "conflictExposure": 4.43,
+    "difficultPeople": null,
+    "sitting": 3.45,
+    "standing": 2.92,
+    "outdoors": 4.56
   },
   "animal-control-worker": {
     "physicalDemand": "Moderate",
@@ -2418,7 +4554,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.96
+    "timePressure": 3.96,
+    "peopleContact": 4.58,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 3.96,
+    "conflictExposure": 4.35,
+    "difficultPeople": null,
+    "sitting": 2.92,
+    "standing": 3.15,
+    "outdoors": 4.92
   },
   "private-detective": {
     "physicalDemand": "Lower",
@@ -2427,7 +4571,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 63,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.32
+    "timePressure": 4.32,
+    "peopleContact": 4.33,
+    "decisionFreedom": 4.61,
+    "consequenceOfError": 2.83,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 4.2,
+    "standing": 1.9,
+    "outdoors": 2.72
   },
   "security-guard": {
     "physicalDemand": "Moderate",
@@ -2436,7 +4588,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 37,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.05
+    "timePressure": 3.05,
+    "peopleContact": 4.89,
+    "decisionFreedom": 4.44,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 4.04,
+    "difficultPeople": null,
+    "sitting": 3.21,
+    "standing": 3.42,
+    "outdoors": 3.3
   },
   "lifeguard": {
     "physicalDemand": "Moderate",
@@ -2445,7 +4605,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 15,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.98
+    "timePressure": 2.98,
+    "peopleContact": 4.5,
+    "decisionFreedom": 3.82,
+    "consequenceOfError": 4.06,
+    "conflictExposure": 2.98,
+    "difficultPeople": null,
+    "sitting": 3.2,
+    "standing": 3.08,
+    "outdoors": 3.69
   },
   "tsa-officer": {
     "physicalDemand": "Moderate",
@@ -2454,7 +4622,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 13,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.41
+    "timePressure": 3.41,
+    "peopleContact": 4.54,
+    "decisionFreedom": 3,
+    "consequenceOfError": 3.85,
+    "conflictExposure": 3.74,
+    "difficultPeople": null,
+    "sitting": 1.96,
+    "standing": 4.3,
+    "outdoors": 1.89
   },
   "chef": {
     "physicalDemand": "Moderate",
@@ -2463,7 +4639,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 5,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.75
+    "timePressure": 4.75,
+    "peopleContact": 4.58,
+    "decisionFreedom": 3.67,
+    "consequenceOfError": 2.96,
+    "conflictExposure": 3.75,
+    "difficultPeople": null,
+    "sitting": 1.71,
+    "standing": 4.62,
+    "outdoors": 1.96
   },
   "food-service-supervisor": {
     "physicalDemand": "Moderate",
@@ -2472,7 +4656,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.44
+    "timePressure": 3.44,
+    "peopleContact": 4.58,
+    "decisionFreedom": 3.74,
+    "consequenceOfError": 2.93,
+    "conflictExposure": 3.16,
+    "difficultPeople": null,
+    "sitting": 1.87,
+    "standing": 3.75,
+    "outdoors": 1.21
   },
   "cook": {
     "physicalDemand": "Moderate",
@@ -2481,7 +4673,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 19,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.03
+    "timePressure": 3.03,
+    "peopleContact": 4.11,
+    "decisionFreedom": 3.78,
+    "consequenceOfError": 2.59,
+    "conflictExposure": 2.48,
+    "difficultPeople": null,
+    "sitting": 1.23,
+    "standing": 4.76,
+    "outdoors": 2.07
   },
   "food-prep-worker": {
     "physicalDemand": "Moderate",
@@ -2490,7 +4690,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 4.18,
+    "decisionFreedom": 2.93,
+    "consequenceOfError": 3.11,
+    "conflictExposure": 1.65,
+    "difficultPeople": null,
+    "sitting": 1.59,
+    "standing": 4.42,
+    "outdoors": 1.7
   },
   "bartender": {
     "physicalDemand": "Moderate",
@@ -2499,7 +4707,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 7,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 1.75
+    "timePressure": 1.75,
+    "peopleContact": 4.7,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 1.42,
+    "conflictExposure": 2.89,
+    "difficultPeople": null,
+    "sitting": 1.44,
+    "standing": 4.57,
+    "outdoors": 1.19
   },
   "fast-food-worker": {
     "physicalDemand": "Moderate",
@@ -2508,7 +4724,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.4
+    "timePressure": 2.4,
+    "peopleContact": 4.89,
+    "decisionFreedom": 4.39,
+    "consequenceOfError": 2.51,
+    "conflictExposure": 3.23,
+    "difficultPeople": null,
+    "sitting": 1.69,
+    "standing": 4.39,
+    "outdoors": 2.36
   },
   "server": {
     "physicalDemand": "Moderate",
@@ -2517,7 +4741,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.79
+    "timePressure": 2.79,
+    "peopleContact": 4.82,
+    "decisionFreedom": 3.4,
+    "consequenceOfError": 1.72,
+    "conflictExposure": 2.65,
+    "difficultPeople": null,
+    "sitting": 1.27,
+    "standing": 4.67,
+    "outdoors": 2.31
   },
   "busser": {
     "physicalDemand": "Higher",
@@ -2526,7 +4758,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.87
+    "timePressure": 2.87,
+    "peopleContact": 4.76,
+    "decisionFreedom": 3.12,
+    "consequenceOfError": 1.88,
+    "conflictExposure": 2.96,
+    "difficultPeople": null,
+    "sitting": 1.27,
+    "standing": 4.84,
+    "outdoors": 1.31
   },
   "dishwasher": {
     "physicalDemand": "Moderate",
@@ -2535,7 +4775,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.35
+    "timePressure": 3.35,
+    "peopleContact": 3.85,
+    "decisionFreedom": 2.69,
+    "consequenceOfError": 1.81,
+    "conflictExposure": 2.09,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.2,
+    "outdoors": 1.93
   },
   "restaurant-host": {
     "physicalDemand": "Moderate",
@@ -2544,7 +4792,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 1,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.18
+    "timePressure": 2.18,
+    "peopleContact": 4.81,
+    "decisionFreedom": 4.16,
+    "consequenceOfError": 2.05,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 1.74,
+    "standing": 4.82,
+    "outdoors": 1.48
   },
   "janitor": {
     "physicalDemand": "Moderate",
@@ -2553,7 +4809,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 4,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.96
+    "timePressure": 2.96,
+    "peopleContact": 3.71,
+    "decisionFreedom": 4.43,
+    "consequenceOfError": 2.38,
+    "conflictExposure": 1.98,
+    "difficultPeople": null,
+    "sitting": 1.81,
+    "standing": 4.03,
+    "outdoors": 2.68
   },
   "housekeeper": {
     "physicalDemand": "Higher",
@@ -2562,7 +4826,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 7,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 3.76,
+    "decisionFreedom": 3.21,
+    "consequenceOfError": 1.76,
+    "conflictExposure": 2.06,
+    "difficultPeople": null,
+    "sitting": 1.31,
+    "standing": 4.79,
+    "outdoors": 1.31
   },
   "pest-control-worker": {
     "physicalDemand": "Moderate",
@@ -2571,7 +4843,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.14
+    "timePressure": 4.14,
+    "peopleContact": 4.38,
+    "decisionFreedom": 4.48,
+    "consequenceOfError": 3.27,
+    "conflictExposure": 2.72,
+    "difficultPeople": null,
+    "sitting": 2.31,
+    "standing": 3.85,
+    "outdoors": 4.67
   },
   "landscaper": {
     "physicalDemand": "Moderate",
@@ -2580,7 +4860,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.28
+    "timePressure": 3.28,
+    "peopleContact": 3.19,
+    "decisionFreedom": 2.53,
+    "consequenceOfError": 2.91,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 1.83,
+    "standing": 4.33,
+    "outdoors": 4.98
   },
   "arborist": {
     "physicalDemand": "Higher",
@@ -2589,7 +4877,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.71
+    "timePressure": 3.71,
+    "peopleContact": 4.22,
+    "decisionFreedom": 4.39,
+    "consequenceOfError": 3.79,
+    "conflictExposure": 2.52,
+    "difficultPeople": null,
+    "sitting": 2.03,
+    "standing": 4.22,
+    "outdoors": 4.91
   },
   "animal-trainer": {
     "physicalDemand": "Moderate",
@@ -2598,7 +4894,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.89
+    "timePressure": 2.89,
+    "peopleContact": 4.23,
+    "decisionFreedom": 4.78,
+    "consequenceOfError": 2.75,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.3,
+    "outdoors": 4.19
   },
   "animal-caretaker": {
     "physicalDemand": "Moderate",
@@ -2607,7 +4911,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.32
+    "timePressure": 3.32,
+    "peopleContact": 4.76,
+    "decisionFreedom": 3.64,
+    "consequenceOfError": 3.32,
+    "conflictExposure": 3.21,
+    "difficultPeople": null,
+    "sitting": 1.54,
+    "standing": 4.31,
+    "outdoors": 4.03
   },
   "gaming-dealer": {
     "physicalDemand": "Moderate",
@@ -2616,7 +4928,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 20,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.32
+    "timePressure": 2.32,
+    "peopleContact": 4.62,
+    "decisionFreedom": 2.38,
+    "consequenceOfError": 2.53,
+    "conflictExposure": 3.1,
+    "difficultPeople": null,
+    "sitting": 1.67,
+    "standing": 4.57,
+    "outdoors": 1
   },
   "amusement-attendant": {
     "physicalDemand": "Moderate",
@@ -2625,7 +4945,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 1.98
+    "timePressure": 1.98,
+    "peopleContact": 4.94,
+    "decisionFreedom": 3.47,
+    "consequenceOfError": 2.12,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 2.26,
+    "standing": 4.1,
+    "outdoors": 3.78
   },
   "embalmer": {
     "physicalDemand": "Moderate",
@@ -2634,7 +4962,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 10,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.74
+    "timePressure": 4.74,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.49,
+    "consequenceOfError": 4.06,
+    "conflictExposure": 4.02,
+    "difficultPeople": null,
+    "sitting": 2.56,
+    "standing": 3.32,
+    "outdoors": 3.7
   },
   "funeral-director": {
     "physicalDemand": "Lower",
@@ -2643,7 +4979,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 17,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 3.28,
+    "conflictExposure": 2.85,
+    "difficultPeople": null,
+    "sitting": 2.81,
+    "standing": 3.12,
+    "outdoors": 3.49
   },
   "barber": {
     "physicalDemand": "Moderate",
@@ -2652,7 +4996,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 2.39
+    "timePressure": 2.39,
+    "peopleContact": 4.81,
+    "decisionFreedom": 4.79,
+    "consequenceOfError": 2.44,
+    "conflictExposure": 2.24,
+    "difficultPeople": null,
+    "sitting": 1.88,
+    "standing": 4.62,
+    "outdoors": 1
   },
   "barber-cosmetologist": {
     "physicalDemand": "Moderate",
@@ -2661,7 +5013,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 6,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.41
+    "timePressure": 3.41,
+    "peopleContact": 4.82,
+    "decisionFreedom": 4.76,
+    "consequenceOfError": 2.26,
+    "conflictExposure": 2.64,
+    "difficultPeople": null,
+    "sitting": 1.77,
+    "standing": 4.61,
+    "outdoors": 1
   },
   "manicurist": {
     "physicalDemand": "Lower",
@@ -2670,7 +5030,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 64,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.23
+    "timePressure": 2.23,
+    "peopleContact": 4.5,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 1.69,
+    "conflictExposure": 1.44,
+    "difficultPeople": null,
+    "sitting": 4.05,
+    "standing": 2.1,
+    "outdoors": 1
   },
   "esthetician": {
     "physicalDemand": "Moderate",
@@ -2679,7 +5047,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.59
+    "timePressure": 2.59,
+    "peopleContact": 4.99,
+    "decisionFreedom": 4.34,
+    "consequenceOfError": 2.49,
+    "conflictExposure": 2.45,
+    "difficultPeople": null,
+    "sitting": 2.83,
+    "standing": 3.2,
+    "outdoors": 1.01
   },
   "childcare-worker": {
     "physicalDemand": "Moderate",
@@ -2688,7 +5064,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.49
+    "timePressure": 3.49,
+    "peopleContact": 4.76,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 2.69,
+    "conflictExposure": 3.42,
+    "difficultPeople": null,
+    "sitting": 2.55,
+    "standing": 3.67,
+    "outdoors": 2.52
   },
   "fitness-trainer": {
     "physicalDemand": "Higher",
@@ -2697,7 +5081,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 12,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 2.95
+    "timePressure": 2.95,
+    "peopleContact": 4.76,
+    "decisionFreedom": 4.62,
+    "consequenceOfError": 2.48,
+    "conflictExposure": 2.67,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.45,
+    "outdoors": 2.29
   },
   "recreation-worker": {
     "physicalDemand": "Moderate",
@@ -2706,7 +5098,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 37,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.3
+    "timePressure": 3.3,
+    "peopleContact": 4.81,
+    "decisionFreedom": 4.1,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 3.02,
+    "difficultPeople": null,
+    "sitting": 2.91,
+    "standing": 2.94,
+    "outdoors": 2.18
   },
   "residential-advisor": {
     "physicalDemand": "Lower",
@@ -2715,7 +5115,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 40,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 4.57,
+    "decisionFreedom": 3.85,
+    "consequenceOfError": 3.48,
+    "conflictExposure": 4.13,
+    "difficultPeople": null,
+    "sitting": 3.19,
+    "standing": 2.75,
+    "outdoors": 2.86
   },
   "retail-supervisor": {
     "physicalDemand": "Moderate",
@@ -2724,7 +5132,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 17,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.22
+    "timePressure": 4.22,
+    "peopleContact": 4.85,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 1.67,
+    "conflictExposure": 3.55,
+    "difficultPeople": null,
+    "sitting": 2.31,
+    "standing": 3.86,
+    "outdoors": 2.05
   },
   "cashier": {
     "physicalDemand": "Moderate",
@@ -2733,7 +5149,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 6,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.06
+    "timePressure": 3.06,
+    "peopleContact": 4.96,
+    "decisionFreedom": 3.45,
+    "consequenceOfError": 1.93,
+    "conflictExposure": 2.43,
+    "difficultPeople": null,
+    "sitting": 1.98,
+    "standing": 4.08,
+    "outdoors": 2.21
   },
   "counter-clerk": {
     "physicalDemand": "Lower",
@@ -2742,7 +5166,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 24,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.27
+    "timePressure": 3.27,
+    "peopleContact": 4.91,
+    "decisionFreedom": 3.94,
+    "consequenceOfError": 1.93,
+    "conflictExposure": 3.8,
+    "difficultPeople": null,
+    "sitting": 3.06,
+    "standing": 3.19,
+    "outdoors": 2.83
   },
   "parts-salesperson": {
     "physicalDemand": "Moderate",
@@ -2751,7 +5183,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 8,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.07
+    "timePressure": 4.07,
+    "peopleContact": 5,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 2.54,
+    "conflictExposure": 3.72,
+    "difficultPeople": null,
+    "sitting": 2.6,
+    "standing": 3.83,
+    "outdoors": 3.3
   },
   "retail-salesperson": {
     "physicalDemand": "Moderate",
@@ -2760,7 +5200,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 3,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.42
+    "timePressure": 3.42,
+    "peopleContact": 4.89,
+    "decisionFreedom": 3.43,
+    "consequenceOfError": 2.36,
+    "conflictExposure": 3.08,
+    "difficultPeople": null,
+    "sitting": 2.14,
+    "standing": 4.07,
+    "outdoors": 2.58
   },
   "advertising-sales-agent": {
     "physicalDemand": "Lower",
@@ -2769,7 +5217,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 40,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.46
+    "timePressure": 4.46,
+    "peopleContact": 4.79,
+    "decisionFreedom": 4.55,
+    "consequenceOfError": 2,
+    "conflictExposure": 3.01,
+    "difficultPeople": null,
+    "sitting": 3.59,
+    "standing": 2.4,
+    "outdoors": 2.74
   },
   "insurance-agent": {
     "physicalDemand": "Lower",
@@ -2778,7 +5234,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 64,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.52
+    "timePressure": 4.52,
+    "peopleContact": 4.73,
+    "decisionFreedom": 3.88,
+    "consequenceOfError": 2.98,
+    "conflictExposure": 3.45,
+    "difficultPeople": null,
+    "sitting": 4.6,
+    "standing": 1.92,
+    "outdoors": 2.35
   },
   "securities-sales-agent": {
     "physicalDemand": "Lower",
@@ -2787,7 +5251,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 77,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 4.69,
+    "decisionFreedom": 4.33,
+    "consequenceOfError": 3.33,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 4.27,
+    "standing": 1.95,
+    "outdoors": 1.19
   },
   "travel-agent": {
     "physicalDemand": "Lower",
@@ -2796,7 +5268,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 85,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.73
+    "timePressure": 3.73,
+    "peopleContact": 4.45,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 3.38,
+    "conflictExposure": 3.07,
+    "difficultPeople": null,
+    "sitting": 4.86,
+    "standing": 1.67,
+    "outdoors": 1.06
   },
   "technical-sales-rep": {
     "physicalDemand": "Lower",
@@ -2805,7 +5285,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.57,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 2.5,
+    "conflictExposure": 3.54,
+    "difficultPeople": null,
+    "sitting": 3.34,
+    "standing": 2.71,
+    "outdoors": 2.22
   },
   "sales-rep": {
     "physicalDemand": "Moderate",
@@ -2814,7 +5302,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 43,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 5,
+    "decisionFreedom": 4.51,
+    "consequenceOfError": 1.88,
+    "conflictExposure": 3.31,
+    "difficultPeople": null,
+    "sitting": 3.35,
+    "standing": 2.74,
+    "outdoors": 2.74
   },
   "real-estate-broker": {
     "physicalDemand": "Lower",
@@ -2823,7 +5319,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 46,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.69,
+    "decisionFreedom": 4.89,
+    "consequenceOfError": 3.15,
+    "conflictExposure": 3.14,
+    "difficultPeople": null,
+    "sitting": 3.67,
+    "standing": 2.37,
+    "outdoors": 3.87
   },
   "real-estate-agent": {
     "physicalDemand": "Lower",
@@ -2832,7 +5336,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 31,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.52
+    "timePressure": 4.52,
+    "peopleContact": 4.95,
+    "decisionFreedom": 4.57,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 3.29,
+    "difficultPeople": null,
+    "sitting": 3.24,
+    "standing": 2.74,
+    "outdoors": 3.32
   },
   "sales-engineer": {
     "physicalDemand": "Lower",
@@ -2841,7 +5353,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 89,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.02
+    "timePressure": 4.02,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.46,
+    "consequenceOfError": 2.66,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 3.72,
+    "standing": 2.05,
+    "outdoors": 1.18
   },
   "office-supervisor": {
     "physicalDemand": "Lower",
@@ -2850,7 +5370,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 67,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 4.7,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 2.92,
+    "conflictExposure": 3.44,
+    "difficultPeople": null,
+    "sitting": 4.3,
+    "standing": 2.14,
+    "outdoors": 1.21
   },
   "bill-collector": {
     "physicalDemand": "Lower",
@@ -2859,7 +5387,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.9
+    "timePressure": 3.9,
+    "peopleContact": 4.9,
+    "decisionFreedom": 3.24,
+    "consequenceOfError": 3.1,
+    "conflictExposure": 3.57,
+    "difficultPeople": null,
+    "sitting": 4.64,
+    "standing": 1.76,
+    "outdoors": 1.17
   },
   "billing-clerk": {
     "physicalDemand": "Lower",
@@ -2868,7 +5404,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 91,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.32,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 1.93,
+    "conflictExposure": 2.26,
+    "difficultPeople": null,
+    "sitting": 4.63,
+    "standing": 2.07,
+    "outdoors": 1.27
   },
   "bookkeeper": {
     "physicalDemand": "Lower",
@@ -2877,7 +5421,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 83,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.87
+    "timePressure": 3.87,
+    "peopleContact": 4.48,
+    "decisionFreedom": 3.75,
+    "consequenceOfError": 2.44,
+    "conflictExposure": 2.99,
+    "difficultPeople": null,
+    "sitting": 4.46,
+    "standing": 2.07,
+    "outdoors": 1.4
   },
   "payroll-clerk": {
     "physicalDemand": "Lower",
@@ -2886,7 +5438,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 92,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.25
+    "timePressure": 4.25,
+    "peopleContact": 3.82,
+    "decisionFreedom": 3.49,
+    "consequenceOfError": 2.25,
+    "conflictExposure": 2.35,
+    "difficultPeople": null,
+    "sitting": 4.79,
+    "standing": 1.99,
+    "outdoors": 1.12
   },
   "bank-teller": {
     "physicalDemand": "Moderate",
@@ -2895,7 +5455,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 44,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.53
+    "timePressure": 3.53,
+    "peopleContact": 4.96,
+    "decisionFreedom": 3.67,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 3.36,
+    "difficultPeople": null,
+    "sitting": 3.13,
+    "standing": 3.55,
+    "outdoors": 1.22
   },
   "court-clerk": {
     "physicalDemand": "Lower",
@@ -2904,7 +5472,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 68,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.79,
+    "decisionFreedom": 3.88,
+    "consequenceOfError": 2.62,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 4.24,
+    "standing": 2.26,
+    "outdoors": 1.19
   },
   "customer-service": {
     "physicalDemand": "Lower",
@@ -2913,7 +5489,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 79,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.55
+    "timePressure": 4.55,
+    "peopleContact": 4.85,
+    "decisionFreedom": 3.05,
+    "consequenceOfError": 2.16,
+    "conflictExposure": 3.32,
+    "difficultPeople": null,
+    "sitting": 4,
+    "standing": 3.23,
+    "outdoors": 1.29
   },
   "eligibility-interviewer": {
     "physicalDemand": "Lower",
@@ -2922,7 +5506,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 90,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.28
+    "timePressure": 4.28,
+    "peopleContact": 4.42,
+    "decisionFreedom": 3.63,
+    "consequenceOfError": 2.67,
+    "conflictExposure": 2.38,
+    "difficultPeople": null,
+    "sitting": 4.68,
+    "standing": 1.88,
+    "outdoors": 1.38
   },
   "hotel-desk-clerk": {
     "physicalDemand": "Moderate",
@@ -2931,7 +5523,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 34,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.2
+    "timePressure": 3.2,
+    "peopleContact": 4.95,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 2.3,
+    "conflictExposure": 3.81,
+    "difficultPeople": null,
+    "sitting": 2.26,
+    "standing": 3.95,
+    "outdoors": 1.42
   },
   "loan-clerk": {
     "physicalDemand": "Lower",
@@ -2940,7 +5540,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 81,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.53
+    "timePressure": 4.53,
+    "peopleContact": 4.97,
+    "decisionFreedom": 4.42,
+    "consequenceOfError": 2.43,
+    "conflictExposure": 3.63,
+    "difficultPeople": null,
+    "sitting": 4.69,
+    "standing": 2,
+    "outdoors": 1.05
   },
   "hr-assistant": {
     "physicalDemand": "Lower",
@@ -2949,7 +5557,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 70,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.27
+    "timePressure": 4.27,
+    "peopleContact": 4.91,
+    "decisionFreedom": 3.98,
+    "consequenceOfError": 2.27,
+    "conflictExposure": 3.76,
+    "difficultPeople": null,
+    "sitting": 4.27,
+    "standing": 2.08,
+    "outdoors": 1.06
   },
   "receptionist": {
     "physicalDemand": "Lower",
@@ -2958,7 +5574,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 67,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.71
+    "timePressure": 2.71,
+    "peopleContact": 4.88,
+    "decisionFreedom": 3.95,
+    "consequenceOfError": 1.96,
+    "conflictExposure": 3.25,
+    "difficultPeople": null,
+    "sitting": 4.06,
+    "standing": 2.39,
+    "outdoors": 1.02
   },
   "courier": {
     "physicalDemand": "Moderate",
@@ -2967,7 +5591,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 23,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.71
+    "timePressure": 4.71,
+    "peopleContact": 4.69,
+    "decisionFreedom": 4.79,
+    "consequenceOfError": 2.73,
+    "conflictExposure": 2.98,
+    "difficultPeople": null,
+    "sitting": 4.23,
+    "standing": 2.43,
+    "outdoors": 3.65
   },
   "dispatcher": {
     "physicalDemand": "Lower",
@@ -2976,7 +5608,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 85,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.22
+    "timePressure": 4.22,
+    "peopleContact": 4.99,
+    "decisionFreedom": 4.33,
+    "consequenceOfError": 3.81,
+    "conflictExposure": 4.68,
+    "difficultPeople": null,
+    "sitting": 4.99,
+    "standing": 1.74,
+    "outdoors": 1.03
   },
   "truck-dispatcher": {
     "physicalDemand": "Lower",
@@ -2985,7 +5625,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 37,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.48
+    "timePressure": 4.48,
+    "peopleContact": 4.92,
+    "decisionFreedom": 4.51,
+    "consequenceOfError": 2.3,
+    "conflictExposure": 3.86,
+    "difficultPeople": null,
+    "sitting": 4.18,
+    "standing": 2.29,
+    "outdoors": 2.12
   },
   "postal-worker": {
     "physicalDemand": "Moderate",
@@ -2994,7 +5642,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 3.78,
+    "decisionFreedom": 3.38,
+    "consequenceOfError": 2.93,
+    "conflictExposure": 2.73,
+    "difficultPeople": null,
+    "sitting": 2.71,
+    "standing": 3.48,
+    "outdoors": 4.91
   },
   "production-clerk": {
     "physicalDemand": "Lower",
@@ -3003,7 +5659,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.55
+    "timePressure": 4.55,
+    "peopleContact": 4.29,
+    "decisionFreedom": 4.59,
+    "consequenceOfError": 3.19,
+    "conflictExposure": 3.07,
+    "difficultPeople": null,
+    "sitting": 4.15,
+    "standing": 2.19,
+    "outdoors": 1.9
   },
   "shipping-clerk": {
     "physicalDemand": "Moderate",
@@ -3012,7 +5676,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.57
+    "timePressure": 4.57,
+    "peopleContact": 4.48,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 2.46,
+    "conflictExposure": 3.32,
+    "difficultPeople": null,
+    "sitting": 2.91,
+    "standing": 3.25,
+    "outdoors": 2.17
   },
   "executive-assistant": {
     "physicalDemand": "Lower",
@@ -3021,7 +5693,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 74,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 4.7,
+    "decisionFreedom": 4.26,
+    "consequenceOfError": 2.07,
+    "conflictExposure": 2.89,
+    "difficultPeople": null,
+    "sitting": 4.42,
+    "standing": 1.96,
+    "outdoors": 1.15
   },
   "legal-secretary": {
     "physicalDemand": "Lower",
@@ -3030,7 +5710,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 84,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.01
+    "timePressure": 4.01,
+    "peopleContact": 4.38,
+    "decisionFreedom": 3.61,
+    "consequenceOfError": 2.44,
+    "conflictExposure": 2.74,
+    "difficultPeople": null,
+    "sitting": 4.14,
+    "standing": 2.41,
+    "outdoors": 1.02
   },
   "medical-secretary": {
     "physicalDemand": "Lower",
@@ -3039,7 +5727,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.95
+    "timePressure": 3.95,
+    "peopleContact": 4.73,
+    "decisionFreedom": 3.81,
+    "consequenceOfError": 2.09,
+    "conflictExposure": 3.45,
+    "difficultPeople": null,
+    "sitting": 4.59,
+    "standing": 1.81,
+    "outdoors": 1
   },
   "admin-assistant": {
     "physicalDemand": "Lower",
@@ -3048,7 +5744,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 70,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.09
+    "timePressure": 4.09,
+    "peopleContact": 4.87,
+    "decisionFreedom": 3.78,
+    "consequenceOfError": 2.1,
+    "conflictExposure": 3.02,
+    "difficultPeople": null,
+    "sitting": 4.57,
+    "standing": 1.98,
+    "outdoors": 1.36
   },
   "data-entry-keyer": {
     "physicalDemand": "Lower",
@@ -3057,7 +5761,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 88,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.21
+    "timePressure": 4.21,
+    "peopleContact": 4.24,
+    "decisionFreedom": 4.52,
+    "consequenceOfError": 3.04,
+    "conflictExposure": 2.78,
+    "difficultPeople": null,
+    "sitting": 4.89,
+    "standing": 1.49,
+    "outdoors": 1
   },
   "insurance-clerk": {
     "physicalDemand": "Lower",
@@ -3066,7 +5778,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 100,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.94
+    "timePressure": 3.94,
+    "peopleContact": 4.33,
+    "decisionFreedom": 3.76,
+    "consequenceOfError": 2.32,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 4.89,
+    "standing": 1.54,
+    "outdoors": 1.04
   },
   "office-clerk": {
     "physicalDemand": "Lower",
@@ -3075,7 +5795,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 76,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 4.73,
+    "decisionFreedom": 3.28,
+    "consequenceOfError": 2.43,
+    "conflictExposure": 2.74,
+    "difficultPeople": null,
+    "sitting": 4.38,
+    "standing": 2.19,
+    "outdoors": 1.16
   },
   "farmworker": {
     "physicalDemand": "Moderate",
@@ -3084,7 +5812,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 3.48,
+    "decisionFreedom": 3.04,
+    "consequenceOfError": 2.59,
+    "conflictExposure": 1.84,
+    "difficultPeople": null,
+    "sitting": 1.59,
+    "standing": 3.61,
+    "outdoors": 4.45
   },
   "livestock-worker": {
     "physicalDemand": "Moderate",
@@ -3093,7 +5829,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 2.37
+    "timePressure": 2.37,
+    "peopleContact": 4.12,
+    "decisionFreedom": 3.97,
+    "consequenceOfError": 3.09,
+    "conflictExposure": 2.42,
+    "difficultPeople": null,
+    "sitting": 1.84,
+    "standing": 4.13,
+    "outdoors": 4.12
   },
   "commercial-fisher": {
     "physicalDemand": "Moderate",
@@ -3102,7 +5846,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Seasonal",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.05
+    "timePressure": 3.05,
+    "peopleContact": 4.1,
+    "decisionFreedom": 4.4,
+    "consequenceOfError": 3.26,
+    "conflictExposure": 2.67,
+    "difficultPeople": null,
+    "sitting": 2.19,
+    "standing": 4,
+    "outdoors": 4.89
   },
   "logging-operator": {
     "physicalDemand": "Lower",
@@ -3111,7 +5863,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.19
+    "timePressure": 3.19,
+    "peopleContact": 4.13,
+    "decisionFreedom": 4.03,
+    "consequenceOfError": 4.08,
+    "conflictExposure": 2.39,
+    "difficultPeople": null,
+    "sitting": 4.36,
+    "standing": 2,
+    "outdoors": 4.23
   },
   "construction-supervisor": {
     "physicalDemand": "Moderate",
@@ -3120,7 +5880,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.13
+    "timePressure": 4.13,
+    "peopleContact": 4.96,
+    "decisionFreedom": 4.59,
+    "consequenceOfError": 3.27,
+    "conflictExposure": 3.71,
+    "difficultPeople": null,
+    "sitting": 2.58,
+    "standing": 3.62,
+    "outdoors": 4.43
   },
   "boilermaker": {
     "physicalDemand": "Higher",
@@ -3129,7 +5897,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.09
+    "timePressure": 4.09,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.11,
+    "consequenceOfError": 3.99,
+    "conflictExposure": 2.29,
+    "difficultPeople": null,
+    "sitting": 2.09,
+    "standing": 4.09,
+    "outdoors": 3.27
   },
   "brickmason": {
     "physicalDemand": "Higher",
@@ -3138,7 +5914,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 3.92,
+    "decisionFreedom": 3.97,
+    "consequenceOfError": 3.06,
+    "conflictExposure": 3.13,
+    "difficultPeople": null,
+    "sitting": 1.38,
+    "standing": 4.86,
+    "outdoors": 4.97
   },
   "stonemason": {
     "physicalDemand": "Higher",
@@ -3147,7 +5931,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.67
+    "timePressure": 3.67,
+    "peopleContact": 4.18,
+    "decisionFreedom": 4.34,
+    "consequenceOfError": 3.74,
+    "conflictExposure": 2.6,
+    "difficultPeople": null,
+    "sitting": 1.08,
+    "standing": 4.69,
+    "outdoors": 4.76
   },
   "carpenter": {
     "physicalDemand": "Higher",
@@ -3156,7 +5948,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.43
+    "timePressure": 4.43,
+    "peopleContact": 4.74,
+    "decisionFreedom": 3.63,
+    "consequenceOfError": 3.8,
+    "conflictExposure": 3.32,
+    "difficultPeople": null,
+    "sitting": 1.44,
+    "standing": 4.6,
+    "outdoors": 3.91
   },
   "floor-installer": {
     "physicalDemand": "Moderate",
@@ -3165,7 +5965,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.32
+    "timePressure": 3.32,
+    "peopleContact": 4.65,
+    "decisionFreedom": 4.39,
+    "consequenceOfError": 2,
+    "conflictExposure": 1.84,
+    "difficultPeople": null,
+    "sitting": 1.6,
+    "standing": 2.73,
+    "outdoors": 1.76
   },
   "tile-setter": {
     "physicalDemand": "Higher",
@@ -3174,7 +5982,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.57
+    "timePressure": 3.57,
+    "peopleContact": 3.81,
+    "decisionFreedom": 3.6,
+    "consequenceOfError": 3.11,
+    "conflictExposure": 1.72,
+    "difficultPeople": null,
+    "sitting": 1.43,
+    "standing": 4.05,
+    "outdoors": 2.81
   },
   "cement-mason": {
     "physicalDemand": "Higher",
@@ -3183,7 +5999,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 3.95,
+    "decisionFreedom": 3.36,
+    "consequenceOfError": 3.48,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 1.39,
+    "standing": 4.82,
+    "outdoors": 4.81
   },
   "construction-laborer": {
     "physicalDemand": "Moderate",
@@ -3192,7 +6016,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.11
+    "timePressure": 4.11,
+    "peopleContact": 4.55,
+    "decisionFreedom": 3.35,
+    "consequenceOfError": 3.8,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 1.49,
+    "standing": 4.65,
+    "outdoors": 4.63
   },
   "equipment-operator": {
     "physicalDemand": "Moderate",
@@ -3201,7 +6033,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 4.65,
+    "decisionFreedom": 4.01,
+    "consequenceOfError": 4.86,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 3.16,
+    "standing": 2.79,
+    "outdoors": 5
   },
   "drywall-installer": {
     "physicalDemand": "Higher",
@@ -3210,7 +6050,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.73
+    "timePressure": 3.73,
+    "peopleContact": 3.69,
+    "decisionFreedom": 4.01,
+    "consequenceOfError": 2.79,
+    "conflictExposure": 2.45,
+    "difficultPeople": null,
+    "sitting": 1.32,
+    "standing": 4.86,
+    "outdoors": 3.13
   },
   "electrician": {
     "physicalDemand": "Higher",
@@ -3219,7 +6067,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.32
+    "timePressure": 4.32,
+    "peopleContact": 4.76,
+    "decisionFreedom": 4.5,
+    "consequenceOfError": 3.33,
+    "conflictExposure": 3.13,
+    "difficultPeople": null,
+    "sitting": 1.81,
+    "standing": 4.55,
+    "outdoors": 4.13
   },
   "glazier": {
     "physicalDemand": "Higher",
@@ -3228,7 +6084,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.39,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.83,
+    "conflictExposure": 3.06,
+    "difficultPeople": null,
+    "sitting": 1.67,
+    "standing": 4.28,
+    "outdoors": 4.44
   },
   "insulation-worker": {
     "physicalDemand": "Higher",
@@ -3237,7 +6101,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.04
+    "timePressure": 4.04,
+    "peopleContact": 3.72,
+    "decisionFreedom": 3.94,
+    "consequenceOfError": 2.63,
+    "conflictExposure": 2.95,
+    "difficultPeople": null,
+    "sitting": 1.67,
+    "standing": 4.63,
+    "outdoors": 3.89
   },
   "painter": {
     "physicalDemand": "Higher",
@@ -3246,7 +6118,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.6
+    "timePressure": 4.6,
+    "peopleContact": 4.29,
+    "decisionFreedom": 4.29,
+    "consequenceOfError": 2.48,
+    "conflictExposure": 3,
+    "difficultPeople": null,
+    "sitting": 1.06,
+    "standing": 4.94,
+    "outdoors": 2.87
   },
   "plumber": {
     "physicalDemand": "Higher",
@@ -3255,7 +6135,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.27
+    "timePressure": 4.27,
+    "peopleContact": 4.11,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 3.01,
+    "conflictExposure": 2.69,
+    "difficultPeople": null,
+    "sitting": 1.36,
+    "standing": 4.69,
+    "outdoors": 3.89
   },
   "roofer": {
     "physicalDemand": "Higher",
@@ -3264,7 +6152,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.18
+    "timePressure": 4.18,
+    "peopleContact": 4.5,
+    "decisionFreedom": 3.79,
+    "consequenceOfError": 3.11,
+    "conflictExposure": 2.97,
+    "difficultPeople": null,
+    "sitting": 1.68,
+    "standing": 3.87,
+    "outdoors": 4.98
   },
   "sheet-metal": {
     "physicalDemand": "Moderate",
@@ -3273,7 +6169,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.98
+    "timePressure": 3.98,
+    "peopleContact": 3.68,
+    "decisionFreedom": 3.4,
+    "consequenceOfError": 3.86,
+    "conflictExposure": 2.62,
+    "difficultPeople": null,
+    "sitting": 1.48,
+    "standing": 4.84,
+    "outdoors": 2.51
   },
   "ironworker": {
     "physicalDemand": "Higher",
@@ -3282,7 +6186,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.24
+    "timePressure": 4.24,
+    "peopleContact": 4.39,
+    "decisionFreedom": 3.68,
+    "consequenceOfError": 3.57,
+    "conflictExposure": 3.37,
+    "difficultPeople": null,
+    "sitting": 1.61,
+    "standing": 4.61,
+    "outdoors": 4.8
   },
   "solar-installer": {
     "physicalDemand": "Higher",
@@ -3291,7 +6203,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.89
+    "timePressure": 3.89,
+    "peopleContact": 4.31,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 4.02,
+    "conflictExposure": 3.75,
+    "difficultPeople": null,
+    "sitting": 2.16,
+    "standing": 4.27,
+    "outdoors": 4.69
   },
   "building-inspector": {
     "physicalDemand": "Moderate",
@@ -3300,7 +6220,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 6,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.36,
+    "decisionFreedom": 4.68,
+    "consequenceOfError": 3.32,
+    "conflictExposure": 3.52,
+    "difficultPeople": null,
+    "sitting": 2.8,
+    "standing": 3.36,
+    "outdoors": 4.48
   },
   "elevator-tech": {
     "physicalDemand": "Higher",
@@ -3309,7 +6237,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.39,
+    "decisionFreedom": 3.99,
+    "consequenceOfError": 4.33,
+    "conflictExposure": 3.13,
+    "difficultPeople": null,
+    "sitting": 2.16,
+    "standing": 4.03,
+    "outdoors": 3.26
   },
   "hazmat-worker": {
     "physicalDemand": "Higher",
@@ -3318,7 +6254,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.88
+    "timePressure": 3.88,
+    "peopleContact": 3.97,
+    "decisionFreedom": 3.32,
+    "consequenceOfError": 3.25,
+    "conflictExposure": 3.18,
+    "difficultPeople": null,
+    "sitting": 2.25,
+    "standing": 3.87,
+    "outdoors": 3.58
   },
   "highway-maintenance-worker": {
     "physicalDemand": "Moderate",
@@ -3327,7 +6271,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.72
+    "timePressure": 3.72,
+    "peopleContact": 4.25,
+    "decisionFreedom": 3.51,
+    "consequenceOfError": 4.15,
+    "conflictExposure": 3.67,
+    "difficultPeople": null,
+    "sitting": 2.77,
+    "standing": 3.95,
+    "outdoors": 4.94
   },
   "drill-operator": {
     "physicalDemand": "Moderate",
@@ -3336,7 +6288,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.1
+    "timePressure": 4.1,
+    "peopleContact": 4.36,
+    "decisionFreedom": 4.21,
+    "consequenceOfError": 4.46,
+    "conflictExposure": 3.29,
+    "difficultPeople": null,
+    "sitting": 1.75,
+    "standing": 4.36,
+    "outdoors": 4.97
   },
   "surface-mining-operator": {
     "physicalDemand": "Moderate",
@@ -3345,7 +6305,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.58
+    "timePressure": 3.58,
+    "peopleContact": 4.4,
+    "decisionFreedom": 4.06,
+    "consequenceOfError": 3.77,
+    "conflictExposure": 2.35,
+    "difficultPeople": null,
+    "sitting": 4.04,
+    "standing": 2.45,
+    "outdoors": 4.1
   },
   "mining-machine-operator": {
     "physicalDemand": "Moderate",
@@ -3354,7 +6322,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.4
+    "timePressure": 3.4,
+    "peopleContact": 4.44,
+    "decisionFreedom": 4.02,
+    "consequenceOfError": 4.27,
+    "conflictExposure": 2.94,
+    "difficultPeople": null,
+    "sitting": 2.1,
+    "standing": 3.94,
+    "outdoors": 1.93
   },
   "roustabout": {
     "physicalDemand": "Moderate",
@@ -3363,7 +6339,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.28
+    "timePressure": 4.28,
+    "peopleContact": 4.58,
+    "decisionFreedom": 3.94,
+    "consequenceOfError": 3.62,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 1.77,
+    "standing": 4.16,
+    "outdoors": 4.98
   },
   "cell-tower-technician": {
     "physicalDemand": "Moderate",
@@ -3372,7 +6356,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.48
+    "timePressure": 3.48,
+    "peopleContact": 4.11,
+    "decisionFreedom": 3.74,
+    "consequenceOfError": 3.58,
+    "conflictExposure": 2.31,
+    "difficultPeople": null,
+    "sitting": 2.74,
+    "standing": 2.96,
+    "outdoors": 3.56
   },
   "telecom-installer": {
     "physicalDemand": "Moderate",
@@ -3381,7 +6373,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.47,
+    "consequenceOfError": 2.64,
+    "conflictExposure": 3,
+    "difficultPeople": null,
+    "sitting": 2.44,
+    "standing": 3.54,
+    "outdoors": 4.34
   },
   "avionics-tech": {
     "physicalDemand": "Moderate",
@@ -3390,7 +6390,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 22,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.54
+    "timePressure": 4.54,
+    "peopleContact": 4.08,
+    "decisionFreedom": 3.84,
+    "consequenceOfError": 3.59,
+    "conflictExposure": 3.01,
+    "difficultPeople": null,
+    "sitting": 2.98,
+    "standing": 3.11,
+    "outdoors": 2.68
   },
   "substation-tech": {
     "physicalDemand": "Moderate",
@@ -3399,7 +6407,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.17
+    "timePressure": 4.17,
+    "peopleContact": 4.73,
+    "decisionFreedom": 3.51,
+    "consequenceOfError": 4.55,
+    "conflictExposure": 2.84,
+    "difficultPeople": null,
+    "sitting": 2.28,
+    "standing": 3.71,
+    "outdoors": 4.32
   },
   "alarm-installer": {
     "physicalDemand": "Moderate",
@@ -3408,7 +6424,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.55,
+    "decisionFreedom": 4.49,
+    "consequenceOfError": 3.61,
+    "conflictExposure": 3.14,
+    "difficultPeople": null,
+    "sitting": 1.66,
+    "standing": 4.33,
+    "outdoors": 3.43
   },
   "aircraft-mechanic": {
     "physicalDemand": "Higher",
@@ -3417,7 +6441,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.24
+    "timePressure": 4.24,
+    "peopleContact": 4.45,
+    "decisionFreedom": 3.97,
+    "consequenceOfError": 2.94,
+    "conflictExposure": 2.98,
+    "difficultPeople": null,
+    "sitting": 2.5,
+    "standing": 4,
+    "outdoors": 4.02
   },
   "auto-body-repairer": {
     "physicalDemand": "Higher",
@@ -3426,7 +6458,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.53
+    "timePressure": 4.53,
+    "peopleContact": 3.56,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 3.39,
+    "conflictExposure": 2.66,
+    "difficultPeople": null,
+    "sitting": 1.65,
+    "standing": 4.19,
+    "outdoors": 2.02
   },
   "auto-tech": {
     "physicalDemand": "Moderate",
@@ -3435,7 +6475,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.48
+    "timePressure": 4.48,
+    "peopleContact": 4.42,
+    "decisionFreedom": 4.33,
+    "consequenceOfError": 3.55,
+    "conflictExposure": 3.1,
+    "difficultPeople": null,
+    "sitting": 1.64,
+    "standing": 4.6,
+    "outdoors": 2.99
   },
   "diesel-tech": {
     "physicalDemand": "Higher",
@@ -3444,7 +6492,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.07
+    "timePressure": 4.07,
+    "peopleContact": 4.27,
+    "decisionFreedom": 4.07,
+    "consequenceOfError": 3.45,
+    "conflictExposure": 2.39,
+    "difficultPeople": null,
+    "sitting": 1.76,
+    "standing": 4.4,
+    "outdoors": 4.29
   },
   "farm-equipment-mechanic": {
     "physicalDemand": "Higher",
@@ -3453,7 +6509,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.08
+    "timePressure": 4.08,
+    "peopleContact": 4.38,
+    "decisionFreedom": 4.41,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 1.91,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.41,
+    "outdoors": 3.68
   },
   "heavy-equipment-mechanic": {
     "physicalDemand": "Higher",
@@ -3462,7 +6526,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.93
+    "timePressure": 3.93,
+    "peopleContact": 4.27,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 3.58,
+    "conflictExposure": 2.39,
+    "difficultPeople": null,
+    "sitting": 1.86,
+    "standing": 4.23,
+    "outdoors": 4.49
   },
   "rail-car-repairer": {
     "physicalDemand": "Higher",
@@ -3471,7 +6543,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.99
+    "timePressure": 3.99,
+    "peopleContact": 3.98,
+    "decisionFreedom": 4.13,
+    "consequenceOfError": 3.64,
+    "conflictExposure": 2.62,
+    "difficultPeople": null,
+    "sitting": 1.57,
+    "standing": 4.58,
+    "outdoors": 4.26
   },
   "marine-mechanic": {
     "physicalDemand": "Moderate",
@@ -3480,7 +6560,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.17
+    "timePressure": 4.17,
+    "peopleContact": 4.3,
+    "decisionFreedom": 4.41,
+    "consequenceOfError": 3.6,
+    "conflictExposure": 3.03,
+    "difficultPeople": null,
+    "sitting": 1.84,
+    "standing": 4.3,
+    "outdoors": 4.68
   },
   "motorcycle-mechanic": {
     "physicalDemand": "Higher",
@@ -3489,7 +6577,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.54
+    "timePressure": 4.54,
+    "peopleContact": 4.6,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 4.61,
+    "conflictExposure": 3.02,
+    "difficultPeople": null,
+    "sitting": 1.62,
+    "standing": 4.88,
+    "outdoors": 3.52
   },
   "small-engine-mechanic": {
     "physicalDemand": "Moderate",
@@ -3498,7 +6594,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.66
+    "timePressure": 3.66,
+    "peopleContact": 4.42,
+    "decisionFreedom": 4.38,
+    "consequenceOfError": 3.3,
+    "conflictExposure": 2.34,
+    "difficultPeople": null,
+    "sitting": 1.65,
+    "standing": 4.49,
+    "outdoors": 3.58
   },
   "hvac-tech": {
     "physicalDemand": "Higher",
@@ -3507,7 +6611,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.8
+    "timePressure": 3.8,
+    "peopleContact": 4.61,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 3.62,
+    "conflictExposure": 2.31,
+    "difficultPeople": null,
+    "sitting": 2.02,
+    "standing": 3.9,
+    "outdoors": 4.05
   },
   "appliance-repairer": {
     "physicalDemand": "Moderate",
@@ -3516,7 +6628,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.84,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 2.59,
+    "conflictExposure": 3.04,
+    "difficultPeople": null,
+    "sitting": 2.4,
+    "standing": 3.22,
+    "outdoors": 3.49
   },
   "industrial-mechanic": {
     "physicalDemand": "Moderate",
@@ -3525,7 +6645,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.69
+    "timePressure": 3.69,
+    "peopleContact": 4.22,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 2.42,
+    "conflictExposure": 2.53,
+    "difficultPeople": null,
+    "sitting": 2.18,
+    "standing": 3.95,
+    "outdoors": 2.69
   },
   "millwright": {
     "physicalDemand": "Higher",
@@ -3534,7 +6662,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.59
+    "timePressure": 4.59,
+    "peopleContact": 4.41,
+    "decisionFreedom": 3.64,
+    "consequenceOfError": 4.41,
+    "conflictExposure": 3.05,
+    "difficultPeople": null,
+    "sitting": 1.82,
+    "standing": 4.27,
+    "outdoors": 4.36
   },
   "lineworker": {
     "physicalDemand": "Higher",
@@ -3543,7 +6679,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.11
+    "timePressure": 4.11,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.27,
+    "consequenceOfError": 4.06,
+    "conflictExposure": 3.23,
+    "difficultPeople": null,
+    "sitting": 2.13,
+    "standing": 4.19,
+    "outdoors": 5
   },
   "telecom-line-installer": {
     "physicalDemand": "Higher",
@@ -3552,7 +6696,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.54
+    "timePressure": 4.54,
+    "peopleContact": 4.79,
+    "decisionFreedom": 4.51,
+    "consequenceOfError": 3.34,
+    "conflictExposure": 3.19,
+    "difficultPeople": null,
+    "sitting": 2.16,
+    "standing": 3.92,
+    "outdoors": 4.83
   },
   "biomedical-equipment-tech": {
     "physicalDemand": "Moderate",
@@ -3561,7 +6713,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 25,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.82
+    "timePressure": 3.82,
+    "peopleContact": 4.44,
+    "decisionFreedom": 4.35,
+    "consequenceOfError": 3.53,
+    "conflictExposure": 1.96,
+    "difficultPeople": null,
+    "sitting": 2.41,
+    "standing": 3.54,
+    "outdoors": 2.46
   },
   "maintenance-worker": {
     "physicalDemand": "Higher",
@@ -3570,7 +6730,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.72
+    "timePressure": 3.72,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.07,
+    "consequenceOfError": 3.18,
+    "conflictExposure": 3.02,
+    "difficultPeople": null,
+    "sitting": 1.93,
+    "standing": 4.1,
+    "outdoors": 4.24
   },
   "wind-turbine-tech": {
     "physicalDemand": "Higher",
@@ -3579,7 +6747,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.21
+    "timePressure": 4.21,
+    "peopleContact": 4.67,
+    "decisionFreedom": 4.19,
+    "consequenceOfError": 4.76,
+    "conflictExposure": 3.29,
+    "difficultPeople": null,
+    "sitting": 2.19,
+    "standing": 4.14,
+    "outdoors": 4.75
   },
   "commercial-diver": {
     "physicalDemand": "Moderate",
@@ -3588,7 +6764,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.85
+    "timePressure": 3.85,
+    "peopleContact": 4.59,
+    "decisionFreedom": 4.36,
+    "consequenceOfError": 3.99,
+    "conflictExposure": 2.91,
+    "difficultPeople": null,
+    "sitting": 2.02,
+    "standing": 3.78,
+    "outdoors": 4.61
   },
   "locksmith": {
     "physicalDemand": "Moderate",
@@ -3597,7 +6781,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.92
+    "timePressure": 3.92,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 2.92,
+    "conflictExposure": 2.54,
+    "difficultPeople": null,
+    "sitting": 2.54,
+    "standing": 3.38,
+    "outdoors": 4.38
   },
   "rigger": {
     "physicalDemand": "Higher",
@@ -3606,7 +6798,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.61
+    "timePressure": 4.61,
+    "peopleContact": 4.59,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 3.9,
+    "conflictExposure": 3.51,
+    "difficultPeople": null,
+    "sitting": 1.72,
+    "standing": 4.11,
+    "outdoors": 4.58
   },
   "production-supervisor": {
     "physicalDemand": "Moderate",
@@ -3615,7 +6815,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.5
+    "timePressure": 4.5,
+    "peopleContact": 4.83,
+    "decisionFreedom": 4.32,
+    "consequenceOfError": 3.12,
+    "conflictExposure": 3.7,
+    "difficultPeople": null,
+    "sitting": 2.27,
+    "standing": 3.98,
+    "outdoors": 2.63
   },
   "baker": {
     "physicalDemand": "Moderate",
@@ -3624,7 +6832,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 12,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.32
+    "timePressure": 4.32,
+    "peopleContact": 4.42,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 2.79,
+    "conflictExposure": 2.41,
+    "difficultPeople": null,
+    "sitting": 1.57,
+    "standing": 4.4,
+    "outdoors": 1.16
   },
   "butcher": {
     "physicalDemand": "Moderate",
@@ -3633,7 +6849,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 17,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.12
+    "timePressure": 4.12,
+    "peopleContact": 4.52,
+    "decisionFreedom": 3.58,
+    "consequenceOfError": 3.9,
+    "conflictExposure": 2.87,
+    "difficultPeople": null,
+    "sitting": 1.3,
+    "standing": 4.86,
+    "outdoors": 1.28
   },
   "meat-cutter": {
     "physicalDemand": "Moderate",
@@ -3642,7 +6866,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 33,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.59
+    "timePressure": 4.59,
+    "peopleContact": 2.85,
+    "decisionFreedom": 2.6,
+    "consequenceOfError": 3.61,
+    "conflictExposure": 3.03,
+    "difficultPeople": null,
+    "sitting": 1.23,
+    "standing": 5,
+    "outdoors": 2.29
   },
   "food-batchmaker": {
     "physicalDemand": "Moderate",
@@ -3651,7 +6883,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 11,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.19
+    "timePressure": 4.19,
+    "peopleContact": 3.74,
+    "decisionFreedom": 3.7,
+    "consequenceOfError": 3.22,
+    "conflictExposure": 1.73,
+    "difficultPeople": null,
+    "sitting": 1.67,
+    "standing": 4.38,
+    "outdoors": 1.01
   },
   "machinist": {
     "physicalDemand": "Moderate",
@@ -3660,7 +6900,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.22
+    "timePressure": 4.22,
+    "peopleContact": 3.77,
+    "decisionFreedom": 4.15,
+    "consequenceOfError": 3.03,
+    "conflictExposure": 2.17,
+    "difficultPeople": null,
+    "sitting": 1.88,
+    "standing": 4.51,
+    "outdoors": 1.34
   },
   "tool-die-maker": {
     "physicalDemand": "Moderate",
@@ -3669,7 +6917,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.29
+    "timePressure": 4.29,
+    "peopleContact": 4.2,
+    "decisionFreedom": 4.76,
+    "consequenceOfError": 3.87,
+    "conflictExposure": 2.31,
+    "difficultPeople": null,
+    "sitting": 1.78,
+    "standing": 4.13,
+    "outdoors": 1.32
   },
   "welder": {
     "physicalDemand": "Moderate",
@@ -3678,7 +6934,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 3,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.51
+    "timePressure": 4.51,
+    "peopleContact": 3.79,
+    "decisionFreedom": 3.31,
+    "consequenceOfError": 3.25,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 2.52,
+    "standing": 3.52,
+    "outdoors": 1.52
   },
   "printing-press-operator": {
     "physicalDemand": "Moderate",
@@ -3687,7 +6951,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.8
+    "timePressure": 4.8,
+    "peopleContact": 4.02,
+    "decisionFreedom": 4.14,
+    "consequenceOfError": 3.1,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 1.67,
+    "standing": 4.4,
+    "outdoors": 1.13
   },
   "laundry-worker": {
     "physicalDemand": "Moderate",
@@ -3696,7 +6968,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.91
+    "timePressure": 3.91,
+    "peopleContact": 3.23,
+    "decisionFreedom": 2.92,
+    "consequenceOfError": 1.92,
+    "conflictExposure": 2.09,
+    "difficultPeople": null,
+    "sitting": 1.38,
+    "standing": 4.62,
+    "outdoors": 1.59
   },
   "sewing-machine-operator": {
     "physicalDemand": "Lower",
@@ -3705,7 +6985,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 71,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.76
+    "timePressure": 3.76,
+    "peopleContact": 3.55,
+    "decisionFreedom": 3,
+    "consequenceOfError": 1.89,
+    "conflictExposure": 2.05,
+    "difficultPeople": null,
+    "sitting": 4.44,
+    "standing": 1.82,
+    "outdoors": 1
   },
   "tailor": {
     "physicalDemand": "Lower",
@@ -3714,7 +7002,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 68,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.53
+    "timePressure": 4.53,
+    "peopleContact": 3.8,
+    "decisionFreedom": 4.4,
+    "consequenceOfError": 3.01,
+    "conflictExposure": 2,
+    "difficultPeople": null,
+    "sitting": 3.82,
+    "standing": 2.6,
+    "outdoors": 1.14
   },
   "upholsterer": {
     "physicalDemand": "Moderate",
@@ -3723,7 +7019,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 9,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 3.65,
+    "decisionFreedom": 3.21,
+    "consequenceOfError": 2.3,
+    "conflictExposure": 2.38,
+    "difficultPeople": null,
+    "sitting": 1.61,
+    "standing": 4.63,
+    "outdoors": 1.2
   },
   "cabinetmaker": {
     "physicalDemand": "Moderate",
@@ -3732,7 +7036,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.11
+    "timePressure": 4.11,
+    "peopleContact": 4.03,
+    "decisionFreedom": 3.64,
+    "consequenceOfError": 2.5,
+    "conflictExposure": 2.27,
+    "difficultPeople": null,
+    "sitting": 1.49,
+    "standing": 4.64,
+    "outdoors": 1.86
   },
   "nuclear-reactor-operator": {
     "physicalDemand": "Lower",
@@ -3741,7 +7053,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 47,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.28
+    "timePressure": 4.28,
+    "peopleContact": 4.69,
+    "decisionFreedom": 3.03,
+    "consequenceOfError": 4.61,
+    "conflictExposure": 3.48,
+    "difficultPeople": null,
+    "sitting": 3.62,
+    "standing": 2.46,
+    "outdoors": 2.16
   },
   "power-dispatcher": {
     "physicalDemand": "Moderate",
@@ -3750,7 +7070,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 35,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.94
+    "timePressure": 3.94,
+    "peopleContact": 4.61,
+    "decisionFreedom": 4.3,
+    "consequenceOfError": 4.74,
+    "conflictExposure": 2.9,
+    "difficultPeople": null,
+    "sitting": 3.44,
+    "standing": 2.96,
+    "outdoors": 2.8
   },
   "power-plant-operator": {
     "physicalDemand": "Moderate",
@@ -3759,7 +7087,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.6
+    "timePressure": 3.6,
+    "peopleContact": 4.56,
+    "decisionFreedom": 4.13,
+    "consequenceOfError": 4.54,
+    "conflictExposure": 3.01,
+    "difficultPeople": null,
+    "sitting": 2.99,
+    "standing": 3.22,
+    "outdoors": 4.11
   },
   "stationary-engineer": {
     "physicalDemand": "Moderate",
@@ -3768,7 +7104,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 4.73,
+    "decisionFreedom": 4.21,
+    "consequenceOfError": 4.07,
+    "conflictExposure": 3.26,
+    "difficultPeople": null,
+    "sitting": 2.59,
+    "standing": 3.58,
+    "outdoors": 4.26
   },
   "water-treatment-operator": {
     "physicalDemand": "Moderate",
@@ -3777,7 +7121,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 3.71,
+    "conflictExposure": 2.54,
+    "difficultPeople": null,
+    "sitting": 2.54,
+    "standing": 3.38,
+    "outdoors": 4.65
   },
   "refinery-operator": {
     "physicalDemand": "Moderate",
@@ -3786,7 +7138,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.75
+    "timePressure": 3.75,
+    "peopleContact": 4.28,
+    "decisionFreedom": 3.74,
+    "consequenceOfError": 4.22,
+    "conflictExposure": 2.52,
+    "difficultPeople": null,
+    "sitting": 3.32,
+    "standing": 3,
+    "outdoors": 4.84
   },
   "quality-inspector": {
     "physicalDemand": "Moderate",
@@ -3795,7 +7155,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.72
+    "timePressure": 3.72,
+    "peopleContact": 4.54,
+    "decisionFreedom": 4.12,
+    "consequenceOfError": 2.46,
+    "conflictExposure": 2.84,
+    "difficultPeople": null,
+    "sitting": 2.37,
+    "standing": 3.82,
+    "outdoors": 1.94
   },
   "jeweler": {
     "physicalDemand": "Lower",
@@ -3804,7 +7172,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 57,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.64
+    "timePressure": 4.64,
+    "peopleContact": 4.24,
+    "decisionFreedom": 4.71,
+    "consequenceOfError": 2.52,
+    "conflictExposure": 3.08,
+    "difficultPeople": null,
+    "sitting": 4.09,
+    "standing": 2.06,
+    "outdoors": 2.01
   },
   "dental-lab-tech": {
     "physicalDemand": "Lower",
@@ -3813,7 +7189,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 81,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.81
+    "timePressure": 4.81,
+    "peopleContact": 3.24,
+    "decisionFreedom": 4.21,
+    "consequenceOfError": 2.85,
+    "conflictExposure": 2.12,
+    "difficultPeople": null,
+    "sitting": 4.44,
+    "standing": 2.05,
+    "outdoors": 1.03
   },
   "packaging-operator": {
     "physicalDemand": "Higher",
@@ -3822,7 +7206,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.44
+    "timePressure": 4.44,
+    "peopleContact": 4.4,
+    "decisionFreedom": 3.59,
+    "consequenceOfError": 3.38,
+    "conflictExposure": 2.51,
+    "difficultPeople": null,
+    "sitting": 1.55,
+    "standing": 4.57,
+    "outdoors": 1.72
   },
   "semiconductor-technician": {
     "physicalDemand": "Moderate",
@@ -3831,7 +7223,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 58,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.86
+    "timePressure": 3.86,
+    "peopleContact": 3.73,
+    "decisionFreedom": 3.34,
+    "consequenceOfError": 3.93,
+    "conflictExposure": 2.77,
+    "difficultPeople": null,
+    "sitting": 2.85,
+    "standing": 3.56,
+    "outdoors": 1.28
   },
   "cnc-operator": {
     "physicalDemand": "Moderate",
@@ -3840,7 +7240,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 12,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.41
+    "timePressure": 4.41,
+    "peopleContact": 4.03,
+    "decisionFreedom": 4.04,
+    "consequenceOfError": 3.4,
+    "conflictExposure": 2.6,
+    "difficultPeople": null,
+    "sitting": 1.6,
+    "standing": 4.6,
+    "outdoors": 1.27
   },
   "cnc-programmer": {
     "physicalDemand": "Moderate",
@@ -3849,7 +7257,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 38,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 3.44,
+    "decisionFreedom": 3.9,
+    "consequenceOfError": 3.2,
+    "conflictExposure": 2.62,
+    "difficultPeople": null,
+    "sitting": 2.83,
+    "standing": 3.19,
+    "outdoors": 1.38
   },
   "airline-pilot": {
     "physicalDemand": "Lower",
@@ -3858,7 +7274,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 31,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.54
+    "timePressure": 4.54,
+    "peopleContact": 4.43,
+    "decisionFreedom": 4.33,
+    "consequenceOfError": 4.37,
+    "conflictExposure": 3.47,
+    "difficultPeople": null,
+    "sitting": 4.74,
+    "standing": 1.94,
+    "outdoors": 3.42
   },
   "commercial-pilot": {
     "physicalDemand": "Moderate",
@@ -3867,7 +7291,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 37,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 4.39,
+    "decisionFreedom": 4.81,
+    "consequenceOfError": 3.81,
+    "conflictExposure": 2.94,
+    "difficultPeople": null,
+    "sitting": 4.34,
+    "standing": 1.99,
+    "outdoors": 3.72
   },
   "air-traffic-controller": {
     "physicalDemand": "Lower",
@@ -3876,7 +7308,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 73,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.41
+    "timePressure": 3.41,
+    "peopleContact": 4.71,
+    "decisionFreedom": 4.29,
+    "consequenceOfError": 4.18,
+    "conflictExposure": 4.4,
+    "difficultPeople": null,
+    "sitting": 4.44,
+    "standing": 2.27,
+    "outdoors": 1.13
   },
   "flight-attendant": {
     "physicalDemand": "Higher",
@@ -3885,7 +7325,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 16,
     "scheduleType": "Irregular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.46
+    "timePressure": 4.46,
+    "peopleContact": 4.87,
+    "decisionFreedom": 4.53,
+    "consequenceOfError": 4.46,
+    "conflictExposure": 4.39,
+    "difficultPeople": null,
+    "sitting": 2.39,
+    "standing": 4.07,
+    "outdoors": 2.7
   },
   "ambulance-driver": {
     "physicalDemand": "Moderate",
@@ -3894,7 +7342,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.78
+    "timePressure": 3.78,
+    "peopleContact": 4.66,
+    "decisionFreedom": 4.08,
+    "consequenceOfError": 3.99,
+    "conflictExposure": 2.93,
+    "difficultPeople": null,
+    "sitting": 3.22,
+    "standing": 3.04,
+    "outdoors": 4.23
   },
   "truck-driver": {
     "physicalDemand": "Moderate",
@@ -3903,7 +7359,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.24
+    "timePressure": 4.24,
+    "peopleContact": 4.17,
+    "decisionFreedom": 4.26,
+    "consequenceOfError": 4.03,
+    "conflictExposure": 2.47,
+    "difficultPeople": null,
+    "sitting": 4.16,
+    "standing": 2.21,
+    "outdoors": 4.76
   },
   "delivery-driver": {
     "physicalDemand": "Moderate",
@@ -3912,7 +7376,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.19
+    "timePressure": 4.19,
+    "peopleContact": 4.56,
+    "decisionFreedom": 3.34,
+    "consequenceOfError": 3.08,
+    "conflictExposure": 2.25,
+    "difficultPeople": null,
+    "sitting": 3.56,
+    "standing": 2.81,
+    "outdoors": 4.15
   },
   "school-bus-driver": {
     "physicalDemand": "Lower",
@@ -3921,7 +7393,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 2,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 3.77
+    "timePressure": 3.77,
+    "peopleContact": 4.26,
+    "decisionFreedom": 4.01,
+    "consequenceOfError": 3.5,
+    "conflictExposure": 3.01,
+    "difficultPeople": null,
+    "sitting": 4.27,
+    "standing": 1.78,
+    "outdoors": 3.9
   },
   "bus-driver": {
     "physicalDemand": "Lower",
@@ -3930,7 +7410,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 32,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.84
+    "timePressure": 3.84,
+    "peopleContact": 4.53,
+    "decisionFreedom": 3.68,
+    "consequenceOfError": 3.91,
+    "conflictExposure": 3.15,
+    "difficultPeople": null,
+    "sitting": 4.85,
+    "standing": 1.76,
+    "outdoors": 3.16
   },
   "shuttle-driver": {
     "physicalDemand": "Moderate",
@@ -3939,7 +7427,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 18,
     "scheduleType": "Regular",
     "weeklyHours": "Usually under 40 hours",
-    "timePressure": 4.13
+    "timePressure": 4.13,
+    "peopleContact": 4.27,
+    "decisionFreedom": 4.09,
+    "consequenceOfError": 4.02,
+    "conflictExposure": 3.2,
+    "difficultPeople": null,
+    "sitting": 4.02,
+    "standing": 2.65,
+    "outdoors": 4.35
   },
   "locomotive-engineer": {
     "physicalDemand": "Moderate",
@@ -3948,7 +7444,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.38
+    "timePressure": 4.38,
+    "peopleContact": 4.6,
+    "decisionFreedom": 4.37,
+    "consequenceOfError": 4.07,
+    "conflictExposure": 3.17,
+    "difficultPeople": null,
+    "sitting": 4.37,
+    "standing": 2.4,
+    "outdoors": 4.44
   },
   "railroad-conductor": {
     "physicalDemand": "Moderate",
@@ -3957,7 +7461,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.41
+    "timePressure": 3.41,
+    "peopleContact": 4.52,
+    "decisionFreedom": 3.84,
+    "consequenceOfError": 4.3,
+    "conflictExposure": 3.09,
+    "difficultPeople": null,
+    "sitting": 3.91,
+    "standing": 2.54,
+    "outdoors": 4.7
   },
   "subway-operator": {
     "physicalDemand": "Moderate",
@@ -3966,7 +7478,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 7,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.82
+    "timePressure": 3.82,
+    "peopleContact": 4.39,
+    "decisionFreedom": 2.78,
+    "consequenceOfError": 4.16,
+    "conflictExposure": 3.47,
+    "difficultPeople": null,
+    "sitting": 4.24,
+    "standing": 2.61,
+    "outdoors": 4.04
   },
   "sailor": {
     "physicalDemand": "Higher",
@@ -3975,7 +7495,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4
+    "timePressure": 4,
+    "peopleContact": 4.41,
+    "decisionFreedom": 3.07,
+    "consequenceOfError": 4.22,
+    "conflictExposure": 2.82,
+    "difficultPeople": null,
+    "sitting": 1.91,
+    "standing": 4.2,
+    "outdoors": 5
   },
   "ship-captain": {
     "physicalDemand": "Moderate",
@@ -3984,7 +7512,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.98
+    "timePressure": 3.98,
+    "peopleContact": 4.58,
+    "decisionFreedom": 4.54,
+    "consequenceOfError": 4.31,
+    "conflictExposure": 3.21,
+    "difficultPeople": null,
+    "sitting": 2.86,
+    "standing": 3.41,
+    "outdoors": 4.34
   },
   "ship-engineer": {
     "physicalDemand": "Moderate",
@@ -3993,7 +7529,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Irregular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.81
+    "timePressure": 3.81,
+    "peopleContact": 3.97,
+    "decisionFreedom": 3.98,
+    "consequenceOfError": 4.47,
+    "conflictExposure": 3.11,
+    "difficultPeople": null,
+    "sitting": 2.56,
+    "standing": 3.31,
+    "outdoors": 4.39
   },
   "parking-attendant": {
     "physicalDemand": "Moderate",
@@ -4002,7 +7546,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 2.99
+    "timePressure": 2.99,
+    "peopleContact": 4.6,
+    "decisionFreedom": 2.91,
+    "consequenceOfError": 3.46,
+    "conflictExposure": 2.72,
+    "difficultPeople": null,
+    "sitting": 3.06,
+    "standing": 3.07,
+    "outdoors": 3.61
   },
   "crane-operator": {
     "physicalDemand": "Moderate",
@@ -4011,7 +7563,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.8
+    "timePressure": 3.8,
+    "peopleContact": 4.55,
+    "decisionFreedom": 4,
+    "consequenceOfError": 3.99,
+    "conflictExposure": 2.57,
+    "difficultPeople": null,
+    "sitting": 3.38,
+    "standing": 2.5,
+    "outdoors": 3.79
   },
   "forklift-operator": {
     "physicalDemand": "Moderate",
@@ -4020,7 +7580,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 4.49
+    "timePressure": 4.49,
+    "peopleContact": 4.08,
+    "decisionFreedom": 4.2,
+    "consequenceOfError": 4.27,
+    "conflictExposure": 2.14,
+    "difficultPeople": null,
+    "sitting": 2.45,
+    "standing": 3.69,
+    "outdoors": 3.55
   },
   "vehicle-cleaner": {
     "physicalDemand": "Moderate",
@@ -4029,7 +7597,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.2
+    "timePressure": 4.2,
+    "peopleContact": 3.57,
+    "decisionFreedom": 4.24,
+    "consequenceOfError": 3.04,
+    "conflictExposure": 2.71,
+    "difficultPeople": null,
+    "sitting": 1.97,
+    "standing": 4.18,
+    "outdoors": 2.89
   },
   "warehouse-worker": {
     "physicalDemand": "Moderate",
@@ -4038,7 +7614,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 3.76,
+    "decisionFreedom": 3.77,
+    "consequenceOfError": 3.66,
+    "conflictExposure": 2.4,
+    "difficultPeople": null,
+    "sitting": 2.66,
+    "standing": 4.05,
+    "outdoors": 4.3
   },
   "hand-packer": {
     "physicalDemand": "Moderate",
@@ -4047,7 +7631,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 4.22
+    "timePressure": 4.22,
+    "peopleContact": 4.26,
+    "decisionFreedom": 3.24,
+    "consequenceOfError": 2.58,
+    "conflictExposure": 1.93,
+    "difficultPeople": null,
+    "sitting": 1.88,
+    "standing": 4.27,
+    "outdoors": 1.92
   },
   "stocker": {
     "physicalDemand": "Moderate",
@@ -4056,7 +7648,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 19,
     "scheduleType": "Regular",
     "weeklyHours": "Usually 40 hours",
-    "timePressure": 3.44
+    "timePressure": 3.44,
+    "peopleContact": 4.5,
+    "decisionFreedom": 3.85,
+    "consequenceOfError": 2.21,
+    "conflictExposure": 2.5,
+    "difficultPeople": null,
+    "sitting": 2.4,
+    "standing": 3.9,
+    "outdoors": 1.74
   },
   "refuse-collector": {
     "physicalDemand": "Moderate",
@@ -4065,7 +7665,15 @@ export const CAREER_WORK_CONTEXT: Record<string, CareerWorkContext> = {
     "remoteScore": 0,
     "scheduleType": "Regular",
     "weeklyHours": "Often over 40 hours",
-    "timePressure": 3.74
+    "timePressure": 3.74,
+    "peopleContact": 3.61,
+    "decisionFreedom": 3.91,
+    "consequenceOfError": 3.17,
+    "conflictExposure": 2.44,
+    "difficultPeople": null,
+    "sitting": 3.47,
+    "standing": 3.09,
+    "outdoors": 4.89
   }
 };
 

@@ -43,6 +43,22 @@ test.describe("Career Explorer decision journey", () => {
     expect(overflow).toBeLessThanOrEqual(1);
   });
 
+  test("career profiles explain work reality, skills, and industries on a phone", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/students/career-explorer/electrician");
+
+    await expect(page.getByRole("heading", { name: "Transferable skills used most" })).toBeVisible();
+    await expect(page.getByRole("listitem").filter({ hasText: /^Troubleshooting$/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "What the work tends to feel like" })).toBeVisible();
+    await expect(page.getByText(/Most of the day is spent standing or moving/)).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Where people in this job work" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Construction", level: 3 })).toBeVisible();
+    await expect(page.getByText("79%", { exact: true })).toBeVisible();
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+
   test("core discovery actions work from the keyboard", async ({ page }) => {
     await page.goto("/students/career-explorer");
 
