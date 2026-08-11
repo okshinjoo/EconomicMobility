@@ -5,9 +5,11 @@ import { BookmarkSimple } from "@phosphor-icons/react/dist/ssr";
 import {
   isCareerSaved,
   MAX_SAVED_CAREERS,
+  readSavedCareerIds,
   subscribeSavedCareers,
   toggleSavedCareer,
 } from "@/lib/savedCareers";
+import { trackCareerEvent } from "@/lib/careerAnalytics";
 
 export default function CareerSaveButton({
   careerId,
@@ -37,6 +39,10 @@ export default function CareerSaveButton({
             return;
           }
           setFull(false);
+          trackCareerEvent("Career save changed", {
+            action: result,
+            saved_count: readSavedCareerIds().length,
+          });
         }}
         className={`inline-flex items-center gap-1.5 rounded-md border-2 font-bold transition-colors ${
           compact ? "px-2.5 py-1.5 text-xs" : "px-3.5 py-2 text-sm"

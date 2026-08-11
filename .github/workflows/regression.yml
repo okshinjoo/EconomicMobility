@@ -33,6 +33,9 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Validate career data and internal links
+        run: npm run check:careers && npm run check:links
+
       # If a base_url was provided, test that deployed URL directly.
       # Otherwise build the app and let Playwright boot `next start`.
       - name: Build (only when testing a local server)

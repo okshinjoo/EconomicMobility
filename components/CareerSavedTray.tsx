@@ -28,13 +28,22 @@ export default function CareerSavedTray() {
         {count} saved {count === 1 ? "career" : "careers"}
         <span className="font-medium text-stone">· compare pay, openings, training, and fit</span>
       </p>
-      <Link
-        href="/students/career-explorer/compare"
-        className="inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-      >
-        Open comparison
-        <ArrowRight className="h-4 w-4" weight="bold" />
-      </Link>
+      <div className="flex flex-wrap gap-x-5 gap-y-2">
+        <Link
+          href="/students/career-explorer/compare"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          Compare
+          <ArrowRight className="h-4 w-4" weight="bold" />
+        </Link>
+        <Link
+          href="/students/career-explorer/plan"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
+        >
+          Make a plan
+          <ArrowRight className="h-4 w-4" weight="bold" />
+        </Link>
+      </div>
     </div>
   );
 }

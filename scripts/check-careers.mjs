@@ -4,10 +4,14 @@ import { readFileSync } from "node:fs";
 import { careers, CAREER_SOURCE_URLS } from "../lib/careers.ts";
 import { CAREER_DETAILS } from "../lib/careerDetails.ts";
 import { CAREER_ENRICHMENT, ONET_DATA_VINTAGE } from "../lib/careerEnrichment.ts";
+import { CAREER_WORK_CONTEXT } from "../lib/careerWorkContext.ts";
+import { CAREER_FIT_QUESTIONS, CAREER_INTERESTS } from "../lib/careerFit.ts";
+import { CAREER_COST_SOURCE } from "../lib/careerDecisionFacts.ts";
 
 const EXPECTED_CAREERS = 474;
 const NO_PUBLISHED_WAGE = new Set(["commercial-fisher"]);
 const EXPECTED_ONET_PROFILES = 464;
+const EXPECTED_WORK_CONTEXT_PROFILES = 450;
 const problems = [];
 
 function require(condition, message) {
@@ -77,6 +81,31 @@ for (const [id, profile] of Object.entries(CAREER_ENRICHMENT)) {
   require(profile.onetUrl.startsWith("https://www.onetonline.org/"), `${id}: invalid O*NET source URL.`);
 }
 
+require(
+  Object.keys(CAREER_WORK_CONTEXT).length === EXPECTED_WORK_CONTEXT_PROFILES,
+  `Expected ${EXPECTED_WORK_CONTEXT_PROFILES} O*NET work-context profiles; found ${Object.keys(CAREER_WORK_CONTEXT).length}.`
+);
+for (const [id, context] of Object.entries(CAREER_WORK_CONTEXT)) {
+  require(careerIds.has(id), `${id}: work-context profile has no catalog career.`);
+  require(["Lower", "Moderate", "Higher"].includes(context.physicalDemand), `${id}: invalid physical-demand band.`);
+  require(["Lower", "Mixed", "Higher"].includes(context.remoteCompatibility), `${id}: invalid remote-compatibility band.`);
+  require(context.physicalScore >= 1 && context.physicalScore <= 5, `${id}: physical score is out of range.`);
+  require(context.remoteScore >= 0 && context.remoteScore <= 100, `${id}: remote score is out of range.`);
+}
+require(CAREER_WORK_CONTEXT.carpenter?.physicalDemand === "Higher", "Carpenter physical-demand benchmark changed.");
+require(CAREER_WORK_CONTEXT.rn?.remoteCompatibility === "Lower", "Registered nurse remote benchmark changed.");
+require(CAREER_WORK_CONTEXT["software-developer"]?.remoteCompatibility === "Higher", "Software developer remote benchmark changed.");
+
+require(CAREER_FIT_QUESTIONS.length === 12, `Expected 12 fit prompts; found ${CAREER_FIT_QUESTIONS.length}.`);
+require(new Set(CAREER_FIT_QUESTIONS.map((question) => question.id)).size === 12, "Career-fit prompt ids are not unique.");
+for (const interest of CAREER_INTERESTS) {
+  require(
+    CAREER_FIT_QUESTIONS.filter((question) => question.interest === interest).length === 2,
+    `${interest}: career-fit sampler should contain exactly two prompts.`
+  );
+}
+require(CAREER_COST_SOURCE.url.startsWith("https://nces.ed.gov/"), "Career cost source is not an official NCES URL.");
+
 const stateData = JSON.parse(
   readFileSync(new URL("../public/data/career-state-wages-2025.json", import.meta.url), "utf8")
 );
@@ -89,6 +118,119 @@ const stateRecords = Object.values(stateData.wages ?? {}).reduce(
 require(stateRecords >= 21000, `State wage coverage fell unexpectedly to ${stateRecords} records.`);
 require(stateData.wages?.CA?.electrician?.annual === 76160, "California electrician wage does not match May 2025 OEWS.");
 
+const metroManifest = JSON.parse(
+  readFileSync(new URL("../public/data/career-metro-wages/manifest.json", import.meta.url), "utf8")
+);
+require(metroManifest.catalogCareers === careers.length, "Metro wage manifest career count is stale.");
+require(metroManifest.uniqueAreas === 387, `Expected 387 metro areas; found ${metroManifest.uniqueAreas}.`);
+require(metroManifest.sourceUrl === "https://www.bls.gov/oes/2025/may/oessrcma.htm", "Metro wage source is not the official May 2025 BLS table.");
+
+let metroRecords = 0;
+const uniqueMetroAreas = new Set();
+for (const stateCode of stateData.states.map((state) => state.code)) {
+  const metroState = JSON.parse(
+    readFileSync(
+      new URL(`../public/data/career-metro-wages/${stateCode}.json`, import.meta.url),
+      "utf8"
+    )
+  );
+  require(metroState.state === stateCode, `${stateCode}: metro wage file is mislabeled.`);
+  require(metroState.areas.length > 0, `${stateCode}: metro wage file has no areas.`);
+  for (const area of metroState.areas) {
+    uniqueMetroAreas.add(area.code);
+    require(/^00\d{5}$/.test(area.code), `${stateCode}: invalid metro code ${area.code}.`);
+    require(area.sourceUrl.endsWith(`/area/${area.code}/2025`), `${stateCode}: invalid source for metro ${area.code}.`);
+    const areaWages = metroState.wages[area.code] ?? {};
+    metroRecords += Object.keys(areaWages).length;
+    for (const careerId of Object.keys(areaWages)) {
+      require(careerIds.has(careerId), `${stateCode}/${area.code}: unknown wage career ${careerId}.`);
+    }
+  }
+}
+require(uniqueMetroAreas.size === metroManifest.uniqueAreas, "Metro wage files do not match the manifest's unique-area count.");
+require(metroRecords === metroManifest.stateAreaCareerRecords, "Metro wage record total does not match the manifest.");
+const californiaMetro = JSON.parse(
+  readFileSync(new URL("../public/data/career-metro-wages/CA.json", import.meta.url), "utf8")
+);
+require(
+  californiaMetro.wages?.["0031080"]?.electrician?.annual === 73810,
+  "Los Angeles electrician wage does not match May 2025 OEWS."
+);
+
+const pathwayManifest = JSON.parse(
+  readFileSync(new URL("../public/data/career-pathways/manifest.json", import.meta.url), "utf8")
+);
+const pathwayRoutes = JSON.parse(
+  readFileSync(
+    new URL("../public/data/career-pathways/apprenticeship-routes.json", import.meta.url),
+    "utf8"
+  )
+);
+const stateCodes = stateData.states.map((state) => state.code).sort();
+const pathwayTotals = { licenses: 0, programs: 0, sponsors: 0 };
+
+require(pathwayManifest.catalogCareers === careers.length, "Pathway manifest career count is stale.");
+require(pathwayManifest.totals?.licenses >= 20000, "License-path coverage fell unexpectedly.");
+require(pathwayManifest.totals?.programs >= 140000, "Public-program coverage fell unexpectedly.");
+require(pathwayManifest.totals?.sponsors >= 30000, "Registered-sponsor coverage fell unexpectedly.");
+require(
+  Object.keys(pathwayRoutes.careers ?? {}).length >= 250,
+  "Approved apprenticeship-route coverage fell unexpectedly."
+);
+
+for (const source of Object.values(pathwayManifest.sources ?? {})) {
+  require(
+    /^https:\/\/(www\.)?(careeronestop\.org|nces\.ed\.gov|www\.onetcenter\.org|www\.apprenticeship\.gov)\//.test(source.url),
+    `Pathway source is not an approved first-party URL: ${source.url}`
+  );
+}
+
+for (const stateCode of stateCodes) {
+  const pathwayState = JSON.parse(
+    readFileSync(
+      new URL(`../public/data/career-pathways/${stateCode}.json`, import.meta.url),
+      "utf8"
+    )
+  );
+  require(pathwayState.state === stateCode, `${stateCode}: pathway file is mislabeled.`);
+  for (const [careerId, entry] of Object.entries(pathwayState.careers ?? {})) {
+    require(careerIds.has(careerId), `${stateCode}: unknown pathway career ${careerId}.`);
+    pathwayTotals.licenses += entry.licenses.length;
+    pathwayTotals.programs += entry.programs.length;
+    pathwayTotals.sponsors += entry.sponsors.length;
+    for (const id of entry.licenses) {
+      require(Boolean(pathwayState.licenses[id]), `${stateCode}/${careerId}: missing license ${id}.`);
+    }
+    for (const program of entry.programs) {
+      require(
+        Boolean(pathwayState.institutions[program.unitId]),
+        `${stateCode}/${careerId}: missing institution ${program.unitId}.`
+      );
+      require(program.programs.length > 0, `${stateCode}/${careerId}: empty program match.`);
+    }
+    for (const id of entry.sponsors) {
+      require(Boolean(pathwayState.sponsors[id]), `${stateCode}/${careerId}: missing sponsor ${id}.`);
+    }
+  }
+}
+
+for (const key of Object.keys(pathwayTotals)) {
+  require(
+    pathwayTotals[key] === pathwayManifest.totals[key],
+    `Pathway ${key} total differs: manifest ${pathwayManifest.totals[key]}, files ${pathwayTotals[key]}.`
+  );
+}
+
+const californiaPathways = JSON.parse(
+  readFileSync(new URL("../public/data/career-pathways/CA.json", import.meta.url), "utf8")
+);
+require(
+  californiaPathways.careers?.electrician?.licenses.length > 0 &&
+    californiaPathways.careers?.electrician?.programs.length > 0 &&
+    californiaPathways.careers?.electrician?.sponsors.length > 0,
+  "California electrician pathway lost a licensing, training, or sponsor layer."
+);
+
 if (problems.length) {
   console.error(`Career catalog check failed with ${problems.length} problem(s):`);
   for (const problem of problems) console.error(`- ${problem}`);
@@ -100,5 +242,5 @@ const hourlyOnly = careers.filter(
   (career) => career.medianPay == null && career.medianHourlyPay != null
 ).length;
 console.log(
-  `Career catalog OK: ${careers.length} careers, ${annual} annual medians, ${hourlyOnly} hourly-only medians, ${socs.length} unique SOC profiles, ${Object.keys(CAREER_ENRICHMENT).length} O*NET profiles, ${stateRecords.toLocaleString()} state wage records.`
+  `Career catalog OK: ${careers.length} careers, ${annual} annual medians, ${hourlyOnly} hourly-only medians, ${socs.length} unique SOC profiles, ${Object.keys(CAREER_ENRICHMENT).length} O*NET fit profiles, ${Object.keys(CAREER_WORK_CONTEXT).length} O*NET work-context profiles, ${stateRecords.toLocaleString()} state wage records, ${uniqueMetroAreas.size} metro areas with ${metroRecords.toLocaleString()} state-area-career wage records, ${pathwayTotals.licenses.toLocaleString()} license matches, ${pathwayTotals.programs.toLocaleString()} public-program matches, and ${pathwayTotals.sponsors.toLocaleString()} registered-sponsor matches.`
 );

@@ -230,6 +230,41 @@ export interface RealityResult {
   effectiveRate: number;
 }
 
+export interface RealityCheckSnapshot {
+  picks: Record<string, string>;
+  stateCode: string;
+  overrides?: Record<string, string>;
+  col?: "high" | "normal";
+  complete?: boolean;
+}
+
+function savedAmount(raw: string | undefined): number | null {
+  if (raw == null || raw === "") return null;
+  const value = Number(raw.replace(/[$,\s]/g, ""));
+  return Number.isFinite(value) && value >= 0 ? value : null;
+}
+
+/** Rebuild a completed Reality Check result from its saved, versioned inputs. */
+export function realityResultFromSnapshot(
+  snapshot: RealityCheckSnapshot | null
+): RealityResult | null {
+  if (!snapshot?.complete || !snapshot.picks) return null;
+  const monthlyTotal = lifestyleCategories.reduce((sum, category) => {
+    const override = savedAmount(snapshot.overrides?.[category.id]);
+    if (override != null) return sum + override;
+    const option = category.options.find((item) => item.id === snapshot.picks[category.id]);
+    if (!option) return sum;
+    const estimate =
+      snapshot.col === "high" && option.monthlyHigh != null
+        ? option.monthlyHigh
+        : option.monthly;
+    return sum + estimate;
+  }, 0);
+  return monthlyTotal > 0
+    ? salaryForLifestyle(monthlyTotal, snapshot.stateCode ?? "")
+    : null;
+}
+
 /**
  * The honest version of "add some percent for taxes": binary-search the gross
  * salary whose 2026 take-home (single filer, chosen state) covers the

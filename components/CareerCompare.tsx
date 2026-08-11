@@ -13,16 +13,33 @@ import {
 } from "@/lib/careers";
 import { getCareerDetail } from "@/lib/careerDetails";
 import { getCareerEnrichment, ONET_DATA_VINTAGE } from "@/lib/careerEnrichment";
+import { getCareerWorkContext } from "@/lib/careerWorkContext";
+import {
+  CAREER_COST_SOURCE,
+  biggestTradeoff,
+  educationCostBaseline,
+  physicalDemandLabel,
+  remoteCompatibilityLabel,
+  scheduleLabel,
+  timeToEntry,
+} from "@/lib/careerDecisionFacts";
 import { readSavedCareerIds, SAVED_CAREERS_EVENT } from "@/lib/savedCareers";
 import {
   CAREER_STATE_OPTIONS,
+  loadCareerMetroWages,
   loadCareerStateWages,
+  type MetroWageData,
+  type WageRecord,
 } from "@/components/CareerLocalPay";
 import {
+  readCareerMetroPreference,
   readCareerStatePreference,
+  saveCareerMetroPreference,
   saveCareerStatePreference,
+  subscribeCareerMetroPreference,
   subscribeCareerStatePreference,
 } from "@/lib/careerStatePreference";
+import { trackCareerEvent } from "@/lib/careerAnalytics";
 
 const MAX_COMPARE = 4;
 const JOB_ZONE: Record<number, string> = {
@@ -32,11 +49,6 @@ const JOB_ZONE: Record<number, string> = {
   4: "High preparation",
   5: "Extensive preparation",
 };
-
-interface WageRecord {
-  annual?: number;
-  hourly?: number;
-}
 
 function Value({ children }: { children: React.ReactNode }) {
   return <span className="text-sm font-medium leading-6 text-ink/85">{children}</span>;
@@ -51,9 +63,18 @@ export default function CareerCompare() {
     readCareerStatePreference,
     () => ""
   );
+  const metro = useSyncExternalStore(
+    subscribeCareerMetroPreference,
+    readCareerMetroPreference,
+    () => ""
+  );
   const [wageResult, setWageResult] = useState<{
     state: string;
     wages: Record<string, WageRecord>;
+  } | null>(null);
+  const [metroResult, setMetroResult] = useState<{
+    state: string;
+    data: MetroWageData;
   } | null>(null);
 
   useEffect(() => {
@@ -76,12 +97,18 @@ export default function CareerCompare() {
       return;
     }
     let active = true;
-    loadCareerStateWages()
-      .then((data) => {
-        if (active) setWageResult({ state, wages: data.wages[state] ?? {} });
+    Promise.all([loadCareerStateWages(), loadCareerMetroWages(state)])
+      .then(([stateData, metroData]) => {
+        if (active) {
+          setWageResult({ state, wages: stateData.wages[state] ?? {} });
+          setMetroResult({ state, data: metroData });
+        }
       })
       .catch(() => {
-        if (active) setWageResult({ state, wages: {} });
+        if (active) {
+          setWageResult({ state, wages: {} });
+          setMetroResult(null);
+        }
       });
     return () => {
       active = false;
@@ -89,6 +116,9 @@ export default function CareerCompare() {
   }, [state]);
 
   const localWages = wageResult?.state === state ? wageResult.wages : null;
+  const metroData = metroResult?.state === state ? metroResult.data : null;
+  const selectedMetro = metroData?.areas.some((area) => area.code === metro) ? metro : "";
+  const metroWages = selectedMetro ? metroData?.wages[selectedMetro] ?? null : null;
 
   const compared = useMemo(
     () => selectedIds.map((id) => careers.find((career) => career.id === id)).filter((career): career is Career => Boolean(career)),
@@ -103,6 +133,18 @@ export default function CareerCompare() {
     if (!id || selectedIds.includes(id) || selectedIds.length >= MAX_COMPARE) return;
     setSelectedIds((current) => [...current, id]);
     setPendingId("");
+    trackCareerEvent("Career comparison changed", {
+      action: "add",
+      career_count: selectedIds.length + 1,
+    });
+  }
+
+  function removeCareer(id: string) {
+    setSelectedIds((current) => current.filter((item) => item !== id));
+    trackCareerEvent("Career comparison changed", {
+      action: "remove",
+      career_count: Math.max(0, selectedIds.length - 1),
+    });
   }
 
   return (
@@ -122,9 +164,7 @@ export default function CareerCompare() {
                     type="button"
                     aria-pressed={active}
                     disabled={!active && selectedIds.length >= MAX_COMPARE}
-                    onClick={() => active
-                      ? setSelectedIds((current) => current.filter((item) => item !== id))
-                      : addCareer(id)}
+                    onClick={() => active ? removeCareer(id) : addCareer(id)}
                     className={`inline-flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-[13px] font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${
                       active ? "border-ink bg-amber text-ink" : "border-ink/20 bg-cream text-stone hover:border-ink/50"
                     }`}
@@ -177,20 +217,47 @@ export default function CareerCompare() {
             <p className="max-w-xl text-sm leading-6 text-stone">
               Compare published facts—not a score. A better choice depends on the work you want, the training you can access, and what pay looks like where you live.
             </p>
-            <label className="flex min-w-64 items-center gap-2 rounded-lg border-2 border-ink/20 bg-cream px-3 focus-within:border-ink">
-              <MapPin className="h-4 w-4 text-terracotta" weight="fill" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">Local pay</span>
-              <select
-                value={state}
-                onChange={(event) => {
-                  saveCareerStatePreference(event.target.value);
-                }}
-                className="min-w-0 flex-1 bg-transparent py-2.5 text-sm font-semibold text-ink focus:outline-none"
-              >
-                <option value="">National only</option>
-                {CAREER_STATE_OPTIONS.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
-              </select>
-            </label>
+            <div className="grid min-w-72 gap-2">
+              <label className="flex items-center gap-2 rounded-lg border-2 border-ink/20 bg-cream px-3 focus-within:border-ink">
+                <MapPin className="h-4 w-4 text-terracotta" weight="fill" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">State</span>
+                <select
+                  value={state}
+                  onChange={(event) => {
+                    saveCareerStatePreference(event.target.value);
+                    saveCareerMetroPreference("");
+                    trackCareerEvent("Career local pay selected", {
+                      level: "state",
+                      has_selection: Boolean(event.target.value),
+                    });
+                  }}
+                  className="min-w-0 flex-1 bg-transparent py-2.5 text-sm font-semibold text-ink focus:outline-none"
+                >
+                  <option value="">National only</option>
+                  {CAREER_STATE_OPTIONS.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
+                </select>
+              </label>
+              {state && (
+                <label className="flex items-center gap-2 rounded-lg border-2 border-ink/20 bg-cream px-3 focus-within:border-ink">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone">Metro</span>
+                  <select
+                    value={selectedMetro}
+                    disabled={!metroData?.areas.length}
+                    onChange={(event) => {
+                      saveCareerMetroPreference(event.target.value);
+                      trackCareerEvent("Career local pay selected", {
+                        level: "metro",
+                        has_selection: Boolean(event.target.value),
+                      });
+                    }}
+                    className="min-w-0 flex-1 bg-transparent py-2.5 text-sm font-semibold text-ink focus:outline-none disabled:text-stone/60"
+                  >
+                    <option value="">Statewide only</option>
+                    {metroData?.areas.map((area) => <option key={area.code} value={area.code}>{area.name}</option>)}
+                  </select>
+                </label>
+              )}
+            </div>
           </div>
 
           <div className="mt-5 overflow-x-auto border-y-2 border-ink">
@@ -207,7 +274,7 @@ export default function CareerCompare() {
                         <button
                           type="button"
                           aria-label={`Remove ${career.title} from comparison`}
-                          onClick={() => setSelectedIds((current) => current.filter((id) => id !== career.id))}
+                          onClick={() => removeCareer(career.id)}
                           className="shrink-0 text-cream/65 hover:text-amber"
                         >
                           <X className="h-4 w-4" weight="bold" />
@@ -245,6 +312,25 @@ export default function CareerCompare() {
                     })}
                   </CompareRow>
                 )}
+                {selectedMetro && (
+                  <CompareRow label="Metro median">
+                    {compared.map((career) => {
+                      const local = metroWages?.[career.id];
+                      return (
+                        <td key={career.id} className="px-4 py-3 align-top">
+                          {local ? (
+                            <>
+                              <strong className="font-display text-xl tabular-nums text-ink">
+                                {local.annual ? `$${local.annual.toLocaleString()}` : local.hourly ? `$${local.hourly.toFixed(2)}` : "—"}
+                              </strong>
+                              <span className="block text-[11px] font-semibold text-stone">{local.annual ? "median / year" : "median / hour"}</span>
+                            </>
+                          ) : <Value>Not published</Value>}
+                        </td>
+                      );
+                    })}
+                  </CompareRow>
+                )}
                 <CompareRow label="Openings / year">
                   {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{getCareerDetail(career.id)?.annualOpenings?.toLocaleString() ?? "—"}</Value></td>)}
                 </CompareRow>
@@ -254,11 +340,29 @@ export default function CareerCompare() {
                 <CompareRow label="Starting education">
                   {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{EDUCATION_LABELS[career.education]}</Value></td>)}
                 </CompareRow>
+                <CompareRow label="Time to entry">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{timeToEntry(career, getCareerDetail(career.id))}</Value></td>)}
+                </CompareRow>
+                <CompareRow label="Public tuition baseline">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{educationCostBaseline(career)}</Value></td>)}
+                </CompareRow>
                 <CompareRow label="Training path">
                   {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{career.trainingNote}</Value></td>)}
                 </CompareRow>
-                <CompareRow label="Paid route in">
-                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{career.earnWhileTraining ? "Yes — a paid pathway exists" : "Not typically"}</Value></td>)}
+                <CompareRow label="Training pay">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{career.earnWhileTraining ? "Paid route available" : "Usually unpaid or self-funded"}</Value></td>)}
+                </CompareRow>
+                <CompareRow label="Physical demands">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{physicalDemandLabel(getCareerWorkContext(career.id))}</Value></td>)}
+                </CompareRow>
+                <CompareRow label="Typical schedule">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{scheduleLabel(getCareerDetail(career.id), getCareerWorkContext(career.id))}</Value></td>)}
+                </CompareRow>
+                <CompareRow label="Remote compatibility">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{remoteCompatibilityLabel(getCareerWorkContext(career.id))}</Value></td>)}
+                </CompareRow>
+                <CompareRow label="Biggest trade-off">
+                  {compared.map((career) => <td key={career.id} className="px-4 py-3 align-top"><Value>{biggestTradeoff(career, getCareerDetail(career.id), getCareerWorkContext(career.id))}</Value></td>)}
                 </CompareRow>
                 <CompareRow label="O*NET preparation">
                   {compared.map((career) => {
@@ -276,7 +380,7 @@ export default function CareerCompare() {
             </table>
           </div>
           <p className="mt-4 text-[13px] leading-6 text-stone">
-            National and state pay: May 2025 BLS OEWS. Outlook and openings: BLS 2024–34 projections. Interests, work styles, and preparation: {ONET_DATA_VINTAGE}.
+            National, state, and metro pay: May 2025 BLS OEWS. Outlook and openings: BLS 2024–34 projections. Interests, work styles, preparation, physical demands, and schedule patterns: {ONET_DATA_VINTAGE}. Tuition baselines use {CAREER_COST_SOURCE.vintage} public averages, before aid, living costs, books, or tools. Remote compatibility is an Empower estimate from O*NET work-context signals, not an employer promise or observed telework rate.
           </p>
         </>
       ) : (

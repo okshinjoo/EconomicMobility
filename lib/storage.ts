@@ -42,6 +42,9 @@ export const STORAGE_KEYS = {
   scholarshipProfile: "empower:scholarship-profile:v1",
   savedCareers: "empower:saved-careers:v1",
   careerState: "empower:career-state:v1",
+  careerMetro: "empower:career-metro:v1",
+  careerFit: "empower:career-fit:v1",
+  careerPlan: "empower:career-plan:v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {

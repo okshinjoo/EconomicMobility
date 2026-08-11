@@ -1,0 +1,295 @@
+{
+  "generatedAt": "2026-08-10T23:15:59.812Z",
+  "catalogCareers": 474,
+  "sources": {
+    "licenses": {
+      "label": "CareerOneStop occupational-license database",
+      "vintage": "October 2024 nationwide export",
+      "url": "https://www.careeronestop.org/Developers/Data/occupational-licenses.aspx"
+    },
+    "programs": {
+      "label": "NCES IPEDS institutions and completions",
+      "vintage": "2023–24 completions, released September 2025",
+      "url": "https://nces.ed.gov/ipeds/use-the-data"
+    },
+    "educationCrosswalk": {
+      "label": "O*NET 2020 CIP to O*NET-SOC crosswalk",
+      "vintage": "July 2024",
+      "url": "https://www.onetcenter.org/crosswalks.html"
+    },
+    "apprenticeships": {
+      "label": "Apprenticeship.gov registered-sponsor Partner Finder",
+      "vintage": "Live index snapshot 2026-08-10",
+      "url": "https://www.apprenticeship.gov/partner-finder/listings"
+    },
+    "apprenticeshipCrosswalk": {
+      "label": "O*NET RAPIDS to O*NET-SOC crosswalk",
+      "vintage": "March 2026",
+      "url": "https://www.onetcenter.org/crosswalks.html"
+    }
+  },
+  "totals": {
+    "licenses": 21462,
+    "programs": 142493,
+    "sponsorSourceRows": 27377,
+    "sponsors": 32353,
+    "careersWithApprovedApprenticeships": 261
+  },
+  "countsByState": {
+    "AL": {
+      "licenses": 290,
+      "programs": 2727,
+      "sponsors": 342
+    },
+    "AK": {
+      "licenses": 266,
+      "programs": 411,
+      "sponsors": 331
+    },
+    "AZ": {
+      "licenses": 235,
+      "programs": 2958,
+      "sponsors": 565
+    },
+    "AR": {
+      "licenses": 503,
+      "programs": 2782,
+      "sponsors": 352
+    },
+    "CA": {
+      "licenses": 576,
+      "programs": 15099,
+      "sponsors": 929
+    },
+    "CO": {
+      "licenses": 386,
+      "programs": 2775,
+      "sponsors": 785
+    },
+    "CT": {
+      "licenses": 458,
+      "programs": 875,
+      "sponsors": 17
+    },
+    "DE": {
+      "licenses": 494,
+      "programs": 389,
+      "sponsors": 638
+    },
+    "DC": {
+      "licenses": 215,
+      "programs": 86,
+      "sponsors": 136
+    },
+    "FL": {
+      "licenses": 859,
+      "programs": 5501,
+      "sponsors": 748
+    },
+    "GA": {
+      "licenses": 124,
+      "programs": 4633,
+      "sponsors": 696
+    },
+    "HI": {
+      "licenses": 257,
+      "programs": 517,
+      "sponsors": 160
+    },
+    "ID": {
+      "licenses": 318,
+      "programs": 1010,
+      "sponsors": 497
+    },
+    "IL": {
+      "licenses": 592,
+      "programs": 5161,
+      "sponsors": 1197
+    },
+    "IN": {
+      "licenses": 601,
+      "programs": 2016,
+      "sponsors": 1145
+    },
+    "IA": {
+      "licenses": 248,
+      "programs": 1971,
+      "sponsors": 1374
+    },
+    "KS": {
+      "licenses": 330,
+      "programs": 2135,
+      "sponsors": 314
+    },
+    "KY": {
+      "licenses": 556,
+      "programs": 2183,
+      "sponsors": 462
+    },
+    "LA": {
+      "licenses": 280,
+      "programs": 2218,
+      "sponsors": 193
+    },
+    "ME": {
+      "licenses": 644,
+      "programs": 920,
+      "sponsors": 249
+    },
+    "MD": {
+      "licenses": 498,
+      "programs": 2469,
+      "sponsors": 341
+    },
+    "MA": {
+      "licenses": 321,
+      "programs": 2617,
+      "sponsors": 86
+    },
+    "MI": {
+      "licenses": 535,
+      "programs": 4743,
+      "sponsors": 1902
+    },
+    "MN": {
+      "licenses": 522,
+      "programs": 3575,
+      "sponsors": 275
+    },
+    "MS": {
+      "licenses": 415,
+      "programs": 2226,
+      "sponsors": 138
+    },
+    "MO": {
+      "licenses": 358,
+      "programs": 2442,
+      "sponsors": 769
+    },
+    "MT": {
+      "licenses": 440,
+      "programs": 1045,
+      "sponsors": 890
+    },
+    "NE": {
+      "licenses": 351,
+      "programs": 1256,
+      "sponsors": 222
+    },
+    "NV": {
+      "licenses": 330,
+      "programs": 841,
+      "sponsors": 148
+    },
+    "NH": {
+      "licenses": 296,
+      "programs": 972,
+      "sponsors": 617
+    },
+    "NJ": {
+      "licenses": 421,
+      "programs": 3045,
+      "sponsors": 2104
+    },
+    "NM": {
+      "licenses": 439,
+      "programs": 1847,
+      "sponsors": 6
+    },
+    "NY": {
+      "licenses": 317,
+      "programs": 6396,
+      "sponsors": 82
+    },
+    "NC": {
+      "licenses": 1088,
+      "programs": 5764,
+      "sponsors": 35
+    },
+    "ND": {
+      "licenses": 343,
+      "programs": 981,
+      "sponsors": 165
+    },
+    "OH": {
+      "licenses": 286,
+      "programs": 5765,
+      "sponsors": 1066
+    },
+    "OK": {
+      "licenses": 434,
+      "programs": 3339,
+      "sponsors": 205
+    },
+    "OR": {
+      "licenses": 524,
+      "programs": 1999,
+      "sponsors": 18
+    },
+    "PA": {
+      "licenses": 393,
+      "programs": 4822,
+      "sponsors": 1294
+    },
+    "RI": {
+      "licenses": 311,
+      "programs": 385,
+      "sponsors": 803
+    },
+    "SC": {
+      "licenses": 591,
+      "programs": 2391,
+      "sponsors": 1825
+    },
+    "SD": {
+      "licenses": 375,
+      "programs": 919,
+      "sponsors": 260
+    },
+    "TN": {
+      "licenses": 461,
+      "programs": 2689,
+      "sponsors": 963
+    },
+    "TX": {
+      "licenses": 447,
+      "programs": 9361,
+      "sponsors": 2406
+    },
+    "UT": {
+      "licenses": 253,
+      "programs": 1692,
+      "sponsors": 518
+    },
+    "VT": {
+      "licenses": 321,
+      "programs": 338,
+      "sponsors": 196
+    },
+    "VA": {
+      "licenses": 409,
+      "programs": 2731,
+      "sponsors": 3391
+    },
+    "WA": {
+      "licenses": 339,
+      "programs": 3421,
+      "sponsors": 169
+    },
+    "WV": {
+      "licenses": 655,
+      "programs": 1583,
+      "sponsors": 173
+    },
+    "WI": {
+      "licenses": 500,
+      "programs": 3686,
+      "sponsors": 14
+    },
+    "WY": {
+      "licenses": 257,
+      "programs": 786,
+      "sponsors": 142
+    }
+  }
+}

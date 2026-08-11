@@ -9,6 +9,7 @@ import {
   lifestyleCategories,
   salaryForLifestyle,
   type LifestyleCategory,
+  type RealityCheckSnapshot,
   type RealityResult,
 } from "@/lib/realityCheck";
 import { US_STATES } from "@/lib/taxData";
@@ -65,18 +66,6 @@ const SLIDES: { title: string; blurb: string; cats: string[] }[] = [
   },
 ];
 
-interface Snapshot {
-  picks: Record<string, string>;
-  stateCode: string;
-  /** Corrected monthly amounts, keyed by category id. Also holds the typed
-   *  amounts for free-entry categories (fun, travel, savings). */
-  overrides?: Record<string, string>;
-  /** "high" = big expensive city; scales the housing estimates. */
-  col?: "high" | "normal";
-  /** Set when the run reaches results (resume marker). */
-  complete?: boolean;
-}
-
 const catById = (id: string): LifestyleCategory =>
   lifestyleCategories.find((c) => c.id === id)!;
 
@@ -91,21 +80,24 @@ export default function RealityCheckTool() {
 
   // Resume a finished check ("pick up where you left off" convention).
   useEffect(() => {
-    const saved = loadJSON<Snapshot>(STORAGE_KEYS.realityCheck);
-    // New snapshots carry a complete flag; older ones had a pick per category.
-    // Snapshots from before the debt split (a "debt" pick) don't map onto the
-    // new categories, so those start fresh rather than resume with holes.
-    if (
-      saved?.picks &&
-      !saved.picks["debt"] &&
-      (saved.complete || Object.keys(saved.picks).length === totalCats)
-    ) {
-      setPicks(saved.picks);
-      setStateCode(saved.stateCode ?? "");
-      setOverrides(saved.overrides ?? {});
-      setCol(saved.col ?? "normal");
-      setSlide(resultStep);
-    }
+    const timer = window.setTimeout(() => {
+      const saved = loadJSON<RealityCheckSnapshot>(STORAGE_KEYS.realityCheck);
+      // New snapshots carry a complete flag; older ones had a pick per category.
+      // Snapshots from before the debt split (a "debt" pick) don't map onto the
+      // new categories, so those start fresh rather than resume with holes.
+      if (
+        saved?.picks &&
+        !saved.picks["debt"] &&
+        (saved.complete || Object.keys(saved.picks).length === totalCats)
+      ) {
+        setPicks(saved.picks);
+        setStateCode(saved.stateCode ?? "");
+        setOverrides(saved.overrides ?? {});
+        setCol(saved.col ?? "normal");
+        setSlide(resultStep);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [totalCats, resultStep]);
 
   /** Our estimate for a category from its pick (big-city pricing when chosen). */
@@ -128,7 +120,7 @@ export default function RealityCheckTool() {
     0
   );
 
-  const persist = (next?: Partial<Snapshot>) =>
+  const persist = (next?: Partial<RealityCheckSnapshot>) =>
     saveJSON(STORAGE_KEYS.realityCheck, {
       picks,
       stateCode,
@@ -136,7 +128,7 @@ export default function RealityCheckTool() {
       col: col || "normal",
       complete: true,
       ...next,
-    } satisfies Snapshot);
+    } satisfies RealityCheckSnapshot);
 
   const restart = () => {
     setPicks({});
