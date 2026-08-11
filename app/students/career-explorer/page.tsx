@@ -9,6 +9,7 @@ import HeroRecede from "@/components/HeroRecede";
 import TopicMark from "@/components/TopicMark";
 import HeadlineRise from "@/components/HeadlineRise";
 import CareerExplorer from "@/components/CareerExplorer";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import {
   careers,
   CAREER_COVERAGE_AUDIT_TOTAL,
@@ -27,7 +28,7 @@ export default function CareerExplorerPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero — C voice on forest, sitewide letter-reveal accent */}
-      <section className="relative overflow-hidden bg-forest text-cream">
+      <section id="main-content" tabIndex={-1} className="relative overflow-hidden bg-forest text-cream">
         <ScrollDrift range={60} driftX={30} rotate={-6}>
           <TopicMark
             id="credit"
@@ -67,8 +68,8 @@ export default function CareerExplorerPage() {
             Statistics&apos; May 2025 wage survey; growth, yearly openings, and
             typical entry education come from the official 2024–34 projections.
             Detailed tasks, interests, work styles, and alternate job titles come
-            from O*NET 30.3. Choose a state on any profile for the statewide BLS
-            median, or save careers to compare up to four side by side.
+            from O*NET 30.3. Choose a state and metro on any profile for local BLS
+            medians, explore public programs and paid routes, or save careers to compare up to four side by side.
             &ldquo;Median&rdquo; means half earn more and half earn less; big
             cities and experience push it up. &ldquo;Earn while you train&rdquo;
             is strict: it marks only paths with a genuinely paid route in —
@@ -105,6 +106,15 @@ export default function CareerExplorerPage() {
       {/* The tool */}
       <section className="bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="mb-8 grid gap-4 border-y-2 border-ink bg-amber/20 px-5 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <div>
+              <h2 className="font-display text-xl font-bold text-ink">Not sure what to search for yet?</h2>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-stone">Try twelve everyday work activities and get a varied starting set based on O*NET career interests and work styles. It takes about two minutes.</p>
+            </div>
+            <Link href="/students/career-explorer/fit" className="inline-flex items-center gap-1.5 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">
+              Try the career-fit sampler <ArrowRight className="h-4 w-4" weight="bold" />
+            </Link>
+          </div>
           <CareerExplorer />
         </div>
       </section>
@@ -118,7 +128,18 @@ export default function CareerExplorerPage() {
           <h2 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
             Found a number you like? Work backward from it.
           </h2>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <Link
+              href="/students/career-explorer/plan"
+              className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"
+            >
+              <h3 className="font-display text-base font-bold leading-snug text-ink group-hover:underline group-hover:decoration-amber group-hover:decoration-2 group-hover:underline-offset-4">
+                Make a career plan
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-stone">
+                Turn a saved career into editable, dated steps for testing the work and applying to a real pathway.
+              </p>
+            </Link>
             <Link
               href="/students/tools/reality-check"
               className="card-ink group flex h-full flex-col rounded-xl bg-cream p-5 transition-transform duration-200 hover:-translate-y-1"

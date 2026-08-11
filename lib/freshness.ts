@@ -41,7 +41,7 @@ export const freshness: FreshnessEntry[] = [
   {
     id: "careers-bls",
     name: "Career Explorer — BLS data",
-    what: `${careers.length} distinct careers: national and state pay + pay range + U.S. employment + annual openings, growth, entry education, and 464 specific O*NET task-and-fit profiles.`,
+    what: `${careers.length} distinct careers: national, state, and metro pay + pay range + U.S. employment + annual openings, growth, entry education, 464 specific O*NET task-and-fit profiles, and 450 O*NET work-context profiles.`,
     files: [
       "lib/careers.ts",
       "lib/careerDetails.ts",
@@ -49,18 +49,25 @@ export const freshness: FreshnessEntry[] = [
       "scripts/sync-career-data.mjs",
       "scripts/check-careers.mjs",
       "lib/careerEnrichment.ts",
+      "lib/careerWorkContext.ts",
+      "lib/careerDecisionFacts.ts",
+      "lib/careerFit.ts",
       "lib/careerSearchTerms.ts",
       "public/data/career-state-wages-2025.json",
+      "public/data/career-metro-wages/*.json",
+      "scripts/data/bls-metro-area-index-2025.json",
       "scripts/build-career-enrichment.mjs",
+      "scripts/build-career-work-context.mjs",
       "scripts/build-career-state-wages.mjs",
+      "scripts/build-career-metro-wages.mjs",
       "docs/career-explorer-sources.md",
     ],
     publicVintage: CAREER_DATA_VINTAGE,
-    lastVerified: "August 10, 2026. All 474 careers were reconciled to May 2025 OEWS national pay and employment plus BLS 2024–34 growth, openings, education, experience, training, and self-employment fields. The explorer now also carries 21,430 publishable May 2025 state wage records across all 50 states plus DC and 464 specific O*NET 30.3 profiles covering tasks, alternate titles, interests, work styles, software, and job zones. Ten umbrella or residual occupations remain intentionally unmapped rather than borrowing a narrower specialty or displaying an empty profile. Suppressed state estimates remain blank. Automated validation covers the catalog, O*NET profiles, and state table.",
+    lastVerified: "August 10, 2026. All 474 careers were reconciled to May 2025 OEWS national pay and employment plus BLS 2024–34 growth, openings, education, experience, training, and self-employment fields. The explorer carries 21,430 publishable state wage records, 387 unique metropolitan areas with 119,494 state-area-career records, 464 O*NET 30.3 task-and-fit profiles, and 450 O*NET work-context profiles. Ten umbrella or residual occupations remain intentionally unmapped rather than borrowing a narrower specialty. Suppressed wage estimates remain blank. Remote compatibility is clearly labeled as an Empower heuristic, and entry-cost comparisons disclose their NCES public-tuition baseline and exclusions.",
     cadence: "Each spring when BLS publishes the new OEWS wage survey; projections refresh in fall (2025–35 set expected fall 2026).",
     nextDueISO: "2026-11-15",
     recipe:
-      "Retrieve the current national OEWS datatype table from data.bls.gov and the full Occupational projections table from bls.gov. Run scripts/sync-career-data.mjs, refresh the state table with scripts/build-career-state-wages.mjs, and refresh O*NET with scripts/build-career-enrichment.mjs when a new database release lands. Update the public vintages, then run npm run check:careers, lint, and build. Manually review new, retired, unmatched, or ambiguous SOCs against docs/career-explorer-sources.md; never force a broad career onto one narrow O*NET specialty. Re-check strict earnWhileTraining claims and the federal licensing/apprenticeship links.",
+      "Retrieve the current national OEWS datatype table from data.bls.gov and the full Occupational projections table from bls.gov. Run scripts/sync-career-data.mjs; refresh state and metro tables with both BLS wage builders and an updated official area-index snapshot; refresh O*NET enrichment and work context from the same database release; and update the NCES public-tuition baseline when its source table changes. Update public vintages, then run npm run check:careers, lint, and build. Manually review new, retired, unmatched, or ambiguous SOCs against docs/career-explorer-sources.md; never force a broad career onto one narrow O*NET specialty. Re-check strict earnWhileTraining claims, heuristic disclosures, and the federal licensing/apprenticeship links.",
   },
   {
     id: "colleges-cds",
@@ -78,6 +85,23 @@ export const freshness: FreshnessEntry[] = [
     nextDueISO: "2026-12-01",
     recipe:
       "Run npm run build:college-catalog to refresh the 431 generated profiles from the public CDS archive, direct school sources, and NCES/IPEDS baseline facts, then npm run check:colleges. Review source-age and extraction-status counts, re-audit the 53 IPEDS-pinned priority schools, spot-check C7 factors and outlier figures against school-published documents, update the 122 editorial core profiles directly, and bump COLLEGE_DATA_VINTAGE. Preserve blank, partial, unencoded, and unavailable source tables instead of guessing; keep school, federal, and archive-record links current.",
+  },
+  {
+    id: "career-pathways",
+    name: "Career Explorer — local pathways",
+    what: "State and federal licensing requirements, public institutions with recent career-matched completions, approved Registered Apprenticeship occupations, and current registered sponsors across all 50 states plus DC.",
+    files: [
+      "components/CareerLocalPathways.tsx",
+      "scripts/build-career-pathways.mjs",
+      "scripts/check-careers.mjs",
+      "public/data/career-pathways/*.json",
+      "docs/career-explorer-sources.md",
+    ],
+    lastVerified: "August 10, 2026. Rebuilt from the latest posted CareerOneStop nationwide license export (October 2024), 2023–24 NCES IPEDS institutions and completions, the July 2024 O*NET CIP crosswalk, the March 2026 O*NET RAPIDS crosswalk, and a live Apprenticeship.gov Partner Finder sponsor snapshot. Generated coverage includes 21,462 license matches, 142,493 public-program matches, and more than 32,000 registered-sponsor matches. Records are state-split, source-dated, and framed as leads to verify rather than guarantees of current rules, admission, or hiring.",
+    cadence: "Quarterly for sponsors and license-export availability; annually when NCES publishes a new IPEDS completions file or O*NET refreshes either crosswalk.",
+    nextDueISO: "2026-11-10",
+    recipe:
+      "Run npm run build:career-pathways, then npm run check:careers. Review public/data/career-pathways/manifest.json for source vintages and count shifts. Spot-check California electrician, a licensed healthcare occupation, a bachelor's-level occupation, and a small-state career. Confirm CareerOneStop has not posted a newer nationwide export; confirm NCES and O*NET URLs still point to the intended vintages; verify that Apprenticeship.gov sponsor records remain distinguishable from current job openings; then update this entry's verification date and next due date.",
   },
   {
     id: "opportunities",

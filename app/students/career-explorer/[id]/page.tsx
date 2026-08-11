@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { HandCoins, ArrowLeft, ArrowSquareOut } from "@phosphor-icons/react/dist/ssr";
+import { HandCoins, ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/Footer";
 import ScrollDrift from "@/components/ScrollDrift";
 import HeroRecede from "@/components/HeroRecede";
@@ -23,8 +23,27 @@ import {
 } from "@/lib/careers";
 import { getCareerDetail } from "@/lib/careerDetails";
 import { getCareerEnrichment, ONET_DATA_VINTAGE } from "@/lib/careerEnrichment";
+import {
+  getCareerWorkContext,
+  type CareerWorkContext,
+} from "@/lib/careerWorkContext";
+import {
+  CAREER_INDUSTRY_SOURCE_URL,
+  CAREER_INDUSTRY_VINTAGE,
+  getCareerIndustries,
+} from "@/lib/careerIndustries";
+import {
+  CAREER_COST_SOURCE,
+  biggestTradeoff,
+  educationCostBaseline,
+  physicalDemandLabel,
+  remoteCompatibilityLabel,
+  scheduleLabel,
+  timeToEntry,
+} from "@/lib/careerDecisionFacts";
 import CareerSaveButton from "@/components/CareerSaveButton";
 import CareerLocalPay from "@/components/CareerLocalPay";
+import CareerLocalPathways from "@/components/CareerLocalPathways";
 
 const usd = (n: number) => `$${n.toLocaleString()}`;
 
@@ -56,6 +75,91 @@ const JOB_ZONE_COPY: Record<number, string> = {
   4: "High preparation—usually a four-year degree plus experience—is common.",
   5: "Extensive preparation—often graduate education and significant experience—is common.",
 };
+
+function peopleContactCopy(score: number) {
+  if (score >= 4.25) return "Contact with other people is frequent and close to constant.";
+  if (score >= 3.25) return "Regular contact with coworkers, customers, or the public is part of the day.";
+  if (score >= 2.25) return "The day mixes independent work with some interaction.";
+  return "The work is relatively independent, with less contact than most jobs.";
+}
+
+function timePressureCopy(score: number) {
+  if (score >= 4.25) return "Deadlines or time pressure tend to come up every day.";
+  if (score >= 3.25) return "Time pressure is usually a weekly part of the work.";
+  if (score >= 2.25) return "Time pressure tends to come up occasionally, around monthly.";
+  return "Urgent deadlines tend to be less common.";
+}
+
+function decisionFreedomCopy(score: number) {
+  if (score >= 4.25) return "Workers usually have a lot of freedom to make decisions.";
+  if (score >= 3.25) return "The job usually gives workers considerable decision-making room.";
+  if (score >= 2.25) return "Workers usually have some decision-making room within set procedures.";
+  return "The work is usually guided by established procedures or close direction.";
+}
+
+function consequenceCopy(score: number) {
+  if (score >= 4.25) return "Mistakes can have extremely serious consequences.";
+  if (score >= 3.25) return "Mistakes can have very serious consequences, so accuracy matters.";
+  if (score >= 2.25) return "Mistakes can have meaningful consequences.";
+  return "The consequences of a typical error tend to be more limited.";
+}
+
+function conflictCopy(score: number) {
+  if (score >= 4.25) return "Conflict or difficult interactions are usually part of most days.";
+  if (score >= 3.25) return "Conflict or difficult interactions tend to come up regularly.";
+  if (score >= 2.25) return "Conflict or difficult interactions come up occasionally.";
+  return "Conflict and difficult interactions tend to be less common.";
+}
+
+function bodyAndWeatherCopy(context: CareerWorkContext) {
+  const standing = context.standing ?? 0;
+  const sitting = context.sitting ?? 0;
+  const outdoors = context.outdoors ?? 0;
+  const posture =
+    standing >= 4 && sitting < 3
+      ? "Most of the day is spent standing or moving."
+      : sitting >= 4 && standing < 3
+        ? "Most of the day is spent seated."
+        : standing - sitting >= 0.8
+          ? "The day leans more toward standing than sitting."
+          : sitting - standing >= 0.8
+            ? "The day leans more toward sitting than standing."
+            : "The day usually mixes sitting and standing.";
+  const weather =
+    outdoors >= 4.25
+      ? " Outdoor exposure is a daily or near-daily part of the work."
+      : outdoors >= 3.25
+        ? " Outdoor work is common."
+        : outdoors >= 2.25
+          ? " Some outdoor work comes with the role."
+          : "";
+  return posture + weather;
+}
+
+function workRealityRows(context: CareerWorkContext) {
+  const conflictScore = Math.max(
+    context.conflictExposure ?? 0,
+    context.difficultPeople ?? 0
+  );
+  return [
+    context.peopleContact != null
+      ? ["People contact", peopleContactCopy(context.peopleContact)]
+      : null,
+    ["Time pressure", timePressureCopy(context.timePressure)],
+    context.decisionFreedom != null
+      ? ["Decision-making room", decisionFreedomCopy(context.decisionFreedom)]
+      : null,
+    context.consequenceOfError != null
+      ? ["Stakes of mistakes", consequenceCopy(context.consequenceOfError)]
+      : null,
+    conflictScore > 0
+      ? ["Conflict & difficult interactions", conflictCopy(conflictScore)]
+      : null,
+    context.sitting != null || context.standing != null
+      ? ["Body & weather", bodyAndWeatherCopy(context)]
+      : null,
+  ].filter((row): row is [string, string] => Boolean(row));
+}
 
 export function generateStaticParams() {
   return careers.map((c) => ({ id: c.id }));
@@ -127,6 +231,8 @@ export default async function CareerProfilePage({
   const c = career as Career;
   const d = getCareerDetail(c.id);
   const enrichment = getCareerEnrichment(c.id);
+  const workContext = getCareerWorkContext(c.id);
+  const industries = getCareerIndustries(c.id);
   const hasAnnualRange = d?.payLow != null && d?.payHigh != null;
   const hasHourlyRange =
     !hasAnnualRange && d?.hourlyPayLow != null && d?.hourlyPayHigh != null;
@@ -146,7 +252,7 @@ export default async function CareerProfilePage({
   return (
     <div className="min-h-screen bg-paper text-ink">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-forest text-cream">
+      <section id="main-content" tabIndex={-1} className="relative overflow-hidden bg-forest text-cream">
         <ScrollDrift range={54} driftX={26} rotate={-5}>
           <TopicMark
             id={FIELD_MARK[c.field]}
@@ -169,8 +275,14 @@ export default async function CareerProfilePage({
             {c.title}
           </h1>
 
-          <div className="mt-5">
+          <div className="mt-5 flex flex-wrap items-center gap-4">
             <CareerSaveButton careerId={c.id} inverse />
+            <Link
+              href={`/students/career-explorer/plan?career=${c.id}`}
+              className="text-sm font-bold text-cream underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
+            >
+              Make a plan for this career
+            </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap items-end gap-x-10 gap-y-4">
@@ -232,6 +344,31 @@ export default async function CareerProfilePage({
         </section>
       )}
 
+      {/* Decision facts — concise enough to scan before comparing paths. */}
+      <section className="border-b-2 border-ink bg-paper">
+        <div className="mx-auto max-w-5xl px-6 py-10">
+          <h2 className="font-display text-2xl font-bold text-ink">What this path asks of you</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-stone">These are broad planning baselines. Local programs, employers, financial aid, and schedules can change the real path.</p>
+          <dl className="mt-6 divide-y-2 divide-ink/10 border-y-2 border-ink">
+            {[
+              ["Time to entry", timeToEntry(c, d)],
+              ["Public tuition baseline", educationCostBaseline(c)],
+              ["Training pay", c.earnWhileTraining ? "A paid pathway exists" : "Usually unpaid or self-funded"],
+              ["Physical demands", physicalDemandLabel(workContext)],
+              ["Typical schedule", scheduleLabel(d, workContext)],
+              ["Remote compatibility", remoteCompatibilityLabel(workContext)],
+              ["Biggest trade-off", biggestTradeoff(c, d, workContext)],
+            ].map(([label, value]) => (
+              <div key={label} className="grid gap-1 bg-cream px-4 py-3 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-5 sm:px-5">
+                <dt className="text-xs font-bold uppercase tracking-[0.1em] text-stone">{label}</dt>
+                <dd className="text-sm font-medium leading-6 text-ink/85">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 text-xs leading-5 text-stone">Tuition uses {CAREER_COST_SOURCE.vintage} public averages before aid and living costs. Remote compatibility is an Empower estimate from O*NET work-context data, not an employer policy or telework rate.</p>
+        </div>
+      </section>
+
       {/* Day-to-day fit, from O*NET */}
       {enrichment && (
         <section className="border-b-2 border-ink bg-cream">
@@ -272,8 +409,8 @@ export default async function CareerProfilePage({
               </div>
             </div>
 
-            {(enrichment.workStyles.length > 0 || enrichment.software.length > 0) && (
-              <div className="mt-9 grid grid-cols-1 gap-7 border-t-2 border-ink/15 pt-7 sm:grid-cols-2">
+            {(enrichment.workStyles.length > 0 || enrichment.transferableSkills.length > 0 || enrichment.knowledge.length > 0 || enrichment.software.length > 0) && (
+              <div className="mt-9 grid grid-cols-1 gap-x-10 gap-y-8 border-t-2 border-ink/15 pt-7 md:grid-cols-2">
                 {enrichment.workStyles.length > 0 && (
                   <div>
                     <h3 className="font-display text-lg font-bold text-ink">Work styles that matter most</h3>
@@ -282,6 +419,34 @@ export default async function CareerProfilePage({
                         <span key={style} className="rounded-md border-2 border-ink/15 bg-paper px-3 py-1.5 text-sm font-bold text-ink/75">{style}</span>
                       ))}
                     </div>
+                  </div>
+                )}
+                {enrichment.transferableSkills.length > 0 && (
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">Transferable skills used most</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-stone">O*NET ranks these by how important they are in the work.</p>
+                    <ul className="mt-3 space-y-2">
+                      {enrichment.transferableSkills.map((skill) => (
+                        <li key={skill} className="flex items-start gap-2 text-sm font-semibold leading-5 text-ink/80">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-terracotta" />
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {enrichment.knowledge.length > 0 && (
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">Knowledge the job draws on</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-stone">Subjects workers report using—not a list of required college courses.</p>
+                    <ul className="mt-3 space-y-2">
+                      {enrichment.knowledge.map((area) => (
+                        <li key={area} className="flex items-start gap-2 text-sm font-semibold leading-5 text-ink/80">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-forest" />
+                          {area}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
                 {enrichment.software.length > 0 && (
@@ -297,6 +462,28 @@ export default async function CareerProfilePage({
                 )}
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* Work reality — O*NET survey signals translated into plain language. */}
+      {workContext && (
+        <section className="border-b-2 border-ink bg-paper">
+          <div className="mx-auto max-w-5xl px-6 py-10">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">The work environment</span>
+            <h2 className="mt-2 font-display text-2xl font-bold text-ink">What the work tends to feel like</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone">These patterns summarize O*NET worker surveys nationwide. A specific employer or shift can feel different.</p>
+            <dl className="mt-6 grid border-y-2 border-ink md:grid-cols-2">
+              {workRealityRows(workContext).map(([label, value], index) => (
+                <div
+                  key={label}
+                  className={`px-4 py-4 md:px-5 ${index > 0 ? "border-t-2 border-ink/10 md:border-t-0" : ""} ${index >= 2 ? "md:border-t-2 md:border-ink/10" : ""} ${index % 2 === 1 ? "md:border-l-2 md:border-ink/10" : ""}`}
+                >
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-stone">{label}</dt>
+                  <dd className="mt-1 text-sm font-medium leading-6 text-ink/85">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
       )}
@@ -375,6 +562,39 @@ export default async function CareerProfilePage({
         </div>
       </section>
 
+      {/* Where the occupation is employed, from BLS sector estimates. */}
+      {industries.length > 0 && (
+        <section className="border-t-2 border-ink bg-cream">
+          <div className="mx-auto max-w-5xl px-6 py-10">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">The job market</span>
+            <h2 className="mt-2 font-display text-2xl font-bold text-ink">Where people in this job work</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-stone">The largest U.S. industry sectors employing this occupation—not just examples of possible employers.</p>
+            <div className="mt-6 divide-y-2 divide-ink/10 border-y-2 border-ink">
+              {industries.map((industry) => (
+                <div key={industry.name} className="grid gap-2 py-4 sm:grid-cols-[minmax(0,1fr)_13rem] sm:items-center sm:gap-8">
+                  <div>
+                    <h3 className="text-sm font-bold leading-5 text-ink">{industry.name}</h3>
+                    <p className="mt-0.5 text-[13px] leading-5 text-stone">About {industry.employment.toLocaleString()} workers</p>
+                  </div>
+                  {industry.share != null && (
+                    <div>
+                      <div className="flex items-baseline justify-between gap-3 text-[12px] font-bold text-ink/75">
+                        <span>Share of this occupation</span>
+                        <span className="tabular-nums text-forest">{industry.share}%</span>
+                      </div>
+                      <div className="mt-1.5 h-2 border border-ink/20 bg-paper" aria-hidden="true">
+                        <div className="h-full bg-amber" style={{ width: `${industry.share}%` }} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-xs leading-5 text-stone">{CAREER_INDUSTRY_VINTAGE} BLS OEWS. This shows the largest sectors with published estimates; BLS-suppressed estimates may affect the ordering. <a href={CAREER_INDUSTRY_SOURCE_URL} target="_blank" rel="noreferrer" className="font-semibold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink">View the industry tables</a>.</p>
+          </div>
+        </section>
+      )}
+
       {/* How you get in */}
       <section className="border-t-2 border-ink bg-paper">
         <div className="mx-auto max-w-5xl px-6 py-10">
@@ -432,43 +652,11 @@ export default async function CareerProfilePage({
             </div>
           )}
 
-          <div className="mt-7 border-t-2 border-ink/15 pt-6">
-            <h3 className="font-display text-lg font-bold text-ink">Check the path where you live</h3>
-            <p className="mt-1 max-w-3xl text-sm leading-6 text-stone">
-              Licensing rules and available programs change by state. These federal tools take you to the current official listings.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-              <a
-                href={`https://www.careeronestop.org/Toolkit/Training/find-licenses.aspx?keyword=${encodeURIComponent(enrichment?.onetTitle ?? c.title)}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-              >
-                Find state licenses
-                <ArrowSquareOut className="h-4 w-4" weight="bold" />
-              </a>
-              <a
-                href={`https://www.careeronestop.org/Toolkit/Training/find-certifications.aspx?keyword=${encodeURIComponent(enrichment?.onetTitle ?? c.title)}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-              >
-                Find recognized certifications
-                <ArrowSquareOut className="h-4 w-4" weight="bold" />
-              </a>
-              {c.earnWhileTraining && (
-                <a
-                  href="https://www.apprenticeship.gov/apprenticeship-job-finder"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-bold text-forest underline decoration-amber decoration-2 underline-offset-4 hover:text-ink"
-                >
-                  Search paid apprenticeships
-                  <ArrowSquareOut className="h-4 w-4" weight="bold" />
-                </a>
-              )}
-            </div>
-          </div>
+          <CareerLocalPathways
+            careerId={c.id}
+            careerTitle={enrichment?.onetTitle ?? c.title}
+            onetSoc={enrichment?.onetSoc ?? `${d?.soc ?? ""}.00`}
+          />
         </div>
       </section>
 
@@ -479,7 +667,7 @@ export default async function CareerProfilePage({
             {d && d.skills.length > 0 && (
               <div className="lg:col-span-2">
                 <h2 className="font-display text-2xl font-bold text-ink">
-                  What it takes
+                  Useful strengths
                 </h2>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {d.skills.map((s) => (
@@ -637,7 +825,7 @@ export default async function CareerProfilePage({
             )}
             {enrichment && (
               <>
-                ; tasks, interests, work styles, software examples, and job zone from{" "}
+                ; tasks, interests, work styles, skills, knowledge, software examples, job zone, and work-context patterns from{" "}
                 <a
                   href={enrichment.onetUrl}
                   target="_blank"

@@ -9,6 +9,8 @@ export interface CareerEnrichment {
   coreTasks: string[];
   interests: string[];
   workStyles: string[];
+  transferableSkills: string[];
+  knowledge: string[];
   software: string[];
   jobZone: number | null;
   onetUrl: string;
@@ -46,6 +48,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Installation",
+      "Quality Control Analysis",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Administration and Management",
+      "Mechanical",
+      "Mathematics",
+      "Design"
     ],
     "software": [
       "Adobe Acrobat",
@@ -88,6 +104,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mechanical",
+      "Design",
+      "Mathematics",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Active Server Pages ASP",
@@ -128,6 +158,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Troubleshooting",
+      "Installation",
+      "Repairing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Building and Construction",
+      "Customer and Personal Service",
+      "Engineering and Technology",
+      "Computers and Electronics"
     ],
     "software": [
       "Adobe Acrobat",
@@ -170,6 +214,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Quality Control Analysis",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Administration and Management",
+      "Mathematics",
+      "Design",
+      "Engineering and Technology"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -210,6 +268,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Operations Monitoring",
+      "Time Management",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Mechanical",
+      "Mathematics",
+      "English Language",
+      "Design"
     ],
     "software": [
       "Microsoft Excel",
@@ -252,6 +324,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Coordination",
+      "Complex Problem Solving",
+      "Troubleshooting"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Mechanical",
+      "Production and Processing",
+      "Design",
+      "Engineering and Technology"
+    ],
     "software": [
       "G-code",
       "Mastercam computer-aided design and manufacturing software",
@@ -293,6 +379,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Complex Problem Solving",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mechanical",
+      "Mathematics",
+      "Public Safety and Security",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Outlook",
       "Cost estimating software",
@@ -332,6 +432,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Building and Construction",
+      "Mathematics",
+      "Design",
+      "English Language"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -374,6 +488,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Public Safety and Security",
+      "Mathematics",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -414,6 +542,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing",
+      "Operations Monitoring",
+      "Installation"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Building and Construction",
+      "Public Safety and Security",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -456,6 +598,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "English Language",
+      "Education and Training",
+      "Public Safety and Security",
+      "Transportation"
+    ],
     "software": [
       "Bentley MicroStation",
       "Microsoft Excel",
@@ -496,6 +652,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Perseverance",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Repairing",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "English Language"
     ],
     "software": [
       "Apple Safari",
@@ -538,6 +708,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Transportation",
+      "Education and Training",
+      "English Language",
+      "Public Safety and Security"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Dassault Systemes SolidWorks",
@@ -578,6 +762,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Repairing",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Public Safety and Security",
+      "Engineering and Technology",
+      "English Language",
+      "Transportation"
     ],
     "software": [
       "Microsoft Office software",
@@ -620,6 +818,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Computers and Electronics",
+      "English Language",
+      "Public Safety and Security",
+      "Engineering and Technology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -660,6 +872,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Installation",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Engineering and Technology",
+      "Mechanical",
+      "Design",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -702,6 +928,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Administrative"
+    ],
     "software": [
       "Apache Spark",
       "eClinicalWorks EHR software",
@@ -742,6 +982,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Psychology",
+      "Medicine and Dentistry",
+      "Administration and Management"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -784,6 +1038,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Empathy"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Biology",
+      "Psychology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Epic Systems",
@@ -824,6 +1092,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "English Language",
+      "Psychology",
+      "Therapy and Counseling"
     ],
     "software": [
       "Epic Systems",
@@ -866,6 +1148,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Mathematics",
+      "Customer and Personal Service",
+      "English Language",
+      "Chemistry"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Epic Systems",
@@ -907,6 +1203,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "Mathematics",
+      "English Language",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -945,6 +1255,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "Psychology",
+      "English Language",
+      "Education and Training"
     ],
     "software": [
       "Henry Schein Dentrix",
@@ -987,6 +1311,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Administration and Management",
+      "Administrative"
+    ],
     "software": [
       "Henry Schein Dentrix",
       "Microsoft Excel",
@@ -1028,6 +1366,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "Administrative",
+      "Computers and Electronics"
+    ],
     "software": [
       "Epic Systems",
       "Microsoft Office software",
@@ -1065,6 +1417,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "MEDITECH software",
       "Microsoft Excel",
@@ -1102,6 +1456,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Adaptability"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Apple iOS",
       "eClinicalWorks EHR software",
@@ -1142,6 +1498,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Operation and Control",
+      "Coordination",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics",
+      "Administrative"
     ],
     "software": [
       "R",
@@ -1184,6 +1554,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Physics",
+      "Medicine and Dentistry",
+      "Administrative"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "MEDITECH software",
@@ -1224,6 +1608,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Stress Tolerance",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Education and Training",
+      "Psychology"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -1266,6 +1664,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Therapy and Counseling",
+      "Medicine and Dentistry",
+      "Psychology",
+      "Education and Training"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "MEDITECH software",
@@ -1306,6 +1718,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Empathy",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Therapy and Counseling",
+      "English Language",
+      "Education and Training",
+      "Psychology"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -1348,6 +1774,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Instructing",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Therapy and Counseling",
+      "Psychology",
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Facebook",
@@ -1388,6 +1828,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Instructing",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Psychology",
+      "Education and Training",
+      "English Language",
+      "Therapy and Counseling"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -1430,6 +1884,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Instructing",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Psychology",
+      "Public Safety and Security",
+      "Administration and Management"
+    ],
     "software": [
       "Linux",
       "Microsoft Access",
@@ -1469,6 +1937,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Education and Training",
+      "Psychology"
     ],
     "software": [
       "Microsoft Office software",
@@ -1511,6 +1993,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Education and Training",
+      "Psychology"
+    ],
     "software": [
       "MEDITECH software",
       "Microsoft Excel",
@@ -1551,6 +2047,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Biology",
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Adobe Acrobat",
@@ -1593,6 +2103,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "Biology",
+      "English Language",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Access",
       "Microsoft Excel",
@@ -1633,6 +2157,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Therapy and Counseling",
+      "Psychology",
+      "Biology"
     ],
     "software": [
       "Epic Systems",
@@ -1675,6 +2213,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Biology",
+      "Psychology"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Henry Schein Dentrix",
@@ -1711,6 +2263,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Apple Safari",
@@ -1753,6 +2319,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Programming",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Complex Problem Solving",
+      "Technology Design"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Mathematics",
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training"
+    ],
     "software": [
       "Amazon Web Services AWS software",
       "Apache Kafka",
@@ -1791,6 +2371,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Programming",
+      "Complex Problem Solving",
+      "Operations Analysis",
+      "Judgment and Decision Making",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Mathematics",
+      "Communications and Media",
+      "Customer and Personal Service"
     ],
     "software": [
       "Amazon Web Services AWS software",
@@ -1833,6 +2427,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Administration and Management",
+      "Engineering and Technology",
+      "Telecommunications"
+    ],
     "software": [
       "Amazon Web Services AWS software",
       "eMASS",
@@ -1867,6 +2475,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Amazon Web Services AWS software",
       "Apache Hadoop",
@@ -1907,6 +2517,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Complex Problem Solving",
+      "Troubleshooting",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Customer and Personal Service",
+      "Engineering and Technology",
+      "Telecommunications"
     ],
     "software": [
       "Amazon Web Services AWS software",
@@ -1949,6 +2573,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Telecommunications",
+      "English Language",
+      "Education and Training"
+    ],
     "software": [
       "Apple iOS",
       "Apple macOS",
@@ -1989,6 +2627,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Programming",
+      "Operations Analysis",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Telecommunications"
     ],
     "software": [
       "Amazon Redshift",
@@ -2031,6 +2683,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Economics and Accounting",
+      "English Language",
+      "Mathematics",
+      "Administration and Management",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -2071,6 +2737,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administrative",
+      "Mathematics",
+      "English Language",
+      "Economics and Accounting"
     ],
     "software": [
       "Intuit QuickBooks",
@@ -2113,6 +2793,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2153,6 +2835,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Economics and Accounting",
+      "English Language",
+      "Mathematics",
+      "Psychology"
     ],
     "software": [
       "Microsoft Excel",
@@ -2195,6 +2891,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Systems Evaluation",
+      "Systems Analysis",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Computers and Electronics",
+      "Economics and Accounting",
+      "English Language",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2235,6 +2945,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cooperation",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "Administrative",
+      "Administration and Management",
+      "English Language",
+      "Customer and Personal Service"
     ],
     "software": [
       "Applicant tracking software",
@@ -2277,6 +3001,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Persuasion",
+      "Judgment and Decision Making",
+      "Negotiation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Communications and Media"
+    ],
     "software": [
       "Atlassian JIRA",
       "Microsoft Excel",
@@ -2317,6 +3055,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Achievement Orientation",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Education and Training"
     ],
     "software": [
       "Atlassian JIRA",
@@ -2359,6 +3111,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Persuasion",
+      "Time Management",
+      "Service Orientation",
+      "Negotiation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "English Language",
+      "Mathematics",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Outlook",
@@ -2397,6 +3163,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Achievement Orientation",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Negotiation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "English Language",
+      "Law and Government",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -2439,6 +3219,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Administrative",
+      "Computers and Electronics",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2479,6 +3273,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Social Perceptiveness",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Administrative",
+      "English Language",
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -2521,6 +3329,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Time Management",
+      "Social Perceptiveness",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Sales and Marketing",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2558,6 +3380,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Transportation",
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -2600,6 +3436,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Negotiation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Customer and Personal Service",
+      "Administrative",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Office software",
       "Adobe Acrobat",
@@ -2640,6 +3490,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Empathy",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Education and Training",
+      "Mathematics",
+      "Customer and Personal Service",
+      "Psychology"
     ],
     "software": [
       "Google Docs",
@@ -2682,6 +3546,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2722,6 +3600,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Therapy and Counseling",
+      "Education and Training",
+      "Psychology"
     ],
     "software": [
       "Microsoft Excel",
@@ -2764,6 +3656,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Sincerity",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Psychology",
+      "Therapy and Counseling",
+      "English Language",
+      "Administrative"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2804,6 +3710,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training",
+      "Public Safety and Security",
+      "Psychology"
     ],
     "software": [
       "Microsoft Office software",
@@ -2846,6 +3766,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Instructing",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics",
+      "Education and Training",
+      "Administrative"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -2886,6 +3820,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "English Language",
+      "Foreign Language",
+      "Customer and Personal Service",
+      "Education and Training",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -2928,6 +3876,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Self-Control"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Judgment and Decision Making",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Law and Government",
+      "English Language",
+      "Psychology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Access",
       "Microsoft Excel",
@@ -2968,6 +3930,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Dependability",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "Education and Training",
+      "Building and Construction",
+      "English Language"
     ],
     "software": [
       "Microsoft Access",
@@ -3010,6 +3986,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Self-Control"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Negotiation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "English Language",
+      "Law and Government",
+      "Customer and Personal Service",
+      "Administration and Management"
+    ],
     "software": [
       "Adobe Acrobat",
       "Facebook",
@@ -3050,6 +4040,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Transportation",
+      "English Language",
+      "Public Safety and Security",
+      "Education and Training",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -3092,6 +4096,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Sales and Marketing",
+      "Transportation"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Windows",
@@ -3132,6 +4150,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Systems Analysis",
+      "Time Management",
+      "Operations Analysis",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Design",
+      "Engineering and Technology",
+      "Building and Construction",
+      "Mathematics",
+      "English Language"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -3174,6 +4206,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Analysis",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Design",
+      "Engineering and Technology",
+      "Production and Processing",
+      "Mechanical",
+      "English Language"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Autodesk Revit",
@@ -3214,6 +4260,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Computers and Electronics",
+      "Design",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -3256,6 +4316,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Production and Processing",
+      "Mechanical",
+      "Design",
+      "English Language"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -3294,6 +4368,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Operations Analysis",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Design",
+      "Building and Construction",
+      "Public Safety and Security",
+      "Engineering and Technology",
+      "Computers and Electronics"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -3336,6 +4424,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Management of Personnel Resources",
+      "Coordination",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Administration and Management",
+      "Mathematics",
+      "Engineering and Technology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -3376,6 +4478,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "English Language",
+      "Biology",
+      "Customer and Personal Service",
+      "Law and Government",
+      "Computers and Electronics"
     ],
     "software": [
       "ESRI ArcGIS software",
@@ -3418,6 +4534,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Chemistry",
+      "English Language",
+      "Mathematics",
+      "Production and Processing",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -3458,6 +4588,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Chemistry",
+      "Biology",
+      "English Language",
+      "Mathematics",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -3500,6 +4644,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Programming",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Computers and Electronics",
+      "English Language",
+      "Education and Training",
+      "Administration and Management"
+    ],
     "software": [
       "IBM SPSS Statistics",
       "Microsoft Excel",
@@ -3540,6 +4698,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Complex Problem Solving",
+      "Systems Evaluation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Geography",
+      "Transportation",
+      "Communications and Media"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -3582,6 +4754,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Design",
+      "Computers and Electronics",
+      "Fine Arts",
+      "Communications and Media",
+      "English Language"
+    ],
     "software": [
       "Adobe After Effects",
       "Adobe Creative Cloud software",
@@ -3622,6 +4808,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination",
+      "Persuasion",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "English Language",
+      "Computers and Electronics",
+      "Administrative",
+      "Communications and Media",
+      "Administration and Management"
     ],
     "software": [
       "Atlassian Confluence",
@@ -3664,6 +4864,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Social Perceptiveness",
+      "Time Management",
+      "Management of Personnel Resources",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Food Production",
+      "Production and Processing",
+      "Customer and Personal Service",
+      "Personnel and Human Resources",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -3704,6 +4918,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Food Production",
+      "English Language",
+      "Customer and Personal Service",
+      "Production and Processing",
+      "Education and Training"
     ],
     "software": [
       "Facebook",
@@ -3746,6 +4974,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Administration and Management",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Apple iOS",
       "Facebook",
@@ -3786,6 +5028,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Sincerity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Biology",
+      "English Language",
+      "Psychology",
+      "Medicine and Dentistry"
     ],
     "software": [
       "Microsoft Excel",
@@ -3828,6 +5084,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Troubleshooting",
+      "Time Management",
+      "Equipment Maintenance"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "English Language",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -3868,6 +5138,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "English Language",
+      "Transportation",
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -3910,6 +5194,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Transportation",
+      "English Language",
+      "Public Safety and Security",
+      "Mechanical",
+      "Geography"
+    ],
     "software": [
       "R",
       "Microsoft Excel",
@@ -3951,6 +5249,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Transportation",
+      "Geography",
+      "Public Safety and Security"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Microsoft Office software",
@@ -3989,6 +5301,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "English Language",
+      "Transportation",
+      "Psychology"
     ],
     "software": [
       "Microsoft Excel",
@@ -4031,6 +5357,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Law and Government",
+      "English Language",
+      "Telecommunications",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -4071,6 +5411,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language",
+      "Public Safety and Security",
+      "Medicine and Dentistry"
     ],
     "software": [
       "Apache Spark",
@@ -4113,6 +5467,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Education and Training",
+      "Customer and Personal Service",
+      "Psychology",
+      "Therapy and Counseling"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Microsoft Excel",
@@ -4153,6 +5521,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Biology",
+      "Medicine and Dentistry",
+      "English Language",
+      "Therapy and Counseling",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -4195,6 +5577,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Epic Systems",
       "Microsoft Excel",
@@ -4235,6 +5619,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Physics",
+      "Computers and Electronics",
+      "Medicine and Dentistry"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -4277,6 +5675,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Instructing",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "Psychology",
+      "Therapy and Counseling",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Excel",
@@ -4317,6 +5729,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Persuasion",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Psychology",
+      "Therapy and Counseling",
+      "English Language",
+      "Administrative"
     ],
     "software": [
       "Microsoft Office software",
@@ -4359,6 +5785,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Programming"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics",
+      "Administration and Management"
+    ],
     "software": [
       "Atlassian JIRA",
       "Microsoft Excel",
@@ -4399,6 +5839,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Programming",
+      "Systems Evaluation",
+      "Judgment and Decision Making",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "Telecommunications",
+      "English Language",
+      "Education and Training"
     ],
     "software": [
       "Amazon Web Services AWS software",
@@ -4441,6 +5895,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Programming",
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Systems Evaluation",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Mathematics",
+      "Engineering and Technology",
+      "Design"
+    ],
     "software": [
       "Amazon Web Services AWS software",
       "Apache JMeter",
@@ -4481,6 +5949,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Achievement Orientation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "Production and Processing",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -4523,6 +6005,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Social Perceptiveness",
+      "Management of Personnel Resources",
+      "Persuasion",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Customer and Personal Service",
+      "English Language",
+      "Production and Processing",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -4563,6 +6059,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Leadership Orientation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Economics and Accounting",
+      "Mathematics",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -4605,6 +6115,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Management of Personnel Resources"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "English Language",
+      "Customer and Personal Service",
+      "Personnel and Human Resources",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -4639,6 +6163,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Perseverance"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Atlassian JIRA",
       "Microsoft Excel",
@@ -4679,6 +6205,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Achievement Orientation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Mathematics",
+      "Administration and Management"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -4721,6 +6261,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Economics and Accounting",
+      "English Language",
+      "Mathematics",
+      "Sales and Marketing"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -4761,6 +6315,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Economics and Accounting",
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Law and Government"
     ],
     "software": [
       "Intuit TurboTax",
@@ -4803,6 +6371,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Confidence",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Persuasion",
+      "Negotiation",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics",
+      "Transportation"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -4843,6 +6425,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Social Orientation",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Sales and Marketing",
+      "Administration and Management",
+      "Mathematics"
     ],
     "software": [
       "Apple Safari",
@@ -4885,6 +6481,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Persuasion",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Negotiation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Mathematics"
+    ],
     "software": [
       "Adobe Acrobat",
       "Adobe Creative Cloud software",
@@ -4925,6 +6535,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics",
+      "Economics and Accounting",
+      "Public Safety and Security"
     ],
     "software": [
       "Microsoft Office software",
@@ -4967,6 +6591,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administrative",
+      "English Language",
+      "Computers and Electronics",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -5007,6 +6645,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Time Management",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Administrative",
+      "English Language",
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Computers and Electronics"
     ],
     "software": [
       "Google Workspace software",
@@ -5049,6 +6701,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Medicine and Dentistry",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Henry Schein Dentrix",
       "Microsoft Excel",
@@ -5090,6 +6756,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Sales and Marketing",
+      "Food Production",
+      "Mathematics"
+    ],
     "software": [
       "Facebook",
       "Blink",
@@ -5127,6 +6807,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Self-Control",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training",
+      "Sales and Marketing",
+      "Administration and Management"
     ],
     "software": [
       "Facebook",
@@ -5169,6 +6863,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Food Production",
+      "Mathematics",
+      "Computers and Electronics"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -5210,6 +6918,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Social Perceptiveness",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Food Production",
+      "Production and Processing",
+      "English Language",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -5249,6 +6971,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Customer and Personal Service",
+      "Food Production",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -5291,6 +7027,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Education and Training",
+      "English Language",
+      "Psychology",
+      "Biology"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -5331,6 +7081,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Administration and Management",
+      "Education and Training",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -5373,6 +7137,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Administration and Management",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Access",
       "Microsoft Excel",
@@ -5413,6 +7191,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Administration and Management",
+      "English Language",
+      "Customer and Personal Service",
+      "Transportation"
     ],
     "software": [
       "Microsoft Excel",
@@ -5455,6 +7247,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Coordination",
+      "Operations Monitoring",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Chemistry",
+      "Mechanical",
+      "Public Safety and Security"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -5496,6 +7302,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Service Orientation",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "English Language",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Windows",
       "AOL MapQuest",
@@ -5532,6 +7352,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "Transportation",
+      "Production and Processing"
     ],
     "software": [
       "Warehouse management system WMS",
@@ -5574,6 +7408,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Coordination",
+      "Equipment Maintenance",
+      "Troubleshooting"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "English Language",
+      "Production and Processing",
+      "Transportation",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Warehouse management system WMS",
       "Autodesk AutoCAD",
@@ -5614,6 +7462,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -5656,6 +7518,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "Public Safety and Security",
+      "English Language",
+      "Customer and Personal Service",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -5696,6 +7572,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Cautiousness",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Operation and Control",
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Public Safety and Security",
+      "Mechanical",
+      "Customer and Personal Service",
+      "Education and Training"
     ],
     "software": [
       "Autodesk Revit",
@@ -5738,6 +7628,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Building and Construction",
+      "Administration and Management",
+      "Public Safety and Security",
+      "Chemistry"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -5778,6 +7682,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -5820,6 +7738,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Repairing",
+      "Troubleshooting",
+      "Complex Problem Solving",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Building and Construction",
+      "Mathematics",
+      "Production and Processing"
+    ],
     "software": [
       "Microsoft Office software",
       "Apple macOS",
@@ -5860,6 +7792,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Production and Processing",
+      "Engineering and Technology",
+      "Design"
     ],
     "software": [
       "Microsoft Excel",
@@ -5902,6 +7848,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Mechanical",
+      "English Language",
+      "Chemistry",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -5942,6 +7902,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Analysis",
+      "Judgment and Decision Making",
+      "Systems Evaluation",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Mathematics",
+      "Design",
+      "Physics",
+      "Computers and Electronics"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -5984,6 +7958,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Engineering and Technology",
+      "Geography",
+      "Computers and Electronics",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Autodesk AutoCAD Civil 3D",
@@ -6024,6 +8012,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Monitoring",
+      "Systems Analysis",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Biology",
+      "English Language",
+      "Mathematics",
+      "Computers and Electronics",
+      "Chemistry"
     ],
     "software": [
       "Microsoft .NET Framework",
@@ -6066,6 +8068,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Biology",
+      "English Language",
+      "Physics",
+      "Medicine and Dentistry"
+    ],
     "software": [
       "MEDITECH software",
       "Microsoft Excel",
@@ -6106,6 +8122,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Computers and Electronics",
+      "Education and Training"
     ],
     "software": [
       "JavaScript",
@@ -6148,6 +8178,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Mathematics",
+      "Production and Processing",
+      "Administrative"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -6189,6 +8233,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Therapy and Counseling",
+      "Psychology",
+      "Medicine and Dentistry",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "eClinicalWorks EHR software",
@@ -6226,6 +8284,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Customer and Personal Service",
+      "Biology",
+      "Psychology"
     ],
     "software": [
       "Microsoft Excel",
@@ -6268,6 +8340,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training",
+      "Computers and Electronics"
+    ],
     "software": [
       "Facebook",
       "Microsoft Access",
@@ -6308,6 +8394,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cooperation",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Customer and Personal Service",
+      "Therapy and Counseling",
+      "English Language",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -6350,6 +8450,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Optimism",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Therapy and Counseling",
+      "Customer and Personal Service",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Excel",
@@ -6388,6 +8502,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Biology",
+      "Psychology",
+      "Medicine and Dentistry",
+      "Therapy and Counseling",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -6430,6 +8558,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Therapy and Counseling",
+      "English Language",
+      "Education and Training",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Google Meet",
       "Microsoft Teams",
@@ -6470,6 +8612,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Therapy and Counseling",
+      "Education and Training",
+      "Sociology and Anthropology",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -6512,6 +8668,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Therapy and Counseling",
+      "Psychology",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Excel",
@@ -6552,6 +8722,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Sincerity",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Therapy and Counseling",
+      "Sociology and Anthropology",
+      "English Language",
+      "Customer and Personal Service"
     ],
     "software": [
       "Google Meet",
@@ -6594,6 +8778,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "Public Safety and Security",
+      "English Language",
+      "Psychology",
+      "Therapy and Counseling"
+    ],
     "software": [
       "Microsoft Office software",
       "Facebook",
@@ -6634,6 +8832,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Management of Financial Resources",
+      "Systems Analysis",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Economics and Accounting",
+      "Mathematics",
+      "English Language",
+      "Administration and Management",
+      "Administrative"
     ],
     "software": [
       "Microsoft Access",
@@ -6676,6 +8888,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Management of Financial Resources"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Economics and Accounting",
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "Building and Construction"
+    ],
     "software": [
       "ConstructConnect PlanSwift",
       "Microsoft Excel",
@@ -6716,6 +8942,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -6758,6 +8998,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Mathematics",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -6798,6 +9052,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Sales and Marketing",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -6840,6 +9108,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Negotiation",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Judgment and Decision Making",
+      "Management of Personnel Resources"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -6880,6 +9162,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Leadership Orientation",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Management of Personnel Resources",
+      "Coordination",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Education and Training"
     ],
     "software": [
       "Applicant tracking software",
@@ -6922,6 +9218,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Negotiation",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Economics and Accounting",
+      "English Language",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -6962,6 +9272,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Cooperation",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Management of Personnel Resources",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Food Production",
+      "English Language",
+      "Personnel and Human Resources"
     ],
     "software": [
       "Microsoft Office software",
@@ -7004,6 +9328,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "Customer and Personal Service",
+      "English Language",
+      "Personnel and Human Resources",
+      "Administration and Management"
+    ],
     "software": [
       "Learning management system LMS",
       "Microsoft Excel",
@@ -7044,6 +9382,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Adaptability"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Computers and Electronics",
+      "Administration and Management",
+      "English Language"
     ],
     "software": [
       "Adobe Photoshop",
@@ -7086,6 +9438,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Adaptability",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Communications and Media",
+      "Law and Government",
+      "Computers and Electronics",
+      "Telecommunications"
+    ],
     "software": [
       "Adobe After Effects",
       "Adobe InDesign",
@@ -7126,6 +9492,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Leadership Orientation",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Quality Control Analysis",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Communications and Media",
+      "Administration and Management",
+      "Administrative",
+      "Education and Training"
     ],
     "software": [
       "Adobe Photoshop",
@@ -7168,6 +9548,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Communications and Media",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Mathematics"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Photoshop",
@@ -7208,6 +9602,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Design",
+      "Customer and Personal Service",
+      "Building and Construction",
+      "English Language",
+      "Sales and Marketing"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -7250,6 +9658,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Analysis",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Design",
+      "Engineering and Technology",
+      "Production and Processing",
+      "Mechanical",
+      "Computers and Electronics"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Illustrator",
@@ -7290,6 +9712,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Self-Confidence"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Persuasion",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Communications and Media",
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Sales and Marketing"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -7332,6 +9768,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Administration and Management",
+      "Psychology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "C++",
       "Facebook",
@@ -7372,6 +9822,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Adaptability",
       "Self-Confidence"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Design",
+      "English Language",
+      "Computers and Electronics",
+      "Fine Arts",
+      "Communications and Media"
     ],
     "software": [
       "Adobe After Effects",
@@ -7414,6 +9878,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Chemistry",
+      "Mathematics",
+      "Design",
+      "Physics"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -7452,6 +9930,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Innovation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Analysis",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Computers and Electronics",
+      "Mathematics",
+      "Design",
+      "Physics"
     ],
     "software": [
       "Microsoft Excel",
@@ -7494,6 +9986,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Design",
+      "Chemistry",
+      "Mathematics",
+      "Building and Construction"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -7534,6 +10040,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Social Perceptiveness",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Mathematics",
+      "Building and Construction",
+      "Design",
+      "Administrative"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -7576,6 +10096,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Biology",
+      "Chemistry",
+      "English Language",
+      "Computers and Electronics",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -7616,6 +10150,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "Public Safety and Security",
+      "Education and Training",
+      "English Language",
+      "Computers and Electronics"
     ],
     "software": [
       "Guidance Software EnCase Enterprise",
@@ -7658,6 +10206,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Instructing",
+      "Systems Evaluation",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Economics and Accounting",
+      "English Language",
+      "Computers and Electronics",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Access",
       "Microsoft Excel",
@@ -7698,6 +10260,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Coordination",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Psychology",
+      "Mathematics",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -7740,6 +10316,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Administration and Management",
+      "Mathematics",
+      "Computers and Electronics"
+    ],
     "software": [
       "Articulate Storyline",
       "Learning management system LMS",
@@ -7780,6 +10370,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Education and Training",
+      "Psychology",
+      "English Language",
+      "Biology"
     ],
     "software": [
       "Learning management system LMS",
@@ -7822,6 +10426,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Self-Control"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Coordination"
+    ],
+    "knowledge": [
+      "English Language",
+      "Administrative",
+      "Computers and Electronics",
+      "Law and Government",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Excel",
@@ -7862,6 +10480,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Time Management",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Administration and Management",
+      "Psychology",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -7904,6 +10536,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "Public Safety and Security",
+      "Biology",
+      "English Language",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -7944,6 +10590,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Law and Government",
+      "Computers and Electronics",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -7986,6 +10646,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Persuasion",
+      "Instructing",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "Building and Construction",
+      "Law and Government",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8025,6 +10699,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Food Production",
+      "Production and Processing",
+      "Sales and Marketing",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -8067,6 +10755,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Public Safety and Security",
+      "English Language",
+      "Production and Processing",
+      "Chemistry"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8108,6 +10810,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Operations Monitoring",
+      "Coordination",
+      "Service Orientation",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "English Language",
+      "Mechanical"
+    ],
     "software": [
       "Microsoft Windows",
       "AOL MapQuest",
@@ -8145,6 +10861,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Mathematics",
+      "Transportation",
+      "English Language",
+      "Public Safety and Security"
     ],
     "software": [
       "Microsoft Excel",
@@ -8187,6 +10917,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Management of Personnel Resources",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Production and Processing",
+      "Biology",
+      "Mathematics",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8227,6 +10971,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Attention to Detail",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Social Perceptiveness",
+      "Operation and Control",
+      "Repairing",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Food Production",
+      "Biology",
+      "Mechanical",
+      "Administration and Management",
+      "Chemistry"
     ],
     "software": [
       "Microsoft Excel",
@@ -8269,6 +11027,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mathematics",
+      "English Language",
+      "Public Safety and Security",
+      "Production and Processing"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -8309,6 +11081,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Complex Problem Solving",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mathematics",
+      "Mechanical",
+      "Public Safety and Security",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Office software",
@@ -8351,6 +11137,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Mathematics",
+      "Administration and Management",
+      "Building and Construction"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -8389,6 +11189,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Cautiousness"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -8429,6 +11231,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Quality Control Analysis",
+      "Equipment Selection",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Mathematics",
+      "Production and Processing",
+      "Design",
+      "English Language"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -8471,6 +11287,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Operations Monitoring",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "English Language",
+      "Customer and Personal Service",
+      "Mechanical",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8511,6 +11341,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Coordination",
+      "Operation and Control",
+      "Social Perceptiveness",
+      "Equipment Maintenance"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Mechanical",
+      "Public Safety and Security",
+      "Education and Training",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -8553,6 +11397,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "English Language",
+      "Production and Processing",
+      "Mathematics",
+      "Education and Training",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8593,6 +11451,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Operation and Control",
+      "Operations Analysis",
+      "Equipment Selection"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Building and Construction",
+      "Production and Processing",
+      "Mechanical",
+      "Design"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -8635,6 +11507,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Design",
+      "Production and Processing",
+      "Sales and Marketing",
+      "Administration and Management"
+    ],
     "software": [
       "Adobe Illustrator",
       "Adobe Photoshop",
@@ -8675,6 +11561,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Design",
+      "English Language",
+      "Medicine and Dentistry",
+      "Production and Processing"
     ],
     "software": [
       "Intuit QuickBooks",
@@ -8717,6 +11617,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Quality Control Analysis",
+      "Complex Problem Solving",
+      "Troubleshooting"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Production and Processing",
+      "Mechanical",
+      "English Language",
+      "Engineering and Technology"
+    ],
     "software": [
       "G-code",
       "Autodesk AutoCAD",
@@ -8757,6 +11671,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Management of Personnel Resources",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Administration and Management",
+      "Personnel and Human Resources",
+      "English Language",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -8799,6 +11727,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Chemistry",
+      "Public Safety and Security",
+      "Physics",
+      "Engineering and Technology"
+    ],
     "software": [
       "Microsoft Active Server Pages ASP",
       "Microsoft Excel",
@@ -8840,6 +11782,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Coordination",
+      "Operation and Control",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Food Production",
+      "Production and Processing",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Edible Software",
@@ -8877,6 +11833,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Production and Processing",
+      "Transportation",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Access",
@@ -8919,6 +11889,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Instructing",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Mathematics",
+      "Administration and Management",
+      "Education and Training",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -8959,6 +11943,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Production and Processing",
+      "Law and Government",
+      "Education and Training",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -9001,6 +11999,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Building and Construction",
+      "Public Safety and Security",
+      "English Language",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -9041,6 +12053,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Administration and Management",
+      "Transportation",
+      "Customer and Personal Service",
+      "Building and Construction"
     ],
     "software": [
       "Jenkins CI",
@@ -9083,6 +12109,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Persuasion",
+      "Negotiation",
+      "Service Orientation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Economics and Accounting",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -9123,6 +12163,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Administrative",
+      "Mathematics",
+      "English Language",
+      "Economics and Accounting",
+      "Personnel and Human Resources"
     ],
     "software": [
       "ADP Workforce Now",
@@ -9165,6 +12219,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Administrative",
+      "Customer and Personal Service",
+      "English Language",
+      "Economics and Accounting",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -9205,6 +12273,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Administrative",
+      "Computers and Electronics",
+      "Production and Processing",
+      "Mathematics",
+      "English Language"
     ],
     "software": [
       "Apple Safari",
@@ -9247,6 +12329,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Coordination",
+      "Social Perceptiveness",
+      "Time Management",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Administrative",
+      "English Language",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Administration and Management"
+    ],
     "software": [
       "Google Workspace software",
       "Microsoft Excel",
@@ -9287,6 +12383,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Complex Problem Solving",
+      "Coordination",
+      "Service Orientation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "English Language",
+      "Administrative",
+      "Customer and Personal Service",
+      "Law and Government",
+      "Public Safety and Security"
     ],
     "software": [
       "Microsoft Excel",
@@ -9329,6 +12439,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Administrative",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Office software",
       "Property management system PMS software",
@@ -9367,6 +12491,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "Administrative",
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language"
     ],
     "software": [
       "Applicant tracking software",
@@ -9409,6 +12547,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "Administration and Management",
+      "Administrative",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -9450,6 +12602,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Public Safety and Security",
+      "English Language",
+      "Education and Training",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Word",
@@ -9488,6 +12654,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Leadership Orientation"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Operations Monitoring",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Transportation",
+      "English Language",
+      "Education and Training",
+      "Law and Government"
     ],
     "software": [
       "Microsoft Office software",
@@ -9530,6 +12710,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Public Safety and Security",
+      "Mechanical",
+      "Law and Government",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Apple macOS",
@@ -9570,6 +12764,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Troubleshooting",
+      "Repairing",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Transportation",
+      "Mechanical",
+      "Education and Training",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -9612,6 +12820,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Transportation",
+      "Public Safety and Security",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -9652,6 +12874,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Self-Control",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Instructing",
+      "Operation and Control",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Administration and Management",
+      "Law and Government"
     ],
     "software": [
       "Microsoft Excel",
@@ -9694,6 +12930,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Operations Monitoring",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Transportation",
+      "Public Safety and Security",
+      "English Language",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -9732,6 +12982,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language",
+      "Economics and Accounting",
+      "Psychology"
+    ],
     "software": [
       "Facebook",
       "Linux",
@@ -9769,6 +13033,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Dependability",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Personnel and Human Resources",
+      "Sales and Marketing"
     ],
     "software": [
       "Facebook",
@@ -9811,6 +13089,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Mathematics",
+      "English Language",
+      "Administration and Management",
+      "Public Safety and Security"
+    ],
     "software": [
       "Apache Hadoop",
       "Apache Spark",
@@ -9851,6 +13143,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail",
       "Sincerity"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administrative",
+      "English Language",
+      "Education and Training",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Access",
@@ -9893,6 +13199,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Leadership Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Instructing",
+      "Time Management"
+    ],
+    "knowledge": [
+      "English Language",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "Education and Training",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Excel",
@@ -9929,6 +13249,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Chemistry",
+      "Psychology",
+      "English Language",
+      "Law and Government"
     ],
     "software": [
       "Microsoft Excel",
@@ -9971,6 +13305,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Negotiation",
+      "Service Orientation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Public Safety and Security",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Google Docs",
@@ -10011,6 +13359,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Dependability",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Therapy and Counseling",
+      "Psychology",
+      "Medicine and Dentistry",
+      "English Language",
+      "Biology"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -10053,6 +13415,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Biology",
+      "Administrative",
+      "Medicine and Dentistry"
+    ],
     "software": [
       "Microsoft Access",
       "Microsoft Excel",
@@ -10093,6 +13469,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Empathy",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "Design",
+      "Therapy and Counseling",
+      "English Language"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -10135,6 +13525,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Quality Control Analysis",
+      "Operations Monitoring",
+      "Troubleshooting",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Biology",
+      "Production and Processing",
+      "Public Safety and Security"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Kronos Workforce Timekeeper",
@@ -10175,6 +13579,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Stress Tolerance",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Instructing",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Psychology",
+      "Therapy and Counseling",
+      "English Language",
+      "Customer and Personal Service",
+      "Medicine and Dentistry"
     ],
     "software": [
       "Microsoft Excel",
@@ -10217,6 +13635,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Economics and Accounting",
+      "English Language",
+      "Mathematics",
+      "Sales and Marketing"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -10257,6 +13689,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Sales and Marketing",
+      "Geography",
+      "Computers and Electronics"
     ],
     "software": [
       "Amadeus CRS",
@@ -10299,6 +13745,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Sales and Marketing",
+      "English Language",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Office software",
       "Adobe Acrobat",
@@ -10338,6 +13798,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Achievement Orientation",
       "Self-Confidence"
+    ],
+    "transferableSkills": [
+      "Persuasion",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Negotiation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Customer and Personal Service",
+      "English Language",
+      "Communications and Media",
+      "Mathematics"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -10380,6 +13854,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "English Language",
+      "Education and Training",
+      "Medicine and Dentistry"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Outlook",
@@ -10420,6 +13908,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Self-Control",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Law and Government",
+      "English Language",
+      "Customer and Personal Service",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -10462,6 +13964,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Time Management",
+      "Coordination",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Law and Government",
+      "Administrative",
+      "Customer and Personal Service",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -10502,6 +14018,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Management of Personnel Resources",
+      "Coordination",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Law and Government",
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language"
     ],
     "software": [
       "Microsoft Office software",
@@ -10544,6 +14074,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mechanical",
+      "Mathematics",
+      "Administration and Management",
+      "Design"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -10584,6 +14128,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Equipment Maintenance"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Telecommunications",
+      "Computers and Electronics",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -10626,6 +14184,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Repairing",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Production and Processing",
+      "Mathematics",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -10666,6 +14238,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Coordination",
+      "Operations Monitoring",
+      "Social Perceptiveness",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Customer and Personal Service",
+      "Mechanical",
+      "English Language",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -10708,6 +14294,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "English Language",
+      "Chemistry",
+      "Biology"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -10748,6 +14348,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Public Safety and Security",
+      "Production and Processing",
+      "Transportation",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -10790,6 +14404,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Transportation",
+      "Mathematics"
+    ],
     "software": [
       "Apple Safari",
       "Google Docs",
@@ -10830,6 +14458,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Cooperation",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -10872,6 +14514,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Administration and Management",
+      "Chemistry"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -10906,6 +14562,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Self-Confidence"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -10946,6 +14604,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Cooperation",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Management of Personnel Resources",
+      "Coordination",
+      "Instructing",
+      "Service Orientation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Food Production",
+      "English Language",
+      "Production and Processing"
     ],
     "software": [
       "Microsoft Excel",
@@ -10988,6 +14660,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Management of Personnel Resources",
+      "Time Management",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Building and Construction",
+      "Mechanical",
+      "Customer and Personal Service",
+      "English Language"
+    ],
     "software": [
       "Microsoft Office software",
       "Adobe Acrobat",
@@ -11028,6 +14714,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Attention to Detail",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Administration and Management",
+      "Engineering and Technology",
+      "English Language"
     ],
     "software": [
       "Amazon Web Services AWS software",
@@ -11070,6 +14770,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Philosophy and Theology",
+      "Mathematics",
+      "Psychology"
+    ],
     "software": [
       "Apple macOS",
       "Facebook",
@@ -11110,6 +14824,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Mathematics"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -11152,6 +14880,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11192,6 +14934,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Time Management",
+      "Service Orientation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "English Language",
+      "Education and Training",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -11234,6 +14990,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "English Language",
+      "Food Production",
+      "Education and Training",
+      "Customer and Personal Service",
+      "Public Safety and Security"
+    ],
     "software": [
       "Facebook",
       "Microsoft Windows"
@@ -11270,6 +15040,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Optimism",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Food Production",
+      "Psychology",
+      "Computers and Electronics"
     ],
     "software": [
       "Facebook",
@@ -11312,6 +15096,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Empathy"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "Customer and Personal Service",
+      "English Language",
+      "Sociology and Anthropology",
+      "Computers and Electronics"
+    ],
     "software": [
       "Adobe Acrobat",
       "Adobe Photoshop",
@@ -11352,6 +15150,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Quality Control Analysis",
+      "Operations Monitoring",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Transportation",
+      "Administration and Management",
+      "Public Safety and Security"
     ],
     "software": [
       "Microsoft Windows",
@@ -11394,6 +15206,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Sales and Marketing",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11434,6 +15260,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Optimism",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Administration and Management",
+      "Sales and Marketing"
     ],
     "software": [
       "Facebook",
@@ -11476,6 +15316,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Complex Problem Solving",
+      "Coordination",
+      "Social Perceptiveness",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11516,6 +15370,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Systems Evaluation",
+      "Management of Personnel Resources"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "Administration and Management",
+      "English Language",
+      "Administrative",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -11558,6 +15426,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination",
+      "Systems Evaluation",
+      "Management of Financial Resources"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Personnel and Human Resources",
+      "English Language",
+      "Customer and Personal Service",
+      "Economics and Accounting"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11595,6 +15477,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Self-Confidence",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Persuasion",
+      "Negotiation",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "English Language",
+      "Administration and Management",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -11637,6 +15533,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Persuasion",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Administration and Management",
+      "Administrative",
+      "Computers and Electronics"
+    ],
     "software": [
       "Inventory control system software",
       "Inventory management systems",
@@ -11677,6 +15587,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Attention to Detail",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Coordination",
+      "Negotiation",
+      "Management of Personnel Resources",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language",
+      "Administrative",
+      "Personnel and Human Resources"
     ],
     "software": [
       "Microsoft Excel",
@@ -11719,6 +15643,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Service Orientation",
+      "Persuasion",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Philosophy and Theology",
+      "English Language",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Education and Training"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -11759,6 +15697,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administrative",
+      "English Language",
+      "Computers and Electronics",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -11801,6 +15753,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Transportation",
+      "English Language",
+      "Public Safety and Security",
+      "Administrative"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11840,6 +15806,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Attention to Detail",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Management of Personnel Resources",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Education and Training",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -11882,6 +15862,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Time Management",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "English Language",
+      "Administration and Management",
+      "Education and Training",
+      "Customer and Personal Service",
+      "Personnel and Human Resources"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -11922,6 +15916,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Perseverance",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Biology",
+      "Administration and Management",
+      "English Language",
+      "Mechanical"
     ],
     "software": [
       "Microsoft Excel",
@@ -11964,6 +15972,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language",
+      "Psychology",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Office software",
       "Microsoft Access",
@@ -12004,6 +16026,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Integrity",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Negotiation",
+      "Instructing",
+      "Complex Problem Solving",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -12046,6 +16082,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Optimism",
       "Empathy"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training",
+      "Mathematics",
+      "Computers and Electronics"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -12087,6 +16137,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Design",
+      "Engineering and Technology",
+      "Mathematics",
+      "Administration and Management",
+      "English Language"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -12126,6 +16190,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Quality Control Analysis",
+      "Time Management",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Building and Construction",
+      "Mathematics",
+      "Public Safety and Security",
+      "Mechanical"
     ],
     "software": [
       "ACT Contractors Forms",
@@ -12168,6 +16246,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Operations Monitoring",
+      "Time Management",
+      "Operation and Control",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Production and Processing",
+      "English Language",
+      "Public Safety and Security",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12208,6 +16300,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "English Language",
+      "Administration and Management",
+      "Design"
     ],
     "software": [
       "Microsoft Excel",
@@ -12250,6 +16356,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Equipment Maintenance",
+      "Operations Monitoring",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Computers and Electronics",
+      "Public Safety and Security"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12290,6 +16410,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administrative",
+      "Law and Government",
+      "English Language",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -12332,6 +16466,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Confidence",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Management of Personnel Resources",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Communications and Media",
+      "English Language",
+      "Telecommunications",
+      "Computers and Electronics",
+      "Administration and Management"
+    ],
     "software": [
       "Adobe After Effects",
       "Adobe Creative Cloud software",
@@ -12372,6 +16520,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Self-Control"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Administrative",
+      "Personnel and Human Resources"
     ],
     "software": [
       "Microsoft Excel",
@@ -12414,6 +16576,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Systems Analysis",
+      "Instructing",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Biology",
+      "English Language",
+      "Medicine and Dentistry",
+      "Chemistry",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12454,6 +16630,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Coordination",
+      "Complex Problem Solving",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "English Language",
+      "Transportation",
+      "Building and Construction",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -12496,6 +16686,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Administrative",
+      "English Language",
+      "Law and Government",
+      "Customer and Personal Service",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12536,6 +16740,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Social Orientation",
       "Adaptability"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Communications and Media",
+      "Administrative",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -12578,6 +16796,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Troubleshooting",
+      "Systems Analysis",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Telecommunications",
+      "Customer and Personal Service",
+      "Engineering and Technology",
+      "English Language"
+    ],
     "software": [
       "Apple macOS",
       "Firewall software",
@@ -12618,6 +16850,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Cautiousness",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Management of Personnel Resources",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Administration and Management",
+      "English Language",
+      "Public Safety and Security",
+      "Personnel and Human Resources"
     ],
     "software": [
       "Microsoft Excel",
@@ -12660,6 +16906,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Quality Control Analysis",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Production and Processing",
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics"
+    ],
     "software": [
       "Adobe Acrobat",
       "Adobe Illustrator",
@@ -12700,6 +16960,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Attention to Detail",
       "Stress Tolerance"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Coordination",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Transportation",
+      "Customer and Personal Service",
+      "Public Safety and Security"
     ],
     "software": [
       "AMCS Platform",
@@ -12742,6 +17016,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Evaluation",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Public Safety and Security",
+      "English Language",
+      "Customer and Personal Service",
+      "Design"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12782,6 +17070,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Sincerity",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Therapy and Counseling",
+      "Psychology",
+      "English Language",
+      "Customer and Personal Service",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -12824,6 +17126,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Computers and Electronics",
+      "Law and Government"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -12865,6 +17181,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Food Production",
+      "Public Safety and Security",
+      "Mathematics",
+      "Administration and Management"
+    ],
     "software": [
       "Web browser software",
       "Microsoft Excel",
@@ -12903,6 +17233,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Social Orientation",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Food Production",
+      "English Language",
+      "Sales and Marketing",
+      "Administration and Management"
     ],
     "software": [
       "Facebook",
@@ -12944,6 +17288,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Programming",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Mathematics",
+      "Engineering and Technology",
+      "English Language",
+      "Administration and Management"
+    ],
     "software": [
       "Amazon Web Services AWS SageMaker",
       "Amazon Web Services AWS software",
@@ -12984,6 +17342,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Adaptability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Illustrator",
@@ -13024,6 +17384,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Intellectual Curiosity",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Time Management",
+      "Social Perceptiveness",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "English Language",
+      "Design",
+      "Communications and Media",
+      "Customer and Personal Service"
     ],
     "software": [
       "Adobe After Effects",
@@ -13066,6 +17440,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Programming",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "Design",
+      "Mathematics",
+      "English Language"
+    ],
     "software": [
       "Amazon Web Services AWS software",
       "Apache Kafka",
@@ -13107,6 +17495,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Analysis",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "Design",
+      "Mathematics",
+      "English Language"
+    ],
     "software": [
       "C",
       "C++",
@@ -13146,6 +17548,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "Biology",
+      "Chemistry",
+      "Mathematics"
+    ],
     "software": [
       "Epic Systems",
       "Patient management software",
@@ -13183,6 +17599,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Psychology",
+      "Customer and Personal Service",
+      "English Language",
+      "Biology"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -13225,6 +17655,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "English Language",
+      "Mathematics",
+      "Administrative"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -13266,6 +17710,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Therapy and Counseling",
+      "Biology",
+      "Psychology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Epic Systems",
       "eClinicalWorks EHR software",
@@ -13304,6 +17762,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Time Management",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "English Language",
+      "Chemistry",
+      "Customer and Personal Service"
     ],
     "software": [
       "Epic Systems",
@@ -13346,6 +17818,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "English Language",
+      "Psychology",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Epic Systems",
       "eClinicalWorks EHR software",
@@ -13387,6 +17873,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Education and Training"
+    ],
     "software": [
       "Cisco Webex",
       "eClinicalWorks EHR software",
@@ -13426,6 +17926,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Biology",
+      "Computers and Electronics"
     ],
     "software": [
       "Facebook",
@@ -13468,6 +17982,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Biology",
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Geography"
+    ],
     "software": [
       "ESRI ArcGIS software",
       "Microsoft Excel",
@@ -13508,6 +18036,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "English Language",
+      "Biology",
+      "Mathematics",
+      "Geography",
+      "Customer and Personal Service"
     ],
     "software": [
       "ESRI ArcGIS software",
@@ -13550,6 +18092,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administration and Management",
+      "Biology",
+      "Law and Government"
+    ],
     "software": [
       "ESRI ArcGIS software",
       "Geographic information system GIS systems",
@@ -13590,6 +18146,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Biology",
+      "Medicine and Dentistry",
+      "English Language",
+      "Computers and Electronics"
     ],
     "software": [
       "Microsoft Excel",
@@ -13632,6 +18202,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Programming",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Physics",
+      "Mathematics",
+      "Engineering and Technology",
+      "Computers and Electronics",
+      "English Language"
+    ],
     "software": [
       "Eclipse IDE",
       "Python",
@@ -13672,6 +18256,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Innovation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Geography",
+      "Mathematics",
+      "English Language",
+      "Chemistry",
+      "Physics"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -13714,6 +18312,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Mathematics",
+      "Physics",
+      "Computers and Electronics",
+      "Chemistry"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -13754,6 +18366,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Communications and Media",
+      "English Language",
+      "Computers and Electronics",
+      "Telecommunications",
+      "Fine Arts"
     ],
     "software": [
       "Adobe After Effects",
@@ -13796,6 +18422,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "English Language",
+      "Computers and Electronics",
+      "Communications and Media",
+      "Telecommunications",
+      "Engineering and Technology"
+    ],
     "software": [
       "Adobe After Effects",
       "Adobe Creative Cloud software",
@@ -13836,6 +18476,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance",
       "Adaptability"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Coordination",
+      "Service Orientation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Communications and Media",
+      "English Language",
+      "Telecommunications",
+      "Fine Arts"
     ],
     "software": [
       "Microsoft Office software",
@@ -13878,6 +18532,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Confidence",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Coordination",
+      "Persuasion",
+      "Social Perceptiveness",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "English Language",
+      "Education and Training",
+      "Computers and Electronics",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -13918,6 +18586,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Adaptability",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Operations Analysis",
+      "Time Management",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "Design",
+      "Computers and Electronics",
+      "Building and Construction",
+      "History and Archeology"
     ],
     "software": [
       "Adobe Creative Cloud software",
@@ -13960,6 +18642,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Communications and Media",
+      "English Language",
+      "Computers and Electronics",
+      "Telecommunications",
+      "Law and Government"
+    ],
     "software": [
       "Adobe Audition",
       "Microsoft Office software",
@@ -14000,6 +18696,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Installation",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Mathematics",
+      "Building and Construction",
+      "Education and Training",
+      "Engineering and Technology"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -14042,6 +18752,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Complex Problem Solving",
+      "Time Management",
+      "Judgment and Decision Making",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Mathematics",
+      "Customer and Personal Service",
+      "Design",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -14082,6 +18806,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Mechanical",
+      "English Language",
+      "Engineering and Technology",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -14124,6 +18862,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Operation and Control",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Building and Construction",
+      "Physics",
+      "Customer and Personal Service",
+      "Mathematics"
+    ],
     "software": [
       "Diving logbook software",
       "Diving table software",
@@ -14163,6 +18915,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Perseverance",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Equipment Maintenance",
+      "Complex Problem Solving",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Mathematics"
     ],
     "software": [
       "Apple iOS",
@@ -14205,6 +18971,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Confidence",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "English Language",
+      "Customer and Personal Service",
+      "Personnel and Human Resources",
+      "Communications and Media"
+    ],
     "software": [
       "Adobe Photoshop",
       "Facebook",
@@ -14245,6 +19025,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Self-Control",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Education and Training",
+      "Psychology",
+      "Administration and Management",
+      "English Language"
     ],
     "software": [
       "Atlassian JIRA",
@@ -14287,6 +19081,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Programming",
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Systems Analysis",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Mathematics",
+      "Engineering and Technology",
+      "English Language",
+      "Customer and Personal Service"
+    ],
     "software": [
       "C#",
       "C++",
@@ -14327,6 +19135,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Computers and Electronics",
+      "Design",
+      "Mathematics",
+      "English Language"
     ],
     "software": [
       "Microsoft Excel",
@@ -14369,6 +19191,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Service Orientation",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Chemistry",
+      "Physics",
+      "Production and Processing",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -14409,6 +19245,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Analysis",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Physics",
+      "Mathematics",
+      "English Language",
+      "Public Safety and Security"
     ],
     "software": [
       "ANSYS simulation software",
@@ -14451,6 +19301,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Systems Analysis",
+      "Time Management",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Design",
+      "Building and Construction",
+      "Engineering and Technology",
+      "English Language",
+      "Computers and Electronics"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Illustrator",
@@ -14491,6 +19355,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Geography",
+      "Computers and Electronics",
+      "English Language",
+      "Design",
+      "Mathematics"
     ],
     "software": [
       "ESRI ArcGIS software",
@@ -14533,6 +19411,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Coordination",
+      "Operations Analysis",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Design",
+      "Building and Construction",
+      "Geography",
+      "Engineering and Technology",
+      "English Language"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Illustrator",
@@ -14573,6 +19465,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Dependability",
       "Self-Confidence"
+    ],
+    "transferableSkills": [
+      "Negotiation",
+      "Persuasion",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Sales and Marketing",
+      "Customer and Personal Service",
+      "English Language",
+      "Law and Government",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Office software",
@@ -14615,6 +19521,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Empathy"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics",
+      "Administrative",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -14655,6 +19575,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Perseverance",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Persuasion",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Negotiation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Engineering and Technology",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Amazon Web Services AWS software",
@@ -14697,6 +19631,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Economics and Accounting",
+      "Mathematics",
+      "English Language",
+      "Law and Government",
+      "Administrative"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -14737,6 +19685,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Confidence",
       "Perseverance",
       "Leadership Orientation"
+    ],
+    "transferableSkills": [
+      "Persuasion",
+      "Negotiation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "English Language",
+      "Administration and Management",
+      "Fine Arts"
     ],
     "software": [
       "Adobe Photoshop",
@@ -14779,6 +19741,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Optimism",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Persuasion",
+      "Negotiation",
+      "Coordination",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Sales and Marketing",
+      "Administration and Management",
+      "Communications and Media"
+    ],
     "software": [
       "Blackbaud The Raiser's Edge",
       "Microsoft Excel",
@@ -14819,6 +19795,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation",
       "Leadership Orientation"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Management of Personnel Resources",
+      "Coordination",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Administration and Management",
+      "Personnel and Human Resources",
+      "Customer and Personal Service",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -14861,6 +19851,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Administration and Management",
+      "Law and Government",
+      "Communications and Media",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -14902,6 +19906,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Biology",
+      "Psychology",
+      "Therapy and Counseling"
+    ],
     "software": [
       "Epic Systems",
       "MEDITECH software"
@@ -14939,6 +19957,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "English Language",
+      "Computers and Electronics",
+      "Education and Training"
+    ],
     "software": [
       "Epic Systems",
       "eClinicalWorks EHR software",
@@ -14973,6 +20005,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Stress Tolerance",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Epic Systems",
       "MEDITECH software",
@@ -15010,6 +20044,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Attention to Detail",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Operations Monitoring",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Medicine and Dentistry",
+      "Physics",
+      "Mathematics"
     ],
     "software": [
       "eClinicalWorks EHR software",
@@ -15052,6 +20100,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Medicine and Dentistry",
+      "Therapy and Counseling",
+      "Education and Training",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -15092,6 +20154,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Cooperation"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Customer and Personal Service",
+      "English Language",
+      "Biology",
+      "Education and Training"
     ],
     "software": [
       "MEDITECH software",
@@ -15134,6 +20210,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Therapy and Counseling",
+      "Psychology",
+      "Customer and Personal Service",
+      "Sociology and Anthropology",
+      "English Language"
+    ],
     "software": [
       "Google Meet",
       "Zoom",
@@ -15174,6 +20264,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Dependability",
       "Optimism"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Coordination",
+      "Persuasion",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training",
+      "Administration and Management",
+      "Medicine and Dentistry"
     ],
     "software": [
       "Microsoft Excel",
@@ -15216,6 +20320,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Cooperation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Education and Training",
+      "English Language",
+      "Administrative",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -15254,6 +20372,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Innovation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Systems Analysis",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Biology",
+      "Chemistry",
+      "Mathematics",
+      "English Language",
+      "Physics"
     ],
     "software": [
       "Electronic lab notebook software",
@@ -15296,6 +20428,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Food Production",
+      "Chemistry",
+      "English Language",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -15336,6 +20482,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "English Language",
+      "Chemistry",
+      "Education and Training",
+      "Mathematics",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Excel",
@@ -15378,6 +20538,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Design",
+      "Computers and Electronics",
+      "Production and Processing",
+      "Sales and Marketing",
+      "English Language"
+    ],
     "software": [
       "Adobe Creative Cloud software",
       "Adobe Illustrator",
@@ -15418,6 +20592,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Tolerance for Ambiguity",
       "Achievement Orientation",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Time Management",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Design",
+      "Computers and Electronics",
+      "English Language",
+      "Production and Processing",
+      "Fine Arts"
     ],
     "software": [
       "Adobe Illustrator",
@@ -15460,6 +20648,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Service Orientation",
+      "Time Management",
+      "Judgment and Decision Making",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Production and Processing",
+      "Sales and Marketing",
+      "Design",
+      "English Language"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -15500,6 +20702,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Intellectual Curiosity",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Social Perceptiveness",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "English Language",
+      "History and Archeology",
+      "Fine Arts",
+      "Administration and Management",
+      "Sociology and Anthropology"
     ],
     "software": [
       "Microsoft Excel",
@@ -15542,6 +20758,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Operation and Control",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Fine Arts",
+      "English Language",
+      "Engineering and Technology"
+    ],
     "software": [
       "Adobe Acrobat",
       "Adobe Creative Cloud software",
@@ -15583,6 +20813,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Mechanical",
+      "Public Safety and Security",
+      "Production and Processing",
+      "Transportation"
+    ],
     "software": [
       "Facebook",
       "Microsoft Excel",
@@ -15621,6 +20865,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Repairing",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Mechanical",
+      "English Language",
+      "Administration and Management",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -15663,6 +20921,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Repairing",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Equipment Selection"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "English Language",
+      "Engineering and Technology",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -15703,6 +20975,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Repairing",
+      "Troubleshooting",
+      "Operation and Control",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics",
+      "Engineering and Technology"
     ],
     "software": [
       "Microsoft Excel",
@@ -15745,6 +21031,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Coordination",
+      "Operation and Control",
+      "Equipment Maintenance"
+    ],
+    "knowledge": [
+      "Telecommunications",
+      "Customer and Personal Service",
+      "English Language",
+      "Public Safety and Security",
+      "Computers and Electronics"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -15785,6 +21085,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Mechanical",
+      "Production and Processing"
     ],
     "software": [
       "Facebook",
@@ -15827,6 +21141,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Installation",
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Telecommunications",
+      "Building and Construction"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -15867,6 +21195,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Social Perceptiveness",
+      "Coordination",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "English Language",
+      "Public Safety and Security",
+      "Computers and Electronics",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -15909,6 +21251,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Repairing",
+      "Time Management",
+      "Service Orientation",
+      "Quality Control Analysis",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Public Safety and Security",
+      "English Language",
+      "Administration and Management"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Excel",
@@ -15950,6 +21306,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operation and Control",
+      "Coordination",
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Public Safety and Security",
+      "Production and Processing",
+      "Customer and Personal Service",
+      "Administration and Management"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "Microsoft Excel",
@@ -15985,6 +21355,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "English Language",
+      "Law and Government",
+      "Education and Training"
     ],
     "software": [
       "Linux",
@@ -16027,6 +21411,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Complex Problem Solving",
+      "Instructing"
+    ],
+    "knowledge": [
+      "English Language",
+      "Education and Training",
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Psychology"
+    ],
     "software": [
       "Adobe Acrobat",
       "Microsoft Excel",
@@ -16068,6 +21466,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Service Orientation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Customer and Personal Service",
+      "Biology",
+      "Administration and Management"
+    ],
     "software": [
       "eClinicalWorks EHR software",
       "Epic Systems",
@@ -16108,6 +21520,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Epic Systems",
       "MEDITECH software",
@@ -16147,6 +21561,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Intellectual Curiosity",
       "Dependability",
       "Cautiousness"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "English Language",
+      "Psychology",
+      "Biology",
+      "Therapy and Counseling"
     ],
     "software": [
       "Epic Systems",
@@ -16189,6 +21617,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Empathy"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Instructing",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Sales and Marketing",
+      "Therapy and Counseling",
+      "Medicine and Dentistry",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -16229,6 +21671,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Repairing",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "English Language",
+      "Engineering and Technology"
     ],
     "software": [
       "Inventory control system software",
@@ -16271,6 +21727,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Negotiation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Mathematics",
+      "Administrative",
+      "Law and Government"
+    ],
     "software": [
       "Alteryx software",
       "Microsoft Excel",
@@ -16311,6 +21781,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Instructing",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "English Language",
+      "Public Safety and Security",
+      "History and Archeology",
+      "Administration and Management"
     ],
     "software": [
       "Adobe Acrobat",
@@ -16353,6 +21837,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Time Management",
+      "Social Perceptiveness",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Production and Processing",
+      "Administration and Management",
+      "Economics and Accounting"
+    ],
     "software": [
       "Google Docs",
       "Microsoft Excel",
@@ -16393,6 +21891,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Repairing",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Operation and Control",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "English Language",
+      "Mathematics"
     ],
     "software": [
       "Facebook",
@@ -16435,6 +21947,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Coordination",
+      "Operations Monitoring"
+    ],
+    "knowledge": [
+      "Building and Construction",
+      "Design",
+      "Mathematics",
+      "Mechanical",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Intuit QuickBooks",
       "Microsoft Active Server Pages ASP",
@@ -16475,6 +22001,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Repairing",
+      "Installation",
+      "Equipment Maintenance",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Telecommunications",
+      "Customer and Personal Service",
+      "Mechanical",
+      "Administration and Management"
     ],
     "software": [
       "Microsoft Excel",
@@ -16517,6 +22057,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Public Safety and Security",
+      "Mechanical",
+      "Administration and Management",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Outlook",
@@ -16557,6 +22111,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Design",
+      "Customer and Personal Service",
+      "Mechanical",
+      "Education and Training"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -16599,6 +22167,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Self-Control"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Transportation",
+      "Public Safety and Security",
+      "Customer and Personal Service",
+      "English Language",
+      "Education and Training"
+    ],
     "software": [
       "Microsoft Office software"
     ],
@@ -16634,6 +22216,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Innovation",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Instructing"
+    ],
+    "knowledge": [
+      "Biology",
+      "English Language",
+      "Computers and Electronics",
+      "Chemistry",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -16676,6 +22272,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Instructing",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Sociology and Anthropology",
+      "English Language",
+      "History and Archeology",
+      "Foreign Language",
+      "Education and Training"
+    ],
     "software": [
       "ESRI ArcGIS software",
       "ESRI ArcGIS Survey 123",
@@ -16716,6 +22326,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Systems Analysis",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Physics",
+      "Geography",
+      "Computers and Electronics",
+      "English Language"
     ],
     "software": [
       "Microsoft Office software",
@@ -16758,6 +22382,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Persuasion",
+      "Operations Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Chemistry",
+      "Physics",
+      "Mathematics",
+      "Computers and Electronics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -16799,6 +22437,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Coordination",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Physics",
+      "Engineering and Technology",
+      "English Language",
+      "Geography"
+    ],
     "software": [
       "ESRI ArcGIS software",
       "Geographic information system GIS systems",
@@ -16832,6 +22484,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Attention to Detail",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Law and Government",
+      "English Language",
+      "Education and Training",
+      "History and Archeology",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -16874,6 +22540,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Instructing",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Sociology and Anthropology",
+      "English Language",
+      "Education and Training",
+      "Mathematics",
+      "History and Archeology"
+    ],
     "software": [
       "Adobe Acrobat",
       "Adobe Photoshop",
@@ -16915,6 +22595,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Instructing",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "History and Archeology",
+      "English Language",
+      "Sociology and Anthropology",
+      "Geography",
+      "Administrative"
+    ],
     "software": [
       "Adobe Acrobat",
       "ESRI ArcGIS software",
@@ -16952,6 +22646,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Attention to Detail",
       "Achievement Orientation"
+    ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Physics",
+      "Mathematics",
+      "Computers and Electronics",
+      "English Language",
+      "Education and Training"
     ],
     "software": [
       "C",
@@ -16994,6 +22702,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Systems Analysis",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Education and Training",
+      "Computers and Electronics",
+      "English Language",
+      "Physics"
+    ],
     "software": [
       "Atlassian JIRA",
       "C",
@@ -17034,6 +22756,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Attention to Detail",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Biology",
+      "Mathematics",
+      "English Language",
+      "Chemistry",
+      "Food Production"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -17076,6 +22812,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Evaluation",
+      "Systems Analysis",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Computers and Electronics",
+      "Design",
+      "Mathematics",
+      "Physics"
+    ],
     "software": [
       "Adobe InDesign",
       "Adobe Photoshop",
@@ -17116,6 +22866,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Operations Monitoring",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Mechanical",
+      "Design",
+      "English Language",
+      "Transportation"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -17158,6 +22922,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Achievement Orientation",
       "Innovation"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Complex Problem Solving",
+      "Systems Evaluation",
+      "Social Perceptiveness",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "Psychology",
+      "Education and Training",
+      "Administration and Management",
+      "Mathematics"
+    ],
     "software": [
       "Adobe Acrobat",
       "Google Sheets",
@@ -17198,6 +22976,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Engineering and Technology",
+      "English Language",
+      "Design",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Excel",
@@ -17240,6 +23032,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Achievement Orientation"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Time Management",
+      "Operations Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Engineering and Technology",
+      "Production and Processing",
+      "Mathematics",
+      "Design"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17280,6 +23086,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Quality Control Analysis",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "Engineering and Technology",
+      "Mechanical",
+      "Design",
+      "Mathematics",
+      "English Language"
     ],
     "software": [
       "Dassault Systemes SolidWorks",
@@ -17322,6 +23142,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Troubleshooting",
+      "Repairing",
+      "Quality Control Analysis",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Mechanical",
+      "Engineering and Technology",
+      "English Language",
+      "Production and Processing"
+    ],
     "software": [
       "Autodesk AutoCAD",
       "C++",
@@ -17362,6 +23196,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Coordination",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Geography",
+      "Mathematics",
+      "English Language",
+      "Engineering and Technology"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -17404,6 +23252,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Quality Control Analysis",
+      "Judgment and Decision Making",
+      "Systems Evaluation"
+    ],
+    "knowledge": [
+      "Chemistry",
+      "English Language",
+      "Mathematics",
+      "Computers and Electronics",
+      "Production and Processing"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17444,6 +23306,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Social Perceptiveness",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Chemistry",
+      "English Language",
+      "Biology",
+      "Law and Government"
     ],
     "software": [
       "Microsoft Excel",
@@ -17486,6 +23362,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Perseverance",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Judgment and Decision Making",
+      "Coordination",
+      "Instructing",
+      "Operations Monitoring",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Food Production",
+      "Biology",
+      "Chemistry",
+      "Mechanical",
+      "Mathematics"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17526,6 +23416,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Complex Problem Solving",
+      "Troubleshooting",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Engineering and Technology",
+      "Mathematics",
+      "Production and Processing",
+      "Customer and Personal Service"
     ],
     "software": [
       "Apache Hadoop",
@@ -17568,6 +23472,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Negotiation"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Public Safety and Security",
+      "Law and Government",
+      "Engineering and Technology"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17609,6 +23527,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Systems Analysis",
+      "Systems Evaluation",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17647,6 +23579,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Self-Control",
       "Dependability",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Negotiation",
+      "Persuasion",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Personnel and Human Resources",
+      "English Language",
+      "Law and Government",
+      "Administration and Management",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -17689,6 +23635,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Dependability"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Social Perceptiveness",
+      "Coordination",
+      "Systems Analysis"
+    ],
+    "knowledge": [
+      "English Language",
+      "Economics and Accounting",
+      "Law and Government",
+      "Mathematics",
+      "Administration and Management"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17730,6 +23690,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17770,6 +23732,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Dependability",
       "Innovation"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Management of Personnel Resources",
+      "Social Perceptiveness",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Biology",
+      "English Language",
+      "Administration and Management",
+      "Computers and Electronics",
+      "Administrative"
     ],
     "software": [
       "Microsoft Excel",
@@ -17812,6 +23788,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Leadership Orientation"
     ],
+    "transferableSkills": [
+      "Management of Personnel Resources",
+      "Social Perceptiveness",
+      "Negotiation",
+      "Time Management",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Customer and Personal Service",
+      "English Language",
+      "Law and Government",
+      "Economics and Accounting"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17853,6 +23843,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Leadership Orientation"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -17893,6 +23885,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Integrity",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Persuasion",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Administration and Management",
+      "Customer and Personal Service",
+      "Administrative",
+      "English Language",
+      "Sales and Marketing"
     ],
     "software": [
       "Blackbaud The Raiser's Edge",
@@ -17935,6 +23941,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Adaptability"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Persuasion",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Administration and Management",
+      "Personnel and Human Resources",
+      "Customer and Personal Service"
+    ],
     "software": [
       "Learning management system LMS",
       "Microsoft Excel",
@@ -17975,6 +23995,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Self-Control",
       "Dependability"
+    ],
+    "transferableSkills": [
+      "Negotiation",
+      "Social Perceptiveness",
+      "Persuasion",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "English Language",
+      "Law and Government",
+      "Personnel and Human Resources",
+      "Administration and Management",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -18017,6 +24051,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Optimism"
     ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Computers and Electronics",
+      "Customer and Personal Service",
+      "Public Safety and Security"
+    ],
     "software": [
       "Autodesk AutoCAD Civil 3D",
       "Google Docs",
@@ -18057,6 +24105,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cooperation",
       "Social Orientation",
       "Empathy"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Social Perceptiveness",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Coordination"
+    ],
+    "knowledge": [
+      "Education and Training",
+      "English Language",
+      "Mechanical",
+      "Customer and Personal Service",
+      "Mathematics"
     ],
     "software": [
       "Microsoft Office software",
@@ -18099,6 +24161,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Leadership Orientation",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Social Perceptiveness",
+      "Instructing",
+      "Service Orientation",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "Education and Training",
+      "Administration and Management",
+      "English Language",
+      "Psychology"
+    ],
     "software": [
       "Microsoft Office software",
       "Intuit QuickBooks",
@@ -18139,6 +24215,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Administrative",
+      "Computers and Electronics",
+      "Education and Training"
     ],
     "software": [
       "Microsoft Excel",
@@ -18181,6 +24271,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Intellectual Curiosity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Service Orientation",
+      "Judgment and Decision Making",
+      "Coordination",
+      "Instructing"
+    ],
+    "knowledge": [
+      "History and Archeology",
+      "English Language",
+      "Customer and Personal Service",
+      "Computers and Electronics",
+      "Administration and Management"
+    ],
     "software": [
       "Archivists' Toolkit",
       "Microsoft Excel",
@@ -18222,6 +24326,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Empathy",
       "Attention to Detail"
     ],
+    "transferableSkills": [
+      "Service Orientation",
+      "Social Perceptiveness",
+      "Coordination",
+      "Instructing",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Customer and Personal Service",
+      "English Language",
+      "Computers and Electronics",
+      "Therapy and Counseling",
+      "Psychology"
+    ],
     "software": [
       "Epic Systems",
       "MEDITECH software",
@@ -18259,6 +24377,8 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Integrity",
       "Cautiousness"
     ],
+    "transferableSkills": [],
+    "knowledge": [],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -18298,6 +24418,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Social Perceptiveness",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Mathematics",
+      "Physics",
+      "Computers and Electronics",
+      "Biology",
+      "Medicine and Dentistry"
+    ],
     "software": [
       "Eclipse IDE",
       "Epic Systems",
@@ -18336,6 +24470,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Instructing",
+      "Time Management",
+      "Social Perceptiveness"
+    ],
+    "knowledge": [
+      "Medicine and Dentistry",
+      "Biology",
+      "English Language",
+      "Education and Training",
+      "Customer and Personal Service"
     ],
     "software": [
       "Microsoft Access",
@@ -18378,6 +24526,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Innovation",
       "Social Orientation"
     ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Time Management",
+      "Coordination",
+      "Complex Problem Solving",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "English Language",
+      "Communications and Media",
+      "Sociology and Anthropology",
+      "Psychology"
+    ],
     "software": [
       "Facebook",
       "Linux",
@@ -18418,6 +24580,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Social Orientation",
       "Innovation",
       "Perseverance"
+    ],
+    "transferableSkills": [
+      "Social Perceptiveness",
+      "Coordination",
+      "Service Orientation",
+      "Time Management",
+      "Persuasion"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "English Language",
+      "Foreign Language",
+      "Education and Training",
+      "Communications and Media"
     ],
     "software": [
       "Facebook",
@@ -18460,6 +24636,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Adaptability",
       "Self-Confidence"
     ],
+    "transferableSkills": [
+      "Coordination",
+      "Social Perceptiveness",
+      "Time Management",
+      "Service Orientation",
+      "Judgment and Decision Making"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "English Language",
+      "Customer and Personal Service",
+      "Mathematics",
+      "Transportation"
+    ],
     "software": [
       "Adobe Photoshop",
       "Facebook",
@@ -18499,6 +24689,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Adaptability",
       "Leadership Orientation",
       "Social Orientation"
+    ],
+    "transferableSkills": [
+      "Instructing",
+      "Coordination",
+      "Social Perceptiveness",
+      "Time Management",
+      "Service Orientation"
+    ],
+    "knowledge": [
+      "Fine Arts",
+      "Education and Training",
+      "Administration and Management",
+      "Production and Processing",
+      "Design"
     ],
     "software": [
       "Facebook",
@@ -18541,6 +24745,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Complex Problem Solving",
+      "Equipment Maintenance",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Computers and Electronics",
+      "Telecommunications",
+      "Engineering and Technology",
+      "Communications and Media",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -18581,6 +24799,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Cautiousness",
       "Intellectual Curiosity"
+    ],
+    "transferableSkills": [
+      "Programming",
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Systems Analysis",
+      "Operation and Control"
+    ],
+    "knowledge": [
+      "Production and Processing",
+      "Engineering and Technology",
+      "Mathematics",
+      "Design",
+      "Computers and Electronics"
     ],
     "software": [
       "Autodesk AutoCAD",
@@ -18623,6 +24855,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Integrity"
     ],
+    "transferableSkills": [
+      "Equipment Maintenance",
+      "Repairing",
+      "Troubleshooting",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Mathematics",
+      "Engineering and Technology",
+      "Public Safety and Security",
+      "English Language"
+    ],
     "software": [
       "Microsoft Excel",
       "Microsoft Office software",
@@ -18663,6 +24909,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Stress Tolerance",
       "Attention to Detail"
+    ],
+    "transferableSkills": [
+      "Complex Problem Solving",
+      "Operations Monitoring",
+      "Judgment and Decision Making",
+      "Operation and Control",
+      "Coordination"
+    ],
+    "knowledge": [
+      "English Language",
+      "Public Safety and Security",
+      "Mathematics",
+      "Computers and Electronics",
+      "Telecommunications"
     ],
     "software": [
       "Microsoft Access",
@@ -18705,6 +24965,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Self-Control"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Quality Control Analysis",
+      "Complex Problem Solving",
+      "Operation and Control",
+      "Troubleshooting"
+    ],
+    "knowledge": [
+      "Public Safety and Security",
+      "Mechanical",
+      "Physics",
+      "Engineering and Technology",
+      "Education and Training"
+    ],
     "software": [
       "Linux",
       "Microsoft Access",
@@ -18745,6 +25019,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Attention to Detail",
       "Dependability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Complex Problem Solving",
+      "Judgment and Decision Making",
+      "Time Management"
+    ],
+    "knowledge": [
+      "Physics",
+      "Mechanical",
+      "Public Safety and Security",
+      "Mathematics",
+      "Engineering and Technology"
     ],
     "software": [
       "Outage management system OMS",
@@ -18787,6 +25075,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Stress Tolerance"
     ],
+    "transferableSkills": [
+      "Operations Monitoring",
+      "Operation and Control",
+      "Equipment Maintenance",
+      "Troubleshooting",
+      "Repairing"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "English Language",
+      "Engineering and Technology",
+      "Public Safety and Security",
+      "Transportation"
+    ],
     "software": [
       "Apple macOS",
       "Microsoft Access",
@@ -18828,6 +25130,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Cautiousness",
       "Perseverance"
     ],
+    "transferableSkills": [
+      "Troubleshooting",
+      "Repairing",
+      "Equipment Maintenance",
+      "Operations Monitoring",
+      "Quality Control Analysis"
+    ],
+    "knowledge": [
+      "Mechanical",
+      "Production and Processing",
+      "Design",
+      "Administration and Management",
+      "Building and Construction"
+    ],
     "software": [
       "Disassembler software",
       "Adobe Acrobat",
@@ -18868,6 +25184,20 @@ export const CAREER_ENRICHMENT: Record<string, CareerEnrichment> = {
       "Dependability",
       "Adaptability",
       "Integrity"
+    ],
+    "transferableSkills": [
+      "Coordination",
+      "Judgment and Decision Making",
+      "Time Management",
+      "Instructing",
+      "Complex Problem Solving"
+    ],
+    "knowledge": [
+      "Geography",
+      "Mechanical",
+      "Customer and Personal Service",
+      "Law and Government",
+      "Biology"
     ],
     "software": [
       "Microsoft Excel",

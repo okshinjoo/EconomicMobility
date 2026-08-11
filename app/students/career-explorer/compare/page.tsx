@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Compare Careers | Empower Career Explorer",
-  description: "Compare career pay, openings, training, outlook, and O*NET job-fit facts side by side.",
+  description: "Compare career pay, openings, time and cost to enter, training pay, physical demands, schedule, remote compatibility, and O*NET job-fit facts side by side.",
 };
 
 export default function CompareCareersPage() {
@@ -26,11 +26,11 @@ export default function CompareCareersPage() {
             Compare the work—not just the paycheck.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-cream/75">
-            Put up to four paths next to each other. See national and state pay, yearly openings, training time, and the interests and work styles each job rewards.
+            Put up to four paths next to each other. See pay, openings, entry time and cost, training pay, physical demands, schedule, and the interests and work styles each job rewards.
           </p>
         </div>
       </section>
-      <main className="mx-auto max-w-6xl px-6 py-10">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-6xl px-6 py-10">
         <CareerCompare />
       </main>
       <Footer frame="student" />

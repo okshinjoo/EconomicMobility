@@ -21,6 +21,7 @@ import { getCareerDetail } from "@/lib/careerDetails";
 import { CAREER_SEARCH_TERMS } from "@/lib/careerSearchTerms";
 import CareerSaveButton from "@/components/CareerSaveButton";
 import CareerSavedTray from "@/components/CareerSavedTray";
+import { trackCareerEvent } from "@/lib/careerAnalytics";
 
 type EduFilter = "all" | "nodegree" | "certificate" | "associate" | "bachelor";
 type PayFilter = "all" | "under50" | "50to80" | "80to120" | "over120" | "hourly";
@@ -150,6 +151,20 @@ export default function CareerExplorer() {
     pay !== "all" ||
     growthF !== "all" ||
     earnOnly;
+  const activeFilterCount = [
+    field !== "all",
+    edu !== "all",
+    pay !== "all",
+    growthF !== "all",
+    earnOnly,
+  ].filter(Boolean).length;
+  const resultCountBand = results.length < 10
+    ? "under_10"
+    : results.length < 50
+      ? "10_49"
+      : results.length < 200
+        ? "50_199"
+        : "200_plus";
 
   function clearFilters() {
     setQuery("");
@@ -392,6 +407,11 @@ export default function CareerExplorer() {
                 </div>
                 <Link
                   href={`/students/career-explorer/${c.id}`}
+                  onClick={() => trackCareerEvent("Career explorer result opened", {
+                    discovery_mode: query.trim() ? "search" : hasActiveFilters ? "filters" : "browse",
+                    active_filter_count: activeFilterCount,
+                    result_count_band: resultCountBand,
+                  })}
                   className="inline-flex items-center gap-1 text-[13px] font-bold text-ink underline decoration-amber decoration-2 underline-offset-4 hover:text-forest"
                 >
                   Full profile

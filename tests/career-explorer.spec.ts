@@ -1,0 +1,90 @@
+import { expect, test } from "@playwright/test";
+
+test.describe("Career Explorer decision journey", () => {
+  test("loads official state and metro pay on a career profile", async ({ page }) => {
+    await page.goto("/students/career-explorer/electrician");
+
+    await expect(page.getByRole("heading", { name: "Electrician", level: 1 })).toBeVisible();
+    const state = page.getByRole("combobox", { name: "State", exact: true }).first();
+    const metro = page.getByRole("combobox", { name: "Metro", exact: true });
+
+    await state.selectOption("CA");
+    await expect(metro).toBeEnabled();
+    await expect(metro.locator("option")).toHaveCount(26);
+    await metro.selectOption("0031080");
+
+    await expect(page.getByText("$73,810", { exact: true })).toBeVisible();
+    await expect(page.getByText(/above the national median/)).toBeVisible();
+  });
+
+  test("creates and persists an editable plan", async ({ page }) => {
+    await page.goto("/students/career-explorer/plan?career=electrician");
+
+    await expect(page.getByRole("combobox", { name: "Career" })).toHaveValue("electrician");
+    await expect(page.locator('textarea[aria-label="Plan step"]')).toHaveCount(5);
+    await page.getByRole("button", { name: /Mark complete: Read the full Electrician profile/ }).click();
+    await expect(page.getByText("1 of 5 done", { exact: true })).toBeVisible();
+
+    await page.reload();
+    await expect(page.getByText("1 of 5 done", { exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Mark incomplete: Read the full Electrician profile/ })).toBeVisible();
+  });
+
+  test("career discovery remains usable on a phone-sized screen", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/students/career-explorer");
+
+    await expect(page.getByRole("heading", { name: /What does that job/ })).toBeVisible();
+    await expect(page.getByRole("searchbox", { name: "Search careers" })).toBeVisible();
+    await page.getByRole("searchbox", { name: "Search careers" }).fill("electrician");
+    await expect(page.getByText("Electrician", { exact: true }).first()).toBeVisible();
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+
+  test("career profiles explain work reality, skills, and industries on a phone", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/students/career-explorer/electrician");
+
+    await expect(page.getByRole("heading", { name: "Transferable skills used most" })).toBeVisible();
+    await expect(page.getByRole("listitem").filter({ hasText: /^Troubleshooting$/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "What the work tends to feel like" })).toBeVisible();
+    await expect(page.getByText(/Most of the day is spent standing or moving/)).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Where people in this job work" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Construction", level: 3 })).toBeVisible();
+    await expect(page.getByText("79%", { exact: true })).toBeVisible();
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+
+  test("core discovery actions work from the keyboard", async ({ page }) => {
+    await page.goto("/students/career-explorer");
+
+    const search = page.getByRole("searchbox", { name: "Search careers" });
+    await search.focus();
+    await page.keyboard.type("electrician");
+    await expect(page.getByRole("heading", { name: "Electrician", level: 3 })).toBeVisible();
+
+    const save = page.getByRole("button", { name: "Save", exact: true });
+    await save.focus();
+    await page.keyboard.press("Space");
+    await expect(page.getByRole("button", { name: "Saved", exact: true })).toBeVisible();
+
+    const quickLook = page.getByRole("button", { name: "Quick look", exact: true });
+    await quickLook.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("button", { name: "Less", exact: true })).toHaveAttribute(
+      "aria-expanded",
+      "true"
+    );
+    await expect(page.getByText(/Install, maintain, and repair the wiring/)).toBeVisible();
+
+    const fullProfile = page.getByRole("link", { name: "Full profile", exact: true });
+    await fullProfile.focus();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/students\/career-explorer\/electrician$/);
+    await expect(page.getByRole("heading", { name: "Electrician", level: 1 })).toBeVisible();
+  });
+});

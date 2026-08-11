@@ -107,10 +107,13 @@ const NAV: StudentNavEntry[] = [
   {
     label: "Careers",
     href: "/students/careers",
+    columns: 2,
     activePrefixes: ["/students/career-explorer", "/students/opportunities"],
     items: [
       { label: "The Careers kit", href: "/students/careers", desc: "Resume templates, interview guides, and your first offer.", icon: FileText, color: "#0c4a39" },
       { label: "Career Explorer", href: "/students/career-explorer", desc: "Real pay, growth, and training paths — no rankings.", icon: Telescope, color: "#4b5f8a" },
+      { label: "Compare careers", href: "/students/career-explorer/compare", desc: "Put pay, entry cost, schedule, and local wages side by side.", icon: Scale, color: "#15624b" },
+      { label: "My career plan", href: "/students/career-explorer/plan", desc: "Turn a path into editable, dated next steps.", icon: Compass, color: "#c4573b" },
       { label: "The opportunity finder", href: "/students/opportunities", desc: "Internships, fellowships, research. Verified, many paid.", icon: Briefcase, color: "#c9842a" },
       { label: "Paid internships", href: "/students/opportunities?type=internship", desc: "Programs that pay you while you learn the field.", icon: Banknote, color: "#0c4a39" },
       { label: "Work-study, explained", href: "/students/learn/college/work-study-explained", desc: "The campus job that comes with your aid letter.", icon: Wallet, color: "#15624b" },
