@@ -42,4 +42,33 @@ test.describe("Career Explorer decision journey", () => {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });
+
+  test("core discovery actions work from the keyboard", async ({ page }) => {
+    await page.goto("/students/career-explorer");
+
+    const search = page.getByRole("searchbox", { name: "Search careers" });
+    await search.focus();
+    await page.keyboard.type("electrician");
+    await expect(page.getByRole("heading", { name: "Electrician", level: 3 })).toBeVisible();
+
+    const save = page.getByRole("button", { name: "Save", exact: true });
+    await save.focus();
+    await page.keyboard.press("Space");
+    await expect(page.getByRole("button", { name: "Saved", exact: true })).toBeVisible();
+
+    const quickLook = page.getByRole("button", { name: "Quick look", exact: true });
+    await quickLook.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("button", { name: "Less", exact: true })).toHaveAttribute(
+      "aria-expanded",
+      "true"
+    );
+    await expect(page.getByText(/Install, maintain, and repair the wiring/)).toBeVisible();
+
+    const fullProfile = page.getByRole("link", { name: "Full profile", exact: true });
+    await fullProfile.focus();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/students\/career-explorer\/electrician$/);
+    await expect(page.getByRole("heading", { name: "Electrician", level: 1 })).toBeVisible();
+  });
 });

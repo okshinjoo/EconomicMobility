@@ -59,6 +59,8 @@ Finish with five questions:
 4. What information was missing or hard to trust?
 5. What is the next action you saved?
 
+Use [`docs/career-explorer-testing-scorecard.md`](./career-explorer-testing-scorecard.md) for one anonymous record per session and the cross-session findings log. Do not put participant names, contact details, exact locations, account identifiers, or other sensitive information in the scorecard.
+
 ## Success thresholds
 
 - At least 80% find two plausible careers without facilitator help.
